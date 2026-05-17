@@ -13,12 +13,31 @@
     "about": "Sobre mí",
     "experience": "Experiencia",
     "skills": "Habilidades",
+    "projects": "Proyectos",
     "education": "Formación",
     "contact": "Contacto"
   },
   "themeToggle": {
     "ariaLabel": "Cambiar tema",
-    "hint": "Cambiar tema · pulsa D"
+    "hint": "Cambiar tema"
+  },
+  "commandPalette": {
+    "title": "Paleta de comandos",
+    "description": "Salta a una sección o ejecuta una acción.",
+    "placeholder": "Escribe un comando o busca…",
+    "empty": "Sin resultados.",
+    "groups": {
+      "sections": "Secciones",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "themeToDark": "Cambiar a modo oscuro",
+      "themeToLight": "Cambiar a modo claro",
+      "switchTo": {
+        "en": "Switch to English",
+        "es": "Cambiar a español"
+      }
+    }
   },
   "localeSwitcher": {
     "ariaLabel": "Cambiar idioma",
@@ -45,8 +64,7 @@
       "contact": "Contáctame",
       "linkedin": "LinkedIn",
       "experience": "Ver experiencia"
-    },
-    "photoPlaceholder": "Foto pendiente"
+    }
   },
   "about": {
     "indexLabel": "01 — Sobre mí",
@@ -58,6 +76,11 @@
     "indexLabel": "02 — Experiencia",
     "title": "Dónde he entregado",
     "hint": "{count} puestos · 2020 → actualidad",
+    "duration": {
+      "yearsMonths": "{years, plural, one {# año} other {# años}} y {months, plural, one {# mes} other {# meses}}",
+      "years": "{years, plural, one {# año} other {# años}}",
+      "months": "{months, plural, one {# mes} other {# meses}}"
+    },
     "entries": {
       "hotelgest-2025": {
         "role": "Ingeniero de Software",
@@ -138,17 +161,37 @@
       "frontend": "Frontend",
       "backend": "Backend",
       "data": "Datos",
+      "cloud": "Cloud",
       "practice": "Prácticas"
     },
     "practiceItems": [
       "Spec-driven development",
       "Diseño type-first",
-      "Revisión de código",
-      "Mentoría"
+      "Revisión de código"
     ]
   },
+  "projects": {
+    "indexLabel": "04 — Proyectos",
+    "title": "Lo que construyo en mi tiempo",
+    "hint": "{count, plural, one {# proyecto} other {# proyectos}} · trabajo personal",
+    "privateLabel": "Interno · no público",
+    "entries": {
+      "apidex": {
+        "name": "apidex",
+        "summary": "Playground local-first para OpenAPI. Sube una especificación JSON o YAML y obtén una vista limpia y navegable de cada operación; comparte specs vía S3 + DynamoDB con contraseña opcional."
+      },
+      "andllar": {
+        "name": "andllar",
+        "summary": "Marketplace inmobiliario para Andorra. Anuncios, promociones de agencias y búsqueda sobre mapa con soporte multilingüe en español, catalán, francés e inglés."
+      },
+      "sowify-admin": {
+        "name": "Suite interna de administración",
+        "summary": "Suite interna de administración y ERP hecha a medida. Facturación con generación de PDF y envío de facturas por correo, control de gastos, CRM (leads, partners, inversores), contactos, accesos por roles y dashboards sobre un stack type-safe de tRPC + Prisma."
+      }
+    }
+  },
   "education": {
-    "indexLabel": "04 — Formación e idiomas",
+    "indexLabel": "05 — Formación e idiomas",
     "title": "Estudios y cómo trabajo",
     "languagesLabel": "Idiomas",
     "entries": {
@@ -178,11 +221,12 @@
     }
   },
   "contact": {
-    "indexLabel": "05 — Contacto",
+    "indexLabel": "06 — Contacto",
     "title": "La forma más rápida de localizarme",
     "emailLabel": "Email",
     "copy": "Copiar",
     "copied": "Copiado",
+    "copyFailed": "No se pudo copiar",
     "copyAriaLabel": "Copiar dirección de email",
     "body": "Proyecto, puesto o una pregunta — manda un mensaje breve con el contexto y respondo en menos de dos días laborables.",
     "sendEmail": "Enviar email",
@@ -192,7 +236,6 @@
     "timezone": "Zona horaria"
   },
   "footer": {
-    "lastUpdated": "Actualizado · {date}",
-    "pressForDarkMode": "Pulsa <kbd>D</kbd> para modo oscuro"
+    "lastUpdated": "Actualizado · {date}"
   }
 }

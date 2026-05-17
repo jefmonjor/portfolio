@@ -6,16 +6,44 @@ import { useTranslations } from "next-intl"
 
 import { SectionHeading } from "@/components/portfolio/section-heading"
 import { Badge } from "@/components/ui/badge"
-import { profile } from "@/lib/profile"
+import { portfolioUpdatedAt, profile } from "@/lib/profile"
 
 const ease = [0.16, 1, 0.3, 1] as const
+
+function parseISOMonth(value: string): { year: number; month: number } {
+  const [year, month] = value.split("-").map(Number)
+  return { year, month }
+}
+
+function totalMonthsBetween(
+  startISO: string,
+  endISO: string | "present",
+  nowISO: string
+): number {
+  const start = parseISOMonth(startISO)
+  const end = parseISOMonth(endISO === "present" ? nowISO : endISO)
+  const diff = (end.year - start.year) * 12 + (end.month - start.month) + 1
+  return Math.max(diff, 1)
+}
 
 function Experience() {
   const reduce = useReducedMotion()
   const t = useTranslations("experience")
   const tEntries = useTranslations("experience.entries")
+  const tDuration = useTranslations("experience.duration")
   const tCommon = useTranslations("common")
   const entries = profile.experience
+
+  function durationLabel(startISO: string, endISO: string | "present"): string {
+    const total = totalMonthsBetween(startISO, endISO, portfolioUpdatedAt)
+    const years = Math.floor(total / 12)
+    const months = total % 12
+    if (years > 0 && months > 0) {
+      return tDuration("yearsMonths", { years, months })
+    }
+    if (years > 0) return tDuration("years", { years })
+    return tDuration("months", { months: total })
+  }
 
   return (
     <section
@@ -37,8 +65,11 @@ function Experience() {
           const role = tEntries(`${entry.id}.role`)
           const location = tEntries(`${entry.id}.location`)
           const start = tEntries(`${entry.id}.start`)
-          const endValue = tEntries(`${entry.id}.end`)
-          const end = endValue === "present" ? tCommon("present") : endValue
+          const end =
+            entry.endISO === "present"
+              ? tCommon("present")
+              : tEntries(`${entry.id}.end`)
+          const duration = durationLabel(entry.startISO, entry.endISO)
           const summary = tEntries(`${entry.id}.summary`)
           const highlights = tEntries.raw(
             `${entry.id}.highlights`
@@ -67,12 +98,18 @@ function Experience() {
                   <span className="block text-[10px] text-muted-foreground/70">
                     → {end}
                   </span>
+                  <span className="mt-1 block font-mono text-[10px] tracking-wider text-muted-foreground/60 normal-case">
+                    {duration}
+                  </span>
                 </span>
               </div>
               <div className="flex flex-col gap-3">
                 <div className="flex flex-col gap-1">
                   <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase sm:hidden">
                     {start} → {end}
+                    <span className="ml-2 text-muted-foreground/60 normal-case">
+                      · {duration}
+                    </span>
                   </span>
                   <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                     <h3 className="font-heading text-base font-medium tracking-tight text-foreground sm:text-lg">

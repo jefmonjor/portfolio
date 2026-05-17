@@ -13,6 +13,11 @@ import {
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { routing } from "@/i18n/routing"
 
+function withCurrentHash(pathname: string): string {
+  if (typeof window === "undefined") return pathname
+  return `${pathname}${window.location.hash}`
+}
+
 function LocaleSwitcher() {
   const t = useTranslations("localeSwitcher")
   const locale = useLocale()
@@ -23,18 +28,14 @@ function LocaleSwitcher() {
   function onChange(next: string) {
     if (next === locale) return
     startTransition(() => {
-      router.replace(pathname, {
+      router.replace(withCurrentHash(pathname), {
         locale: next as (typeof routing.locales)[number],
       })
     })
   }
 
   return (
-    <Select
-      value={locale}
-      onValueChange={onChange}
-      disabled={isPending}
-    >
+    <Select value={locale} onValueChange={onChange} disabled={isPending}>
       <SelectTrigger
         size="sm"
         aria-label={t("ariaLabel")}

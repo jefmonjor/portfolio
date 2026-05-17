@@ -20,29 +20,56 @@ import {
 } from "@/components/ui/tooltip"
 import { profile } from "@/lib/profile"
 
+type CopyState = "idle" | "copied" | "failed"
+
 const email =
   profile.socials.find((s) => s.kind === "email")?.handle ??
-  "enpihe1997@gmail.com"
+  "luisenrique.ph97@gmail.com"
 const linkedin = profile.socials.find((s) => s.kind === "linkedin")?.href ?? "#"
 const mailto =
   profile.socials.find((s) => s.kind === "email")?.href ?? `mailto:${email}`
 
 function Contact() {
-  const [copied, setCopied] = React.useState(false)
+  const [copyState, setCopyState] = React.useState<CopyState>("idle")
+  const resetTimerRef = React.useRef<number | null>(null)
   const t = useTranslations("contact")
   const tStatus = useTranslations("status")
+
+  React.useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) {
+        window.clearTimeout(resetTimerRef.current)
+      }
+    }
+  }, [])
+
+  function resetCopyStateSoon() {
+    if (resetTimerRef.current) {
+      window.clearTimeout(resetTimerRef.current)
+    }
+
+    resetTimerRef.current = window.setTimeout(() => {
+      setCopyState("idle")
+    }, 1600)
+  }
 
   async function onCopy() {
     try {
       await navigator.clipboard.writeText(email)
-      setCopied(true)
-      window.setTimeout(() => setCopied(false), 1600)
+      setCopyState("copied")
     } catch {
-      // clipboard may be unavailable; silently fall back
+      setCopyState("failed")
     }
+    resetCopyStateSoon()
   }
 
   const statusDetail = tStatus("detail")
+  const copyLabel =
+    copyState === "copied"
+      ? t("copied")
+      : copyState === "failed"
+        ? t("copyFailed")
+        : t("copy")
 
   return (
     <section
@@ -71,7 +98,7 @@ function Contact() {
                   onClick={onCopy}
                 >
                   <HugeiconsIcon
-                    icon={copied ? Tick02Icon : CopyIcon}
+                    icon={copyState === "copied" ? Tick02Icon : CopyIcon}
                     className="size-3.5"
                     strokeWidth={1.75}
                   />
@@ -79,11 +106,14 @@ function Contact() {
               </TooltipTrigger>
               <TooltipContent>
                 <span className="font-mono text-[10px] tracking-wider uppercase">
-                  {copied ? t("copied") : t("copy")}
+                  {copyLabel}
                 </span>
               </TooltipContent>
             </Tooltip>
           </div>
+          <span className="sr-only" role="status" aria-live="polite">
+            {copyState === "idle" ? "" : copyLabel}
+          </span>
           <a
             href={mailto}
             className="font-heading text-2xl font-medium tracking-tight break-all text-foreground hover:underline sm:text-3xl"

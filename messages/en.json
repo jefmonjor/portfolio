@@ -13,12 +13,31 @@
     "about": "About",
     "experience": "Experience",
     "skills": "Skills",
+    "projects": "Projects",
     "education": "Education",
     "contact": "Contact"
   },
   "themeToggle": {
     "ariaLabel": "Toggle theme",
-    "hint": "Toggle theme · press d"
+    "hint": "Toggle theme"
+  },
+  "commandPalette": {
+    "title": "Command palette",
+    "description": "Jump to a section or run a command.",
+    "placeholder": "Type a command or search…",
+    "empty": "No results.",
+    "groups": {
+      "sections": "Sections",
+      "actions": "Actions"
+    },
+    "actions": {
+      "themeToDark": "Switch to dark mode",
+      "themeToLight": "Switch to light mode",
+      "switchTo": {
+        "en": "Switch to English",
+        "es": "Cambiar a español"
+      }
+    }
   },
   "localeSwitcher": {
     "ariaLabel": "Change language",
@@ -45,8 +64,7 @@
       "contact": "Get in touch",
       "linkedin": "LinkedIn",
       "experience": "See experience"
-    },
-    "photoPlaceholder": "Photo placeholder"
+    }
   },
   "about": {
     "indexLabel": "01 — About",
@@ -58,6 +76,11 @@
     "indexLabel": "02 — Experience",
     "title": "Where I have shipped",
     "hint": "{count} roles · 2020 → present",
+    "duration": {
+      "yearsMonths": "{years, plural, one {# year} other {# years}} and {months, plural, one {# month} other {# months}}",
+      "years": "{years, plural, one {# year} other {# years}}",
+      "months": "{months, plural, one {# month} other {# months}}"
+    },
     "entries": {
       "hotelgest-2025": {
         "role": "Software Engineer",
@@ -138,17 +161,37 @@
       "frontend": "Frontend",
       "backend": "Backend",
       "data": "Data",
+      "cloud": "Cloud",
       "practice": "Practice"
     },
     "practiceItems": [
       "Spec-driven development",
       "Type-first design",
-      "Code review",
-      "Mentoring"
+      "Code review"
     ]
   },
+  "projects": {
+    "indexLabel": "04 — Projects",
+    "title": "Things I build on my own time",
+    "hint": "{count, plural, one {# project} other {# projects}} · personal work",
+    "privateLabel": "Internal · not public",
+    "entries": {
+      "apidex": {
+        "name": "apidex",
+        "summary": "Local-first OpenAPI playground. Upload a JSON or YAML spec and get a clean, navigable view of every operation; share specs via S3 + DynamoDB with an optional password."
+      },
+      "andllar": {
+        "name": "andllar",
+        "summary": "Real-estate marketplace for Andorra. Listings, agency promotions, and map-based search with full multilingual support across English, Spanish, Catalan, and French."
+      },
+      "sowify-admin": {
+        "name": "Internal admin suite",
+        "summary": "Tailor-made internal admin and ERP suite. Invoicing with PDF generation and email delivery, expense tracking, CRM (leads, partners, investors), contacts, role-based access, and dashboards on a type-safe tRPC + Prisma stack."
+      }
+    }
+  },
   "education": {
-    "indexLabel": "04 — Education & Languages",
+    "indexLabel": "05 — Education & Languages",
     "title": "Studies and the way I work",
     "languagesLabel": "Languages",
     "entries": {
@@ -178,11 +221,12 @@
     }
   },
   "contact": {
-    "indexLabel": "05 — Contact",
+    "indexLabel": "06 — Contact",
     "title": "The fastest way to reach me",
     "emailLabel": "Email",
     "copy": "Copy",
     "copied": "Copied",
+    "copyFailed": "Copy failed",
     "copyAriaLabel": "Copy email address",
     "body": "Project, role, or a question — send a short message with the context and I will reply within two business days.",
     "sendEmail": "Send email",
@@ -192,7 +236,6 @@
     "timezone": "Timezone"
   },
   "footer": {
-    "lastUpdated": "Last updated · {date}",
-    "pressForDarkMode": "Press <kbd>D</kbd> for dark mode"
+    "lastUpdated": "Last updated · {date}"
   }
 }

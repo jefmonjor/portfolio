@@ -1,0 +1,214 @@
+"use client"
+
+import * as React from "react"
+import { useTheme } from "next-themes"
+import { useLocale, useTranslations } from "next-intl"
+import { HugeiconsIcon } from "@hugeicons/react"
+import {
+  ArrowRight01Icon,
+  MoonIcon,
+  SearchIcon,
+  SunIcon,
+  TranslateIcon,
+} from "@hugeicons/core-free-icons"
+
+import { Button } from "@/components/ui/button"
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { usePathname, useRouter } from "@/i18n/navigation"
+import { routing, type Locale } from "@/i18n/routing"
+
+type SectionId =
+  | "about"
+  | "experience"
+  | "skills"
+  | "projects"
+  | "education"
+  | "contact"
+
+const SECTIONS: ReadonlyArray<SectionId> = [
+  "about",
+  "experience",
+  "skills",
+  "projects",
+  "education",
+  "contact",
+]
+
+function isEditableTarget(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) return false
+  const tag = target.tagName
+  return (
+    tag === "INPUT" ||
+    tag === "TEXTAREA" ||
+    tag === "SELECT" ||
+    target.isContentEditable
+  )
+}
+
+function withCurrentHash(pathname: string): string {
+  if (typeof window === "undefined") return pathname
+  return `${pathname}${window.location.hash}`
+}
+
+function CommandPalette() {
+  const [open, setOpen] = React.useState(false)
+
+  const t = useTranslations("commandPalette")
+  const tNav = useTranslations("nav")
+
+  const { resolvedTheme, setTheme } = useTheme()
+  const router = useRouter()
+  const pathname = usePathname()
+  const locale = useLocale() as Locale
+
+  React.useEffect(() => {
+    function onKey(event: KeyboardEvent) {
+      if (event.key.toLowerCase() !== "k") return
+      if (!(event.metaKey || event.ctrlKey)) return
+      if (event.altKey) return
+      if (isEditableTarget(event.target)) {
+        // Still allow palette toggle from inputs; this overrides default.
+      }
+      event.preventDefault()
+      setOpen((prev) => !prev)
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [])
+
+  function runAndClose(action: () => void) {
+    setOpen(false)
+    requestAnimationFrame(action)
+  }
+
+  function goToSection(id: SectionId) {
+    runAndClose(() => {
+      const el = document.getElementById(id)
+      if (!el) return
+      el.scrollIntoView({ behavior: "smooth", block: "start" })
+      history.replaceState(null, "", `#${id}`)
+    })
+  }
+
+  function toggleTheme() {
+    runAndClose(() => {
+      const current =
+        resolvedTheme ??
+        (document.documentElement.classList.contains("dark") ? "dark" : "light")
+      setTheme(current === "dark" ? "light" : "dark")
+    })
+  }
+
+  function switchLocale(next: Locale) {
+    runAndClose(() => {
+      router.replace(withCurrentHash(pathname), { locale: next })
+    })
+  }
+
+  const themeLabel =
+    resolvedTheme === "dark"
+      ? t("actions.themeToLight")
+      : t("actions.themeToDark")
+  const ThemeIcon = resolvedTheme === "dark" ? SunIcon : MoonIcon
+
+  return (
+    <>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            type="button"
+            variant="outline"
+            size="icon-sm"
+            aria-label={t("title")}
+            onClick={() => setOpen(true)}
+          >
+            <HugeiconsIcon
+              icon={SearchIcon}
+              className="size-3.5"
+              strokeWidth={1.75}
+            />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <span className="font-mono text-[10px] tracking-wider uppercase">
+            {t("title")}
+          </span>
+        </TooltipContent>
+      </Tooltip>
+
+      <CommandDialog
+        open={open}
+        onOpenChange={setOpen}
+        title={t("title")}
+        description={t("description")}
+      >
+        <CommandInput placeholder={t("placeholder")} />
+        <CommandList>
+          <CommandEmpty>{t("empty")}</CommandEmpty>
+
+          <CommandGroup heading={t("groups.sections")}>
+            {SECTIONS.map((id) => (
+              <CommandItem
+                key={id}
+                value={`${tNav(id)} ${id}`}
+                onSelect={() => goToSection(id)}
+              >
+                <HugeiconsIcon
+                  icon={ArrowRight01Icon}
+                  className="size-4 text-muted-foreground"
+                  strokeWidth={1.75}
+                />
+                <span>{tNav(id)}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+
+          <CommandGroup heading={t("groups.actions")}>
+            <CommandItem
+              value={`${themeLabel} theme dark light`}
+              onSelect={toggleTheme}
+            >
+              <HugeiconsIcon
+                icon={ThemeIcon}
+                className="size-4 text-muted-foreground"
+                strokeWidth={1.75}
+              />
+              <span>{themeLabel}</span>
+            </CommandItem>
+
+            {routing.locales
+              .filter((loc) => loc !== locale)
+              .map((loc) => (
+                <CommandItem
+                  key={loc}
+                  value={`${t(`actions.switchTo.${loc}`)} language ${loc}`}
+                  onSelect={() => switchLocale(loc)}
+                >
+                  <HugeiconsIcon
+                    icon={TranslateIcon}
+                    className="size-4 text-muted-foreground"
+                    strokeWidth={1.75}
+                  />
+                  <span>{t(`actions.switchTo.${loc}`)}</span>
+                </CommandItem>
+              ))}
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
+    </>
+  )
+}
+
+export { CommandPalette }

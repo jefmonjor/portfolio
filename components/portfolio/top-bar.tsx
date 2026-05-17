@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl"
 
+import { CommandPalette } from "@/components/portfolio/command-palette"
 import { LocaleSwitcher } from "@/components/portfolio/locale-switcher"
 import { ThemeToggle } from "@/components/portfolio/theme-toggle"
 import { profile } from "@/lib/profile"
@@ -38,6 +39,12 @@ function TopBar() {
             {tNav("skills")}
           </a>
           <a
+            href="#projects"
+            className="px-2 py-1 transition-colors hover:text-foreground"
+          >
+            {tNav("projects")}
+          </a>
+          <a
             href="#education"
             className="px-2 py-1 transition-colors hover:text-foreground"
           >
@@ -52,6 +59,7 @@ function TopBar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <CommandPalette />
           <LocaleSwitcher />
           <ThemeToggle />
         </div>

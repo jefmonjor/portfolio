@@ -38,16 +38,18 @@ professional story easy to scan, verify, and contact from.
 
 ## Current Scope
 
-The repository currently contains the initial Next.js/shadcn template plus the
-base tRPC and React Query infrastructure. Portfolio content models and pages
-will be added incrementally through specs.
+The repository now contains the first complete localized portfolio surface:
+hero, profile summary, marquee, experience, skills, projects, education,
+languages, contact paths, theme controls, locale switching, and a command
+palette. Static portfolio facts live in `lib/profile.ts`, while localized copy
+lives in `messages/en.json` and `messages/es.json`.
 
 ## Likely Roadmap Areas
 
-- Typed profile and CV data.
-- Project case-study model and project detail pages.
-- Home page with professional summary, featured work, skills, and contact CTA.
+- Project detail pages or richer case-study routes.
 - CV route or downloadable CV artifact.
 - SEO metadata, Open Graph images, sitemap, and structured data.
 - Contact flow if server-side submission is required.
+- Typed content helpers if profile data starts feeding multiple routes or
+  generated artifacts.
 - Admin/content workflow only if maintenance becomes painful.

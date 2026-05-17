@@ -1,8 +1,6 @@
 import { useTranslations } from "next-intl"
 
-import { profile } from "@/lib/profile"
-
-const lastUpdated = "2026-05-17"
+import { portfolioUpdatedAt, profile } from "@/lib/profile"
 
 function Footer() {
   const t = useTranslations("footer")
@@ -18,15 +16,7 @@ function Footer() {
           <span>{tHero("role")}</span>
         </div>
         <div className="flex flex-wrap items-center gap-3 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-          <span>{t("lastUpdated", { date: lastUpdated })}</span>
-          <span className="text-border">/</span>
-          <span>
-            {t.rich("pressForDarkMode", {
-              kbd: (chunks) => (
-                <kbd className="font-mono text-foreground">{chunks}</kbd>
-              ),
-            })}
-          </span>
+          <span>{t("lastUpdated", { date: portfolioUpdatedAt })}</span>
         </div>
       </div>
     </footer>

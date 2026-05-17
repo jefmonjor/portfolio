@@ -33,8 +33,9 @@ and Spanish, exposed via a path prefix: `/en/...` and `/es/...`.
   `profile.experience[i].id` matches a key under
   `experience.entries.<id>` in messages.
 - The `"present"` sentinel in profile data is intentional: components compare
-  the translated `end` value against `"present"` and render
-  `common.present` ("Present" / "Actualidad") when matched.
+  `profile.experience[i].endISO` against `"present"` and render
+  `common.present` ("Present" / "Actualidad") when matched. Do not rely on a
+  translated message value to decide whether a role is ongoing.
 - The `skills.practice` group's items are sourced from
   `messages.skills.practiceItems` instead of `profile.skills[…].items`.
 

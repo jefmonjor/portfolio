@@ -10,8 +10,8 @@ export type ExperienceEntry = {
   id: string
   organization: string
   location: string
-  start: string
-  end: string | "present"
+  startISO: string
+  endISO: string | "present"
   stack?: ReadonlyArray<string>
 }
 
@@ -31,10 +31,15 @@ export type LanguageEntry = {
   id: string
 }
 
+export type ProjectEntry = {
+  id: string
+  url?: string
+  stack?: ReadonlyArray<string>
+}
+
 export type Profile = {
   name: string
   shortName: string
-  initials: string
   location: string
   timezone: string
   since: string
@@ -43,6 +48,7 @@ export type Profile = {
   socials: ReadonlyArray<Social>
   experience: ReadonlyArray<ExperienceEntry>
   skills: ReadonlyArray<SkillGroup>
+  projects: ReadonlyArray<ProjectEntry>
   education: ReadonlyArray<EducationEntry>
   languages: ReadonlyArray<LanguageEntry>
 }

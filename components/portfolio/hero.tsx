@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { motion, useReducedMotion } from "motion/react"
 import { useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
@@ -11,7 +12,6 @@ import {
 } from "@hugeicons/core-free-icons"
 
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { profile } from "@/lib/profile"
 
 const ease = [0.16, 1, 0.3, 1] as const
@@ -147,38 +147,32 @@ function Hero() {
             aria-hidden
             className="absolute -right-2 -bottom-2 inline-block size-2 bg-foreground"
           />
-          <Avatar className="aspect-square size-full max-h-80 w-full rounded-none ring-1 ring-foreground/15">
-            <AvatarFallback className="relative h-full w-full rounded-none bg-muted/40 text-foreground">
-              <span
-                aria-hidden
-                className="absolute inset-0 [background-image:linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] [background-size:18px_18px] opacity-60"
-              />
-              <span
-                aria-hidden
-                className="absolute top-0 left-0 size-6 border-t border-l border-foreground/40"
-              />
-              <span
-                aria-hidden
-                className="absolute top-0 right-0 size-6 border-t border-r border-foreground/40"
-              />
-              <span
-                aria-hidden
-                className="absolute bottom-0 left-0 size-6 border-b border-l border-foreground/40"
-              />
-              <span
-                aria-hidden
-                className="absolute right-0 bottom-0 size-6 border-b border-r border-foreground/40"
-              />
-              <div className="relative z-10 flex flex-col items-center gap-2">
-                <span className="font-heading text-5xl font-medium tracking-tight">
-                  {profile.initials}
-                </span>
-                <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
-                  {t("photoPlaceholder")}
-                </span>
-              </div>
-            </AvatarFallback>
-          </Avatar>
+          <div className="relative aspect-square w-full max-h-80 overflow-hidden ring-1 ring-foreground/15">
+            <Image
+              src="/me.webp"
+              alt={profile.name}
+              fill
+              priority
+              className="object-cover"
+              unoptimized
+            />
+            <span
+              aria-hidden
+              className="absolute top-0 left-0 size-6 border-t border-l border-foreground/40"
+            />
+            <span
+              aria-hidden
+              className="absolute top-0 right-0 size-6 border-t border-r border-foreground/40"
+            />
+            <span
+              aria-hidden
+              className="absolute bottom-0 left-0 size-6 border-b border-l border-foreground/40"
+            />
+            <span
+              aria-hidden
+              className="absolute right-0 bottom-0 size-6 border-b border-r border-foreground/40"
+            />
+          </div>
         </div>
 
         <dl className="divide-y divide-dashed divide-border border border-dashed border-border">
