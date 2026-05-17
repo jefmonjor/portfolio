@@ -1,0 +1,198 @@
+{
+  "common": {
+    "present": "Actualidad"
+  },
+  "metadata": {
+    "titleTemplate": "{shortName} — {role}",
+    "description": "Construyo productos web tipados, rápidos y observables — desde el dato hasta el píxel.",
+    "applicationName": "{shortName} · Portfolio",
+    "role": "Ingeniero de Software",
+    "keywordsExtra": ["Portfolio", "CV"]
+  },
+  "nav": {
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "education": "Formación",
+    "contact": "Contacto"
+  },
+  "themeToggle": {
+    "ariaLabel": "Cambiar tema",
+    "hint": "Cambiar tema · pulsa D"
+  },
+  "localeSwitcher": {
+    "ariaLabel": "Cambiar idioma",
+    "options": {
+      "en": "EN",
+      "es": "ES"
+    }
+  },
+  "status": {
+    "label": "Abierto a oportunidades",
+    "detail": "Andorra · Remoto en horario europeo"
+  },
+  "hero": {
+    "indexLabel": "00 — Perfil",
+    "role": "Ingeniero de Software",
+    "tagline": "Construyo productos web tipados, rápidos y observables — desde el dato hasta el píxel.",
+    "specs": {
+      "location": "Ubicación",
+      "timezone": "Zona horaria",
+      "focus": "Foco",
+      "since": "Desde"
+    },
+    "cta": {
+      "contact": "Contáctame",
+      "linkedin": "LinkedIn",
+      "experience": "Ver experiencia"
+    },
+    "photoPlaceholder": "Foto pendiente"
+  },
+  "about": {
+    "indexLabel": "01 — Sobre mí",
+    "title": "Quién soy, en un párrafo",
+    "manifesto": "Cinco años desplegando software en hostelería, banca, energía y datos — casi siempre en la intersección entre el backend y la UI. Escribo TypeScript estricto, prefiero los contratos antes que los comentarios y diseño sistemas que aguantan más allá de la segunda funcionalidad.",
+    "currentlyWorkingWith": "Trabajando ahora con"
+  },
+  "experience": {
+    "indexLabel": "02 — Experiencia",
+    "title": "Dónde he entregado",
+    "hint": "{count} puestos · 2020 → actualidad",
+    "entries": {
+      "hotelgest-2025": {
+        "role": "Ingeniero de Software",
+        "location": "Escaldes-Engordany, Andorra",
+        "start": "Abr 2025",
+        "end": "present",
+        "summary": "Construyendo funcionalidades para un producto de gestión hotelera usado por hoteles independientes.",
+        "highlights": [
+          "Entrega full-stack en reservas y operaciones.",
+          "Iteración de herramientas internas y flujos de datos junto a producto."
+        ]
+      },
+      "andbank-2024": {
+        "role": "Ingeniero de Software",
+        "location": "Andorra",
+        "start": "Oct 2024",
+        "end": "Abr 2025",
+        "summary": "Ingeniería en sistemas bancarios en un entorno regulado con disciplina estricta de releases.",
+        "highlights": [
+          "Trabajo entre servicios con contratos de tipos sólidos y revisión de código.",
+          "Operando bajo auditoría y control de cambios de nivel bancario."
+        ]
+      },
+      "eosol-software-manager-2023": {
+        "role": "Software Manager",
+        "location": "Mutilva, Navarra, España",
+        "start": "Ago 2023",
+        "end": "Oct 2024",
+        "summary": "Lideré el área de software dentro de un grupo de ingeniería energética — contratación, planificación y entrega.",
+        "highlights": [
+          "Propietario de roadmap, alcance y decisiones de arquitectura en apps internas.",
+          "Mentoría a desarrolladores y alineación de ingeniería con operaciones.",
+          "Entrega de stacks TypeScript sobre sistemas de datos heredados."
+        ]
+      },
+      "eosol-software-developer-2022": {
+        "role": "Desarrollador de Software",
+        "location": "Navarra, España",
+        "start": "Jul 2022",
+        "end": "Ago 2023",
+        "summary": "Diseño y entrega de funcionalidades full-stack para la plataforma interna de ingeniería.",
+        "highlights": [
+          "Migración de flujos clave a un stack tipado de Node + React.",
+          "Sustitución de scripts ad-hoc por servicios mantenibles."
+        ]
+      },
+      "eosol-data-engineer-2021": {
+        "role": "Ingeniero de Datos",
+        "location": "Navarra, España",
+        "start": "Mar 2021",
+        "end": "Jun 2022",
+        "summary": "Construcción de la columna de ingestión y reporting para operaciones energéticas.",
+        "highlights": [
+          "Levanté pipelines de ingestión y transformación para datos operativos.",
+          "Modelé el almacenamiento para hacer predecible el reporting posterior."
+        ]
+      },
+      "upna-research-2020": {
+        "role": "Asistente de Investigación",
+        "location": "Navarra, España",
+        "start": "Jul 2020",
+        "end": "Dic 2020",
+        "summary": "Investigación sobre infraestructura de procesamiento big data y migración de almacenamiento.",
+        "highlights": [
+          "Construí un pipeline sobre Hortonworks con Sqoop, Hive y Kafka.",
+          "Reestructuré una base de datos NoSQL y la migré a MySQL.",
+          "Desarrollé un backend en Express.js para exponer el nuevo esquema."
+        ]
+      }
+    }
+  },
+  "skills": {
+    "indexLabel": "03 — Habilidades",
+    "title": "Mis herramientas de cabecera",
+    "hint": "{count} entradas · {groups} grupos",
+    "groups": {
+      "languages": "Lenguajes",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "data": "Datos",
+      "practice": "Prácticas"
+    },
+    "practiceItems": [
+      "Spec-driven development",
+      "Diseño type-first",
+      "Revisión de código",
+      "Mentoría"
+    ]
+  },
+  "education": {
+    "indexLabel": "04 — Formación e idiomas",
+    "title": "Estudios y cómo trabajo",
+    "languagesLabel": "Idiomas",
+    "entries": {
+      "msc-data-science": {
+        "title": "Máster en Ingeniería y Ciencia de Datos",
+        "dates": "2020 — 2022"
+      },
+      "general-english": {
+        "title": "General English",
+        "dates": "Dic 2022 — Ago 2023",
+        "location": "Brisbane, Australia"
+      },
+      "beng-computer-engineering": {
+        "title": "Grado en Ingeniería Informática",
+        "dates": "2015 — 2020"
+      }
+    },
+    "languageEntries": {
+      "es": {
+        "name": "Español",
+        "level": "Nativo"
+      },
+      "en": {
+        "name": "Inglés",
+        "level": "Profesional"
+      }
+    }
+  },
+  "contact": {
+    "indexLabel": "05 — Contacto",
+    "title": "La forma más rápida de localizarme",
+    "emailLabel": "Email",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "copyAriaLabel": "Copiar dirección de email",
+    "body": "Proyecto, puesto o una pregunta — manda un mensaje breve con el contexto y respondo en menos de dos días laborables.",
+    "sendEmail": "Enviar email",
+    "openLinkedIn": "Abrir LinkedIn",
+    "basedIn": "Ubicado en",
+    "status": "Estado",
+    "timezone": "Zona horaria"
+  },
+  "footer": {
+    "lastUpdated": "Actualizado · {date}",
+    "pressForDarkMode": "Pulsa <kbd>D</kbd> para modo oscuro"
+  }
+}

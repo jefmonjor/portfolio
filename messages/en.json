@@ -1,0 +1,198 @@
+{
+  "common": {
+    "present": "Present"
+  },
+  "metadata": {
+    "titleTemplate": "{shortName} — {role}",
+    "description": "I build typed, fast, and observable web products — from the data pipe to the pixel.",
+    "applicationName": "{shortName} · Portfolio",
+    "role": "Software Engineer",
+    "keywordsExtra": ["Portfolio", "CV"]
+  },
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "education": "Education",
+    "contact": "Contact"
+  },
+  "themeToggle": {
+    "ariaLabel": "Toggle theme",
+    "hint": "Toggle theme · press d"
+  },
+  "localeSwitcher": {
+    "ariaLabel": "Change language",
+    "options": {
+      "en": "EN",
+      "es": "ES"
+    }
+  },
+  "status": {
+    "label": "Open to opportunities",
+    "detail": "Andorra · Remote within EU timezones"
+  },
+  "hero": {
+    "indexLabel": "00 — Profile",
+    "role": "Software Engineer",
+    "tagline": "I build typed, fast, and observable web products — from the data pipe to the pixel.",
+    "specs": {
+      "location": "Location",
+      "timezone": "Timezone",
+      "focus": "Focus",
+      "since": "Since"
+    },
+    "cta": {
+      "contact": "Get in touch",
+      "linkedin": "LinkedIn",
+      "experience": "See experience"
+    },
+    "photoPlaceholder": "Photo placeholder"
+  },
+  "about": {
+    "indexLabel": "01 — About",
+    "title": "Who I am, in one paragraph",
+    "manifesto": "Five years shipping software across hospitality, finance, energy, and data — most of it where the back end and the UI meet. I write strict TypeScript, lean on contracts over comments, and design systems that survive the second feature.",
+    "currentlyWorkingWith": "Currently working with"
+  },
+  "experience": {
+    "indexLabel": "02 — Experience",
+    "title": "Where I have shipped",
+    "hint": "{count} roles · 2020 → present",
+    "entries": {
+      "hotelgest-2025": {
+        "role": "Software Engineer",
+        "location": "Escaldes-Engordany, Andorra",
+        "start": "Apr 2025",
+        "end": "present",
+        "summary": "Building features for a hotel management product used by independent hotels.",
+        "highlights": [
+          "Full-stack delivery across the booking and operations surface.",
+          "Iterating on internal tools and data flows alongside product."
+        ]
+      },
+      "andbank-2024": {
+        "role": "Software Engineer",
+        "location": "Andorra",
+        "start": "Oct 2024",
+        "end": "Apr 2025",
+        "summary": "Engineering on banking systems in a regulated environment with strict release discipline.",
+        "highlights": [
+          "Worked across services with strong type contracts and code review.",
+          "Operated under banking-grade auditability and change control."
+        ]
+      },
+      "eosol-software-manager-2023": {
+        "role": "Software Manager",
+        "location": "Mutilva, Navarre, Spain",
+        "start": "Aug 2023",
+        "end": "Oct 2024",
+        "summary": "Led the software function inside an energy engineering group — hiring, planning, and delivery.",
+        "highlights": [
+          "Owned roadmap, scoping, and architecture decisions across internal apps.",
+          "Mentored developers and aligned engineering with operations.",
+          "Shipped TypeScript stacks on top of legacy data systems."
+        ]
+      },
+      "eosol-software-developer-2022": {
+        "role": "Software Developer",
+        "location": "Navarre, Spain",
+        "start": "Jul 2022",
+        "end": "Aug 2023",
+        "summary": "Designed and shipped full-stack features for the internal engineering platform.",
+        "highlights": [
+          "Moved core flows onto a typed Node + React stack.",
+          "Replaced ad-hoc scripts with maintainable services."
+        ]
+      },
+      "eosol-data-engineer-2021": {
+        "role": "Data Engineer",
+        "location": "Navarre, Spain",
+        "start": "Mar 2021",
+        "end": "Jun 2022",
+        "summary": "Built the data ingestion and reporting backbone for energy operations.",
+        "highlights": [
+          "Stood up ingestion and transformation pipelines for operational data.",
+          "Modelled storage to make downstream reporting predictable."
+        ]
+      },
+      "upna-research-2020": {
+        "role": "Research Assistant",
+        "location": "Navarre, Spain",
+        "start": "Jul 2020",
+        "end": "Dec 2020",
+        "summary": "Research on big-data processing infrastructure and storage migration.",
+        "highlights": [
+          "Built a Hortonworks-based pipeline with Sqoop, Hive, and Kafka.",
+          "Restructured a NoSQL database and migrated it to MySQL.",
+          "Wrote a backend in Express.js to expose the new schema."
+        ]
+      }
+    }
+  },
+  "skills": {
+    "indexLabel": "03 — Skills",
+    "title": "Tools I reach for first",
+    "hint": "{count} entries · {groups} groups",
+    "groups": {
+      "languages": "Languages",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "data": "Data",
+      "practice": "Practice"
+    },
+    "practiceItems": [
+      "Spec-driven development",
+      "Type-first design",
+      "Code review",
+      "Mentoring"
+    ]
+  },
+  "education": {
+    "indexLabel": "04 — Education & Languages",
+    "title": "Studies and the way I work",
+    "languagesLabel": "Languages",
+    "entries": {
+      "msc-data-science": {
+        "title": "MSc Engineering & Data Science",
+        "dates": "2020 — 2022"
+      },
+      "general-english": {
+        "title": "General English",
+        "dates": "Dec 2022 — Aug 2023",
+        "location": "Brisbane, Australia"
+      },
+      "beng-computer-engineering": {
+        "title": "BEng Computer Engineering",
+        "dates": "2015 — 2020"
+      }
+    },
+    "languageEntries": {
+      "es": {
+        "name": "Spanish",
+        "level": "Native"
+      },
+      "en": {
+        "name": "English",
+        "level": "Professional"
+      }
+    }
+  },
+  "contact": {
+    "indexLabel": "05 — Contact",
+    "title": "The fastest way to reach me",
+    "emailLabel": "Email",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyAriaLabel": "Copy email address",
+    "body": "Project, role, or a question — send a short message with the context and I will reply within two business days.",
+    "sendEmail": "Send email",
+    "openLinkedIn": "Open LinkedIn",
+    "basedIn": "Based in",
+    "status": "Status",
+    "timezone": "Timezone"
+  },
+  "footer": {
+    "lastUpdated": "Last updated · {date}",
+    "pressForDarkMode": "Press <kbd>D</kbd> for dark mode"
+  }
+}

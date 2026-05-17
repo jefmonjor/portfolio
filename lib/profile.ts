@@ -1,0 +1,136 @@
+import type { Profile } from "@/types/profile"
+
+export const profile: Profile = {
+  name: "Luis Enrique Pina Herce",
+  shortName: "Enrique Pina",
+  initials: "EP",
+  location: "Escaldes-Engordany, Andorra",
+  timezone: "CET / CEST",
+  since: "2021",
+  focus: ["TypeScript", "Next.js", "NestJS", "Node.js", "Data pipelines"],
+  marquee: [
+    "TypeScript",
+    "Next.js",
+    "NestJS",
+    "React",
+    "Node.js",
+    "PostgreSQL",
+    "tRPC",
+    "Tailwind",
+    "Kafka",
+    "Hive",
+    "MongoDB",
+    "MySQL",
+    "Express",
+    "Zod",
+    "React Query",
+  ],
+  socials: [
+    {
+      kind: "email",
+      href: "mailto:enpihe1997@gmail.com?subject=Hello%20Enrique",
+      handle: "enpihe1997@gmail.com",
+    },
+    {
+      kind: "linkedin",
+      href: "https://www.linkedin.com/in/luis-enrique-pina-herce-b39740197",
+      handle: "luis-enrique-pina-herce",
+    },
+  ],
+  experience: [
+    {
+      id: "hotelgest-2025",
+      organization: "hotelgest",
+      location: "Escaldes-Engordany, Andorra",
+      start: "Apr 2025",
+      end: "present",
+      stack: ["TypeScript", "Node.js", "React", "PostgreSQL"],
+    },
+    {
+      id: "andbank-2024",
+      organization: "Andbank",
+      location: "Andorra",
+      start: "Oct 2024",
+      end: "Apr 2025",
+      stack: ["TypeScript", "Node.js", "SQL"],
+    },
+    {
+      id: "eosol-software-manager-2023",
+      organization: "EOSOL",
+      location: "Mutilva, Navarre, Spain",
+      start: "Aug 2023",
+      end: "Oct 2024",
+      stack: ["TypeScript", "NestJS", "Next.js", "PostgreSQL"],
+    },
+    {
+      id: "eosol-software-developer-2022",
+      organization: "EOSOL",
+      location: "Navarre, Spain",
+      start: "Jul 2022",
+      end: "Aug 2023",
+      stack: ["Node.js", "NestJS", "React", "TypeScript"],
+    },
+    {
+      id: "eosol-data-engineer-2021",
+      organization: "EOSOL",
+      location: "Navarre, Spain",
+      start: "Mar 2021",
+      end: "Jun 2022",
+      stack: ["Python", "SQL", "Kafka", "MongoDB"],
+    },
+    {
+      id: "upna-research-2020",
+      organization: "Universidad Pública de Navarra",
+      location: "Navarre, Spain",
+      start: "Jul 2020",
+      end: "Dec 2020",
+      stack: ["Hortonworks", "Sqoop", "Hive", "Kafka", "MongoDB", "MySQL", "Express"],
+    },
+  ],
+  skills: [
+    {
+      id: "languages",
+      items: ["TypeScript", "JavaScript", "Python", "SQL"],
+    },
+    {
+      id: "frontend",
+      items: ["React", "Next.js", "Tailwind CSS", "shadcn/ui", "React Query"],
+    },
+    {
+      id: "backend",
+      items: ["Node.js", "NestJS", "Express", "tRPC", "Zod"],
+    },
+    {
+      id: "data",
+      items: ["PostgreSQL", "MySQL", "MongoDB", "Kafka", "Hive", "Sqoop"],
+    },
+    {
+      id: "practice",
+      items: [
+        "spec-driven",
+        "type-first",
+        "code-review",
+        "mentoring",
+      ],
+    },
+  ],
+  education: [
+    {
+      id: "msc-data-science",
+      organization: "Universidad Nacional",
+      dates: "2020 — 2022",
+    },
+    {
+      id: "general-english",
+      organization: "International House Brisbane — ALS",
+      dates: "Dec 2022 — Aug 2023",
+      location: "Brisbane, Australia",
+    },
+    {
+      id: "beng-computer-engineering",
+      organization: "Universidad Pública de Navarra",
+      dates: "2015 — 2020",
+    },
+  ],
+  languages: [{ id: "es" }, { id: "en" }],
+}
