@@ -26,6 +26,7 @@
     "description": "Salta a una sección o ejecuta una acción.",
     "placeholder": "Escribe un comando o busca…",
     "empty": "Sin resultados.",
+    "hintLabel": "Buscar",
     "groups": {
       "sections": "Secciones",
       "actions": "Acciones"
@@ -63,7 +64,8 @@
     "cta": {
       "contact": "Contáctame",
       "linkedin": "LinkedIn",
-      "experience": "Ver experiencia"
+      "experience": "Ver experiencia",
+      "cv": "Descargar CV"
     }
   },
   "about": {
@@ -237,5 +239,15 @@
   },
   "footer": {
     "lastUpdated": "Actualizado · {date}"
+  },
+  "cvToast": {
+    "title": "CV en camino",
+    "description": "La descarga se está abriendo en una pestaña nueva."
+  },
+  "notFound": {
+    "indexLabel": "ERR · 404",
+    "title": "Esta ruta nunca llegó a producción.",
+    "body": "La página que buscas no existe, se renombró, o sigue en alguna feature branch.",
+    "cta": "Volver al inicio"
   }
 }

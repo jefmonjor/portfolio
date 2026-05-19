@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server"
 
 import { About } from "@/components/portfolio/about"
 import { BackgroundGrid } from "@/components/portfolio/background-grid"
+import { ConsoleSignature } from "@/components/portfolio/console-signature"
 import { Contact } from "@/components/portfolio/contact"
 import { Education } from "@/components/portfolio/education"
 import { Experience } from "@/components/portfolio/experience"
@@ -29,6 +30,7 @@ export default async function Page({
   return (
     <div className="relative min-h-svh bg-background text-foreground">
       <BackgroundGrid />
+      <ConsoleSignature />
       <TopBar />
       <main>
         <Hero />

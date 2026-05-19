@@ -26,6 +26,7 @@
     "description": "Jump to a section or run a command.",
     "placeholder": "Type a command or search…",
     "empty": "No results.",
+    "hintLabel": "Search",
     "groups": {
       "sections": "Sections",
       "actions": "Actions"
@@ -63,7 +64,8 @@
     "cta": {
       "contact": "Get in touch",
       "linkedin": "LinkedIn",
-      "experience": "See experience"
+      "experience": "See experience",
+      "cv": "Download CV"
     }
   },
   "about": {
@@ -237,5 +239,15 @@
   },
   "footer": {
     "lastUpdated": "Last updated · {date}"
+  },
+  "cvToast": {
+    "title": "CV on its way",
+    "description": "Your download is starting in a new tab."
+  },
+  "notFound": {
+    "indexLabel": "ERR · 404",
+    "title": "This route never shipped.",
+    "body": "The page you are looking for does not exist, was renamed, or is still on a feature branch somewhere.",
+    "cta": "Back to home"
   }
 }

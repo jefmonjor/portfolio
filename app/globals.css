@@ -130,3 +130,59 @@
     @apply font-sans;
     }
 }
+
+@media print {
+  :root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --muted-foreground: oklch(0.35 0 0);
+    --border: oklch(0.85 0 0);
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  [data-print-hidden],
+  [aria-hidden="true"][class*="fixed"],
+  [data-slot="toaster"],
+  [data-sonner-toaster] {
+    display: none !important;
+  }
+
+  .sticky,
+  [class*="sticky"] {
+    position: static !important;
+  }
+
+  section {
+    page-break-inside: avoid;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-family: monospace;
+    font-size: 0.75em;
+    color: #555;
+    word-break: break-all;
+  }
+
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  ul,
+  ol {
+    page-break-inside: avoid;
+  }
+}

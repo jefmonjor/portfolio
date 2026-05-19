@@ -2,6 +2,8 @@ import type { Profile } from "@/types/profile"
 
 export const portfolioUpdatedAt = "2026-05-17"
 
+export const profileTimeZone = "Europe/Andorra"
+
 export const profile: Profile = {
   name: "Luis Enrique Pina Herce",
   shortName: "Enrique Pina",

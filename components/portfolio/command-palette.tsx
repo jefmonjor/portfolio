@@ -21,6 +21,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command"
+import { Kbd } from "@/components/ui/kbd"
 import {
   Tooltip,
   TooltipContent,
@@ -62,8 +63,18 @@ function withCurrentHash(pathname: string): string {
   return `${pathname}${window.location.hash}`
 }
 
+function detectMacFromUserAgent(): boolean | null {
+  if (typeof navigator === "undefined") return null
+  return /mac|iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase())
+}
+
 function CommandPalette() {
   const [open, setOpen] = React.useState(false)
+  const isMac = React.useSyncExternalStore(
+    () => () => {},
+    detectMacFromUserAgent,
+    () => null
+  )
 
   const t = useTranslations("commandPalette")
   const tNav = useTranslations("nav")
@@ -133,12 +144,19 @@ function CommandPalette() {
             size="icon-sm"
             aria-label={t("title")}
             onClick={() => setOpen(true)}
+            className="sm:h-7 sm:w-auto sm:gap-2 sm:px-2"
           >
             <HugeiconsIcon
               icon={SearchIcon}
               className="size-3.5"
               strokeWidth={1.75}
             />
+            <span className="hidden font-mono text-[10px] tracking-widest text-muted-foreground uppercase sm:inline">
+              {t("hintLabel")}
+            </span>
+            <Kbd className="hidden font-mono text-[10px] sm:inline-flex">
+              {isMac === false ? "Ctrl" : "⌘"} K
+            </Kbd>
           </Button>
         </TooltipTrigger>
         <TooltipContent>

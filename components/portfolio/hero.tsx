@@ -1,18 +1,20 @@
 "use client"
 
-import * as React from "react"
-import Image from "next/image"
-import { motion, useReducedMotion } from "motion/react"
-import { useTranslations } from "next-intl"
-import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ArrowDownIcon,
   Linkedin01Icon,
   Mail01Icon,
 } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { motion, useReducedMotion } from "motion/react"
+import { useLocale, useTranslations } from "next-intl"
+import Image from "next/image"
 
+import { CvDownloadButton } from "@/components/portfolio/cv-download-button"
+import { LocalClock } from "@/components/portfolio/local-clock"
+import { ScrambleText } from "@/components/portfolio/scramble-text"
 import { Button } from "@/components/ui/button"
-import { profile } from "@/lib/profile"
+import { profile, profileTimeZone } from "@/lib/profile"
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -22,10 +24,29 @@ function Hero() {
   const reduce = useReducedMotion()
   const t = useTranslations("hero")
   const tSpecs = useTranslations("hero.specs")
+  const locale = useLocale()
 
-  const specRows: ReadonlyArray<{ label: string; value: string }> = [
+  const specRows: ReadonlyArray<{
+    label: string
+    value: React.ReactNode
+  }> = [
     { label: tSpecs("location"), value: profile.location },
-    { label: tSpecs("timezone"), value: profile.timezone },
+    {
+      label: tSpecs("timezone"),
+      value: (
+        <span className="flex items-center gap-2">
+          <span>{profile.timezone}</span>
+          <span aria-hidden className="text-border">
+            ·
+          </span>
+          <LocalClock
+            timeZone={profileTimeZone}
+            locale={locale}
+            className="font-mono tabular-nums text-muted-foreground"
+          />
+        </span>
+      ),
+    },
     { label: tSpecs("focus"), value: profile.focus.join(" · ") },
     { label: tSpecs("since"), value: profile.since },
   ]
@@ -78,8 +99,13 @@ function Hero() {
           className="flex flex-col gap-4"
         >
           <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
-            {t("role")} <span className="text-border">/</span>{" "}
-            {profile.location}
+            <ScrambleText
+              value={t("role")}
+              className="text-foreground"
+              delay={400}
+              duration={700}
+            />{" "}
+            <span className="text-border">/</span> {profile.location}
           </p>
           <p className="max-w-xl text-sm leading-relaxed text-foreground sm:text-base">
             {t("tagline")}
@@ -118,6 +144,7 @@ function Hero() {
               {t("cta.linkedin")}
             </a>
           </Button>
+          <CvDownloadButton />
           <Button asChild size="lg" variant="ghost">
             <a href="#experience">
               <HugeiconsIcon
@@ -147,7 +174,7 @@ function Hero() {
             aria-hidden
             className="absolute -right-2 -bottom-2 inline-block size-2 bg-foreground"
           />
-          <div className="relative aspect-square w-full max-h-80 overflow-hidden ring-1 ring-foreground/15">
+          <div className="relative aspect-square max-h-80 w-full overflow-hidden ring-1 ring-foreground/15">
             <Image
               src="/me.webp"
               alt={profile.name}
@@ -170,7 +197,7 @@ function Hero() {
             />
             <span
               aria-hidden
-              className="absolute right-0 bottom-0 size-6 border-b border-r border-foreground/40"
+              className="absolute right-0 bottom-0 size-6 border-r border-b border-foreground/40"
             />
           </div>
         </div>

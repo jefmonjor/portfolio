@@ -6,6 +6,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import "../globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { TRPCProvider } from "@/lib/trpc/provider"
 import { cn } from "@/lib/utils"
@@ -102,6 +103,7 @@ export default async function LocaleLayout({
           <ThemeProvider>
             <TooltipProvider>
               <TRPCProvider>{children}</TRPCProvider>
+              <Toaster position="bottom-right" />
             </TooltipProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
