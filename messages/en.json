@@ -4,7 +4,7 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "I build typed, fast, and observable web products — from the data pipe to the pixel.",
+    "description": "I build fast, observable TypeScript web products, from data flows to polished interfaces.",
     "applicationName": "{shortName} · Portfolio",
     "role": "Software Engineer",
     "keywordsExtra": ["Portfolio", "CV"]
@@ -36,7 +36,7 @@
       "themeToLight": "Switch to light mode",
       "switchTo": {
         "en": "Switch to English",
-        "es": "Cambiar a español"
+        "es": "Switch to Spanish"
       }
     }
   },
@@ -49,12 +49,12 @@
   },
   "status": {
     "label": "Open to opportunities",
-    "detail": "Andorra · Remote within EU timezones"
+    "detail": "Andorra · Remote-friendly across European time zones"
   },
   "hero": {
     "indexLabel": "00 — Profile",
     "role": "Software Engineer",
-    "tagline": "I build typed, fast, and observable web products — from the data pipe to the pixel.",
+    "tagline": "I build fast, observable TypeScript web products, from data flows to polished interfaces.",
     "specs": {
       "location": "Location",
       "timezone": "Timezone",
@@ -71,12 +71,12 @@
   "about": {
     "indexLabel": "01 — About",
     "title": "Who I am, in one paragraph",
-    "manifesto": "Five years shipping software across hospitality, finance, energy, and data — most of it where the back end and the UI meet. I write strict TypeScript, lean on contracts over comments, and design systems that survive the second feature.",
+    "manifesto": "Five years building software for hospitality, finance, energy, and data teams, mostly where back ends and interfaces meet. I write strict TypeScript, prefer clear contracts over defensive comments, and design systems that stay maintainable as they grow.",
     "currentlyWorkingWith": "Currently working with"
   },
   "experience": {
     "indexLabel": "02 — Experience",
-    "title": "Where I have shipped",
+    "title": "Where I have worked",
     "hint": "{count} roles · 2020 → present",
     "duration": {
       "yearsMonths": "{years, plural, one {# year} other {# years}} and {months, plural, one {# month} other {# months}}",
@@ -89,10 +89,10 @@
         "location": "Escaldes-Engordany, Andorra",
         "start": "Apr 2025",
         "end": "present",
-        "summary": "Building features for a hotel management product used by independent hotels.",
+        "summary": "Building product features for a hotel management platform used by independent hotels.",
         "highlights": [
-          "Full-stack delivery across the booking and operations surface.",
-          "Iterating on internal tools and data flows alongside product."
+          "Full-stack delivery across booking and operations workflows.",
+          "Improving internal tools and data flows with the product team."
         ]
       },
       "andbank-2024": {
@@ -100,10 +100,10 @@
         "location": "Andorra",
         "start": "Oct 2024",
         "end": "Apr 2025",
-        "summary": "Engineering on banking systems in a regulated environment with strict release discipline.",
+        "summary": "Built banking-system features in a regulated environment with strict release discipline.",
         "highlights": [
           "Worked across services with strong type contracts and code review.",
-          "Operated under banking-grade auditability and change control."
+          "Worked under banking-grade auditability and change control."
         ]
       },
       "eosol-software-manager-2023": {
@@ -115,7 +115,7 @@
         "highlights": [
           "Owned roadmap, scoping, and architecture decisions across internal apps.",
           "Mentored developers and aligned engineering with operations.",
-          "Shipped TypeScript stacks on top of legacy data systems."
+          "Delivered TypeScript applications on top of legacy data systems."
         ]
       },
       "eosol-software-developer-2022": {
@@ -123,9 +123,9 @@
         "location": "Navarre, Spain",
         "start": "Jul 2022",
         "end": "Aug 2023",
-        "summary": "Designed and shipped full-stack features for the internal engineering platform.",
+        "summary": "Designed and delivered full-stack features for the internal engineering platform.",
         "highlights": [
-          "Moved core flows onto a typed Node + React stack.",
+          "Migrated core flows onto a typed Node + React stack.",
           "Replaced ad-hoc scripts with maintainable services."
         ]
       },
@@ -134,10 +134,10 @@
         "location": "Navarre, Spain",
         "start": "Mar 2021",
         "end": "Jun 2022",
-        "summary": "Built the data ingestion and reporting backbone for energy operations.",
+        "summary": "Built the data ingestion and reporting foundation for energy operations.",
         "highlights": [
-          "Stood up ingestion and transformation pipelines for operational data.",
-          "Modelled storage to make downstream reporting predictable."
+          "Built ingestion and transformation pipelines for operational data.",
+          "Modeled storage to make downstream reporting predictable."
         ]
       },
       "upna-research-2020": {
@@ -156,8 +156,8 @@
   },
   "skills": {
     "indexLabel": "03 — Skills",
-    "title": "Tools I reach for first",
-    "hint": "{count} entries · {groups} groups",
+    "title": "Tools I use most",
+    "hint": "{count} tools · {groups} groups",
     "groups": {
       "languages": "Languages",
       "frontend": "Frontend",
@@ -174,13 +174,13 @@
   },
   "projects": {
     "indexLabel": "04 — Projects",
-    "title": "Things I build on my own time",
-    "hint": "{count, plural, one {# project} other {# projects}} · personal work",
+    "title": "Selected projects",
+    "hint": "{count, plural, one {# project} other {# projects}} · personal selection",
     "privateLabel": "Internal · not public",
     "entries": {
       "apidex": {
         "name": "apidex",
-        "summary": "Local-first OpenAPI playground. Upload a JSON or YAML spec and get a clean, navigable view of every operation; share specs via S3 + DynamoDB with an optional password."
+        "summary": "Local-first OpenAPI playground. Upload a JSON or YAML specification and get a clean, navigable view of every operation; share specifications through S3 + DynamoDB, optionally protected by a password."
       },
       "andllar": {
         "name": "andllar",
@@ -188,7 +188,7 @@
       },
       "sowify-admin": {
         "name": "Internal admin suite",
-        "summary": "Tailor-made internal admin and ERP suite. Invoicing with PDF generation and email delivery, expense tracking, CRM (leads, partners, investors), contacts, role-based access, and dashboards on a type-safe tRPC + Prisma stack."
+        "summary": "Custom internal admin and ERP suite. Invoicing with PDF generation and email delivery, expense tracking, CRM (leads, partners, investors), contacts, role-based access, and dashboards on a type-safe tRPC + Prisma stack."
       },
       "sowify-landing": {
         "name": "Sowify Global Solutions",
@@ -198,7 +198,7 @@
   },
   "education": {
     "indexLabel": "05 — Education & Languages",
-    "title": "Studies and the way I work",
+    "title": "Education and languages",
     "languagesLabel": "Languages",
     "entries": {
       "msc-data-science": {
@@ -234,7 +234,7 @@
     "copied": "Copied",
     "copyFailed": "Copy failed",
     "copyAriaLabel": "Copy email address",
-    "body": "Project, role, or a question — send a short message with the context and I will reply within two business days.",
+    "body": "Project, role, or question: send a short message with the context and I will reply within two business days.",
     "sendEmail": "Send email",
     "openLinkedIn": "Open LinkedIn",
     "basedIn": "Based in",
@@ -245,13 +245,13 @@
     "lastUpdated": "Last updated · {date}"
   },
   "cvToast": {
-    "title": "CV on its way",
-    "description": "Your download is starting in a new tab."
+    "title": "Downloading CV",
+    "description": "The download will open in a new tab."
   },
   "notFound": {
     "indexLabel": "ERR · 404",
-    "title": "This route never shipped.",
-    "body": "The page you are looking for does not exist, was renamed, or is still on a feature branch somewhere.",
+    "title": "This page does not exist.",
+    "body": "The page you are looking for may have been renamed, deleted, or moved to another route.",
     "cta": "Back to home"
   }
 }
