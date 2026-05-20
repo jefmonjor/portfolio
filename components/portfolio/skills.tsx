@@ -2,17 +2,19 @@ import { useTranslations } from "next-intl"
 
 import { SectionHeading } from "@/components/portfolio/section-heading"
 import { Badge } from "@/components/ui/badge"
+import { parseStringArray } from "@/lib/i18n-values"
 import { profile } from "@/lib/profile"
 
 function Skills() {
   const t = useTranslations("skills")
   const tGroups = useTranslations("skills.groups")
 
-  const practiceItems = t.raw("practiceItems") as ReadonlyArray<string>
+  const practiceItems = parseStringArray(t.raw("practiceItems"))
 
   const totalCount = profile.skills.reduce(
     (acc, group) =>
-      acc + (group.id === "practice" ? practiceItems.length : group.items.length),
+      acc +
+      (group.id === "practice" ? practiceItems.length : group.items.length),
     0
   )
 
@@ -29,15 +31,14 @@ function Skills() {
 
       <div className="grid grid-cols-1 gap-0 border border-dashed border-border sm:grid-cols-2 lg:grid-cols-3">
         {profile.skills.map((group, index) => {
-          const items =
-            group.id === "practice" ? practiceItems : group.items
+          const items = group.id === "practice" ? practiceItems : group.items
           return (
             <div
               key={group.id}
               className={[
                 "flex flex-col gap-3 border-dashed border-border p-4 sm:p-5",
                 index % 2 === 0 ? "sm:border-r" : "lg:border-r",
-                "border-b lg:border-r [&:nth-child(3n)]:lg:border-r-0 last:border-b-0",
+                "border-b last:border-b-0 lg:border-r [&:nth-child(3n)]:lg:border-r-0",
               ].join(" ")}
             >
               <div className="flex items-center justify-between">

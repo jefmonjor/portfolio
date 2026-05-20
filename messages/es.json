@@ -189,6 +189,10 @@
       "sowify-admin": {
         "name": "Suite interna de administración",
         "summary": "Suite interna de administración y ERP hecha a medida. Facturación con generación de PDF y envío de facturas por correo, control de gastos, CRM (leads, partners, inversores), contactos, accesos por roles y dashboards sobre un stack type-safe de tRPC + Prisma."
+      },
+      "sowify-landing": {
+        "name": "Sowify Global Solutions",
+        "summary": "Landing corporativa multilingüe para Sowify. Presenta la propuesta agrotech, Luca, servicios y contenido legal con rutas localizadas, copy SEO desde metadata de Next.js, animaciones cuidadas y recursos visuales servidos desde el dominio de datos de Luca."
       }
     }
   },

@@ -2,9 +2,9 @@ import { renderToBuffer } from "@react-pdf/renderer"
 import { getTranslations } from "next-intl/server"
 import { type NextRequest } from "next/server"
 
+import { resolveLocale } from "@/i18n/routing"
+import { parseStringArray } from "@/lib/i18n-values"
 import { profile, portfolioUpdatedAt } from "@/lib/profile"
-import { hasLocale } from "next-intl"
-import { routing } from "@/i18n/routing"
 import {
   CvDocument,
   type CvEducationEntry,
@@ -17,30 +17,42 @@ import {
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
-export async function GET(request: NextRequest) {
-  const rawLocale = request.nextUrl.searchParams.get("locale")
-  const locale = hasLocale(routing.locales, rawLocale)
-    ? rawLocale
-    : routing.defaultLocale
+export async function GET(request: NextRequest): Promise<Response> {
+  const locale = resolveLocale(request.nextUrl.searchParams.get("locale"))
 
-  const [tMeta, tHero, tAbout, tCommon, tExperience, tExperienceEntries, tSkills, tSkillsGroups, tProjects, tProjectEntries, tEducation, tEducationEntries, tLanguages, tContact, tFooter] =
-    await Promise.all([
-      getTranslations({ locale, namespace: "metadata" }),
-      getTranslations({ locale, namespace: "hero" }),
-      getTranslations({ locale, namespace: "about" }),
-      getTranslations({ locale, namespace: "common" }),
-      getTranslations({ locale, namespace: "experience" }),
-      getTranslations({ locale, namespace: "experience.entries" }),
-      getTranslations({ locale, namespace: "skills" }),
-      getTranslations({ locale, namespace: "skills.groups" }),
-      getTranslations({ locale, namespace: "projects" }),
-      getTranslations({ locale, namespace: "projects.entries" }),
-      getTranslations({ locale, namespace: "education" }),
-      getTranslations({ locale, namespace: "education.entries" }),
-      getTranslations({ locale, namespace: "education.languageEntries" }),
-      getTranslations({ locale, namespace: "contact" }),
-      getTranslations({ locale, namespace: "footer" }),
-    ])
+  const [
+    tMeta,
+    tHero,
+    tAbout,
+    tCommon,
+    tExperience,
+    tExperienceEntries,
+    tSkills,
+    tSkillsGroups,
+    tProjects,
+    tProjectEntries,
+    tEducation,
+    tEducationEntries,
+    tLanguages,
+    tContact,
+    tFooter,
+  ] = await Promise.all([
+    getTranslations({ locale, namespace: "metadata" }),
+    getTranslations({ locale, namespace: "hero" }),
+    getTranslations({ locale, namespace: "about" }),
+    getTranslations({ locale, namespace: "common" }),
+    getTranslations({ locale, namespace: "experience" }),
+    getTranslations({ locale, namespace: "experience.entries" }),
+    getTranslations({ locale, namespace: "skills" }),
+    getTranslations({ locale, namespace: "skills.groups" }),
+    getTranslations({ locale, namespace: "projects" }),
+    getTranslations({ locale, namespace: "projects.entries" }),
+    getTranslations({ locale, namespace: "education" }),
+    getTranslations({ locale, namespace: "education.entries" }),
+    getTranslations({ locale, namespace: "education.languageEntries" }),
+    getTranslations({ locale, namespace: "contact" }),
+    getTranslations({ locale, namespace: "footer" }),
+  ])
 
   const labels: CvLabels = {
     role: tMeta("role"),
@@ -58,9 +70,9 @@ export async function GET(request: NextRequest) {
     },
     skillGroupName: (id) => tSkillsGroups(id),
     experienceEntry: (id): CvExperienceEntry => {
-      const highlights = tExperienceEntries.raw(
-        `${id}.highlights`
-      ) as ReadonlyArray<string>
+      const highlights = parseStringArray(
+        tExperienceEntries.raw(`${id}.highlights`)
+      )
       const rawEnd = profile.experience.find((e) => e.id === id)?.endISO
       const end =
         rawEnd === "present"
@@ -91,13 +103,11 @@ export async function GET(request: NextRequest) {
       name: tLanguages(`${id}.name`),
       level: tLanguages(`${id}.level`),
     }),
-    practiceItems: tSkills.raw("practiceItems") as ReadonlyArray<string>,
-    footer: tFooter("lastUpdated"),
+    practiceItems: parseStringArray(tSkills.raw("practiceItems")),
+    footer: tFooter("lastUpdated", { date: portfolioUpdatedAt }),
   }
 
-  const buffer = await renderToBuffer(
-    <CvDocument labels={labels} generatedOnISO={portfolioUpdatedAt} />
-  )
+  const buffer = await renderToBuffer(<CvDocument labels={labels} />)
 
   const filename = `${profile.shortName.replace(/\s+/g, "_")}_CV_${locale}.pdf`
 

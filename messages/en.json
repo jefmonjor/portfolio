@@ -189,6 +189,10 @@
       "sowify-admin": {
         "name": "Internal admin suite",
         "summary": "Tailor-made internal admin and ERP suite. Invoicing with PDF generation and email delivery, expense tracking, CRM (leads, partners, investors), contacts, role-based access, and dashboards on a type-safe tRPC + Prisma stack."
+      },
+      "sowify-landing": {
+        "name": "Sowify Global Solutions",
+        "summary": "Multilingual corporate landing page for Sowify. It presents the agrotech value proposition, Luca, services, and legal content through localized routes, Next.js metadata-driven SEO copy, polished animations, and visual assets served from Luca's data domain."
       }
     }
   },

@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl"
 
 import { SectionHeading } from "@/components/portfolio/section-heading"
 import { Badge } from "@/components/ui/badge"
+import { parseStringArray } from "@/lib/i18n-values"
 import { portfolioUpdatedAt, profile } from "@/lib/profile"
 
 const ease = [0.16, 1, 0.3, 1] as const
@@ -71,9 +72,9 @@ function Experience() {
               : tEntries(`${entry.id}.end`)
           const duration = durationLabel(entry.startISO, entry.endISO)
           const summary = tEntries(`${entry.id}.summary`)
-          const highlights = tEntries.raw(
-            `${entry.id}.highlights`
-          ) as ReadonlyArray<string>
+          const highlights = parseStringArray(
+            tEntries.raw(`${entry.id}.highlights`)
+          )
 
           return (
             <motion.li

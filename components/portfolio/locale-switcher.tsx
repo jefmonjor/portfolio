@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { usePathname, useRouter } from "@/i18n/navigation"
-import { routing } from "@/i18n/routing"
+import { isLocale, routing } from "@/i18n/routing"
 
 function withCurrentHash(pathname: string): string {
   if (typeof window === "undefined") return pathname
@@ -26,10 +26,10 @@ function LocaleSwitcher() {
   const [isPending, startTransition] = React.useTransition()
 
   function onChange(next: string) {
-    if (next === locale) return
+    if (!isLocale(next) || next === locale) return
     startTransition(() => {
       router.replace(withCurrentHash(pathname), {
-        locale: next as (typeof routing.locales)[number],
+        locale: next,
       })
     })
   }

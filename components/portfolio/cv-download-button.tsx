@@ -1,7 +1,7 @@
 "use client"
 
-import * as React from "react"
 import confetti from "canvas-confetti"
+import type { MouseEvent } from "react"
 import { useLocale, useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Download01Icon } from "@hugeicons/core-free-icons"
@@ -47,9 +47,8 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   const t = useTranslations("hero.cta")
   const tToast = useTranslations("cvToast")
   const locale = useLocale()
-  const buttonRef = React.useRef<HTMLAnchorElement | null>(null)
 
-  function onDownload(event: React.MouseEvent<HTMLAnchorElement>): void {
+  function onDownload(event: MouseEvent<HTMLAnchorElement>): void {
     const target = event.currentTarget
     const rect = target.getBoundingClientRect()
     const origin = {
@@ -65,7 +64,6 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   return (
     <Button asChild size="lg" variant="outline" className={className}>
       <a
-        ref={buttonRef}
         href={`/cv.pdf?locale=${locale}`}
         target="_blank"
         rel="noopener noreferrer"

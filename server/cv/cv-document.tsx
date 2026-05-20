@@ -1,5 +1,8 @@
+import path from "node:path"
+
 import {
   Document,
+  Font,
   Link,
   Page,
   StyleSheet,
@@ -8,6 +11,28 @@ import {
 } from "@react-pdf/renderer"
 
 import { profile } from "@/lib/profile"
+
+const FONT_DIR = path.join(process.cwd(), "public/fonts/cv")
+
+Font.register({
+  family: "Figtree",
+  fonts: [
+    { src: path.join(FONT_DIR, "Figtree-Regular.ttf"), fontWeight: 400 },
+    { src: path.join(FONT_DIR, "Figtree-Medium.ttf"), fontWeight: 500 },
+    { src: path.join(FONT_DIR, "Figtree-SemiBold.ttf"), fontWeight: 600 },
+    { src: path.join(FONT_DIR, "Figtree-Bold.ttf"), fontWeight: 700 },
+  ],
+})
+
+Font.register({
+  family: "GeistMono",
+  fonts: [
+    { src: path.join(FONT_DIR, "GeistMono-Regular.ttf"), fontWeight: 400 },
+    { src: path.join(FONT_DIR, "GeistMono-Medium.ttf"), fontWeight: 500 },
+  ],
+})
+
+Font.registerHyphenationCallback((word) => [word])
 
 type CvLabels = {
   readonly role: string
@@ -59,207 +84,403 @@ export type CvLanguageEntry = {
 
 const palette = {
   background: "#ffffff",
-  foreground: "#0a0a0a",
-  muted: "#52525b",
-  border: "#d4d4d8",
-  borderSoft: "#e4e4e7",
+  ink: "#0a0a0a",
+  body: "#27272a",
+  muted: "#71717a",
+  faint: "#a1a1aa",
+  rule: "#e4e4e7",
+  hairline: "#f4f4f5",
 } as const
 
 const styles = StyleSheet.create({
   page: {
     paddingTop: 40,
-    paddingBottom: 32,
-    paddingHorizontal: 44,
+    paddingBottom: 42,
+    paddingHorizontal: 46,
     fontSize: 9.5,
-    color: palette.foreground,
+    color: palette.body,
     backgroundColor: palette.background,
-    lineHeight: 1.45,
-    fontFamily: "Helvetica",
+    lineHeight: 1.5,
+    fontFamily: "Figtree",
+    fontWeight: 400,
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "flex-end",
-    borderBottomWidth: 1,
-    borderBottomColor: palette.foreground,
-    paddingBottom: 14,
-    marginBottom: 18,
+    alignItems: "flex-start",
+    paddingBottom: 12,
+    marginBottom: 14,
+    borderBottomWidth: 0.75,
+    borderBottomColor: palette.ink,
   },
-  headerLeft: {
-    flexDirection: "column",
-    gap: 4,
+  runningHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "baseline",
+    marginBottom: 14,
   },
-  monoLabel: {
+  runningName: {
+    fontFamily: "GeistMono",
+    fontWeight: 500,
     fontSize: 7.5,
     letterSpacing: 1.4,
     textTransform: "uppercase",
     color: palette.muted,
-    fontFamily: "Courier",
+  },
+  runningMeta: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
+    fontSize: 7,
+    letterSpacing: 1.2,
+    textTransform: "uppercase",
+    color: palette.faint,
+  },
+  headerLeft: {
+    flexDirection: "column",
+    maxWidth: "65%",
+  },
+  eyebrow: {
+    fontFamily: "GeistMono",
+    fontSize: 7,
+    letterSpacing: 1.6,
+    textTransform: "uppercase",
+    color: palette.faint,
+    marginBottom: 8,
   },
   name: {
-    fontSize: 22,
-    fontFamily: "Helvetica-Bold",
-    letterSpacing: -0.4,
+    fontFamily: "Figtree",
+    fontWeight: 700,
+    fontSize: 24,
+    color: palette.ink,
+    letterSpacing: -0.6,
+    lineHeight: 1.1,
+  },
+  roleLine: {
+    marginTop: 6,
+    fontSize: 9.5,
+    color: palette.muted,
   },
   headerRight: {
     flexDirection: "column",
     alignItems: "flex-end",
-    gap: 2,
+    gap: 3,
   },
-  small: {
-    fontSize: 8.5,
-    color: palette.muted,
+  contactRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
   },
-  link: {
-    fontSize: 8.5,
-    color: palette.foreground,
+  contactLabel: {
+    fontFamily: "GeistMono",
+    fontSize: 7,
+    letterSpacing: 1.4,
+    textTransform: "uppercase",
+    color: palette.faint,
+    width: 42,
+    textAlign: "right",
+  },
+  contactValue: {
+    fontFamily: "Figtree",
+    fontWeight: 500,
+    fontSize: 9,
+    color: palette.ink,
     textDecoration: "none",
   },
+  intro: {
+    flexDirection: "column",
+    gap: 5,
+    marginBottom: 12,
+  },
+  tagline: {
+    fontFamily: "Figtree",
+    fontWeight: 500,
+    fontSize: 11,
+    color: palette.ink,
+    lineHeight: 1.45,
+  },
+  manifesto: {
+    fontSize: 9.5,
+    color: palette.muted,
+    lineHeight: 1.55,
+  },
   section: {
-    marginTop: 14,
+    marginTop: 2,
+    marginBottom: 8,
   },
   sectionHeader: {
     flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
+    alignItems: "baseline",
+    gap: 10,
     marginBottom: 8,
   },
   sectionIndex: {
-    fontSize: 7.5,
+    fontFamily: "GeistMono",
+    fontWeight: 500,
+    fontSize: 8,
     letterSpacing: 1.4,
-    textTransform: "uppercase",
-    color: palette.muted,
-    fontFamily: "Courier",
+    color: palette.faint,
+  },
+  sectionTitle: {
+    fontFamily: "Figtree",
+    fontWeight: 600,
+    fontSize: 13,
+    color: palette.ink,
+    letterSpacing: -0.2,
   },
   sectionRule: {
     flexGrow: 1,
     height: 0,
-    borderBottomWidth: 1,
-    borderBottomColor: palette.borderSoft,
-    borderBottomStyle: "dashed",
+    borderBottomWidth: 0.5,
+    borderBottomColor: palette.rule,
+    transform: "translateY(-3px)",
   },
-  paragraph: {
-    fontSize: 9.5,
-    marginBottom: 4,
-  },
-  experienceRow: {
+  experienceItem: {
     flexDirection: "row",
-    gap: 12,
-    marginBottom: 10,
+    gap: 14,
+    marginBottom: 9,
   },
-  experienceDates: {
-    width: 78,
+  experienceTimeline: {
+    width: 72,
     flexShrink: 0,
+    flexDirection: "column",
+    gap: 1,
   },
-  experienceDateLine: {
+  experienceDate: {
+    fontFamily: "GeistMono",
+    fontWeight: 500,
     fontSize: 7.5,
-    letterSpacing: 1.2,
+    letterSpacing: 0.6,
     textTransform: "uppercase",
-    color: palette.muted,
-    fontFamily: "Courier",
+    color: palette.ink,
+  },
+  experienceDateEnd: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
+    fontSize: 7.5,
+    letterSpacing: 0.6,
+    textTransform: "uppercase",
+    color: palette.faint,
   },
   experienceBody: {
     flex: 1,
     flexDirection: "column",
-    gap: 3,
+    gap: 2,
+  },
+  roleHeader: {
+    flexDirection: "row",
+    alignItems: "baseline",
+    flexWrap: "wrap",
+    gap: 6,
   },
   experienceRole: {
-    fontSize: 10.5,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Figtree",
+    fontWeight: 600,
+    fontSize: 11,
+    color: palette.ink,
+    letterSpacing: -0.1,
   },
   experienceOrg: {
-    fontSize: 8.5,
-    color: palette.muted,
-    fontFamily: "Courier",
+    fontFamily: "Figtree",
+    fontWeight: 500,
+    fontSize: 9,
+    color: palette.body,
+  },
+  experienceMeta: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
+    fontSize: 7.5,
     letterSpacing: 0.6,
     textTransform: "uppercase",
+    color: palette.muted,
+    marginTop: 1,
+  },
+  experienceSummary: {
+    fontSize: 9.5,
+    color: palette.body,
+    lineHeight: 1.5,
+    marginTop: 3,
   },
   bullet: {
     flexDirection: "row",
-    gap: 6,
-    marginTop: 2,
+    gap: 7,
+    marginTop: 1,
   },
-  bulletDot: {
-    fontSize: 9,
-    color: palette.muted,
+  bulletMark: {
+    fontSize: 9.5,
+    color: palette.faint,
     width: 8,
   },
   bulletText: {
     flex: 1,
-    fontSize: 9,
+    fontSize: 9.5,
+    color: palette.body,
+    lineHeight: 1.5,
   },
-  badgesRow: {
+  stackRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 4,
-    marginTop: 4,
+    marginTop: 5,
   },
-  badge: {
+  stackItem: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
     fontSize: 7.5,
-    fontFamily: "Courier",
-    letterSpacing: 0.4,
-    paddingHorizontal: 4,
+    letterSpacing: 0.3,
+    color: palette.body,
+    backgroundColor: palette.hairline,
+    paddingHorizontal: 5,
     paddingVertical: 1.5,
-    borderWidth: 0.5,
-    borderColor: palette.border,
-    color: palette.foreground,
+    marginRight: 4,
+    marginBottom: 3,
+    borderRadius: 2,
   },
   twoColumn: {
     flexDirection: "row",
-    gap: 14,
+    gap: 22,
   },
-  column: {
+  columnHalf: {
     flex: 1,
     flexDirection: "column",
-    gap: 8,
   },
-  skillBlock: {
+  skillGroup: {
     flexDirection: "column",
-    gap: 4,
-    borderWidth: 0.5,
-    borderColor: palette.borderSoft,
-    borderStyle: "dashed",
-    padding: 8,
+    marginBottom: 10,
   },
   skillGroupHeader: {
     flexDirection: "row",
+    alignItems: "baseline",
     justifyContent: "space-between",
+    marginBottom: 4,
   },
-  projectBlock: {
+  skillGroupName: {
+    fontFamily: "Figtree",
+    fontWeight: 600,
+    fontSize: 9,
+    color: palette.ink,
+    letterSpacing: 0.2,
+  },
+  skillGroupCount: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
+    fontSize: 7,
+    letterSpacing: 1,
+    color: palette.faint,
+  },
+  skillGroupItems: {
+    fontSize: 9.5,
+    color: palette.body,
+    lineHeight: 1.55,
+  },
+  projectItem: {
     flexDirection: "column",
-    gap: 3,
-    marginBottom: 8,
+    marginBottom: 9,
+    paddingBottom: 9,
+    borderBottomWidth: 0.5,
+    borderBottomColor: palette.hairline,
+  },
+  projectItemLast: {
+    borderBottomWidth: 0,
+    paddingBottom: 0,
+    marginBottom: 0,
+  },
+  projectHeader: {
+    flexDirection: "row",
+    alignItems: "baseline",
+    gap: 8,
+    marginBottom: 3,
   },
   projectName: {
-    fontSize: 10,
-    fontFamily: "Helvetica-Bold",
+    fontFamily: "Figtree",
+    fontWeight: 600,
+    fontSize: 11,
+    color: palette.ink,
   },
-  educationRow: {
+  projectUrl: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
+    fontSize: 8,
+    color: palette.muted,
+    textDecoration: "none",
+    letterSpacing: 0.2,
+  },
+  projectSummary: {
+    fontSize: 9.5,
+    color: palette.body,
+    lineHeight: 1.55,
+  },
+  educationItem: {
     flexDirection: "column",
-    gap: 2,
-    marginBottom: 6,
+    marginBottom: 8,
+  },
+  educationTitle: {
+    fontFamily: "Figtree",
+    fontWeight: 600,
+    fontSize: 10,
+    color: palette.ink,
+  },
+  educationOrg: {
+    fontFamily: "Figtree",
+    fontWeight: 500,
+    fontSize: 9,
+    color: palette.body,
+    marginTop: 1,
+  },
+  educationMeta: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
+    fontSize: 7.5,
+    letterSpacing: 0.6,
+    textTransform: "uppercase",
+    color: palette.muted,
+    marginTop: 2,
+  },
+  languageItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "baseline",
+    paddingVertical: 4,
+    borderBottomWidth: 0.5,
+    borderBottomColor: palette.hairline,
+  },
+  languageName: {
+    fontFamily: "Figtree",
+    fontWeight: 500,
+    fontSize: 10,
+    color: palette.ink,
+  },
+  languageLevel: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
+    fontSize: 7.5,
+    letterSpacing: 0.6,
+    textTransform: "uppercase",
+    color: palette.muted,
   },
   footer: {
     position: "absolute",
     bottom: 18,
-    left: 44,
-    right: 44,
+    left: 46,
+    right: 46,
     flexDirection: "row",
     justifyContent: "space-between",
-    fontSize: 7.5,
-    color: palette.muted,
-    fontFamily: "Courier",
-    letterSpacing: 1,
-    textTransform: "uppercase",
-    borderTopWidth: 0.5,
-    borderTopColor: palette.borderSoft,
+    alignItems: "center",
     paddingTop: 6,
+    borderTopWidth: 0.5,
+    borderTopColor: palette.rule,
+    height: 22,
+  },
+  footerText: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
+    fontSize: 7,
+    letterSpacing: 1.2,
+    textTransform: "uppercase",
+    color: palette.muted,
   },
 })
 
 type CvDocumentProps = {
   readonly labels: CvLabels
-  readonly generatedOnISO: string
 }
 
 function findSocialHref(kind: string): string | undefined {
@@ -270,78 +491,92 @@ function findSocialHandle(kind: string): string | undefined {
   return profile.socials.find((s) => s.kind === kind)?.handle
 }
 
-function CvDocument({ labels, generatedOnISO }: CvDocumentProps) {
+function CvDocument({ labels }: CvDocumentProps) {
   const email = findSocialHandle("email")
   const emailHref = findSocialHref("email")
   const linkedinHref = findSocialHref("linkedin")
+  const linkedinHandle = findSocialHandle("linkedin")
 
   return (
     <Document
       title={`${profile.shortName} — ${labels.role}`}
       author={profile.name}
+      subject={labels.role}
       creator="portfolio"
       producer="portfolio"
     >
       <Page size="A4" style={styles.page} wrap>
+        <View style={styles.runningHeader} fixed>
+          <Text style={styles.runningName}>{profile.name}</Text>
+          <Text style={styles.runningMeta}>
+            {labels.role} · {profile.location}
+          </Text>
+        </View>
+
         <View style={styles.header}>
           <View style={styles.headerLeft}>
-            <Text style={styles.monoLabel}>{labels.sections.profile}</Text>
+            <Text style={styles.eyebrow}>{labels.sections.profile}</Text>
             <Text style={styles.name}>{profile.name}</Text>
-            <Text style={styles.small}>
-              {labels.role} · {profile.location}
+            <Text style={styles.roleLine}>
+              {labels.role} · {profile.timezone}
             </Text>
           </View>
           <View style={styles.headerRight}>
             {email && emailHref ? (
-              <Link src={emailHref} style={styles.link}>
-                {email}
-              </Link>
+              <View style={styles.contactRow}>
+                <Text style={styles.contactLabel}>Email</Text>
+                <Link src={emailHref} style={styles.contactValue}>
+                  {email}
+                </Link>
+              </View>
             ) : null}
             {linkedinHref ? (
-              <Link src={linkedinHref} style={styles.link}>
-                linkedin.com/in/{linkedinHref.split("/").pop()}
-              </Link>
+              <View style={styles.contactRow}>
+                <Text style={styles.contactLabel}>LinkedIn</Text>
+                <Link src={linkedinHref} style={styles.contactValue}>
+                  {linkedinHandle ?? "linkedin"}
+                </Link>
+              </View>
             ) : null}
-            <Text style={styles.small}>{profile.timezone}</Text>
           </View>
         </View>
 
-        <Text style={styles.paragraph}>{labels.tagline}</Text>
-        <Text style={[styles.paragraph, { color: palette.muted }]}>
-          {labels.manifesto}
-        </Text>
+        <View style={styles.intro}>
+          <Text style={styles.tagline}>{labels.tagline}</Text>
+          <Text style={styles.manifesto}>{labels.manifesto}</Text>
+        </View>
 
         <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionIndex}>02 · {labels.sections.experience}</Text>
-            <View style={styles.sectionRule} />
-          </View>
+          <SectionTitle index="02" title={labels.sections.experience} />
           {profile.experience.map((entry) => {
             const data = labels.experienceEntry(entry.id)
             return (
-              <View key={entry.id} style={styles.experienceRow} wrap={false}>
-                <View style={styles.experienceDates}>
-                  <Text style={styles.experienceDateLine}>{data.start}</Text>
-                  <Text style={styles.experienceDateLine}>→ {data.end}</Text>
+              <View key={entry.id} style={styles.experienceItem} wrap={false}>
+                <View style={styles.experienceTimeline}>
+                  <Text style={styles.experienceDate}>{data.start}</Text>
+                  <Text style={styles.experienceDateEnd}>→ {data.end}</Text>
                 </View>
                 <View style={styles.experienceBody}>
-                  <Text style={styles.experienceRole}>{data.role}</Text>
-                  <Text style={styles.experienceOrg}>
-                    {entry.organization} · {data.location}
-                  </Text>
+                  <View style={styles.roleHeader}>
+                    <Text style={styles.experienceRole}>{data.role}</Text>
+                    <Text style={styles.experienceOrg}>
+                      · {entry.organization}
+                    </Text>
+                  </View>
+                  <Text style={styles.experienceMeta}>{data.location}</Text>
                   {data.summary ? (
-                    <Text style={styles.paragraph}>{data.summary}</Text>
+                    <Text style={styles.experienceSummary}>{data.summary}</Text>
                   ) : null}
                   {data.highlights.map((hl, i) => (
                     <View key={i} style={styles.bullet}>
-                      <Text style={styles.bulletDot}>—</Text>
+                      <Text style={styles.bulletMark}>—</Text>
                       <Text style={styles.bulletText}>{hl}</Text>
                     </View>
                   ))}
                   {entry.stack && entry.stack.length > 0 ? (
-                    <View style={styles.badgesRow}>
+                    <View style={styles.stackRow}>
                       {entry.stack.map((tech) => (
-                        <Text key={tech} style={styles.badge}>
+                        <Text key={tech} style={styles.stackItem}>
                           {tech}
                         </Text>
                       ))}
@@ -353,17 +588,14 @@ function CvDocument({ labels, generatedOnISO }: CvDocumentProps) {
           })}
         </View>
 
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionIndex}>03 · {labels.sections.skills}</Text>
-            <View style={styles.sectionRule} />
-          </View>
+        <View style={styles.section} wrap={false}>
+          <SectionTitle index="03" title={labels.sections.skills} />
           <View style={styles.twoColumn}>
-            <View style={styles.column}>
+            <View style={styles.columnHalf}>
               {profile.skills
                 .filter((_, i) => i % 2 === 0)
                 .map((group) => (
-                  <SkillBlock
+                  <SkillGroup
                     key={group.id}
                     title={labels.skillGroupName(group.id)}
                     items={
@@ -374,11 +606,11 @@ function CvDocument({ labels, generatedOnISO }: CvDocumentProps) {
                   />
                 ))}
             </View>
-            <View style={styles.column}>
+            <View style={styles.columnHalf}>
               {profile.skills
                 .filter((_, i) => i % 2 === 1)
                 .map((group) => (
-                  <SkillBlock
+                  <SkillGroup
                     key={group.id}
                     title={labels.skillGroupName(group.id)}
                     items={
@@ -393,33 +625,33 @@ function CvDocument({ labels, generatedOnISO }: CvDocumentProps) {
         </View>
 
         <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionIndex}>04 · {labels.sections.projects}</Text>
-            <View style={styles.sectionRule} />
-          </View>
-          {profile.projects.map((entry) => {
+          <SectionTitle index="04" title={labels.sections.projects} />
+          {profile.projects.map((entry, idx) => {
             const data = labels.projectEntry(entry.id)
+            const isLast = idx === profile.projects.length - 1
             return (
-              <View key={entry.id} style={styles.projectBlock} wrap={false}>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "baseline",
-                    gap: 6,
-                  }}
-                >
+              <View
+                key={entry.id}
+                style={
+                  isLast
+                    ? [styles.projectItem, styles.projectItemLast]
+                    : styles.projectItem
+                }
+                wrap={false}
+              >
+                <View style={styles.projectHeader}>
                   <Text style={styles.projectName}>{data.name}</Text>
                   {entry.url ? (
-                    <Link src={entry.url} style={styles.experienceOrg}>
+                    <Link src={entry.url} style={styles.projectUrl}>
                       {entry.url.replace(/^https?:\/\/(www\.)?/, "")}
                     </Link>
                   ) : null}
                 </View>
-                <Text style={styles.paragraph}>{data.summary}</Text>
+                <Text style={styles.projectSummary}>{data.summary}</Text>
                 {entry.stack && entry.stack.length > 0 ? (
-                  <View style={styles.badgesRow}>
+                  <View style={styles.stackRow}>
                     {entry.stack.map((tech) => (
-                      <Text key={tech} style={styles.badge}>
+                      <Text key={tech} style={styles.stackItem}>
                         {tech}
                       </Text>
                     ))}
@@ -430,24 +662,17 @@ function CvDocument({ labels, generatedOnISO }: CvDocumentProps) {
           })}
         </View>
 
-        <View style={styles.section}>
+        <View style={styles.section} wrap={false}>
           <View style={styles.twoColumn}>
-            <View style={styles.column}>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionIndex}>
-                  05 · {labels.sections.education}
-                </Text>
-                <View style={styles.sectionRule} />
-              </View>
+            <View style={styles.columnHalf}>
+              <SectionTitle index="05" title={labels.sections.education} />
               {profile.education.map((entry) => {
                 const data = labels.educationEntry(entry.id)
                 return (
-                  <View key={entry.id} style={styles.educationRow} wrap={false}>
-                    <Text style={styles.experienceRole}>{data.title}</Text>
-                    <Text style={styles.experienceOrg}>
-                      {entry.organization}
-                    </Text>
-                    <Text style={styles.small}>
+                  <View key={entry.id} style={styles.educationItem} wrap={false}>
+                    <Text style={styles.educationTitle}>{data.title}</Text>
+                    <Text style={styles.educationOrg}>{entry.organization}</Text>
+                    <Text style={styles.educationMeta}>
                       {data.dates}
                       {data.location ? ` · ${data.location}` : ""}
                     </Text>
@@ -455,19 +680,14 @@ function CvDocument({ labels, generatedOnISO }: CvDocumentProps) {
                 )
               })}
             </View>
-            <View style={styles.column}>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionIndex}>
-                  06 · {labels.sections.languages}
-                </Text>
-                <View style={styles.sectionRule} />
-              </View>
+            <View style={styles.columnHalf}>
+              <SectionTitle index="06" title={labels.sections.languages} />
               {profile.languages.map((lang) => {
                 const data = labels.languageEntry(lang.id)
                 return (
-                  <View key={lang.id} style={styles.educationRow}>
-                    <Text style={styles.experienceRole}>{data.name}</Text>
-                    <Text style={styles.experienceOrg}>{data.level}</Text>
+                  <View key={lang.id} style={styles.languageItem}>
+                    <Text style={styles.languageName}>{data.name}</Text>
+                    <Text style={styles.languageLevel}>{data.level}</Text>
                   </View>
                 )
               })}
@@ -476,15 +696,31 @@ function CvDocument({ labels, generatedOnISO }: CvDocumentProps) {
         </View>
 
         <View style={styles.footer} fixed>
-          <Text>{profile.name}</Text>
-          <Text>{labels.footer.replace("{date}", generatedOnISO)}</Text>
+          <Text style={styles.footerText}>{labels.footer}</Text>
+          <Text style={styles.footerText}>{profile.shortName}</Text>
         </View>
       </Page>
     </Document>
   )
 }
 
-function SkillBlock({
+function SectionTitle({
+  index,
+  title,
+}: {
+  readonly index: string
+  readonly title: string
+}) {
+  return (
+    <View style={styles.sectionHeader}>
+      <Text style={styles.sectionIndex}>{index}</Text>
+      <Text style={styles.sectionTitle}>{title}</Text>
+      <View style={styles.sectionRule} />
+    </View>
+  )
+}
+
+function SkillGroup({
   title,
   items,
 }: {
@@ -492,20 +728,14 @@ function SkillBlock({
   readonly items: ReadonlyArray<string>
 }) {
   return (
-    <View style={styles.skillBlock} wrap={false}>
+    <View style={styles.skillGroup} wrap={false}>
       <View style={styles.skillGroupHeader}>
-        <Text style={styles.monoLabel}>{title}</Text>
-        <Text style={styles.monoLabel}>
+        <Text style={styles.skillGroupName}>{title}</Text>
+        <Text style={styles.skillGroupCount}>
           {items.length.toString().padStart(2, "0")}
         </Text>
       </View>
-      <View style={styles.badgesRow}>
-        {items.map((item) => (
-          <Text key={item} style={styles.badge}>
-            {item}
-          </Text>
-        ))}
-      </View>
+      <Text style={styles.skillGroupItems}>{items.join("  ·  ")}</Text>
     </View>
   )
 }

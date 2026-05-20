@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Figtree, Geist_Mono } from "next/font/google"
 import { notFound } from "next/navigation"
-import { hasLocale, NextIntlClientProvider } from "next-intl"
+import { NextIntlClientProvider } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import "../globals.css"
@@ -11,7 +11,8 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { TRPCProvider } from "@/lib/trpc/provider"
 import { cn } from "@/lib/utils"
 import { profile } from "@/lib/profile"
-import { routing, type Locale } from "@/i18n/routing"
+import { isLocale, routing, type Locale } from "@/i18n/routing"
+import { parseStringArray } from "@/lib/i18n-values"
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -28,6 +29,19 @@ const openGraphLocale: Record<Locale, string> = {
   es: "es_ES",
 }
 
+const fallbackMetadataBase = new URL("https://mdbep.dev")
+
+function getMetadataBase(): URL {
+  const value = process.env.NEXT_PUBLIC_APP_URL
+  if (!value) return fallbackMetadataBase
+
+  try {
+    return new URL(value)
+  } catch {
+    return fallbackMetadataBase
+  }
+}
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
@@ -38,7 +52,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
-  if (!hasLocale(routing.locales, locale)) notFound()
+  if (!isLocale(locale)) notFound()
 
   const tMeta = await getTranslations({ locale, namespace: "metadata" })
   const title = tMeta("titleTemplate", {
@@ -46,9 +60,10 @@ export async function generateMetadata({
     role: tMeta("role"),
   })
   const description = tMeta("description")
-  const keywordsExtra = tMeta.raw("keywordsExtra") as ReadonlyArray<string>
+  const keywordsExtra = parseStringArray(tMeta.raw("keywordsExtra"))
 
   return {
+    metadataBase: getMetadataBase(),
     title,
     description,
     applicationName: tMeta("applicationName", { shortName: profile.shortName }),
@@ -83,7 +98,7 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  if (!hasLocale(routing.locales, locale)) notFound()
+  if (!isLocale(locale)) notFound()
 
   setRequestLocale(locale)
 

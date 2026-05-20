@@ -1,6 +1,6 @@
 import type { Profile } from "@/types/profile"
 
-export const portfolioUpdatedAt = "2026-05-17"
+export const portfolioUpdatedAt = "2026-05-20"
 
 export const profileTimeZone = "Europe/Andorra"
 
@@ -173,6 +173,20 @@ export const profile: Profile = {
         "React PDF",
         "better-auth",
         "AWS S3",
+      ],
+    },
+    {
+      id: "sowify-landing",
+      url: "https://www.sowifyglobalsolutions.com/es",
+      stack: [
+        "Next.js",
+        "TypeScript",
+        "next-intl",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Framer Motion",
+        "Radix UI",
+        "SEO metadata",
       ],
     },
   ],

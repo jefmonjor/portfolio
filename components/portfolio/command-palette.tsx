@@ -28,7 +28,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { usePathname, useRouter } from "@/i18n/navigation"
-import { routing, type Locale } from "@/i18n/routing"
+import { resolveLocale, routing, type Locale } from "@/i18n/routing"
 
 type SectionId =
   | "about"
@@ -82,7 +82,7 @@ function CommandPalette() {
   const { resolvedTheme, setTheme } = useTheme()
   const router = useRouter()
   const pathname = usePathname()
-  const locale = useLocale() as Locale
+  const locale = resolveLocale(useLocale())
 
   React.useEffect(() => {
     function onKey(event: KeyboardEvent) {
