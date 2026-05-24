@@ -1,7 +1,7 @@
 import { setRequestLocale } from "next-intl/server"
 
 import { About } from "@/components/portfolio/about"
-import { BackgroundGrid } from "@/components/portfolio/background-grid"
+import { Background } from "@/components/portfolio/background"
 import { ConsoleSignature } from "@/components/portfolio/console-signature"
 import { Contact } from "@/components/portfolio/contact"
 import { Education } from "@/components/portfolio/education"
@@ -28,21 +28,23 @@ export default async function Page({
   setRequestLocale(locale)
 
   return (
-    <div className="relative min-h-svh bg-background text-foreground">
-      <BackgroundGrid />
-      <ConsoleSignature />
-      <TopBar />
-      <main>
-        <Hero />
-        <Marquee items={profile.marquee} />
-        <About />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Education />
-        <Contact />
-      </main>
-      <Footer />
+    <div className="relative isolate min-h-svh bg-background text-foreground">
+      <Background />
+      <div className="relative z-10">
+        <ConsoleSignature />
+        <TopBar />
+        <main>
+          <Hero />
+          <Marquee items={profile.marquee} />
+          <About />
+          <Experience />
+          <Skills />
+          <Projects />
+          <Education />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   )
 }

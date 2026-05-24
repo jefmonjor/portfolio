@@ -5,6 +5,10 @@ import { NextIntlClientProvider } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import "../globals.css"
+import {
+  BackgroundInitScript,
+  BackgroundProvider,
+} from "@/components/background-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
@@ -113,13 +117,18 @@ export default async function LocaleLayout({
         figtree.variable
       )}
     >
+      <head>
+        <BackgroundInitScript />
+      </head>
       <body>
         <NextIntlClientProvider>
           <ThemeProvider>
-            <TooltipProvider>
-              <TRPCProvider>{children}</TRPCProvider>
-              <Toaster position="bottom-right" />
-            </TooltipProvider>
+            <BackgroundProvider>
+              <TooltipProvider>
+                <TRPCProvider>{children}</TRPCProvider>
+                <Toaster position="bottom-right" />
+              </TooltipProvider>
+            </BackgroundProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

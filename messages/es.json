@@ -29,7 +29,8 @@
     "hintLabel": "Buscar",
     "groups": {
       "sections": "Secciones",
-      "actions": "Acciones"
+      "actions": "Acciones",
+      "background": "Fondo"
     },
     "actions": {
       "themeToDark": "Cambiar a modo oscuro",
@@ -38,6 +39,13 @@
         "en": "Cambiar a inglés",
         "es": "Cambiar a español"
       }
+    },
+    "background": {
+      "grid": "Cuadrícula",
+      "dots": "Puntos",
+      "radial": "Foco radial",
+      "noise": "Grano",
+      "active": "Activo"
     }
   },
   "localeSwitcher": {

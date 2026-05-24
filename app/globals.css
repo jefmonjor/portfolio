@@ -129,6 +129,15 @@
   html {
     @apply font-sans;
     }
+  [data-bg-root] [data-bg-variant] {
+    display: none;
+    }
+  html[data-bg="grid"] [data-bg-root] [data-bg-variant="grid"],
+  html[data-bg="dots"] [data-bg-root] [data-bg-variant="dots"],
+  html[data-bg="radial"] [data-bg-root] [data-bg-variant="radial"],
+  html[data-bg="noise"] [data-bg-root] [data-bg-variant="noise"] {
+    display: block;
+    }
 }
 
 @media print {

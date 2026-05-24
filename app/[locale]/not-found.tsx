@@ -2,7 +2,7 @@ import { ArrowLeft01Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { getTranslations } from "next-intl/server"
 
-import { BackgroundGrid } from "@/components/portfolio/background-grid"
+import { Background } from "@/components/portfolio/background"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/navigation"
 
@@ -10,12 +10,12 @@ export default async function NotFound() {
   const t = await getTranslations("notFound")
 
   return (
-    <div className="relative flex min-h-svh flex-col items-center justify-center gap-8 bg-background px-4 text-foreground">
-      <BackgroundGrid />
+    <div className="relative isolate flex min-h-svh flex-col items-center justify-center gap-8 bg-background px-4 text-foreground">
+      <Background />
 
       <pre
         aria-hidden
-        className="font-mono text-[10px] leading-tight text-muted-foreground sm:text-xs"
+        className="relative z-10 font-mono text-[10px] leading-tight text-muted-foreground sm:text-xs"
       >{`  ┌─────────────────────────┐
   │  404 / NOT FOUND        │
   │                         │
@@ -24,7 +24,7 @@ export default async function NotFound() {
   │  trace : 0xDEADBEEF     │
   └─────────────────────────┘`}</pre>
 
-      <div className="flex max-w-md flex-col items-center gap-3 text-center">
+      <div className="relative z-10 flex max-w-md flex-col items-center gap-3 text-center">
         <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
           {t("indexLabel")}
         </span>
@@ -36,7 +36,7 @@ export default async function NotFound() {
         </p>
       </div>
 
-      <Button asChild variant="outline">
+      <Button asChild variant="outline" className="relative z-10">
         <Link href="/">
           <HugeiconsIcon
             icon={ArrowLeft01Icon}

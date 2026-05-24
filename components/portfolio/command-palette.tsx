@@ -6,12 +6,17 @@ import { useLocale, useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ArrowRight01Icon,
+  GridIcon,
+  LayersLogoIcon,
   MoonIcon,
+  MoreHorizontalIcon,
   SearchIcon,
+  SpotlightIcon,
   SunIcon,
   TranslateIcon,
 } from "@hugeicons/core-free-icons"
 
+import { useBackground } from "@/components/background-provider"
 import { Button } from "@/components/ui/button"
 import {
   CommandDialog,
@@ -20,6 +25,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandShortcut,
 } from "@/components/ui/command"
 import { Kbd } from "@/components/ui/kbd"
 import {
@@ -29,6 +35,17 @@ import {
 } from "@/components/ui/tooltip"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { resolveLocale, routing, type Locale } from "@/i18n/routing"
+import {
+  BACKGROUND_VARIANTS,
+  type BackgroundVariant,
+} from "@/lib/background"
+
+const BACKGROUND_ICONS: Record<BackgroundVariant, typeof GridIcon> = {
+  grid: GridIcon,
+  dots: MoreHorizontalIcon,
+  radial: SpotlightIcon,
+  noise: LayersLogoIcon,
+}
 
 type SectionId =
   | "about"
@@ -80,6 +97,8 @@ function CommandPalette() {
   const tNav = useTranslations("nav")
 
   const { resolvedTheme, setTheme } = useTheme()
+  const { variant: backgroundVariant, setVariant: setBackgroundVariant } =
+    useBackground()
   const router = useRouter()
   const pathname = usePathname()
   const locale = resolveLocale(useLocale())
@@ -125,6 +144,12 @@ function CommandPalette() {
   function switchLocale(next: Locale) {
     runAndClose(() => {
       router.replace(withCurrentHash(pathname), { locale: next })
+    })
+  }
+
+  function switchBackground(next: BackgroundVariant) {
+    runAndClose(() => {
+      setBackgroundVariant(next)
     })
   }
 
@@ -222,6 +247,32 @@ function CommandPalette() {
                   <span>{t(`actions.switchTo.${loc}`)}</span>
                 </CommandItem>
               ))}
+          </CommandGroup>
+
+          <CommandGroup heading={t("groups.background")}>
+            {BACKGROUND_VARIANTS.map((v) => {
+              const isActive = v === backgroundVariant
+              return (
+                <CommandItem
+                  key={v}
+                  aria-current={isActive ? "true" : undefined}
+                  value={`${t(`background.${v}`)} background ${v}`}
+                  onSelect={() => switchBackground(v)}
+                >
+                  <HugeiconsIcon
+                    icon={BACKGROUND_ICONS[v]}
+                    className="size-4 text-muted-foreground"
+                    strokeWidth={1.75}
+                  />
+                  <span>{t(`background.${v}`)}</span>
+                  {isActive ? (
+                    <CommandShortcut className="font-mono text-[10px] uppercase">
+                      {t("background.active")}
+                    </CommandShortcut>
+                  ) : null}
+                </CommandItem>
+              )
+            })}
           </CommandGroup>
         </CommandList>
       </CommandDialog>
