@@ -97,10 +97,11 @@
         "location": "Escaldes-Engordany, Andorra",
         "start": "Apr 2025",
         "end": "present",
-        "summary": "Building product features for a hotel management platform used by independent hotels.",
+        "summary": "Full-stack development on hotelgest's PMS, a hotel management platform used by independent hotels.",
         "highlights": [
-          "Full-stack delivery across booking and operations workflows.",
-          "Improving internal tools and data flows with the product team."
+          "Implemented product features on the front end with React.",
+          "Built APIs and business logic with TypeScript and NestJS.",
+          "Worked with typed, clean, reviewed code to keep the codebase maintainable."
         ]
       },
       "andbank-2024": {
@@ -108,10 +109,11 @@
         "location": "Andorra",
         "start": "Oct 2024",
         "end": "Apr 2025",
-        "summary": "Built banking-system features in a regulated environment with strict release discipline.",
+        "summary": "Developed banking applications in a regulated environment, mainly focused on front-end and mobile apps.",
         "highlights": [
-          "Worked across services with strong type contracts and code review.",
-          "Worked under banking-grade auditability and change control."
+          "Fixed and implemented features in web applications with React.",
+          "Developed and maintained mobile applications with Xamarin and .NET.",
+          "Worked under banking-sector review, change-control, and quality processes."
         ]
       },
       "eosol-software-manager-2023": {
@@ -119,11 +121,11 @@
         "location": "Mutilva, Navarre, Spain",
         "start": "Aug 2023",
         "end": "Oct 2024",
-        "summary": "Led the software function inside an energy engineering group — hiring, planning, and delivery.",
+        "summary": "Led the data science team building scalable software for big-data visualization and querying.",
         "highlights": [
-          "Owned roadmap, scoping, and architecture decisions across internal apps.",
-          "Mentored developers and aligned engineering with operations.",
-          "Delivered TypeScript applications on top of legacy data systems."
+          "Designed an architecture based on Parquet files in S3, AWS Glue, and AWS Athena to query data directly on the data lake.",
+          "Used PostgreSQL for metadata and built interfaces with AngularJS and React for internal resource administration.",
+          "Coordinated the team technically, defined good practices, and kept a focus on maintainable, typed, reviewed code."
         ]
       },
       "eosol-software-developer-2022": {
@@ -131,10 +133,11 @@
         "location": "Navarre, Spain",
         "start": "Jul 2022",
         "end": "Aug 2023",
-        "summary": "Designed and delivered full-stack features for the internal engineering platform.",
+        "summary": "Built the web interface that let the civil engineering team use the earthworks optimization tool.",
         "highlights": [
-          "Migrated core flows onto a typed Node + React stack.",
-          "Replaced ad-hoc scripts with maintainable services."
+          "Developed the front end with Flask to configure runs and inspect optimization results.",
+          "Modeled and persisted data with MongoDB for projects, configurations, and results.",
+          "Turned a technical tool into an application usable by teams without software specialization."
         ]
       },
       "eosol-data-engineer-2021": {
@@ -142,10 +145,11 @@
         "location": "Navarre, Spain",
         "start": "Mar 2021",
         "end": "Jun 2022",
-        "summary": "Built the data ingestion and reporting foundation for energy operations.",
+        "summary": "Developed optimization tools and data pipelines for civil engineering and energy operations teams.",
         "highlights": [
-          "Built ingestion and transformation pipelines for operational data.",
-          "Modeled storage to make downstream reporting predictable."
+          "Built a Python CLI tool to minimize earthworks when placing piles for solar parks.",
+          "Used threads, processes, and Google OR-Tools to solve manufacturer and terrain constraints with optimization criteria.",
+          "Designed Airflow ETLs for extracting, processing, and loading meteorological data."
         ]
       },
       "upna-research-2020": {
@@ -171,12 +175,13 @@
       "frontend": "Frontend",
       "backend": "Backend",
       "data": "Data",
-      "cloud": "Cloud",
+      "cloud": "Cloud & Architecture",
       "practice": "Practice"
     },
     "practiceItems": [
       "Spec-driven development",
       "Type-first design",
+      "Cloud architecture design",
       "Code review"
     ]
   },
@@ -213,11 +218,6 @@
         "title": "MSc Engineering & Data Science",
         "dates": "2020 — 2022"
       },
-      "general-english": {
-        "title": "General English",
-        "dates": "Dec 2022 — Aug 2023",
-        "location": "Brisbane, Australia"
-      },
       "beng-computer-engineering": {
         "title": "BEng Computer Engineering",
         "dates": "2015 — 2020"
@@ -230,7 +230,7 @@
       },
       "en": {
         "name": "English",
-        "level": "Professional"
+        "level": "Intermediate"
       }
     }
   },

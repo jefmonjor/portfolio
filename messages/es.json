@@ -97,10 +97,11 @@
         "location": "Escaldes-Engordany, Andorra",
         "start": "Abr 2025",
         "end": "present",
-        "summary": "Desarrollo funcionalidades para un producto de gestión hotelera utilizado por hoteles independientes.",
+        "summary": "Desarrollo full-stack del PMS de hotelgest, una plataforma de gestión hotelera utilizada por hoteles independientes.",
         "highlights": [
-          "Desarrollo full-stack en reservas y operaciones.",
-          "Mejora de herramientas internas y flujos de datos junto al equipo de producto."
+          "Implementación de funcionalidades de producto en el frontal con React.",
+          "Desarrollo de APIs y lógica de negocio con TypeScript y NestJS.",
+          "Trabajo con código tipado, limpio y revisado para mantener una base mantenible."
         ]
       },
       "andbank-2024": {
@@ -108,10 +109,11 @@
         "location": "Andorra",
         "start": "Oct 2024",
         "end": "Abr 2025",
-        "summary": "Desarrollo de sistemas bancarios en un entorno regulado con disciplina estricta de despliegues.",
+        "summary": "Desarrollo de aplicaciones bancarias en un entorno regulado, con foco principal en frontend y aplicaciones móviles.",
         "highlights": [
-          "Trabajo en varios servicios con contratos tipados y revisión de código.",
-          "Desarrollo bajo requisitos de auditoría y control de cambios de nivel bancario."
+          "Corrección e implementación de funcionalidades en aplicaciones web con React.",
+          "Desarrollo y mantenimiento de aplicaciones móviles con Xamarin y .NET.",
+          "Trabajo bajo procesos de revisión, control de cambios y calidad propios del sector bancario."
         ]
       },
       "eosol-software-manager-2023": {
@@ -119,11 +121,11 @@
         "location": "Mutilva, Navarra, España",
         "start": "Ago 2023",
         "end": "Oct 2024",
-        "summary": "Lideré el área de software dentro de un grupo de ingeniería energética — contratación, planificación y ejecución.",
+        "summary": "Lideré el equipo de ciencia de datos en la construcción de un software escalable para visualización y consulta de datos big data.",
         "highlights": [
-          "Responsable del roadmap, el alcance y las decisiones de arquitectura en apps internas.",
-          "Mentoría de desarrolladores y alineación entre ingeniería y operaciones.",
-          "Desarrollo de aplicaciones TypeScript sobre sistemas de datos heredados."
+          "Diseño de una arquitectura basada en ficheros Parquet en S3, AWS Glue y AWS Athena para consultar datos directamente sobre el data lake.",
+          "Uso de PostgreSQL para metadatos y desarrollo de interfaces con AngularJS y React para administración interna de recursos.",
+          "Coordinación técnica del equipo, definición de buenas prácticas y foco en código mantenible, tipado y revisado."
         ]
       },
       "eosol-software-developer-2022": {
@@ -131,10 +133,11 @@
         "location": "Navarra, España",
         "start": "Jul 2022",
         "end": "Ago 2023",
-        "summary": "Diseñé y desarrollé funcionalidades full-stack para la plataforma interna de ingeniería.",
+        "summary": "Desarrollé la interfaz web que permitía al equipo de ingeniería civil utilizar la herramienta de optimización de movimientos de tierra.",
         "highlights": [
-          "Migré flujos clave a un stack tipado de Node + React.",
-          "Sustituí scripts ad-hoc por servicios mantenibles."
+          "Desarrollo del frontal con Flask para parametrizar ejecuciones y consultar resultados de la herramienta.",
+          "Modelado y persistencia de datos con MongoDB para proyectos, configuraciones y resultados.",
+          "Evolución de una herramienta técnica hacia una aplicación usable por equipos no especializados en software."
         ]
       },
       "eosol-data-engineer-2021": {
@@ -142,10 +145,11 @@
         "location": "Navarra, España",
         "start": "Mar 2021",
         "end": "Jun 2022",
-        "summary": "Construcción de la base de ingestión de datos e informes para operaciones energéticas.",
+        "summary": "Desarrollé herramientas de optimización y pipelines de datos para equipos de ingeniería civil y operaciones energéticas.",
         "highlights": [
-          "Construí pipelines de ingestión y transformación para datos operativos.",
-          "Modelé el almacenamiento para hacer predecibles los informes posteriores."
+          "Construcción de una herramienta CLI en Python para minimizar movimientos de tierra en la colocación de hincas de parques solares.",
+          "Uso de hilos, procesos y Google OR-Tools para resolver restricciones de fabricante y terreno con criterios de optimización.",
+          "Diseño de ETLs con Airflow para extracción, procesamiento y carga de datos meteorológicos."
         ]
       },
       "upna-research-2020": {
@@ -164,19 +168,20 @@
   },
   "skills": {
     "indexLabel": "03 — Habilidades",
-    "title": "Mis herramientas de cabecera",
+    "title": "Tecnologías con las que trabajo",
     "hint": "{count} herramientas · {groups} grupos",
     "groups": {
       "languages": "Lenguajes",
       "frontend": "Frontend",
       "backend": "Backend",
       "data": "Datos",
-      "cloud": "Cloud",
+      "cloud": "Cloud & Arquitectura",
       "practice": "Prácticas"
     },
     "practiceItems": [
       "Desarrollo guiado por especificaciones",
       "Diseño orientado a tipos",
+      "Diseño de arquitecturas cloud",
       "Revisión de código"
     ]
   },
@@ -213,11 +218,6 @@
         "title": "Máster en Ingeniería y Ciencia de Datos",
         "dates": "2020 — 2022"
       },
-      "general-english": {
-        "title": "General English",
-        "dates": "Dic 2022 — Ago 2023",
-        "location": "Brisbane, Australia"
-      },
       "beng-computer-engineering": {
         "title": "Grado en Ingeniería Informática",
         "dates": "2015 — 2020"
@@ -230,7 +230,7 @@
       },
       "en": {
         "name": "Inglés",
-        "level": "Profesional"
+        "level": "Medio"
       }
     }
   },

@@ -10,7 +10,15 @@ export const profile: Profile = {
   location: "Escaldes-Engordany, Andorra",
   timezone: "CET / CEST",
   since: "2020",
-  focus: ["TypeScript", "Next.js", "NestJS", "Node.js", "Data pipelines"],
+  focus: [
+    "TypeScript",
+    "Next.js",
+    "NestJS",
+    "Node.js",
+    "Python",
+    "Data pipelines",
+    "Serverless architecture",
+  ],
   marquee: [
     "TypeScript",
     "Next.js",
@@ -25,10 +33,12 @@ export const profile: Profile = {
     "Express",
     "Zod",
     "React Query",
+    "Docker",
+    "Terraform",
     "Serverless",
     "ECS",
     "AWS Lambda",
-    "S3"
+    "S3",
   ],
   socials: [
     {
@@ -89,7 +99,15 @@ export const profile: Profile = {
       location: "Navarre, Spain",
       startISO: "2020-07",
       endISO: "2020-12",
-      stack: ["Hortonworks", "Sqoop", "Hive", "Kafka", "MongoDB", "MySQL", "Express"],
+      stack: [
+        "Hortonworks",
+        "Sqoop",
+        "Hive",
+        "Kafka",
+        "MongoDB",
+        "MySQL",
+        "Express",
+      ],
     },
   ],
   skills: [
@@ -112,9 +130,13 @@ export const profile: Profile = {
     {
       id: "cloud",
       items: [
+        "Docker",
+        "Terraform",
         "AWS Lambda",
         "AWS SAM",
         "AWS ECS",
+        "AWS Glue",
+        "AWS Athena",
         "Step Functions",
         "SQS",
         "S3",
@@ -124,11 +146,7 @@ export const profile: Profile = {
     },
     {
       id: "practice",
-      items: [
-        "spec-driven",
-        "type-first",
-        "code-review",
-      ],
+      items: ["spec-driven", "type-first", "code-review"],
     },
   ],
   projects: [
@@ -195,12 +213,6 @@ export const profile: Profile = {
       id: "msc-data-science",
       organization: "Universidad Nacional",
       dates: "2020 — 2022",
-    },
-    {
-      id: "general-english",
-      organization: "International House Brisbane — ALS",
-      dates: "Dec 2022 — Aug 2023",
-      location: "Brisbane, Australia",
     },
     {
       id: "beng-computer-engineering",
