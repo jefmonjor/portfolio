@@ -31,8 +31,16 @@ function HeroPortraitCard() {
   const reduce = useReducedMotion()
   const pointerX = useMotionValue(0)
   const pointerY = useMotionValue(0)
-  const smoothX = useSpring(pointerX, { stiffness: 180, damping: 22, mass: 0.4 })
-  const smoothY = useSpring(pointerY, { stiffness: 180, damping: 22, mass: 0.4 })
+  const smoothX = useSpring(pointerX, {
+    stiffness: 180,
+    damping: 22,
+    mass: 0.4,
+  })
+  const smoothY = useSpring(pointerY, {
+    stiffness: 180,
+    damping: 22,
+    mass: 0.4,
+  })
 
   const rotateX = useTransform(smoothY, [-1, 1], [7, -7])
   const rotateY = useTransform(smoothX, [-1, 1], [-9, 9])
@@ -110,7 +118,7 @@ function HeroPortraitCard() {
             className="absolute inset-0"
           >
             <Image
-              src="/me.webp"
+              src="/me.1.webp"
               alt={profile.name}
               fill
               priority
@@ -163,7 +171,7 @@ function Hero() {
           <LocalClock
             timeZone={profileTimeZone}
             locale={locale}
-            className="font-mono tabular-nums text-muted-foreground"
+            className="font-mono text-muted-foreground tabular-nums"
           />
         </span>
       ),
