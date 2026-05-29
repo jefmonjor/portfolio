@@ -6,18 +6,11 @@ import {
   Mail01Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-} from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import { useLocale, useTranslations } from "next-intl"
-import Image from "next/image"
 
 import { CvDownloadButton } from "@/components/portfolio/cv-download-button"
+import { HeroBadge } from "@/components/portfolio/hero-badge"
 import { LocalClock } from "@/components/portfolio/local-clock"
 import { ScrambleText } from "@/components/portfolio/scramble-text"
 import { Button } from "@/components/ui/button"
@@ -26,128 +19,6 @@ import { profile, profileTimeZone } from "@/lib/profile"
 const ease = [0.16, 1, 0.3, 1] as const
 
 const titleWords = profile.name.split(" ")
-
-function HeroPortraitCard() {
-  const reduce = useReducedMotion()
-  const pointerX = useMotionValue(0)
-  const pointerY = useMotionValue(0)
-  const smoothX = useSpring(pointerX, {
-    stiffness: 180,
-    damping: 22,
-    mass: 0.4,
-  })
-  const smoothY = useSpring(pointerY, {
-    stiffness: 180,
-    damping: 22,
-    mass: 0.4,
-  })
-
-  const rotateX = useTransform(smoothY, [-1, 1], [7, -7])
-  const rotateY = useTransform(smoothX, [-1, 1], [-9, 9])
-  const imageX = useTransform(smoothX, [-1, 1], [-10, 10])
-  const imageY = useTransform(smoothY, [-1, 1], [-10, 10])
-  const glareX = useTransform(smoothX, [-1, 1], [8, 92])
-  const glareY = useTransform(smoothY, [-1, 1], [8, 92])
-  const glare = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgb(255 255 255 / 0.28), transparent 42%)`
-
-  function updatePointer(event: React.PointerEvent<HTMLDivElement>) {
-    if (reduce || event.pointerType === "touch") return
-
-    const rect = event.currentTarget.getBoundingClientRect()
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2
-
-    pointerX.set(Math.max(-1, Math.min(1, x)))
-    pointerY.set(Math.max(-1, Math.min(1, y)))
-  }
-
-  function resetPointer() {
-    pointerX.set(0)
-    pointerY.set(0)
-  }
-
-  return (
-    <div className="relative [perspective:900px]">
-      <span
-        aria-hidden
-        className="absolute -top-2 -left-2 inline-block size-2 bg-foreground"
-      />
-      <span
-        aria-hidden
-        className="absolute -right-2 -bottom-2 inline-block size-2 bg-foreground"
-      />
-      <motion.div
-        onPointerMove={updatePointer}
-        onPointerCancel={resetPointer}
-        onPointerLeave={resetPointer}
-        style={
-          reduce
-            ? undefined
-            : {
-                rotateX,
-                rotateY,
-                transformStyle: "preserve-3d",
-              }
-        }
-        className="group relative aspect-[4/3] max-h-80 w-full overflow-hidden bg-background ring-1 ring-foreground/15 will-change-transform"
-      >
-        <motion.div
-          aria-hidden
-          style={reduce ? undefined : { background: glare }}
-          className="pointer-events-none absolute inset-0 z-20 opacity-0 mix-blend-soft-light transition-opacity duration-150 group-hover:opacity-100"
-        />
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute inset-3 z-10 border border-background/30 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-          style={reduce ? undefined : { transform: "translateZ(34px)" }}
-        />
-        <div
-          className="absolute -inset-3"
-          style={reduce ? undefined : { transform: "translateZ(18px)" }}
-        >
-          <motion.div
-            style={
-              reduce
-                ? undefined
-                : {
-                    x: imageX,
-                    y: imageY,
-                    scale: 1.06,
-                  }
-            }
-            className="absolute inset-0"
-          >
-            <Image
-              src="/me.1.webp"
-              alt={profile.name}
-              fill
-              priority
-              className="object-cover"
-              unoptimized
-            />
-          </motion.div>
-        </div>
-        <div className="pointer-events-none absolute inset-0 z-30 bg-[linear-gradient(to_bottom,transparent_58%,rgb(0_0_0/0.24))]" />
-        <span
-          aria-hidden
-          className="absolute top-0 left-0 z-40 size-6 border-t border-l border-foreground/40"
-        />
-        <span
-          aria-hidden
-          className="absolute top-0 right-0 z-40 size-6 border-t border-r border-foreground/40"
-        />
-        <span
-          aria-hidden
-          className="absolute bottom-0 left-0 z-40 size-6 border-b border-l border-foreground/40"
-        />
-        <span
-          aria-hidden
-          className="absolute right-0 bottom-0 z-40 size-6 border-r border-b border-foreground/40"
-        />
-      </motion.div>
-    </div>
-  )
-}
 
 function Hero() {
   const reduce = useReducedMotion()
@@ -286,6 +157,31 @@ function Hero() {
             </a>
           </Button>
         </motion.div>
+
+        <motion.dl
+          initial={reduce ? { opacity: 1 } : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            ease,
+            delay: reduce ? 0 : 0.08 * titleWords.length + 0.25,
+          }}
+          className="mt-auto divide-y divide-dashed divide-border border border-dashed border-border sm:grid sm:grid-cols-2 sm:divide-y-0"
+        >
+          {specRows.map((row, index) => (
+            <div
+              key={row.label}
+              className={`grid grid-cols-[88px_1fr] items-center gap-3 px-3 py-2.5 sm:border-dashed sm:border-border ${
+                index % 2 === 0 ? "sm:border-r" : ""
+              } ${index >= 2 ? "sm:border-t" : ""}`}
+            >
+              <dt className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+                {row.label}
+              </dt>
+              <dd className="truncate text-xs text-foreground">{row.value}</dd>
+            </div>
+          ))}
+        </motion.dl>
       </div>
 
       <motion.aside
@@ -294,21 +190,7 @@ function Hero() {
         transition={{ duration: 0.6, ease, delay: reduce ? 0 : 0.25 }}
         className="flex flex-col gap-5"
       >
-        <HeroPortraitCard />
-
-        <dl className="divide-y divide-dashed divide-border border border-dashed border-border">
-          {specRows.map((row) => (
-            <div
-              key={row.label}
-              className="grid grid-cols-[88px_1fr] items-center gap-3 px-3 py-2"
-            >
-              <dt className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-                {row.label}
-              </dt>
-              <dd className="truncate text-xs text-foreground">{row.value}</dd>
-            </div>
-          ))}
-        </dl>
+        <HeroBadge role={t("role")} meta={profile.location} />
       </motion.aside>
     </section>
   )
