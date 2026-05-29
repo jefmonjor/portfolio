@@ -58,5 +58,14 @@
     "shadcn": "^4.7.0",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "msw",
+      "sharp",
+      "unrs-resolver"
+    ]
   }
 }
