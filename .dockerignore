@@ -1,0 +1,33 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Next.js build output
+.next
+out
+build
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# VCS & tooling
+.git
+.gitignore
+.github
+.vscode
+.idea
+
+# Misc / local
+.DS_Store
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Project meta (not needed at build/runtime)
+README.md
+AGENTS.md
+.ai
+Dockerfile
+.dockerignore
