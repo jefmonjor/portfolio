@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ArrowRight01Icon,
+  ComputerTerminal01Icon,
   GridIcon,
   LayersLogoIcon,
   MoonIcon,
@@ -17,6 +18,7 @@ import {
 } from "@hugeicons/core-free-icons"
 
 import { useBackground } from "@/components/background-provider"
+import { openTerminal } from "@/components/portfolio/terminal/terminal"
 import { Button } from "@/components/ui/button"
 import {
   CommandDialog,
@@ -219,6 +221,19 @@ function CommandPalette() {
           </CommandGroup>
 
           <CommandGroup heading={t("groups.actions")}>
+            <CommandItem
+              value={`${t("actions.openTerminal")} terminal shell console`}
+              onSelect={() => runAndClose(openTerminal)}
+            >
+              <HugeiconsIcon
+                icon={ComputerTerminal01Icon}
+                className="size-4 text-muted-foreground"
+                strokeWidth={1.75}
+              />
+              <span>{t("actions.openTerminal")}</span>
+              <CommandShortcut className="font-mono text-[10px]">`</CommandShortcut>
+            </CommandItem>
+
             <CommandItem
               value={`${themeLabel} theme dark light`}
               onSelect={toggleTheme}

@@ -15,7 +15,8 @@
     "skills": "Habilidades",
     "projects": "Proyectos",
     "education": "Formación",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "terminal": "Terminal"
   },
   "themeToggle": {
     "ariaLabel": "Cambiar tema",
@@ -33,6 +34,7 @@
       "background": "Fondo"
     },
     "actions": {
+      "openTerminal": "Abrir terminal",
       "themeToDark": "Cambiar a modo oscuro",
       "themeToLight": "Cambiar a modo claro",
       "switchTo": {
@@ -190,26 +192,71 @@
     "title": "Proyectos propios",
     "hint": "{count, plural, one {# proyecto} other {# proyectos}} · selección personal",
     "privateLabel": "Interno · no público",
+    "openDetail": "Ver detalles de {name}",
+    "detail": {
+      "label": "Caso",
+      "overview": "Resumen",
+      "highlights": "Destacados",
+      "stack": "Stack",
+      "viewDetails": "Ver detalle",
+      "visit": "Ver en vivo",
+      "repo": "Código"
+    },
     "entries": {
       "apidex": {
         "name": "apidex",
-        "summary": "Playground local-first de OpenAPI. Sube una especificación JSON o YAML y obtén una vista limpia y navegable de cada operación; comparte especificaciones vía S3 + DynamoDB, opcionalmente protegidas con contraseña."
+        "role": "Proyecto personal",
+        "summary": "Playground local-first de OpenAPI. Sube una especificación JSON o YAML y obtén una vista limpia y navegable de cada operación; comparte especificaciones vía S3 + DynamoDB, opcionalmente protegidas con contraseña.",
+        "highlights": [
+          "Parsea y valida especificaciones OpenAPI (JSON o YAML) íntegramente en el navegador.",
+          "API de compartición tipada construida con tRPC y Zod.",
+          "Especificaciones compartidas persistidas en S3 + DynamoDB, opcionalmente con contraseña.",
+          "Vista limpia y navegable de cada operación de la especificación."
+        ]
       },
       "andllar": {
         "name": "andllar",
-        "summary": "Marketplace inmobiliario para Andorra. Anuncios, promociones de agencias y búsqueda en mapa con soporte multilingüe en español, catalán, francés e inglés."
+        "role": "Proyecto personal",
+        "summary": "Marketplace inmobiliario para Andorra. Anuncios, promociones de agencias y búsqueda en mapa con soporte multilingüe en español, catalán, francés e inglés.",
+        "highlights": [
+          "Búsqueda de propiedades sobre mapa con Mapbox.",
+          "Totalmente multilingüe en español, catalán, francés e inglés.",
+          "Capa de datos con Prisma + Supabase y almacenamiento de imágenes en S3.",
+          "Anuncios y promociones de agencias con datos vía React Query."
+        ]
       },
       "sowify-admin": {
         "name": "Suite interna de administración",
-        "summary": "Suite interna de administración y ERP a medida. Facturación con generación de PDF y envío por correo, control de gastos, CRM (leads, partners, inversores), contactos, accesos por roles y paneles sobre un stack tipado con tRPC + Prisma."
+        "role": "Sowify · Full-stack",
+        "summary": "Suite interna de administración y ERP a medida. Facturación con generación de PDF y envío por correo, control de gastos, CRM (leads, partners, inversores), contactos, accesos por roles y paneles sobre un stack tipado con tRPC + Prisma.",
+        "highlights": [
+          "Facturación con generación de PDF en servidor y envío por correo.",
+          "CRM de leads, partners e inversores, más contactos y control de gastos.",
+          "Control de acceso por roles con better-auth.",
+          "Tipado de extremo a extremo sobre un stack tRPC + Prisma + MongoDB."
+        ]
       },
       "sowify-landing": {
         "name": "Sowify Global Solutions",
-        "summary": "Landing corporativa multilingüe para Sowify. Presenta la propuesta agrotech, Luca, servicios y contenido legal con rutas localizadas, textos SEO definidos con metadata de Next.js, animaciones cuidadas y recursos visuales servidos desde el dominio de datos de Luca."
+        "role": "Sowify · Full-stack",
+        "summary": "Landing corporativa multilingüe para Sowify. Presenta la propuesta agrotech, Luca, servicios y contenido legal con rutas localizadas, textos SEO definidos con metadata de Next.js, animaciones cuidadas y recursos visuales servidos desde el dominio de datos de Luca.",
+        "highlights": [
+          "Rutas localizadas y textos SEO definidos con metadata de Next.js.",
+          "Animación cuidada y con propósito con Framer Motion y Radix UI.",
+          "Presenta la propuesta agrotech y el producto Luca.",
+          "Recursos visuales servidos desde el dominio de datos de Luca."
+        ]
       },
       "portfolio": {
         "name": "Este portfolio",
-        "summary": "El propio sitio que estás leyendo, construido íntegramente mediante spec-driven development. Cada funcionalidad empezó como una especificación escrita que define resultados, contratos y criterios de aceptación antes de escribir código, sobre un stack tipado de Next.js + tRPC + Zod con enrutado bilingüe y animación con propósito."
+        "role": "Proyecto personal",
+        "summary": "El propio sitio que estás leyendo, construido íntegramente mediante spec-driven development. Cada funcionalidad empezó como una especificación escrita que define resultados, contratos y criterios de aceptación antes de escribir código, sobre un stack tipado de Next.js + tRPC + Zod con enrutado bilingüe y animación con propósito.",
+        "highlights": [
+          "Construido spec-first: cada funcionalidad empezó como especificación escrita antes del código.",
+          "Stack tipado Next.js + tRPC + Zod con enrutado bilingüe.",
+          "Terminal interactiva y paleta de comandos ⌘K para navegar.",
+          "Animación con propósito que nunca oculta contenido ni desplaza el layout."
+        ]
       }
     }
   },
@@ -259,6 +306,47 @@
   "cvToast": {
     "title": "Descargando CV",
     "description": "La descarga se abrirá en una pestaña nueva."
+  },
+  "terminal": {
+    "title": "Terminal",
+    "description": "Terminal interactiva. Escribe comandos para explorar este portfolio.",
+    "close": "Cerrar terminal",
+    "inputLabel": "Entrada de la terminal",
+    "placeholder": "escribe un comando — prueba 'help'",
+    "banner": [
+      "Enrique Pina — Ingeniero de Software",
+      "escribe 'help' para empezar · ESC o ` para cerrar",
+      ""
+    ],
+    "help": [
+      "COMANDOS DISPONIBLES",
+      "  whoami             quién soy",
+      "  ls [projects]      lista secciones, o proyectos",
+      "  open <proyecto>    abre un proyecto en una pestaña nueva",
+      "  cat <tema>         lee about | experience | skills | contact | <proyecto>",
+      "  experience         trayectoria laboral",
+      "  skills             tecnologías que más uso",
+      "  contact            cómo contactarme",
+      "  cv                 descarga mi CV",
+      "  theme [dark|light] cambia el tema",
+      "  lang <en|es>       cambia el idioma",
+      "  bg <variante>      cambia el fondo",
+      "  goto <sección>     desplázate a una sección",
+      "  clear              limpia la pantalla",
+      "  exit               cierra la terminal"
+    ],
+    "notFound": "comando no encontrado: %s",
+    "hint": "escribe 'help' para ver los comandos",
+    "unknownProject": "no existe el proyecto: %s — prueba 'projects'",
+    "privateProject": "%s es interno — sin enlace público",
+    "usageOpen": "uso: open <proyecto> — prueba 'projects'",
+    "usageGoto": "uso: goto <sección> — disponibles: %s",
+    "opening": "abriendo %s…",
+    "noEmail": "sin email público",
+    "catTopics": "uso: cat <about|experience|skills|contact|proyecto>",
+    "langAlready": "ya estás en este idioma",
+    "sudo": "buen intento — aquí ya eres root.",
+    "emptyArg": ""
   },
   "notFound": {
     "indexLabel": "ERR · 404",

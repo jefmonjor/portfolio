@@ -15,7 +15,8 @@
     "skills": "Skills",
     "projects": "Projects",
     "education": "Education",
-    "contact": "Contact"
+    "contact": "Contact",
+    "terminal": "Terminal"
   },
   "themeToggle": {
     "ariaLabel": "Toggle theme",
@@ -33,6 +34,7 @@
       "background": "Background"
     },
     "actions": {
+      "openTerminal": "Open terminal",
       "themeToDark": "Switch to dark mode",
       "themeToLight": "Switch to light mode",
       "switchTo": {
@@ -190,26 +192,71 @@
     "title": "Selected projects",
     "hint": "{count, plural, one {# project} other {# projects}} · personal selection",
     "privateLabel": "Internal · not public",
+    "openDetail": "Open details for {name}",
+    "detail": {
+      "label": "Case study",
+      "overview": "Overview",
+      "highlights": "Highlights",
+      "stack": "Stack",
+      "viewDetails": "View details",
+      "visit": "Visit live",
+      "repo": "Source"
+    },
     "entries": {
       "apidex": {
         "name": "apidex",
-        "summary": "Local-first OpenAPI playground. Upload a JSON or YAML specification and get a clean, navigable view of every operation; share specifications through S3 + DynamoDB, optionally protected by a password."
+        "role": "Personal project",
+        "summary": "Local-first OpenAPI playground. Upload a JSON or YAML specification and get a clean, navigable view of every operation; share specifications through S3 + DynamoDB, optionally protected by a password.",
+        "highlights": [
+          "Parses and validates OpenAPI specs (JSON or YAML) entirely in the browser.",
+          "Type-safe sharing API built with tRPC and Zod.",
+          "Shared specs persisted in S3 + DynamoDB, optionally password-protected.",
+          "Clean, navigable view of every operation in a specification."
+        ]
       },
       "andllar": {
         "name": "andllar",
-        "summary": "Real-estate marketplace for Andorra. Listings, agency promotions, and map-based search with full multilingual support across English, Spanish, Catalan, and French."
+        "role": "Personal project",
+        "summary": "Real-estate marketplace for Andorra. Listings, agency promotions, and map-based search with full multilingual support across English, Spanish, Catalan, and French.",
+        "highlights": [
+          "Map-based property search powered by Mapbox.",
+          "Fully multilingual across English, Spanish, Catalan and French.",
+          "Data layer on Prisma + Supabase with image storage on S3.",
+          "Listings and agency promotions with React Query data fetching."
+        ]
       },
       "sowify-admin": {
         "name": "Internal admin suite",
-        "summary": "Custom internal admin and ERP suite. Invoicing with PDF generation and email delivery, expense tracking, CRM (leads, partners, investors), contacts, role-based access, and dashboards on a type-safe tRPC + Prisma stack."
+        "role": "Sowify · Full-stack",
+        "summary": "Custom internal admin and ERP suite. Invoicing with PDF generation and email delivery, expense tracking, CRM (leads, partners, investors), contacts, role-based access, and dashboards on a type-safe tRPC + Prisma stack.",
+        "highlights": [
+          "Invoicing with server-side PDF generation and email delivery.",
+          "CRM for leads, partners and investors, plus contacts and expense tracking.",
+          "Role-based access control with better-auth.",
+          "End-to-end type safety on a tRPC + Prisma + MongoDB stack."
+        ]
       },
       "sowify-landing": {
         "name": "Sowify Global Solutions",
-        "summary": "Multilingual corporate landing page for Sowify. It presents the agrotech value proposition, Luca, services, and legal content through localized routes, Next.js metadata-driven SEO copy, polished animations, and visual assets served from Luca's data domain."
+        "role": "Sowify · Full-stack",
+        "summary": "Multilingual corporate landing page for Sowify. It presents the agrotech value proposition, Luca, services, and legal content through localized routes, Next.js metadata-driven SEO copy, polished animations, and visual assets served from Luca's data domain.",
+        "highlights": [
+          "Localized routes and SEO copy driven by Next.js metadata.",
+          "Polished, purposeful motion with Framer Motion and Radix UI.",
+          "Presents the agrotech value proposition and the Luca product.",
+          "Visual assets served from Luca's data domain."
+        ]
       },
       "portfolio": {
         "name": "This portfolio",
-        "summary": "The very site you are reading, built entirely through spec-driven development. Each feature started as a written spec defining outcomes, contracts, and acceptance checks before any code, on a type-safe Next.js + tRPC + Zod stack with bilingual routing and purposeful motion."
+        "role": "Personal project",
+        "summary": "The very site you are reading, built entirely through spec-driven development. Each feature started as a written spec defining outcomes, contracts, and acceptance checks before any code, on a type-safe Next.js + tRPC + Zod stack with bilingual routing and purposeful motion.",
+        "highlights": [
+          "Built spec-first: every feature began as a written spec before any code.",
+          "Type-safe Next.js + tRPC + Zod stack with bilingual routing.",
+          "Interactive terminal and ⌘K command palette for navigation.",
+          "Purposeful motion that never blocks content or shifts layout."
+        ]
       }
     }
   },
@@ -259,6 +306,47 @@
   "cvToast": {
     "title": "Downloading CV",
     "description": "The download will open in a new tab."
+  },
+  "terminal": {
+    "title": "Terminal",
+    "description": "Interactive terminal. Type commands to explore this portfolio.",
+    "close": "Close terminal",
+    "inputLabel": "Terminal input",
+    "placeholder": "type a command — try 'help'",
+    "banner": [
+      "Enrique Pina — Software Engineer",
+      "type 'help' to get started · press ESC or ` to close",
+      ""
+    ],
+    "help": [
+      "AVAILABLE COMMANDS",
+      "  whoami             who I am",
+      "  ls [projects]      list sections, or projects",
+      "  open <project>     open a project in a new tab",
+      "  cat <topic>        read about | experience | skills | contact | <project>",
+      "  experience         work history",
+      "  skills             tools I use most",
+      "  contact            how to reach me",
+      "  cv                 download my CV",
+      "  theme [dark|light] switch theme",
+      "  lang <en|es>       switch language",
+      "  bg <variant>       change the background",
+      "  goto <section>     scroll to a section",
+      "  clear              clear the screen",
+      "  exit               close the terminal"
+    ],
+    "notFound": "command not found: %s",
+    "hint": "type 'help' for the list of commands",
+    "unknownProject": "no such project: %s — try 'projects'",
+    "privateProject": "%s is internal — no public link",
+    "usageOpen": "usage: open <project> — try 'projects'",
+    "usageGoto": "usage: goto <section> — available: %s",
+    "opening": "opening %s…",
+    "noEmail": "no public email",
+    "catTopics": "usage: cat <about|experience|skills|contact|project>",
+    "langAlready": "already in this language",
+    "sudo": "nice try — you already have root here.",
+    "emptyArg": ""
   },
   "notFound": {
     "indexLabel": "ERR · 404",

@@ -2,10 +2,20 @@
 
 import { motion, useScroll, useSpring } from "motion/react"
 import { useTranslations } from "next-intl"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { ComputerTerminal01Icon } from "@hugeicons/core-free-icons"
 
 import { CommandPalette } from "@/components/portfolio/command-palette"
 import { LocaleSwitcher } from "@/components/portfolio/locale-switcher"
+import { Terminal, openTerminal } from "@/components/portfolio/terminal/terminal"
 import { ThemeToggle } from "@/components/portfolio/theme-toggle"
+import { Button } from "@/components/ui/button"
+import { Kbd } from "@/components/ui/kbd"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { profile } from "@/lib/profile"
 
 const NAV_IDS = [
@@ -54,11 +64,35 @@ function TopBar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                type="button"
+                variant="outline"
+                size="icon-sm"
+                aria-label={tNav("terminal")}
+                onClick={openTerminal}
+              >
+                <HugeiconsIcon
+                  icon={ComputerTerminal01Icon}
+                  className="size-3.5"
+                  strokeWidth={1.75}
+                />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <span className="flex items-center gap-2 font-mono text-[10px] tracking-wider uppercase">
+                {tNav("terminal")}
+                <Kbd className="font-mono text-[10px]">`</Kbd>
+              </span>
+            </TooltipContent>
+          </Tooltip>
           <CommandPalette />
           <LocaleSwitcher />
           <ThemeToggle />
         </div>
       </div>
+      <Terminal />
       <motion.div
         aria-hidden
         style={{ scaleX: progress, transformOrigin: "0 50%" }}

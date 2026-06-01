@@ -34,6 +34,8 @@ export type LanguageEntry = {
 export type ProjectEntry = {
   id: string
   url?: string
+  repo?: string
+  year?: string
   stack?: ReadonlyArray<string>
 }
 
