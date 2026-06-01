@@ -207,6 +207,20 @@ export const profile: Profile = {
         "SEO metadata",
       ],
     },
+    {
+      id: "portfolio",
+      url: "https://mdbep.dev",
+      stack: [
+        "Next.js",
+        "TypeScript",
+        "tRPC",
+        "Zod",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "next-intl",
+        "Motion",
+      ],
+    },
   ],
   education: [
     {

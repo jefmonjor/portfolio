@@ -206,6 +206,10 @@
       "sowify-landing": {
         "name": "Sowify Global Solutions",
         "summary": "Landing corporativa multilingüe para Sowify. Presenta la propuesta agrotech, Luca, servicios y contenido legal con rutas localizadas, textos SEO definidos con metadata de Next.js, animaciones cuidadas y recursos visuales servidos desde el dominio de datos de Luca."
+      },
+      "portfolio": {
+        "name": "Este portfolio",
+        "summary": "El propio sitio que estás leyendo, construido íntegramente mediante spec-driven development. Cada funcionalidad empezó como una especificación escrita que define resultados, contratos y criterios de aceptación antes de escribir código, sobre un stack tipado de Next.js + tRPC + Zod con enrutado bilingüe y animación con propósito."
       }
     }
   },
