@@ -45,8 +45,22 @@ jobs:
     name: Deploy to server
     needs: build
     runs-on: ubuntu-latest
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
     steps:
+      # Skip gracefully until the SSH secrets are configured in the repo.
+      - name: Check deploy configuration
+        id: config
+        run: |
+          if [ -z "$SSH_HOST" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::SSH_HOST secret not set — image was pushed to GHCR, deploy skipped."
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Deploy over SSH
+        if: steps.config.outputs.ready == 'true'
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.SSH_HOST }}
