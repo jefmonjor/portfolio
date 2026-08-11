@@ -24,7 +24,7 @@ type CopyState = "idle" | "copied" | "failed"
 
 const email =
   profile.socials.find((s) => s.kind === "email")?.handle ??
-  "luisenrique.ph97@gmail.com"
+  "jefmonjor@gmail.com"
 const linkedin = profile.socials.find((s) => s.kind === "linkedin")?.href ?? "#"
 const mailto =
   profile.socials.find((s) => s.kind === "email")?.href ?? `mailto:${email}`

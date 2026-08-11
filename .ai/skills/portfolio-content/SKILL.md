@@ -26,7 +26,7 @@ Read:
 - Title.
 - One-line summary.
 - Problem or context.
-- Enrique's role.
+- Jefferson's role.
 - Technical decisions.
 - Stack.
 - Outcome or learning.

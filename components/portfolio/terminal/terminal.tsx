@@ -23,7 +23,7 @@ import {
 } from "@/lib/terminal"
 import { cn } from "@/lib/utils"
 
-export const TERMINAL_EVENT = "mdbep:terminal:open"
+export const TERMINAL_EVENT = "jefmonjor:terminal:open"
 
 export function openTerminal(): void {
   if (typeof window === "undefined") return
@@ -343,7 +343,7 @@ function Terminal() {
               <span className="size-2.5 rounded-full bg-foreground/20" />
             </div>
             <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-              {profile.shortName.toLowerCase().replace(/\s+/g, "")}@mdbep:~
+              {profile.shortName.toLowerCase().replace(/\s+/g, "")}@jefmonjor:~
             </span>
             <DialogPrimitive.Close asChild>
               <Button variant="ghost" size="icon-sm" aria-label={t("close")}>

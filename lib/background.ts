@@ -9,7 +9,7 @@ export type BackgroundVariant = (typeof BACKGROUND_VARIANTS)[number]
 
 export const DEFAULT_BACKGROUND: BackgroundVariant = "radial"
 
-export const BACKGROUND_STORAGE_KEY = "mdbep:bg"
+export const BACKGROUND_STORAGE_KEY = "jefmonjor:bg"
 
 export function isBackgroundVariant(value: unknown): value is BackgroundVariant {
   return (

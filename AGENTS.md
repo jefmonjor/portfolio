@@ -6,7 +6,7 @@ file, then load only the `.ai/` files that match the current task.
 
 ## Product Intent
 
-The app presents Enrique's professional profile, CV information, selected
+The app presents Jefferson's professional profile, CV information, selected
 projects, technical strengths, and contact paths. It should feel like a usable
 portfolio product, not a generic landing page template.
 
