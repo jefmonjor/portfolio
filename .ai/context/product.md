@@ -2,7 +2,7 @@
 
 ## What This Portfolio Is
 
-This app is Enrique's personal portfolio and CV surface. It should make his
+This app is Jefferson's personal portfolio and CV surface. It should make his
 professional story easy to scan, verify, and contact from.
 
 ## Primary Audiences
@@ -11,18 +11,18 @@ professional story easy to scan, verify, and contact from.
 - Engineering leads who want concrete project evidence and technical depth.
 - Collaborators or clients who need credibility, availability, and contact
   paths.
-- Enrique, as the maintainer, who needs a system that is easy to update as his
+- Jefferson, as the maintainer, who needs a system that is easy to update as his
   experience grows.
 
 ## Core User Outcomes
 
-- Understand who Enrique is professionally in the first viewport.
+- Understand who Jefferson is professionally in the first viewport.
 - Inspect CV facts: roles, timeline, education, skills, languages, and contact
   information.
 - Browse selected projects with problem, role, stack, decisions, impact, and
   links.
 - Download or view a CV when that feature is added.
-- Contact Enrique through intentional, low-friction paths.
+- Contact Jefferson through intentional, low-friction paths.
 
 ## Product Principles
 

@@ -4,9 +4,9 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "I build fast, observable TypeScript web products, from data flows to polished interfaces.",
+    "description": "I design backend architectures in banking and build AI-powered products: from enterprise Java to Claude-based agents.",
     "applicationName": "{shortName} · Portfolio",
-    "role": "Software Engineer",
+    "role": "Solutions Architect",
     "keywordsExtra": ["Portfolio", "CV"]
   },
   "nav": {
@@ -63,8 +63,8 @@
   },
   "hero": {
     "indexLabel": "00 — Profile",
-    "role": "Software Engineer",
-    "tagline": "I build fast, observable TypeScript web products, from data flows to polished interfaces.",
+    "role": "Solutions Architect",
+    "tagline": "I design backend architectures in banking and build AI-powered products: from enterprise Java to Claude-based agents.",
     "specs": {
       "location": "Location",
       "timezone": "Timezone",
@@ -81,89 +81,76 @@
   "about": {
     "indexLabel": "01 — About",
     "title": "Who I am, in one paragraph",
-    "manifesto": "Five years building software for hospitality, finance, energy, and data teams, mostly where back ends and interfaces meet. I write strict TypeScript, prefer clear contracts over defensive comments, and design systems that stay maintainable as they grow.",
+    "manifesto": "Six-plus years building software for banking, legal, and energy — today as a Solutions Architect at Andbank. I have led complex migrations (Spring Boot 2 → 3, Tomcat across 40+ VMs), integrated legacy systems (COBOL, AS400, DB2), and designed hexagonal and microservices architectures. Outside work I ship complete AI-powered products: I use Claude, Codex, and MCP workflows daily to go from idea to production in days.",
     "currentlyWorkingWith": "Currently working with"
   },
   "experience": {
     "indexLabel": "02 — Experience",
     "title": "Where I have worked",
-    "hint": "{count} roles · 2020 → present",
+    "hint": "{count} roles · 2019 → present",
     "duration": {
       "yearsMonths": "{years, plural, one {# year} other {# years}} and {months, plural, one {# month} other {# months}}",
       "years": "{years, plural, one {# year} other {# years}}",
       "months": "{months, plural, one {# month} other {# months}}"
     },
     "entries": {
-      "hotelgest-2025": {
-        "role": "Software Engineer",
-        "location": "Escaldes-Engordany, Andorra",
-        "start": "Apr 2025",
-        "end": "present",
-        "summary": "Full-stack development on hotelgest's PMS, a hotel management platform used by independent hotels.",
-        "highlights": [
-          "Implemented product features on the front end with React.",
-          "Built APIs and business logic with TypeScript and NestJS.",
-          "Worked with typed, clean, reviewed code to keep the codebase maintainable."
-        ]
-      },
       "andbank-2024": {
+        "role": "Solutions Architect / Technical PM",
+        "location": "Andorra la Vella, Andorra",
+        "start": "Sep 2024",
+        "end": "present",
+        "summary": "Backend architecture and technical management in private banking: development standards, core-systems integration, and evaluation of AI solutions.",
+        "highlights": [
+          "Designed backend architecture (Java 21, Spring Boot 3) under Clean Architecture and hexagonal principles.",
+          "Led the Spring Boot 2 → 3 migration (Jakarta namespace) and Tomcat 7/8 → 9/10 across 40+ VMs.",
+          "Integrated legacy systems (COBOL, AS400, DB2) and rolled out Keycloak with MFA and per-jurisdiction rules.",
+          "Designed the new homebanking architecture (15+ components) and SonarQube analysis for 12,000+ COBOL files.",
+          "Managed vendors technically, drove build-vs-buy decisions, and controlled technical debt on OpenShift (OCP4)."
+        ]
+      },
+      "elabogado-2022": {
+        "role": "Senior Full Stack Engineer",
+        "location": "Barcelona, Spain",
+        "start": "Mar 2022",
+        "end": "Sep 2024",
+        "summary": "Full-stack development and platform modernization at Spain's leading legal marketplace.",
+        "highlights": [
+          "Modernized legacy code: migrated Struts2 to React + Spring Boot.",
+          "Designed microservices and secure REST APIs.",
+          "Improved performance, maintainability, and architecture evolution."
+        ]
+      },
+      "zemsania-2021": {
         "role": "Software Engineer",
-        "location": "Andorra",
-        "start": "Oct 2024",
-        "end": "Apr 2025",
-        "summary": "Developed banking applications in a regulated environment, mainly focused on front-end and mobile apps.",
+        "location": "Madrid, Spain",
+        "start": "Jul 2021",
+        "end": "Apr 2022",
+        "summary": "Backend microservices development for Indra projects.",
         "highlights": [
-          "Fixed and implemented features in web applications with React.",
-          "Developed and maintained mobile applications with Xamarin and .NET.",
-          "Worked under banking-sector review, change-control, and quality processes."
+          "Built microservices with Java and Spring Boot for distributed systems.",
+          "Designed and documented APIs with Swagger / OpenAPI."
         ]
       },
-      "eosol-software-manager-2023": {
-        "role": "Software Manager",
-        "location": "Mutilva, Navarre, Spain",
-        "start": "Aug 2023",
-        "end": "Oct 2024",
-        "summary": "Led the data science team building scalable software for big-data visualization and querying.",
-        "highlights": [
-          "Designed an architecture based on Parquet files in S3, AWS Glue, and AWS Athena to query data directly on the data lake.",
-          "Used PostgreSQL for metadata and built interfaces with AngularJS and React for internal resource administration.",
-          "Coordinated the team technically, defined good practices, and kept a focus on maintainable, typed, reviewed code."
-        ]
-      },
-      "eosol-software-developer-2022": {
-        "role": "Software Developer",
-        "location": "Navarre, Spain",
-        "start": "Jul 2022",
-        "end": "Aug 2023",
-        "summary": "Built the web interface that let the civil engineering team use the earthworks optimization tool.",
-        "highlights": [
-          "Developed the front end with Flask to configure runs and inspect optimization results.",
-          "Modeled and persisted data with MongoDB for projects, configurations, and results.",
-          "Turned a technical tool into an application usable by teams without software specialization."
-        ]
-      },
-      "eosol-data-engineer-2021": {
-        "role": "Data Engineer",
-        "location": "Navarre, Spain",
-        "start": "Mar 2021",
-        "end": "Jun 2022",
-        "summary": "Developed optimization tools and data pipelines for civil engineering and energy operations teams.",
-        "highlights": [
-          "Built a Python CLI tool to minimize earthworks when placing piles for solar parks.",
-          "Used threads, processes, and Google OR-Tools to solve manufacturer and terrain constraints with optimization criteria.",
-          "Designed Airflow ETLs for extracting, processing, and loading meteorological data."
-        ]
-      },
-      "upna-research-2020": {
-        "role": "Research Assistant",
-        "location": "Navarre, Spain",
+      "keapps-2020": {
+        "role": "Software Engineer (Java · Big Data)",
+        "location": "Seville, Spain",
         "start": "Jul 2020",
-        "end": "Dec 2020",
-        "summary": "Research on big-data processing infrastructure and storage migration.",
+        "end": "Jul 2021",
+        "summary": "Kronos project (Endesa): enterprise Java systems and Big Data solutions.",
         "highlights": [
-          "Built a Hortonworks-based pipeline with Sqoop, Hive, and Kafka.",
-          "Restructured a NoSQL database and migrated it to MySQL.",
-          "Wrote a backend in Express.js to expose the new schema."
+          "Big Data solutions with Hadoop and Cassandra over energy-consumption data.",
+          "Optimized batch processes and maintained critical systems."
+        ]
+      },
+      "ayesa-2019": {
+        "role": "Java & Big Data Developer",
+        "location": "Seville, Spain",
+        "start": "Aug 2019",
+        "end": "Apr 2020",
+        "summary": "Kronos project (Endesa): Java development and data pipelines.",
+        "highlights": [
+          "Developed and maintained enterprise Java systems (SOAP, XML).",
+          "Integrated systems and large-scale data pipelines."
         ]
       }
     }
@@ -174,24 +161,25 @@
     "hint": "{count} tools · {groups} groups",
     "groups": {
       "languages": "Languages",
+      "backend": "Backend & Architecture",
       "frontend": "Frontend",
-      "backend": "Backend",
       "data": "Data",
-      "cloud": "Cloud & Architecture",
+      "cloud": "Cloud & DevOps",
+      "ai": "AI & Automation",
       "practice": "Practice"
     },
     "practiceItems": [
-      "Spec-driven development",
-      "Type-first design",
-      "Cloud architecture design",
-      "Code review"
+      "Reference architecture design",
+      "Technical vendor management",
+      "AI-augmented development",
+      "Scrum (SMPC certified)"
     ]
   },
   "projects": {
     "indexLabel": "04 — Projects",
     "title": "Selected projects",
-    "hint": "{count, plural, one {# project} other {# projects}} · personal selection",
-    "privateLabel": "Internal · not public",
+    "hint": "{count, plural, one {# project} other {# projects}} · AI-built",
+    "privateLabel": "In development · not public",
     "openDetail": "Open details for {name}",
     "detail": {
       "label": "Case study",
@@ -203,58 +191,45 @@
       "repo": "Source"
     },
     "entries": {
-      "apidex": {
-        "name": "apidex",
+      "fintrackj": {
+        "name": "FinTrackJ",
+        "role": "Personal project · SaaS",
+        "summary": "Multi-bank personal finance SaaS. Aggregates accounts and transactions from several banks and uses the Claude API to categorize spending, detect patterns, and generate natural-language financial insights.",
+        "highlights": [
+          "Multi-bank aggregation of accounts and transactions.",
+          "Automatic categorization and insights with the Claude API.",
+          "Type-safe stack with Next.js 15, Drizzle ORM, and Neon (serverless PostgreSQL).",
+          "Built from idea to production with AI-assisted development workflows."
+        ]
+      },
+      "facturai": {
+        "name": "AI Invoicing · VERI*FACTU",
+        "role": "Personal project · SaaS",
+        "summary": "Invoicing system compliant with Spain's VERI*FACTU regulation, using the Claude API to extract data from documents, generate invoices, and assist with tax obligations.",
+        "highlights": [
+          "Compliant with the VERI*FACTU regulation (verifiable invoicing for the Spanish tax agency).",
+          "Document data extraction and assistance powered by the Claude API.",
+          "Invoice generation and delivery with full traceability."
+        ]
+      },
+      "headless-commerce": {
+        "name": "Headless eCommerce",
         "role": "Personal project",
-        "summary": "Local-first OpenAPI playground. Upload a JSON or YAML specification and get a clean, navigable view of every operation; share specifications through S3 + DynamoDB, optionally protected by a password.",
+        "summary": "Headless store built with MedusaJS as the commerce backend and Next.js on the front end, with AI features (search and recommendations) through the Vercel AI SDK.",
         "highlights": [
-          "Parses and validates OpenAPI specs (JSON or YAML) entirely in the browser.",
-          "Type-safe sharing API built with tRPC and Zod.",
-          "Shared specs persisted in S3 + DynamoDB, optionally password-protected.",
-          "Clean, navigable view of every operation in a specification."
-        ]
-      },
-      "andllar": {
-        "name": "andllar",
-        "role": "Personal project",
-        "summary": "Real-estate marketplace for Andorra. Listings, agency promotions, and map-based search with full multilingual support across English, Spanish, Catalan, and French.",
-        "highlights": [
-          "Map-based property search powered by Mapbox.",
-          "Fully multilingual across English, Spanish, Catalan and French.",
-          "Data layer on Prisma + Supabase with image storage on S3.",
-          "Listings and agency promotions with React Query data fetching."
-        ]
-      },
-      "sowify-admin": {
-        "name": "Internal admin suite",
-        "role": "Sowify · Full-stack",
-        "summary": "Custom internal admin and ERP suite. Invoicing with PDF generation and email delivery, expense tracking, CRM (leads, partners, investors), contacts, role-based access, and dashboards on a type-safe tRPC + Prisma stack.",
-        "highlights": [
-          "Invoicing with server-side PDF generation and email delivery.",
-          "CRM for leads, partners and investors, plus contacts and expense tracking.",
-          "Role-based access control with better-auth.",
-          "End-to-end type safety on a tRPC + Prisma + MongoDB stack."
-        ]
-      },
-      "sowify-landing": {
-        "name": "Sowify Global Solutions",
-        "role": "Sowify · Full-stack",
-        "summary": "Multilingual corporate landing page for Sowify. It presents the agrotech value proposition, Luca, services, and legal content through localized routes, Next.js metadata-driven SEO copy, polished animations, and visual assets served from Luca's data domain.",
-        "highlights": [
-          "Localized routes and SEO copy driven by Next.js metadata.",
-          "Polished, purposeful motion with Framer Motion and Radix UI.",
-          "Presents the agrotech value proposition and the Luca product.",
-          "Visual assets served from Luca's data domain."
+          "Commerce backend with MedusaJS and a Next.js storefront.",
+          "AI-powered search and recommendations via the Vercel AI SDK.",
+          "Decoupled headless architecture, ready to scale."
         ]
       },
       "portfolio": {
         "name": "This portfolio",
         "role": "Personal project",
-        "summary": "The very site you are reading, built entirely through spec-driven development. Each feature started as a written spec defining outcomes, contracts, and acceptance checks before any code, on a type-safe Next.js + tRPC + Zod stack with bilingual routing and purposeful motion.",
+        "summary": "The very site you are reading: a type-safe Next.js + tRPC + Zod stack with bilingual routing, an interactive terminal, a command palette, and a PDF CV generated from the same data you see on screen.",
         "highlights": [
-          "Built spec-first: every feature began as a written spec before any code.",
           "Type-safe Next.js + tRPC + Zod stack with bilingual routing.",
           "Interactive terminal and ⌘K command palette for navigation.",
+          "Server-generated PDF CV from a single source of truth.",
           "Purposeful motion that never blocks content or shifts layout."
         ]
       }
@@ -265,13 +240,13 @@
     "title": "Education and languages",
     "languagesLabel": "Languages",
     "entries": {
-      "msc-data-science": {
-        "title": "MSc Engineering & Data Science",
-        "dates": "2020 — 2022"
+      "smpc-cert": {
+        "title": "Scrum Master Professional Certified (SMPC)",
+        "dates": "Certification"
       },
-      "beng-computer-engineering": {
-        "title": "BEng Computer Engineering",
-        "dates": "2015 — 2020"
+      "beng-software": {
+        "title": "Software Engineering (coursework)",
+        "dates": "2014 — 2018"
       }
     },
     "languageEntries": {
@@ -281,7 +256,7 @@
       },
       "en": {
         "name": "English",
-        "level": "Intermediate"
+        "level": "B1 · professional"
       }
     }
   },
@@ -314,7 +289,7 @@
     "inputLabel": "Terminal input",
     "placeholder": "type a command — try 'help'",
     "banner": [
-      "Enrique Pina — Software Engineer",
+      "Jefferson Montesdeoca — Solutions Architect",
       "type 'help' to get started · press ESC or ` to close",
       ""
     ],
@@ -338,7 +313,7 @@
     "notFound": "command not found: %s",
     "hint": "type 'help' for the list of commands",
     "unknownProject": "no such project: %s — try 'projects'",
-    "privateProject": "%s is internal — no public link",
+    "privateProject": "%s is in development — no public link yet",
     "usageOpen": "usage: open <project> — try 'projects'",
     "usageGoto": "usage: goto <section> — available: %s",
     "opening": "opening %s…",

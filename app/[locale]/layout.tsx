@@ -33,7 +33,7 @@ const openGraphLocale: Record<Locale, string> = {
   es: "es_ES",
 }
 
-const fallbackMetadataBase = new URL("https://mdbep.dev")
+const fallbackMetadataBase = new URL("https://jefmonjor.dev")
 
 function getMetadataBase(): URL {
   const value = process.env.NEXT_PUBLIC_APP_URL

@@ -19,7 +19,7 @@ const BackgroundContext = React.createContext<BackgroundContextValue | null>(
   null
 )
 
-const BACKGROUND_CHANGE_EVENT = "mdbep:bg-change"
+const BACKGROUND_CHANGE_EVENT = "jefmonjor:bg-change"
 
 function readVariantFromDom(): BackgroundVariant {
   if (typeof document === "undefined") return DEFAULT_BACKGROUND
