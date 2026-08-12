@@ -321,7 +321,7 @@
         "dates": "Certificación"
       },
       "beng-software": {
-        "title": "Ingeniería del Software (estudios cursados)",
+        "title": "Ingeniería del Software",
         "dates": "2014 — 2018"
       }
     },
@@ -425,5 +425,20 @@
     },
     "servicesLabel": "Servicios",
     "services": "Supabase · Neon · Upstash Redis · Backblaze B2 · Brevo · Stripe · Sentry"
+  },
+  "assistant": {
+    "title": "Asistente · responde sobre Jefferson",
+    "open": "Abrir asistente",
+    "close": "Cerrar asistente",
+    "intro": "Hola. Soy el asistente de Jefferson y respondo con la información de su perfil y su trayectoria. Si algo no lo sé, te lo digo y te paso su email.",
+    "placeholder": "Escribe tu pregunta…",
+    "send": "Enviar",
+    "s1": "¿Qué experiencia tiene con Java y Spring?",
+    "s2": "¿Ha trabajado en banca?",
+    "s3": "Busco a alguien para un proyecto",
+    "rateLimited": "Has hecho muchas preguntas seguidas. Espera un momento e inténtalo de nuevo.",
+    "unavailable": "El asistente no está disponible ahora mismo. Escribe a {email}.",
+    "error": "No he podido responder. Escribe a {email}.",
+    "disclaimer": "Respuestas generadas por IA a partir del perfil público de Jefferson. Pueden contener errores: confirma lo importante por email."
   }
 }

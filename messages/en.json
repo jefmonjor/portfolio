@@ -321,7 +321,7 @@
         "dates": "Certification"
       },
       "beng-software": {
-        "title": "Software Engineering (coursework)",
+        "title": "Software Engineering",
         "dates": "2014 — 2018"
       }
     },
@@ -425,5 +425,20 @@
     },
     "servicesLabel": "Services",
     "services": "Supabase · Neon · Upstash Redis · Backblaze B2 · Brevo · Stripe · Sentry"
+  },
+  "assistant": {
+    "title": "Assistant · answers about Jefferson",
+    "open": "Open assistant",
+    "close": "Close assistant",
+    "intro": "Hi. I'm Jefferson's assistant and I answer from his profile and track record. If I don't know something, I'll say so and share his email.",
+    "placeholder": "Type your question…",
+    "send": "Send",
+    "s1": "How much Java and Spring experience does he have?",
+    "s2": "Has he worked in banking?",
+    "s3": "I'm looking for someone for a project",
+    "rateLimited": "Too many questions in a row. Wait a moment and try again.",
+    "unavailable": "The assistant is unavailable right now. Write to {email}.",
+    "error": "I couldn't answer. Write to {email}.",
+    "disclaimer": "AI-generated answers based on Jefferson's public profile. They may contain errors: confirm anything important by email."
   }
 }
