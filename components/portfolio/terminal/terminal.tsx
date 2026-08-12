@@ -133,6 +133,7 @@ function Terminal() {
       notFound: raw("notFound"),
       hint: raw("hint"),
       help: parseStringArray(t.raw("help")),
+      web: parseStringArray(t.raw("web")),
       unknownProject: raw("unknownProject"),
       privateProject: raw("privateProject"),
       usageOpen: raw("usageOpen"),

@@ -9,7 +9,15 @@ export const runtime = "nodejs"
 const MODEL = process.env.ASSISTANT_MODEL ?? "gpt-5-mini"
 const MAX_OFFER_CHARS = intEnv("CV_TAILOR_MAX_OFFER_CHARS", 4000)
 
-const TASK: Record<"es" | "en", string> = {
+const TASK: Record<"es" | "en" | "ca", string> = {
+  ca: `TASCA ESPECIAL — adaptar el CV a una oferta de feina.
+A sota hi ha el text d'una oferta. Amb NOMÉS la informació del dossier:
+1. Escriu un resum professional de 3-4 frases (màx. 700 caràcters) que connecti l'experiència REAL de Jefferson amb el que demana l'oferta. Tercera persona, sense inventar res: si l'oferta demana alguna cosa que Jefferson no té, no l'esmentis.
+2. Tria fins a 12 paraules clau del dossier que coincideixin amb l'oferta (tecnologies, pràctiques, sectors).
+Respon NOMÉS amb JSON vàlid: {"summary": "...", "keywords": ["...", "..."]}
+
+OFERTA:
+`,
   es: `TAREA ESPECIAL — adaptar el CV a una oferta de trabajo.
 Debajo va el texto de una oferta. Con SOLO la información del dossier:
 1. Escribe un resumen profesional de 3-4 frases (máx. 700 caracteres) que conecte la experiencia REAL de Jefferson con lo que pide la oferta. Tercera persona, sin inventar nada: si la oferta pide algo que Jefferson no tiene, no lo menciones.
@@ -49,7 +57,8 @@ export async function POST(request: Request) {
   if (offer.length < 40) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
-  const locale = body.locale === "en" ? "en" : "es"
+  const locale =
+    body.locale === "en" ? "en" : body.locale === "ca" ? "ca" : "es"
 
   const client = new OpenAI()
 

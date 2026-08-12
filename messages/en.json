@@ -4,7 +4,7 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "I design backend architectures and build AI-powered products: from enterprise Java to Claude-based agents.",
+    "description": "I design solid backend architectures and build digital products end to end, integrating artificial intelligence across the whole process.",
     "applicationName": "{shortName} · Portfolio",
     "role": "Solutions Architect",
     "keywordsExtra": [
@@ -42,7 +42,8 @@
       "themeToLight": "Switch to light mode",
       "switchTo": {
         "en": "Switch to English",
-        "es": "Switch to Spanish"
+        "es": "Switch to Spanish",
+        "ca": "Switch to Catalan"
       }
     },
     "background": {
@@ -57,7 +58,8 @@
     "ariaLabel": "Change language",
     "options": {
       "en": "EN",
-      "es": "ES"
+      "es": "ES",
+      "ca": "CA"
     }
   },
   "status": {
@@ -142,7 +144,8 @@
         "highlights": [
           "Modernized legacy code: migrated Struts2 to React + Spring Boot.",
           "Designed microservices and secure REST APIs.",
-          "Improved performance, maintainability, and architecture evolution."
+          "Improved performance, maintainability, and architecture evolution.",
+          "Content and landing-page management with WordPress."
         ]
       },
       "zemsania-2021": {
@@ -150,10 +153,11 @@
         "location": "Madrid, Spain",
         "start": "Jul 2021",
         "end": "Apr 2022",
-        "summary": "Backend microservices development for Indra projects.",
+        "summary": "Backend microservices development for Vodafone.",
         "highlights": [
           "Built microservices with Java and Spring Boot for distributed systems.",
-          "Designed and documented APIs with Swagger / OpenAPI."
+          "Designed and documented APIs with Swagger / OpenAPI.",
+          "Distributed teamwork with Jira, Confluence and Slack."
         ]
       },
       "keapps-2020": {
@@ -163,8 +167,8 @@
         "end": "Jul 2021",
         "summary": "Kronos project (Endesa): enterprise Java systems and Big Data solutions.",
         "highlights": [
-          "Big Data solutions with Hadoop and Cassandra over energy-consumption data.",
-          "Optimized batch processes and maintained critical systems."
+          "Big Data solutions with Hadoop, Spark and Cassandra over energy-consumption data.",
+          "MapReduce jobs on HDFS/YARN and optimization of critical batch processes."
         ]
       },
       "ayesa-2019": {
@@ -174,8 +178,8 @@
         "end": "Apr 2020",
         "summary": "Kronos project (Endesa): Java development and data pipelines.",
         "highlights": [
-          "Developed and maintained enterprise Java systems (SOAP, XML).",
-          "Integrated systems and large-scale data pipelines."
+          "Developed and maintained enterprise Java systems (SOAP, XML) with JSP and PrimeFaces interfaces.",
+          "Large-scale data pipelines with MapReduce and S3 storage."
         ]
       }
     }
@@ -353,7 +357,7 @@
   },
   "footer": {
     "lastUpdated": "Last updated · {date}",
-    "builtLine": "Designed & built from scratch · Next.js"
+    "builtLine": "Designed and built from scratch · Next.js"
   },
   "cvToast": {
     "title": "Downloading CV",
@@ -398,8 +402,9 @@
       "  skills             tools I use most",
       "  contact            how to reach me",
       "  cv                 download my CV",
+      "  web                what AI does for you on this site",
       "  theme [dark|light] switch theme",
-      "  lang <en|es>       switch language",
+      "  lang <en|es|ca>    switch language",
       "  bg <variant>       change the background",
       "  goto <section>     scroll to a section",
       "  clear              clear the screen",
@@ -416,7 +421,18 @@
     "catTopics": "usage: cat <about|experience|skills|contact|project>",
     "langAlready": "already in this language",
     "sudo": "nice try — you already have root here.",
-    "emptyArg": ""
+    "emptyArg": "",
+    "web": [
+      "AI ON THIS SITE — DIRECT UTILITY",
+      "  · Assistant (bubble bottom-right): ask anything about",
+      "    Jefferson's profile. Instant answers, real data only.",
+      "  · CV tailored to you: in 'Download CV', paste your job",
+      "    offer and AI adapts the summary and keywords to the role.",
+      "    Full and ATS versions available too.",
+      "",
+      "  Under the hood: Next.js 16 · TypeScript · OpenAI · Vercel",
+      "  Open source: github.com/jefmonjor/portfolio"
+    ]
   },
   "notFound": {
     "indexLabel": "ERR · 404",

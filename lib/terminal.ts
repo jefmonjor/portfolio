@@ -16,7 +16,7 @@ export type TerminalEffect =
   | { type: "close" }
   | { type: "cv" }
   | { type: "theme"; value: "dark" | "light" | null }
-  | { type: "lang"; value: "en" | "es" }
+  | { type: "lang"; value: "en" | "es" | "ca" }
   | { type: "bg"; value: BackgroundVariant }
   | { type: "open"; href: string }
   | { type: "goto"; section: string }
@@ -33,7 +33,7 @@ export type TerminalData = {
   location: string
   since: string
   timezone: string
-  locale: "en" | "es"
+  locale: "en" | "es" | "ca"
   email?: string
   linkedin?: string
   about: string
@@ -57,6 +57,7 @@ export type TerminalStrings = {
   notFound: string
   hint: string
   help: ReadonlyArray<string>
+  web: ReadonlyArray<string>
   unknownProject: string
   privateProject: string
   usageOpen: string
@@ -80,6 +81,7 @@ const COMMANDS = [
   "skills",
   "contact",
   "cv",
+  "web",
   "theme",
   "lang",
   "bg",
@@ -247,6 +249,14 @@ export function execute(
         effects: [{ type: "goto", section: "contact" }],
       }
 
+    case "web":
+    case "ai":
+    case "ia":
+      return {
+        lines: t.web.map((line, i) => out(line, i === 0 ? "head" : "out")),
+        effects: [],
+      }
+
     case "cv":
     case "resume":
       return {
@@ -269,8 +279,8 @@ export function execute(
 
     case "lang": {
       const value = arg.toLowerCase()
-      if (value !== "en" && value !== "es")
-        return { lines: [out("usage: lang <en|es>", "err")], effects: [] }
+      if (value !== "en" && value !== "es" && value !== "ca")
+        return { lines: [out("usage: lang <en|es|ca>", "err")], effects: [] }
       if (value === data.locale)
         return { lines: [out(t.langAlready, "muted")], effects: [] }
       return {

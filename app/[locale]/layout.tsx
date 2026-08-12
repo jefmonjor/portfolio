@@ -37,6 +37,7 @@ const fontMono = Geist_Mono({
 const openGraphLocale: Record<Locale, string> = {
   en: "en_US",
   es: "es_ES",
+  ca: "ca_ES",
 }
 
 const fallbackMetadataBase = new URL("https://jefmonjor.dev")

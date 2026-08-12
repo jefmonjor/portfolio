@@ -77,7 +77,8 @@ export async function POST(request: Request) {
   if (!messages) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
-  const locale = body.locale === "en" ? "en" : "es"
+  const locale =
+    body.locale === "en" ? "en" : body.locale === "ca" ? "ca" : "es"
 
   const client = new OpenAI()
 

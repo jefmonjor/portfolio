@@ -4,7 +4,7 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Diseño arquitecturas backend y construyo productos con IA: de Java enterprise a agentes con Claude.",
+    "description": "Diseño arquitecturas backend sólidas y construyo productos digitales de principio a fin, integrando la inteligencia artificial en todo el proceso.",
     "applicationName": "{shortName} · Portfolio",
     "role": "Arquitecto de Soluciones",
     "keywordsExtra": [
@@ -42,7 +42,8 @@
       "themeToLight": "Cambiar a modo claro",
       "switchTo": {
         "en": "Cambiar a inglés",
-        "es": "Cambiar a español"
+        "es": "Cambiar a español",
+        "ca": "Cambiar a catalán"
       }
     },
     "background": {
@@ -57,7 +58,8 @@
     "ariaLabel": "Cambiar idioma",
     "options": {
       "en": "EN",
-      "es": "ES"
+      "es": "ES",
+      "ca": "CA"
     }
   },
   "status": {
@@ -142,7 +144,8 @@
         "highlights": [
           "Modernización de legacy: migración de Struts2 a React + Spring Boot.",
           "Diseño de microservicios y APIs REST seguras.",
-          "Mejora de rendimiento, mantenibilidad y evolución de la arquitectura."
+          "Mejora de rendimiento, mantenibilidad y evolución de la arquitectura.",
+          "Gestión de contenidos y landing pages con WordPress."
         ]
       },
       "zemsania-2021": {
@@ -150,10 +153,11 @@
         "location": "Madrid, España",
         "start": "Jul 2021",
         "end": "Abr 2022",
-        "summary": "Desarrollo backend de microservicios para proyectos de Indra.",
+        "summary": "Desarrollo backend de microservicios para Vodafone.",
         "highlights": [
           "Microservicios con Java y Spring Boot para sistemas distribuidos.",
-          "Diseño y documentación de APIs con Swagger / OpenAPI."
+          "Diseño y documentación de APIs con Swagger / OpenAPI.",
+          "Trabajo en equipo distribuido con Jira, Confluence y Slack."
         ]
       },
       "keapps-2020": {
@@ -163,8 +167,8 @@
         "end": "Jul 2021",
         "summary": "Proyecto Kronos (Endesa): sistemas Java Enterprise y soluciones Big Data.",
         "highlights": [
-          "Soluciones Big Data con Hadoop y Cassandra sobre datos de consumo energético.",
-          "Optimización de procesos batch y mantenimiento de sistemas críticos."
+          "Soluciones Big Data con Hadoop, Spark y Cassandra sobre datos de consumo energético.",
+          "Procesos MapReduce sobre HDFS/YARN y optimización de batch críticos."
         ]
       },
       "ayesa-2019": {
@@ -174,8 +178,8 @@
         "end": "Abr 2020",
         "summary": "Proyecto Kronos (Endesa): desarrollo Java y pipelines de datos.",
         "highlights": [
-          "Desarrollo y mantenimiento de sistemas Java Enterprise (SOAP, XML).",
-          "Integración de sistemas y pipelines de datos a gran escala."
+          "Desarrollo y mantenimiento de sistemas Java Enterprise (SOAP, XML) con interfaces JSP y PrimeFaces.",
+          "Pipelines de datos a gran escala con MapReduce y almacenamiento en S3."
         ]
       }
     }
@@ -398,8 +402,9 @@
       "  skills             tecnologías que más uso",
       "  contact            cómo contactarme",
       "  cv                 descarga mi CV",
+      "  web                qué hace la IA por ti en esta web",
       "  theme [dark|light] cambia el tema",
-      "  lang <en|es>       cambia el idioma",
+      "  lang <en|es|ca>    cambia el idioma",
       "  bg <variante>      cambia el fondo",
       "  goto <sección>     desplázate a una sección",
       "  clear              limpia la pantalla",
@@ -416,7 +421,19 @@
     "catTopics": "uso: cat <about|experience|skills|contact|proyecto>",
     "langAlready": "ya estás en este idioma",
     "sudo": "buen intento — aquí ya eres root.",
-    "emptyArg": ""
+    "emptyArg": "",
+    "web": [
+      "IA EN ESTA WEB — UTILIDAD DIRECTA",
+      "  · Asistente (burbuja abajo a la derecha): pregúntale lo que",
+      "    quieras sobre el perfil de Jefferson. Responde al momento",
+      "    y solo con datos reales.",
+      "  · CV a tu medida: en 'Descargar CV', pega el texto de tu",
+      "    oferta y la IA adapta el resumen y las palabras clave al",
+      "    puesto. También hay versión completa y versión ATS.",
+      "",
+      "  Por dentro: Next.js 16 · TypeScript · OpenAI · Vercel",
+      "  Código abierto: github.com/jefmonjor/portfolio"
+    ]
   },
   "notFound": {
     "indexLabel": "ERR · 404",
