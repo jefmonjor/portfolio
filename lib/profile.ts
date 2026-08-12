@@ -45,9 +45,11 @@ export const profile: Profile = {
   ],
   socials: [
     {
+      // Address assembled client-side in lib/email.ts to keep it out of
+      // the static HTML (spam-scraper protection).
       kind: "email",
-      href: "mailto:jefmonjor@gmail.com?subject=Hello%20Jefferson",
-      handle: "jefmonjor@gmail.com",
+      href: "#contact",
+      handle: "",
     },
     {
       kind: "linkedin",

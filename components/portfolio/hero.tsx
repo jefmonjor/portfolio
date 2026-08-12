@@ -51,8 +51,7 @@ function Hero() {
     { label: tSpecs("since"), value: profile.since },
   ]
 
-  const emailHref =
-    profile.socials.find((s) => s.kind === "email")?.href ?? "#contact"
+  const emailHref = "#contact"
   const linkedinHref =
     profile.socials.find((s) => s.kind === "linkedin")?.href ?? "#"
 
