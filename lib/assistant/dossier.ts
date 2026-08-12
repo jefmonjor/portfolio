@@ -52,6 +52,21 @@ function buildDossier(locale: Locale): string {
       ? "DISPONIBILIDAD: Abierto a oportunidades en Andorra y España, y en remoto en zona horaria europea. Reside en Andorra; ha vivido y trabajado siempre en España."
       : "AVAILABILITY: Open to opportunities in Andorra and Spain, and remote across European time zones. Based in Andorra; has always lived and worked in Spain."
 
+  const website =
+    locale === "es"
+      ? `SOBRE ESTA WEB (donde estás chateando):
+- Construida por Jefferson con Next.js 16, TypeScript y Tailwind; código abierto en github.com/jefmonjor/portfolio. Desplegada en Vercel.
+- El botón "Descargar CV" ofrece tres versiones: CV completo editorial, CV ATS compacto (optimizado para filtros automáticos) y CV adaptado: pegas el texto de una oferta y la IA ajusta el resumen y las palabras clave con datos reales.
+- Tiene una terminal interactiva (icono en la barra superior o tecla \`) con comandos como help, projects, experience, cv o contact.
+- Este chat funciona con la API de OpenAI sobre un dossier cerrado del perfil de Jefferson: solo responde con datos reales.
+- Bilingüe español/inglés, tema claro/oscuro, diseño propio con sistema documentado.`
+      : `ABOUT THIS WEBSITE (where you are chatting):
+- Built by Jefferson with Next.js 16, TypeScript and Tailwind; open source at github.com/jefmonjor/portfolio. Deployed on Vercel.
+- The "Download CV" button offers three versions: full editorial CV, compact ATS CV (optimized for automated screening) and a tailored CV: paste a job offer and AI adjusts the summary and keywords using real data.
+- It has an interactive terminal (icon in the top bar or the \` key) with commands like help, projects, experience, cv or contact.
+- This chat runs on the OpenAI API over a closed dossier of Jefferson's profile: it only answers with real data.
+- Bilingual Spanish/English, light/dark theme, custom design with a documented system.`
+
   return [
     `NOMBRE: ${profile.name}`,
     `ROL: ${m.hero.role} — ${profile.location}`,
@@ -64,6 +79,7 @@ function buildDossier(locale: Locale): string {
     `FORMACIÓN:\n${education}`,
     `INFRAESTRUCTURA Y DESPLIEGUE:\n${deploy}`,
     `PRÁCTICAS: ${m.skills.practiceItems.join("; ")}`,
+    website,
   ].join("\n\n")
 }
 
