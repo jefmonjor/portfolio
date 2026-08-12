@@ -57,6 +57,7 @@ export type TerminalStrings = {
   notFound: string
   hint: string
   help: ReadonlyArray<string>
+  web: ReadonlyArray<string>
   unknownProject: string
   privateProject: string
   usageOpen: string
@@ -80,6 +81,7 @@ const COMMANDS = [
   "skills",
   "contact",
   "cv",
+  "web",
   "theme",
   "lang",
   "bg",
@@ -245,6 +247,14 @@ export function execute(
           ...(data.linkedin ? [out(`linkedin  ${data.linkedin}`)] : []),
         ],
         effects: [{ type: "goto", section: "contact" }],
+      }
+
+    case "web":
+    case "ai":
+    case "ia":
+      return {
+        lines: t.web.map((line, i) => out(line, i === 0 ? "head" : "out")),
+        effects: [],
       }
 
     case "cv":

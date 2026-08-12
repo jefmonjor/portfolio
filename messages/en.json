@@ -4,7 +4,7 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "I design backend architectures and build AI-powered products: from enterprise Java to Claude-based agents.",
+    "description": "I design solid backend architectures and build digital products end to end, integrating artificial intelligence across the whole process.",
     "applicationName": "{shortName} · Portfolio",
     "role": "Solutions Architect",
     "keywordsExtra": [
@@ -353,7 +353,7 @@
   },
   "footer": {
     "lastUpdated": "Last updated · {date}",
-    "builtLine": "Designed & built from scratch · Next.js"
+    "builtLine": "Designed and built from scratch, with AI · Next.js"
   },
   "cvToast": {
     "title": "Downloading CV",
@@ -398,6 +398,7 @@
       "  skills             tools I use most",
       "  contact            how to reach me",
       "  cv                 download my CV",
+      "  web                how this site is built (spoiler: with AI)",
       "  theme [dark|light] switch theme",
       "  lang <en|es>       switch language",
       "  bg <variant>       change the background",
@@ -416,7 +417,19 @@
     "catTopics": "usage: cat <about|experience|skills|contact|project>",
     "langAlready": "already in this language",
     "sudo": "nice try — you already have root here.",
-    "emptyArg": ""
+    "emptyArg": "",
+    "web": [
+      "THIS SITE, UNDER THE HOOD",
+      "  Designed and built by Jefferson with AI in the real workflow:",
+      "  Claude Code, Codex and spec-driven development.",
+      "  · Stack: Next.js 16 · TypeScript · Tailwind · tRPC · next-intl",
+      "  · AI assistant (bubble bottom-right): OpenAI over a closed",
+      "    dossier of the profile — answers with real data only.",
+      "  · Smart CV: full, ATS or tailored to your job offer with AI",
+      "    ('Download CV' button).",
+      "  · Open source: github.com/jefmonjor/portfolio",
+      "  · Deployed on Vercel · own design system in docs/DESIGN.md"
+    ]
   },
   "notFound": {
     "indexLabel": "ERR · 404",

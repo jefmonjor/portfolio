@@ -4,7 +4,7 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Diseño arquitecturas backend y construyo productos con IA: de Java enterprise a agentes con Claude.",
+    "description": "Diseño arquitecturas backend sólidas y construyo productos digitales de principio a fin, integrando la inteligencia artificial en todo el proceso.",
     "applicationName": "{shortName} · Portfolio",
     "role": "Arquitecto de Soluciones",
     "keywordsExtra": [
@@ -353,7 +353,7 @@
   },
   "footer": {
     "lastUpdated": "Actualizado · {date}",
-    "builtLine": "Diseñado y construido desde cero · Next.js"
+    "builtLine": "Diseñado y construido desde cero, con IA · Next.js"
   },
   "cvToast": {
     "title": "Descargando CV",
@@ -398,6 +398,7 @@
       "  skills             tecnologías que más uso",
       "  contact            cómo contactarme",
       "  cv                 descarga mi CV",
+      "  web                cómo está hecha esta web (spoiler: con IA)",
       "  theme [dark|light] cambia el tema",
       "  lang <en|es>       cambia el idioma",
       "  bg <variante>      cambia el fondo",
@@ -416,7 +417,19 @@
     "catTopics": "uso: cat <about|experience|skills|contact|proyecto>",
     "langAlready": "ya estás en este idioma",
     "sudo": "buen intento — aquí ya eres root.",
-    "emptyArg": ""
+    "emptyArg": "",
+    "web": [
+      "ESTA WEB, POR DENTRO",
+      "  Diseñada y construida por Jefferson con IA en el flujo de trabajo",
+      "  real: Claude Code, Codex y spec-driven development.",
+      "  · Stack: Next.js 16 · TypeScript · Tailwind · tRPC · next-intl",
+      "  · Asistente IA (burbuja abajo a la derecha): OpenAI sobre un",
+      "    dossier cerrado del perfil — solo responde con datos reales.",
+      "  · CV inteligente: completo, ATS o adaptado a tu oferta con IA",
+      "    (botón 'Descargar CV').",
+      "  · Código abierto: github.com/jefmonjor/portfolio",
+      "  · Desplegada en Vercel · sistema de diseño propio en docs/DESIGN.md"
+    ]
   },
   "notFound": {
     "indexLabel": "ERR · 404",
