@@ -29,7 +29,7 @@ function Education() {
             return (
               <li
                 key={entry.id}
-                className="grid grid-cols-[40px_1fr] gap-x-4 border-b border-dashed border-border py-4 last:border-b-0"
+                className="grid grid-cols-[40px_1fr] gap-x-4 border-b border-border py-4 last:border-b-0"
               >
                 <span className="pt-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
                   {String(index + 1).padStart(2, "0")}
@@ -51,11 +51,11 @@ function Education() {
           })}
         </ol>
 
-        <div className="flex flex-col gap-4 border border-dashed border-border p-5">
+        <div className="flex flex-col gap-4 rounded-xl border border-border p-5">
           <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
             {t("languagesLabel")}
           </span>
-          <ul className="flex flex-col divide-y divide-dashed divide-border">
+          <ul className="flex flex-col divide-y divide-solid divide-border">
             {profile.languages.map((lang) => (
               <li
                 key={lang.id}

@@ -38,11 +38,13 @@ function TopBar() {
   })
 
   return (
-    <div
-      data-print-hidden
-      className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur"
-    >
-      <div className="mx-auto flex h-11 max-w-6xl items-center justify-between gap-4 px-4 sm:px-8">
+    <div data-print-hidden className="sticky top-0 z-40 px-3 pt-3 sm:px-4">
+      <motion.div
+        aria-hidden
+        style={{ scaleX: progress, transformOrigin: "0 50%" }}
+        className="fixed inset-x-0 top-0 h-0.5 bg-brand"
+      />
+      <div className="mx-auto flex h-11 max-w-6xl items-center justify-between gap-4 rounded-full border border-border bg-background/85 px-4 shadow-sm backdrop-blur sm:px-5">
         <a
           href="#top"
           className="flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase hover:text-foreground"
@@ -93,11 +95,6 @@ function TopBar() {
         </div>
       </div>
       <Terminal />
-      <motion.div
-        aria-hidden
-        style={{ scaleX: progress, transformOrigin: "0 50%" }}
-        className="h-px w-full bg-foreground"
-      />
     </div>
   )
 }

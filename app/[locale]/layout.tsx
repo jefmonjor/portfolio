@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Figtree, Geist_Mono } from "next/font/google"
+import { Figtree, Geist, Geist_Mono } from "next/font/google"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
@@ -21,6 +21,12 @@ import { parseStringArray } from "@/lib/i18n-values"
 const figtree = Figtree({
   subsets: ["latin"],
   variable: "--font-sans",
+})
+
+// Display face for headings — Vercel-school grotesk, pairs with Geist Mono.
+const fontDisplay = Geist({
+  subsets: ["latin"],
+  variable: "--font-display",
 })
 
 const fontMono = Geist_Mono({
@@ -118,6 +124,7 @@ export default async function LocaleLayout({
       className={cn(
         "antialiased",
         fontMono.variable,
+        fontDisplay.variable,
         "font-sans",
         figtree.variable
       )}

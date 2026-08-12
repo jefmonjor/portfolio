@@ -14,7 +14,7 @@ function Deploy() {
         <span className="inline-block size-1.5 bg-brand" />
         <span>{t("title")}</span>
       </div>
-      <div className="grid border border-border md:grid-cols-3">
+      <div className="grid overflow-hidden rounded-xl border border-border md:grid-cols-3">
         {PLATFORM_KEYS.map((key, index) => (
           <div
             key={key}

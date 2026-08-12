@@ -21,7 +21,7 @@ function SectionHeading({
     <header
       id={id}
       className={cn(
-        "flex flex-col gap-3 border-b border-dashed border-border pb-3 sm:flex-row sm:items-end sm:justify-between sm:gap-6",
+        "flex flex-col gap-3 border-b border-border pb-3 sm:flex-row sm:items-end sm:justify-between sm:gap-6",
         className
       )}
     >

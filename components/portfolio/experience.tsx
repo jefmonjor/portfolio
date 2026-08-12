@@ -87,7 +87,7 @@ function Experience() {
                 ease,
                 delay: reduce ? 0 : Math.min(index * 0.05, 0.25),
               }}
-              className="group relative grid grid-cols-[20px_1fr] gap-x-4 border-b border-dashed border-border py-5 last:border-b-0 sm:grid-cols-[7rem_1fr]"
+              className="group relative grid grid-cols-[20px_1fr] gap-x-4 border-b border-border py-5 last:border-b-0 sm:grid-cols-[7rem_1fr]"
             >
               <div className="relative flex items-start pt-1 sm:pt-1.5">
                 <span
