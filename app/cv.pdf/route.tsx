@@ -6,6 +6,10 @@ import { resolveLocale } from "@/i18n/routing"
 import { parseStringArray } from "@/lib/i18n-values"
 import { profile, portfolioUpdatedAt } from "@/lib/profile"
 import {
+  CvAtsDocument,
+  type CvTailored,
+} from "@/server/cv/cv-ats-document"
+import {
   CvDocument,
   type CvEducationEntry,
   type CvExperienceEntry,
@@ -17,8 +21,31 @@ import {
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
+// Tailored content arrives via query params (produced by /api/cv-tailor).
+// Capped hard so nobody can stuff arbitrary payloads into the PDF.
+const MAX_SUMMARY_CHARS = 900
+const MAX_KEYWORDS = 15
+const MAX_KEYWORD_CHARS = 40
+
+function parseTailored(params: URLSearchParams): CvTailored | undefined {
+  const summary = params.get("summary")?.trim().slice(0, MAX_SUMMARY_CHARS)
+  if (!summary) return undefined
+  const keywords = (params.get("keywords") ?? "")
+    .split("|")
+    .map((k) => k.trim().slice(0, MAX_KEYWORD_CHARS))
+    .filter(Boolean)
+    .slice(0, MAX_KEYWORDS)
+  return { summary, keywords }
+}
+
 export async function GET(request: NextRequest): Promise<Response> {
   const locale = resolveLocale(request.nextUrl.searchParams.get("locale"))
+  const variant =
+    request.nextUrl.searchParams.get("variant") === "ats" ? "ats" : "full"
+  const tailored =
+    variant === "ats"
+      ? parseTailored(request.nextUrl.searchParams)
+      : undefined
 
   const [
     tMeta,
@@ -107,9 +134,20 @@ export async function GET(request: NextRequest): Promise<Response> {
     footer: tFooter("lastUpdated", { date: portfolioUpdatedAt }),
   }
 
-  const buffer = await renderToBuffer(<CvDocument labels={labels} />)
+  const buffer = await renderToBuffer(
+    variant === "ats" ? (
+      <CvAtsDocument
+        labels={labels}
+        locale={locale === "en" ? "en" : "es"}
+        tailored={tailored}
+      />
+    ) : (
+      <CvDocument labels={labels} />
+    )
+  )
 
-  const filename = `${profile.shortName.replace(/\s+/g, "_")}_CV_${locale}.pdf`
+  const suffix = variant === "ats" ? `ATS_${locale}` : locale
+  const filename = `${profile.shortName.replace(/\s+/g, "_")}_CV_${suffix}.pdf`
 
   return new Response(new Uint8Array(buffer), {
     status: 200,

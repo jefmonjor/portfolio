@@ -62,12 +62,12 @@
   },
   "status": {
     "label": "Abierto a oportunidades",
-    "detail": "Andorra · Remoto en zona horaria europea"
+    "detail": "Andorra · España · Remoto en zona horaria europea"
   },
   "hero": {
     "indexLabel": "00 — Perfil",
     "role": "Arquitecto de Soluciones",
-    "tagline": "Diseño arquitecturas backend y construyo productos con IA: de Java enterprise a agentes con Claude.",
+    "tagline": "Diseño arquitecturas backend y construyo productos con IA: de Java enterprise a agentes de IA en producción.",
     "specs": {
       "location": "Ubicación",
       "timezone": "Zona horaria",
@@ -358,6 +358,24 @@
   "cvToast": {
     "title": "Descargando CV",
     "description": "La descarga se abrirá en una pestaña nueva."
+  },
+  "cvModal": {
+    "title": "Descargar CV",
+    "question": "¿Para qué lo necesitas?",
+    "info": "Quiero conocer el perfil",
+    "infoDesc": "CV completo con todo el detalle, en diseño editorial.",
+    "hiring": "Proceso de selección",
+    "hiringDesc": "Versión ATS compacta o adaptada a tu oferta con IA.",
+    "ats": "CV ATS estándar",
+    "atsDesc": "Compacto y optimizado para filtros automáticos de selección.",
+    "tailor": "Adaptado a tu oferta",
+    "tailorDesc": "Pega la oferta y la IA ajusta el resumen y las palabras clave — solo con datos reales del perfil.",
+    "offerPlaceholder": "Pega aquí el texto de la oferta…",
+    "generate": "Generar CV adaptado",
+    "generating": "Adaptando…",
+    "back": "Volver",
+    "tailorError": "No se pudo adaptar ahora mismo. Descarga la versión ATS estándar.",
+    "tailorLimited": "Límite de uso alcanzado. Prueba en unos minutos o descarga la versión ATS."
   },
   "terminal": {
     "title": "Terminal",

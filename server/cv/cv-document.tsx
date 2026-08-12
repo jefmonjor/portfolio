@@ -10,6 +10,7 @@ import {
   View,
 } from "@react-pdf/renderer"
 
+import { contactEmail, contactMailto } from "@/lib/email"
 import { profile } from "@/lib/profile"
 
 const FONT_DIR = path.join(process.cwd(), "public/fonts/cv")
@@ -492,8 +493,10 @@ function findSocialHandle(kind: string): string | undefined {
 }
 
 function CvDocument({ labels }: CvDocumentProps) {
-  const email = findSocialHandle("email")
-  const emailHref = findSocialHref("email")
+  // Server-rendered on demand, so the plain address never reaches the
+  // static HTML — safe to print it in the downloadable document.
+  const email = contactEmail()
+  const emailHref = contactMailto()
   const linkedinHref = findSocialHref("linkedin")
   const linkedinHandle = findSocialHandle("linkedin")
 
