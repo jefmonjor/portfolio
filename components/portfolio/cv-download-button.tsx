@@ -124,7 +124,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   }
 
   const optionClass =
-    "flex w-full items-start gap-3 border border-dashed border-border p-3 text-left transition-colors hover:border-foreground hover:bg-foreground/2.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/40"
+    "flex w-full items-start gap-3 rounded-lg border border-border p-3 text-left transition-colors hover:border-foreground hover:bg-foreground/2.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/40"
 
   return (
     <>
@@ -145,7 +145,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
 
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent showCloseButton className="gap-0 p-0 sm:max-w-md">
-          <DialogHeader className="gap-2 border-b border-dashed border-border p-5">
+          <DialogHeader className="gap-2 border-b border-border p-5">
             <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
               <span className="inline-block size-1.5 bg-brand" />
               {tModal("title")}
@@ -221,7 +221,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                   </span>
                 </button>
 
-                <div className="flex flex-col gap-2 border border-dashed border-border p-3">
+                <div className="flex flex-col gap-2 rounded-lg border border-border p-3">
                   <span className="flex items-center gap-2 text-sm font-medium text-foreground">
                     <HugeiconsIcon
                       icon={SparklesIcon}
@@ -239,7 +239,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                     placeholder={tModal("offerPlaceholder")}
                     maxLength={4000}
                     rows={5}
-                    className="w-full resize-none border border-input bg-transparent p-2 text-xs leading-relaxed outline-none focus-visible:border-ring"
+                    className="w-full resize-none rounded-md border border-input bg-transparent p-2 text-xs leading-relaxed outline-none focus-visible:border-ring"
                   />
                   <Button
                     size="sm"

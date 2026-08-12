@@ -41,7 +41,7 @@ function Projects() {
         hint={t("hint", { count: entries.length })}
       />
 
-      <ul className="grid grid-cols-1 gap-0 border border-dashed border-border sm:grid-cols-2">
+      <ul className="grid grid-cols-1 gap-0 overflow-hidden rounded-xl border border-border sm:grid-cols-2">
         {entries.map((entry, index) => {
           const name = tEntries(`${entry.id}.name`)
           const summary = tEntries(`${entry.id}.summary`)
@@ -59,7 +59,7 @@ function Projects() {
                 delay: reduce ? 0 : Math.min(index * 0.05, 0.25),
               }}
               className={[
-                "group relative flex flex-col gap-4 border-dashed border-border p-5 transition-colors hover:bg-foreground/2.5 focus-within:bg-foreground/2.5 sm:p-6",
+                "group relative flex flex-col gap-4 border-border p-5 transition-colors hover:bg-foreground/2.5 focus-within:bg-foreground/2.5 sm:p-6",
                 index % 2 === 0 ? "sm:border-r" : "",
                 "border-b last:border-b-0 sm:[&:nth-last-child(2):nth-child(odd)]:border-b-0",
               ].join(" ")}
@@ -75,7 +75,7 @@ function Projects() {
                 <ProjectPreview
                   images={entry.images}
                   alt={name}
-                  className="pointer-events-none relative z-10 -mx-5 -mt-5 border-b border-dashed border-border sm:-mx-6 sm:-mt-6"
+                  className="pointer-events-none relative z-10 -mx-5 -mt-5 border-b border-border sm:-mx-6 sm:-mt-6"
                 />
               ) : null}
 

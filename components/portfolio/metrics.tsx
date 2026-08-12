@@ -62,7 +62,7 @@ function Metrics() {
       aria-label={t("ariaLabel")}
       className="mx-auto max-w-6xl px-4 pb-4 sm:px-8"
     >
-      <div ref={gridRef} className="grid grid-cols-2 border border-border lg:grid-cols-4">
+      <div ref={gridRef} className="grid grid-cols-2 overflow-hidden rounded-xl border border-border lg:grid-cols-4">
         {METRIC_KEYS.map((key, index) => (
           <div
             key={key}

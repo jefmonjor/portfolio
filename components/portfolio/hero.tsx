@@ -170,12 +170,12 @@ function Hero() {
             ease,
             delay: reduce ? 0 : 0.08 * titleWords.length + 0.25,
           }}
-          className="mt-auto divide-y divide-dashed divide-border border border-dashed border-border sm:grid sm:grid-cols-2 sm:divide-y-0"
+          className="mt-auto divide-y divide-solid divide-border overflow-hidden rounded-xl border border-border sm:grid sm:grid-cols-2 sm:divide-y-0"
         >
           {specRows.map((row, index) => (
             <div
               key={row.label}
-              className={`grid grid-cols-[88px_1fr] items-center gap-3 px-3 py-2.5 sm:border-dashed sm:border-border ${
+              className={`grid grid-cols-[88px_1fr] items-center gap-3 px-3 py-2.5 sm:border-border ${
                 index % 2 === 0 ? "sm:border-r" : ""
               } ${index >= 2 ? "sm:border-t" : ""}`}
             >

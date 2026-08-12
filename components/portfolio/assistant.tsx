@@ -69,7 +69,7 @@ function Assistant() {
   return (
     <div data-print-hidden className="fixed right-4 bottom-4 z-40 sm:right-6 sm:bottom-6">
       {open ? (
-        <div className="flex h-[28rem] w-[min(22rem,calc(100vw-2rem))] flex-col border border-border bg-background shadow-lg">
+        <div className="flex h-[28rem] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-lg">
           <div className="flex items-center justify-between border-b border-border px-3 py-2">
             <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
               {t("title")}
@@ -96,7 +96,7 @@ function Assistant() {
                     key={s}
                     type="button"
                     onClick={() => send(s)}
-                    className="border border-border px-2 py-1 text-left font-mono text-[10px] tracking-wide text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                    className="rounded-md border border-border px-2 py-1 text-left font-mono text-[10px] tracking-wide text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                   >
                     {s}
                   </button>
@@ -107,7 +107,7 @@ function Assistant() {
               <div
                 key={i}
                 className={cn(
-                  "max-w-[85%] px-2.5 py-1.5 text-xs leading-relaxed",
+                  "max-w-[85%] rounded-lg px-2.5 py-1.5 text-xs leading-relaxed",
                   m.role === "user"
                     ? "ml-auto bg-foreground text-background"
                     : "border border-border whitespace-pre-line text-foreground"
@@ -117,7 +117,7 @@ function Assistant() {
               </div>
             ))}
             {busy ? (
-              <div className="w-fit border border-border px-2.5 py-1.5 font-mono text-[10px] text-muted-foreground">
+              <div className="w-fit rounded-lg border border-border px-2.5 py-1.5 font-mono text-[10px] text-muted-foreground">
                 …
               </div>
             ) : null}
@@ -135,7 +135,7 @@ function Assistant() {
               onChange={(event) => setInput(event.target.value)}
               placeholder={t("placeholder")}
               maxLength={1500}
-              className="h-8 min-w-0 flex-1 border border-input bg-transparent px-2 text-xs outline-none focus-visible:border-ring"
+              className="h-8 min-w-0 flex-1 rounded-md border border-input bg-transparent px-2 text-xs outline-none focus-visible:border-ring"
             />
             <Button
               type="submit"
@@ -158,7 +158,7 @@ function Assistant() {
           size="icon"
           aria-label={t("open")}
           onClick={() => setOpen(true)}
-          className="size-11 bg-background shadow-md"
+          className="size-11 rounded-full bg-background shadow-md"
         >
           <HugeiconsIcon icon={AiChat01Icon} className="size-5" strokeWidth={1.75} />
         </Button>

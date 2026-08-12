@@ -50,7 +50,7 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
         showCloseButton
         className="flex max-h-[85svh] flex-col gap-0 overflow-hidden p-0 sm:max-w-xl"
       >
-        <DialogHeader className="gap-3 border-b border-dashed border-border p-5 sm:p-6">
+        <DialogHeader className="gap-3 border-b border-border p-5 sm:p-6">
           <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
             <span className="inline-block size-1.5 bg-brand" />
             {project.year ? (
@@ -87,7 +87,7 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
               images={project.images}
               alt={name}
               sizes="(min-width: 640px) 36rem, 100vw"
-              className="border border-dashed border-border"
+              className="border border-border"
             />
           ) : null}
 
@@ -135,7 +135,7 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
         </div>
 
         {project.url || project.repo ? (
-          <div className="flex flex-wrap gap-2 border-t border-dashed border-border p-5 sm:p-6">
+          <div className="flex flex-wrap gap-2 border-t border-border p-5 sm:p-6">
             {project.url ? (
               <Button asChild size="sm">
                 <a href={project.url} target="_blank" rel="noopener noreferrer">

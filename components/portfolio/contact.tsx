@@ -88,7 +88,7 @@ function Contact() {
       />
 
       <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
-        <div className="flex flex-col gap-4 border border-dashed border-border p-5 sm:p-6">
+        <div className="flex flex-col gap-4 rounded-xl border border-border p-5 sm:p-6">
           <div className="flex items-center justify-between gap-3">
             <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
               {t("emailLabel")}
@@ -155,8 +155,8 @@ function Contact() {
           </div>
         </div>
 
-        <dl className="grid grid-cols-1 gap-0 border border-dashed border-border">
-          <div className="flex items-start gap-3 border-b border-dashed border-border p-4">
+        <dl className="grid grid-cols-1 gap-0 overflow-hidden rounded-xl border border-border">
+          <div className="flex items-start gap-3 border-b border-border p-4">
             <HugeiconsIcon
               icon={Location01Icon}
               className="mt-0.5 size-4 shrink-0 text-muted-foreground"
@@ -169,7 +169,7 @@ function Contact() {
               <dd className="text-sm text-foreground">{profile.location}</dd>
             </div>
           </div>
-          <div className="flex items-start gap-3 border-b border-dashed border-border p-4">
+          <div className="flex items-start gap-3 border-b border-border p-4">
             <span
               aria-hidden
               className="relative mt-1.5 inline-flex size-1.5 shrink-0"
