@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1000" viewBox="0 0 900 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#161616"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0V60" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="1000" fill="url(#bg)"/>
+  <rect width="900" height="1000" fill="url(#grid)"/>
+  <circle cx="450" cy="430" r="230" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+  <circle cx="450" cy="430" r="180" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+  <text x="450" y="500" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="200" font-weight="700" fill="#f5f5f5" letter-spacing="6">JM</text>
+  <text x="450" y="760" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="30" font-weight="600" fill="#ffffff" fill-opacity="0.55" letter-spacing="14">JEFMONJOR.DEV</text>
+  <text x="450" y="820" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="22" font-weight="500" fill="#ffffff" fill-opacity="0.35" letter-spacing="10">EST. 2019 · BACKEND · AI</text>
+  <path d="M60 60h70M60 60v70M840 60h-70M840 60v70M60 940h70M60 940v-70M840 940h-70M840 940v-70" stroke="#ffffff" stroke-opacity="0.4" stroke-width="3" fill="none"/>
+</svg>

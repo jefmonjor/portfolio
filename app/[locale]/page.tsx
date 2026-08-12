@@ -9,7 +9,9 @@ import { Experience } from "@/components/portfolio/experience"
 import { Footer } from "@/components/portfolio/footer"
 import { Hero } from "@/components/portfolio/hero"
 import { Marquee } from "@/components/portfolio/marquee"
+import { Metrics } from "@/components/portfolio/metrics"
 import { Projects } from "@/components/portfolio/projects"
+import { Reveal } from "@/components/portfolio/reveal"
 import { Skills } from "@/components/portfolio/skills"
 import { TopBar } from "@/components/portfolio/top-bar"
 import { profile } from "@/lib/profile"
@@ -36,12 +38,27 @@ export default async function Page({
         <main>
           <Hero />
           <Marquee items={profile.marquee} />
-          <About />
-          <Experience />
-          <Skills />
-          <Projects />
-          <Education />
-          <Contact />
+          <Reveal>
+            <About />
+          </Reveal>
+          <Reveal>
+            <Metrics />
+          </Reveal>
+          <Reveal>
+            <Experience />
+          </Reveal>
+          <Reveal>
+            <Skills />
+          </Reveal>
+          <Reveal>
+            <Projects />
+          </Reveal>
+          <Reveal>
+            <Education />
+          </Reveal>
+          <Reveal>
+            <Contact />
+          </Reveal>
         </main>
         <Footer />
       </div>
