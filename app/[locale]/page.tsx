@@ -4,6 +4,7 @@ import { About } from "@/components/portfolio/about"
 import { Background } from "@/components/portfolio/background"
 import { ConsoleSignature } from "@/components/portfolio/console-signature"
 import { Contact } from "@/components/portfolio/contact"
+import { Deploy } from "@/components/portfolio/deploy"
 import { Education } from "@/components/portfolio/education"
 import { Experience } from "@/components/portfolio/experience"
 import { Footer } from "@/components/portfolio/footer"
@@ -52,6 +53,9 @@ export default async function Page({
           </Reveal>
           <Reveal>
             <Projects />
+          </Reveal>
+          <Reveal>
+            <Deploy />
           </Reveal>
           <Reveal>
             <Education />

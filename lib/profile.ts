@@ -157,6 +157,7 @@ export const profile: Profile = {
         "Google Cloud Run",
         "Cloud Build",
         "GitHub Actions",
+        "Brevo",
         "Jenkins",
         "CI/CD",
         "Keycloak",
@@ -203,7 +204,8 @@ export const profile: Profile = {
       stack: [
         "Java 21",
         "Spring Boot 3",
-        "TypeScript",
+        "Neon",
+        "Upstash Redis",
         "Claude API",
         "VERI*FACTU",
         "Cloud Run",
@@ -216,7 +218,7 @@ export const profile: Profile = {
     },
     {
       id: "corte1d",
-      stack: ["Next.js", "Neon", "PWA", "ExcelJS", "PDFKit", "AI agents"],
+      stack: ["Next.js", "Neon", "PWA", "ExcelJS", "PDFKit", "Backblaze B2", "AI agents"],
     },
     {
       id: "tavory",

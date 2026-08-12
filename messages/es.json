@@ -232,11 +232,11 @@
       "trasolido": {
         "name": "Trasolido",
         "role": "Producto propio · SaaS",
-        "summary": "Sistema de facturación conforme al reglamento español VERI*FACTU: backend modular en Java 21 / Spring Boot y frontend TypeScript, con IA para extracción de datos y trazabilidad.",
+        "summary": "Facturación conforme a VERI*FACTU con un backend potente: monolito modular en Java 21 / Spring Boot con login propio (JWT), eventos sobre Redis (Upstash) y PostgreSQL en Neon. Frontend React y extracción de datos con IA.",
         "highlights": [
-          "Cumplimiento del reglamento VERI*FACTU.",
-          "Extracción de datos de documentos con Claude API.",
-          "Backend en Google Cloud Run · frontend en Vercel."
+          "Cumplimiento del reglamento VERI*FACTU con trazabilidad completa.",
+          "Autenticación propia con JWT y eventos en streaming sobre Upstash Redis.",
+          "PostgreSQL en Neon · backend en Google Cloud Run · frontend en Vercel."
         ]
       },
       "porrix": {
@@ -255,8 +255,8 @@
         "summary": "SaaS de taller: importa despieces desde Excel/CSV, optimiza el corte 1D con un motor determinista y controla el stock. PWA con exportación a PDF.",
         "highlights": [
           "Motor de corte puro y determinista con unidades canónicas.",
-          "Importación desde Excel, CSV y SolidWorks.",
-          "Construido con Agent OS: agentes IA especializados por rol."
+          "Importación desde Excel, CSV y SolidWorks; ficheros en Backblaze B2.",
+          "Login propio con seguridad (Argon2) y construido con Agent OS: agentes IA por rol."
         ]
       },
       "tavory": {
@@ -405,5 +405,25 @@
     "title": "Esta página no existe.",
     "body": "La página que buscas puede haberse renombrado, eliminado o movido a otra ruta.",
     "cta": "Volver al inicio"
+  },
+  "deploy": {
+    "ariaLabel": "Dónde despliego",
+    "title": "Infra · Dónde despliego",
+    "platforms": {
+      "vps": {
+        "name": "VPS propio · netcup",
+        "detail": "Docker + GitHub Actions sobre mi propio servidor. PRONOQ en producción (web + worker) y Other Tales en migración desde Cloud Run."
+      },
+      "vercel": {
+        "name": "Vercel",
+        "detail": "Tavory, invitaciones de boda, el frontend de Trasolido y este portfolio — con previews automáticos por cada PR."
+      },
+      "gcloud": {
+        "name": "Google Cloud",
+        "detail": "Cloud Run + Cloud Build para el backend de Trasolido, con entorno de staging y health checks automáticos."
+      }
+    },
+    "servicesLabel": "Servicios",
+    "services": "Supabase · Neon · Upstash Redis · Backblaze B2 · Brevo · Stripe · Sentry"
   }
 }

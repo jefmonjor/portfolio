@@ -232,11 +232,11 @@
       "trasolido": {
         "name": "Trasolido",
         "role": "Own product · SaaS",
-        "summary": "Invoicing system compliant with Spain's VERI*FACTU regulation: modular Java 21 / Spring Boot backend and TypeScript frontend, with AI-powered data extraction and traceability.",
+        "summary": "VERI*FACTU-compliant invoicing with a powerful backend: modular Java 21 / Spring Boot monolith with its own JWT auth, event streaming over Redis (Upstash) and PostgreSQL on Neon. React frontend and AI data extraction.",
         "highlights": [
-          "VERI*FACTU regulatory compliance.",
-          "Document data extraction with the Claude API.",
-          "Backend on Google Cloud Run · frontend on Vercel."
+          "VERI*FACTU regulatory compliance with full traceability.",
+          "Own JWT authentication and event streaming over Upstash Redis.",
+          "PostgreSQL on Neon · backend on Google Cloud Run · frontend on Vercel."
         ]
       },
       "porrix": {
@@ -255,8 +255,8 @@
         "summary": "Workshop SaaS: imports cut lists from Excel/CSV, optimizes 1D cutting with a deterministic engine and tracks stock. PWA with PDF export.",
         "highlights": [
           "Pure, deterministic cutting engine with canonical units.",
-          "Imports from Excel, CSV and SolidWorks.",
-          "Built with Agent OS: specialized AI agents per role."
+          "Imports from Excel, CSV and SolidWorks; files stored in Backblaze B2.",
+          "Own secure login (Argon2), built with Agent OS: specialized AI agents per role."
         ]
       },
       "tavory": {
@@ -405,5 +405,25 @@
     "title": "This page does not exist.",
     "body": "The page you are looking for may have been renamed, deleted, or moved to another route.",
     "cta": "Back to home"
+  },
+  "deploy": {
+    "ariaLabel": "Where I deploy",
+    "title": "Infra · Where I deploy",
+    "platforms": {
+      "vps": {
+        "name": "Self-hosted VPS · netcup",
+        "detail": "Docker + GitHub Actions on my own server. PRONOQ in production (web + worker) and Other Tales migrating from Cloud Run."
+      },
+      "vercel": {
+        "name": "Vercel",
+        "detail": "Tavory, wedding invitations, the Trasolido frontend and this portfolio — with automatic previews on every PR."
+      },
+      "gcloud": {
+        "name": "Google Cloud",
+        "detail": "Cloud Run + Cloud Build for the Trasolido backend, with a staging environment and automated health checks."
+      }
+    },
+    "servicesLabel": "Services",
+    "services": "Supabase · Neon · Upstash Redis · Backblaze B2 · Brevo · Stripe · Sentry"
   }
 }
