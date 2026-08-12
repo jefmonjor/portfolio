@@ -4,7 +4,7 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Diseño arquitecturas backend en banca y construyo productos con IA: de Java enterprise a agentes con Claude.",
+    "description": "Diseño arquitecturas backend y construyo productos con IA: de Java enterprise a agentes con Claude.",
     "applicationName": "{shortName} · Portfolio",
     "role": "Arquitecto de Soluciones",
     "keywordsExtra": [
@@ -67,7 +67,7 @@
   "hero": {
     "indexLabel": "00 — Perfil",
     "role": "Arquitecto de Soluciones",
-    "tagline": "Diseño arquitecturas backend en banca y construyo productos con IA: de Java enterprise a agentes con Claude.",
+    "tagline": "Diseño arquitecturas backend y construyo productos con IA: de Java enterprise a agentes con Claude.",
     "specs": {
       "location": "Ubicación",
       "timezone": "Zona horaria",
@@ -84,28 +84,28 @@
   "about": {
     "indexLabel": "01 — Sobre mí",
     "title": "Quién soy, en un párrafo",
-    "manifesto": "Más de seis años construyendo software para banca, legal y energía — hoy como Arquitecto de Soluciones en Andbank. He liderado migraciones complejas (Spring Boot 2 → 3, Tomcat en +40 VMs), integrado sistemas legacy (COBOL, AS400, DB2) y diseñado arquitecturas hexagonales y de microservicios. Fuera del trabajo construyo productos completos con IA: uso Claude, Codex y flujos MCP a diario para pasar de idea a aplicación en producción en días.",
+    "manifesto": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy la arquitectura backend de Andbank. He liderado migraciones complejas, integrado sistemas legacy y diseñado arquitecturas hexagonales y de microservicios. Y fuera del trabajo, construyo: ocho productos propios — de una plataforma para escritores a un sistema de facturación VERI*FACTU — usando Claude, Codex y flujos MCP para pasar de idea a producción en días.",
     "currentlyWorkingWith": "Trabajando ahora con"
   },
   "metrics": {
-    "ariaLabel": "Métricas de impacto",
+    "ariaLabel": "Métricas de trayectoria",
     "caption": "Medido en sistemas reales en producción",
     "entries": {
-      "vms": {
-        "value": "+40",
-        "label": "VMs migradas · Tomcat 7/8 → 9/10"
-      },
-      "cobol": {
-        "value": "12K+",
-        "label": "Ficheros COBOL bajo análisis SonarQube"
-      },
-      "components": {
-        "value": "15+",
-        "label": "Componentes · nuevo homebanking"
-      },
       "years": {
         "value": "6+",
-        "label": "Años en producción · banca, legal y energía"
+        "label": "Años de software en producción"
+      },
+      "sectors": {
+        "value": "3",
+        "label": "Sectores · banca, legal y energía"
+      },
+      "companies": {
+        "value": "5",
+        "label": "Empresas · de Sevilla a Andorra"
+      },
+      "products": {
+        "value": "8",
+        "label": "Productos propios · construidos con IA"
       }
     }
   },
@@ -216,25 +216,63 @@
       "repo": "Código"
     },
     "entries": {
-      "fintrackj": {
-        "name": "FinTrackJ",
-        "role": "Proyecto personal · SaaS",
-        "summary": "SaaS de finanzas personales multi-banco. Agrega cuentas y movimientos de varios bancos y usa la Claude API para categorizar gastos, detectar patrones y generar insights financieros en lenguaje natural.",
+      "othertales": {
+        "name": "Other Tales",
+        "role": "Producto propio · App + Backend",
+        "summary": "Plataforma all-in-one para escritores: app móvil con escritura offline, gestión de proyectos de escritura y sincronización contra backend propio en Java.",
         "highlights": [
-          "Agregación multi-banco de cuentas y movimientos.",
-          "Categorización e insights automáticos con Claude API.",
-          "Stack tipado con Next.js 15, Drizzle ORM y Neon (PostgreSQL serverless).",
-          "Construido de idea a producción con flujos de desarrollo asistido por IA."
+          "App móvil Flutter con foco en escritura offline.",
+          "Backend Java propio con sincronización de proyectos.",
+          "Producto completo: app, backend y landing."
         ]
       },
-      "facturai": {
-        "name": "Facturación IA · VERI*FACTU",
-        "role": "Proyecto personal · SaaS",
-        "summary": "Sistema de facturación conforme al reglamento español VERI*FACTU, con la Claude API para extraer datos de documentos, generar facturas y ayudar con las obligaciones fiscales.",
+      "trasolido": {
+        "name": "Trasolido",
+        "role": "Producto propio · SaaS",
+        "summary": "Sistema de facturación conforme al reglamento español VERI*FACTU, con IA para extracción de datos de documentos y generación de facturas con trazabilidad.",
         "highlights": [
-          "Cumplimiento del reglamento VERI*FACTU (facturación verificable ante la AEAT).",
-          "Extracción de datos de documentos y asistencia con Claude API.",
-          "Generación y envío de facturas con trazabilidad completa."
+          "Cumplimiento del reglamento VERI*FACTU.",
+          "Extracción de datos de documentos con Claude API.",
+          "Backend Java + frontend TypeScript + landing."
+        ]
+      },
+      "porrix": {
+        "name": "Porrix",
+        "role": "Producto propio · PWA",
+        "summary": "Porra de fútbol entre amigos: PWA mobile-first para LaLiga y Champions con marcador en vivo, clasificación automática y análisis de resultados con IA.",
+        "highlights": [
+          "Seguimiento de marcadores en vivo y clasificación automática.",
+          "Análisis de resultados con IA.",
+          "Disponible en español, inglés y catalán."
+        ]
+      },
+      "corte1d": {
+        "name": "Corte1D",
+        "role": "Producto propio · Herramienta industrial",
+        "summary": "Herramienta de taller: optimización de corte 1D y control de stock, entre otras funciones de gestión, construida con flujos de agentes IA.",
+        "highlights": [
+          "Optimización de despiece para minimizar desperdicio.",
+          "Control de stock del taller.",
+          "Desarrollada con flujos de agentes IA."
+        ]
+      },
+      "tavory": {
+        "name": "Tavory",
+        "role": "Producto propio · Web",
+        "summary": "Guía gastronómica construida como producto completo, de la idea al despliegue.",
+        "highlights": [
+          "Descubrimiento y guía de sitios donde comer.",
+          "Construida de idea a producción con IA."
+        ]
+      },
+      "wedding": {
+        "name": "Invitaciones de Boda",
+        "role": "Producto propio · Web",
+        "summary": "Invitaciones de boda digitales con confirmación de asistencia (RSVP), ya usadas en bodas reales.",
+        "highlights": [
+          "Invitación digital personalizable por boda.",
+          "Confirmación de asistencia de invitados (RSVP).",
+          "Desplegada para bodas reales."
         ]
       },
       "headless-commerce": {
@@ -245,6 +283,15 @@
           "Backend de comercio con MedusaJS y frontal Next.js.",
           "Búsqueda y recomendaciones potenciadas por el Vercel AI SDK.",
           "Arquitectura headless desacoplada y lista para escalar."
+        ]
+      },
+      "contactqr": {
+        "name": "Contact QR",
+        "role": "Producto propio · Utilidad",
+        "summary": "Tarjeta de contacto digital: un QR que añade tu ficha (vCard) directamente a la agenda del móvil.",
+        "highlights": [
+          "vCard instantánea vía código QR.",
+          "Web ligera construida con Astro."
         ]
       },
       "portfolio": {

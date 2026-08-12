@@ -167,29 +167,36 @@ export const profile: Profile = {
   ],
   projects: [
     {
-      id: "fintrackj",
-      stack: [
-        "Next.js 15",
-        "TypeScript",
-        "Drizzle ORM",
-        "Neon",
-        "Claude API",
-        "Tailwind CSS",
-      ],
+      id: "othertales",
+      stack: ["Flutter", "Dart", "Java", "REST API"],
     },
     {
-      id: "facturai",
-      stack: [
-        "Next.js",
-        "TypeScript",
-        "Claude API",
-        "VERI*FACTU",
-        "PostgreSQL",
-      ],
+      id: "trasolido",
+      stack: ["Java", "TypeScript", "Claude API", "VERI*FACTU"],
+    },
+    {
+      id: "porrix",
+      stack: ["TypeScript", "PWA", "IA", "ES · EN · CA"],
+    },
+    {
+      id: "corte1d",
+      stack: ["TypeScript", "Agentes IA"],
+    },
+    {
+      id: "tavory",
+      stack: ["TypeScript"],
+    },
+    {
+      id: "wedding",
+      stack: ["TypeScript"],
     },
     {
       id: "headless-commerce",
       stack: ["MedusaJS", "Next.js", "Vercel AI SDK", "PostgreSQL", "Stripe"],
+    },
+    {
+      id: "contactqr",
+      stack: ["Astro", "QR · vCard"],
     },
     {
       id: "portfolio",
