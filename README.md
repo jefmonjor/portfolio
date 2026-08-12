@@ -1,6 +1,6 @@
 # Portfolio — Jefferson Montesdeoca
 
-Portfolio personal bilingüe (ES/EN) **construido con IA en el flujo de trabajo real** (Claude Code, Codex, spec-driven development) — y que además **usa IA en producción**: asistente conversacional y generador de CV adaptado a la oferta. Next.js 16, desplegado en Vercel.
+Portfolio personal bilingüe (ES/EN) donde la **IA es utilidad directa para quien lo visita**: un asistente que responde al momento cualquier pregunta sobre el perfil, y un CV inteligente que se adapta a la oferta que pegue el recruiter. Next.js 16, desplegado en Vercel.
 
 **En vivo:** [portfolio-omega-drab-fsvg6tmcd2.vercel.app](https://portfolio-omega-drab-fsvg6tmcd2.vercel.app) *(pronto en jefmonjor.dev)*
 

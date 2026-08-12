@@ -353,7 +353,7 @@
   },
   "footer": {
     "lastUpdated": "Last updated · {date}",
-    "builtLine": "Designed and built from scratch, with AI · Next.js"
+    "builtLine": "Designed and built from scratch · Next.js"
   },
   "cvToast": {
     "title": "Downloading CV",
@@ -398,7 +398,7 @@
       "  skills             tools I use most",
       "  contact            how to reach me",
       "  cv                 download my CV",
-      "  web                how this site is built (spoiler: with AI)",
+      "  web                what AI does for you on this site",
       "  theme [dark|light] switch theme",
       "  lang <en|es>       switch language",
       "  bg <variant>       change the background",
@@ -419,16 +419,15 @@
     "sudo": "nice try — you already have root here.",
     "emptyArg": "",
     "web": [
-      "THIS SITE, UNDER THE HOOD",
-      "  Designed and built by Jefferson with AI in the real workflow:",
-      "  Claude Code, Codex and spec-driven development.",
-      "  · Stack: Next.js 16 · TypeScript · Tailwind · tRPC · next-intl",
-      "  · AI assistant (bubble bottom-right): OpenAI over a closed",
-      "    dossier of the profile — answers with real data only.",
-      "  · Smart CV: full, ATS or tailored to your job offer with AI",
-      "    ('Download CV' button).",
-      "  · Open source: github.com/jefmonjor/portfolio",
-      "  · Deployed on Vercel · own design system in docs/DESIGN.md"
+      "AI ON THIS SITE — DIRECT UTILITY",
+      "  · Assistant (bubble bottom-right): ask anything about",
+      "    Jefferson's profile. Instant answers, real data only.",
+      "  · CV tailored to you: in 'Download CV', paste your job",
+      "    offer and AI adapts the summary and keywords to the role.",
+      "    Full and ATS versions available too.",
+      "",
+      "  Under the hood: Next.js 16 · TypeScript · OpenAI · Vercel",
+      "  Open source: github.com/jefmonjor/portfolio"
     ]
   },
   "notFound": {
