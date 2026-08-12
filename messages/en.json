@@ -84,7 +84,7 @@
   "about": {
     "indexLabel": "01 — About",
     "title": "Who I am, in one paragraph",
-    "manifesto": "Six-plus years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today the backend architecture at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build: eight products of my own — from a platform for writers to a VERI*FACTU invoicing system — using Claude, Codex, and MCP workflows to go from idea to production in days.",
+    "manifesto": "Six-plus years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today the backend architecture at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build: eight products of my own — from a platform for writers to a VERI*FACTU invoicing system — with Claude Code, Codex, Gemini, and MCP workflows, deployed on my own VPS, Vercel, and Google Cloud.",
     "currentlyWorkingWith": "Currently working with"
   },
   "metrics": {
@@ -219,50 +219,51 @@
       "othertales": {
         "name": "Other Tales",
         "role": "Own product · App + Backend",
-        "summary": "All-in-one platform for writers: mobile app with offline writing, writing-project management and sync against a custom Java backend.",
+        "summary": "All-in-one platform for writers: Flutter app with offline writing and a Java 21 / Spring Boot 3.5 backend in hexagonal architecture, deployed on Google Cloud Run.",
         "highlights": [
-          "Flutter mobile app focused on offline writing.",
-          "Custom Java backend with project sync.",
-          "Complete product: app, backend and landing."
+          "Offline-first app: Riverpod, GoRouter and a local Drift/SQLite store with sync.",
+          "Hexagonal backend with OAuth2/JWT (Supabase Auth), Flyway and Redis.",
+          "Deployed on Google Cloud Run with Docker and Cloud Build."
         ]
       },
       "trasolido": {
         "name": "Trasolido",
         "role": "Own product · SaaS",
-        "summary": "Invoicing system compliant with Spain's VERI*FACTU regulation, using AI for document data extraction and traceable invoice generation.",
+        "summary": "Invoicing system compliant with Spain's VERI*FACTU regulation: modular Java 21 / Spring Boot backend and TypeScript frontend, with AI-powered data extraction and traceability.",
         "highlights": [
           "VERI*FACTU regulatory compliance.",
           "Document data extraction with the Claude API.",
-          "Java backend + TypeScript frontend + landing."
+          "Spring Boot backend + TypeScript frontend + landing."
         ]
       },
       "porrix": {
         "name": "Porrix",
         "role": "Own product · PWA",
-        "summary": "Football prediction pool with friends: mobile-first PWA for LaLiga and Champions with live scores, automatic standings and AI result analysis.",
+        "summary": "Football prediction pool with friends: mobile-first PWA for LaLiga and Champions with live scores, automatic standings and AI result analysis. In Spanish, English and Catalan.",
         "highlights": [
           "Live score tracking and automatic standings.",
-          "AI-powered result analysis.",
-          "Available in Spanish, English and Catalan."
+          "AI explains results: it narrates stats, never recommends predictions.",
+          "Performance budgets that block PRs; Docker for deployment."
         ]
       },
       "corte1d": {
         "name": "Corte1D",
         "role": "Own product · Industrial tool",
-        "summary": "Workshop tool: 1D cutting optimization and stock control, among other management features, built with AI agent workflows.",
+        "summary": "Workshop SaaS: imports cut lists from Excel/CSV, optimizes 1D cutting with a deterministic engine and tracks stock. PWA with PDF export.",
         "highlights": [
-          "Cutting optimization to minimize waste.",
-          "Workshop stock control.",
-          "Built with AI agent workflows."
+          "Pure, deterministic cutting engine with canonical units.",
+          "Imports from Excel, CSV and SolidWorks.",
+          "Built with Agent OS: specialized AI agents per role."
         ]
       },
       "tavory": {
         "name": "Tavory",
         "role": "Own product · Web",
-        "summary": "A gastronomy guide built as a complete product, from idea to deployment.",
+        "summary": "Private gastronomy memory: log what you tried, where, and whether you'd go back. AI-powered OCR for instant capture, Mapbox maps and a Stripe-powered Plus tier.",
         "highlights": [
-          "Discover and browse places to eat.",
-          "Built idea-to-production with AI."
+          "Supabase: Auth, PostgreSQL + PostGIS, Storage and RLS.",
+          "AI OCR with a strict JSON contract, always with a manual fallback.",
+          "Stripe Checkout and Customer Portal; deployed on Vercel."
         ]
       },
       "wedding": {
@@ -270,19 +271,19 @@
         "role": "Own product · Web",
         "summary": "Digital wedding invitations with guest RSVP, already used at real weddings.",
         "highlights": [
-          "Customizable digital invitation per wedding.",
-          "Guest RSVP flow.",
-          "Deployed for real weddings."
+          "Customizable invitation per wedding with guest RSVP.",
+          "Bot protection with Cloudflare Turnstile and Playwright E2E tests.",
+          "Performance budget enforced with Lighthouse CI; deployed on Vercel."
         ]
       },
       "headless-commerce": {
         "name": "Headless eCommerce",
         "role": "Personal project",
-        "summary": "Headless store built with MedusaJS as the commerce backend and Next.js on the front end, with AI features (search and recommendations) through the Vercel AI SDK.",
+        "summary": "Headless eCommerce monorepo: Next.js storefront and admin panel on a MedusaJS backend, with PostgreSQL + pgvector and Redis.",
         "highlights": [
-          "Commerce backend with MedusaJS and a Next.js storefront.",
-          "AI-powered search and recommendations via the Vercel AI SDK.",
-          "Decoupled headless architecture, ready to scale."
+          "Monorepo: storefront, admin and Medusa backend.",
+          "PostgreSQL with pgvector for vector search.",
+          "Full local environment with Docker Compose."
         ]
       },
       "contactqr": {

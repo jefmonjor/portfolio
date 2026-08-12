@@ -84,7 +84,7 @@
   "about": {
     "indexLabel": "01 — Sobre mí",
     "title": "Quién soy, en un párrafo",
-    "manifesto": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy la arquitectura backend de Andbank. He liderado migraciones complejas, integrado sistemas legacy y diseñado arquitecturas hexagonales y de microservicios. Y fuera del trabajo, construyo: ocho productos propios — de una plataforma para escritores a un sistema de facturación VERI*FACTU — usando Claude, Codex y flujos MCP para pasar de idea a producción en días.",
+    "manifesto": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy la arquitectura backend de Andbank. He liderado migraciones complejas, integrado sistemas legacy y diseñado arquitecturas hexagonales y de microservicios. Y fuera del trabajo, construyo: ocho productos propios — de una plataforma para escritores a un sistema de facturación VERI*FACTU — con Claude Code, Codex, Gemini y flujos MCP, desplegados en mi propio VPS, Vercel y Google Cloud.",
     "currentlyWorkingWith": "Trabajando ahora con"
   },
   "metrics": {
@@ -219,50 +219,51 @@
       "othertales": {
         "name": "Other Tales",
         "role": "Producto propio · App + Backend",
-        "summary": "Plataforma all-in-one para escritores: app móvil con escritura offline, gestión de proyectos de escritura y sincronización contra backend propio en Java.",
+        "summary": "Plataforma all-in-one para escritores: app Flutter con escritura offline y backend Java 21 / Spring Boot 3.5 en arquitectura hexagonal, desplegado en Google Cloud Run.",
         "highlights": [
-          "App móvil Flutter con foco en escritura offline.",
-          "Backend Java propio con sincronización de proyectos.",
-          "Producto completo: app, backend y landing."
+          "App offline-first: Riverpod, GoRouter y base local Drift/SQLite con sincronización.",
+          "Backend hexagonal con OAuth2/JWT (Supabase Auth), Flyway y Redis.",
+          "Desplegado en Google Cloud Run con Docker y Cloud Build."
         ]
       },
       "trasolido": {
         "name": "Trasolido",
         "role": "Producto propio · SaaS",
-        "summary": "Sistema de facturación conforme al reglamento español VERI*FACTU, con IA para extracción de datos de documentos y generación de facturas con trazabilidad.",
+        "summary": "Sistema de facturación conforme al reglamento español VERI*FACTU: backend modular en Java 21 / Spring Boot y frontend TypeScript, con IA para extracción de datos y trazabilidad.",
         "highlights": [
           "Cumplimiento del reglamento VERI*FACTU.",
           "Extracción de datos de documentos con Claude API.",
-          "Backend Java + frontend TypeScript + landing."
+          "Backend Spring Boot + frontend TypeScript + landing."
         ]
       },
       "porrix": {
         "name": "Porrix",
         "role": "Producto propio · PWA",
-        "summary": "Porra de fútbol entre amigos: PWA mobile-first para LaLiga y Champions con marcador en vivo, clasificación automática y análisis de resultados con IA.",
+        "summary": "Porra de fútbol entre amigos: PWA mobile-first para LaLiga y Champions con marcador en vivo, clasificación automática y análisis de resultados con IA. En español, inglés y catalán.",
         "highlights": [
           "Seguimiento de marcadores en vivo y clasificación automática.",
-          "Análisis de resultados con IA.",
-          "Disponible en español, inglés y catalán."
+          "La IA explica los resultados: narra estadísticas, nunca recomienda pronósticos.",
+          "Presupuestos de rendimiento que bloquean PRs; Docker para el despliegue."
         ]
       },
       "corte1d": {
         "name": "Corte1D",
         "role": "Producto propio · Herramienta industrial",
-        "summary": "Herramienta de taller: optimización de corte 1D y control de stock, entre otras funciones de gestión, construida con flujos de agentes IA.",
+        "summary": "SaaS de taller: importa despieces desde Excel/CSV, optimiza el corte 1D con un motor determinista y controla el stock. PWA con exportación a PDF.",
         "highlights": [
-          "Optimización de despiece para minimizar desperdicio.",
-          "Control de stock del taller.",
-          "Desarrollada con flujos de agentes IA."
+          "Motor de corte puro y determinista con unidades canónicas.",
+          "Importación desde Excel, CSV y SolidWorks.",
+          "Construido con Agent OS: agentes IA especializados por rol."
         ]
       },
       "tavory": {
         "name": "Tavory",
         "role": "Producto propio · Web",
-        "summary": "Guía gastronómica construida como producto completo, de la idea al despliegue.",
+        "summary": "Memoria gastronómica privada: guarda qué probaste, dónde y si volverías. OCR con IA para registrar en segundos, mapa con Mapbox y suscripción Plus con Stripe.",
         "highlights": [
-          "Descubrimiento y guía de sitios donde comer.",
-          "Construida de idea a producción con IA."
+          "Supabase: Auth, PostgreSQL + PostGIS, Storage y RLS.",
+          "OCR con IA y contrato JSON estricto, siempre con flujo manual de respaldo.",
+          "Stripe Checkout y Customer Portal; desplegada en Vercel."
         ]
       },
       "wedding": {
@@ -270,19 +271,19 @@
         "role": "Producto propio · Web",
         "summary": "Invitaciones de boda digitales con confirmación de asistencia (RSVP), ya usadas en bodas reales.",
         "highlights": [
-          "Invitación digital personalizable por boda.",
-          "Confirmación de asistencia de invitados (RSVP).",
-          "Desplegada para bodas reales."
+          "Invitación personalizable por boda con RSVP de invitados.",
+          "Anti-bot con Cloudflare Turnstile y tests E2E con Playwright.",
+          "Presupuesto de rendimiento con Lighthouse CI; desplegada en Vercel."
         ]
       },
       "headless-commerce": {
         "name": "eCommerce headless",
         "role": "Proyecto personal",
-        "summary": "Tienda headless construida con MedusaJS como backend de comercio y Next.js en el frontal, con funcionalidades de IA (búsqueda y recomendaciones) mediante el Vercel AI SDK.",
+        "summary": "Monorepo de eCommerce headless: storefront y panel de administración en Next.js sobre backend MedusaJS, con PostgreSQL + pgvector y Redis.",
         "highlights": [
-          "Backend de comercio con MedusaJS y frontal Next.js.",
-          "Búsqueda y recomendaciones potenciadas por el Vercel AI SDK.",
-          "Arquitectura headless desacoplada y lista para escalar."
+          "Monorepo: storefront, admin y backend Medusa.",
+          "PostgreSQL con pgvector para búsqueda vectorial.",
+          "Entorno completo con Docker Compose."
         ]
       },
       "contactqr": {
