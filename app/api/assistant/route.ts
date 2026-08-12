@@ -1,37 +1,54 @@
 import { NextResponse } from "next/server"
-import Anthropic from "@anthropic-ai/sdk"
+import OpenAI from "openai"
 
 import { buildSystemPrompt } from "@/lib/assistant/dossier"
 
 export const runtime = "nodejs"
 
-const MODEL = process.env.ASSISTANT_MODEL ?? "claude-opus-5"
-const MAX_TURNS = 12
-const MAX_CHARS = 1500
+// Cost controls — every knob is overridable per environment without a deploy.
+const MODEL = process.env.ASSISTANT_MODEL ?? "gpt-5-mini"
+const MAX_OUTPUT_TOKENS = intEnv("ASSISTANT_MAX_OUTPUT_TOKENS", 400)
+const MAX_TURNS = intEnv("ASSISTANT_MAX_TURNS", 8)
+const MAX_CHARS = intEnv("ASSISTANT_MAX_CHARS", 800)
+const RATE_MINUTE = intEnv("ASSISTANT_RATE_MINUTE", 4)
+const RATE_DAILY = intEnv("ASSISTANT_RATE_DAILY", 20)
+// Hard ceiling across ALL visitors: even a botnet can't run up the bill.
+const GLOBAL_DAILY = intEnv("ASSISTANT_GLOBAL_DAILY", 300)
 
-// In-memory per-IP limits, on purpose: one small serverless instance, no Redis
-// to run. Counters reset on cold start and are per-instance — good enough as a
-// first line of defense for a portfolio assistant.
-const RATE_MINUTE = 6
-const RATE_DAILY = 40
+function intEnv(name: string, fallback: number): number {
+  const value = Number.parseInt(process.env[name] ?? "", 10)
+  return Number.isFinite(value) && value > 0 ? value : fallback
+}
+
+// In-memory on purpose: one small serverless instance, no Redis to run.
+// Counters reset on cold start and are per-instance — combined with the
+// global daily ceiling this bounds worst-case spend.
 const recent = new Map<string, number[]>()
 const daily = new Map<string, { start: number; count: number }>()
+let globalDay = { start: Date.now(), count: 0 }
 
-function checkLimit(ip: string): "ok" | "minute" | "daily" {
+function checkLimit(ip: string): "ok" | "limited" {
   const now = Date.now()
+
+  if (now - globalDay.start > 86_400_000) {
+    globalDay = { start: now, count: 0 }
+  }
+  if (globalDay.count >= GLOBAL_DAILY) return "limited"
 
   const day = daily.get(ip)
   if (day && now - day.start < 86_400_000) {
-    if (day.count >= RATE_DAILY) return "daily"
-    day.count += 1
+    if (day.count >= RATE_DAILY) return "limited"
   } else {
-    daily.set(ip, { start: now, count: 1 })
+    daily.set(ip, { start: now, count: 0 })
   }
 
   const hits = (recent.get(ip) ?? []).filter((t) => now - t < 60_000)
-  if (hits.length >= RATE_MINUTE) return "minute"
+  if (hits.length >= RATE_MINUTE) return "limited"
+
   hits.push(now)
   recent.set(ip, hits)
+  daily.get(ip)!.count += 1
+  globalDay.count += 1
   return "ok"
 }
 
@@ -51,7 +68,7 @@ function sanitize(input: unknown): ChatMessage[] | null {
     const role = (item as ChatMessage).role
     const content = (item as ChatMessage).content
     if (role !== "user" && role !== "assistant") return null
-    if (typeof content !== "string" || content.length === 0) return null
+    if (typeof content !== "string" || content.trim().length === 0) return null
     out.push({ role, content: content.slice(0, MAX_CHARS) })
   }
   if (out[0]?.role !== "user" || out[out.length - 1]?.role !== "user")
@@ -60,14 +77,13 @@ function sanitize(input: unknown): ChatMessage[] | null {
 }
 
 export async function POST(request: Request) {
-  if (!process.env.ANTHROPIC_API_KEY) {
+  if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 })
   }
 
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown"
-  const limit = checkLimit(ip)
-  if (limit !== "ok") {
+  if (checkLimit(ip) !== "ok") {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 })
   }
 
@@ -84,47 +100,24 @@ export async function POST(request: Request) {
   }
   const locale = body.locale === "en" ? "en" : "es"
 
-  const client = new Anthropic()
+  const client = new OpenAI()
 
   try {
-    const response = await client.beta.messages.create({
+    const response = await client.responses.create({
       model: MODEL,
-      max_tokens: 600,
-      // Server-side fallback: if safety classifiers decline, retry on the
-      // recommended fallback model instead of failing the visitor's question.
-      betas: ["server-side-fallback-2026-07-01"],
-      fallbacks: "default",
-      output_config: { effort: "low" },
-      system: [
-        {
-          type: "text",
-          text: buildSystemPrompt(locale),
-          cache_control: { type: "ephemeral" },
-        },
-      ],
-      messages,
+      instructions: buildSystemPrompt(locale),
+      input: messages,
+      max_output_tokens: MAX_OUTPUT_TOKENS,
     })
 
-    if (response.stop_reason === "refusal") {
-      return NextResponse.json({ error: "refused" }, { status: 200 })
-    }
-
-    const reply = response.content
-      .filter((block) => block.type === "text")
-      .map((block) => block.text)
-      .join("")
-      .trim()
-
+    const reply = response.output_text?.trim()
     if (!reply) {
       return NextResponse.json({ error: "empty" }, { status: 200 })
     }
     return NextResponse.json({ reply })
   } catch (error) {
-    if (error instanceof Anthropic.RateLimitError) {
+    if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json({ error: "rate_limited" }, { status: 429 })
-    }
-    if (error instanceof Anthropic.APIError) {
-      return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
     return NextResponse.json({ error: "upstream" }, { status: 502 })
   }

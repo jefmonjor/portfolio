@@ -121,7 +121,7 @@ function Contact() {
           </span>
           <a
             href={mailto}
-            className="font-heading text-2xl font-medium tracking-tight break-all text-foreground hover:underline sm:text-3xl"
+            className="font-heading text-[clamp(1.25rem,2.2vw+0.75rem,1.875rem)] font-medium tracking-tight break-all text-foreground hover:underline"
           >
             {email || "•••••••@•••••••"}
           </a>
@@ -174,8 +174,8 @@ function Contact() {
               aria-hidden
               className="relative mt-1.5 inline-flex size-1.5 shrink-0"
             >
-              <span className="absolute inset-0 animate-ping bg-foreground/50" />
-              <span className="relative inline-block size-1.5 bg-foreground" />
+              <span className="absolute inset-0 animate-ping bg-brand/60" />
+              <span className="relative inline-block size-1.5 bg-brand" />
             </span>
             <div className="flex flex-col gap-1">
               <dt className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">

@@ -26,7 +26,7 @@ function SectionHeading({
       )}
     >
       <div className="flex items-baseline gap-3">
-        <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+        <span className="font-mono text-[10px] tracking-[0.18em] text-brand uppercase">
           {index}
         </span>
         <h2 className="font-heading text-[clamp(1.125rem,0.6vw+1rem,1.375rem)] font-medium tracking-tight text-foreground">

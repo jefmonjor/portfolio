@@ -11,7 +11,7 @@ function Deploy() {
       className="mx-auto max-w-6xl px-4 pb-16 sm:px-8"
     >
       <div className="mb-3 flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-        <span className="inline-block size-1.5 bg-foreground" />
+        <span className="inline-block size-1.5 bg-brand" />
         <span>{t("title")}</span>
       </div>
       <div className="grid border border-border md:grid-cols-3">

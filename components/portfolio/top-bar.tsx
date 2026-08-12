@@ -47,7 +47,7 @@ function TopBar() {
           href="#top"
           className="flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase hover:text-foreground"
         >
-          <span className="inline-block size-1.5 bg-foreground" />
+          <span className="inline-block size-1.5 bg-brand" />
           <span>{profile.shortName}</span>
         </a>
 

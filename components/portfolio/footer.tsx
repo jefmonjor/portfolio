@@ -10,7 +10,7 @@ function Footer() {
     <footer className="border-t border-border">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-          <span className="inline-block size-1.5 bg-foreground" />
+          <span className="inline-block size-1.5 bg-brand" />
           <span>{profile.shortName}</span>
           <span className="text-border">/</span>
           <span>{tHero("role")}</span>

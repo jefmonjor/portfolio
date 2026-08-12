@@ -61,12 +61,12 @@ function Hero() {
       className="relative mx-auto grid max-w-6xl gap-10 px-4 pt-12 pb-20 sm:px-8 sm:pt-16 sm:pb-24 lg:grid-cols-[1.4fr_1fr] lg:gap-16"
     >
       <div className="flex flex-col gap-8">
-        <div className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
-          <span className="inline-block h-px w-8 bg-border" />
+        <div className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-brand uppercase">
+          <span className="inline-block h-px w-8 bg-brand/50" />
           {t("indexLabel")}
         </div>
 
-        <h1 className="font-heading text-[clamp(2.5rem,5.5vw+1rem,5rem)] leading-[0.95] font-medium tracking-tight text-foreground">
+        <h1 className="font-heading text-[clamp(2.5rem,5.5vw+1rem,5rem)] leading-[0.95] font-medium tracking-[-0.03em] text-foreground">
           <span className="sr-only">{profile.name}</span>
           <span aria-hidden className="flex flex-wrap gap-x-3 gap-y-1">
             {titleWords.map((word, index) => (
