@@ -219,11 +219,11 @@
       "othertales": {
         "name": "Other Tales",
         "role": "Producto propio · App + Backend",
-        "summary": "Plataforma all-in-one para escritores: app Flutter con escritura offline y backend Java 21 / Spring Boot 3.5 en arquitectura hexagonal, desplegado en Google Cloud Run.",
+        "summary": "Plataforma all-in-one para escritores: app Flutter con escritura offline y backend Java 21 / Spring Boot 3.5 en arquitectura hexagonal, dockerizado y en migración a VPS propio.",
         "highlights": [
           "App offline-first: Riverpod, GoRouter y base local Drift/SQLite con sincronización.",
           "Backend hexagonal con OAuth2/JWT (Supabase Auth), Flyway y Redis.",
-          "Desplegado en Google Cloud Run con Docker y Cloud Build."
+          "Dockerizado; despliegue en migración de Cloud Run a VPS propio (netcup)."
         ]
       },
       "trasolido": {
@@ -233,11 +233,11 @@
         "highlights": [
           "Cumplimiento del reglamento VERI*FACTU.",
           "Extracción de datos de documentos con Claude API.",
-          "Backend Spring Boot + frontend TypeScript + landing."
+          "Backend en Google Cloud Run · frontend en Vercel."
         ]
       },
       "porrix": {
-        "name": "Porrix",
+        "name": "PRONOQ",
         "role": "Producto propio · PWA",
         "summary": "Porra de fútbol entre amigos: PWA mobile-first para LaLiga y Champions con marcador en vivo, clasificación automática y análisis de resultados con IA. En español, inglés y catalán.",
         "highlights": [

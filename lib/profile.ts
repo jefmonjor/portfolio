@@ -133,7 +133,18 @@ export const profile: Profile = {
     },
     {
       id: "data",
-      items: ["Oracle", "DB2", "PostgreSQL", "MySQL", "Cassandra", "Hadoop"],
+      items: [
+        "Oracle",
+        "DB2",
+        "PostgreSQL",
+        "MySQL",
+        "Supabase",
+        "Neon",
+        "Redis · Upstash",
+        "Backblaze B2",
+        "Cassandra",
+        "Hadoop",
+      ],
     },
     {
       id: "cloud",
@@ -183,12 +194,20 @@ export const profile: Profile = {
         "Java 21",
         "Spring Boot 3",
         "PostgreSQL",
-        "Cloud Run",
+        "Docker",
       ],
     },
     {
       id: "trasolido",
-      stack: ["Java 21", "Spring Boot 3", "TypeScript", "Claude API", "VERI*FACTU"],
+      stack: [
+        "Java 21",
+        "Spring Boot 3",
+        "TypeScript",
+        "Claude API",
+        "VERI*FACTU",
+        "Cloud Run",
+        "Vercel",
+      ],
     },
     {
       id: "porrix",
