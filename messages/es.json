@@ -67,7 +67,7 @@
   "hero": {
     "indexLabel": "00 — Perfil",
     "role": "Arquitecto de Soluciones",
-    "tagline": "Diseño arquitecturas backend y construyo productos con IA: de Java enterprise a agentes de IA en producción.",
+    "tagline": "Diseño arquitecturas backend sólidas y construyo productos digitales de principio a fin, integrando la inteligencia artificial en todo el proceso.",
     "specs": {
       "location": "Ubicación",
       "timezone": "Zona horaria",
@@ -448,7 +448,7 @@
     "title": "Asistente · responde sobre Jefferson",
     "open": "Abrir asistente",
     "close": "Cerrar asistente",
-    "intro": "Hola. Soy el asistente de Jefferson y respondo con la información de su perfil y su trayectoria. Si algo no lo sé, te lo digo y te paso su email.",
+    "intro": "Hola, soy el asistente de Jefferson. Pregúntame lo que quieras sobre su experiencia, sus proyectos o su forma de trabajar. Si algo no lo sé, te lo digo y te dejo su email.",
     "placeholder": "Escribe tu pregunta…",
     "send": "Enviar",
     "s1": "¿Qué experiencia tiene con Java y Spring?",
