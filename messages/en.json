@@ -128,10 +128,11 @@
         "end": "present",
         "summary": "Backend architecture and technical management in private banking: development standards, core-systems integration, and evaluation of AI solutions.",
         "highlights": [
-          "Designed backend architecture (Java 21, Spring Boot 3) under Clean Architecture and hexagonal principles.",
+          "Designed backend architecture (Java 21, Spring Boot 3) under Clean Architecture and hexagonal principles; new homebanking with 15+ components.",
           "Led the Spring Boot 2 → 3 migration (Jakarta namespace) and Tomcat 7/8 → 9/10 across 40+ VMs.",
-          "Integrated legacy systems (COBOL, AS400, DB2) and rolled out Keycloak with MFA and per-jurisdiction rules.",
-          "Designed the new homebanking architecture (15+ components) and SonarQube analysis for 12,000+ COBOL files.",
+          "Integrated legacy systems (COBOL, AS400, DB2), evolved shipping-carrier integration APIs, and rolled out Keycloak with MFA and per-jurisdiction rules.",
+          "Code quality: SonarQube integrated across every repository, including analysis of 12,000+ COBOL files.",
+          "AI adoption in the department: rolled out Gemini Code Assist for the whole team.",
           "Managed vendors technically, drove build-vs-buy decisions, and controlled technical debt on OpenShift (OCP4)."
         ]
       },
