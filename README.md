@@ -2,7 +2,7 @@
 
 Portfolio personal en español, inglés y catalán donde la **IA es utilidad directa para quien lo visita**: un asistente que responde al momento cualquier pregunta sobre el perfil, y un CV inteligente que se adapta a la oferta que pegue el recruiter. Next.js 16, desplegado en Vercel.
 
-**En vivo:** [portfolio-omega-drab-fsvg6tmcd2.vercel.app](https://portfolio-omega-drab-fsvg6tmcd2.vercel.app) *(pronto en jefmonjor.dev)*
+**En vivo:** [jefmonjor.dev](https://jefmonjor.dev)
 
 ![Vista del portfolio](public/projects/portfolio/01.webp)
 

@@ -50,11 +50,41 @@ server {
 }
 ```
 
-## DNS
+## DNS — configuración actual (Cloudflare Registrar)
 
-En el registrador de `jefmonjor.dev`, crea un registro `A` (y `AAAA` si el
-servidor tiene IPv6) apuntando a la IP del netcup, más un `CNAME` de `www`
-al dominio raíz.
+El dominio `jefmonjor.dev` está registrado en **Cloudflare** y su DNS se
+gestiona allí. El portfolio vive en **Vercel**; el VPS netcup sirve los
+subdominios de proyectos. Zona completa:
+
+| Nombre | Tipo | Valor | Proxy | Sirve |
+| --- | --- | --- | --- | --- |
+| `jefmonjor.dev` | A | `76.76.21.21` | **DNS only** (nube gris) | Portfolio en Vercel |
+| `www` | CNAME | `cname.vercel-dns.com` | **DNS only** (nube gris) | Redirección a la raíz |
+| `pronoq` | A | IP del netcup | DNS only | PRONOQ en el VPS |
+| `*` (wildcard, opcional) | A | IP del netcup | DNS only | Futuros subdominios sin tocar DNS |
+
+> **Importante**: los registros de Vercel deben ir SIN el proxy naranja de
+> Cloudflare ("DNS only") para que Vercel emita su propio certificado.
+> Los valores exactos los muestra Vercel en Settings → Domains al añadir
+> el dominio; si difieren de la tabla, manda lo que diga Vercel.
+
+- **.dev fuerza HTTPS** (HSTS precargado): el VPS debe servir siempre con
+  TLS. Con el Caddyfile de arriba es automático. Para un certificado
+  wildcard `*.jefmonjor.dev`, usa el plugin Cloudflare de Caddy con un
+  API token de Cloudflare (Zone → DNS → Edit).
+
+## Correo (@jefmonjor.dev)
+
+- **Recibir** — Cloudflare **Email Routing** (gratis): regla
+  `hola@jefmonjor.dev` → Gmail personal. Al activarlo, Cloudflare añade
+  solo los MX y el SPF de recepción.
+- **Enviar (apps)** — Brevo: autenticar el dominio en Brevo → añade en
+  Cloudflare los TXT que indique (DKIM ×2 + `brevo-code`), y el SPF debe
+  incluir a Brevo (`include:spf.brevo.com`). Recomendado añadir DMARC:
+  `_dmarc` TXT `v=DMARC1; p=quarantine; rua=mailto:hola@jefmonjor.dev`.
+- **Responder como hola@ desde Gmail** — Gmail → Configuración → Cuentas →
+  "Enviar como" con el SMTP de Brevo (`smtp-relay.brevo.com`, puerto 587,
+  login del panel SMTP de Brevo).
 
 ## Despliegue manual (sin Actions)
 

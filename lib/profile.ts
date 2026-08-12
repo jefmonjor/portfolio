@@ -2,8 +2,7 @@ import type { Profile } from "@/types/profile"
 
 export const portfolioUpdatedAt = "2026-08-12"
 
-// Swap to https://jefmonjor.dev once the domain is purchased and connected.
-export const siteUrl = "https://portfolio-omega-drab-fsvg6tmcd2.vercel.app"
+export const siteUrl = "https://jefmonjor.dev"
 
 export const profileTimeZone = "Europe/Andorra"
 
