@@ -11,7 +11,7 @@ import {
 } from "@react-pdf/renderer"
 
 import { contactEmail, contactMailto } from "@/lib/email"
-import { profile } from "@/lib/profile"
+import { profile, siteUrl } from "@/lib/profile"
 
 const FONT_DIR = path.join(process.cwd(), "public/fonts/cv")
 
@@ -40,6 +40,8 @@ type CvLabels = {
   readonly present: string
   readonly tagline: string
   readonly manifesto: string
+  readonly availability: string
+  readonly metrics: ReadonlyArray<{ value: string; label: string }>
   readonly sections: {
     readonly profile: string
     readonly experience: string
@@ -91,6 +93,8 @@ const palette = {
   faint: "#a1a1aa",
   rule: "#e4e4e7",
   hairline: "#f4f4f5",
+  // Print-friendly terracotta matching the website's --brand token.
+  brand: "#b5691e",
 } as const
 
 const styles = StyleSheet.create({
@@ -145,8 +149,45 @@ const styles = StyleSheet.create({
     fontSize: 7,
     letterSpacing: 1.6,
     textTransform: "uppercase",
-    color: palette.faint,
+    color: palette.brand,
     marginBottom: 8,
+  },
+  availability: {
+    marginTop: 3,
+    fontFamily: "GeistMono",
+    fontWeight: 500,
+    fontSize: 7,
+    letterSpacing: 0.8,
+    textTransform: "uppercase",
+    color: palette.brand,
+  },
+  metricsRow: {
+    flexDirection: "row",
+    borderTopWidth: 0.5,
+    borderTopColor: palette.rule,
+    borderBottomWidth: 0.5,
+    borderBottomColor: palette.rule,
+    paddingVertical: 7,
+    marginBottom: 12,
+  },
+  metricCell: {
+    flex: 1,
+    flexDirection: "column",
+    gap: 1,
+  },
+  metricValue: {
+    fontFamily: "GeistMono",
+    fontWeight: 500,
+    fontSize: 11,
+    color: palette.ink,
+  },
+  metricLabel: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
+    fontSize: 6,
+    letterSpacing: 0.8,
+    textTransform: "uppercase",
+    color: palette.muted,
   },
   name: {
     fontFamily: "Figtree",
@@ -219,7 +260,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 8,
     letterSpacing: 1.4,
-    color: palette.faint,
+    color: palette.brand,
   },
   sectionTitle: {
     fontFamily: "Figtree",
@@ -308,7 +349,7 @@ const styles = StyleSheet.create({
   },
   bulletMark: {
     fontSize: 9.5,
-    color: palette.faint,
+    color: palette.brand,
     width: 8,
   },
   bulletText: {
@@ -499,6 +540,8 @@ function CvDocument({ labels }: CvDocumentProps) {
   const emailHref = contactMailto()
   const linkedinHref = findSocialHref("linkedin")
   const linkedinHandle = findSocialHandle("linkedin")
+  const githubHref = findSocialHref("github")
+  const githubHandle = findSocialHandle("github")
 
   return (
     <Document
@@ -523,6 +566,7 @@ function CvDocument({ labels }: CvDocumentProps) {
             <Text style={styles.roleLine}>
               {labels.role} · {profile.timezone}
             </Text>
+            <Text style={styles.availability}>{labels.availability}</Text>
           </View>
           <View style={styles.headerRight}>
             {email && emailHref ? (
@@ -541,6 +585,20 @@ function CvDocument({ labels }: CvDocumentProps) {
                 </Link>
               </View>
             ) : null}
+            {githubHref ? (
+              <View style={styles.contactRow}>
+                <Text style={styles.contactLabel}>GitHub</Text>
+                <Link src={githubHref} style={styles.contactValue}>
+                  {githubHandle ?? "github"}
+                </Link>
+              </View>
+            ) : null}
+            <View style={styles.contactRow}>
+              <Text style={styles.contactLabel}>Web</Text>
+              <Link src={siteUrl} style={styles.contactValue}>
+                Portfolio online
+              </Link>
+            </View>
           </View>
         </View>
 
@@ -548,6 +606,17 @@ function CvDocument({ labels }: CvDocumentProps) {
           <Text style={styles.tagline}>{labels.tagline}</Text>
           <Text style={styles.manifesto}>{labels.manifesto}</Text>
         </View>
+
+        {labels.metrics.length > 0 ? (
+          <View style={styles.metricsRow}>
+            {labels.metrics.map((metric) => (
+              <View key={metric.label} style={styles.metricCell}>
+                <Text style={styles.metricValue}>{metric.value}</Text>
+                <Text style={styles.metricLabel}>{metric.label}</Text>
+              </View>
+            ))}
+          </View>
+        ) : null}
 
         <View style={styles.section}>
           <SectionTitle index="02" title={labels.sections.experience} />

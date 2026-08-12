@@ -8,7 +8,7 @@ import {
 } from "@react-pdf/renderer"
 
 import { contactEmail } from "@/lib/email"
-import { profile } from "@/lib/profile"
+import { profile, siteUrl } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
 
 // ATS variant: single column, standard section names, no decorative layers.
@@ -218,7 +218,12 @@ function CvAtsDocument({ labels, locale, tailored }: CvAtsDocumentProps) {
               </Link>
             </>
           ) : null}
+          {" · "}
+          <Link src={siteUrl} style={styles.contactLink}>
+            {locale === "es" ? "portfolio online" : "online portfolio"}
+          </Link>
         </Text>
+        <Text style={styles.contactLine}>{labels.availability}</Text>
 
         <Text style={styles.sectionTitle}>{headings.profile}</Text>
         <Text style={styles.paragraph}>{summary}</Text>

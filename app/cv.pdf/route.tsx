@@ -80,12 +80,22 @@ export async function GET(request: NextRequest): Promise<Response> {
     getTranslations({ locale, namespace: "contact" }),
     getTranslations({ locale, namespace: "footer" }),
   ])
+  const [tStatus, tMetrics] = await Promise.all([
+    getTranslations({ locale, namespace: "status" }),
+    getTranslations({ locale, namespace: "metrics.entries" }),
+  ])
+  const METRIC_KEYS = ["years", "sectors", "companies", "products"] as const
 
   const labels: CvLabels = {
     role: tMeta("role"),
     present: tCommon("present"),
     tagline: tHero("tagline"),
     manifesto: tAbout("manifesto"),
+    availability: `${tStatus("label")} · ${tStatus("detail")}`,
+    metrics: METRIC_KEYS.map((key) => ({
+      value: tMetrics(`${key}.value`),
+      label: tMetrics(`${key}.label`),
+    })),
     sections: {
       profile: tHero("indexLabel"),
       experience: tExperience("title"),

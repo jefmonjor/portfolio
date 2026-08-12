@@ -36,7 +36,12 @@ const openGraphLocale: Record<Locale, string> = {
 const fallbackMetadataBase = new URL("https://jefmonjor.dev")
 
 function getMetadataBase(): URL {
-  const value = process.env.NEXT_PUBLIC_APP_URL
+  // Vercel injects the production hostname; NEXT_PUBLIC_APP_URL overrides it.
+  const value =
+    process.env.NEXT_PUBLIC_APP_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : undefined)
   if (!value) return fallbackMetadataBase
 
   try {
