@@ -148,7 +148,7 @@ export async function GET(request: NextRequest): Promise<Response> {
     variant === "ats" ? (
       <CvAtsDocument
         labels={labels}
-        locale={locale === "en" ? "en" : "es"}
+        locale={locale === "en" ? "en" : locale === "ca" ? "ca" : "es"}
         tailored={tailored}
       />
     ) : (

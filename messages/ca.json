@@ -1,0 +1,479 @@
+{
+  "common": {
+    "present": "Actualitat"
+  },
+  "metadata": {
+    "titleTemplate": "{shortName} — {role}",
+    "description": "Dissenyo arquitectures backend sòlides i construeixo productes digitals de principi a fi, integrant la intel·ligència artificial en tot el procés.",
+    "applicationName": "{shortName} · Portfolio",
+    "role": "Arquitecte de Solucions",
+    "keywordsExtra": [
+      "Portfolio",
+      "CV"
+    ]
+  },
+  "nav": {
+    "about": "Sobre mi",
+    "experience": "Experiència",
+    "skills": "Habilitats",
+    "projects": "Projectes",
+    "education": "Formació",
+    "contact": "Contacte",
+    "terminal": "Terminal"
+  },
+  "themeToggle": {
+    "ariaLabel": "Canviar el tema",
+    "hint": "Canviar el tema"
+  },
+  "commandPalette": {
+    "title": "Paleta d'ordres",
+    "description": "Salta a una secció o executa una acció.",
+    "placeholder": "Escriu una ordre o cerca…",
+    "empty": "Sense resultats.",
+    "hintLabel": "Cercar",
+    "groups": {
+      "sections": "Seccions",
+      "actions": "Accions",
+      "background": "Fons"
+    },
+    "actions": {
+      "openTerminal": "Obrir la terminal",
+      "themeToDark": "Canviar a mode fosc",
+      "themeToLight": "Canviar a mode clar",
+      "switchTo": {
+        "en": "Canviar a anglès",
+        "es": "Canviar a espanyol",
+        "ca": "Canviar a català"
+      }
+    },
+    "background": {
+      "grid": "Quadrícula",
+      "dots": "Punts",
+      "radial": "Focus radial",
+      "noise": "Gra",
+      "active": "Actiu"
+    }
+  },
+  "localeSwitcher": {
+    "ariaLabel": "Canviar l'idioma",
+    "options": {
+      "en": "EN",
+      "es": "ES",
+      "ca": "CA"
+    }
+  },
+  "status": {
+    "label": "Obert a oportunitats",
+    "detail": "Andorra · Espanya · Remot en fus horari europeu"
+  },
+  "hero": {
+    "indexLabel": "00 — Perfil",
+    "role": "Arquitecte de Solucions",
+    "tagline": "Dissenyo arquitectures backend sòlides i construeixo productes digitals de principi a fi, integrant la intel·ligència artificial en tot el procés.",
+    "specs": {
+      "location": "Ubicació",
+      "timezone": "Fus horari",
+      "focus": "Focus",
+      "since": "Des de"
+    },
+    "cta": {
+      "contact": "Contacta'm",
+      "linkedin": "LinkedIn",
+      "experience": "Veure experiència",
+      "cv": "Descarregar CV"
+    }
+  },
+  "about": {
+    "indexLabel": "01 — Sobre mi",
+    "title": "Qui soc, en un paràgraf",
+    "manifesto": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui l'arquitectura backend d'Andbank. He liderat migracions complexes, integrat sistemes legacy i dissenyat arquitectures hexagonals i de microserveis. I fora de la feina, construeixo: vuit productes propis — d'una plataforma per a escriptors a un sistema de facturació VERI*FACTU — amb Claude Code, Codex, Gemini i fluxos MCP, desplegats al meu propi VPS, Vercel i Google Cloud.",
+    "currentlyWorkingWith": "Treballant ara amb"
+  },
+  "metrics": {
+    "ariaLabel": "Mètriques de trajectòria",
+    "caption": "Mesurat en sistemes reals en producció",
+    "entries": {
+      "years": {
+        "value": "6+",
+        "label": "Anys de software en producció"
+      },
+      "sectors": {
+        "value": "3",
+        "label": "Sectors · banca, legal i energia"
+      },
+      "companies": {
+        "value": "5",
+        "label": "Empreses · de Sevilla a Andorra"
+      },
+      "products": {
+        "value": "8",
+        "label": "Productes propis · construïts amb IA"
+      }
+    }
+  },
+  "experience": {
+    "indexLabel": "02 — Experiència",
+    "title": "On he treballat",
+    "hint": "{count} rols · 2019 → actualitat",
+    "duration": {
+      "yearsMonths": "{years, plural, one {# any} other {# anys}} i {months, plural, one {# mes} other {# mesos}}",
+      "years": "{years, plural, one {# any} other {# anys}}",
+      "months": "{months, plural, one {# mes} other {# mesos}}"
+    },
+    "entries": {
+      "andbank-2024": {
+        "role": "Arquitecte de Solucions / Technical PM",
+        "location": "Andorra la Vella, Andorra",
+        "start": "Set 2024",
+        "end": "present",
+        "summary": "Arquitectura backend i gestió tècnica en banca privada: estàndards de desenvolupament, integració amb sistemes core i avaluació de solucions d'IA.",
+        "highlights": [
+          "Disseny d'arquitectura backend (Java 21, Spring Boot 3) sota Clean Architecture i arquitectura hexagonal.",
+          "Migració Spring Boot 2 → 3 (namespace Jakarta) i de Tomcat 7/8 → 9/10 en més de 40 VMs.",
+          "Integració amb sistemes legacy (COBOL, AS400, DB2) i implantació de Keycloak amb MFA i regles per jurisdicció.",
+          "Disseny de l'arquitectura del nou homebanking (15+ components) i anàlisi amb SonarQube de +12.000 fitxers COBOL.",
+          "Gestió tècnica de proveïdors, decisions build vs buy i control del deute tècnic sobre OpenShift (OCP4)."
+        ]
+      },
+      "elabogado-2022": {
+        "role": "Senior Full Stack Engineer",
+        "location": "Barcelona, Espanya",
+        "start": "Mar 2022",
+        "end": "Set 2024",
+        "summary": "Desenvolupament full-stack i modernització de la plataforma legal líder a Espanya.",
+        "highlights": [
+          "Modernització de legacy: migració de Struts2 a React + Spring Boot.",
+          "Disseny de microserveis i APIs REST segures.",
+          "Millora del rendiment, la mantenibilitat i l'evolució de l'arquitectura.",
+          "Gestió de continguts i landing pages amb WordPress."
+        ]
+      },
+      "zemsania-2021": {
+        "role": "Software Engineer",
+        "location": "Madrid, Espanya",
+        "start": "Jul 2021",
+        "end": "Abr 2022",
+        "summary": "Desenvolupament backend de microserveis per a Vodafone.",
+        "highlights": [
+          "Microserveis amb Java i Spring Boot per a sistemes distribuïts.",
+          "Disseny i documentació d'APIs amb Swagger / OpenAPI.",
+          "Treball en equip distribuït amb Jira, Confluence i Slack."
+        ]
+      },
+      "keapps-2020": {
+        "role": "Software Engineer (Java · Big Data)",
+        "location": "Sevilla, Espanya",
+        "start": "Jul 2020",
+        "end": "Jul 2021",
+        "summary": "Projecte Kronos (Endesa): sistemes Java Enterprise i solucions Big Data.",
+        "highlights": [
+          "Solucions Big Data amb Hadoop, Spark i Cassandra sobre dades de consum energètic.",
+          "Processos MapReduce sobre HDFS/YARN i optimització de batch crítics."
+        ]
+      },
+      "ayesa-2019": {
+        "role": "Programador Java & Big Data",
+        "location": "Sevilla, Espanya",
+        "start": "Ag 2019",
+        "end": "Abr 2020",
+        "summary": "Projecte Kronos (Endesa): desenvolupament Java i pipelines de dades.",
+        "highlights": [
+          "Desenvolupament i manteniment de sistemes Java Enterprise (SOAP, XML) amb interfícies JSP i PrimeFaces.",
+          "Pipelines de dades a gran escala amb MapReduce i emmagatzematge a S3."
+        ]
+      }
+    }
+  },
+  "skills": {
+    "indexLabel": "03 — Habilitats",
+    "title": "Tecnologies amb què treballo",
+    "hint": "{count} eines · {groups} grups",
+    "groups": {
+      "languages": "Llenguatges",
+      "backend": "Backend & Arquitectura",
+      "frontend": "Frontend",
+      "data": "Dades",
+      "cloud": "Cloud & DevOps",
+      "ai": "IA & Automatització",
+      "practice": "Pràctiques"
+    },
+    "practiceItems": [
+      "Spec-Driven Development · spec-kit i Agent OS",
+      "Context per a agents: CLAUDE.md a cada repo",
+      "CI/CD a cada projecte · staging, previews i health checks",
+      "Testing: Playwright E2E, Vitest, axe i Lighthouse CI",
+      "Disseny d'arquitectures de referència",
+      "Gestió tècnica de proveïdors",
+      "Scrum (certificació SMPC)"
+    ]
+  },
+  "projects": {
+    "indexLabel": "04 — Projectes",
+    "title": "Projectes propis",
+    "hint": "{count, plural, one {# projecte} other {# projectes}} · construïts amb IA",
+    "privateLabel": "En desenvolupament · no públic",
+    "openDetail": "Veure detalls de {name}",
+    "detail": {
+      "label": "Cas",
+      "overview": "Resum",
+      "highlights": "Destacats",
+      "stack": "Stack",
+      "viewDetails": "Veure detall",
+      "visit": "Veure en viu",
+      "repo": "Codi"
+    },
+    "entries": {
+      "othertales": {
+        "name": "Other Tales",
+        "role": "Producte propi · App + Backend",
+        "summary": "Plataforma all-in-one per a escriptors: app Flutter amb escriptura offline i backend Java 21 / Spring Boot 3.5 en arquitectura hexagonal, dockeritzat i en migració a VPS propi.",
+        "highlights": [
+          "App offline-first: Riverpod, GoRouter i base local Drift/SQLite amb sincronització.",
+          "Backend hexagonal amb OAuth2/JWT (Supabase Auth), Flyway i Redis.",
+          "Dockeritzat; desplegament en migració de Cloud Run a VPS propi (netcup)."
+        ]
+      },
+      "trasolido": {
+        "name": "Trasolido",
+        "role": "Producte propi · SaaS",
+        "summary": "Facturació conforme a VERI*FACTU amb un backend potent: monòlit modular en Java 21 / Spring Boot amb login propi (JWT), esdeveniments sobre Redis (Upstash) i PostgreSQL a Neon. Frontend React i extracció de dades amb IA.",
+        "highlights": [
+          "Compliment del reglament VERI*FACTU amb traçabilitat completa.",
+          "Autenticació pròpia amb JWT i esdeveniments en streaming sobre Upstash Redis.",
+          "PostgreSQL a Neon · backend a Google Cloud Run · frontend a Vercel."
+        ]
+      },
+      "porrix": {
+        "name": "PRONOQ",
+        "role": "Producte propi · PWA",
+        "summary": "Porra de futbol entre amics: PWA mobile-first per a LaLiga i Champions amb marcador en viu, classificació automàtica i anàlisi de resultats amb IA. En espanyol, anglès i català.",
+        "highlights": [
+          "Seguiment de marcadors en viu i classificació automàtica.",
+          "La IA explica els resultats: narra estadístiques, mai recomana pronòstics.",
+          "En VPS propi: web + worker en contenidors Docker; pressupostos de rendiment que bloquegen PRs."
+        ]
+      },
+      "corte1d": {
+        "name": "Corte1D",
+        "role": "Producte propi · Eina industrial",
+        "summary": "SaaS de taller: importa especejaments des d'Excel/CSV, optimitza el tall 1D amb un motor determinista i controla l'estoc. PWA amb exportació a PDF.",
+        "highlights": [
+          "Motor de tall pur i determinista amb unitats canòniques.",
+          "Importació des d'Excel, CSV i SolidWorks; fitxers a Backblaze B2.",
+          "Login propi amb seguretat (Argon2) i construït amb Agent OS: agents IA per rol."
+        ]
+      },
+      "tavory": {
+        "name": "Tavory",
+        "role": "Producte propi · Web",
+        "summary": "Memòria gastronòmica privada: desa què vas tastar, on i si hi tornaries. OCR amb IA per registrar en segons, mapa amb Mapbox i subscripció Plus amb Stripe.",
+        "highlights": [
+          "Supabase: Auth, PostgreSQL + PostGIS, Storage i RLS.",
+          "OCR amb IA i contracte JSON estricte, sempre amb flux manual de reserva.",
+          "Stripe Checkout i Customer Portal; desplegada a Vercel."
+        ]
+      },
+      "wedding": {
+        "name": "Invitacions de Casament",
+        "role": "Producte propi · Web",
+        "summary": "Invitacions de casament digitals amb confirmació d'assistència (RSVP), ja usades en casaments reals.",
+        "highlights": [
+          "Invitació personalitzable per casament amb RSVP de convidats.",
+          "Anti-bot amb Cloudflare Turnstile i tests E2E amb Playwright.",
+          "Pressupost de rendiment amb Lighthouse CI; desplegada a Vercel."
+        ]
+      },
+      "headless-commerce": {
+        "name": "eCommerce headless",
+        "role": "Projecte personal",
+        "summary": "Monorepo d'eCommerce headless: storefront i panell d'administració en Next.js sobre backend MedusaJS, amb PostgreSQL + pgvector i Redis.",
+        "highlights": [
+          "Monorepo: storefront, admin i backend Medusa.",
+          "PostgreSQL amb pgvector per a cerca vectorial.",
+          "Entorn complet amb Docker Compose."
+        ]
+      },
+      "contactqr": {
+        "name": "Contact QR",
+        "role": "Producte propi · Utilitat",
+        "summary": "Targeta de contacte digital: un QR que afegeix la teva fitxa (vCard) directament a l'agenda del mòbil.",
+        "highlights": [
+          "vCard instantània via codi QR.",
+          "Web lleugera construïda amb Astro."
+        ]
+      },
+      "portfolio": {
+        "name": "Aquest portfolio",
+        "role": "Projecte personal",
+        "summary": "El mateix lloc que estàs llegint: stack tipat de Next.js + tRPC + Zod amb enrutament multilingüe, terminal interactiva, paleta d'ordres i CV en PDF generat des de les mateixes dades que veus en pantalla.",
+        "highlights": [
+          "Stack tipat Next.js + tRPC + Zod amb enrutament multilingüe.",
+          "Terminal interactiva i paleta d'ordres ⌘K per navegar.",
+          "CV en PDF generat al servidor des d'una única font de dades.",
+          "Animació amb propòsit que mai amaga contingut ni desplaça el layout."
+        ]
+      }
+    }
+  },
+  "education": {
+    "indexLabel": "05 — Formació i idiomes",
+    "title": "Formació i idiomes",
+    "languagesLabel": "Idiomes",
+    "entries": {
+      "smpc-cert": {
+        "title": "Scrum Master Professional Certified (SMPC)",
+        "dates": "Certificació"
+      },
+      "beng-software": {
+        "title": "Enginyeria del Software",
+        "dates": "2014 — 2018"
+      }
+    },
+    "languageEntries": {
+      "es": {
+        "name": "Espanyol",
+        "level": "Natiu"
+      },
+      "en": {
+        "name": "Anglès",
+        "level": "B1 · professional"
+      }
+    }
+  },
+  "contact": {
+    "indexLabel": "06 — Contacte",
+    "title": "La manera més ràpida de localitzar-me",
+    "emailLabel": "Email",
+    "copy": "Copiar",
+    "copied": "Copiat",
+    "copyFailed": "No s'ha pogut copiar",
+    "copyAriaLabel": "Copiar l'adreça d'email",
+    "body": "Projecte, oferta o pregunta: envia un missatge breu amb el context i responc en menys de dos dies laborables.",
+    "sendEmail": "Enviar email",
+    "openLinkedIn": "Obrir LinkedIn",
+    "basedIn": "Ubicat a",
+    "status": "Estat",
+    "timezone": "Fus horari"
+  },
+  "footer": {
+    "lastUpdated": "Actualitzat · {date}",
+    "builtLine": "Dissenyat i construït des de zero · Next.js"
+  },
+  "cvToast": {
+    "title": "Descarregant CV",
+    "description": "La descàrrega s'obrirà en una pestanya nova."
+  },
+  "cvModal": {
+    "title": "Descarregar CV",
+    "question": "Per a què el necessites?",
+    "info": "Vull conèixer el perfil",
+    "infoDesc": "CV complet amb tot el detall, en disseny editorial.",
+    "hiring": "Procés de selecció",
+    "hiringDesc": "Versió ATS compacta o adaptada a la teva oferta amb IA.",
+    "ats": "CV ATS estàndard",
+    "atsDesc": "Compacte i optimitzat per a filtres automàtics de selecció.",
+    "tailor": "Adaptat a la teva oferta",
+    "tailorDesc": "Enganxa l'oferta i la IA ajusta el resum i les paraules clau — només amb dades reals del perfil.",
+    "offerPlaceholder": "Enganxa aquí el text de l'oferta…",
+    "generate": "Generar CV adaptat",
+    "generating": "Adaptant…",
+    "back": "Tornar",
+    "tailorError": "No s'ha pogut adaptar ara mateix. Descarrega la versió ATS estàndard.",
+    "tailorLimited": "Límit d'ús assolit. Prova-ho d'aquí a uns minuts o descarrega la versió ATS."
+  },
+  "terminal": {
+    "title": "Terminal",
+    "description": "Terminal interactiva. Escriu ordres per explorar aquest portfolio.",
+    "close": "Tancar la terminal",
+    "inputLabel": "Entrada de la terminal",
+    "placeholder": "escriu una ordre — prova 'help'",
+    "banner": [
+      "Jefferson Montesdeoca — Arquitecte de Solucions",
+      "escriu 'help' per començar · ESC o ` per tancar",
+      ""
+    ],
+    "help": [
+      "ORDRES DISPONIBLES",
+      "  whoami             qui soc",
+      "  ls [projects]      llista seccions, o projectes",
+      "  open <projecte>    obre un projecte en una pestanya nova",
+      "  cat <tema>         llegeix about | experience | skills | contact | <projecte>",
+      "  experience         trajectòria laboral",
+      "  skills             tecnologies que més uso",
+      "  contact            com contactar-me",
+      "  cv                 descarrega el meu CV",
+      "  web                què fa la IA per tu en aquesta web",
+      "  theme [dark|light] canvia el tema",
+      "  lang <en|es|ca>    canvia l'idioma",
+      "  bg <variant>       canvia el fons",
+      "  goto <secció>      desplaça't a una secció",
+      "  clear              neteja la pantalla",
+      "  exit               tanca la terminal"
+    ],
+    "notFound": "ordre no trobada: %s",
+    "hint": "escriu 'help' per veure les ordres",
+    "unknownProject": "no existeix el projecte: %s — prova 'projects'",
+    "privateProject": "%s està en desenvolupament — sense enllaç públic",
+    "usageOpen": "ús: open <projecte> — prova 'projects'",
+    "usageGoto": "ús: goto <secció> — disponibles: %s",
+    "opening": "obrint %s…",
+    "noEmail": "sense email públic",
+    "catTopics": "ús: cat <about|experience|skills|contact|projecte>",
+    "langAlready": "ja ets en aquest idioma",
+    "sudo": "bon intent — aquí ja ets root.",
+    "emptyArg": "",
+    "web": [
+      "IA EN AQUESTA WEB — UTILITAT DIRECTA",
+      "  · Assistent (bombolla a baix a la dreta): pregunta-li el que",
+      "    vulguis sobre el perfil de Jefferson. Respon a l'instant",
+      "    i només amb dades reals.",
+      "  · CV a mida: a 'Descarregar CV', enganxa el text de la teva",
+      "    oferta i la IA adapta el resum i les paraules clau al",
+      "    lloc de treball. També hi ha versió completa i versió ATS.",
+      "",
+      "  Per dins: Next.js 16 · TypeScript · OpenAI · Vercel",
+      "  Codi obert: github.com/jefmonjor/portfolio"
+    ]
+  },
+  "notFound": {
+    "indexLabel": "ERR · 404",
+    "title": "Aquesta pàgina no existeix.",
+    "body": "La pàgina que cerques pot haver-se reanomenat, eliminat o mogut a una altra ruta.",
+    "cta": "Tornar a l'inici"
+  },
+  "deploy": {
+    "ariaLabel": "On desplego",
+    "title": "Infra · On desplego",
+    "platforms": {
+      "vps": {
+        "name": "VPS propi · netcup",
+        "detail": "Docker + GitHub Actions sobre el meu propi servidor. PRONOQ en producció (web + worker) i Other Tales en migració des de Cloud Run."
+      },
+      "vercel": {
+        "name": "Vercel",
+        "detail": "Tavory, invitacions de casament, el frontend de Trasolido i aquest portfolio — amb previews automàtiques per cada PR."
+      },
+      "gcloud": {
+        "name": "Google Cloud",
+        "detail": "Cloud Run + Cloud Build per al backend de Trasolido, amb entorn de staging i health checks automàtics."
+      }
+    },
+    "servicesLabel": "Serveis",
+    "services": "Supabase · Neon · Upstash Redis · Backblaze B2 · Brevo · Stripe · Sentry"
+  },
+  "assistant": {
+    "title": "Assistent · respon sobre Jefferson",
+    "open": "Obrir l'assistent",
+    "close": "Tancar l'assistent",
+    "intro": "Hola, soc l'assistent de Jefferson. Pregunta'm el que vulguis sobre la seva experiència, els seus projectes o la seva manera de treballar. Si alguna cosa no la sé, t'ho dic i et deixo el seu email.",
+    "placeholder": "Escriu la teva pregunta…",
+    "send": "Enviar",
+    "s1": "Quina experiència té amb Java i Spring?",
+    "s2": "Ha treballat en banca?",
+    "s3": "Busco algú per a un projecte",
+    "rateLimited": "Has fet moltes preguntes seguides. Espera un moment i torna-ho a provar.",
+    "unavailable": "L'assistent no està disponible ara mateix. Escriu a {email}.",
+    "error": "No he pogut respondre. Escriu a {email}.",
+    "disclaimer": "Respostes generades per IA a partir del perfil públic de Jefferson. Poden contenir errors: confirma el que sigui important per email."
+  }
+}

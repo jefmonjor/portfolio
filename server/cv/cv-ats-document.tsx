@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
 
 type CvAtsDocumentProps = {
   readonly labels: CvLabels
-  readonly locale: "es" | "en"
+  readonly locale: "es" | "en" | "ca"
   readonly tailored?: CvTailored
 }
 
@@ -155,6 +155,14 @@ const HEADINGS = {
     projects: "Proyectos propios",
     education: "Formación",
     languages: "Idiomas",
+  },
+  ca: {
+    profile: "Resum professional",
+    skills: "Habilitats tècniques",
+    experience: "Experiència professional",
+    projects: "Projectes propis",
+    education: "Formació",
+    languages: "Idiomes",
   },
   en: {
     profile: "Professional Summary",
@@ -220,7 +228,7 @@ function CvAtsDocument({ labels, locale, tailored }: CvAtsDocumentProps) {
           ) : null}
           {" · "}
           <Link src={siteUrl} style={styles.contactLink}>
-            {locale === "es" ? "portfolio online" : "online portfolio"}
+            {locale === "en" ? "online portfolio" : "portfolio online"}
           </Link>
         </Text>
         <Text style={styles.contactLine}>{labels.availability}</Text>

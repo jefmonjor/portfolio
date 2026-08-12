@@ -42,7 +42,8 @@
       "themeToLight": "Switch to light mode",
       "switchTo": {
         "en": "Switch to English",
-        "es": "Switch to Spanish"
+        "es": "Switch to Spanish",
+        "ca": "Switch to Catalan"
       }
     },
     "background": {
@@ -57,7 +58,8 @@
     "ariaLabel": "Change language",
     "options": {
       "en": "EN",
-      "es": "ES"
+      "es": "ES",
+      "ca": "CA"
     }
   },
   "status": {
@@ -402,7 +404,7 @@
       "  cv                 download my CV",
       "  web                what AI does for you on this site",
       "  theme [dark|light] switch theme",
-      "  lang <en|es>       switch language",
+      "  lang <en|es|ca>    switch language",
       "  bg <variant>       change the background",
       "  goto <section>     scroll to a section",
       "  clear              clear the screen",

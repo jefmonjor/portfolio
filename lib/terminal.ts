@@ -16,7 +16,7 @@ export type TerminalEffect =
   | { type: "close" }
   | { type: "cv" }
   | { type: "theme"; value: "dark" | "light" | null }
-  | { type: "lang"; value: "en" | "es" }
+  | { type: "lang"; value: "en" | "es" | "ca" }
   | { type: "bg"; value: BackgroundVariant }
   | { type: "open"; href: string }
   | { type: "goto"; section: string }
@@ -33,7 +33,7 @@ export type TerminalData = {
   location: string
   since: string
   timezone: string
-  locale: "en" | "es"
+  locale: "en" | "es" | "ca"
   email?: string
   linkedin?: string
   about: string
@@ -279,8 +279,8 @@ export function execute(
 
     case "lang": {
       const value = arg.toLowerCase()
-      if (value !== "en" && value !== "es")
-        return { lines: [out("usage: lang <en|es>", "err")], effects: [] }
+      if (value !== "en" && value !== "es" && value !== "ca")
+        return { lines: [out("usage: lang <en|es|ca>", "err")], effects: [] }
       if (value === data.locale)
         return { lines: [out(t.langAlready, "muted")], effects: [] }
       return {

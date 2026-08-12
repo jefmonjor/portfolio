@@ -42,7 +42,8 @@
       "themeToLight": "Cambiar a modo claro",
       "switchTo": {
         "en": "Cambiar a inglés",
-        "es": "Cambiar a español"
+        "es": "Cambiar a español",
+        "ca": "Cambiar a catalán"
       }
     },
     "background": {
@@ -57,7 +58,8 @@
     "ariaLabel": "Cambiar idioma",
     "options": {
       "en": "EN",
-      "es": "ES"
+      "es": "ES",
+      "ca": "CA"
     }
   },
   "status": {
@@ -402,7 +404,7 @@
       "  cv                 descarga mi CV",
       "  web                qué hace la IA por ti en esta web",
       "  theme [dark|light] cambia el tema",
-      "  lang <en|es>       cambia el idioma",
+      "  lang <en|es|ca>    cambia el idioma",
       "  bg <variante>      cambia el fondo",
       "  goto <sección>     desplázate a una sección",
       "  clear              limpia la pantalla",
