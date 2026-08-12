@@ -29,7 +29,7 @@ function SectionHeading({
         <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
           {index}
         </span>
-        <h2 className="font-heading text-lg font-medium tracking-tight text-foreground sm:text-xl">
+        <h2 className="font-heading text-[clamp(1.125rem,0.6vw+1rem,1.375rem)] font-medium tracking-tight text-foreground">
           {title}
         </h2>
       </div>

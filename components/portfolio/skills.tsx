@@ -54,7 +54,7 @@ function Skills() {
                   <Badge
                     key={item}
                     variant="outline"
-                    className="font-mono text-[10px]"
+                    className="h-auto max-w-full font-mono text-[10px] whitespace-normal"
                   >
                     {item}
                   </Badge>

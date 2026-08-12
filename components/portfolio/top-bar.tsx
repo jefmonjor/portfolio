@@ -51,7 +51,7 @@ function TopBar() {
           <span>{profile.shortName}</span>
         </a>
 
-        <nav className="hidden items-center gap-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase md:flex">
+        <nav className="hidden items-center gap-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase lg:flex">
           {NAV_IDS.map((id) => (
             <a
               key={id}
