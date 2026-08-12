@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server"
 
 import { About } from "@/components/portfolio/about"
+import { Assistant } from "@/components/portfolio/assistant"
 import { Background } from "@/components/portfolio/background"
 import { ConsoleSignature } from "@/components/portfolio/console-signature"
 import { Contact } from "@/components/portfolio/contact"
@@ -65,6 +66,7 @@ export default async function Page({
           </Reveal>
         </main>
         <Footer />
+        <Assistant />
       </div>
     </div>
   )

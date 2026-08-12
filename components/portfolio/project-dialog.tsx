@@ -51,7 +51,7 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
       >
         <DialogHeader className="gap-3 border-b border-dashed border-border p-5 sm:p-6">
           <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-            <span className="inline-block size-1.5 bg-foreground" />
+            <span className="inline-block size-1.5 bg-brand" />
             {project.year ? (
               <span>{project.year}</span>
             ) : (

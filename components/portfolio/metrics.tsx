@@ -76,7 +76,7 @@ function Metrics() {
           >
             <span
               data-count={t(`entries.${key}.value`)}
-              className="font-mono text-3xl font-bold tracking-tight text-foreground tabular-nums sm:text-4xl"
+              className="font-mono text-[clamp(1.75rem,1.8vw+1.1rem,2.25rem)] font-bold tracking-tight text-foreground tabular-nums"
             >
               {t(`entries.${key}.value`)}
             </span>
