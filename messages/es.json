@@ -142,7 +142,8 @@
         "highlights": [
           "Modernización de legacy: migración de Struts2 a React + Spring Boot.",
           "Diseño de microservicios y APIs REST seguras.",
-          "Mejora de rendimiento, mantenibilidad y evolución de la arquitectura."
+          "Mejora de rendimiento, mantenibilidad y evolución de la arquitectura.",
+          "Gestión de contenidos y landing pages con WordPress."
         ]
       },
       "zemsania-2021": {
@@ -150,10 +151,11 @@
         "location": "Madrid, España",
         "start": "Jul 2021",
         "end": "Abr 2022",
-        "summary": "Desarrollo backend de microservicios para proyectos de Indra.",
+        "summary": "Desarrollo backend de microservicios para Vodafone.",
         "highlights": [
           "Microservicios con Java y Spring Boot para sistemas distribuidos.",
-          "Diseño y documentación de APIs con Swagger / OpenAPI."
+          "Diseño y documentación de APIs con Swagger / OpenAPI.",
+          "Trabajo en equipo distribuido con Jira, Confluence y Slack."
         ]
       },
       "keapps-2020": {
@@ -163,8 +165,8 @@
         "end": "Jul 2021",
         "summary": "Proyecto Kronos (Endesa): sistemas Java Enterprise y soluciones Big Data.",
         "highlights": [
-          "Soluciones Big Data con Hadoop y Cassandra sobre datos de consumo energético.",
-          "Optimización de procesos batch y mantenimiento de sistemas críticos."
+          "Soluciones Big Data con Hadoop, Spark y Cassandra sobre datos de consumo energético.",
+          "Procesos MapReduce sobre HDFS/YARN y optimización de batch críticos."
         ]
       },
       "ayesa-2019": {
@@ -174,8 +176,8 @@
         "end": "Abr 2020",
         "summary": "Proyecto Kronos (Endesa): desarrollo Java y pipelines de datos.",
         "highlights": [
-          "Desarrollo y mantenimiento de sistemas Java Enterprise (SOAP, XML).",
-          "Integración de sistemas y pipelines de datos a gran escala."
+          "Desarrollo y mantenimiento de sistemas Java Enterprise (SOAP, XML) con interfaces JSP y PrimeFaces.",
+          "Pipelines de datos a gran escala con MapReduce y almacenamiento en S3."
         ]
       }
     }

@@ -142,7 +142,8 @@
         "highlights": [
           "Modernized legacy code: migrated Struts2 to React + Spring Boot.",
           "Designed microservices and secure REST APIs.",
-          "Improved performance, maintainability, and architecture evolution."
+          "Improved performance, maintainability, and architecture evolution.",
+          "Content and landing-page management with WordPress."
         ]
       },
       "zemsania-2021": {
@@ -150,10 +151,11 @@
         "location": "Madrid, Spain",
         "start": "Jul 2021",
         "end": "Apr 2022",
-        "summary": "Backend microservices development for Indra projects.",
+        "summary": "Backend microservices development for Vodafone.",
         "highlights": [
           "Built microservices with Java and Spring Boot for distributed systems.",
-          "Designed and documented APIs with Swagger / OpenAPI."
+          "Designed and documented APIs with Swagger / OpenAPI.",
+          "Distributed teamwork with Jira, Confluence and Slack."
         ]
       },
       "keapps-2020": {
@@ -163,8 +165,8 @@
         "end": "Jul 2021",
         "summary": "Kronos project (Endesa): enterprise Java systems and Big Data solutions.",
         "highlights": [
-          "Big Data solutions with Hadoop and Cassandra over energy-consumption data.",
-          "Optimized batch processes and maintained critical systems."
+          "Big Data solutions with Hadoop, Spark and Cassandra over energy-consumption data.",
+          "MapReduce jobs on HDFS/YARN and optimization of critical batch processes."
         ]
       },
       "ayesa-2019": {
@@ -174,8 +176,8 @@
         "end": "Apr 2020",
         "summary": "Kronos project (Endesa): Java development and data pipelines.",
         "highlights": [
-          "Developed and maintained enterprise Java systems (SOAP, XML).",
-          "Integrated systems and large-scale data pipelines."
+          "Developed and maintained enterprise Java systems (SOAP, XML) with JSP and PrimeFaces interfaces.",
+          "Large-scale data pipelines with MapReduce and S3 storage."
         ]
       }
     }

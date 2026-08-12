@@ -39,6 +39,7 @@ export const profile: Profile = {
     "PostgreSQL",
     "Cassandra",
     "Hadoop",
+    "Spark",
     "React",
     "Next.js",
     "TypeScript",
@@ -88,15 +89,15 @@ export const profile: Profile = {
       location: "Barcelona, Spain",
       startISO: "2022-03",
       endISO: "2024-09",
-      stack: ["Java", "Spring Boot", "React", "MySQL", "REST APIs"],
+      stack: ["Java", "Spring Boot", "React", "MySQL", "REST APIs", "WordPress"],
     },
     {
       id: "zemsania-2021",
-      organization: "Zemsania / Indra",
+      organization: "Zemsania",
       location: "Madrid, Spain",
       startISO: "2021-07",
       endISO: "2022-04",
-      stack: ["Java", "Spring Boot", "Microservices", "OpenAPI"],
+      stack: ["Java", "Spring Boot", "Microservices", "OpenAPI", "Jira · Confluence"],
     },
     {
       id: "keapps-2020",
@@ -104,7 +105,7 @@ export const profile: Profile = {
       location: "Seville, Spain",
       startISO: "2020-07",
       endISO: "2021-07",
-      stack: ["Java", "Hadoop", "Cassandra", "SQL"],
+      stack: ["Java", "Hadoop", "Spark", "Cassandra", "HDFS · YARN", "SQL"],
     },
     {
       id: "ayesa-2019",
@@ -112,7 +113,7 @@ export const profile: Profile = {
       location: "Seville, Spain",
       startISO: "2019-08",
       endISO: "2020-04",
-      stack: ["Java", "Big Data", "Hadoop", "SOAP/XML"],
+      stack: ["Java", "Hadoop", "MapReduce", "S3", "JSP · PrimeFaces", "SOAP/XML"],
     },
   ],
   skills: [
@@ -125,6 +126,7 @@ export const profile: Profile = {
       items: [
         "Spring Boot 3",
         "Hibernate",
+        "JPA",
         "REST / SOAP",
         "Node.js",
         "FastAPI",
@@ -134,12 +136,12 @@ export const profile: Profile = {
     },
     {
       id: "frontend",
-      items: ["React", "Next.js", "Tailwind CSS", "shadcn/ui", "Bootstrap"],
+      items: ["React", "Next.js", "Tailwind CSS", "shadcn/ui", "Bootstrap", "JSP · PrimeFaces", "WordPress"],
     },
     {
       id: "data",
       items: [
-        "Oracle",
+        "Oracle · PL/SQL",
         "DB2",
         "PostgreSQL",
         "MySQL",
@@ -148,7 +150,9 @@ export const profile: Profile = {
         "Redis · Upstash",
         "Backblaze B2",
         "Cassandra",
-        "Hadoop",
+        "Hadoop · HDFS · YARN",
+        "Spark · MapReduce",
+        "S3",
       ],
     },
     {
@@ -163,6 +167,8 @@ export const profile: Profile = {
         "Cloud Build",
         "GitHub Actions",
         "Brevo",
+        "Twilio",
+        "Serverless",
         "Jenkins",
         "CI/CD",
         "Keycloak",
