@@ -194,9 +194,12 @@
       "practice": "Practice"
     },
     "practiceItems": [
+      "Spec-Driven Development · spec-kit and Agent OS",
+      "Agent context: a CLAUDE.md in every repo",
+      "CI/CD on every project · staging, previews and health checks",
+      "Testing: Playwright E2E, Vitest, axe and Lighthouse CI",
       "Reference architecture design",
       "Technical vendor management",
-      "AI-augmented development",
       "Scrum (SMPC certified)"
     ]
   },
