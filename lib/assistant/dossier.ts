@@ -47,9 +47,15 @@ function buildDossier(locale: Locale): string {
     (locale === "es" ? "Servicios: " : "Services: ") + m.deploy.services,
   ].join("\n")
 
+  const availability =
+    locale === "es"
+      ? "DISPONIBILIDAD: Abierto a oportunidades en Andorra y España, y en remoto en zona horaria europea. Reside en Andorra; ha vivido y trabajado siempre en España."
+      : "AVAILABILITY: Open to opportunities in Andorra and Spain, and remote across European time zones. Based in Andorra; has always lived and worked in Spain."
+
   return [
     `NOMBRE: ${profile.name}`,
     `ROL: ${m.hero.role} — ${profile.location}`,
+    availability,
     `RESUMEN: ${m.about.manifesto}`,
     `IDIOMAS: Español (nativo), Inglés (B1 profesional)`,
     `EXPERIENCIA:\n${experience}`,
