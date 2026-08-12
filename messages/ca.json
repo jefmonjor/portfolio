@@ -128,10 +128,11 @@
         "end": "present",
         "summary": "Arquitectura backend i gestió tècnica en banca privada: estàndards de desenvolupament, integració amb sistemes core i avaluació de solucions d'IA.",
         "highlights": [
-          "Disseny d'arquitectura backend (Java 21, Spring Boot 3) sota Clean Architecture i arquitectura hexagonal.",
+          "Disseny d'arquitectura backend (Java 21, Spring Boot 3) sota Clean Architecture i arquitectura hexagonal; nou homebanking amb 15+ components.",
           "Migració Spring Boot 2 → 3 (namespace Jakarta) i de Tomcat 7/8 → 9/10 en més de 40 VMs.",
-          "Integració amb sistemes legacy (COBOL, AS400, DB2) i implantació de Keycloak amb MFA i regles per jurisdicció.",
-          "Disseny de l'arquitectura del nou homebanking (15+ components) i anàlisi amb SonarQube de +12.000 fitxers COBOL.",
+          "Integració amb sistemes legacy (COBOL, AS400, DB2), evolució de les APIs de carriers d'enviament i implantació de Keycloak amb MFA i regles per jurisdicció.",
+          "Qualitat de codi: SonarQube integrat a tots els repositoris, incloent-hi l'anàlisi de +12.000 fitxers COBOL.",
+          "Adopció d'IA al departament: desplegament de Gemini Code Assist per a tot l'equip.",
           "Gestió tècnica de proveïdors, decisions build vs buy i control del deute tècnic sobre OpenShift (OCP4)."
         ]
       },
