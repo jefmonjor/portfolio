@@ -246,7 +246,7 @@
         "highlights": [
           "Live score tracking and automatic standings.",
           "AI explains results: it narrates stats, never recommends predictions.",
-          "Performance budgets that block PRs; Docker for deployment."
+          "On a self-hosted VPS: web + worker in Docker containers; performance budgets that block PRs."
         ]
       },
       "corte1d": {

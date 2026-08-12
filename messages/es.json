@@ -246,7 +246,7 @@
         "highlights": [
           "Seguimiento de marcadores en vivo y clasificación automática.",
           "La IA explica los resultados: narra estadísticas, nunca recomienda pronósticos.",
-          "Presupuestos de rendimiento que bloquean PRs; Docker para el despliegue."
+          "En VPS propio: web + worker en contenedores Docker; presupuestos de rendimiento que bloquean PRs."
         ]
       },
       "corte1d": {

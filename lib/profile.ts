@@ -155,6 +155,7 @@ export const profile: Profile = {
         "VPS propio · Docker",
         "Vercel",
         "Google Cloud Run",
+        "Cloud Build",
         "GitHub Actions",
         "Jenkins",
         "CI/CD",
@@ -211,7 +212,7 @@ export const profile: Profile = {
     },
     {
       id: "porrix",
-      stack: ["Next.js", "PostgreSQL", "PWA", "Docker", "ES · EN · CA"],
+      stack: ["Next.js", "PostgreSQL", "PWA", "Docker", "VPS propio", "ES · EN · CA"],
     },
     {
       id: "corte1d",
