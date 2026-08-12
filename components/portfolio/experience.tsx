@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react"
 import { useTranslations } from "next-intl"
 
 import { SectionHeading } from "@/components/portfolio/section-heading"
-import { Badge } from "@/components/ui/badge"
+import { TechBadge } from "@/components/portfolio/tech-badge"
 import { parseStringArray } from "@/lib/i18n-values"
 import { portfolioUpdatedAt, profile } from "@/lib/profile"
 
@@ -148,13 +148,7 @@ function Experience() {
                 {entry.stack && entry.stack.length > 0 ? (
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {entry.stack.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="outline"
-                        className="font-mono text-[10px]"
-                      >
-                        {tech}
-                      </Badge>
+                      <TechBadge key={tech} label={tech} />
                     ))}
                   </div>
                 ) : null}
