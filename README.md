@@ -13,8 +13,8 @@ Portfolio personal bilingüe (ES/EN) con asistente de IA, CV inteligente en tres
 - **CV inteligente** — el botón de descarga abre un modal con tres caminos: CV completo editorial (PDF de 4 páginas), CV ATS compacto (2 páginas, una columna, cabeceras estándar para filtros automáticos) o **CV adaptado a una oferta**: pegas el texto de la oferta y la IA reescribe el resumen y las palabras clave usando solo datos reales.
 - **PDFs generados en servidor** con `@react-pdf/renderer` — misma fuente de datos que la web, siempre sincronizados.
 - **Email anti-spam** — la dirección nunca aparece en el HTML ni en el bundle JS (se ensambla por códigos de carácter tras la hidratación); en los PDF sí va, porque se generan bajo demanda.
-- **Bilingüe** ES/EN con `next-intl`, tema claro/oscuro, previews de proyectos en bucle, iconos de tecnologías, métricas animadas y terminal interactiva.
-- **Diseño editorial** — acento terracota, tipografía fluida con `clamp()` de 320px a escritorio, animaciones con `motion` y cero scroll horizontal verificado en 6 anchos × 2 idiomas.
+- **Bilingüe** ES/EN con `next-intl`, tema claro/oscuro, previews de proyectos en bucle, iconos de tecnologías, métricas animadas y **terminal interactiva** (icono en la barra o tecla `` ` ``: `help`, `projects`, `cv`…).
+- **Identidad modern-minimal propia** — titulares en Geist, superficies redondeadas con borde sólido, nav de píldora flotante, acento terracota único y tipografía fluida con `clamp()` de 320px a escritorio. Sistema completo bloqueado en [`docs/DESIGN.md`](docs/DESIGN.md), con cero scroll horizontal verificado en 6 anchos × 2 idiomas.
 
 ## Stack
 
