@@ -205,7 +205,7 @@ function paintSideLabel(ctx: CanvasRenderingContext2D) {
   ctx.rotate(Math.PI / 2)
   ctx.fillStyle = "rgba(255,255,255,0.32)"
   ctx.font = "500 22px ui-monospace, SFMono-Regular, Menlo, monospace"
-  ctx.fillText("PORTFOLIO · FULL-STACK · 2026", 0, 0)
+  ctx.fillText("PORTFOLIO · SOLUTIONS ARCHITECT · 2026", 0, 0)
   ctx.restore()
 }
 

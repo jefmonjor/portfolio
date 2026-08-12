@@ -16,6 +16,8 @@ function Footer() {
           <span>{tHero("role")}</span>
         </div>
         <div className="flex flex-wrap items-center gap-3 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+          <span>{t("builtLine")}</span>
+          <span className="text-border">/</span>
           <span>{t("lastUpdated", { date: portfolioUpdatedAt })}</span>
         </div>
       </div>

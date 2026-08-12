@@ -7,7 +7,10 @@
     "description": "I design backend architectures in banking and build AI-powered products: from enterprise Java to Claude-based agents.",
     "applicationName": "{shortName} · Portfolio",
     "role": "Solutions Architect",
-    "keywordsExtra": ["Portfolio", "CV"]
+    "keywordsExtra": [
+      "Portfolio",
+      "CV"
+    ]
   },
   "nav": {
     "about": "About",
@@ -83,6 +86,28 @@
     "title": "Who I am, in one paragraph",
     "manifesto": "Six-plus years building software for banking, legal, and energy — today as a Solutions Architect at Andbank. I have led complex migrations (Spring Boot 2 → 3, Tomcat across 40+ VMs), integrated legacy systems (COBOL, AS400, DB2), and designed hexagonal and microservices architectures. Outside work I ship complete AI-powered products: I use Claude, Codex, and MCP workflows daily to go from idea to production in days.",
     "currentlyWorkingWith": "Currently working with"
+  },
+  "metrics": {
+    "ariaLabel": "Impact metrics",
+    "caption": "Measured on real production systems",
+    "entries": {
+      "vms": {
+        "value": "+40",
+        "label": "VMs migrated · Tomcat 7/8 → 9/10"
+      },
+      "cobol": {
+        "value": "12K+",
+        "label": "COBOL files under SonarQube analysis"
+      },
+      "components": {
+        "value": "15+",
+        "label": "Components · new homebanking"
+      },
+      "years": {
+        "value": "6+",
+        "label": "Years in production · banking, legal, energy"
+      }
+    }
   },
   "experience": {
     "indexLabel": "02 — Experience",
@@ -276,7 +301,8 @@
     "timezone": "Timezone"
   },
   "footer": {
-    "lastUpdated": "Last updated · {date}"
+    "lastUpdated": "Last updated · {date}",
+    "builtLine": "Designed & built from scratch · Next.js"
   },
   "cvToast": {
     "title": "Downloading CV",

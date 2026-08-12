@@ -9,6 +9,7 @@ import { Experience } from "@/components/portfolio/experience"
 import { Footer } from "@/components/portfolio/footer"
 import { Hero } from "@/components/portfolio/hero"
 import { Marquee } from "@/components/portfolio/marquee"
+import { Metrics } from "@/components/portfolio/metrics"
 import { Projects } from "@/components/portfolio/projects"
 import { Skills } from "@/components/portfolio/skills"
 import { TopBar } from "@/components/portfolio/top-bar"
@@ -37,6 +38,7 @@ export default async function Page({
           <Hero />
           <Marquee items={profile.marquee} />
           <About />
+          <Metrics />
           <Experience />
           <Skills />
           <Projects />
