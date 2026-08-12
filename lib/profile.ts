@@ -242,6 +242,11 @@ export const profile: Profile = {
       id: "portfolio",
       url: "https://jefmonjor.dev",
       repo: "https://github.com/jefmonjor/portfolio",
+      images: [
+        "/projects/portfolio/01.webp",
+        "/projects/portfolio/02.webp",
+        "/projects/portfolio/03.webp",
+      ],
       stack: [
         "Next.js",
         "TypeScript",

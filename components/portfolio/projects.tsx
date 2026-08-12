@@ -7,8 +7,9 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons"
 
 import { ProjectDialog } from "@/components/portfolio/project-dialog"
+import { ProjectPreview } from "@/components/portfolio/project-preview"
 import { SectionHeading } from "@/components/portfolio/section-heading"
-import { Badge } from "@/components/ui/badge"
+import { TechBadge } from "@/components/portfolio/tech-badge"
 import { profile } from "@/lib/profile"
 import type { ProjectEntry } from "@/types/profile"
 
@@ -70,6 +71,14 @@ function Projects() {
                 className="absolute inset-0 z-0 rounded-none outline-none focus-visible:ring-1 focus-visible:ring-foreground/40"
               />
 
+              {entry.images && entry.images.length > 0 ? (
+                <ProjectPreview
+                  images={entry.images}
+                  alt={name}
+                  className="pointer-events-none relative z-10 -mx-5 -mt-5 border-b border-dashed border-border sm:-mx-6 sm:-mt-6"
+                />
+              ) : null}
+
               <div className="pointer-events-none relative z-10 flex items-start justify-between gap-3">
                 <div className="flex flex-col gap-1">
                   <h3 className="font-heading text-base font-medium tracking-tight text-foreground sm:text-lg">
@@ -111,13 +120,7 @@ function Projects() {
               {entry.stack && entry.stack.length > 0 ? (
                 <div className="pointer-events-none relative z-10 flex flex-wrap gap-1.5 pt-1">
                   {entry.stack.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="outline"
-                      className="font-mono text-[10px]"
-                    >
-                      {tech}
-                    </Badge>
+                    <TechBadge key={tech} label={tech} />
                   ))}
                 </div>
               ) : null}
