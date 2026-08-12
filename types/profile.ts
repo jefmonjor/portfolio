@@ -37,6 +37,8 @@ export type ProjectEntry = {
   repo?: string
   year?: string
   stack?: ReadonlyArray<string>
+  /** Screenshot paths under /public — shown as a looping preview. */
+  images?: ReadonlyArray<string>
 }
 
 export type Profile = {

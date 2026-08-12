@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl"
 
 import { SectionHeading } from "@/components/portfolio/section-heading"
-import { Badge } from "@/components/ui/badge"
+import { TechBadge } from "@/components/portfolio/tech-badge"
 import { parseStringArray } from "@/lib/i18n-values"
 import { profile } from "@/lib/profile"
 
@@ -51,13 +51,11 @@ function Skills() {
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {items.map((item) => (
-                  <Badge
+                  <TechBadge
                     key={item}
-                    variant="outline"
-                    className="h-auto max-w-full font-mono text-[10px] whitespace-normal"
-                  >
-                    {item}
-                  </Badge>
+                    label={item}
+                    className="whitespace-normal"
+                  />
                 ))}
               </div>
             </div>

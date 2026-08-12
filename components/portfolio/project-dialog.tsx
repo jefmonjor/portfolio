@@ -5,7 +5,8 @@ import { useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowUpRight01Icon, GithubIcon } from "@hugeicons/core-free-icons"
 
-import { Badge } from "@/components/ui/badge"
+import { ProjectPreview } from "@/components/portfolio/project-preview"
+import { TechBadge } from "@/components/portfolio/tech-badge"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -81,6 +82,15 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
         </DialogHeader>
 
         <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto p-5 text-foreground sm:p-6">
+          {project.images && project.images.length > 0 ? (
+            <ProjectPreview
+              images={project.images}
+              alt={name}
+              sizes="(min-width: 640px) 36rem, 100vw"
+              className="border border-dashed border-border"
+            />
+          ) : null}
+
           <section className="flex flex-col gap-2">
             <h3 className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
               {t("detail.overview")}
@@ -117,13 +127,7 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
               </h3>
               <div className="flex flex-wrap gap-1.5">
                 {project.stack.map((tech) => (
-                  <Badge
-                    key={tech}
-                    variant="outline"
-                    className="font-mono text-[10px]"
-                  >
-                    {tech}
-                  </Badge>
+                  <TechBadge key={tech} label={tech} />
                 ))}
               </div>
             </section>
