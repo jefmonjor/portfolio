@@ -67,7 +67,7 @@
   "hero": {
     "indexLabel": "00 — Profile",
     "role": "Solutions Architect",
-    "tagline": "I design backend architectures and build AI-powered products: from enterprise Java to AI agents in production.",
+    "tagline": "I design solid backend architectures and build digital products end to end, integrating artificial intelligence across the whole process.",
     "specs": {
       "location": "Location",
       "timezone": "Timezone",
@@ -448,7 +448,7 @@
     "title": "Assistant · answers about Jefferson",
     "open": "Open assistant",
     "close": "Close assistant",
-    "intro": "Hi. I'm Jefferson's assistant and I answer from his profile and track record. If I don't know something, I'll say so and share his email.",
+    "intro": "Hi, I'm Jefferson's assistant. Ask me anything about his experience, his projects or the way he works. If I don't know something, I'll say so and leave you his email.",
     "placeholder": "Type your question…",
     "send": "Send",
     "s1": "How much Java and Spring experience does he have?",
