@@ -6,6 +6,7 @@ import {
   Mail01Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { Fragment } from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { useLocale, useTranslations } from "next-intl"
 
@@ -68,21 +69,25 @@ function Hero() {
 
         <h1 className="font-heading text-[clamp(2.5rem,5.5vw+1rem,5rem)] leading-[0.95] font-medium tracking-[-0.03em] text-foreground">
           <span className="sr-only">{profile.name}</span>
-          <span aria-hidden className="flex flex-wrap gap-x-3 gap-y-1">
+          {/* Inline flow (not flex) so text-wrap: balance can even out the
+              line breaks on any viewport — no more dangling last words. */}
+          <span aria-hidden className="block text-balance">
             {titleWords.map((word, index) => (
-              <motion.span
-                key={`${word}-${index}`}
-                className="inline-block"
-                initial={reduce ? { opacity: 1 } : { opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.55,
-                  ease,
-                  delay: reduce ? 0 : 0.08 * index,
-                }}
-              >
-                {word}
-              </motion.span>
+              <Fragment key={`${word}-${index}`}>
+                <motion.span
+                  className="inline-block"
+                  initial={reduce ? { opacity: 1 } : { opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.55,
+                    ease,
+                    delay: reduce ? 0 : 0.08 * index,
+                  }}
+                >
+                  {word}
+                </motion.span>
+                {index < titleWords.length - 1 ? " " : null}
+              </Fragment>
             ))}
           </span>
         </h1>
@@ -97,7 +102,7 @@ function Hero() {
           }}
           className="flex flex-col gap-4"
         >
-          <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
+          <p className="font-mono text-xs tracking-widest text-balance text-muted-foreground uppercase">
             <ScrambleText
               value={t("role")}
               className="text-foreground"
