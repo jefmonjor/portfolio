@@ -18,20 +18,25 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { contactEmail, contactMailto } from "@/lib/email"
 import { profile } from "@/lib/profile"
 
 type CopyState = "idle" | "copied" | "failed"
 
-const email =
-  profile.socials.find((s) => s.kind === "email")?.handle ??
-  "jefmonjor@gmail.com"
 const linkedin = profile.socials.find((s) => s.kind === "linkedin")?.href ?? "#"
-const mailto =
-  profile.socials.find((s) => s.kind === "email")?.href ?? `mailto:${email}`
 
 function Contact() {
   const [copyState, setCopyState] = React.useState<CopyState>("idle")
+  // Assembled after mount so the address never ships in the static HTML.
+  const [email, setEmail] = React.useState("")
   const resetTimerRef = React.useRef<number | null>(null)
+
+  React.useEffect(() => {
+    const id = window.setTimeout(() => setEmail(contactEmail()), 0)
+    return () => window.clearTimeout(id)
+  }, [])
+
+  const mailto = email ? contactMailto() : "#contact"
   const t = useTranslations("contact")
   const tStatus = useTranslations("status")
 
@@ -55,7 +60,7 @@ function Contact() {
 
   async function onCopy() {
     try {
-      await navigator.clipboard.writeText(email)
+      await navigator.clipboard.writeText(contactEmail())
       setCopyState("copied")
     } catch {
       setCopyState("failed")
@@ -118,7 +123,7 @@ function Contact() {
             href={mailto}
             className="font-heading text-2xl font-medium tracking-tight break-all text-foreground hover:underline sm:text-3xl"
           >
-            {email}
+            {email || "•••••••@•••••••"}
           </a>
           <p className="max-w-prose text-xs text-muted-foreground sm:text-sm">
             {t("body")}

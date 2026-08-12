@@ -2,6 +2,7 @@
 
 import * as React from "react"
 
+import { contactEmail } from "@/lib/email"
 import { profile } from "@/lib/profile"
 
 const SIGNATURE = `
@@ -17,9 +18,7 @@ function ConsoleSignature() {
     if (printed.current) return
     printed.current = true
 
-    const email =
-      profile.socials.find((s) => s.kind === "email")?.handle ??
-      profile.socials.find((s) => s.kind === "email")?.href
+    const email = contactEmail()
     const linkedin = profile.socials.find((s) => s.kind === "linkedin")?.href
 
     const title = `%c${profile.shortName}`

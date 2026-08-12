@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { resolveLocale } from "@/i18n/routing"
 import { parseString, parseStringArray } from "@/lib/i18n-values"
+import { contactEmail } from "@/lib/email"
 import { profile, profileTimeZone } from "@/lib/profile"
 import {
   completions,
@@ -78,7 +79,7 @@ function Terminal() {
   const locale = resolveLocale(useLocale())
 
   const data = React.useMemo<TerminalData>(() => {
-    const email = profile.socials.find((s) => s.kind === "email")?.handle
+    const email = contactEmail()
     const linkedin = profile.socials.find((s) => s.kind === "linkedin")?.href
 
     return {
