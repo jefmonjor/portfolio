@@ -19,7 +19,7 @@ export type HeroBadgeProps = {
 }
 
 export function HeroBadge({
-  photoSrc = "/me-avatar.svg",
+  photoSrc = "/me.webp",
   role,
   meta,
 }: HeroBadgeProps) {

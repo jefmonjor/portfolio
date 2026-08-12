@@ -67,7 +67,7 @@ function Hero() {
           {t("indexLabel")}
         </div>
 
-        <h1 className="font-heading text-4xl leading-[0.95] font-medium tracking-tight text-foreground sm:text-6xl lg:text-[5rem]">
+        <h1 className="font-heading text-[clamp(2.5rem,5.5vw+1rem,5rem)] leading-[0.95] font-medium tracking-tight text-foreground">
           <span className="sr-only">{profile.name}</span>
           <span aria-hidden className="flex flex-wrap gap-x-3 gap-y-1">
             {titleWords.map((word, index) => (

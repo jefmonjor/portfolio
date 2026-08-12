@@ -31,8 +31,8 @@ function Reveal({ children }: RevealProps) {
     <div
       ref={ref}
       className={
-        "transition-[opacity,transform] duration-700 ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none " +
-        (visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0")
+        "transition-[opacity,transform] duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none " +
+        (visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")
       }
     >
       {children}

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import { useTranslations } from "next-intl"
 
-const METRIC_KEYS = ["vms", "cobol", "components", "years"] as const
+const METRIC_KEYS = ["years", "sectors", "companies", "products"] as const
 const COUNT_DURATION_MS = 1300
 
 function animateValue(node: HTMLElement, raw: string) {

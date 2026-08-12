@@ -129,6 +129,10 @@
   html {
     @apply font-sans;
     }
+  html,
+  body {
+    overflow-x: clip;
+    }
   [data-bg-root] [data-bg-variant] {
     display: none;
     }
