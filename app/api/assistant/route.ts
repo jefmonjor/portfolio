@@ -7,6 +7,18 @@ export const runtime = "nodejs"
 
 // Cost controls — every knob is overridable per environment without a deploy.
 const MODEL = process.env.ASSISTANT_MODEL ?? "gpt-5-mini"
+// gpt-5 models reason before answering by default, which adds several seconds
+// of latency. A closed-dossier Q&A bot doesn't need it.
+const REASONING = enumEnv(
+  "ASSISTANT_REASONING",
+  ["minimal", "low", "medium", "high"] as const,
+  "minimal"
+)
+const VERBOSITY = enumEnv(
+  "ASSISTANT_VERBOSITY",
+  ["low", "medium", "high"] as const,
+  "low"
+)
 const MAX_OUTPUT_TOKENS = intEnv("ASSISTANT_MAX_OUTPUT_TOKENS", 400)
 const MAX_TURNS = intEnv("ASSISTANT_MAX_TURNS", 8)
 const MAX_CHARS = intEnv("ASSISTANT_MAX_CHARS", 800)
@@ -18,6 +30,15 @@ const GLOBAL_DAILY = intEnv("ASSISTANT_GLOBAL_DAILY", 300)
 function intEnv(name: string, fallback: number): number {
   const value = Number.parseInt(process.env[name] ?? "", 10)
   return Number.isFinite(value) && value > 0 ? value : fallback
+}
+
+function enumEnv<T extends string>(
+  name: string,
+  allowed: readonly T[],
+  fallback: T
+): T {
+  const value = process.env[name]
+  return allowed.includes(value as T) ? (value as T) : fallback
 }
 
 // In-memory on purpose: one small serverless instance, no Redis to run.
@@ -108,6 +129,8 @@ export async function POST(request: Request) {
       instructions: buildSystemPrompt(locale),
       input: messages,
       max_output_tokens: MAX_OUTPUT_TOKENS,
+      reasoning: { effort: REASONING },
+      text: { verbosity: VERBOSITY },
     })
 
     const reply = response.output_text?.trim()
