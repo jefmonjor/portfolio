@@ -110,7 +110,7 @@ function Assistant() {
                   "max-w-[85%] px-2.5 py-1.5 text-xs leading-relaxed",
                   m.role === "user"
                     ? "ml-auto bg-foreground text-background"
-                    : "border border-border text-foreground"
+                    : "border border-border whitespace-pre-line text-foreground"
                 )}
               >
                 {m.content}

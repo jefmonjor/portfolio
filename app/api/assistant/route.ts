@@ -2,11 +2,15 @@ import { NextResponse } from "next/server"
 import OpenAI from "openai"
 
 import { buildSystemPrompt } from "@/lib/assistant/dossier"
+import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
 
 export const runtime = "nodejs"
 
 // Cost controls — every knob is overridable per environment without a deploy.
 const MODEL = process.env.ASSISTANT_MODEL ?? "gpt-5-mini"
+const MAX_OUTPUT_TOKENS = intEnv("ASSISTANT_MAX_OUTPUT_TOKENS", 500)
+const MAX_TURNS = intEnv("ASSISTANT_MAX_TURNS", 8)
+const MAX_CHARS = intEnv("ASSISTANT_MAX_CHARS", 800)
 // gpt-5 models reason before answering by default, which adds several seconds
 // of latency. A closed-dossier Q&A bot doesn't need it.
 const REASONING = enumEnv(
@@ -19,18 +23,6 @@ const VERBOSITY = enumEnv(
   ["low", "medium", "high"] as const,
   "low"
 )
-const MAX_OUTPUT_TOKENS = intEnv("ASSISTANT_MAX_OUTPUT_TOKENS", 400)
-const MAX_TURNS = intEnv("ASSISTANT_MAX_TURNS", 8)
-const MAX_CHARS = intEnv("ASSISTANT_MAX_CHARS", 800)
-const RATE_MINUTE = intEnv("ASSISTANT_RATE_MINUTE", 4)
-const RATE_DAILY = intEnv("ASSISTANT_RATE_DAILY", 20)
-// Hard ceiling across ALL visitors: even a botnet can't run up the bill.
-const GLOBAL_DAILY = intEnv("ASSISTANT_GLOBAL_DAILY", 300)
-
-function intEnv(name: string, fallback: number): number {
-  const value = Number.parseInt(process.env[name] ?? "", 10)
-  return Number.isFinite(value) && value > 0 ? value : fallback
-}
 
 function enumEnv<T extends string>(
   name: string,
@@ -39,38 +31,6 @@ function enumEnv<T extends string>(
 ): T {
   const value = process.env[name]
   return allowed.includes(value as T) ? (value as T) : fallback
-}
-
-// In-memory on purpose: one small serverless instance, no Redis to run.
-// Counters reset on cold start and are per-instance — combined with the
-// global daily ceiling this bounds worst-case spend.
-const recent = new Map<string, number[]>()
-const daily = new Map<string, { start: number; count: number }>()
-let globalDay = { start: Date.now(), count: 0 }
-
-function checkLimit(ip: string): "ok" | "limited" {
-  const now = Date.now()
-
-  if (now - globalDay.start > 86_400_000) {
-    globalDay = { start: now, count: 0 }
-  }
-  if (globalDay.count >= GLOBAL_DAILY) return "limited"
-
-  const day = daily.get(ip)
-  if (day && now - day.start < 86_400_000) {
-    if (day.count >= RATE_DAILY) return "limited"
-  } else {
-    daily.set(ip, { start: now, count: 0 })
-  }
-
-  const hits = (recent.get(ip) ?? []).filter((t) => now - t < 60_000)
-  if (hits.length >= RATE_MINUTE) return "limited"
-
-  hits.push(now)
-  recent.set(ip, hits)
-  daily.get(ip)!.count += 1
-  globalDay.count += 1
-  return "ok"
 }
 
 type ChatMessage = { role: "user" | "assistant"; content: string }
@@ -102,9 +62,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 })
   }
 
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown"
-  if (checkLimit(ip) !== "ok") {
+  if (checkLimit(requestIp(request)) !== "ok") {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 })
   }
 

@@ -67,7 +67,7 @@
   "hero": {
     "indexLabel": "00 — Profile",
     "role": "Solutions Architect",
-    "tagline": "I design backend architectures and build AI-powered products: from enterprise Java to Claude-based agents.",
+    "tagline": "I design backend architectures and build AI-powered products: from enterprise Java to AI agents in production.",
     "specs": {
       "location": "Location",
       "timezone": "Timezone",
@@ -358,6 +358,24 @@
   "cvToast": {
     "title": "Downloading CV",
     "description": "The download will open in a new tab."
+  },
+  "cvModal": {
+    "title": "Download CV",
+    "question": "What do you need it for?",
+    "info": "I want to know the profile",
+    "infoDesc": "Full CV with every detail, in editorial design.",
+    "hiring": "Hiring process",
+    "hiringDesc": "Compact ATS version or AI-tailored to your offer.",
+    "ats": "Standard ATS CV",
+    "atsDesc": "Compact and optimized for automated screening filters.",
+    "tailor": "Tailored to your offer",
+    "tailorDesc": "Paste the offer and AI adjusts the summary and keywords — using real profile data only.",
+    "offerPlaceholder": "Paste the job offer text here…",
+    "generate": "Generate tailored CV",
+    "generating": "Tailoring…",
+    "back": "Back",
+    "tailorError": "Couldn't tailor it right now. Download the standard ATS version.",
+    "tailorLimited": "Usage limit reached. Try again in a few minutes or download the ATS version."
   },
   "terminal": {
     "title": "Terminal",
