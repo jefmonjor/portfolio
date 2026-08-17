@@ -224,10 +224,12 @@ export const profile: Profile = {
     },
     {
       id: "porrix",
+      url: "https://pronoq.jefmonjor.dev",
       stack: ["Next.js", "PostgreSQL", "PWA", "Docker", "VPS propio", "ES · EN · CA"],
     },
     {
       id: "corte1d",
+      url: "https://corte1d.jefmonjor.dev",
       stack: ["Next.js", "Neon", "PWA", "ExcelJS", "PDFKit", "Backblaze B2", "AI agents"],
     },
     {
@@ -244,6 +246,7 @@ export const profile: Profile = {
     },
     {
       id: "contactqr",
+      url: "https://contactqr.jefmonjor.dev",
       stack: ["Astro", "QR · vCard"],
     },
     {
