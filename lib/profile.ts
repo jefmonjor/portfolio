@@ -210,7 +210,7 @@ export const profile: Profile = {
       ],
     },
     {
-      id: "trasolido",
+      id: "transolido",
       url: "https://transolido.com",
       stack: [
         "Java 21",

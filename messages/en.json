@@ -234,8 +234,8 @@
           "Dockerized; deployment migrating from Cloud Run to a self-hosted VPS (netcup)."
         ]
       },
-      "trasolido": {
-        "name": "Trasolido",
+      "transolido": {
+        "name": "Transolido",
         "role": "Own product · SaaS",
         "summary": "VERI*FACTU-compliant invoicing with a powerful backend: modular Java 21 / Spring Boot monolith with its own JWT auth, event streaming over Redis (Upstash) and PostgreSQL on Neon. React frontend and AI data extraction.",
         "highlights": [
@@ -431,11 +431,11 @@
       },
       "vercel": {
         "name": "Vercel",
-        "detail": "Tavory, the Trasolido frontend and this portfolio — with automatic previews on every PR."
+        "detail": "Tavory, the Transolido frontend and this portfolio — with automatic previews on every PR."
       },
       "gcloud": {
         "name": "Google Cloud",
-        "detail": "Cloud Run + Cloud Build for the Trasolido backend, with a staging environment and automated health checks."
+        "detail": "Cloud Run + Cloud Build for the Transolido backend, with a staging environment and automated health checks."
       }
     },
     "servicesLabel": "Services",

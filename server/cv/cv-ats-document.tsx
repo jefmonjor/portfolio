@@ -176,7 +176,7 @@ const HEADINGS = {
 
 // Keep the ATS variant lean: the strongest personal products only.
 const ATS_PROJECT_IDS = [
-  "trasolido",
+  "transolido",
   "othertales",
   "porrix",
   "corte1d",
