@@ -274,26 +274,6 @@
           "Stripe Checkout and Customer Portal; deployed on Vercel."
         ]
       },
-      "wedding": {
-        "name": "Wedding Invitations",
-        "role": "Own product · Web",
-        "summary": "Digital wedding invitations with guest RSVP, already used at real weddings.",
-        "highlights": [
-          "Customizable invitation per wedding with guest RSVP.",
-          "Bot protection with Cloudflare Turnstile and Playwright E2E tests.",
-          "Performance budget enforced with Lighthouse CI; deployed on Vercel."
-        ]
-      },
-      "headless-commerce": {
-        "name": "Headless eCommerce",
-        "role": "Personal project",
-        "summary": "Headless eCommerce monorepo: Next.js storefront and admin panel on a MedusaJS backend, with PostgreSQL + pgvector and Redis.",
-        "highlights": [
-          "Monorepo: storefront, admin and Medusa backend.",
-          "PostgreSQL with pgvector for vector search.",
-          "Full local environment with Docker Compose."
-        ]
-      },
       "contactqr": {
         "name": "Contact QR",
         "role": "Own product · Utility",
@@ -451,7 +431,7 @@
       },
       "vercel": {
         "name": "Vercel",
-        "detail": "Tavory, wedding invitations, the Trasolido frontend and this portfolio — with automatic previews on every PR."
+        "detail": "Tavory, the Trasolido frontend and this portfolio — with automatic previews on every PR."
       },
       "gcloud": {
         "name": "Google Cloud",

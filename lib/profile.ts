@@ -211,6 +211,7 @@ export const profile: Profile = {
     },
     {
       id: "trasolido",
+      url: "https://transolido.com",
       stack: [
         "Java 21",
         "Spring Boot 3",
@@ -235,14 +236,6 @@ export const profile: Profile = {
     {
       id: "tavory",
       stack: ["Next.js 16", "Supabase", "PostGIS", "Stripe", "Mapbox", "AI OCR"],
-    },
-    {
-      id: "wedding",
-      stack: ["Next.js", "shadcn/ui", "Turnstile", "Playwright", "Vercel"],
-    },
-    {
-      id: "headless-commerce",
-      stack: ["MedusaJS", "Next.js", "PostgreSQL · pgvector", "Redis", "Docker"],
     },
     {
       id: "contactqr",
