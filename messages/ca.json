@@ -274,26 +274,6 @@
           "Stripe Checkout i Customer Portal; desplegada a Vercel."
         ]
       },
-      "wedding": {
-        "name": "Invitacions de Casament",
-        "role": "Producte propi · Web",
-        "summary": "Invitacions de casament digitals amb confirmació d'assistència (RSVP), ja usades en casaments reals.",
-        "highlights": [
-          "Invitació personalitzable per casament amb RSVP de convidats.",
-          "Anti-bot amb Cloudflare Turnstile i tests E2E amb Playwright.",
-          "Pressupost de rendiment amb Lighthouse CI; desplegada a Vercel."
-        ]
-      },
-      "headless-commerce": {
-        "name": "eCommerce headless",
-        "role": "Projecte personal",
-        "summary": "Monorepo d'eCommerce headless: storefront i panell d'administració en Next.js sobre backend MedusaJS, amb PostgreSQL + pgvector i Redis.",
-        "highlights": [
-          "Monorepo: storefront, admin i backend Medusa.",
-          "PostgreSQL amb pgvector per a cerca vectorial.",
-          "Entorn complet amb Docker Compose."
-        ]
-      },
       "contactqr": {
         "name": "Contact QR",
         "role": "Producte propi · Utilitat",
@@ -452,7 +432,7 @@
       },
       "vercel": {
         "name": "Vercel",
-        "detail": "Tavory, invitacions de casament, el frontend de Trasolido i aquest portfolio — amb previews automàtiques per cada PR."
+        "detail": "Tavory, el frontend de Trasolido i aquest portfolio — amb previews automàtiques per cada PR."
       },
       "gcloud": {
         "name": "Google Cloud",
