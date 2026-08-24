@@ -14,7 +14,11 @@ import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { TRPCProvider } from "@/lib/trpc/provider"
 import { cn } from "@/lib/utils"
-import { profile } from "@/lib/profile"
+import { profile, siteUrl } from "@/lib/profile"
+import {
+  buildProfileStructuredData,
+  serializeStructuredData,
+} from "@/lib/seo/structured-data"
 import { isLocale, routing, type Locale } from "@/i18n/routing"
 import { parseStringArray } from "@/lib/i18n-values"
 
@@ -40,22 +44,13 @@ const openGraphLocale: Record<Locale, string> = {
   ca: "ca_ES",
 }
 
-const fallbackMetadataBase = new URL("https://jefmonjor.dev")
+const metadataBase = new URL(siteUrl)
 
-function getMetadataBase(): URL {
-  // Vercel injects the production hostname; NEXT_PUBLIC_APP_URL overrides it.
-  const value =
-    process.env.NEXT_PUBLIC_APP_URL ??
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : undefined)
-  if (!value) return fallbackMetadataBase
-
-  try {
-    return new URL(value)
-  } catch {
-    return fallbackMetadataBase
-  }
+const alternateLanguages: Record<string, string> = {
+  en: "/en",
+  es: "/es",
+  ca: "/ca",
+  "x-default": "/",
 }
 
 export function generateStaticParams() {
@@ -79,17 +74,33 @@ export async function generateMetadata({
   const keywordsExtra = parseStringArray(tMeta.raw("keywordsExtra"))
 
   return {
-    metadataBase: getMetadataBase(),
+    metadataBase,
     title,
     description,
     applicationName: tMeta("applicationName", { shortName: profile.shortName }),
     authors: [{ name: profile.name }],
+    creator: profile.name,
+    publisher: profile.name,
+    category: "technology",
     keywords: [...profile.focus, ...keywordsExtra, tMeta("role")],
+    alternates: {
+      canonical: `/${locale}`,
+      languages: alternateLanguages,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
     openGraph: {
       title,
       description,
       type: "profile",
+      siteName: `${profile.shortName} — Portfolio`,
+      url: `/${locale}`,
       locale: openGraphLocale[locale],
+      alternateLocale: routing.locales
+        .filter((candidate) => candidate !== locale)
+        .map((candidate) => openGraphLocale[candidate]),
     },
     twitter: {
       card: "summary_large_image",
@@ -118,6 +129,19 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale)
 
+  const tMeta = await getTranslations({ locale, namespace: "metadata" })
+  const role = tMeta("role")
+  const description = tMeta("description")
+  const structuredData = buildProfileStructuredData({
+    locale,
+    role,
+    description,
+    title: tMeta("titleTemplate", {
+      shortName: profile.shortName,
+      role,
+    }),
+  })
+
   return (
     <html
       lang={locale}
@@ -132,6 +156,12 @@ export default async function LocaleLayout({
     >
       <head>
         <BackgroundInitScript />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: serializeStructuredData(structuredData),
+          }}
+        />
       </head>
       <body>
         <NextIntlClientProvider>

@@ -21,6 +21,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import {
+  CV_TAILOR_OFFER_MAX_CHARS,
+  cvTailorResponseSchema,
+} from "@/types/cv-tailor"
 
 type CvDownloadButtonProps = {
   readonly className?: string
@@ -68,6 +72,22 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   const [step, setStep] = React.useState<Step>("purpose")
   const [offer, setOffer] = React.useState("")
   const [busy, setBusy] = React.useState(false)
+  const requestRef = React.useRef<AbortController | null>(null)
+
+  React.useEffect(
+    () => () => {
+      requestRef.current?.abort()
+    },
+    []
+  )
+
+  function resetDialog(): void {
+    requestRef.current?.abort()
+    requestRef.current = null
+    setStep("purpose")
+    setOffer("")
+    setBusy(false)
+  }
 
   function download(url: string): void {
     const a = document.createElement("a")
@@ -78,16 +98,23 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     fireConfetti()
     toast.success(tToast("title"), { description: tToast("description") })
     setOpen(false)
+    resetDialog()
   }
 
   async function tailorAndDownload(): Promise<void> {
+    requestRef.current?.abort()
+    const controller = new AbortController()
+    requestRef.current = controller
     setBusy(true)
+
     try {
       const response = await fetch("/api/cv-tailor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ offer, locale }),
+        signal: controller.signal,
       })
+      if (requestRef.current !== controller) return
       if (response.status === 429) {
         toast.error(tModal("tailorLimited"))
         return
@@ -96,30 +123,36 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
         toast.error(tModal("tailorError"))
         return
       }
-      const data = (await response.json()) as {
-        summary: string
-        keywords: string[]
+      const data = cvTailorResponseSchema.safeParse(await response.json())
+      if (!data.success || requestRef.current !== controller) {
+        if (requestRef.current === controller) {
+          toast.error(tModal("tailorError"))
+        }
+        return
       }
       const params = new URLSearchParams({
         locale,
         variant: "ats",
-        summary: data.summary,
-        keywords: data.keywords.join("|"),
+        summary: data.data.summary,
+        keywords: data.data.keywords.join("|"),
       })
       download(`/cv.pdf?${params.toString()}`)
-    } catch {
-      toast.error(tModal("tailorError"))
+    } catch (error) {
+      if (!(error instanceof DOMException && error.name === "AbortError")) {
+        toast.error(tModal("tailorError"))
+      }
     } finally {
-      setBusy(false)
+      if (requestRef.current === controller) {
+        requestRef.current = null
+        setBusy(false)
+      }
     }
   }
 
   function onOpenChange(next: boolean): void {
     setOpen(next)
     if (!next) {
-      setStep("purpose")
-      setOffer("")
-      setBusy(false)
+      resetDialog()
     }
   }
 
@@ -237,7 +270,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                     value={offer}
                     onChange={(event) => setOffer(event.target.value)}
                     placeholder={tModal("offerPlaceholder")}
-                    maxLength={4000}
+                    maxLength={CV_TAILOR_OFFER_MAX_CHARS}
                     rows={5}
                     className="w-full resize-none rounded-md border border-input bg-transparent p-2 text-xs leading-relaxed outline-none focus-visible:border-ring"
                   />

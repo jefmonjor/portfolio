@@ -1,15 +1,27 @@
 import { NextResponse } from "next/server"
 import OpenAI from "openai"
+import { z } from "zod"
 
+import type { Locale } from "@/i18n/routing"
 import { buildSystemPrompt } from "@/lib/assistant/dossier"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
+import {
+  CV_TAILOR_KEYWORDS_MAX,
+  CV_TAILOR_OFFER_MAX_CHARS,
+  CV_TAILOR_SUMMARY_MAX_CHARS,
+  cvTailorRequestSchema,
+  cvTailorResponseSchema,
+} from "@/types/cv-tailor"
 
 export const runtime = "nodejs"
 
 const MODEL = process.env.ASSISTANT_MODEL ?? "gpt-5-mini"
-const MAX_OFFER_CHARS = intEnv("CV_TAILOR_MAX_OFFER_CHARS", 4000)
+const MAX_OFFER_CHARS = Math.max(
+  40,
+  intEnv("CV_TAILOR_MAX_OFFER_CHARS", CV_TAILOR_OFFER_MAX_CHARS)
+)
 
-const TASK: Record<"es" | "en" | "ca", string> = {
+const TASK: Record<Locale, string> = {
   ca: `TASCA ESPECIAL — adaptar el CV a una oferta de feina.
 A sota hi ha el text d'una oferta. Amb NOMÉS la informació del dossier:
 1. Escriu un resum professional de 3-4 frases (màx. 700 caràcters) que connecti l'experiència REAL de Jefferson amb el que demana l'oferta. Tercera persona, sense inventar res: si l'oferta demana alguna cosa que Jefferson no té, no l'esmentis.
@@ -36,37 +48,42 @@ OFFER:
 `,
 }
 
+const upstreamTailoredSchema = z
+  .object({
+    summary: z.string(),
+    keywords: z.array(z.string()).optional().default([]),
+  })
+  .strict()
+
 export async function POST(request: Request) {
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 })
   }
 
-  if (checkLimit(requestIp(request)) !== "ok") {
-    return NextResponse.json({ error: "rate_limited" }, { status: 429 })
-  }
-
-  let body: { offer?: unknown; locale?: string }
+  let input: unknown
   try {
-    body = await request.json()
+    input = await request.json()
   } catch {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
 
-  const offer =
-    typeof body.offer === "string" ? body.offer.trim().slice(0, MAX_OFFER_CHARS) : ""
-  if (offer.length < 40) {
+  const parsed = cvTailorRequestSchema.safeParse(input)
+  if (!parsed.success) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
-  const locale =
-    body.locale === "en" ? "en" : body.locale === "ca" ? "ca" : "es"
+  const offer = parsed.data.offer.slice(0, MAX_OFFER_CHARS)
+
+  if (checkLimit(requestIp(request)) !== "ok") {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 })
+  }
 
   const client = new OpenAI()
 
   try {
     const response = await client.responses.create({
       model: MODEL,
-      instructions: buildSystemPrompt(locale),
-      input: [{ role: "user", content: TASK[locale] + offer }],
+      instructions: buildSystemPrompt(parsed.data.locale),
+      input: [{ role: "user", content: TASK[parsed.data.locale] + offer }],
       max_output_tokens: 600,
       reasoning: { effort: "low" },
       text: { verbosity: "low" },
@@ -77,23 +94,24 @@ export async function POST(request: Request) {
     if (!match) {
       return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
-    const parsed = JSON.parse(match[0]) as {
-      summary?: unknown
-      keywords?: unknown
-    }
-    const summary =
-      typeof parsed.summary === "string" ? parsed.summary.trim().slice(0, 900) : ""
-    const keywords = Array.isArray(parsed.keywords)
-      ? parsed.keywords
-          .filter((k): k is string => typeof k === "string")
-          .map((k) => k.trim())
-          .filter(Boolean)
-          .slice(0, 15)
-      : []
-    if (!summary) {
+    const upstream = upstreamTailoredSchema.safeParse(JSON.parse(match[0]))
+    if (!upstream.success) {
       return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
-    return NextResponse.json({ summary, keywords })
+
+    const result = cvTailorResponseSchema.safeParse({
+      summary: upstream.data.summary
+        .trim()
+        .slice(0, CV_TAILOR_SUMMARY_MAX_CHARS),
+      keywords: upstream.data.keywords
+        .map((keyword) => keyword.trim())
+        .filter(Boolean)
+        .slice(0, CV_TAILOR_KEYWORDS_MAX),
+    })
+    if (!result.success) {
+      return NextResponse.json({ error: "upstream" }, { status: 502 })
+    }
+    return NextResponse.json(result.data)
   } catch (error) {
     if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json({ error: "rate_limited" }, { status: 429 })

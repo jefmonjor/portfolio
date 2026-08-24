@@ -2,10 +2,9 @@ import ca from "@/messages/ca.json"
 import es from "@/messages/es.json"
 import en from "@/messages/en.json"
 
+import type { Locale } from "@/i18n/routing"
 import { contactEmail } from "@/lib/email"
 import { profile } from "@/lib/profile"
-
-type Locale = "es" | "en" | "ca"
 
 // The whole anti-hallucination strategy: a small, closed dossier sent in full
 // on every turn, plus strict rules. No retrieval, nothing to guess.
@@ -64,13 +63,13 @@ function buildDossier(locale: Locale): string {
 - Aquest xat funciona amb l'API d'OpenAI sobre un dossier tancat del perfil de Jefferson: només respon amb dades reals.
 - En espanyol, anglès i català, tema clar/fosc, disseny propi amb sistema documentat.`
       : locale === "es"
-      ? `SOBRE ESTA WEB (donde estás chateando):
+        ? `SOBRE ESTA WEB (donde estás chateando):
 - Construida por Jefferson con Next.js 16, TypeScript y Tailwind; código abierto en github.com/jefmonjor/portfolio. Desplegada en Vercel.
 - El botón "Descargar CV" ofrece tres versiones: CV completo editorial, CV ATS compacto (optimizado para filtros automáticos) y CV adaptado: pegas el texto de una oferta y la IA ajusta el resumen y las palabras clave con datos reales.
 - Tiene una terminal interactiva (icono en la barra superior o tecla \`) con comandos como help, projects, experience, cv o contact.
 - Este chat funciona con la API de OpenAI sobre un dossier cerrado del perfil de Jefferson: solo responde con datos reales.
 - En español, inglés y catalán, tema claro/oscuro, diseño propio con sistema documentado.`
-      : `ABOUT THIS WEBSITE (where you are chatting):
+        : `ABOUT THIS WEBSITE (where you are chatting):
 - Built by Jefferson with Next.js 16, TypeScript and Tailwind; open source at github.com/jefmonjor/portfolio. Deployed on Vercel.
 - The "Download CV" button offers three versions: full editorial CV, compact ATS CV (optimized for automated screening) and a tailored CV: paste a job offer and AI adjusts the summary and keywords using real data.
 - It has an interactive terminal (icon in the top bar or the \` key) with commands like help, projects, experience, cv or contact.
@@ -156,8 +155,7 @@ STYLE
 - If the visitor shows real hiring or collaboration interest, invite them to write to {email}.`,
 }
 
-export function buildSystemPrompt(locale: string): string {
-  const loc: Locale = locale === "en" ? "en" : "es"
-  const rules = RULES[loc].replaceAll("{email}", contactEmail())
-  return `${rules}\n\n=== DOSSIER ===\n${buildDossier(loc)}`
+export function buildSystemPrompt(locale: Locale): string {
+  const rules = RULES[locale].replaceAll("{email}", contactEmail())
+  return `${rules}\n\n=== DOSSIER ===\n${buildDossier(locale)}`
 }

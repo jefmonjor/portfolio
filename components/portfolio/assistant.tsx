@@ -12,8 +12,11 @@ import {
 import { Button } from "@/components/ui/button"
 import { contactEmail } from "@/lib/email"
 import { cn } from "@/lib/utils"
-
-type ChatMessage = { role: "user" | "assistant"; content: string }
+import {
+  ASSISTANT_MESSAGE_INPUT_CHARS,
+  assistantSuccessSchema,
+  type ChatMessage,
+} from "@/types/assistant"
 
 function Assistant() {
   const t = useTranslations("assistant")
@@ -53,8 +56,10 @@ function Assistant() {
       } else if (!res.ok) {
         reply = t("error", { email: contactEmail() })
       } else {
-        const data: { reply?: string; error?: string } = await res.json()
-        reply = data.reply || t("error", { email: contactEmail() })
+        const data = assistantSuccessSchema.safeParse(await res.json())
+        reply = data.success
+          ? data.data.reply
+          : t("error", { email: contactEmail() })
       }
     } catch {
       reply = t("error", { email: contactEmail() })
@@ -67,7 +72,10 @@ function Assistant() {
   const suggestions = [t("s1"), t("s2"), t("s3")]
 
   return (
-    <div data-print-hidden className="fixed right-4 bottom-4 z-40 sm:right-6 sm:bottom-6">
+    <div
+      data-print-hidden
+      className="fixed right-4 bottom-4 z-40 sm:right-6 sm:bottom-6"
+    >
       {open ? (
         <div className="flex h-[28rem] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-lg">
           <div className="flex items-center justify-between border-b border-border px-3 py-2">
@@ -81,7 +89,11 @@ function Assistant() {
               aria-label={t("close")}
               onClick={() => setOpen(false)}
             >
-              <HugeiconsIcon icon={Cancel01Icon} className="size-3.5" strokeWidth={1.75} />
+              <HugeiconsIcon
+                icon={Cancel01Icon}
+                className="size-3.5"
+                strokeWidth={1.75}
+              />
             </Button>
           </div>
 
@@ -134,7 +146,7 @@ function Assistant() {
               value={input}
               onChange={(event) => setInput(event.target.value)}
               placeholder={t("placeholder")}
-              maxLength={1500}
+              maxLength={ASSISTANT_MESSAGE_INPUT_CHARS}
               className="h-8 min-w-0 flex-1 rounded-md border border-input bg-transparent px-2 text-xs outline-none focus-visible:border-ring"
             />
             <Button
@@ -144,7 +156,11 @@ function Assistant() {
               disabled={busy || input.trim().length === 0}
               aria-label={t("send")}
             >
-              <HugeiconsIcon icon={ArrowUp02Icon} className="size-3.5" strokeWidth={1.75} />
+              <HugeiconsIcon
+                icon={ArrowUp02Icon}
+                className="size-3.5"
+                strokeWidth={1.75}
+              />
             </Button>
           </form>
           <p className="border-t border-border px-3 py-1.5 font-mono text-[9px] leading-relaxed tracking-wide text-muted-foreground">
@@ -160,7 +176,11 @@ function Assistant() {
           onClick={() => setOpen(true)}
           className="size-11 rounded-full bg-background shadow-md"
         >
-          <HugeiconsIcon icon={AiChat01Icon} className="size-5" strokeWidth={1.75} />
+          <HugeiconsIcon
+            icon={AiChat01Icon}
+            className="size-5"
+            strokeWidth={1.75}
+          />
         </Button>
       )}
     </div>

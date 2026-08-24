@@ -2,21 +2,12 @@ import { ImageResponse } from "next/og"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
-import { isLocale, routing } from "@/i18n/routing"
+import { isLocale } from "@/i18n/routing"
 import { profile } from "@/lib/profile"
 
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 export const alt = `${profile.shortName} — portfolio`
-
-export function generateImageMetadata() {
-  return routing.locales.map((locale) => ({
-    id: locale,
-    contentType,
-    size,
-    alt,
-  }))
-}
 
 export default async function OpengraphImage({
   params,

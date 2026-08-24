@@ -58,8 +58,8 @@ subdominios de proyectos. Zona completa:
 
 | Nombre | Tipo | Valor | Proxy | Sirve |
 | --- | --- | --- | --- | --- |
-| `jefmonjor.dev` | A | `76.76.21.21` | **DNS only** (nube gris) | Portfolio en Vercel |
-| `www` | CNAME | `cname.vercel-dns.com` | **DNS only** (nube gris) | Redirección a la raíz |
+| `jefmonjor.dev` | A | `76.76.21.21` | **DNS only** (nube gris) | Redirección al portfolio canónico |
+| `www` | CNAME | `cname.vercel-dns.com` | **DNS only** (nube gris) | Portfolio canónico en Vercel |
 | `pronoq` | A | IP del netcup | DNS only | PRONOQ en el VPS |
 | `*` (wildcard, opcional) | A | IP del netcup | DNS only | Futuros subdominios sin tocar DNS |
 

@@ -2,7 +2,12 @@ import { NextResponse } from "next/server"
 import OpenAI from "openai"
 
 import { buildSystemPrompt } from "@/lib/assistant/dossier"
+import { sanitizeMessages } from "@/lib/assistant/messages"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
+import {
+  assistantRequestSchema,
+  assistantSuccessSchema,
+} from "@/types/assistant"
 
 export const runtime = "nodejs"
 
@@ -33,59 +38,38 @@ function enumEnv<T extends string>(
   return allowed.includes(value as T) ? (value as T) : fallback
 }
 
-type ChatMessage = { role: "user" | "assistant"; content: string }
-
-function sanitize(input: unknown): ChatMessage[] | null {
-  if (!Array.isArray(input) || input.length === 0) return null
-  const out: ChatMessage[] = []
-  for (const item of input.slice(-MAX_TURNS)) {
-    if (
-      typeof item !== "object" ||
-      item === null ||
-      !("role" in item) ||
-      !("content" in item)
-    )
-      return null
-    const role = (item as ChatMessage).role
-    const content = (item as ChatMessage).content
-    if (role !== "user" && role !== "assistant") return null
-    if (typeof content !== "string" || content.trim().length === 0) return null
-    out.push({ role, content: content.slice(0, MAX_CHARS) })
-  }
-  if (out[0]?.role !== "user" || out[out.length - 1]?.role !== "user")
-    return null
-  return out
-}
-
 export async function POST(request: Request) {
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 })
+  }
+
+  let input: unknown
+  try {
+    input = await request.json()
+  } catch {
+    return NextResponse.json({ error: "bad_request" }, { status: 400 })
+  }
+
+  const parsed = assistantRequestSchema.safeParse(input)
+  if (!parsed.success) {
+    return NextResponse.json({ error: "bad_request" }, { status: 400 })
+  }
+
+  const messages = sanitizeMessages(parsed.data.messages, MAX_TURNS, MAX_CHARS)
+  if (!messages) {
+    return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
 
   if (checkLimit(requestIp(request)) !== "ok") {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 })
   }
 
-  let body: { messages?: unknown; locale?: string }
-  try {
-    body = await request.json()
-  } catch {
-    return NextResponse.json({ error: "bad_request" }, { status: 400 })
-  }
-
-  const messages = sanitize(body.messages)
-  if (!messages) {
-    return NextResponse.json({ error: "bad_request" }, { status: 400 })
-  }
-  const locale =
-    body.locale === "en" ? "en" : body.locale === "ca" ? "ca" : "es"
-
   const client = new OpenAI()
 
   try {
     const response = await client.responses.create({
       model: MODEL,
-      instructions: buildSystemPrompt(locale),
+      instructions: buildSystemPrompt(parsed.data.locale),
       input: messages,
       max_output_tokens: MAX_OUTPUT_TOKENS,
       reasoning: { effort: REASONING },
@@ -94,9 +78,9 @@ export async function POST(request: Request) {
 
     const reply = response.output_text?.trim()
     if (!reply) {
-      return NextResponse.json({ error: "empty" }, { status: 200 })
+      return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
-    return NextResponse.json({ reply })
+    return NextResponse.json(assistantSuccessSchema.parse({ reply }))
   } catch (error) {
     if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json({ error: "rate_limited" }, { status: 429 })

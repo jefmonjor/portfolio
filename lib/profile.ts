@@ -1,8 +1,8 @@
 import type { Profile } from "@/types/profile"
 
-export const portfolioUpdatedAt = "2026-08-12"
+export const portfolioUpdatedAt = "2026-08-24"
 
-export const siteUrl = "https://jefmonjor.dev"
+export const siteUrl = "https://www.jefmonjor.dev"
 
 export const profileTimeZone = "Europe/Andorra"
 
