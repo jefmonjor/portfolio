@@ -10,6 +10,7 @@ import {
 import { contactEmail } from "@/lib/email"
 import { profile, siteUrlShort } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
+import { CV_HEADINGS } from "@/server/cv/headings"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
 import type { CvTailoredContent } from "@/types/cv-tailor"
 
@@ -149,48 +150,15 @@ type CvTechnicalDocumentProps = {
   readonly tailored?: CvTailoredContent
 }
 
-// Standard headings that automated screeners recognize — the website's
-// editorial titles ("00 — Perfil", "Dónde he trabajado") parse worse.
-const HEADINGS = {
-  es: {
-    profile: "Resumen profesional",
-    skills: "Habilidades técnicas",
-    experience: "Experiencia profesional",
-    projects: "Proyectos propios",
-    education: "Formación",
-    languages: "Idiomas",
-    evidence: "Evidencia priorizada",
-    unverified: "Requisitos a confirmar",
-  },
-  ca: {
-    profile: "Resum professional",
-    skills: "Habilitats tècniques",
-    experience: "Experiència professional",
-    projects: "Projectes propis",
-    education: "Formació",
-    languages: "Idiomes",
-    evidence: "Evidència prioritzada",
-    unverified: "Requisits per confirmar",
-  },
-  en: {
-    profile: "Professional Summary",
-    skills: "Technical Skills",
-    experience: "Professional Experience",
-    projects: "Personal Projects",
-    education: "Education",
-    languages: "Languages",
-    evidence: "Prioritized evidence",
-    unverified: "Requirements to confirm",
-  },
-} as const
-
-// Keep the technical variant lean: the strongest personal products only.
+// Every personal product, ordered by weight. The two private ones carry no
+// URL; the rest are open in one click, which is the point of listing them.
 const TECHNICAL_PROJECT_IDS = [
   "transolido",
   "othertales",
   "porrix",
   "corte1d",
   "tavory",
+  "contactqr",
   "portfolio",
 ] as const
 
@@ -216,7 +184,7 @@ function CvTechnicalDocument({
   locale,
   tailored,
 }: CvTechnicalDocumentProps) {
-  const headings = HEADINGS[locale]
+  const headings = CV_HEADINGS[locale]
   // Server-rendered on demand, so the plain address never reaches the
   // static HTML — safe to print it in the downloadable document.
   const email = contactEmail()
@@ -257,15 +225,17 @@ function CvTechnicalDocument({
         <Text style={styles.contactLine}>
           {`${email} · `}
           {linkedin ? (
+            // One string per link: split children extract as
+            // "linkedin.com/in/ jefmonjor" and break the parsed URL.
             <Link src={linkedin.href} style={styles.contactLink}>
-              linkedin.com/in/{linkedin.handle}
+              {`linkedin.com/in/${linkedin.handle ?? ""}`}
             </Link>
           ) : null}
           {github ? (
             <>
               {" · "}
               <Link src={github.href} style={styles.contactLink}>
-                github.com/{github.handle}
+                {`github.com/${github.handle ?? ""}`}
               </Link>
             </>
           ) : null}
@@ -286,16 +256,25 @@ function CvTechnicalDocument({
         ) : null}
 
         <Text style={styles.sectionTitle}>{headings.skills}</Text>
-        {profile.skills.map((group) => (
-          <Text key={group.id} style={styles.skillLine}>
-            <Text style={styles.skillLabel}>
-              {labels.skillGroupName(group.id)}:{" "}
+        {profile.skills
+          .filter((group) => group.id !== "practice")
+          .map((group) => (
+            <Text key={group.id} style={styles.skillLine}>
+              <Text style={styles.skillLabel}>
+                {labels.skillGroupName(group.id)}:{" "}
+              </Text>
+              {prioritizeItems(group.items, tailored?.keywords ?? []).join(
+                ", "
+              )}
             </Text>
-            {prioritizeItems(
-              group.id === "practice" ? labels.practiceItems : group.items,
-              tailored?.keywords ?? []
-            ).join(", ")}
-          </Text>
+          ))}
+
+        <Text style={styles.sectionTitle}>{headings.practices}</Text>
+        {labels.practiceItems.map((item) => (
+          <View key={item} style={styles.bullet} wrap={false}>
+            <Text style={styles.bulletMark}>•</Text>
+            <Text style={styles.bulletText}>{item}</Text>
+          </View>
         ))}
 
         <Text style={styles.sectionTitle}>{headings.experience}</Text>
@@ -312,6 +291,9 @@ function CvTechnicalDocument({
               <Text style={styles.entryOrg}>
                 {entry.organization} · {data.location}
               </Text>
+              {data.summary ? (
+                <Text style={styles.paragraph}>{data.summary}</Text>
+              ) : null}
               {data.highlights.map((hl, i) => (
                 <View key={i} style={styles.bullet}>
                   <Text style={styles.bulletMark}>•</Text>
@@ -385,4 +367,4 @@ function CvTechnicalDocument({
   )
 }
 
-export { CvTechnicalDocument }
+export { CvTechnicalDocument, TECHNICAL_PROJECT_IDS }

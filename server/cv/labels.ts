@@ -93,8 +93,16 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     projectEntry: (id): CvProjectEntry => {
       const project = profile.projects.find((entry) => entry.id === id)
       return {
-        name: tProjectEntries(`${id}.name`),
-        summary: tProjectEntries(`${id}.summary`),
+        // "Este portfolio" and "el sitio que estás leyendo" only make sense on
+        // the site itself; a CV reader needs copy that stands on its own.
+        name:
+          id === "portfolio"
+            ? tCv("portfolioName")
+            : tProjectEntries(`${id}.name`),
+        summary:
+          id === "portfolio"
+            ? tCv("portfolioSummary")
+            : tProjectEntries(`${id}.summary`),
         status: project
           ? `${tProjects(`status.${project.stage}`)} · ${tProjects(`status.${project.visibility}`)}`
           : "",

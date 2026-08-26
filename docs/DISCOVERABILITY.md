@@ -41,10 +41,48 @@ sustituirlos por «AI Engineer», dejar la sección **Servicios** desactivada (n
 hay oferta freelance) y añadir portfolio, GitHub, Transolido y Corte1D en
 `Destacados`.
 
-## Nothiring y perfiles antiguos
+## Nothiring: aparecer en su radar
 
-- Entrar en [Nothiring Community](https://nothiring.me/es/community), completar el perfil y activar el opt-in de recruiting.
-- Usar la misma URL, ubicación, titular y disponibilidad que en GitHub y LinkedIn.
+Nothiring no publica ofertas: sus **agentes autónomos** reciben una job
+description y buscan perfiles en LinkedIn, GitHub, la web abierta, sus bases de
+datos, su red y comunidades técnicas, para entregar entre uno y tres candidatos
+por vacante. Eso deja tres vías, y solo una la cubre este repositorio.
+
+### 1. Alta directa en su base de datos — lo más rápido, y solo puede hacerlo Jefferson
+
+- Entrar en [Nothiring Community](https://nothiring.me/es/community) y completar el perfil en [app.nothiring.me](https://app.nothiring.me).
+- Activar el **opt-in de recruiting**: viene desactivado por defecto, así que sin ese paso no llega ninguna oferta.
+- Usar la misma URL, ubicación, titular y disponibilidad que en GitHub y LinkedIn: los agentes correlacionan fuentes y las contradicciones restan.
+
+### 2. LinkedIn y GitHub — las dos fuentes que más pesan
+
+- Aplicar [`LINKEDIN.md`](LINKEDIN.md) entero, con la URL `jefmonjor.dev` en el campo de sitio web.
+- Copiar [`GITHUB_PROFILE_README.md`](GITHUB_PROFILE_README.md) al perfil y rellenar bio, empresa, ubicación y web.
+- Ambos enlaces son además los dos backlinks de más autoridad hacia el portfolio, así que trabajan en la vía 3.
+
+### 3. La web abierta — lo que sí cubre el repositorio
+
+Ya publicado: metadata localizada, canonical y `hreflang`, sitemap, JSON-LD de
+perfil con `hasOccupation`, `/llms.txt` con los datos que pregunta un agente de
+sourcing (cargo actual, posicionamiento objetivo, años, ubicación,
+disponibilidad, idiomas), `/cv.md` con el CV completo en texto plano y
+`/cv.json` en formato [MAC](https://github.com/getmanfred/mac), el esquema
+abierto que varias plataformas de recruiting importan directamente.
+
+Dos datos del MAC son juicios que conviene revisar: el tamaño de cada empresa
+(`organizationType` en `lib/profile.ts`) y el nivel de inglés, publicado como
+`Limited working proficiency` porque es lo que corresponde a un B1 en la
+enumeración del esquema.
+
+Falta lo que no puede hacer el código, y es la diferencia entre estar publicado
+y estar indexado:
+
+- Dar de alta el dominio en Google Search Console y Bing Webmaster Tools, enviar el sitemap y solicitar indexación de `/en`, `/es` y `/ca`.
+- Conseguir los primeros backlinks: perfil de GitHub, campo web de LinkedIn, y los repos públicos con `homepage` apuntando al portfolio.
+- Comprobar cada pocas semanas que el nombre y `jefmonjor.dev` devuelven el portfolio en Google y Bing. Mientras no aparezca ahí, ningún agente que busque en la web abierta lo va a encontrar.
+
+## Perfiles antiguos
+
 - Desactivar el perfil antiguo de Freelancer si ya no se utiliza, para evitar que el precio y la descripción histórica contradigan el perfil actual.
 
 ## Después del despliegue

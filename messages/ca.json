@@ -94,7 +94,9 @@
   },
   "cv": {
     "headline": "Producte de principi a fi sobre backends Java/Spring: arquitectura mantenible, integració amb sistemes crítics i IA aplicada on aporta valor real.",
-    "summary": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. Migracions complexes, integració amb sistemes legacy i arquitectures hexagonals i de microserveis. En paral·lel, productes propis —en funcionament i en desenvolupament— que cobreixen el cicle complet: producte, backend, desplegament i IA aplicada amb dades validades i alternatives manuals."
+    "summary": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. Migracions complexes, integració amb sistemes legacy i arquitectures hexagonals i de microserveis. En paral·lel, productes propis —en funcionament i en desenvolupament— que cobreixen el cicle complet: producte, backend, desplegament i IA aplicada amb dades validades i alternatives manuals.",
+    "portfolioName": "Portfolio personal",
+    "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + tRPC + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert."
   },
   "metrics": {
     "ariaLabel": "Mètriques de trajectòria",
@@ -135,12 +137,12 @@
         "end": "present",
         "summary": "Arquitectura backend i gestió tècnica en banca privada: estàndards de desenvolupament, integració amb sistemes core i avaluació de solucions d'IA.",
         "highlights": [
-          "Disseny d'arquitectura backend (Java 21, Spring Boot 3) sota Clean Architecture i arquitectura hexagonal; nou homebanking amb 15+ components.",
-          "Migració Spring Boot 2 → 3 (namespace Jakarta) i de Tomcat 7/8 → 9/10 en més de 40 VMs.",
-          "Integració amb sistemes legacy (COBOL, AS400, DB2), evolució de les APIs de carriers d'enviament i implantació de Keycloak amb MFA i regles per jurisdicció.",
-          "Qualitat de codi: SonarQube integrat a tots els repositoris, incloent-hi l'anàlisi de +12.000 fitxers COBOL.",
-          "Adopció d'IA al departament: desplegament de Gemini Code Assist per a tot l'equip.",
-          "Gestió tècnica de proveïdors, decisions build vs buy i control del deute tècnic sobre OpenShift (OCP4)."
+          "Dissenyo l'arquitectura backend (Java 21, Spring Boot 3) sota Clean Architecture i arquitectura hexagonal; nou homebanking amb 15+ components.",
+          "Lidero la migració de Spring Boot 2 → 3 (namespace Jakarta) i de Tomcat 7/8 → 9/10 en més de 40 VMs.",
+          "Integro sistemes legacy (COBOL, AS400, DB2), evoluciono les APIs de carriers d'enviament i implanto Keycloak amb MFA i regles per jurisdicció.",
+          "Estenc SonarQube a tots els repositoris, incloent-hi l'anàlisi de +12.000 fitxers COBOL.",
+          "Vaig desplegar Gemini Code Assist per a tot l'equip com a primera adopció d'IA del departament.",
+          "Gestiono tècnicament els proveïdors, decideixo build vs buy i controlo el deute tècnic sobre OpenShift (OCP4)."
         ]
       },
       "elabogado-2022": {
@@ -150,10 +152,10 @@
         "end": "Set 2024",
         "summary": "Desenvolupament full-stack i modernització de la plataforma legal líder a Espanya.",
         "highlights": [
-          "Modernització de legacy: migració de Struts2 a React + Spring Boot.",
-          "Disseny de microserveis i APIs REST segures.",
-          "Millora del rendiment, la mantenibilitat i l'evolució de l'arquitectura.",
-          "Gestió de continguts i landing pages amb WordPress."
+          "Vaig modernitzar el legacy migrant de Struts2 a React + Spring Boot.",
+          "Vaig dissenyar microserveis i APIs REST segures.",
+          "Vaig millorar el rendiment i la mantenibilitat, i vaig evolucionar l'arquitectura.",
+          "Vaig gestionar continguts i landing pages amb WordPress."
         ]
       },
       "zemsania-2021": {
@@ -163,9 +165,9 @@
         "end": "Abr 2022",
         "summary": "Desenvolupament backend de microserveis per a Vodafone.",
         "highlights": [
-          "Microserveis amb Java i Spring Boot per a sistemes distribuïts.",
-          "Disseny i documentació d'APIs amb Swagger / OpenAPI.",
-          "Treball en equip distribuït amb Jira, Confluence i Slack."
+          "Vaig desenvolupar microserveis amb Java i Spring Boot per a sistemes distribuïts.",
+          "Vaig dissenyar i documentar APIs amb Swagger / OpenAPI.",
+          "Vaig treballar en equip distribuït amb Jira, Confluence i Slack."
         ]
       },
       "keapps-2020": {
@@ -175,8 +177,8 @@
         "end": "Jul 2021",
         "summary": "Projecte Kronos (Endesa): sistemes Java Enterprise i solucions Big Data.",
         "highlights": [
-          "Solucions Big Data amb Hadoop, Spark i Cassandra sobre dades de consum energètic.",
-          "Processos MapReduce sobre HDFS/YARN i optimització de batch crítics."
+          "Vaig construir solucions Big Data amb Hadoop, Spark i Cassandra sobre dades de consum energètic.",
+          "Vaig optimitzar processos MapReduce sobre HDFS/YARN i batch crítics."
         ]
       },
       "ayesa-2019": {
@@ -186,8 +188,8 @@
         "end": "Abr 2020",
         "summary": "Projecte Kronos (Endesa): desenvolupament Java i pipelines de dades.",
         "highlights": [
-          "Desenvolupament i manteniment de sistemes Java Enterprise (SOAP, XML) amb interfícies JSP i PrimeFaces.",
-          "Pipelines de dades a gran escala amb MapReduce i emmagatzematge a S3."
+          "Vaig desenvolupar i mantenir sistemes Java Enterprise (SOAP, XML) amb interfícies JSP i PrimeFaces.",
+          "Vaig construir pipelines de dades a gran escala amb MapReduce i emmagatzematge a S3."
         ]
       }
     }
@@ -209,7 +211,7 @@
       "Desenvolupament guiat per especificacions per a canvis acotats",
       "Contractes tipats i validació a les fronteres de confiança",
       "Comprovacions automàtiques i desplegaments quan el producte els necessita",
-      "Vitest, TypeScript estricte i builds de producció en aquest portfolio",
+      "Vitest, TypeScript estricte i builds de producció als projectes propis",
       "Disseny d'arquitectures de referència",
       "Gestió tècnica de proveïdors",
       "Scrum (certificació SMPC)"
@@ -338,7 +340,7 @@
     "entries": {
       "smpc-cert": {
         "title": "Scrum Master Professional Certified (SMPC)",
-        "dates": "Certificació"
+        "dates": "2023"
       },
       "beng-software": {
         "title": "Enginyeria del Software",

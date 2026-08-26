@@ -110,6 +110,18 @@ export function buildProfileStructuredData({
             }
           : {}),
         knowsAbout,
+        // Spells out the professional role for agents that read the graph
+        // instead of the prose: what he does, under which standard category.
+        hasOccupation: {
+          "@type": "Occupation",
+          name: currentJobTitle,
+          occupationalCategory: "15-1252.00 Software Developers",
+          skills: profile.focus.join(", "),
+          occupationLocation: {
+            "@type": "Place",
+            name: profile.location,
+          },
+        },
         knowsLanguage: [
           {
             "@type": "Language",

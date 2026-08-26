@@ -94,7 +94,9 @@
   },
   "cv": {
     "headline": "End-to-end product work on Java/Spring backends: maintainable architecture, integration with critical systems, and AI applied where it adds real value.",
-    "summary": "Six-plus years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and manual fallbacks."
+    "summary": "Six-plus years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and manual fallbacks.",
+    "portfolioName": "Personal portfolio",
+    "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + tRPC + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source."
   },
   "metrics": {
     "ariaLabel": "Track-record metrics",
@@ -135,12 +137,12 @@
         "end": "present",
         "summary": "Backend architecture and technical management in private banking: development standards, core-systems integration, and evaluation of AI solutions.",
         "highlights": [
-          "Designed backend architecture (Java 21, Spring Boot 3) under Clean Architecture and hexagonal principles; new homebanking with 15+ components.",
-          "Led the Spring Boot 2 → 3 migration (Jakarta namespace) and Tomcat 7/8 → 9/10 across 40+ VMs.",
-          "Integrated legacy systems (COBOL, AS400, DB2), evolved shipping-carrier integration APIs, and rolled out Keycloak with MFA and per-jurisdiction rules.",
-          "Code quality: SonarQube integrated across every repository, including analysis of 12,000+ COBOL files.",
-          "AI adoption in the department: rolled out Gemini Code Assist for the whole team.",
-          "Managed vendors technically, drove build-vs-buy decisions, and controlled technical debt on OpenShift (OCP4)."
+          "Design backend architecture (Java 21, Spring Boot 3) under Clean Architecture and hexagonal principles; new homebanking with 15+ components.",
+          "Lead the Spring Boot 2 → 3 migration (Jakarta namespace) and Tomcat 7/8 → 9/10 across 40+ VMs.",
+          "Integrate legacy systems (COBOL, AS400, DB2), evolve shipping-carrier integration APIs, and roll out Keycloak with MFA and per-jurisdiction rules.",
+          "Extend SonarQube across every repository, including analysis of 12,000+ COBOL files.",
+          "Rolled out Gemini Code Assist for the whole team as the department's first AI adoption.",
+          "Manage vendors technically, drive build-vs-buy decisions, and control technical debt on OpenShift (OCP4)."
         ]
       },
       "elabogado-2022": {
@@ -152,8 +154,8 @@
         "highlights": [
           "Modernized legacy code: migrated Struts2 to React + Spring Boot.",
           "Designed microservices and secure REST APIs.",
-          "Improved performance, maintainability, and architecture evolution.",
-          "Content and landing-page management with WordPress."
+          "Improved performance and maintainability, and evolved the architecture.",
+          "Managed content and landing pages with WordPress."
         ]
       },
       "zemsania-2021": {
@@ -165,7 +167,7 @@
         "highlights": [
           "Built microservices with Java and Spring Boot for distributed systems.",
           "Designed and documented APIs with Swagger / OpenAPI.",
-          "Distributed teamwork with Jira, Confluence and Slack."
+          "Worked in a distributed team with Jira, Confluence and Slack."
         ]
       },
       "keapps-2020": {
@@ -175,8 +177,8 @@
         "end": "Jul 2021",
         "summary": "Kronos project (Endesa): enterprise Java systems and Big Data solutions.",
         "highlights": [
-          "Big Data solutions with Hadoop, Spark and Cassandra over energy-consumption data.",
-          "MapReduce jobs on HDFS/YARN and optimization of critical batch processes."
+          "Built Big Data solutions with Hadoop, Spark and Cassandra over energy-consumption data.",
+          "Optimized MapReduce jobs on HDFS/YARN and critical batch processes."
         ]
       },
       "ayesa-2019": {
@@ -187,7 +189,7 @@
         "summary": "Kronos project (Endesa): Java development and data pipelines.",
         "highlights": [
           "Developed and maintained enterprise Java systems (SOAP, XML) with JSP and PrimeFaces interfaces.",
-          "Large-scale data pipelines with MapReduce and S3 storage."
+          "Built large-scale data pipelines with MapReduce and S3 storage."
         ]
       }
     }
@@ -209,7 +211,7 @@
       "Spec-driven development for scoped product changes",
       "Typed contracts and validation at trust boundaries",
       "Automated checks and deployment workflows where the product needs them",
-      "Vitest, strict TypeScript and production builds in this portfolio",
+      "Vitest, strict TypeScript and production builds across my own projects",
       "Reference architecture design",
       "Technical vendor management",
       "Scrum (SMPC certified)"
@@ -338,7 +340,7 @@
     "entries": {
       "smpc-cert": {
         "title": "Scrum Master Professional Certified (SMPC)",
-        "dates": "Certification"
+        "dates": "2023"
       },
       "beng-software": {
         "title": "Software Engineering",

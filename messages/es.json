@@ -94,7 +94,9 @@
   },
   "cv": {
     "headline": "Producto de principio a fin sobre backends Java/Spring: arquitectura mantenible, integración con sistemas críticos e IA aplicada donde aporta valor real.",
-    "summary": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. Migraciones complejas, integración con sistemas legacy y arquitecturas hexagonales y de microservicios. En paralelo, productos propios —en funcionamiento y en desarrollo— que cubren el ciclo completo: producto, backend, despliegue e IA aplicada con datos validados y alternativas manuales."
+    "summary": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. Migraciones complejas, integración con sistemas legacy y arquitecturas hexagonales y de microservicios. En paralelo, productos propios —en funcionamiento y en desarrollo— que cubren el ciclo completo: producto, backend, despliegue e IA aplicada con datos validados y alternativas manuales.",
+    "portfolioName": "Portfolio personal",
+    "portfolioSummary": "Portfolio y CV trilingüe con stack tipado Next.js + tRPC + Zod: tres CV en PDF generados en servidor desde una única fuente de datos, asistente de IA acotado a un dossier cerrado con límites de consumo, terminal interactiva y SEO/GEO completo. Código abierto."
   },
   "metrics": {
     "ariaLabel": "Métricas de trayectoria",
@@ -135,12 +137,12 @@
         "end": "present",
         "summary": "Arquitectura backend y gestión técnica en banca privada: estándares de desarrollo, integración con sistemas core y evaluación de soluciones de IA.",
         "highlights": [
-          "Diseño de arquitectura backend (Java 21, Spring Boot 3) bajo Clean Architecture y arquitectura hexagonal; nuevo homebanking con 15+ componentes.",
-          "Migración Spring Boot 2 → 3 (namespace Jakarta) y de Tomcat 7/8 → 9/10 en más de 40 VMs.",
-          "Integración con sistemas legacy (COBOL, AS400, DB2), evolución de las APIs de carriers de envío e implantación de Keycloak con MFA y reglas por jurisdicción.",
-          "Calidad de código: SonarQube integrado en todos los repositorios, incluido el análisis de +12.000 ficheros COBOL.",
-          "Adopción de IA en el departamento: despliegue de Gemini Code Assist para todo el equipo.",
-          "Gestión técnica de proveedores, decisiones build vs buy y control de deuda técnica sobre OpenShift (OCP4)."
+          "Diseño la arquitectura backend (Java 21, Spring Boot 3) bajo Clean Architecture y arquitectura hexagonal; nuevo homebanking con 15+ componentes.",
+          "Lidero la migración de Spring Boot 2 → 3 (namespace Jakarta) y de Tomcat 7/8 → 9/10 en más de 40 VMs.",
+          "Integro sistemas legacy (COBOL, AS400, DB2), evoluciono las APIs de carriers de envío e implanto Keycloak con MFA y reglas por jurisdicción.",
+          "Extiendo SonarQube a todos los repositorios, incluido el análisis de +12.000 ficheros COBOL.",
+          "Desplegué Gemini Code Assist para todo el equipo como primera adopción de IA del departamento.",
+          "Gestiono técnicamente a los proveedores, decido build vs buy y controlo la deuda técnica sobre OpenShift (OCP4)."
         ]
       },
       "elabogado-2022": {
@@ -150,10 +152,10 @@
         "end": "Sep 2024",
         "summary": "Desarrollo full-stack y modernización de plataforma legal líder en España.",
         "highlights": [
-          "Modernización de legacy: migración de Struts2 a React + Spring Boot.",
-          "Diseño de microservicios y APIs REST seguras.",
-          "Mejora de rendimiento, mantenibilidad y evolución de la arquitectura.",
-          "Gestión de contenidos y landing pages con WordPress."
+          "Modernicé el legacy migrando de Struts2 a React + Spring Boot.",
+          "Diseñé microservicios y APIs REST seguras.",
+          "Mejoré el rendimiento y la mantenibilidad, y evolucioné la arquitectura.",
+          "Gestioné contenidos y landing pages con WordPress."
         ]
       },
       "zemsania-2021": {
@@ -163,9 +165,9 @@
         "end": "Abr 2022",
         "summary": "Desarrollo backend de microservicios para Vodafone.",
         "highlights": [
-          "Microservicios con Java y Spring Boot para sistemas distribuidos.",
-          "Diseño y documentación de APIs con Swagger / OpenAPI.",
-          "Trabajo en equipo distribuido con Jira, Confluence y Slack."
+          "Desarrollé microservicios con Java y Spring Boot para sistemas distribuidos.",
+          "Diseñé y documenté APIs con Swagger / OpenAPI.",
+          "Trabajé en equipo distribuido con Jira, Confluence y Slack."
         ]
       },
       "keapps-2020": {
@@ -175,8 +177,8 @@
         "end": "Jul 2021",
         "summary": "Proyecto Kronos (Endesa): sistemas Java Enterprise y soluciones Big Data.",
         "highlights": [
-          "Soluciones Big Data con Hadoop, Spark y Cassandra sobre datos de consumo energético.",
-          "Procesos MapReduce sobre HDFS/YARN y optimización de batch críticos."
+          "Construí soluciones Big Data con Hadoop, Spark y Cassandra sobre datos de consumo energético.",
+          "Optimicé procesos MapReduce sobre HDFS/YARN y batch críticos."
         ]
       },
       "ayesa-2019": {
@@ -186,8 +188,8 @@
         "end": "Abr 2020",
         "summary": "Proyecto Kronos (Endesa): desarrollo Java y pipelines de datos.",
         "highlights": [
-          "Desarrollo y mantenimiento de sistemas Java Enterprise (SOAP, XML) con interfaces JSP y PrimeFaces.",
-          "Pipelines de datos a gran escala con MapReduce y almacenamiento en S3."
+          "Desarrollé y mantuve sistemas Java Enterprise (SOAP, XML) con interfaces JSP y PrimeFaces.",
+          "Construí pipelines de datos a gran escala con MapReduce y almacenamiento en S3."
         ]
       }
     }
@@ -209,7 +211,7 @@
       "Desarrollo guiado por especificaciones para cambios acotados",
       "Contratos tipados y validación en fronteras de confianza",
       "Comprobaciones automáticas y despliegues cuando el producto los necesita",
-      "Vitest, TypeScript estricto y builds de producción en este portfolio",
+      "Vitest, TypeScript estricto y builds de producción en los proyectos propios",
       "Diseño de arquitecturas de referencia",
       "Gestión técnica de proveedores",
       "Scrum (certificación SMPC)"
@@ -338,7 +340,7 @@
     "entries": {
       "smpc-cert": {
         "title": "Scrum Master Professional Certified (SMPC)",
-        "dates": "Certificación"
+        "dates": "2023"
       },
       "beng-software": {
         "title": "Ingeniería del Software",

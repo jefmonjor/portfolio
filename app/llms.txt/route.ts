@@ -29,14 +29,31 @@ const content = `# Jefferson Montesdeoca Jordán
 - [Contact QR](https://contactqr.jefmonjor.dev): Lightweight digital contact card and vCard utility.
 - [Portfolio source](https://github.com/jefmonjor/portfolio): Next.js, TypeScript, tRPC, Zod, localized CV generation, and a bounded AI assistant.
 
-## Engineering evidence
+## Machine-readable CV
 
-- Current work: Solutions Architect / Technical PM at Andbank.
-- Backend foundation: Java, Spring Boot, hexagonal architecture, microservices, and legacy integration.
-- Applied AI: closed profile dossier, typed and runtime-validated boundaries, usage caps, and manual fallbacks.
+- [CV in Markdown](${siteUrl}/cv.md): Full technical CV as plain text — add "?locale=es" or "?locale=ca" for the Spanish and Catalan versions.
+- [CV in PDF](${siteUrl}/cv.pdf?variant=technical): Same content, single-column technical layout. "variant=general" returns the editorial one.
+- [CV in MAC JSON](${siteUrl}/cv.json): Same content as a Manfred Awesomic CV, the open interchange schema used by recruiting platforms — profile, career preferences, jobs, public artifacts, skills, languages and studies as structured data.
+
+## Profile facts
+
+- Name: Jefferson Montesdeoca Jordán (handle: jefmonjor).
+- Current role: Solutions Architect / Technical PM at Andbank, since September 2024.
+- Target positioning: Product Engineer focused on AI and backend. This is the sought role, not the current contractual title.
+- Experience: 6+ years of production software across banking, legal, and energy, in five companies.
+- Based in: Andorra la Vella, Andorra. Time zone CET/CEST.
+- Open to: relevant opportunities in Andorra, Spain, or remote within European time zones. Selectively, while employed.
+- Not offering: freelance work, consulting services, or contracting.
 - Languages: Spanish (native) and English (B1 professional).
 
-This file summarizes public, verifiable portfolio content. It does not include private projects, private contact data, salary expectations, or availability dates.
+## Engineering evidence
+
+- Backend foundation: Java 21, Spring Boot 3, hexagonal and clean architecture, microservices, and legacy integration (COBOL, AS400, DB2).
+- Platform: Docker, Kubernetes, OpenShift, Keycloak and OAuth2, CI/CD on GitHub Actions and Jenkins.
+- Product: TypeScript, Next.js, React, PostgreSQL, and full ownership from problem to deployment in personal products.
+- Applied AI: closed profile dossier, typed and runtime-validated boundaries, usage caps, and manual fallbacks.
+
+This file summarizes public, verifiable portfolio content. It does not include private project internals, private contact data, salary expectations, or start dates. Write through the contact section of the portfolio for anything not covered here.
 `
 
 export function GET(): Response {

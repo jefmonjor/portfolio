@@ -6,9 +6,20 @@ export type Social = {
   handle?: string
 }
 
+/** Organization sizes as the MAC (Manfred Awesomic CV) schema names them. */
+export type OrganizationType =
+  | "startup"
+  | "SME"
+  | "bigCorp"
+  | "publicAdministration"
+  | "NGO"
+  | "academicalInstitution"
+  | "other"
+
 export type ExperienceEntry = {
   id: string
   organization: string
+  organizationType: OrganizationType
   location: string
   startISO: string
   endISO: string | "present"
@@ -22,6 +33,9 @@ export type EducationEntry = {
   location?: string
   /** Academic degrees back `alumniOf`; certifications never do. */
   kind: "degree" | "certification"
+  /** Year or year-month. Exports that need a full date anchor it to day one. */
+  startISO: string
+  endISO?: string
 }
 
 export type SkillGroup = {
@@ -29,8 +43,19 @@ export type SkillGroup = {
   items: ReadonlyArray<string>
 }
 
+/** Proficiency wording taken verbatim from the MAC schema enumeration. */
+export type LanguageProficiency =
+  | "Elementary proficiency"
+  | "Limited working proficiency"
+  | "Professional working proficiency"
+  | "Full professional proficiency"
+  | "Native or bilingual proficiency"
+
 export type LanguageEntry = {
   id: string
+  /** ISO 639-1 code, as machine-readable exports require. */
+  code: string
+  level: LanguageProficiency
 }
 
 export type ProjectStage = "live" | "development"

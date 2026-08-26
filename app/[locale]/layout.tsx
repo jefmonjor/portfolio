@@ -174,6 +174,20 @@ export default async function LocaleLayout({
       <head>
         <BackgroundInitScript />
         <link rel="describedby" href="/llms.txt" />
+        {/* Points crawlers and sourcing agents at the plain-text CV; a PDF
+            is the last thing they can read. */}
+        <link
+          rel="alternate"
+          type="text/markdown"
+          href={`/cv.md?locale=${locale}`}
+          title="CV"
+        />
+        <link
+          rel="alternate"
+          type="application/json"
+          href={`/cv.json?locale=${locale}`}
+          title="CV (MAC)"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
