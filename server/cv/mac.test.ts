@@ -87,6 +87,16 @@ describe("MAC export", () => {
     )
   })
 
+  it("says the location terms a platform filters on", () => {
+    const location = mac.careerPreferences.requirements.location
+
+    expect(location.openToRemote).toBe(true)
+    expect(location.remoteOnly).toBe(false)
+    // Defaults to false in the schema, so leaving it out reads as "will not
+    // move" — which would filter out every on-site and hybrid role.
+    expect(location.openToRelocate).toBe(true)
+  })
+
   it("offers employment, never freelance", () => {
     expect(mac.careerPreferences.requirements.contractTypes).toEqual([
       "permanent",

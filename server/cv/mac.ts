@@ -102,6 +102,7 @@ export function buildMacCv(labels: CvLabels, locale: Locale) {
         location: {
           openToRemote: true,
           remoteOnly: false,
+          openToRelocate: true,
           comments: labels.availability,
         },
       },
