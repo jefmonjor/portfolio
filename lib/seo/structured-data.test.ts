@@ -55,6 +55,23 @@ describe("profile structured data", () => {
     )
   })
 
+  it("publishes the certification body as a credential, never as an alma mater", () => {
+    const data = buildProfileStructuredData({
+      locale: "en",
+      title: "Jefferson Montesdeoca — Product Engineer · AI & Backend",
+      description: "Professional profile.",
+      currentJobTitle: "Solutions Architect / Technical PM",
+      publicProjects: [],
+    })
+    const person = data["@graph"].find(
+      (node) => "@type" in node && node["@type"] === "Person"
+    ) as { alumniOf: ReadonlyArray<{ name: string }> }
+
+    expect(person.alumniOf.map(({ name }) => name)).toEqual([
+      "Universidad de Sevilla",
+    ])
+  })
+
   it("escapes markup-significant characters before embedding JSON", () => {
     expect(serializeStructuredData({ value: "</script>" })).toBe(
       '{"value":"\\u003c/script>"}'

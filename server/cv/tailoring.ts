@@ -22,18 +22,21 @@ type TailoringEvidence = {
   }>
 }
 
+// The focus sentence is written server-side from canonical facts, so it must
+// read like the rest of the summary: what is already evidenced for this role,
+// never a claim the profile does not back.
 const COPY: Record<Locale, { focus: string }> = {
   ca: {
     focus:
-      "Per a aquesta oferta, la selecció prioritza evidència verificable en {keywords}{projects}.",
+      "Per a aquesta posició, l'evidència més directa es troba en {keywords}{projects}.",
   },
   es: {
     focus:
-      "Para esta oferta, la selección prioriza evidencia verificable en {keywords}{projects}.",
+      "Para esta posición, la evidencia más directa está en {keywords}{projects}.",
   },
   en: {
     focus:
-      "For this role, the selection prioritizes verifiable evidence in {keywords}{projects}.",
+      "For this role, the most direct evidence is in {keywords}{projects}.",
   },
 }
 
@@ -171,10 +174,10 @@ export function buildTailoredSummary(
   const projectText =
     projectNames.length > 0
       ? locale === "en"
-        ? `, supported by projects such as ${formatList(projectNames.slice(0, 3), locale)}`
+        ? `, with personal products such as ${formatList(projectNames.slice(0, 3), locale)}`
         : locale === "ca"
-          ? `, amb projectes com ${formatList(projectNames.slice(0, 3), locale)}`
-          : `, con proyectos como ${formatList(projectNames.slice(0, 3), locale)}`
+          ? `, amb productes propis com ${formatList(projectNames.slice(0, 3), locale)}`
+          : `, con productos propios como ${formatList(projectNames.slice(0, 3), locale)}`
       : ""
   const focus = COPY[locale].focus
     .replace("{keywords}", evidenceText)

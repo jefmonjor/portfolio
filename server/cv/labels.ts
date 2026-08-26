@@ -17,7 +17,7 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
   const [
     tMeta,
     tHero,
-    tAbout,
+    tCv,
     tCommon,
     tExperience,
     tExperienceEntries,
@@ -35,7 +35,7 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
   ] = await Promise.all([
     getTranslations({ locale, namespace: "metadata" }),
     getTranslations({ locale, namespace: "hero" }),
-    getTranslations({ locale, namespace: "about" }),
+    getTranslations({ locale, namespace: "cv" }),
     getTranslations({ locale, namespace: "common" }),
     getTranslations({ locale, namespace: "experience" }),
     getTranslations({ locale, namespace: "experience.entries" }),
@@ -55,8 +55,8 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
   return {
     role: tMeta("role"),
     present: tCommon("present"),
-    tagline: tHero("tagline"),
-    manifesto: tAbout("manifesto"),
+    headline: tCv("headline"),
+    summary: tCv("summary"),
     availability: `${tStatus("label")} · ${tStatus("detail")}`,
     metrics: METRIC_KEYS.map((key) => ({
       value: tMetrics(`${key}.value`),

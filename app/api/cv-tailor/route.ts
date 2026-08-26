@@ -120,7 +120,7 @@ export async function POST(request: Request): Promise<Response> {
     const tailored = cvTailoredContentSchema.parse({
       ...selection,
       summary: buildTailoredSummary(
-        labels.manifesto,
+        labels.summary,
         selection.keywords,
         projectNames,
         parsed.data.locale

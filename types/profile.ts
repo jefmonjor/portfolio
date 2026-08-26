@@ -20,6 +20,8 @@ export type EducationEntry = {
   organization: string
   dates: string
   location?: string
+  /** Academic degrees back `alumniOf`; certifications never do. */
+  kind: "degree" | "certification"
 }
 
 export type SkillGroup = {

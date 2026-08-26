@@ -33,19 +33,13 @@ La separación es irreversible y puede eliminar metadatos asociados a la red de 
 
 ## LinkedIn
 
-Titular:
+El texto completo listo para pegar —titular, «Acerca de», cada empleo, proyectos,
+aptitudes, formación e idiomas— está en [`LINKEDIN.md`](LINKEDIN.md).
 
-> Product Engineer · IA y Backend · Arquitecto de Soluciones / Technical PM · Java & Spring
-
-Acerca de:
-
-> Construyo productos de principio a fin con una base fuerte en backend Java/Spring y arquitectura mantenible. Actualmente trabajo como Arquitecto de Soluciones / Technical PM en Andbank, donde participo en arquitectura backend, integración de sistemas y gestión técnica.
->
-> Fuera del trabajo desarrollo varios productos propios, algunos públicos y otros en evolución. Uso IA cuando resuelve una parte concreta del problema: con contratos validados, límites de consumo, fuentes de verdad acotadas y alternativas manuales cuando el modelo no debe decidir.
->
-> Estoy abierto selectivamente a oportunidades relevantes de Product Engineering, backend e IA aplicada, en Andorra, España o remoto dentro de zonas horarias europeas.
-
-En `Destacados`, añadir portfolio, GitHub, Transolido y Corte1D. Mantener el cargo y las fechas laborales existentes sin sustituirlos por “AI Engineer”.
+Al aplicarlo: mantener el cargo y las fechas laborales existentes sin
+sustituirlos por «AI Engineer», dejar la sección **Servicios** desactivada (no
+hay oferta freelance) y añadir portfolio, GitHub, Transolido y Corte1D en
+`Destacados`.
 
 ## Nothiring y perfiles antiguos
 
