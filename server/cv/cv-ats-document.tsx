@@ -150,13 +150,15 @@ type CvTechnicalDocumentProps = {
   readonly tailored?: CvTailoredContent
 }
 
-// Keep the technical variant lean: the strongest personal products only.
+// Every personal product, ordered by weight. The two private ones carry no
+// URL; the rest are open in one click, which is the point of listing them.
 const TECHNICAL_PROJECT_IDS = [
   "transolido",
   "othertales",
   "porrix",
   "corte1d",
   "tavory",
+  "contactqr",
   "portfolio",
 ] as const
 
@@ -365,4 +367,4 @@ function CvTechnicalDocument({
   )
 }
 
-export { CvTechnicalDocument }
+export { CvTechnicalDocument, TECHNICAL_PROJECT_IDS }
