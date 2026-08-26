@@ -94,7 +94,9 @@
   },
   "cv": {
     "headline": "Producte de principi a fi sobre backends Java/Spring: arquitectura mantenible, integració amb sistemes crítics i IA aplicada on aporta valor real.",
-    "summary": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. Migracions complexes, integració amb sistemes legacy i arquitectures hexagonals i de microserveis. En paral·lel, productes propis —en funcionament i en desenvolupament— que cobreixen el cicle complet: producte, backend, desplegament i IA aplicada amb dades validades i alternatives manuals."
+    "summary": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. Migracions complexes, integració amb sistemes legacy i arquitectures hexagonals i de microserveis. En paral·lel, productes propis —en funcionament i en desenvolupament— que cobreixen el cicle complet: producte, backend, desplegament i IA aplicada amb dades validades i alternatives manuals.",
+    "portfolioName": "Portfolio personal",
+    "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + tRPC + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert."
   },
   "metrics": {
     "ariaLabel": "Mètriques de trajectòria",
@@ -209,7 +211,7 @@
       "Desenvolupament guiat per especificacions per a canvis acotats",
       "Contractes tipats i validació a les fronteres de confiança",
       "Comprovacions automàtiques i desplegaments quan el producte els necessita",
-      "Vitest, TypeScript estricte i builds de producció en aquest portfolio",
+      "Vitest, TypeScript estricte i builds de producció als projectes propis",
       "Disseny d'arquitectures de referència",
       "Gestió tècnica de proveïdors",
       "Scrum (certificació SMPC)"
@@ -338,7 +340,7 @@
     "entries": {
       "smpc-cert": {
         "title": "Scrum Master Professional Certified (SMPC)",
-        "dates": "Certificació"
+        "dates": "2023"
       },
       "beng-software": {
         "title": "Enginyeria del Software",

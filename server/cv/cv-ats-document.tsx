@@ -155,6 +155,7 @@ const HEADINGS = {
   es: {
     profile: "Resumen profesional",
     skills: "Habilidades técnicas",
+    practices: "Prácticas de ingeniería",
     experience: "Experiencia profesional",
     projects: "Proyectos propios",
     education: "Formación",
@@ -165,6 +166,7 @@ const HEADINGS = {
   ca: {
     profile: "Resum professional",
     skills: "Habilitats tècniques",
+    practices: "Pràctiques d'enginyeria",
     experience: "Experiència professional",
     projects: "Projectes propis",
     education: "Formació",
@@ -175,6 +177,7 @@ const HEADINGS = {
   en: {
     profile: "Professional Summary",
     skills: "Technical Skills",
+    practices: "Engineering Practices",
     experience: "Professional Experience",
     projects: "Personal Projects",
     education: "Education",
@@ -257,15 +260,17 @@ function CvTechnicalDocument({
         <Text style={styles.contactLine}>
           {`${email} · `}
           {linkedin ? (
+            // One string per link: split children extract as
+            // "linkedin.com/in/ jefmonjor" and break the parsed URL.
             <Link src={linkedin.href} style={styles.contactLink}>
-              linkedin.com/in/{linkedin.handle}
+              {`linkedin.com/in/${linkedin.handle ?? ""}`}
             </Link>
           ) : null}
           {github ? (
             <>
               {" · "}
               <Link src={github.href} style={styles.contactLink}>
-                github.com/{github.handle}
+                {`github.com/${github.handle ?? ""}`}
               </Link>
             </>
           ) : null}
@@ -286,16 +291,25 @@ function CvTechnicalDocument({
         ) : null}
 
         <Text style={styles.sectionTitle}>{headings.skills}</Text>
-        {profile.skills.map((group) => (
-          <Text key={group.id} style={styles.skillLine}>
-            <Text style={styles.skillLabel}>
-              {labels.skillGroupName(group.id)}:{" "}
+        {profile.skills
+          .filter((group) => group.id !== "practice")
+          .map((group) => (
+            <Text key={group.id} style={styles.skillLine}>
+              <Text style={styles.skillLabel}>
+                {labels.skillGroupName(group.id)}:{" "}
+              </Text>
+              {prioritizeItems(group.items, tailored?.keywords ?? []).join(
+                ", "
+              )}
             </Text>
-            {prioritizeItems(
-              group.id === "practice" ? labels.practiceItems : group.items,
-              tailored?.keywords ?? []
-            ).join(", ")}
-          </Text>
+          ))}
+
+        <Text style={styles.sectionTitle}>{headings.practices}</Text>
+        {labels.practiceItems.map((item) => (
+          <View key={item} style={styles.bullet} wrap={false}>
+            <Text style={styles.bulletMark}>•</Text>
+            <Text style={styles.bulletText}>{item}</Text>
+          </View>
         ))}
 
         <Text style={styles.sectionTitle}>{headings.experience}</Text>
@@ -312,6 +326,9 @@ function CvTechnicalDocument({
               <Text style={styles.entryOrg}>
                 {entry.organization} · {data.location}
               </Text>
+              {data.summary ? (
+                <Text style={styles.paragraph}>{data.summary}</Text>
+              ) : null}
               {data.highlights.map((hl, i) => (
                 <View key={i} style={styles.bullet}>
                   <Text style={styles.bulletMark}>•</Text>

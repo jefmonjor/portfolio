@@ -825,7 +825,9 @@ function SkillGroup({
           {items.length.toString().padStart(2, "0")}
         </Text>
       </View>
-      <Text style={styles.skillGroupItems}>{items.join("  ·  ")}</Text>
+      {/* Single spaces around the separator: with double spaces @react-pdf
+          breaks the line with a hyphen and prints "Bootstrap-". */}
+      <Text style={styles.skillGroupItems}>{items.join(" · ")}</Text>
     </View>
   )
 }

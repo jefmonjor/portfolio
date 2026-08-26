@@ -94,7 +94,9 @@
   },
   "cv": {
     "headline": "End-to-end product work on Java/Spring backends: maintainable architecture, integration with critical systems, and AI applied where it adds real value.",
-    "summary": "Six-plus years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and manual fallbacks."
+    "summary": "Six-plus years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and manual fallbacks.",
+    "portfolioName": "Personal portfolio",
+    "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + tRPC + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source."
   },
   "metrics": {
     "ariaLabel": "Track-record metrics",
@@ -209,7 +211,7 @@
       "Spec-driven development for scoped product changes",
       "Typed contracts and validation at trust boundaries",
       "Automated checks and deployment workflows where the product needs them",
-      "Vitest, strict TypeScript and production builds in this portfolio",
+      "Vitest, strict TypeScript and production builds across my own projects",
       "Reference architecture design",
       "Technical vendor management",
       "Scrum (SMPC certified)"
@@ -338,7 +340,7 @@
     "entries": {
       "smpc-cert": {
         "title": "Scrum Master Professional Certified (SMPC)",
-        "dates": "Certification"
+        "dates": "2023"
       },
       "beng-software": {
         "title": "Software Engineering",

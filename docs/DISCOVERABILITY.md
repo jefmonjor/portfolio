@@ -43,7 +43,12 @@ hay oferta freelance) y añadir portfolio, GitHub, Transolido y Corte1D en
 
 ## Nothiring y perfiles antiguos
 
-- Entrar en [Nothiring Community](https://nothiring.me/es/community), completar el perfil y activar el opt-in de recruiting.
+Nothiring busca perfiles en LinkedIn, GitHub, la web abierta, sus propias bases
+de datos y comunidades técnicas, y entrega tres candidatos por vacante en lugar
+de cien CV. Eso reparte el trabajo en dos: el SEO y el GEO del portfolio cubren
+la vía «web abierta», pero entrar en su base de datos exige el alta manual.
+
+- Entrar en [Nothiring Community](https://nothiring.me/es/community), completar el perfil en [app.nothiring.me](https://app.nothiring.me) y activar el opt-in de recruiting: viene desactivado por defecto, así que sin ese paso no llega ninguna oferta.
 - Usar la misma URL, ubicación, titular y disponibilidad que en GitHub y LinkedIn.
 - Desactivar el perfil antiguo de Freelancer si ya no se utiliza, para evitar que el precio y la descripción histórica contradigan el perfil actual.
 
