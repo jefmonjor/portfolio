@@ -26,9 +26,11 @@ import { BadgeBand, type BadgeBandProps } from "./badge-band"
 type BadgeSceneProps = Pick<
   BadgeBandProps,
   "photoSrc" | "name" | "role" | "meta"
->
+> & {
+  onError?: () => void
+}
 
-export function BadgeScene(props: BadgeSceneProps) {
+export function BadgeScene({ onError, ...props }: BadgeSceneProps) {
   const handleCreated = useCallback((state: RootState) => {
     state.events.connect?.(state.gl.domElement)
   }, [])
@@ -39,6 +41,7 @@ export function BadgeScene(props: BadgeSceneProps) {
       dpr={[1, 2]}
       gl={{ alpha: true, antialias: true }}
       onCreated={handleCreated}
+      onError={onError}
     >
       <ambientLight intensity={0.5} />
       <directionalLight
@@ -95,6 +98,7 @@ type StableCanvasProps = {
   dpr: [number, number]
   gl: { alpha: boolean; antialias: boolean }
   onCreated: (state: RootState) => void
+  onError?: () => void
 }
 
 type R3FRoot = ReturnType<typeof createRoot<HTMLCanvasElement>>
@@ -105,6 +109,7 @@ function StableCanvas({
   dpr,
   gl,
   onCreated,
+  onError,
 }: StableCanvasProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useMemo(() => extend(THREE as any), [])
@@ -171,11 +176,17 @@ function StableCanvas({
         if (cancelled) return
         root.render(<Suspense fallback={null}>{children}</Suspense>)
       })
+      .catch(() => {
+        if (cancelled) return
+        rootRef.current?.unmount()
+        rootRef.current = null
+        onError?.()
+      })
 
     return () => {
       cancelled = true
     }
-  }, [camera, children, dpr, gl, onCreated, size])
+  }, [camera, children, dpr, gl, onCreated, onError, size])
 
   return (
     <div ref={containerRef} className="h-full w-full overflow-hidden">

@@ -156,50 +156,47 @@ function Contact() {
         </div>
 
         <dl className="grid grid-cols-1 gap-0 overflow-hidden rounded-xl border border-border">
-          <div className="flex items-start gap-3 border-b border-border p-4">
-            <HugeiconsIcon
-              icon={Location01Icon}
-              className="mt-0.5 size-4 shrink-0 text-muted-foreground"
-              strokeWidth={1.5}
-            />
-            <div className="flex flex-col gap-1">
-              <dt className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-                {t("basedIn")}
-              </dt>
-              <dd className="text-sm text-foreground">{profile.location}</dd>
-            </div>
+          <div className="border-b border-border p-4">
+            <dt className="flex items-center gap-3 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+              <HugeiconsIcon
+                icon={Location01Icon}
+                className="size-4 shrink-0"
+                strokeWidth={1.5}
+              />
+              {t("basedIn")}
+            </dt>
+            <dd className="mt-1 pl-7 text-sm text-foreground">
+              {profile.location}
+            </dd>
           </div>
-          <div className="flex items-start gap-3 border-b border-border p-4">
-            <span
-              aria-hidden
-              className="relative mt-1.5 inline-flex size-1.5 shrink-0"
-            >
-              <span className="absolute inset-0 animate-ping bg-brand/60" />
-              <span className="relative inline-block size-1.5 bg-brand" />
-            </span>
-            <div className="flex flex-col gap-1">
-              <dt className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-                {t("status")}
-              </dt>
-              <dd className="text-sm text-foreground">{tStatus("label")}</dd>
+          <div className="border-b border-border p-4">
+            <dt className="flex items-center gap-3 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+              <span aria-hidden className="relative inline-flex size-1.5 shrink-0">
+                <span className="absolute inset-0 animate-ping bg-brand/60" />
+                <span className="relative inline-block size-1.5 bg-brand" />
+              </span>
+              {t("status")}
+            </dt>
+            <dd className="mt-1 flex flex-col gap-1 pl-4 text-sm text-foreground">
+              <span>{tStatus("label")}</span>
               {statusDetail ? (
-                <dd className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+                <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
                   {statusDetail}
-                </dd>
+                </span>
               ) : null}
-            </div>
+            </dd>
           </div>
-          <div className="flex items-start gap-3 p-4">
-            <span
-              aria-hidden
-              className="mt-1.5 inline-block size-1.5 shrink-0 bg-foreground/40"
-            />
-            <div className="flex flex-col gap-1">
-              <dt className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-                {t("timezone")}
-              </dt>
-              <dd className="text-sm text-foreground">{profile.timezone}</dd>
-            </div>
+          <div className="p-4">
+            <dt className="flex items-center gap-3 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+              <span
+                aria-hidden
+                className="inline-block size-1.5 shrink-0 bg-foreground/40"
+              />
+              {t("timezone")}
+            </dt>
+            <dd className="mt-1 pl-4 text-sm text-foreground">
+              {profile.timezone}
+            </dd>
           </div>
         </dl>
       </div>

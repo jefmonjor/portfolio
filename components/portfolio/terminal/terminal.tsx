@@ -97,6 +97,7 @@ function Terminal() {
         "about",
         "experience",
         "skills",
+        "ai",
         "projects",
         "education",
         "contact",

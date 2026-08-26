@@ -59,9 +59,9 @@ function Hero() {
   return (
     <section
       id="top"
-      className="relative mx-auto grid max-w-6xl gap-10 px-4 pt-12 pb-20 sm:px-8 sm:pt-16 sm:pb-24 lg:grid-cols-[1.4fr_1fr] lg:gap-16"
+      className="relative mx-auto grid max-w-6xl min-w-0 gap-10 px-4 pt-12 pb-20 sm:px-8 sm:pt-16 sm:pb-24 lg:grid-cols-[1.4fr_1fr] lg:gap-16"
     >
-      <div className="flex flex-col gap-8">
+      <div className="flex min-w-0 flex-col gap-8">
         <div className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-brand uppercase">
           <span className="inline-block h-px w-8 bg-brand/50" />
           {t("indexLabel")}
@@ -71,38 +71,24 @@ function Hero() {
           <span className="sr-only">{profile.name}</span>
           {/* Inline flow (not flex) so text-wrap: balance can even out the
               line breaks on any viewport — no more dangling last words. */}
-          <span aria-hidden className="block text-balance">
+          <span aria-hidden className="block">
             {titleWords.map((word, index) => (
               <Fragment key={`${word}-${index}`}>
-                <motion.span
-                  className="inline-block"
-                  initial={reduce ? { opacity: 1 } : { opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.55,
-                    ease,
-                    delay: reduce ? 0 : 0.08 * index,
-                  }}
+                <span
+                  className="block sm:inline-block"
                 >
                   {word}
-                </motion.span>
-                {index < titleWords.length - 1 ? " " : null}
+                </span>
+                {index < titleWords.length - 1 ? (
+                  <span className="hidden sm:inline"> </span>
+                ) : null}
               </Fragment>
             ))}
           </span>
         </h1>
 
-        <motion.div
-          initial={reduce ? { opacity: 1 } : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.5,
-            ease,
-            delay: reduce ? 0 : 0.08 * titleWords.length + 0.05,
-          }}
-          className="flex flex-col gap-4"
-        >
-          <p className="font-mono text-xs tracking-widest text-balance text-muted-foreground uppercase">
+        <div className="flex flex-col gap-4">
+          <p className="min-w-0 font-mono text-xs leading-relaxed tracking-widest text-muted-foreground uppercase">
             <ScrambleText
               value={t("role")}
               className="text-foreground"
@@ -114,7 +100,7 @@ function Hero() {
           <p className="max-w-xl text-sm leading-relaxed text-foreground sm:text-base">
             {t("tagline")}
           </p>
-        </motion.div>
+        </div>
 
         <motion.div
           initial={reduce ? { opacity: 1 } : { opacity: 0, y: 8 }}
@@ -170,32 +156,35 @@ function Hero() {
             ease,
             delay: reduce ? 0 : 0.08 * titleWords.length + 0.25,
           }}
-          className="mt-auto divide-y divide-solid divide-border overflow-hidden rounded-xl border border-border sm:grid sm:grid-cols-2 sm:divide-y-0"
+          className="mt-auto min-w-0 divide-y divide-solid divide-border overflow-hidden rounded-xl border border-border sm:grid sm:grid-cols-2 sm:divide-y-0"
         >
           {specRows.map((row, index) => (
             <div
               key={row.label}
-              className={`grid grid-cols-[88px_1fr] items-center gap-3 px-3 py-2.5 sm:border-border ${
+              className={`grid min-w-0 grid-cols-[88px_minmax(0,1fr)] items-center gap-3 px-3 py-2.5 sm:border-border ${
                 index % 2 === 0 ? "sm:border-r" : ""
               } ${index >= 2 ? "sm:border-t" : ""}`}
             >
               <dt className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
                 {row.label}
               </dt>
-              <dd className="truncate text-xs text-foreground">{row.value}</dd>
+              <dd className="min-w-0 break-words text-xs text-foreground">
+                {row.value}
+              </dd>
             </div>
           ))}
         </motion.dl>
       </div>
 
-      <motion.aside
-        initial={reduce ? { opacity: 1 } : { opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease, delay: reduce ? 0 : 0.25 }}
-        className="flex flex-col gap-5"
-      >
-        <HeroBadge role={t("role")} meta={profile.location} />
-      </motion.aside>
+      <aside className="flex min-w-0 flex-col gap-5">
+        <HeroBadge
+          role={t("role")}
+          meta={profile.location}
+          exploreLabel={t("badge.explore3d")}
+          closeLabel={t("badge.close3d")}
+          unavailableLabel={t("badge.unsupported")}
+        />
+      </aside>
     </section>
   )
 }

@@ -4,18 +4,16 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "I design solid backend architectures and build digital products end to end, integrating artificial intelligence across the whole process.",
+    "description": "Product Engineer focused on AI and backend. I build end-to-end products on Java/Spring and maintainable architectures, with validated data, clear limits, and manual fallbacks for AI.",
     "applicationName": "{shortName} · Portfolio",
-    "role": "Solutions Architect",
-    "keywordsExtra": [
-      "Portfolio",
-      "CV"
-    ]
+    "role": "Product Engineer · AI & Backend",
+    "currentJobTitle": "Solutions Architect / Technical PM"
   },
   "nav": {
     "about": "About",
     "experience": "Experience",
     "skills": "Skills",
+    "ai": "AI approach",
     "projects": "Projects",
     "education": "Education",
     "contact": "Contact",
@@ -63,13 +61,13 @@
     }
   },
   "status": {
-    "label": "Open to opportunities",
+    "label": "Selectively open to relevant opportunities",
     "detail": "Andorra · Spain · Remote across European time zones"
   },
   "hero": {
     "indexLabel": "00 — Profile",
-    "role": "Solutions Architect",
-    "tagline": "I design solid backend architectures and build digital products end to end, integrating artificial intelligence across the whole process.",
+    "role": "Product Engineer focused on AI & backend",
+    "tagline": "I build products end to end on Java/Spring backends and maintainable architectures. I use AI where it adds value, with validated data, clear limits, and manual fallbacks.",
     "specs": {
       "location": "Location",
       "timezone": "Timezone",
@@ -81,12 +79,17 @@
       "linkedin": "LinkedIn",
       "experience": "See experience",
       "cv": "Download CV"
+    },
+    "badge": {
+      "explore3d": "Explore in 3D",
+      "close3d": "Return to profile card",
+      "unsupported": "3D view unavailable on this device"
     }
   },
   "about": {
     "indexLabel": "01 — About",
     "title": "Who I am, in one paragraph",
-    "manifesto": "Six-plus years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today the backend architecture at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build: eight products of my own — from a platform for writers to a VERI*FACTU invoicing system — with Claude Code, Codex, Gemini, and MCP workflows, deployed on my own VPS, Vercel, and Google Cloud.",
+    "manifesto": "Six-plus years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build several products of my own—some public and live, others private and in development—to keep product, backend, deployment, and applied AI decisions close together.",
     "currentlyWorkingWith": "Currently working with"
   },
   "metrics": {
@@ -106,8 +109,8 @@
         "label": "Companies · from Seville to Andorra"
       },
       "products": {
-        "value": "8",
-        "label": "Own products · built with AI"
+        "value": "E2E",
+        "label": "Product · from problem to deployment"
       }
     }
   },
@@ -199,20 +202,48 @@
       "practice": "Practice"
     },
     "practiceItems": [
-      "Spec-Driven Development · spec-kit and Agent OS",
-      "Agent context: a CLAUDE.md in every repo",
-      "CI/CD on every project · staging, previews and health checks",
-      "Testing: Playwright E2E, Vitest, axe and Lighthouse CI",
+      "Spec-driven development for scoped product changes",
+      "Typed contracts and validation at trust boundaries",
+      "Automated checks and deployment workflows where the product needs them",
+      "Vitest, strict TypeScript and production builds in this portfolio",
       "Reference architecture design",
       "Technical vendor management",
       "Scrum (SMPC certified)"
     ]
   },
+  "aiApproach": {
+    "indexLabel": "04 — AI in product",
+    "title": "Useful AI, bounded by engineering",
+    "hint": "Evidence · limits · fallback",
+    "entries": {
+      "dossier": {
+        "title": "Closed source of truth",
+        "body": "This portfolio assistant receives a closed public dossier and is instructed to state when a detail is missing instead of filling the gap."
+      },
+      "contracts": {
+        "title": "Validated contracts",
+        "body": "AI inputs and outputs cross typed boundaries and runtime validation, including strict JSON contracts where structured extraction is used."
+      },
+      "limits": {
+        "title": "Limits and fallback",
+        "body": "Rate limits and a global daily cap bound usage; important flows retain a manual path when AI is unavailable or uncertain."
+      },
+      "deterministic": {
+        "title": "Deterministic where it matters",
+        "body": "Corte1D keeps optimization in a deterministic engine, while PRONOQ uses AI to explain results rather than decide predictions."
+      }
+    }
+  },
   "projects": {
-    "indexLabel": "04 — Projects",
+    "indexLabel": "05 — Projects",
     "title": "Selected projects",
-    "hint": "{count, plural, one {# project} other {# projects}} · AI-built",
-    "privateLabel": "In development · not public",
+    "hint": "{count, plural, one {# project} other {# projects}} · product · backend · AI",
+    "status": {
+      "live": "Live",
+      "development": "In development",
+      "public": "Public",
+      "private": "Private"
+    },
     "openDetail": "Open details for {name}",
     "detail": {
       "label": "Case study",
@@ -237,7 +268,7 @@
       "transolido": {
         "name": "Transolido",
         "role": "Own product · SaaS",
-        "summary": "VERI*FACTU-compliant invoicing with a powerful backend: modular Java 21 / Spring Boot monolith with its own JWT auth, event streaming over Redis (Upstash) and PostgreSQL on Neon. React frontend and AI data extraction.",
+        "summary": "VERI*FACTU-compliant invoicing: a modular Java 21 / Spring Boot monolith with JWT authentication, Redis events on Upstash, PostgreSQL on Neon, a React frontend, and AI-assisted data extraction.",
         "highlights": [
           "VERI*FACTU regulatory compliance with full traceability.",
           "Own JWT authentication and event streaming over Upstash Redis.",
@@ -286,9 +317,9 @@
       "portfolio": {
         "name": "This portfolio",
         "role": "Personal project",
-        "summary": "The very site you are reading: a type-safe Next.js + tRPC + Zod stack with bilingual routing, an interactive terminal, a command palette, and a PDF CV generated from the same data you see on screen.",
+        "summary": "The site you are reading: a type-safe Next.js + tRPC + Zod stack with trilingual routing, an interactive terminal, a command palette, and a PDF CV generated from the same profile data.",
         "highlights": [
-          "Type-safe Next.js + tRPC + Zod stack with bilingual routing.",
+          "Type-safe Next.js + tRPC + Zod stack with English, Spanish and Catalan routing.",
           "Interactive terminal and ⌘K command palette for navigation.",
           "Server-generated PDF CV from a single source of truth.",
           "Purposeful motion that never blocks content or shifts layout."
@@ -297,7 +328,7 @@
     }
   },
   "education": {
-    "indexLabel": "05 — Education & Languages",
+    "indexLabel": "06 — Education & Languages",
     "title": "Education and languages",
     "languagesLabel": "Languages",
     "entries": {
@@ -322,7 +353,7 @@
     }
   },
   "contact": {
-    "indexLabel": "06 — Contact",
+    "indexLabel": "07 — Contact",
     "title": "The fastest way to reach me",
     "emailLabel": "Email",
     "copy": "Copy",
@@ -341,26 +372,28 @@
     "builtLine": "Designed and built from scratch · Next.js"
   },
   "cvToast": {
-    "title": "Downloading CV",
-    "description": "The download will open in a new tab."
+    "title": "CV ready",
+    "description": "The PDF has opened or downloaded."
   },
   "cvModal": {
     "title": "Download CV",
-    "question": "What do you need it for?",
-    "info": "I want to know the profile",
-    "infoDesc": "Full CV with every detail, in editorial design.",
-    "hiring": "Hiring process",
-    "hiringDesc": "Compact ATS version or AI-tailored to your offer.",
-    "ats": "Standard ATS CV",
-    "atsDesc": "Compact and optimized for automated screening filters.",
-    "tailor": "Tailored to your offer",
-    "tailorDesc": "Paste the offer and AI adjusts the summary and keywords — using real profile data only.",
+    "question": "Choose the version that fits",
+    "general": "General CV",
+    "generalDesc": "The complete story: experience, projects, education and languages in an editorial layout.",
+    "technical": "Technical CV",
+    "technicalDesc": "Single column, ATS-readable, with more weight on stack, practices and technical projects.",
+    "tailor": "CV for a job offer",
+    "tailorDesc": "AI prioritizes already verified evidence; it does not add experience, technologies or achievements.",
+    "tailorHelp": "Paste the complete job offer. AI will only select skills and projects already in the profile; the server builds the final summary from canonical facts.",
+    "offerLabel": "Job offer",
     "offerPlaceholder": "Paste the job offer text here…",
     "generate": "Generate tailored CV",
     "generating": "Tailoring…",
+    "privacy": "Sent to the AI provider; this portfolio does not store it.",
     "back": "Back",
-    "tailorError": "Couldn't tailor it right now. Download the standard ATS version.",
-    "tailorLimited": "Usage limit reached. Try again in a few minutes or download the ATS version."
+    "tailorError": "It couldn't be tailored right now. The technical CV is still available.",
+    "tailorLimited": "Usage limit reached. Try again in a few minutes or download the technical CV.",
+    "tailorUnavailable": "AI tailoring is unavailable right now. You can download the general or technical CV."
   },
   "terminal": {
     "title": "Terminal",
@@ -369,7 +402,7 @@
     "inputLabel": "Terminal input",
     "placeholder": "type a command — try 'help'",
     "banner": [
-      "Jefferson Montesdeoca — Solutions Architect",
+      "Jefferson Montesdeoca — Product Engineer · AI & Backend",
       "type 'help' to get started · press ESC or ` to close",
       ""
     ],
@@ -406,10 +439,11 @@
     "web": [
       "AI ON THIS SITE — DIRECT UTILITY",
       "  · Assistant (bubble bottom-right): ask anything about",
-      "    Jefferson's profile. Instant answers, real data only.",
-      "  · CV tailored to you: in 'Download CV', paste your job",
-      "    offer and AI adapts the summary and keywords to the role.",
-      "    Full and ATS versions available too.",
+      "    Jefferson's profile. It uses a closed public dossier and",
+      "    should say when a requested detail is not included.",
+      "  · Three CVs: general, single-column technical and tailored",
+      "    to an offer. In the last one, AI only prioritizes verified",
+      "    evidence; it adds no experience, technologies or outcomes.",
       "",
       "  Under the hood: Next.js 16 · TypeScript · OpenAI · Vercel",
       "  Open source: github.com/jefmonjor/portfolio"
@@ -445,15 +479,16 @@
     "title": "Assistant · answers about Jefferson",
     "open": "Open assistant",
     "close": "Close assistant",
-    "intro": "Hi, I'm Jefferson's assistant. Ask me anything about his experience, his projects or the way he works. If I don't know something, I'll say so and leave you his email.",
+    "intro": "Ask about his experience, projects, stack or fit for a role. I answer from a closed public dossier and keep his current job separate from his target profile.",
     "placeholder": "Type your question…",
+    "inputLabel": "Question for the assistant",
     "send": "Send",
-    "s1": "How much Java and Spring experience does he have?",
-    "s2": "Has he worked in banking?",
-    "s3": "I'm looking for someone for a project",
+    "s1": "What evidence supports a Java backend role?",
+    "s2": "What has he built with applied AI?",
+    "s3": "Can you compare his profile with a job offer?",
     "rateLimited": "Too many questions in a row. Wait a moment and try again.",
     "unavailable": "The assistant is unavailable right now. Write to {email}.",
     "error": "I couldn't answer. Write to {email}.",
-    "disclaimer": "AI-generated answers based on Jefferson's public profile. They may contain errors: confirm anything important by email."
+    "disclaimer": "AI limited to the public profile. It does not estimate missing facts; confirm important decisions by email."
   }
 }

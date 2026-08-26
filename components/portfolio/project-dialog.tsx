@@ -43,6 +43,9 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
   const role = tEntries(`${project.id}.role`)
   const highlights = parseStringArray(tEntries.raw(`${project.id}.highlights`))
   const host = project.url ? hostFromUrl(project.url) : null
+  const status = `${t(`status.${project.stage}`)} · ${t(
+    `status.${project.visibility}`
+  )}`
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -70,15 +73,10 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
           <DialogTitle className="font-heading text-2xl tracking-tight sm:text-3xl">
             {name}
           </DialogTitle>
-          {host ? (
-            <DialogDescription className="font-mono text-[11px] tracking-wide">
-              {host}
-            </DialogDescription>
-          ) : (
-            <DialogDescription className="font-mono text-[10px] tracking-widest uppercase">
-              {t("privateLabel")}
-            </DialogDescription>
-          )}
+          <DialogDescription className="font-mono text-[10px] tracking-widest uppercase">
+            {status}
+            {project.visibility === "public" && host ? ` · ${host}` : ""}
+          </DialogDescription>
         </DialogHeader>
 
         <div className="flex min-h-0 flex-1 flex-col gap-5 overflow-y-auto p-5 text-foreground sm:p-6">

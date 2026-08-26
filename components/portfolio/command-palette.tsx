@@ -53,6 +53,7 @@ type SectionId =
   | "about"
   | "experience"
   | "skills"
+  | "ai"
   | "projects"
   | "education"
   | "contact"
@@ -61,6 +62,7 @@ const SECTIONS: ReadonlyArray<SectionId> = [
   "about",
   "experience",
   "skills",
+  "ai",
   "projects",
   "education",
   "contact",

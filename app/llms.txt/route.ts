@@ -1,0 +1,49 @@
+import { profile, siteUrl } from "@/lib/profile"
+
+export const dynamic = "force-static"
+
+const githubUrl =
+  profile.socials.find((social) => social.kind === "github")?.href ??
+  "https://github.com/jefmonjor"
+const linkedinUrl =
+  profile.socials.find((social) => social.kind === "linkedin")?.href ??
+  "https://www.linkedin.com/in/jefmonjor"
+
+const content = `# Jefferson Montesdeoca Jordán
+
+> Product Engineer focused on AI and backend, based in Andorra la Vella. Builds end-to-end products on Java/Spring and maintainable architectures, using AI with validated data, clear limits, and manual fallbacks.
+
+## Profile
+
+- [English portfolio](${siteUrl}/en): Professional profile, experience, selected projects, skills, and contact paths.
+- [Portfolio en español](${siteUrl}/es): Perfil profesional, experiencia, proyectos seleccionados, habilidades y vías de contacto.
+- [Portfolio en català](${siteUrl}/ca): Perfil professional, experiència, projectes seleccionats, habilitats i vies de contacte.
+- [GitHub](${githubUrl}): Public repositories and source code.
+- [LinkedIn](${linkedinUrl}): Professional employment profile.
+
+## Public work
+
+- [Transolido](https://transolido.com): VERI*FACTU-compliant invoicing built around a modular Java 21 and Spring Boot backend.
+- [PRONOQ](https://pronoq.jefmonjor.dev): Trilingual football-pool PWA with live scoring and AI used to explain results, not select predictions.
+- [Corte1D](https://corte1d.jefmonjor.dev): Workshop tool with a deterministic one-dimensional cutting optimizer, stock control, and document exports.
+- [Contact QR](https://contactqr.jefmonjor.dev): Lightweight digital contact card and vCard utility.
+- [Portfolio source](https://github.com/jefmonjor/portfolio): Next.js, TypeScript, tRPC, Zod, localized CV generation, and a bounded AI assistant.
+
+## Engineering evidence
+
+- Current work: Solutions Architect / Technical PM at Andbank.
+- Backend foundation: Java, Spring Boot, hexagonal architecture, microservices, and legacy integration.
+- Applied AI: closed profile dossier, typed and runtime-validated boundaries, usage caps, and manual fallbacks.
+- Languages: Spanish (native) and English (B1 professional).
+
+This file summarizes public, verifiable portfolio content. It does not include private projects, private contact data, salary expectations, or availability dates.
+`
+
+export function GET(): Response {
+  return new Response(content, {
+    headers: {
+      "Cache-Control": "public, max-age=3600, s-maxage=86400",
+      "Content-Type": "text/markdown; charset=utf-8",
+    },
+  })
+}

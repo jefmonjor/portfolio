@@ -1,6 +1,6 @@
 import type { Profile } from "@/types/profile"
 
-export const portfolioUpdatedAt = "2026-08-24"
+export const portfolioUpdatedAt = "2026-08-26"
 
 export const siteUrl = "https://www.jefmonjor.dev"
 
@@ -200,6 +200,8 @@ export const profile: Profile = {
   projects: [
     {
       id: "othertales",
+      stage: "development",
+      visibility: "private",
       stack: [
         "Flutter",
         "Riverpod",
@@ -211,6 +213,8 @@ export const profile: Profile = {
     },
     {
       id: "transolido",
+      stage: "live",
+      visibility: "public",
       url: "https://transolido.com",
       stack: [
         "Java 21",
@@ -225,25 +229,35 @@ export const profile: Profile = {
     },
     {
       id: "porrix",
+      stage: "live",
+      visibility: "public",
       url: "https://pronoq.jefmonjor.dev",
       stack: ["Next.js", "PostgreSQL", "PWA", "Docker", "VPS propio", "ES · EN · CA"],
     },
     {
       id: "corte1d",
+      stage: "live",
+      visibility: "public",
       url: "https://corte1d.jefmonjor.dev",
       stack: ["Next.js", "Neon", "PWA", "ExcelJS", "PDFKit", "Backblaze B2", "AI agents"],
     },
     {
       id: "tavory",
+      stage: "development",
+      visibility: "private",
       stack: ["Next.js 16", "Supabase", "PostGIS", "Stripe", "Mapbox", "AI OCR"],
     },
     {
       id: "contactqr",
+      stage: "live",
+      visibility: "public",
       url: "https://contactqr.jefmonjor.dev",
       stack: ["Astro", "QR · vCard"],
     },
     {
       id: "portfolio",
+      stage: "live",
+      visibility: "public",
       url: siteUrl,
       repo: "https://github.com/jefmonjor/portfolio",
       images: [

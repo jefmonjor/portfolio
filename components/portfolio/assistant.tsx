@@ -26,10 +26,19 @@ function Assistant() {
   const [input, setInput] = React.useState("")
   const [busy, setBusy] = React.useState(false)
   const scrollRef = React.useRef<HTMLDivElement>(null)
+  const requestRef = React.useRef<AbortController | null>(null)
 
   React.useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight })
   }, [messages, busy])
+
+  React.useEffect(
+    () => () => {
+      requestRef.current?.abort()
+      requestRef.current = null
+    },
+    []
+  )
 
   async function send(text: string) {
     const question = text.trim()
@@ -41,6 +50,8 @@ function Assistant() {
     setMessages(history)
     setInput("")
     setBusy(true)
+    const controller = new AbortController()
+    requestRef.current = controller
 
     let reply: string
     try {
@@ -48,7 +59,9 @@ function Assistant() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: history, locale }),
+        signal: controller.signal,
       })
+      if (requestRef.current !== controller) return
       if (res.status === 429) {
         reply = t("rateLimited")
       } else if (res.status === 503) {
@@ -61,12 +74,27 @@ function Assistant() {
           ? data.data.reply
           : t("error", { email: contactEmail() })
       }
-    } catch {
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return
       reply = t("error", { email: contactEmail() })
     }
 
+    if (requestRef.current !== controller) return
     setMessages((prev) => [...prev, { role: "assistant", content: reply }])
+    requestRef.current = null
     setBusy(false)
+  }
+
+  function closeAssistant(): void {
+    requestRef.current?.abort()
+    requestRef.current = null
+    if (busy) {
+      setMessages((current) =>
+        current.at(-1)?.role === "user" ? current.slice(0, -1) : current
+      )
+    }
+    setBusy(false)
+    setOpen(false)
   }
 
   const suggestions = [t("s1"), t("s2"), t("s3")]
@@ -87,7 +115,7 @@ function Assistant() {
               variant="ghost"
               size="icon-sm"
               aria-label={t("close")}
-              onClick={() => setOpen(false)}
+              onClick={closeAssistant}
             >
               <HugeiconsIcon
                 icon={Cancel01Icon}
@@ -97,7 +125,13 @@ function Assistant() {
             </Button>
           </div>
 
-          <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto p-3">
+          <div
+            ref={scrollRef}
+            role="log"
+            aria-live="polite"
+            aria-busy={busy}
+            className="flex-1 space-y-3 overflow-y-auto p-3"
+          >
             <p className="text-xs leading-relaxed text-muted-foreground">
               {t("intro")}
             </p>
@@ -145,6 +179,7 @@ function Assistant() {
             <input
               value={input}
               onChange={(event) => setInput(event.target.value)}
+              aria-label={t("inputLabel")}
               placeholder={t("placeholder")}
               maxLength={ASSISTANT_MESSAGE_INPUT_CHARS}
               className="h-8 min-w-0 flex-1 rounded-md border border-input bg-transparent px-2 text-xs outline-none focus-visible:border-ring"

@@ -74,8 +74,12 @@ export async function POST(request: Request) {
       max_output_tokens: MAX_OUTPUT_TOKENS,
       reasoning: { effort: REASONING },
       text: { verbosity: VERBOSITY },
+      store: false,
     })
 
+    if (response.status !== "completed") {
+      return NextResponse.json({ error: "upstream" }, { status: 502 })
+    }
     const reply = response.output_text?.trim()
     if (!reply) {
       return NextResponse.json({ error: "upstream" }, { status: 502 })

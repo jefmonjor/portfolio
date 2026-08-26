@@ -31,8 +31,14 @@ export type LanguageEntry = {
   id: string
 }
 
+export type ProjectStage = "live" | "development"
+
+export type ProjectVisibility = "public" | "private"
+
 export type ProjectEntry = {
   id: string
+  stage: ProjectStage
+  visibility: ProjectVisibility
   url?: string
   repo?: string
   year?: string

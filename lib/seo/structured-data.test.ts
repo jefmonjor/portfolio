@@ -9,9 +9,18 @@ describe("profile structured data", () => {
   it("links the localized profile page to one stable person identity", () => {
     const data = buildProfileStructuredData({
       locale: "es",
-      title: "Jefferson Montesdeoca — Arquitecto de Soluciones",
+      title: "Jefferson Montesdeoca — Product Engineer · IA y Backend",
       description: "Perfil profesional de Jefferson.",
-      role: "Arquitecto de Soluciones",
+      currentJobTitle: "Arquitecto de Soluciones / Technical PM",
+      publicProjects: [
+        {
+          id: "corte1d",
+          name: "Corte1D",
+          description: "Optimización determinista de corte 1D.",
+          url: "https://corte1d.jefmonjor.dev",
+          keywords: ["Next.js", "PWA"],
+        },
+      ],
     })
 
     expect(data["@context"]).toBe("https://schema.org")
@@ -22,12 +31,25 @@ describe("profile structured data", () => {
           url: "https://www.jefmonjor.dev/es",
           inLanguage: "es",
           mainEntity: { "@id": "https://www.jefmonjor.dev/#person" },
+          hasPart: [
+            { "@id": "https://www.jefmonjor.dev/#project-corte1d" },
+          ],
         }),
         expect.objectContaining({
           "@type": "Person",
           "@id": "https://www.jefmonjor.dev/#person",
           name: "Jefferson Montesdeoca Jordán",
-          jobTitle: "Arquitecto de Soluciones",
+          jobTitle: "Arquitecto de Soluciones / Technical PM",
+          knowsLanguage: expect.arrayContaining([
+            expect.objectContaining({ alternateName: "es" }),
+            expect.objectContaining({ alternateName: "en" }),
+          ]),
+        }),
+        expect.objectContaining({
+          "@type": "CreativeWork",
+          "@id": "https://www.jefmonjor.dev/#project-corte1d",
+          name: "Corte1D",
+          creator: { "@id": "https://www.jefmonjor.dev/#person" },
         }),
       ])
     )

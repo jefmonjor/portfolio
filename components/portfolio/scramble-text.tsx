@@ -65,7 +65,8 @@ function ScrambleText({
   }, [value, delay, duration, reduce])
 
   return (
-    <span className={className} aria-label={value}>
+    <span className={className}>
+      <span className="sr-only">{value}</span>
       <span aria-hidden>{display}</span>
     </span>
   )

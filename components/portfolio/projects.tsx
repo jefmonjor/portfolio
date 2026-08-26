@@ -10,6 +10,7 @@ import { ProjectDialog } from "@/components/portfolio/project-dialog"
 import { ProjectPreview } from "@/components/portfolio/project-preview"
 import { SectionHeading } from "@/components/portfolio/section-heading"
 import { TechBadge } from "@/components/portfolio/tech-badge"
+import { parseStringArray } from "@/lib/i18n-values"
 import { profile } from "@/lib/profile"
 import type { ProjectEntry } from "@/types/profile"
 
@@ -45,7 +46,14 @@ function Projects() {
         {entries.map((entry, index) => {
           const name = tEntries(`${entry.id}.name`)
           const summary = tEntries(`${entry.id}.summary`)
+          const highlights = parseStringArray(
+            tEntries.raw(`${entry.id}.highlights`)
+          )
+          const firstHighlight = highlights[0]
           const host = entry.url ? hostFromUrl(entry.url) : null
+          const status = `${t(`status.${entry.stage}`)} · ${t(
+            `status.${entry.visibility}`
+          )}`
 
           return (
             <motion.li
@@ -80,11 +88,14 @@ function Projects() {
               ) : null}
 
               <div className="pointer-events-none relative z-10 flex items-start justify-between gap-3">
-                <div className="flex flex-col gap-1">
+                <div className="flex min-w-0 flex-col gap-1">
                   <h3 className="font-heading text-base font-medium tracking-tight text-foreground sm:text-lg">
                     {name}
                   </h3>
-                  {entry.url && host ? (
+                  <span className="font-mono text-[10px] tracking-widest text-muted-foreground/70 uppercase">
+                    {status}
+                  </span>
+                  {entry.visibility === "public" && entry.url && host ? (
                     <a
                       href={entry.url}
                       target="_blank"
@@ -99,11 +110,7 @@ function Projects() {
                         strokeWidth={1.75}
                       />
                     </a>
-                  ) : (
-                    <span className="font-mono text-[10px] tracking-widest text-muted-foreground/70 uppercase">
-                      {t("privateLabel")}
-                    </span>
-                  )}
+                  ) : null}
                 </div>
                 <span
                   aria-hidden
@@ -114,6 +121,15 @@ function Projects() {
               {summary ? (
                 <p className="pointer-events-none relative z-10 max-w-prose text-xs leading-relaxed text-foreground sm:text-sm">
                   {summary}
+                </p>
+              ) : null}
+
+              {firstHighlight ? (
+                <p className="pointer-events-none relative z-10 flex gap-2.5 border-l border-brand/40 pl-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                  <span aria-hidden className="text-brand">
+                    ↳
+                  </span>
+                  <span>{firstHighlight}</span>
                 </p>
               ) : null}
 

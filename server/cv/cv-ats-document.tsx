@@ -10,14 +10,10 @@ import {
 import { contactEmail } from "@/lib/email"
 import { profile, siteUrl } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
+import type { CvTailoredContent } from "@/types/cv-tailor"
 
-// ATS variant: single column, standard section names, no decorative layers.
-// Machine-parse friendly first, human-readable second. Target: <= 3 pages.
-
-export type CvTailored = {
-  readonly summary: string
-  readonly keywords: ReadonlyArray<string>
-}
+// Technical variant: single column, standard headings and no decorative
+// layers. It is ATS-readable without claiming a guaranteed ATS score.
 
 const ink = "#000000"
 const body = "#1a1a1a"
@@ -40,11 +36,12 @@ const styles = StyleSheet.create({
     fontFamily: "Figtree",
     fontWeight: 700,
     fontSize: 20,
+    lineHeight: 1.2,
     color: ink,
     letterSpacing: -0.4,
   },
   roleLine: {
-    marginTop: 2,
+    marginTop: 5,
     fontSize: 10.5,
     fontWeight: 500,
     color: body,
@@ -139,10 +136,10 @@ const styles = StyleSheet.create({
   },
 })
 
-type CvAtsDocumentProps = {
+type CvTechnicalDocumentProps = {
   readonly labels: CvLabels
   readonly locale: "es" | "en" | "ca"
-  readonly tailored?: CvTailored
+  readonly tailored?: CvTailoredContent
 }
 
 // Standard headings that automated screeners recognize — the website's
@@ -155,6 +152,8 @@ const HEADINGS = {
     projects: "Proyectos propios",
     education: "Formación",
     languages: "Idiomas",
+    evidence: "Evidencia priorizada",
+    unverified: "Requisitos a confirmar",
   },
   ca: {
     profile: "Resum professional",
@@ -163,6 +162,8 @@ const HEADINGS = {
     projects: "Projectes propis",
     education: "Formació",
     languages: "Idiomes",
+    evidence: "Evidència prioritzada",
+    unverified: "Requisits per confirmar",
   },
   en: {
     profile: "Professional Summary",
@@ -171,11 +172,13 @@ const HEADINGS = {
     projects: "Personal Projects",
     education: "Education",
     languages: "Languages",
+    evidence: "Prioritized evidence",
+    unverified: "Requirements to confirm",
   },
 } as const
 
-// Keep the ATS variant lean: the strongest personal products only.
-const ATS_PROJECT_IDS = [
+// Keep the technical variant lean: the strongest personal products only.
+const TECHNICAL_PROJECT_IDS = [
   "transolido",
   "othertales",
   "porrix",
@@ -183,7 +186,28 @@ const ATS_PROJECT_IDS = [
   "tavory",
 ] as const
 
-function CvAtsDocument({ labels, locale, tailored }: CvAtsDocumentProps) {
+function prioritizeItems(
+  items: ReadonlyArray<string>,
+  keywords: ReadonlyArray<string>
+): ReadonlyArray<string> {
+  const order = new Map(
+    keywords.map((keyword, index) => [keyword.toLocaleLowerCase("en"), index])
+  )
+  return [...items].sort((left, right) => {
+    const leftOrder = order.get(left.toLocaleLowerCase("en"))
+    const rightOrder = order.get(right.toLocaleLowerCase("en"))
+    if (leftOrder === undefined && rightOrder === undefined) return 0
+    if (leftOrder === undefined) return 1
+    if (rightOrder === undefined) return -1
+    return leftOrder - rightOrder
+  })
+}
+
+function CvTechnicalDocument({
+  labels,
+  locale,
+  tailored,
+}: CvTechnicalDocumentProps) {
   const headings = HEADINGS[locale]
   // Server-rendered on demand, so the plain address never reaches the
   // static HTML — safe to print it in the downloadable document.
@@ -192,15 +216,21 @@ function CvAtsDocument({ labels, locale, tailored }: CvAtsDocumentProps) {
   const github = profile.socials.find((s) => s.kind === "github")
 
   const summary = tailored?.summary?.trim() || labels.manifesto
-  const projects = ATS_PROJECT_IDS.map((id) => {
-    const entry = profile.projects.find((p) => p.id === id)
-    if (!entry) return null
-    return { entry, data: labels.projectEntry(id) }
-  }).filter((p): p is NonNullable<typeof p> => p !== null)
+  const projectIds =
+    tailored && tailored.projectIds.length > 0
+      ? tailored.projectIds
+      : TECHNICAL_PROJECT_IDS
+  const projects = projectIds
+    .map((id) => {
+      const entry = profile.projects.find((p) => p.id === id)
+      if (!entry) return null
+      return { entry, data: labels.projectEntry(id) }
+    })
+    .filter((p): p is NonNullable<typeof p> => p !== null)
 
   return (
     <Document
-      title={`${profile.shortName} — ${labels.role} (ATS)`}
+      title={`${profile.shortName} — ${labels.role} (${tailored ? "Tailored" : "Technical"})`}
       author={profile.name}
       subject={labels.role}
       creator="portfolio"
@@ -237,6 +267,7 @@ function CvAtsDocument({ labels, locale, tailored }: CvAtsDocumentProps) {
         <Text style={styles.paragraph}>{summary}</Text>
         {tailored && tailored.keywords.length > 0 ? (
           <Text style={styles.keywordLine}>
+            <Text style={styles.skillLabel}>{headings.evidence}: </Text>
             {tailored.keywords.join(" · ")}
           </Text>
         ) : null}
@@ -247,9 +278,9 @@ function CvAtsDocument({ labels, locale, tailored }: CvAtsDocumentProps) {
             <Text style={styles.skillLabel}>
               {labels.skillGroupName(group.id)}:{" "}
             </Text>
-            {(group.id === "practice"
-              ? labels.practiceItems
-              : group.items
+            {prioritizeItems(
+              group.id === "practice" ? labels.practiceItems : group.items,
+              tailored?.keywords ?? []
             ).join(", ")}
           </Text>
         ))}
@@ -287,12 +318,25 @@ function CvAtsDocument({ labels, locale, tailored }: CvAtsDocumentProps) {
             <View style={styles.entryHeader}>
               <Text style={styles.entryRole}>{data.name}</Text>
             </View>
+            <Text style={styles.stackLine}>{data.status}</Text>
             <Text style={styles.paragraph}>{data.summary}</Text>
             {entry.stack && entry.stack.length > 0 ? (
               <Text style={styles.stackLine}>{entry.stack.join(" · ")}</Text>
             ) : null}
           </View>
         ))}
+
+        {tailored && tailored.unverifiedRequirements.length > 0 ? (
+          <>
+            <Text style={styles.sectionTitle}>{headings.unverified}</Text>
+            {tailored.unverifiedRequirements.map((requirement) => (
+              <View key={requirement} style={styles.bullet} wrap={false}>
+                <Text style={styles.bulletMark}>•</Text>
+                <Text style={styles.bulletText}>{requirement}</Text>
+              </View>
+            ))}
+          </>
+        ) : null}
 
         <Text style={styles.sectionTitle}>{headings.education}</Text>
         {profile.education.map((entry) => {
@@ -323,4 +367,4 @@ function CvAtsDocument({ labels, locale, tailored }: CvAtsDocumentProps) {
   )
 }
 
-export { CvAtsDocument }
+export { CvTechnicalDocument }

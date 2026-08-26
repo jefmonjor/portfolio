@@ -4,18 +4,16 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Dissenyo arquitectures backend sòlides i construeixo productes digitals de principi a fi, integrant la intel·ligència artificial en tot el procés.",
+    "description": "Enginyer de producte amb focus en IA i backend. Construeixo productes de principi a fi sobre Java/Spring i arquitectures mantenibles, amb dades validades, límits clars i alternatives manuals per a la IA.",
     "applicationName": "{shortName} · Portfolio",
-    "role": "Arquitecte de Solucions",
-    "keywordsExtra": [
-      "Portfolio",
-      "CV"
-    ]
+    "role": "Enginyer de producte · IA i Backend",
+    "currentJobTitle": "Arquitecte de Solucions / Technical PM"
   },
   "nav": {
     "about": "Sobre mi",
     "experience": "Experiència",
     "skills": "Habilitats",
+    "ai": "Criteri d'IA",
     "projects": "Projectes",
     "education": "Formació",
     "contact": "Contacte",
@@ -63,13 +61,13 @@
     }
   },
   "status": {
-    "label": "Obert a oportunitats",
+    "label": "Obert selectivament a oportunitats rellevants",
     "detail": "Andorra · Espanya · Remot en fus horari europeu"
   },
   "hero": {
     "indexLabel": "00 — Perfil",
-    "role": "Arquitecte de Solucions",
-    "tagline": "Dissenyo arquitectures backend sòlides i construeixo productes digitals de principi a fi, integrant la intel·ligència artificial en tot el procés.",
+    "role": "Enginyer de producte amb focus en IA i backend",
+    "tagline": "Construeixo productes de principi a fi sobre backends Java/Spring i arquitectures mantenibles. Utilitzo IA quan aporta valor, amb dades validades, límits clars i alternatives manuals.",
     "specs": {
       "location": "Ubicació",
       "timezone": "Fus horari",
@@ -81,12 +79,17 @@
       "linkedin": "LinkedIn",
       "experience": "Veure experiència",
       "cv": "Descarregar CV"
+    },
+    "badge": {
+      "explore3d": "Explorar en 3D",
+      "close3d": "Tornar a la targeta de perfil",
+      "unsupported": "La vista 3D no està disponible en aquest dispositiu"
     }
   },
   "about": {
     "indexLabel": "01 — Sobre mi",
     "title": "Qui soc, en un paràgraf",
-    "manifesto": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui l'arquitectura backend d'Andbank. He liderat migracions complexes, integrat sistemes legacy i dissenyat arquitectures hexagonals i de microserveis. I fora de la feina, construeixo: vuit productes propis — d'una plataforma per a escriptors a un sistema de facturació VERI*FACTU — amb Claude Code, Codex, Gemini i fluxos MCP, desplegats al meu propi VPS, Vercel i Google Cloud.",
+    "manifesto": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. He liderat migracions complexes, integrat sistemes legacy i dissenyat arquitectures hexagonals i de microserveis. Fora de la feina construeixo diversos productes propis —alguns públics i en funcionament, d'altres privats i en desenvolupament— per mantenir a prop les decisions de producte, backend, desplegament i IA aplicada.",
     "currentlyWorkingWith": "Treballant ara amb"
   },
   "metrics": {
@@ -106,8 +109,8 @@
         "label": "Empreses · de Sevilla a Andorra"
       },
       "products": {
-        "value": "8",
-        "label": "Productes propis · construïts amb IA"
+        "value": "E2E",
+        "label": "Producte · del problema al desplegament"
       }
     }
   },
@@ -199,20 +202,48 @@
       "practice": "Pràctiques"
     },
     "practiceItems": [
-      "Spec-Driven Development · spec-kit i Agent OS",
-      "Context per a agents: CLAUDE.md a cada repo",
-      "CI/CD a cada projecte · staging, previews i health checks",
-      "Testing: Playwright E2E, Vitest, axe i Lighthouse CI",
+      "Desenvolupament guiat per especificacions per a canvis acotats",
+      "Contractes tipats i validació a les fronteres de confiança",
+      "Comprovacions automàtiques i desplegaments quan el producte els necessita",
+      "Vitest, TypeScript estricte i builds de producció en aquest portfolio",
       "Disseny d'arquitectures de referència",
       "Gestió tècnica de proveïdors",
       "Scrum (certificació SMPC)"
     ]
   },
+  "aiApproach": {
+    "indexLabel": "04 — IA en producte",
+    "title": "IA útil, acotada per enginyeria",
+    "hint": "Evidència · límits · alternativa",
+    "entries": {
+      "dossier": {
+        "title": "Font de veritat tancada",
+        "body": "L'assistent d'aquest portfolio rep un dossier públic tancat i ha d'indicar quan falta una dada en lloc d'omplir el buit."
+      },
+      "contracts": {
+        "title": "Contractes validats",
+        "body": "Les entrades i sortides d'IA creuen fronteres tipades i validació en runtime, inclosos contractes JSON estrictes quan hi ha extracció estructurada."
+      },
+      "limits": {
+        "title": "Límits i alternativa",
+        "body": "Els límits d'ús i un sostre global diari acoten el consum; els fluxos importants conserven una via manual si la IA falla o no és fiable."
+      },
+      "deterministic": {
+        "title": "Determinista quan importa",
+        "body": "Corte1D manté l'optimització en un motor determinista i PRONOQ utilitza IA per explicar resultats, no per decidir pronòstics."
+      }
+    }
+  },
   "projects": {
-    "indexLabel": "04 — Projectes",
+    "indexLabel": "05 — Projectes",
     "title": "Projectes propis",
-    "hint": "{count, plural, one {# projecte} other {# projectes}} · construïts amb IA",
-    "privateLabel": "En desenvolupament · no públic",
+    "hint": "{count, plural, one {# projecte} other {# projectes}} · producte · backend · IA",
+    "status": {
+      "live": "En funcionament",
+      "development": "En desenvolupament",
+      "public": "Públic",
+      "private": "Privat"
+    },
     "openDetail": "Veure detalls de {name}",
     "detail": {
       "label": "Cas",
@@ -237,7 +268,7 @@
       "transolido": {
         "name": "Transolido",
         "role": "Producte propi · SaaS",
-        "summary": "Facturació conforme a VERI*FACTU amb un backend potent: monòlit modular en Java 21 / Spring Boot amb login propi (JWT), esdeveniments sobre Redis (Upstash) i PostgreSQL a Neon. Frontend React i extracció de dades amb IA.",
+        "summary": "Facturació conforme a VERI*FACTU: monòlit modular en Java 21 / Spring Boot amb autenticació JWT, esdeveniments Redis a Upstash, PostgreSQL a Neon, frontend React i extracció de dades assistida per IA.",
         "highlights": [
           "Compliment del reglament VERI*FACTU amb traçabilitat completa.",
           "Autenticació pròpia amb JWT i esdeveniments en streaming sobre Upstash Redis.",
@@ -297,7 +328,7 @@
     }
   },
   "education": {
-    "indexLabel": "05 — Formació i idiomes",
+    "indexLabel": "06 — Formació i idiomes",
     "title": "Formació i idiomes",
     "languagesLabel": "Idiomes",
     "entries": {
@@ -322,7 +353,7 @@
     }
   },
   "contact": {
-    "indexLabel": "06 — Contacte",
+    "indexLabel": "07 — Contacte",
     "title": "La manera més ràpida de localitzar-me",
     "emailLabel": "Email",
     "copy": "Copiar",
@@ -341,26 +372,28 @@
     "builtLine": "Dissenyat i construït des de zero · Next.js"
   },
   "cvToast": {
-    "title": "Descarregant CV",
-    "description": "La descàrrega s'obrirà en una pestanya nova."
+    "title": "CV preparat",
+    "description": "El PDF s'ha obert o descarregat."
   },
   "cvModal": {
     "title": "Descarregar CV",
-    "question": "Per a què el necessites?",
-    "info": "Vull conèixer el perfil",
-    "infoDesc": "CV complet amb tot el detall, en disseny editorial.",
-    "hiring": "Procés de selecció",
-    "hiringDesc": "Versió ATS compacta o adaptada a la teva oferta amb IA.",
-    "ats": "CV ATS estàndard",
-    "atsDesc": "Compacte i optimitzat per a filtres automàtics de selecció.",
-    "tailor": "Adaptat a la teva oferta",
-    "tailorDesc": "Enganxa l'oferta i la IA ajusta el resum i les paraules clau — només amb dades reals del perfil.",
+    "question": "Tria la versió que encaixa millor",
+    "general": "CV general",
+    "generalDesc": "La història completa: experiència, projectes, formació i idiomes en disseny editorial.",
+    "technical": "CV tècnic",
+    "technicalDesc": "Una columna, lectura ATS i més pes per a stack, pràctiques i projectes tècnics.",
+    "tailor": "CV segons l'oferta",
+    "tailorDesc": "La IA prioritza evidència ja verificada; no afegeix experiència, tecnologies ni assoliments.",
+    "tailorHelp": "Enganxa l'oferta completa. La IA només seleccionarà habilitats i projectes que ja consten al perfil; el servidor construeix el resum final amb dades canòniques.",
+    "offerLabel": "Oferta de feina",
     "offerPlaceholder": "Enganxa aquí el text de l'oferta…",
     "generate": "Generar CV adaptat",
     "generating": "Adaptant…",
+    "privacy": "S'envia al proveïdor d'IA; aquest portfolio no la desa.",
     "back": "Tornar",
-    "tailorError": "No s'ha pogut adaptar ara mateix. Descarrega la versió ATS estàndard.",
-    "tailorLimited": "Límit d'ús assolit. Prova-ho d'aquí a uns minuts o descarrega la versió ATS."
+    "tailorError": "No s'ha pogut adaptar ara mateix. El CV tècnic continua disponible.",
+    "tailorLimited": "Límit d'ús assolit. Prova-ho d'aquí a uns minuts o descarrega el CV tècnic.",
+    "tailorUnavailable": "L'adaptació amb IA no està disponible ara mateix. Pots descarregar el CV general o tècnic."
   },
   "terminal": {
     "title": "Terminal",
@@ -369,7 +402,7 @@
     "inputLabel": "Entrada de la terminal",
     "placeholder": "escriu una ordre — prova 'help'",
     "banner": [
-      "Jefferson Montesdeoca — Arquitecte de Solucions",
+      "Jefferson Montesdeoca — Enginyer de producte · IA i Backend",
       "escriu 'help' per començar · ESC o ` per tancar",
       ""
     ],
@@ -406,11 +439,11 @@
     "web": [
       "IA EN AQUESTA WEB — UTILITAT DIRECTA",
       "  · Assistent (bombolla a baix a la dreta): pregunta-li el que",
-      "    vulguis sobre el perfil de Jefferson. Respon a l'instant",
-      "    i només amb dades reals.",
-      "  · CV a mida: a 'Descarregar CV', enganxa el text de la teva",
-      "    oferta i la IA adapta el resum i les paraules clau al",
-      "    lloc de treball. També hi ha versió completa i versió ATS.",
+      "    vulguis sobre el perfil de Jefferson. Usa un dossier públic",
+      "    tancat i ha d'indicar si la dada sol·licitada no hi apareix.",
+      "  · Tres CV: general, tècnic d'una columna i segons l'oferta.",
+      "    En l'últim, la IA només prioritza evidència ja verificada;",
+      "    no afegeix experiència, tecnologies ni assoliments.",
       "",
       "  Per dins: Next.js 16 · TypeScript · OpenAI · Vercel",
       "  Codi obert: github.com/jefmonjor/portfolio"
@@ -446,15 +479,16 @@
     "title": "Assistent · respon sobre Jefferson",
     "open": "Obrir l'assistent",
     "close": "Tancar l'assistent",
-    "intro": "Hola, soc l'assistent de Jefferson. Pregunta'm el que vulguis sobre la seva experiència, els seus projectes o la seva manera de treballar. Si alguna cosa no la sé, t'ho dic i et deixo el seu email.",
+    "intro": "Pregunta per la seva experiència, projectes, stack o encaix amb una oferta. Responc des d'un dossier públic tancat i separo la feina actual del seu perfil objectiu.",
     "placeholder": "Escriu la teva pregunta…",
+    "inputLabel": "Pregunta per a l'assistent",
     "send": "Enviar",
-    "s1": "Quina experiència té amb Java i Spring?",
-    "s2": "Ha treballat en banca?",
-    "s3": "Busco algú per a un projecte",
+    "s1": "Quina evidència té per a un rol backend Java?",
+    "s2": "Què ha construït amb IA aplicada?",
+    "s3": "Pots comparar el seu perfil amb una oferta?",
     "rateLimited": "Has fet moltes preguntes seguides. Espera un moment i torna-ho a provar.",
     "unavailable": "L'assistent no està disponible ara mateix. Escriu a {email}.",
     "error": "No he pogut respondre. Escriu a {email}.",
-    "disclaimer": "Respostes generades per IA a partir del perfil públic de Jefferson. Poden contenir errors: confirma el que sigui important per email."
+    "disclaimer": "IA limitada al perfil públic. No estima dades absents; confirma per email qualsevol decisió important."
   }
 }

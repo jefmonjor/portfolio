@@ -72,6 +72,7 @@ export type CvExperienceEntry = {
 export type CvProjectEntry = {
   readonly name: string
   readonly summary: string
+  readonly status: string
 }
 
 export type CvEducationEntry = {
@@ -450,6 +451,15 @@ const styles = StyleSheet.create({
     color: palette.body,
     lineHeight: 1.55,
   },
+  projectStatus: {
+    fontFamily: "GeistMono",
+    fontWeight: 400,
+    fontSize: 7.5,
+    color: palette.muted,
+    textTransform: "uppercase",
+    letterSpacing: 0.4,
+    marginBottom: 3,
+  },
   educationItem: {
     flexDirection: "column",
     marginBottom: 8,
@@ -719,6 +729,7 @@ function CvDocument({ labels }: CvDocumentProps) {
                     </Link>
                   ) : null}
                 </View>
+                <Text style={styles.projectStatus}>{data.status}</Text>
                 <Text style={styles.projectSummary}>{data.summary}</Text>
                 {entry.stack && entry.stack.length > 0 ? (
                   <View style={styles.stackRow}>
@@ -741,9 +752,15 @@ function CvDocument({ labels }: CvDocumentProps) {
               {profile.education.map((entry) => {
                 const data = labels.educationEntry(entry.id)
                 return (
-                  <View key={entry.id} style={styles.educationItem} wrap={false}>
+                  <View
+                    key={entry.id}
+                    style={styles.educationItem}
+                    wrap={false}
+                  >
                     <Text style={styles.educationTitle}>{data.title}</Text>
-                    <Text style={styles.educationOrg}>{entry.organization}</Text>
+                    <Text style={styles.educationOrg}>
+                      {entry.organization}
+                    </Text>
                     <Text style={styles.educationMeta}>
                       {data.dates}
                       {data.location ? ` · ${data.location}` : ""}

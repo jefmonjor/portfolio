@@ -22,6 +22,7 @@ const NAV_IDS = [
   "about",
   "experience",
   "skills",
+  "ai",
   "projects",
   "education",
   "contact",
@@ -44,13 +45,14 @@ function TopBar() {
         style={{ scaleX: progress, transformOrigin: "0 50%" }}
         className="fixed inset-x-0 top-0 h-0.5 bg-brand"
       />
-      <div className="mx-auto flex h-11 max-w-6xl items-center justify-between gap-4 rounded-full border border-border bg-background/85 px-4 shadow-sm backdrop-blur sm:px-5">
+      <div className="mx-auto flex h-11 max-w-6xl min-w-0 items-center justify-between gap-2 rounded-full border border-border bg-background/85 px-3 shadow-sm backdrop-blur sm:gap-4 sm:px-5">
         <a
           href="#top"
-          className="flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase hover:text-foreground"
+          className="flex min-w-0 shrink items-center gap-2 font-mono text-[11px] tracking-widest uppercase hover:text-foreground"
         >
           <span className="inline-block size-1.5 bg-brand" />
-          <span>{profile.shortName}</span>
+          <span className="sm:hidden">Jefferson</span>
+          <span className="hidden truncate sm:inline">{profile.shortName}</span>
         </a>
 
         <nav className="hidden items-center gap-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase lg:flex">
@@ -65,7 +67,7 @@ function TopBar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button

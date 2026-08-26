@@ -20,7 +20,6 @@ import {
   serializeStructuredData,
 } from "@/lib/seo/structured-data"
 import { isLocale, routing, type Locale } from "@/i18n/routing"
-import { parseStringArray } from "@/lib/i18n-values"
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -71,7 +70,6 @@ export async function generateMetadata({
     role: tMeta("role"),
   })
   const description = tMeta("description")
-  const keywordsExtra = parseStringArray(tMeta.raw("keywordsExtra"))
 
   return {
     metadataBase,
@@ -82,7 +80,6 @@ export async function generateMetadata({
     creator: profile.name,
     publisher: profile.name,
     category: "technology",
-    keywords: [...profile.focus, ...keywordsExtra, tMeta("role")],
     alternates: {
       canonical: `/${locale}`,
       languages: alternateLanguages,
@@ -130,15 +127,35 @@ export default async function LocaleLayout({
   setRequestLocale(locale)
 
   const tMeta = await getTranslations({ locale, namespace: "metadata" })
-  const role = tMeta("role")
+  const targetRole = tMeta("role")
+  const currentJobTitle = tMeta("currentJobTitle")
+  const tProjects = await getTranslations({
+    locale,
+    namespace: "projects.entries",
+  })
   const description = tMeta("description")
+  const publicProjects = profile.projects.flatMap((project) => {
+    if (project.visibility !== "public" || !project.url) return []
+
+    return [
+      {
+        id: project.id,
+        name: tProjects(`${project.id}.name`),
+        description: tProjects(`${project.id}.summary`),
+        url: project.url,
+        keywords: project.stack ?? [],
+        ...(project.repo ? { codeRepository: project.repo } : {}),
+      },
+    ]
+  })
   const structuredData = buildProfileStructuredData({
     locale,
-    role,
+    currentJobTitle,
+    publicProjects,
     description,
     title: tMeta("titleTemplate", {
       shortName: profile.shortName,
-      role,
+      role: targetRole,
     }),
   })
 
@@ -156,6 +173,7 @@ export default async function LocaleLayout({
     >
       <head>
         <BackgroundInitScript />
+        <link rel="describedby" href="/llms.txt" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

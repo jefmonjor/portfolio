@@ -5,14 +5,23 @@ type ProfileStructuredDataInput = {
   locale: Locale
   title: string
   description: string
-  role: string
+  currentJobTitle: string
+  publicProjects: ReadonlyArray<{
+    id: string
+    name: string
+    description: string
+    url: string
+    keywords: ReadonlyArray<string>
+    codeRepository?: string
+  }>
 }
 
 export function buildProfileStructuredData({
   locale,
   title,
   description,
-  role,
+  currentJobTitle,
+  publicProjects,
 }: ProfileStructuredDataInput) {
   const canonicalUrl = `${siteUrl}/${locale}`
   const personId = `${siteUrl}/#person`
@@ -32,6 +41,18 @@ export function buildProfileStructuredData({
   const currentOrganization = profile.experience.find(
     (entry) => entry.endISO === "present"
   )?.organization
+  const projectNodes = publicProjects.map((project) => ({
+    "@type": "CreativeWork",
+    "@id": `${siteUrl}/#project-${project.id}`,
+    name: project.name,
+    description: project.description,
+    url: project.url,
+    creator: { "@id": personId },
+    keywords: project.keywords,
+    ...(project.codeRepository
+      ? { codeRepository: project.codeRepository }
+      : {}),
+  }))
 
   return {
     "@context": "https://schema.org",
@@ -54,6 +75,7 @@ export function buildProfileStructuredData({
         dateModified: portfolioUpdatedAt,
         isPartOf: { "@id": websiteId },
         mainEntity: { "@id": personId },
+        hasPart: projectNodes.map((project) => ({ "@id": project["@id"] })),
       },
       {
         "@type": "Person",
@@ -69,7 +91,7 @@ export function buildProfileStructuredData({
           height: 1175,
         },
         description,
-        jobTitle: role,
+        jobTitle: currentJobTitle,
         homeLocation: {
           "@type": "Place",
           name: profile.location,
@@ -88,8 +110,30 @@ export function buildProfileStructuredData({
             }
           : {}),
         knowsAbout,
+        knowsLanguage: [
+          {
+            "@type": "Language",
+            name: "Spanish",
+            alternateName: "es",
+          },
+          {
+            "@type": "Language",
+            name: "English",
+            alternateName: "en",
+          },
+        ],
+        alumniOf: profile.education.map((entry) => ({
+          "@type": "EducationalOrganization",
+          name: entry.organization,
+        })),
+        hasCredential: {
+          "@type": "EducationalOccupationalCredential",
+          name: "Scrum Master Professional Certified (SMPC)",
+          credentialCategory: "certification",
+        },
         sameAs,
       },
+      ...projectNodes,
     ],
   }
 }

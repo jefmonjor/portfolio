@@ -4,18 +4,16 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Diseño arquitecturas backend sólidas y construyo productos digitales de principio a fin, integrando la inteligencia artificial en todo el proceso.",
+    "description": "Product Engineer con foco en IA y backend. Construyo productos de principio a fin sobre Java/Spring y arquitecturas mantenibles, con datos validados, límites claros y alternativas manuales para la IA.",
     "applicationName": "{shortName} · Portfolio",
-    "role": "Arquitecto de Soluciones",
-    "keywordsExtra": [
-      "Portfolio",
-      "CV"
-    ]
+    "role": "Product Engineer · IA y Backend",
+    "currentJobTitle": "Arquitecto de Soluciones / Technical PM"
   },
   "nav": {
     "about": "Sobre mí",
     "experience": "Experiencia",
     "skills": "Habilidades",
+    "ai": "Criterio de IA",
     "projects": "Proyectos",
     "education": "Formación",
     "contact": "Contacto",
@@ -63,13 +61,13 @@
     }
   },
   "status": {
-    "label": "Abierto a oportunidades",
+    "label": "Abierto selectivamente a oportunidades relevantes",
     "detail": "Andorra · España · Remoto en zona horaria europea"
   },
   "hero": {
     "indexLabel": "00 — Perfil",
-    "role": "Arquitecto de Soluciones",
-    "tagline": "Diseño arquitecturas backend sólidas y construyo productos digitales de principio a fin, integrando la inteligencia artificial en todo el proceso.",
+    "role": "Product Engineer con foco en IA y backend",
+    "tagline": "Construyo productos de principio a fin sobre backends Java/Spring y arquitecturas mantenibles. Uso IA cuando aporta valor, con datos validados, límites claros y alternativas manuales.",
     "specs": {
       "location": "Ubicación",
       "timezone": "Zona horaria",
@@ -81,12 +79,17 @@
       "linkedin": "LinkedIn",
       "experience": "Ver experiencia",
       "cv": "Descargar CV"
+    },
+    "badge": {
+      "explore3d": "Explorar en 3D",
+      "close3d": "Volver a la tarjeta de perfil",
+      "unsupported": "La vista 3D no está disponible en este dispositivo"
     }
   },
   "about": {
     "indexLabel": "01 — Sobre mí",
     "title": "Quién soy, en un párrafo",
-    "manifesto": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy la arquitectura backend de Andbank. He liderado migraciones complejas, integrado sistemas legacy y diseñado arquitecturas hexagonales y de microservicios. Y fuera del trabajo, construyo: ocho productos propios — de una plataforma para escritores a un sistema de facturación VERI*FACTU — con Claude Code, Codex, Gemini y flujos MCP, desplegados en mi propio VPS, Vercel y Google Cloud.",
+    "manifesto": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. He liderado migraciones complejas, integrado sistemas legacy y diseñado arquitecturas hexagonales y de microservicios. Fuera del trabajo construyo varios productos propios —algunos públicos y en funcionamiento, otros privados y en desarrollo— para mantener cerca las decisiones de producto, backend, despliegue e IA aplicada.",
     "currentlyWorkingWith": "Trabajando ahora con"
   },
   "metrics": {
@@ -106,8 +109,8 @@
         "label": "Empresas · de Sevilla a Andorra"
       },
       "products": {
-        "value": "8",
-        "label": "Productos propios · construidos con IA"
+        "value": "E2E",
+        "label": "Producto · del problema al despliegue"
       }
     }
   },
@@ -199,20 +202,48 @@
       "practice": "Prácticas"
     },
     "practiceItems": [
-      "Spec-Driven Development · spec-kit y Agent OS",
-      "Contexto para agentes: CLAUDE.md en cada repo",
-      "CI/CD en cada proyecto · staging, previews y health checks",
-      "Testing: Playwright E2E, Vitest, axe y Lighthouse CI",
+      "Desarrollo guiado por especificaciones para cambios acotados",
+      "Contratos tipados y validación en fronteras de confianza",
+      "Comprobaciones automáticas y despliegues cuando el producto los necesita",
+      "Vitest, TypeScript estricto y builds de producción en este portfolio",
       "Diseño de arquitecturas de referencia",
       "Gestión técnica de proveedores",
       "Scrum (certificación SMPC)"
     ]
   },
+  "aiApproach": {
+    "indexLabel": "04 — IA en producto",
+    "title": "IA útil, acotada por ingeniería",
+    "hint": "Evidencia · límites · alternativa",
+    "entries": {
+      "dossier": {
+        "title": "Fuente de verdad cerrada",
+        "body": "El asistente de este portfolio recibe un dossier público cerrado y debe indicar cuándo falta un dato en lugar de rellenar el hueco."
+      },
+      "contracts": {
+        "title": "Contratos validados",
+        "body": "Las entradas y salidas de IA cruzan fronteras tipadas y validación en runtime, incluidos contratos JSON estrictos cuando hay extracción estructurada."
+      },
+      "limits": {
+        "title": "Límites y alternativa",
+        "body": "Los límites por uso y un techo global diario acotan el consumo; los flujos importantes conservan una vía manual si la IA falla o no es fiable."
+      },
+      "deterministic": {
+        "title": "Determinista cuando importa",
+        "body": "Corte1D mantiene la optimización en un motor determinista y PRONOQ usa IA para explicar resultados, no para decidir pronósticos."
+      }
+    }
+  },
   "projects": {
-    "indexLabel": "04 — Proyectos",
+    "indexLabel": "05 — Proyectos",
     "title": "Proyectos propios",
-    "hint": "{count, plural, one {# proyecto} other {# proyectos}} · construidos con IA",
-    "privateLabel": "En desarrollo · no público",
+    "hint": "{count, plural, one {# proyecto} other {# proyectos}} · producto · backend · IA",
+    "status": {
+      "live": "En funcionamiento",
+      "development": "En desarrollo",
+      "public": "Público",
+      "private": "Privado"
+    },
     "openDetail": "Ver detalles de {name}",
     "detail": {
       "label": "Caso",
@@ -237,7 +268,7 @@
       "transolido": {
         "name": "Transolido",
         "role": "Producto propio · SaaS",
-        "summary": "Facturación conforme a VERI*FACTU con un backend potente: monolito modular en Java 21 / Spring Boot con login propio (JWT), eventos sobre Redis (Upstash) y PostgreSQL en Neon. Frontend React y extracción de datos con IA.",
+        "summary": "Facturación conforme a VERI*FACTU: monolito modular en Java 21 / Spring Boot con autenticación JWT, eventos Redis en Upstash, PostgreSQL en Neon, frontend React y extracción de datos asistida por IA.",
         "highlights": [
           "Cumplimiento del reglamento VERI*FACTU con trazabilidad completa.",
           "Autenticación propia con JWT y eventos en streaming sobre Upstash Redis.",
@@ -286,9 +317,9 @@
       "portfolio": {
         "name": "Este portfolio",
         "role": "Proyecto personal",
-        "summary": "El propio sitio que estás leyendo: stack tipado de Next.js + tRPC + Zod con enrutado bilingüe, terminal interactiva, paleta de comandos y CV en PDF generado desde los mismos datos que ves en pantalla.",
+        "summary": "El sitio que estás leyendo: stack tipado de Next.js + tRPC + Zod con enrutado trilingüe, terminal interactiva, paleta de comandos y CV en PDF generado desde los mismos datos del perfil.",
         "highlights": [
-          "Stack tipado Next.js + tRPC + Zod con enrutado bilingüe.",
+          "Stack tipado Next.js + tRPC + Zod con rutas en español, inglés y catalán.",
           "Terminal interactiva y paleta de comandos ⌘K para navegar.",
           "CV en PDF generado en servidor desde una única fuente de datos.",
           "Animación con propósito que nunca oculta contenido ni desplaza el layout."
@@ -297,7 +328,7 @@
     }
   },
   "education": {
-    "indexLabel": "05 — Formación e idiomas",
+    "indexLabel": "06 — Formación e idiomas",
     "title": "Formación e idiomas",
     "languagesLabel": "Idiomas",
     "entries": {
@@ -322,7 +353,7 @@
     }
   },
   "contact": {
-    "indexLabel": "06 — Contacto",
+    "indexLabel": "07 — Contacto",
     "title": "La forma más rápida de localizarme",
     "emailLabel": "Email",
     "copy": "Copiar",
@@ -341,26 +372,28 @@
     "builtLine": "Diseñado y construido desde cero · Next.js"
   },
   "cvToast": {
-    "title": "Descargando CV",
-    "description": "La descarga se abrirá en una pestaña nueva."
+    "title": "CV preparado",
+    "description": "El PDF se ha abierto o descargado."
   },
   "cvModal": {
     "title": "Descargar CV",
-    "question": "¿Para qué lo necesitas?",
-    "info": "Quiero conocer el perfil",
-    "infoDesc": "CV completo con todo el detalle, en diseño editorial.",
-    "hiring": "Proceso de selección",
-    "hiringDesc": "Versión ATS compacta o adaptada a tu oferta con IA.",
-    "ats": "CV ATS estándar",
-    "atsDesc": "Compacto y optimizado para filtros automáticos de selección.",
-    "tailor": "Adaptado a tu oferta",
-    "tailorDesc": "Pega la oferta y la IA ajusta el resumen y las palabras clave — solo con datos reales del perfil.",
+    "question": "Elige la versión que mejor encaja",
+    "general": "CV general",
+    "generalDesc": "La historia completa: experiencia, proyectos, formación e idiomas en diseño editorial.",
+    "technical": "CV técnico",
+    "technicalDesc": "Una columna, lectura ATS y más peso para stack, prácticas y proyectos técnicos.",
+    "tailor": "CV según la oferta",
+    "tailorDesc": "La IA prioriza evidencia ya verificada; no añade experiencia, tecnologías ni logros.",
+    "tailorHelp": "Pega la oferta completa. La IA solo seleccionará habilidades y proyectos que ya constan en el perfil; el resumen final lo construye el servidor con datos canónicos.",
+    "offerLabel": "Oferta de trabajo",
     "offerPlaceholder": "Pega aquí el texto de la oferta…",
     "generate": "Generar CV adaptado",
     "generating": "Adaptando…",
+    "privacy": "Se envía al proveedor de IA; este portfolio no la guarda.",
     "back": "Volver",
-    "tailorError": "No se pudo adaptar ahora mismo. Descarga la versión ATS estándar.",
-    "tailorLimited": "Límite de uso alcanzado. Prueba en unos minutos o descarga la versión ATS."
+    "tailorError": "No se pudo adaptar ahora mismo. El CV técnico sigue disponible.",
+    "tailorLimited": "Límite de uso alcanzado. Prueba en unos minutos o descarga el CV técnico.",
+    "tailorUnavailable": "La adaptación con IA no está disponible ahora mismo. Puedes descargar el CV general o técnico."
   },
   "terminal": {
     "title": "Terminal",
@@ -369,7 +402,7 @@
     "inputLabel": "Entrada de la terminal",
     "placeholder": "escribe un comando — prueba 'help'",
     "banner": [
-      "Jefferson Montesdeoca — Arquitecto de Soluciones",
+      "Jefferson Montesdeoca — Product Engineer · IA y Backend",
       "escribe 'help' para empezar · ESC o ` para cerrar",
       ""
     ],
@@ -406,11 +439,11 @@
     "web": [
       "IA EN ESTA WEB — UTILIDAD DIRECTA",
       "  · Asistente (burbuja abajo a la derecha): pregúntale lo que",
-      "    quieras sobre el perfil de Jefferson. Responde al momento",
-      "    y solo con datos reales.",
-      "  · CV a tu medida: en 'Descargar CV', pega el texto de tu",
-      "    oferta y la IA adapta el resumen y las palabras clave al",
-      "    puesto. También hay versión completa y versión ATS.",
+      "    quieras sobre el perfil de Jefferson. Usa un dossier público",
+      "    cerrado y debe indicar si el dato solicitado no aparece.",
+      "  · Tres CV: general, técnico de una columna y según oferta.",
+      "    En el último, la IA solo prioriza evidencia ya verificada;",
+      "    no añade experiencia, tecnologías ni logros.",
       "",
       "  Por dentro: Next.js 16 · TypeScript · OpenAI · Vercel",
       "  Código abierto: github.com/jefmonjor/portfolio"
@@ -446,15 +479,16 @@
     "title": "Asistente · responde sobre Jefferson",
     "open": "Abrir asistente",
     "close": "Cerrar asistente",
-    "intro": "Hola, soy el asistente de Jefferson. Pregúntame lo que quieras sobre su experiencia, sus proyectos o su forma de trabajar. Si algo no lo sé, te lo digo y te dejo su email.",
+    "intro": "Pregunta por su experiencia, proyectos, stack o encaje con una oferta. Respondo desde un dossier público cerrado y separo su puesto actual de su perfil objetivo.",
     "placeholder": "Escribe tu pregunta…",
+    "inputLabel": "Pregunta para el asistente",
     "send": "Enviar",
-    "s1": "¿Qué experiencia tiene con Java y Spring?",
-    "s2": "¿Ha trabajado en banca?",
-    "s3": "Busco a alguien para un proyecto",
+    "s1": "¿Qué evidencia tiene para un rol backend Java?",
+    "s2": "¿Qué ha construido con IA aplicada?",
+    "s3": "¿Puedes comparar su perfil con una oferta?",
     "rateLimited": "Has hecho muchas preguntas seguidas. Espera un momento e inténtalo de nuevo.",
     "unavailable": "El asistente no está disponible ahora mismo. Escribe a {email}.",
     "error": "No he podido responder. Escribe a {email}.",
-    "disclaimer": "Respuestas generadas por IA a partir del perfil público de Jefferson. Pueden contener errores: confirma lo importante por email."
+    "disclaimer": "IA limitada al perfil público. No estima datos ausentes; confirma por email cualquier decisión importante."
   }
 }

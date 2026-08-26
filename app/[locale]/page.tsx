@@ -1,6 +1,7 @@
 import { setRequestLocale } from "next-intl/server"
 
 import { About } from "@/components/portfolio/about"
+import { AiApproach } from "@/components/portfolio/ai-approach"
 import { Assistant } from "@/components/portfolio/assistant"
 import { Background } from "@/components/portfolio/background"
 import { ConsoleSignature } from "@/components/portfolio/console-signature"
@@ -51,6 +52,9 @@ export default async function Page({
           </Reveal>
           <Reveal>
             <Skills />
+          </Reveal>
+          <Reveal>
+            <AiApproach />
           </Reveal>
           <Reveal>
             <Projects />

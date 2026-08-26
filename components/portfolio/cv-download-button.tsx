@@ -3,15 +3,14 @@
 import confetti from "canvas-confetti"
 import * as React from "react"
 import { useLocale, useTranslations } from "next-intl"
-import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ArrowLeft02Icon,
   Download01Icon,
+  FileValidationIcon,
   SparklesIcon,
   UserIcon,
-  Briefcase01Icon,
-  FileValidationIcon,
 } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
@@ -21,14 +20,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import {
-  CV_TAILOR_OFFER_MAX_CHARS,
-  cvTailorResponseSchema,
-} from "@/types/cv-tailor"
+import { CV_TAILOR_OFFER_MAX_CHARS } from "@/types/cv-tailor"
 
 type CvDownloadButtonProps = {
   readonly className?: string
 }
+
+type Step = "choose" | "offer"
 
 function fireConfetti(): void {
   const defaults: confetti.Options = {
@@ -60,8 +58,6 @@ function fireConfetti(): void {
   })
 }
 
-type Step = "purpose" | "offer"
-
 function CvDownloadButton({ className }: CvDownloadButtonProps) {
   const t = useTranslations("hero.cta")
   const tModal = useTranslations("cvModal")
@@ -69,7 +65,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   const locale = useLocale()
 
   const [open, setOpen] = React.useState(false)
-  const [step, setStep] = React.useState<Step>("purpose")
+  const [step, setStep] = React.useState<Step>("choose")
   const [offer, setOffer] = React.useState("")
   const [busy, setBusy] = React.useState(false)
   const requestRef = React.useRef<AbortController | null>(null)
@@ -84,21 +80,37 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   function resetDialog(): void {
     requestRef.current?.abort()
     requestRef.current = null
-    setStep("purpose")
+    setStep("choose")
     setOffer("")
     setBusy(false)
   }
 
-  function download(url: string): void {
-    const a = document.createElement("a")
-    a.href = url
-    a.target = "_blank"
-    a.rel = "noopener noreferrer"
-    a.click()
+  function completeDownload(): void {
     fireConfetti()
     toast.success(tToast("title"), { description: tToast("description") })
     setOpen(false)
     resetDialog()
+  }
+
+  function downloadUrl(url: string): void {
+    const link = document.createElement("a")
+    link.href = url
+    link.target = "_blank"
+    link.rel = "noopener noreferrer"
+    link.click()
+    completeDownload()
+  }
+
+  function downloadBlob(blob: Blob, filename: string): void {
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = filename
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    window.setTimeout(() => URL.revokeObjectURL(url), 60_000)
+    completeDownload()
   }
 
   async function tailorAndDownload(): Promise<void> {
@@ -119,24 +131,25 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
         toast.error(tModal("tailorLimited"))
         return
       }
-      if (!response.ok) {
+      if (response.status === 503) {
+        toast.error(tModal("tailorUnavailable"))
+        return
+      }
+      if (
+        !response.ok ||
+        response.headers.get("content-type") !== "application/pdf"
+      ) {
         toast.error(tModal("tailorError"))
         return
       }
-      const data = cvTailorResponseSchema.safeParse(await response.json())
-      if (!data.success || requestRef.current !== controller) {
-        if (requestRef.current === controller) {
-          toast.error(tModal("tailorError"))
-        }
-        return
-      }
-      const params = new URLSearchParams({
-        locale,
-        variant: "ats",
-        summary: data.data.summary,
-        keywords: data.data.keywords.join("|"),
-      })
-      download(`/cv.pdf?${params.toString()}`)
+
+      const disposition = response.headers.get("content-disposition")
+      const filename =
+        disposition?.match(/filename="([^"]+)"/)?.[1] ??
+        `Jefferson_Montesdeoca_CV_Tailored_${locale.toUpperCase()}.pdf`
+      const blob = await response.blob()
+      if (requestRef.current !== controller) return
+      downloadBlob(blob, filename)
     } catch (error) {
       if (!(error instanceof DOMException && error.name === "AbortError")) {
         toast.error(tModal("tailorError"))
@@ -151,9 +164,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
 
   function onOpenChange(next: boolean): void {
     setOpen(next)
-    if (!next) {
-      resetDialog()
-    }
+    if (!next) resetDialog()
   }
 
   const optionClass =
@@ -177,24 +188,26 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
       </Button>
 
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent showCloseButton className="gap-0 p-0 sm:max-w-md">
+        <DialogContent showCloseButton className="gap-0 p-0 sm:max-w-lg">
           <DialogHeader className="gap-2 border-b border-border p-5">
             <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
               <span className="inline-block size-1.5 bg-brand" />
               {tModal("title")}
             </div>
             <DialogTitle className="font-heading text-lg tracking-tight">
-              {step === "purpose" ? tModal("question") : tModal("hiring")}
+              {step === "choose" ? tModal("question") : tModal("tailor")}
             </DialogTitle>
           </DialogHeader>
 
           <div className="flex flex-col gap-2.5 p-5">
-            {step === "purpose" ? (
+            {step === "choose" ? (
               <>
                 <button
                   type="button"
                   className={optionClass}
-                  onClick={() => download(`/cv.pdf?locale=${locale}`)}
+                  onClick={() =>
+                    downloadUrl(`/cv.pdf?locale=${locale}&variant=general`)
+                  }
                 >
                   <HugeiconsIcon
                     icon={UserIcon}
@@ -203,40 +216,19 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                   />
                   <span className="flex flex-col gap-0.5">
                     <span className="text-sm font-medium text-foreground">
-                      {tModal("info")}
+                      {tModal("general")}
                     </span>
                     <span className="text-xs text-muted-foreground">
-                      {tModal("infoDesc")}
+                      {tModal("generalDesc")}
                     </span>
                   </span>
                 </button>
-                <button
-                  type="button"
-                  className={optionClass}
-                  onClick={() => setStep("offer")}
-                >
-                  <HugeiconsIcon
-                    icon={Briefcase01Icon}
-                    className="mt-0.5 size-4 shrink-0 text-muted-foreground"
-                    strokeWidth={1.5}
-                  />
-                  <span className="flex flex-col gap-0.5">
-                    <span className="text-sm font-medium text-foreground">
-                      {tModal("hiring")}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {tModal("hiringDesc")}
-                    </span>
-                  </span>
-                </button>
-              </>
-            ) : (
-              <>
+
                 <button
                   type="button"
                   className={optionClass}
                   onClick={() =>
-                    download(`/cv.pdf?locale=${locale}&variant=ats`)
+                    downloadUrl(`/cv.pdf?locale=${locale}&variant=technical`)
                   }
                 >
                   <HugeiconsIcon
@@ -246,47 +238,77 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                   />
                   <span className="flex flex-col gap-0.5">
                     <span className="text-sm font-medium text-foreground">
-                      {tModal("ats")}
+                      {tModal("technical")}
                     </span>
                     <span className="text-xs text-muted-foreground">
-                      {tModal("atsDesc")}
+                      {tModal("technicalDesc")}
                     </span>
                   </span>
                 </button>
 
-                <div className="flex flex-col gap-2 rounded-lg border border-border p-3">
-                  <span className="flex items-center gap-2 text-sm font-medium text-foreground">
-                    <HugeiconsIcon
-                      icon={SparklesIcon}
-                      className="size-4 shrink-0 text-muted-foreground"
-                      strokeWidth={1.5}
-                    />
-                    {tModal("tailor")}
-                  </span>
-                  <span className="text-xs text-muted-foreground">
-                    {tModal("tailorDesc")}
-                  </span>
-                  <textarea
-                    value={offer}
-                    onChange={(event) => setOffer(event.target.value)}
-                    placeholder={tModal("offerPlaceholder")}
-                    maxLength={CV_TAILOR_OFFER_MAX_CHARS}
-                    rows={5}
-                    className="w-full resize-none rounded-md border border-input bg-transparent p-2 text-xs leading-relaxed outline-none focus-visible:border-ring"
+                <button
+                  type="button"
+                  className={optionClass}
+                  onClick={() => setStep("offer")}
+                >
+                  <HugeiconsIcon
+                    icon={SparklesIcon}
+                    className="mt-0.5 size-4 shrink-0 text-muted-foreground"
+                    strokeWidth={1.5}
                   />
-                  <Button
-                    size="sm"
-                    disabled={offer.trim().length < 40 || busy}
-                    onClick={() => void tailorAndDownload()}
-                  >
-                    {busy ? tModal("generating") : tModal("generate")}
-                  </Button>
+                  <span className="flex flex-col gap-0.5">
+                    <span className="text-sm font-medium text-foreground">
+                      {tModal("tailor")}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {tModal("tailorDesc")}
+                    </span>
+                  </span>
+                </button>
+              </>
+            ) : (
+              <>
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  {tModal("tailorHelp")}
+                </p>
+                <label
+                  htmlFor="cv-offer"
+                  className="text-xs font-medium text-foreground"
+                >
+                  {tModal("offerLabel")}
+                </label>
+                <textarea
+                  id="cv-offer"
+                  value={offer}
+                  onChange={(event) => setOffer(event.target.value)}
+                  placeholder={tModal("offerPlaceholder")}
+                  maxLength={CV_TAILOR_OFFER_MAX_CHARS}
+                  rows={8}
+                  disabled={busy}
+                  className="w-full resize-y rounded-md border border-input bg-transparent p-2 text-xs leading-relaxed outline-none focus-visible:border-ring disabled:opacity-60"
+                />
+                <div className="flex items-center justify-between gap-3">
+                  <span className="font-mono text-[10px] text-muted-foreground">
+                    {offer.length.toLocaleString(locale)} /{" "}
+                    {CV_TAILOR_OFFER_MAX_CHARS.toLocaleString(locale)}
+                  </span>
+                  <span className="text-right text-[10px] text-muted-foreground">
+                    {tModal("privacy")}
+                  </span>
                 </div>
+                <Button
+                  size="sm"
+                  disabled={offer.trim().length < 40 || busy}
+                  onClick={() => void tailorAndDownload()}
+                >
+                  {busy ? tModal("generating") : tModal("generate")}
+                </Button>
 
                 <button
                   type="button"
-                  onClick={() => setStep("purpose")}
-                  className="mt-1 flex w-fit items-center gap-1.5 font-mono text-[10px] tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground"
+                  disabled={busy}
+                  onClick={() => setStep("choose")}
+                  className="mt-1 flex w-fit items-center gap-1.5 font-mono text-[10px] tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground disabled:opacity-60"
                 >
                   <HugeiconsIcon
                     icon={ArrowLeft02Icon}
