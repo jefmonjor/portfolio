@@ -10,6 +10,7 @@ import {
 import { contactEmail } from "@/lib/email"
 import { profile, siteUrlShort } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
+import { CV_HEADINGS } from "@/server/cv/headings"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
 import type { CvTailoredContent } from "@/types/cv-tailor"
 
@@ -149,44 +150,6 @@ type CvTechnicalDocumentProps = {
   readonly tailored?: CvTailoredContent
 }
 
-// Standard headings that automated screeners recognize — the website's
-// editorial titles ("00 — Perfil", "Dónde he trabajado") parse worse.
-const HEADINGS = {
-  es: {
-    profile: "Resumen profesional",
-    skills: "Habilidades técnicas",
-    practices: "Prácticas de ingeniería",
-    experience: "Experiencia profesional",
-    projects: "Proyectos propios",
-    education: "Formación",
-    languages: "Idiomas",
-    evidence: "Evidencia priorizada",
-    unverified: "Requisitos a confirmar",
-  },
-  ca: {
-    profile: "Resum professional",
-    skills: "Habilitats tècniques",
-    practices: "Pràctiques d'enginyeria",
-    experience: "Experiència professional",
-    projects: "Projectes propis",
-    education: "Formació",
-    languages: "Idiomes",
-    evidence: "Evidència prioritzada",
-    unverified: "Requisits per confirmar",
-  },
-  en: {
-    profile: "Professional Summary",
-    skills: "Technical Skills",
-    practices: "Engineering Practices",
-    experience: "Professional Experience",
-    projects: "Personal Projects",
-    education: "Education",
-    languages: "Languages",
-    evidence: "Prioritized evidence",
-    unverified: "Requirements to confirm",
-  },
-} as const
-
 // Keep the technical variant lean: the strongest personal products only.
 const TECHNICAL_PROJECT_IDS = [
   "transolido",
@@ -219,7 +182,7 @@ function CvTechnicalDocument({
   locale,
   tailored,
 }: CvTechnicalDocumentProps) {
-  const headings = HEADINGS[locale]
+  const headings = CV_HEADINGS[locale]
   // Server-rendered on demand, so the plain address never reaches the
   // static HTML — safe to print it in the downloadable document.
   const email = contactEmail()

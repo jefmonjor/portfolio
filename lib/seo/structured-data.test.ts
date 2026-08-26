@@ -72,6 +72,22 @@ describe("profile structured data", () => {
     ])
   })
 
+  it("states the occupation for agents that read the graph, not the prose", () => {
+    const data = buildProfileStructuredData({
+      locale: "en",
+      title: "Jefferson Montesdeoca — Product Engineer · AI & Backend",
+      description: "Professional profile.",
+      currentJobTitle: "Solutions Architect / Technical PM",
+      publicProjects: [],
+    })
+    const person = data["@graph"].find(
+      (node) => "@type" in node && node["@type"] === "Person"
+    ) as { hasOccupation: { name: string; occupationalCategory: string } }
+
+    expect(person.hasOccupation.name).toBe("Solutions Architect / Technical PM")
+    expect(person.hasOccupation.occupationalCategory).toContain("15-1252.00")
+  })
+
   it("escapes markup-significant characters before embedding JSON", () => {
     expect(serializeStructuredData({ value: "</script>" })).toBe(
       '{"value":"\\u003c/script>"}'
