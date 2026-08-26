@@ -75,6 +75,7 @@ export const profile: Profile = {
     {
       id: "andbank-2024",
       organization: "Andbank",
+      organizationType: "bigCorp",
       location: "Andorra la Vella, Andorra",
       startISO: "2024-09",
       endISO: "present",
@@ -91,6 +92,7 @@ export const profile: Profile = {
     {
       id: "elabogado-2022",
       organization: "elAbogado",
+      organizationType: "SME",
       location: "Barcelona, Spain",
       startISO: "2022-03",
       endISO: "2024-09",
@@ -99,6 +101,7 @@ export const profile: Profile = {
     {
       id: "zemsania-2021",
       organization: "Zemsania",
+      organizationType: "bigCorp",
       location: "Madrid, Spain",
       startISO: "2021-07",
       endISO: "2022-04",
@@ -107,6 +110,7 @@ export const profile: Profile = {
     {
       id: "keapps-2020",
       organization: "Keapps (Atos)",
+      organizationType: "bigCorp",
       location: "Seville, Spain",
       startISO: "2020-07",
       endISO: "2021-07",
@@ -115,6 +119,7 @@ export const profile: Profile = {
     {
       id: "ayesa-2019",
       organization: "Ayesa",
+      organizationType: "bigCorp",
       location: "Seville, Spain",
       startISO: "2019-08",
       endISO: "2020-04",
@@ -289,13 +294,20 @@ export const profile: Profile = {
       organization: "SCRUMstudy",
       dates: "2023",
       kind: "certification",
+      startISO: "2023",
     },
     {
       id: "beng-software",
       organization: "Universidad de Sevilla",
       dates: "2014 — 2018",
       kind: "degree",
+      startISO: "2014",
+      endISO: "2018",
     },
   ],
-  languages: [{ id: "es" }, { id: "en" }],
+  languages: [
+    { id: "es", code: "ES", level: "Native or bilingual proficiency" },
+    // B1 in CEFR terms. "Professional working proficiency" would overstate it.
+    { id: "en", code: "EN", level: "Limited working proficiency" },
+  ],
 }

@@ -65,8 +65,14 @@ por vacante. Eso deja tres vías, y solo una la cubre este repositorio.
 Ya publicado: metadata localizada, canonical y `hreflang`, sitemap, JSON-LD de
 perfil con `hasOccupation`, `/llms.txt` con los datos que pregunta un agente de
 sourcing (cargo actual, posicionamiento objetivo, años, ubicación,
-disponibilidad, idiomas) y `/cv.md`, el CV completo en texto plano — un agente
-lo lee sin descargar un PDF.
+disponibilidad, idiomas), `/cv.md` con el CV completo en texto plano y
+`/cv.json` en formato [MAC](https://github.com/getmanfred/mac), el esquema
+abierto que varias plataformas de recruiting importan directamente.
+
+Dos datos del MAC son juicios que conviene revisar: el tamaño de cada empresa
+(`organizationType` en `lib/profile.ts`) y el nivel de inglés, publicado como
+`Limited working proficiency` porque es lo que corresponde a un B1 en la
+enumeración del esquema.
 
 Falta lo que no puede hacer el código, y es la diferencia entre estar publicado
 y estar indexado:

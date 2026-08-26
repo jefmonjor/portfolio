@@ -182,6 +182,12 @@ export default async function LocaleLayout({
           href={`/cv.md?locale=${locale}`}
           title="CV"
         />
+        <link
+          rel="alternate"
+          type="application/json"
+          href={`/cv.json?locale=${locale}`}
+          title="CV (MAC)"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -33,6 +33,7 @@ const content = `# Jefferson Montesdeoca Jordán
 
 - [CV in Markdown](${siteUrl}/cv.md): Full technical CV as plain text — add "?locale=es" or "?locale=ca" for the Spanish and Catalan versions.
 - [CV in PDF](${siteUrl}/cv.pdf?variant=technical): Same content, single-column technical layout. "variant=general" returns the editorial one.
+- [CV in MAC JSON](${siteUrl}/cv.json): Same content as a Manfred Awesomic CV, the open interchange schema used by recruiting platforms — profile, career preferences, jobs, public artifacts, skills, languages and studies as structured data.
 
 ## Profile facts
 
