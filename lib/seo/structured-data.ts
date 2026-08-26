@@ -122,10 +122,14 @@ export function buildProfileStructuredData({
             alternateName: "en",
           },
         ],
-        alumniOf: profile.education.map((entry) => ({
-          "@type": "EducationalOrganization",
-          name: entry.organization,
-        })),
+        // Only academic institutions belong here: the SMPC certification body
+        // is published as a credential, not as an alma mater.
+        alumniOf: profile.education
+          .filter((entry) => entry.kind === "degree")
+          .map((entry) => ({
+            "@type": "EducationalOrganization",
+            name: entry.organization,
+          })),
         hasCredential: {
           "@type": "EducationalOccupationalCredential",
           name: "Scrum Master Professional Certified (SMPC)",

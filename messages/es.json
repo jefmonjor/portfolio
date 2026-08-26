@@ -92,6 +92,10 @@
     "manifesto": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. He liderado migraciones complejas, integrado sistemas legacy y diseñado arquitecturas hexagonales y de microservicios. Fuera del trabajo construyo varios productos propios —algunos públicos y en funcionamiento, otros privados y en desarrollo— para mantener cerca las decisiones de producto, backend, despliegue e IA aplicada.",
     "currentlyWorkingWith": "Trabajando ahora con"
   },
+  "cv": {
+    "headline": "Producto de principio a fin sobre backends Java/Spring: arquitectura mantenible, integración con sistemas críticos e IA aplicada donde aporta valor real.",
+    "summary": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. Migraciones complejas, integración con sistemas legacy y arquitecturas hexagonales y de microservicios. En paralelo, productos propios —en funcionamiento y en desarrollo— que cubren el ciclo completo: producto, backend, despliegue e IA aplicada con datos validados y alternativas manuales."
+  },
   "metrics": {
     "ariaLabel": "Métricas de trayectoria",
     "caption": "Medido en sistemas reales en producción",

@@ -11,7 +11,8 @@ import {
 } from "@react-pdf/renderer"
 
 import { contactEmail, contactMailto } from "@/lib/email"
-import { profile, siteUrl } from "@/lib/profile"
+import { profile, siteUrlShort } from "@/lib/profile"
+import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
 
 const FONT_DIR = path.join(process.cwd(), "public/fonts/cv")
 
@@ -38,8 +39,8 @@ Font.registerHyphenationCallback((word) => [word])
 type CvLabels = {
   readonly role: string
   readonly present: string
-  readonly tagline: string
-  readonly manifesto: string
+  readonly headline: string
+  readonly summary: string
   readonly availability: string
   readonly metrics: ReadonlyArray<{ value: string; label: string }>
   readonly sections: {
@@ -234,14 +235,14 @@ const styles = StyleSheet.create({
     gap: 5,
     marginBottom: 12,
   },
-  tagline: {
+  headline: {
     fontFamily: "Figtree",
     fontWeight: 500,
     fontSize: 11,
     color: palette.ink,
     lineHeight: 1.45,
   },
-  manifesto: {
+  summary: {
     fontSize: 9.5,
     color: palette.muted,
     lineHeight: 1.55,
@@ -605,16 +606,16 @@ function CvDocument({ labels }: CvDocumentProps) {
             ) : null}
             <View style={styles.contactRow}>
               <Text style={styles.contactLabel}>Web</Text>
-              <Link src={siteUrl} style={styles.contactValue}>
-                Portfolio online
+              <Link src={siteUrlShort} style={styles.contactValue}>
+                {cvLinkLabel(siteUrlShort)}
               </Link>
             </View>
           </View>
         </View>
 
         <View style={styles.intro}>
-          <Text style={styles.tagline}>{labels.tagline}</Text>
-          <Text style={styles.manifesto}>{labels.manifesto}</Text>
+          <Text style={styles.headline}>{labels.headline}</Text>
+          <Text style={styles.summary}>{labels.summary}</Text>
         </View>
 
         {labels.metrics.length > 0 ? (
@@ -724,8 +725,8 @@ function CvDocument({ labels }: CvDocumentProps) {
                 <View style={styles.projectHeader}>
                   <Text style={styles.projectName}>{data.name}</Text>
                   {entry.url ? (
-                    <Link src={entry.url} style={styles.projectUrl}>
-                      {entry.url.replace(/^https?:\/\/(www\.)?/, "")}
+                    <Link src={cvLinkHref(entry.url)} style={styles.projectUrl}>
+                      {cvLinkLabel(entry.url)}
                     </Link>
                   ) : null}
                 </View>

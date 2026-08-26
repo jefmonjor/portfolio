@@ -8,8 +8,9 @@ import {
 } from "@react-pdf/renderer"
 
 import { contactEmail } from "@/lib/email"
-import { profile, siteUrl } from "@/lib/profile"
+import { profile, siteUrlShort } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
+import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
 import type { CvTailoredContent } from "@/types/cv-tailor"
 
 // Technical variant: single column, standard headings and no decorative
@@ -99,6 +100,12 @@ const styles = StyleSheet.create({
     color: muted,
     flexShrink: 0,
   },
+  entryUrl: {
+    fontSize: 9,
+    color: muted,
+    textDecoration: "none",
+    flexShrink: 0,
+  },
   entryOrg: {
     fontSize: 9.5,
     fontWeight: 500,
@@ -184,6 +191,7 @@ const TECHNICAL_PROJECT_IDS = [
   "porrix",
   "corte1d",
   "tavory",
+  "portfolio",
 ] as const
 
 function prioritizeItems(
@@ -215,11 +223,16 @@ function CvTechnicalDocument({
   const linkedin = profile.socials.find((s) => s.kind === "linkedin")
   const github = profile.socials.find((s) => s.kind === "github")
 
-  const summary = tailored?.summary?.trim() || labels.manifesto
-  const projectIds =
+  const summary = tailored?.summary?.trim() || labels.summary
+  const selectedIds: ReadonlyArray<string> =
     tailored && tailored.projectIds.length > 0
       ? tailored.projectIds
       : TECHNICAL_PROJECT_IDS
+  // The portfolio closes the list in every variant: it is where a reader can
+  // verify the rest of the document, so a tailored selection never drops it.
+  const projectIds = selectedIds.includes("portfolio")
+    ? selectedIds
+    : [...selectedIds, "portfolio"]
   const projects = projectIds
     .map((id) => {
       const entry = profile.projects.find((p) => p.id === id)
@@ -257,8 +270,8 @@ function CvTechnicalDocument({
             </>
           ) : null}
           {" · "}
-          <Link src={siteUrl} style={styles.contactLink}>
-            {locale === "en" ? "online portfolio" : "portfolio online"}
+          <Link src={siteUrlShort} style={styles.contactLink}>
+            {cvLinkLabel(siteUrlShort)}
           </Link>
         </Text>
         <Text style={styles.contactLine}>{labels.availability}</Text>
@@ -317,6 +330,11 @@ function CvTechnicalDocument({
           <View key={entry.id} style={styles.entry} wrap={false}>
             <View style={styles.entryHeader}>
               <Text style={styles.entryRole}>{data.name}</Text>
+              {entry.url ? (
+                <Link src={cvLinkHref(entry.url)} style={styles.entryUrl}>
+                  {cvLinkLabel(entry.url)}
+                </Link>
+              ) : null}
             </View>
             <Text style={styles.stackLine}>{data.status}</Text>
             <Text style={styles.paragraph}>{data.summary}</Text>

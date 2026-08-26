@@ -6,8 +6,8 @@ import { renderCvPdf } from "@/server/cv/render"
 const labels: CvLabels = {
   role: "Product Engineer · AI & Backend",
   present: "Present",
-  tagline: "Product and backend engineering",
-  manifesto: "Canonical professional summary.",
+  headline: "Product and backend engineering",
+  summary: "Canonical professional summary.",
   availability: "Selectively open to relevant opportunities",
   metrics: [],
   sections: {
