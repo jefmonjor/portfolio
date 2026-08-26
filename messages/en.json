@@ -137,12 +137,12 @@
         "end": "present",
         "summary": "Backend architecture and technical management in private banking: development standards, core-systems integration, and evaluation of AI solutions.",
         "highlights": [
-          "Designed backend architecture (Java 21, Spring Boot 3) under Clean Architecture and hexagonal principles; new homebanking with 15+ components.",
-          "Led the Spring Boot 2 → 3 migration (Jakarta namespace) and Tomcat 7/8 → 9/10 across 40+ VMs.",
-          "Integrated legacy systems (COBOL, AS400, DB2), evolved shipping-carrier integration APIs, and rolled out Keycloak with MFA and per-jurisdiction rules.",
-          "Code quality: SonarQube integrated across every repository, including analysis of 12,000+ COBOL files.",
-          "AI adoption in the department: rolled out Gemini Code Assist for the whole team.",
-          "Managed vendors technically, drove build-vs-buy decisions, and controlled technical debt on OpenShift (OCP4)."
+          "Design backend architecture (Java 21, Spring Boot 3) under Clean Architecture and hexagonal principles; new homebanking with 15+ components.",
+          "Lead the Spring Boot 2 → 3 migration (Jakarta namespace) and Tomcat 7/8 → 9/10 across 40+ VMs.",
+          "Integrate legacy systems (COBOL, AS400, DB2), evolve shipping-carrier integration APIs, and roll out Keycloak with MFA and per-jurisdiction rules.",
+          "Extend SonarQube across every repository, including analysis of 12,000+ COBOL files.",
+          "Rolled out Gemini Code Assist for the whole team as the department's first AI adoption.",
+          "Manage vendors technically, drive build-vs-buy decisions, and control technical debt on OpenShift (OCP4)."
         ]
       },
       "elabogado-2022": {
@@ -154,8 +154,8 @@
         "highlights": [
           "Modernized legacy code: migrated Struts2 to React + Spring Boot.",
           "Designed microservices and secure REST APIs.",
-          "Improved performance, maintainability, and architecture evolution.",
-          "Content and landing-page management with WordPress."
+          "Improved performance and maintainability, and evolved the architecture.",
+          "Managed content and landing pages with WordPress."
         ]
       },
       "zemsania-2021": {
@@ -167,7 +167,7 @@
         "highlights": [
           "Built microservices with Java and Spring Boot for distributed systems.",
           "Designed and documented APIs with Swagger / OpenAPI.",
-          "Distributed teamwork with Jira, Confluence and Slack."
+          "Worked in a distributed team with Jira, Confluence and Slack."
         ]
       },
       "keapps-2020": {
@@ -177,8 +177,8 @@
         "end": "Jul 2021",
         "summary": "Kronos project (Endesa): enterprise Java systems and Big Data solutions.",
         "highlights": [
-          "Big Data solutions with Hadoop, Spark and Cassandra over energy-consumption data.",
-          "MapReduce jobs on HDFS/YARN and optimization of critical batch processes."
+          "Built Big Data solutions with Hadoop, Spark and Cassandra over energy-consumption data.",
+          "Optimized MapReduce jobs on HDFS/YARN and critical batch processes."
         ]
       },
       "ayesa-2019": {
@@ -189,7 +189,7 @@
         "summary": "Kronos project (Endesa): Java development and data pipelines.",
         "highlights": [
           "Developed and maintained enterprise Java systems (SOAP, XML) with JSP and PrimeFaces interfaces.",
-          "Large-scale data pipelines with MapReduce and S3 storage."
+          "Built large-scale data pipelines with MapReduce and S3 storage."
         ]
       }
     }
