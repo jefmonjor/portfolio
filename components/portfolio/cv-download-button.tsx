@@ -146,7 +146,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
       const disposition = response.headers.get("content-disposition")
       const filename =
         disposition?.match(/filename="([^"]+)"/)?.[1] ??
-        `Jefferson_Montesdeoca_CV_Tailored_${locale.toUpperCase()}.pdf`
+        `Jefferson_Montesdeoca_CV_${locale.toUpperCase()}.pdf`
       const blob = await response.blob()
       if (requestRef.current !== controller) return
       downloadBlob(blob, filename)
