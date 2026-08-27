@@ -63,7 +63,6 @@ describe("API contracts", () => {
       cvTailorModelOutputSchema.safeParse({
         keywords: [42],
         projectIds: [],
-        unverifiedRequirements: [],
       }).success
     ).toBe(false)
 
@@ -72,7 +71,6 @@ describe("API contracts", () => {
         summary: "Valid",
         keywords: [],
         projectIds: [],
-        unverifiedRequirements: [],
       }).success
     ).toBe(true)
   })
@@ -82,5 +80,36 @@ describe("API contracts", () => {
 
     expect(format.type).toBe("json_schema")
     expect(format.strict).toBe(true)
+  })
+
+  // Structured Outputs rejects the whole request with a 400 when the schema
+  // carries a keyword it does not implement, which the route can only surface
+  // as an opaque 502. Bounds belong server-side, not in the model contract.
+  it("keeps unsupported JSON Schema keywords out of the model contract", () => {
+    const { schema } = zodTextFormat(cvTailorModelOutputSchema, "cv_tailoring")
+    const keywords = new Set<string>()
+    const walk = (node: unknown): void => {
+      if (Array.isArray(node)) {
+        node.forEach(walk)
+        return
+      }
+      if (node === null || typeof node !== "object") return
+      for (const [key, value] of Object.entries(node)) {
+        keywords.add(key)
+        walk(value)
+      }
+    }
+    walk(schema)
+
+    for (const unsupported of [
+      "minLength",
+      "maxLength",
+      "pattern",
+      "format",
+      "minItems",
+      "maxItems",
+    ]) {
+      expect(keywords).not.toContain(unsupported)
+    }
   })
 })

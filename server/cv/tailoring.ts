@@ -5,9 +5,10 @@ import en from "@/messages/en.json"
 import type { Locale } from "@/i18n/routing"
 import { profile } from "@/lib/profile"
 import {
+  CV_TAILOR_KEYWORD_MAX_CHARS,
   CV_TAILOR_KEYWORDS_MAX,
+  CV_TAILOR_PROJECT_ID_MAX_CHARS,
   CV_TAILOR_PROJECTS_MAX,
-  CV_TAILOR_REQUIREMENTS_MAX,
   CV_TAILOR_SUMMARY_MAX_CHARS,
   type CvTailorModelOutput,
   type CvTailoredContent,
@@ -83,40 +84,48 @@ export function tailoringEvidence(locale: Locale): TailoringEvidence {
   }
 }
 
+// Selected items first, in the order the model ranked them, everything else
+// after in its original order. Ordering, never filtering: the tailored CV
+// carries exactly what the technical one carries.
+export function prioritizeItems(
+  items: ReadonlyArray<string>,
+  keywords: ReadonlyArray<string>
+): ReadonlyArray<string> {
+  const order = new Map(
+    keywords.map((keyword, index) => [keyword.toLocaleLowerCase("en"), index])
+  )
+  return [...items].sort((left, right) => {
+    const leftOrder = order.get(left.toLocaleLowerCase("en"))
+    const rightOrder = order.get(right.toLocaleLowerCase("en"))
+    if (leftOrder === undefined && rightOrder === undefined) return 0
+    if (leftOrder === undefined) return 1
+    if (rightOrder === undefined) return -1
+    return leftOrder - rightOrder
+  })
+}
+
+// Every bound the renderer relies on is applied here, because the model
+// contract sent to OpenAI cannot carry length constraints (see types/cv-tailor).
 function canonicalSelections(
   requested: ReadonlyArray<string>,
   allowed: ReadonlyArray<string>,
-  limit: number
+  limit: number,
+  maxChars: number
 ): string[] {
   const canonical = new Map(allowed.map((value) => [normalize(value), value]))
   return unique(
     requested
       .map((value) => canonical.get(normalize(value)))
       .filter((value): value is string => value !== undefined)
+      .filter((value) => value.length <= maxChars)
   ).slice(0, limit)
 }
 
-function exactOfferExcerpts(
-  requested: ReadonlyArray<string>,
-  offer: string
-): string[] {
-  const searchableOffer = offer.toLocaleLowerCase("en")
-  return unique(
-    requested
-      .map((value) => {
-        const excerpt = value.trim()
-        const start = searchableOffer.indexOf(excerpt.toLocaleLowerCase("en"))
-        return start >= 0
-          ? offer.slice(start, start + excerpt.length).trim()
-          : undefined
-      })
-      .filter((value): value is string => value !== undefined)
-  ).slice(0, CV_TAILOR_REQUIREMENTS_MAX)
-}
-
+// The model only ever picks from the dossier, so what comes back here is a
+// selection, not prose: anything it invents finds no canonical match and is
+// dropped. No text from the job offer survives into the document.
 export function normalizeTailorModelOutput(
   output: CvTailorModelOutput,
-  offer: string,
   locale: Locale
 ): Omit<CvTailoredContent, "summary"> {
   const evidence = tailoringEvidence(locale)
@@ -125,16 +134,14 @@ export function normalizeTailorModelOutput(
     keywords: canonicalSelections(
       output.keywords,
       evidence.keywords,
-      CV_TAILOR_KEYWORDS_MAX
+      CV_TAILOR_KEYWORDS_MAX,
+      CV_TAILOR_KEYWORD_MAX_CHARS
     ),
     projectIds: canonicalSelections(
       output.projectIds,
       evidence.projectIds,
-      CV_TAILOR_PROJECTS_MAX
-    ),
-    unverifiedRequirements: exactOfferExcerpts(
-      output.unverifiedRequirements,
-      offer
+      CV_TAILOR_PROJECTS_MAX,
+      CV_TAILOR_PROJECT_ID_MAX_CHARS
     ),
   }
 }

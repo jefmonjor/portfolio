@@ -176,7 +176,9 @@ export function buildMacCv(labels: CvLabels, locale: Locale) {
         return {
           studyType:
             entry.kind === "degree" ? "officialDegree" : "certification",
-          degreeAchieved: true,
+          // A study that was attended but never completed must not be
+          // published as achieved.
+          degreeAchieved: entry.completed,
           name: data.title,
           startDate: macDate(entry.startISO),
           ...(entry.endISO ? { finishDate: macDate(entry.endISO) } : {}),

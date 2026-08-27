@@ -55,7 +55,6 @@ describe("renderCvPdf", () => {
         summary: "Canonical tailored summary.",
         keywords: ["Java 21", "Spring Boot 3"],
         projectIds: ["transolido"],
-        unverifiedRequirements: ["Kotlin"],
       },
     })
 

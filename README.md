@@ -35,7 +35,11 @@ Solo una es necesaria para activar la IA; el resto tienen valores por defecto se
 | `ASSISTANT_RATE_MINUTE` / `ASSISTANT_RATE_DAILY` | `4` / `20`        | Límites por visitante.                                                                                             |
 | `ASSISTANT_GLOBAL_DAILY`                         | `300`             | Techo global diario de peticiones de IA (todas las funciones).                                                     |
 | `ASSISTANT_REASONING` / `ASSISTANT_VERBOSITY`    | `minimal` / `low` | Latencia y estilo de las respuestas.                                                                               |
-| `CV_TAILOR_MAX_OFFER_CHARS`                      | `4000`            | Tamaño máximo de la oferta pegada.                                                                                 |
+| `CV_TAILOR_MODEL`                                | `gpt-5.6-luna`    | Modelo del CV adaptado. Solo selecciona evidencia del dossier, así que corre en el tramo barato.                   |
+| `CV_TAILOR_FALLBACK_MODEL`                       | `gpt-5-mini`      | Modelo de respaldo si la cuenta no tiene acceso al anterior (404).                                                 |
+| `CV_TAILOR_MAX_OFFER_CHARS`                      | `24000`           | Tamaño máximo de la oferta pegada (~4.000 palabras).                                                               |
+| `CV_TAILOR_MAX_OUTPUT_TOKENS`                    | `2000`            | Presupuesto de salida del paso de selección (incluye los tokens de razonamiento).                                  |
+| `CV_TAILOR_REASONING`                            | `none`            | Esfuerzo de razonamiento al seleccionar la evidencia del CV adaptado.                                              |
 
 ## Ejecutar en local
 

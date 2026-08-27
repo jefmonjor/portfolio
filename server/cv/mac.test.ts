@@ -57,6 +57,20 @@ describe("MAC export", () => {
     expect(mac.knowledge.studies).toHaveLength(profile.education.length)
   })
 
+  // The MAC is the machine-readable CV recruiting platforms ingest, so a
+  // study that was attended but never completed must not read as achieved.
+  it("publishes unfinished studies as not achieved", () => {
+    for (const entry of profile.education) {
+      const study = mac.knowledge.studies.find(
+        (item) => item.institution.name === entry.organization
+      )
+      expect(study?.degreeAchieved).toBe(entry.completed)
+    }
+    expect(
+      mac.knowledge.studies.some((study) => study.degreeAchieved === false)
+    ).toBe(true)
+  })
+
   // The schema declares `format: date` but JSON Schema does not assert
   // formats, so a wrong shape validates clean. This is the check that fails.
   it("writes every date as a full yyyy-mm-dd", () => {
