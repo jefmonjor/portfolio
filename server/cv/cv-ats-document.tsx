@@ -194,7 +194,7 @@ function CvTechnicalDocument({
 
   return (
     <Document
-      title={`${profile.shortName} — ${labels.role} (${tailored ? "Tailored" : "Technical"})`}
+      title={`${profile.shortName} — ${labels.role}${tailored ? "" : " (Technical)"}`}
       author={profile.name}
       subject={labels.role}
       creator="portfolio"
