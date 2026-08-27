@@ -13,7 +13,6 @@ export const CV_HEADINGS: Record<
     readonly education: string
     readonly languages: string
     readonly evidence: string
-    readonly unverified: string
   }
 > = {
   es: {
@@ -25,7 +24,6 @@ export const CV_HEADINGS: Record<
     education: "Formación",
     languages: "Idiomas",
     evidence: "Evidencia priorizada",
-    unverified: "Requisitos a confirmar",
   },
   ca: {
     profile: "Resum professional",
@@ -36,7 +34,6 @@ export const CV_HEADINGS: Record<
     education: "Formació",
     languages: "Idiomes",
     evidence: "Evidència prioritzada",
-    unverified: "Requisits per confirmar",
   },
   en: {
     profile: "Professional Summary",
@@ -47,6 +44,5 @@ export const CV_HEADINGS: Record<
     education: "Education",
     languages: "Languages",
     evidence: "Prioritized evidence",
-    unverified: "Requirements to confirm",
   },
 } as const

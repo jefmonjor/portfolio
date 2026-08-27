@@ -12,6 +12,7 @@ import { profile, siteUrlShort } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
 import { CV_HEADINGS } from "@/server/cv/headings"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
+import { prioritizeItems } from "@/server/cv/tailoring"
 import type { CvTailoredContent } from "@/types/cv-tailor"
 
 // Technical variant: single column, standard headings and no decorative
@@ -162,23 +163,6 @@ const TECHNICAL_PROJECT_IDS = [
   "portfolio",
 ] as const
 
-function prioritizeItems(
-  items: ReadonlyArray<string>,
-  keywords: ReadonlyArray<string>
-): ReadonlyArray<string> {
-  const order = new Map(
-    keywords.map((keyword, index) => [keyword.toLocaleLowerCase("en"), index])
-  )
-  return [...items].sort((left, right) => {
-    const leftOrder = order.get(left.toLocaleLowerCase("en"))
-    const rightOrder = order.get(right.toLocaleLowerCase("en"))
-    if (leftOrder === undefined && rightOrder === undefined) return 0
-    if (leftOrder === undefined) return 1
-    if (rightOrder === undefined) return -1
-    return leftOrder - rightOrder
-  })
-}
-
 function CvTechnicalDocument({
   labels,
   locale,
@@ -192,15 +176,14 @@ function CvTechnicalDocument({
   const github = profile.socials.find((s) => s.kind === "github")
 
   const summary = tailored?.summary?.trim() || labels.summary
-  const selectedIds: ReadonlyArray<string> =
-    tailored && tailored.projectIds.length > 0
-      ? tailored.projectIds
-      : TECHNICAL_PROJECT_IDS
-  // The portfolio closes the list in every variant: it is where a reader can
-  // verify the rest of the document, so a tailored selection never drops it.
-  const projectIds = selectedIds.includes("portfolio")
-    ? selectedIds
-    : [...selectedIds, "portfolio"]
+  // Tailoring reorders, it never truncates: a CV written for one offer should
+  // still carry everything the technical variant carries, with the relevant
+  // work first. The portfolio closes the list in every variant — it is where a
+  // reader can verify the rest of the document.
+  const projectIds = prioritizeItems(
+    TECHNICAL_PROJECT_IDS.filter((id) => id !== "portfolio"),
+    tailored?.projectIds ?? []
+  ).concat("portfolio")
   const projects = projectIds
     .map((id) => {
       const entry = profile.projects.find((p) => p.id === id)
@@ -325,18 +308,6 @@ function CvTechnicalDocument({
             ) : null}
           </View>
         ))}
-
-        {tailored && tailored.unverifiedRequirements.length > 0 ? (
-          <>
-            <Text style={styles.sectionTitle}>{headings.unverified}</Text>
-            {tailored.unverifiedRequirements.map((requirement) => (
-              <View key={requirement} style={styles.bullet} wrap={false}>
-                <Text style={styles.bulletMark}>•</Text>
-                <Text style={styles.bulletText}>{requirement}</Text>
-              </View>
-            ))}
-          </>
-        ) : null}
 
         <Text style={styles.sectionTitle}>{headings.education}</Text>
         {profile.education.map((entry) => {

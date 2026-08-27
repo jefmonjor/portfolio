@@ -63,7 +63,6 @@ describe("API contracts", () => {
       cvTailorModelOutputSchema.safeParse({
         keywords: [42],
         projectIds: [],
-        unverifiedRequirements: [],
       }).success
     ).toBe(false)
 
@@ -72,7 +71,6 @@ describe("API contracts", () => {
         summary: "Valid",
         keywords: [],
         projectIds: [],
-        unverifiedRequirements: [],
       }).success
     ).toBe(true)
   })
