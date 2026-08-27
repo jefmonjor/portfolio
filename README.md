@@ -36,6 +36,8 @@ Solo una es necesaria para activar la IA; el resto tienen valores por defecto se
 | `ASSISTANT_GLOBAL_DAILY`                         | `300`             | Techo global diario de peticiones de IA (todas las funciones).                                                     |
 | `ASSISTANT_REASONING` / `ASSISTANT_VERBOSITY`    | `minimal` / `low` | Latencia y estilo de las respuestas.                                                                               |
 | `CV_TAILOR_MAX_OFFER_CHARS`                      | `4000`            | Tamaño máximo de la oferta pegada.                                                                                 |
+| `CV_TAILOR_MAX_OUTPUT_TOKENS`                    | `2000`            | Presupuesto de salida del paso de selección (incluye los tokens de razonamiento).                                  |
+| `CV_TAILOR_REASONING`                            | `minimal`         | Esfuerzo de razonamiento al seleccionar la evidencia del CV adaptado.                                              |
 
 ## Ejecutar en local
 

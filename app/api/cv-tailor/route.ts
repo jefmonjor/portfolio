@@ -13,7 +13,11 @@ import {
   tailoringEvidence,
 } from "@/server/cv/tailoring"
 import {
+  CV_TAILOR_KEYWORDS_MAX,
   CV_TAILOR_OFFER_MAX_CHARS,
+  CV_TAILOR_PROJECTS_MAX,
+  CV_TAILOR_REQUIREMENT_MAX_CHARS,
+  CV_TAILOR_REQUIREMENTS_MAX,
   cvTailoredContentSchema,
   cvTailorModelOutputSchema,
   cvTailorRequestSchema,
@@ -26,6 +30,33 @@ const MAX_OFFER_CHARS = Math.min(
   CV_TAILOR_OFFER_MAX_CHARS,
   Math.max(40, intEnv("CV_TAILOR_MAX_OFFER_CHARS", CV_TAILOR_OFFER_MAX_CHARS))
 )
+// The cap covers reasoning tokens too, so a budget sized for the JSON alone
+// gets spent thinking and comes back `incomplete` with nothing parsed. A full
+// selection is ~200 tokens; the rest is headroom for the reasoning pass.
+const MAX_OUTPUT_TOKENS = intEnv("CV_TAILOR_MAX_OUTPUT_TOKENS", 2000)
+// Picking exact strings out of two closed lists does not need deliberation,
+// and reasoning here is what pushed the old budget over the edge.
+const REASONING = enumEnv(
+  "CV_TAILOR_REASONING",
+  ["minimal", "low", "medium", "high"] as const,
+  "minimal"
+)
+
+function enumEnv<T extends string>(
+  name: string,
+  allowed: readonly T[],
+  fallback: T
+): T {
+  const value = process.env[name]
+  return allowed.includes(value as T) ? (value as T) : fallback
+}
+
+// Every 502 this route returns is opaque from the browser, so the reason has
+// to reach the platform logs — otherwise a schema rejection and a spent token
+// budget look exactly alike.
+function logFailure(reason: string, detail: Record<string, unknown>): void {
+  console.error(`[cv-tailor] ${reason}`, detail)
+}
 
 const TASK: Record<Locale, string> = {
   ca: `TASCA — seleccionar evidència per a un CV adaptat.
@@ -58,7 +89,9 @@ VERIFIED_KEYWORDS:
 ${evidence.keywords.join(" | ")}
 
 VERIFIED_PROJECTS:
-${evidence.projects.map((project) => `${project.id}: ${project.name}`).join(" | ")}`
+${evidence.projects.map((project) => `${project.id}: ${project.name}`).join(" | ")}
+
+LIMITS — keywords ≤ ${CV_TAILOR_KEYWORDS_MAX} · projectIds ≤ ${CV_TAILOR_PROJECTS_MAX} · unverifiedRequirements ≤ ${CV_TAILOR_REQUIREMENTS_MAX} (each ≤ ${CV_TAILOR_REQUIREMENT_MAX_CHARS} characters). Anything beyond a limit is discarded by the server.`
 }
 
 export async function POST(request: Request): Promise<Response> {
@@ -95,8 +128,8 @@ export async function POST(request: Request): Promise<Response> {
           content: `<job_offer>\n${offer}\n</job_offer>`,
         },
       ],
-      max_output_tokens: 700,
-      reasoning: { effort: "low" },
+      max_output_tokens: MAX_OUTPUT_TOKENS,
+      reasoning: { effort: REASONING },
       text: {
         format: zodTextFormat(cvTailorModelOutputSchema, "cv_tailoring"),
         verbosity: "low",
@@ -105,6 +138,14 @@ export async function POST(request: Request): Promise<Response> {
     })
 
     if (response.status !== "completed" || !response.output_parsed) {
+      logFailure("model response unusable", {
+        model: MODEL,
+        status: response.status,
+        incompleteReason: response.incomplete_details?.reason,
+        parsed: Boolean(response.output_parsed),
+        outputTokens: response.usage?.output_tokens,
+        maxOutputTokens: MAX_OUTPUT_TOKENS,
+      })
       return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
 
@@ -146,6 +187,12 @@ export async function POST(request: Request): Promise<Response> {
     if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json({ error: "rate_limited" }, { status: 429 })
     }
+    logFailure("tailoring failed", {
+      model: MODEL,
+      status: error instanceof OpenAI.APIError ? error.status : undefined,
+      code: error instanceof OpenAI.APIError ? error.code : undefined,
+      message: error instanceof Error ? error.message : String(error),
+    })
     return NextResponse.json({ error: "upstream" }, { status: 502 })
   }
 }
