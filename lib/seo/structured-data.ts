@@ -38,6 +38,12 @@ export function buildProfileStructuredData({
         .flatMap((group) => group.items),
     ])
   )
+  const alumniOf = profile.education
+    .filter((entry) => entry.kind === "degree" && entry.completed)
+    .map((entry) => ({
+      "@type": "EducationalOrganization",
+      name: entry.organization,
+    }))
   const currentOrganization = profile.experience.find(
     (entry) => entry.endISO === "present"
   )?.organization
@@ -135,13 +141,11 @@ export function buildProfileStructuredData({
           },
         ],
         // Only academic institutions belong here: the SMPC certification body
-        // is published as a credential, not as an alma mater.
-        alumniOf: profile.education
-          .filter((entry) => entry.kind === "degree")
-          .map((entry) => ({
-            "@type": "EducationalOrganization",
-            name: entry.organization,
-          })),
+        // is published as a credential, not as an alma mater. And only
+        // completed degrees — `alumniOf` asserts graduation, which studies
+        // attended without a qualification cannot claim, so the property is
+        // omitted rather than softened.
+        ...(alumniOf.length > 0 ? { alumniOf } : {}),
         hasCredential: {
           "@type": "EducationalOccupationalCredential",
           name: "Scrum Master Professional Certified (SMPC)",

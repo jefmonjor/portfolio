@@ -33,6 +33,11 @@ export type EducationEntry = {
   location?: string
   /** Academic degrees back `alumniOf`; certifications never do. */
   kind: "degree" | "certification"
+  /**
+   * False for studies attended without obtaining the qualification. Only a
+   * completed degree may claim `alumniOf` or MAC's `degreeAchieved`.
+   */
+  completed: boolean
   /** Year or year-month. Exports that need a full date anchor it to day one. */
   startISO: string
   endISO?: string

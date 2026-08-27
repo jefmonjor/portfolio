@@ -31,9 +31,7 @@ describe("profile structured data", () => {
           url: "https://www.jefmonjor.dev/es",
           inLanguage: "es",
           mainEntity: { "@id": "https://www.jefmonjor.dev/#person" },
-          hasPart: [
-            { "@id": "https://www.jefmonjor.dev/#project-corte1d" },
-          ],
+          hasPart: [{ "@id": "https://www.jefmonjor.dev/#project-corte1d" }],
         }),
         expect.objectContaining({
           "@type": "Person",
@@ -55,7 +53,7 @@ describe("profile structured data", () => {
     )
   })
 
-  it("publishes the certification body as a credential, never as an alma mater", () => {
+  it("claims no alma mater for studies attended without a qualification", () => {
     const data = buildProfileStructuredData({
       locale: "en",
       title: "Jefferson Montesdeoca — Product Engineer · AI & Backend",
@@ -65,11 +63,16 @@ describe("profile structured data", () => {
     })
     const person = data["@graph"].find(
       (node) => "@type" in node && node["@type"] === "Person"
-    ) as { alumniOf: ReadonlyArray<{ name: string }> }
+    ) as {
+      alumniOf?: ReadonlyArray<{ name: string }>
+      hasCredential: { name: string }
+    }
 
-    expect(person.alumniOf.map(({ name }) => name)).toEqual([
-      "Universidad de Sevilla",
-    ])
+    // `alumniOf` asserts graduation. The software engineering coursework was
+    // never completed, and the SMPC body is a certifier, not an alma mater —
+    // so the graph carries the credential and no alma mater at all.
+    expect(person.alumniOf).toBeUndefined()
+    expect(person.hasCredential.name).toContain("Scrum Master")
   })
 
   it("states the occupation for agents that read the graph, not the prose", () => {

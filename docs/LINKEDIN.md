@@ -211,7 +211,7 @@ Java 21 · Spring Boot 3 · Hibernate / JPA · REST · SOAP · Arquitectura hexa
 **Formación**
 
 ```
-Universidad de Sevilla — Ingeniería del Software · 2014 – 2018
+Universidad de Sevilla — Ingeniería del Software (cursada) · 2014 – 2018
 ```
 
 **Licencias y certificaciones**

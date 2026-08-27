@@ -96,7 +96,14 @@ export const profile: Profile = {
       location: "Barcelona, Spain",
       startISO: "2022-03",
       endISO: "2024-09",
-      stack: ["Java", "Spring Boot", "React", "MySQL", "REST APIs", "WordPress"],
+      stack: [
+        "Java",
+        "Spring Boot",
+        "React",
+        "MySQL",
+        "REST APIs",
+        "WordPress",
+      ],
     },
     {
       id: "zemsania-2021",
@@ -105,7 +112,13 @@ export const profile: Profile = {
       location: "Madrid, Spain",
       startISO: "2021-07",
       endISO: "2022-04",
-      stack: ["Java", "Spring Boot", "Microservices", "OpenAPI", "Jira · Confluence"],
+      stack: [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "OpenAPI",
+        "Jira · Confluence",
+      ],
     },
     {
       id: "keapps-2020",
@@ -123,7 +136,14 @@ export const profile: Profile = {
       location: "Seville, Spain",
       startISO: "2019-08",
       endISO: "2020-04",
-      stack: ["Java", "Hadoop", "MapReduce", "S3", "JSP · PrimeFaces", "SOAP/XML"],
+      stack: [
+        "Java",
+        "Hadoop",
+        "MapReduce",
+        "S3",
+        "JSP · PrimeFaces",
+        "SOAP/XML",
+      ],
     },
   ],
   skills: [
@@ -146,7 +166,15 @@ export const profile: Profile = {
     },
     {
       id: "frontend",
-      items: ["React", "Next.js", "Tailwind CSS", "shadcn/ui", "Bootstrap", "JSP · PrimeFaces", "WordPress"],
+      items: [
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Bootstrap",
+        "JSP · PrimeFaces",
+        "WordPress",
+      ],
     },
     {
       id: "data",
@@ -243,20 +271,42 @@ export const profile: Profile = {
       stage: "live",
       visibility: "public",
       url: "https://pronoq.jefmonjor.dev",
-      stack: ["Next.js", "PostgreSQL", "PWA", "Docker", "VPS propio", "ES · EN · CA"],
+      stack: [
+        "Next.js",
+        "PostgreSQL",
+        "PWA",
+        "Docker",
+        "VPS propio",
+        "ES · EN · CA",
+      ],
     },
     {
       id: "corte1d",
       stage: "live",
       visibility: "public",
       url: "https://corte1d.jefmonjor.dev",
-      stack: ["Next.js", "Neon", "PWA", "ExcelJS", "PDFKit", "Backblaze B2", "AI agents"],
+      stack: [
+        "Next.js",
+        "Neon",
+        "PWA",
+        "ExcelJS",
+        "PDFKit",
+        "Backblaze B2",
+        "AI agents",
+      ],
     },
     {
       id: "tavory",
       stage: "development",
       visibility: "private",
-      stack: ["Next.js 16", "Supabase", "PostGIS", "Stripe", "Mapbox", "AI OCR"],
+      stack: [
+        "Next.js 16",
+        "Supabase",
+        "PostGIS",
+        "Stripe",
+        "Mapbox",
+        "AI OCR",
+      ],
     },
     {
       id: "contactqr",
@@ -294,6 +344,7 @@ export const profile: Profile = {
       organization: "SCRUMstudy",
       dates: "2023",
       kind: "certification",
+      completed: true,
       startISO: "2023",
     },
     {
@@ -301,6 +352,9 @@ export const profile: Profile = {
       organization: "Universidad de Sevilla",
       dates: "2014 — 2018",
       kind: "degree",
+      // Cursada, sin titulación: every surface says so, and none of them
+      // claims the degree — see structured-data (alumniOf) and mac.ts.
+      completed: false,
       startISO: "2014",
       endISO: "2018",
     },
