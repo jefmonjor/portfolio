@@ -22,12 +22,18 @@ export async function GET(request: NextRequest): Promise<Response> {
   const suffix = variant === "technical" ? "Technical" : "General"
   const filename = cvFilename(suffix, locale)
 
+  // Only the bare /cv.pdf is indexable. Every locale and variant combination
+  // is the same CV again, so the parameterized URLs stay out of the index
+  // instead of forming a cluster of near-duplicate files.
+  const isCanonicalFile = request.nextUrl.search === ""
+
   return new Response(new Uint8Array(buffer), {
     status: 200,
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `inline; filename="${filename}"`,
       "Cache-Control": "public, max-age=0, must-revalidate",
+      ...(isCanonicalFile ? {} : { "X-Robots-Tag": "noindex, follow" }),
     },
   })
 }

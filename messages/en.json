@@ -58,6 +58,11 @@
       "en": "EN",
       "es": "ES",
       "ca": "CA"
+    },
+    "names": {
+      "en": "English",
+      "es": "Español",
+      "ca": "Català"
     }
   },
   "status": {
@@ -375,7 +380,8 @@
   },
   "footer": {
     "lastUpdated": "Last updated · {date}",
-    "builtLine": "Designed and built from scratch · Next.js"
+    "builtLine": "Designed and built from scratch · Next.js",
+    "languagesLabel": "Languages"
   },
   "cvToast": {
     "title": "CV ready",

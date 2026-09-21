@@ -45,6 +45,8 @@ const openGraphLocale: Record<Locale, string> = {
 
 const metadataBase = new URL(siteUrl)
 
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION
+
 const alternateLanguages: Record<string, string> = {
   en: "/en",
   es: "/es",
@@ -88,6 +90,11 @@ export async function generateMetadata({
       index: true,
       follow: true,
     },
+    // Set GOOGLE_SITE_VERIFICATION to keep the Search Console property
+    // verified through the page itself, without touching DNS.
+    ...(googleSiteVerification
+      ? { verification: { google: googleSiteVerification } }
+      : {}),
     openGraph: {
       title,
       description,
