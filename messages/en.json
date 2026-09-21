@@ -4,7 +4,7 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Product Engineer focused on AI and backend. I build end-to-end products on Java/Spring and maintainable architectures, with validated data, clear limits, and manual fallbacks for AI.",
+    "description": "Product Engineer focused on AI and backend. I build end-to-end products on Java/Spring, with validated data, clear limits and manual fallbacks.",
     "applicationName": "{shortName} · Portfolio",
     "role": "Product Engineer · AI & Backend",
     "currentJobTitle": "Solutions Architect / Technical PM"
@@ -58,6 +58,11 @@
       "en": "EN",
       "es": "ES",
       "ca": "CA"
+    },
+    "names": {
+      "en": "English",
+      "es": "Español",
+      "ca": "Català"
     }
   },
   "status": {
@@ -301,8 +306,8 @@
           "Own secure login (Argon2), built with Agent OS: specialized AI agents per role."
         ]
       },
-      "tavory": {
-        "name": "Tavory",
+      "ilnami": {
+        "name": "Ilnami",
         "role": "Own product · Web",
         "summary": "Private gastronomy memory: log what you tried, where, and whether you'd go back. AI-powered OCR for instant capture, Mapbox maps and a Stripe-powered Plus tier.",
         "highlights": [
@@ -375,7 +380,8 @@
   },
   "footer": {
     "lastUpdated": "Last updated · {date}",
-    "builtLine": "Designed and built from scratch · Next.js"
+    "builtLine": "Designed and built from scratch · Next.js",
+    "languagesLabel": "Languages"
   },
   "cvToast": {
     "title": "CV ready",
@@ -471,7 +477,7 @@
       },
       "vercel": {
         "name": "Vercel",
-        "detail": "Tavory, the Transolido frontend and this portfolio — with automatic previews on every PR."
+        "detail": "Ilnami, the Transolido frontend and this portfolio — with automatic previews on every PR."
       },
       "gcloud": {
         "name": "Google Cloud",

@@ -4,7 +4,7 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Product Engineer con foco en IA y backend. Construyo productos de principio a fin sobre Java/Spring y arquitecturas mantenibles, con datos validados, límites claros y alternativas manuales para la IA.",
+    "description": "Product Engineer con foco en IA y backend. Construyo productos de principio a fin sobre Java/Spring, con datos validados, límites claros y vías manuales.",
     "applicationName": "{shortName} · Portfolio",
     "role": "Product Engineer · IA y Backend",
     "currentJobTitle": "Arquitecto de Soluciones / Technical PM"
@@ -58,6 +58,11 @@
       "en": "EN",
       "es": "ES",
       "ca": "CA"
+    },
+    "names": {
+      "en": "English",
+      "es": "Español",
+      "ca": "Català"
     }
   },
   "status": {
@@ -301,8 +306,8 @@
           "Login propio con seguridad (Argon2) y construido con Agent OS: agentes IA por rol."
         ]
       },
-      "tavory": {
-        "name": "Tavory",
+      "ilnami": {
+        "name": "Ilnami",
         "role": "Producto propio · Web",
         "summary": "Memoria gastronómica privada: guarda qué probaste, dónde y si volverías. OCR con IA para registrar en segundos, mapa con Mapbox y suscripción Plus con Stripe.",
         "highlights": [
@@ -375,7 +380,8 @@
   },
   "footer": {
     "lastUpdated": "Actualizado · {date}",
-    "builtLine": "Diseñado y construido desde cero · Next.js"
+    "builtLine": "Diseñado y construido desde cero · Next.js",
+    "languagesLabel": "Idiomas"
   },
   "cvToast": {
     "title": "CV preparado",
@@ -471,7 +477,7 @@
       },
       "vercel": {
         "name": "Vercel",
-        "detail": "Tavory, el frontend de Transolido y este portfolio — con previews automáticos por cada PR."
+        "detail": "Ilnami, el frontend de Transolido y este portfolio — con previews automáticos por cada PR."
       },
       "gcloud": {
         "name": "Google Cloud",

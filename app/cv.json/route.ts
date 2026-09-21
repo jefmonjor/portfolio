@@ -16,6 +16,9 @@ export async function GET(request: NextRequest): Promise<Response> {
     headers: {
       "Content-Type": "application/json; charset=utf-8",
       "Cache-Control": "public, max-age=3600, s-maxage=86400",
+      // Crawlable for agents, kept out of the search index: this is the
+      // localized page's content in another wrapper, not a separate result.
+      "X-Robots-Tag": "noindex, follow",
     },
   })
 }

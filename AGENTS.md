@@ -19,8 +19,8 @@ portfolio product, not a generic landing page template.
 - Zod for runtime contracts.
 - `superjson` for tRPC serialization.
 - `next-themes` for theme support.
-- `next-intl` for App Router internationalization (English + Spanish, path
-  prefix `/en`, `/es`).
+- `next-intl` for App Router internationalization (English, Spanish, and
+  Catalan, path prefix `/en`, `/es`, `/ca`).
 
 ## Non-Negotiable Rules
 

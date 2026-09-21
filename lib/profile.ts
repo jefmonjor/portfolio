@@ -1,6 +1,6 @@
 import type { Profile } from "@/types/profile"
 
-export const portfolioUpdatedAt = "2026-08-26"
+export const portfolioUpdatedAt = "2026-09-21"
 
 // Canonical host for metadata, sitemap and JSON-LD. The apex domain
 // redirects here, so machine-readable references must use this one.
@@ -254,7 +254,7 @@ export const profile: Profile = {
       id: "transolido",
       stage: "live",
       visibility: "public",
-      url: "https://transolido.com",
+      url: "https://www.transolido.com",
       stack: [
         "Java 21",
         "Spring Boot 3",
@@ -296,7 +296,7 @@ export const profile: Profile = {
       ],
     },
     {
-      id: "tavory",
+      id: "ilnami",
       stage: "development",
       visibility: "private",
       stack: [
