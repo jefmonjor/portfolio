@@ -1,6 +1,7 @@
 import { type NextRequest } from "next/server"
 
 import { resolveLocale } from "@/i18n/routing"
+import { siteUrl } from "@/lib/profile"
 import { loadCvLabels } from "@/server/cv/labels"
 import { cvFilename, renderCvPdf } from "@/server/cv/render"
 import { cvPdfVariantSchema } from "@/types/cv"
@@ -24,7 +25,9 @@ export async function GET(request: NextRequest): Promise<Response> {
 
   // Only the bare /cv.pdf is indexable. Every locale and variant combination
   // is the same CV again, so the parameterized URLs stay out of the index
-  // instead of forming a cluster of near-duplicate files.
+  // instead of forming a cluster of near-duplicate files. The canonical one
+  // says so in its headers: a PDF has no <head> to declare it, and without the
+  // declaration the file competes with the page it was built from.
   const isCanonicalFile = request.nextUrl.search === ""
 
   return new Response(new Uint8Array(buffer), {
@@ -33,7 +36,9 @@ export async function GET(request: NextRequest): Promise<Response> {
       "Content-Type": "application/pdf",
       "Content-Disposition": `inline; filename="${filename}"`,
       "Cache-Control": "public, max-age=0, must-revalidate",
-      ...(isCanonicalFile ? {} : { "X-Robots-Tag": "noindex, follow" }),
+      ...(isCanonicalFile
+        ? { Link: `<${siteUrl}/cv.pdf>; rel="canonical"` }
+        : { "X-Robots-Tag": "noindex, follow" }),
     },
   })
 }
