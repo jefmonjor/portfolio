@@ -23,7 +23,7 @@ const content = `# Jefferson Montesdeoca Jordán
 
 ## Public work
 
-- [Transolido](https://transolido.com): VERI*FACTU-compliant invoicing built around a modular Java 21 and Spring Boot backend.
+- [Transolido](https://www.transolido.com): VERI*FACTU-compliant invoicing built around a modular Java 21 and Spring Boot backend.
 - [PRONOQ](https://pronoq.jefmonjor.dev): Trilingual football-pool PWA with live scoring and AI used to explain results, not select predictions.
 - [Corte1D](https://corte1d.jefmonjor.dev): Workshop tool with a deterministic one-dimensional cutting optimizer, stock control, and document exports.
 - [Contact QR](https://contactqr.jefmonjor.dev): Lightweight digital contact card and vCard utility.

@@ -22,7 +22,7 @@ Arquitecto de Soluciones / Technical PM en Andbank, en Andorra la Vella. Más de
 | [Corte1D](https://corte1d.jefmonjor.dev)      | En funcionamiento · público                                          | Optimización de corte en un motor determinista, importaciones y control de stock.                  |
 | [Contact QR](https://contactqr.jefmonjor.dev) | En funcionamiento · público                                          | Utilidad ligera para generar y compartir una vCard mediante QR.                                    |
 | [Portfolio](https://jefmonjor.dev)            | En funcionamiento · [código](https://github.com/jefmonjor/portfolio) | Next.js, TypeScript, tRPC, Zod, CVs generados y asistente basado en un dossier cerrado.            |
-| Other Tales · Tavory                          | En desarrollo · privados                                             | Productos donde exploro offline-first, backend Java y extracción estructurada con IA.              |
+| Other Tales · Ilnami                          | En desarrollo · privados                                             | Productos donde exploro offline-first, backend Java y extracción estructurada con IA.              |
 
 ## IA con criterio
 

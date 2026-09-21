@@ -4,7 +4,7 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Enginyer de producte amb focus en IA i backend. Construeixo productes de principi a fi sobre Java/Spring i arquitectures mantenibles, amb dades validades, límits clars i alternatives manuals per a la IA.",
+    "description": "Enginyer de producte amb focus en IA i backend. Construeixo productes de principi a fi sobre Java/Spring, amb dades validades, límits i vies manuals.",
     "applicationName": "{shortName} · Portfolio",
     "role": "Enginyer de producte · IA i Backend",
     "currentJobTitle": "Arquitecte de Solucions / Technical PM"
@@ -306,8 +306,8 @@
           "Login propi amb seguretat (Argon2) i construït amb Agent OS: agents IA per rol."
         ]
       },
-      "tavory": {
-        "name": "Tavory",
+      "ilnami": {
+        "name": "Ilnami",
         "role": "Producte propi · Web",
         "summary": "Memòria gastronòmica privada: desa què vas tastar, on i si hi tornaries. OCR amb IA per registrar en segons, mapa amb Mapbox i subscripció Plus amb Stripe.",
         "highlights": [
@@ -477,7 +477,7 @@
       },
       "vercel": {
         "name": "Vercel",
-        "detail": "Tavory, el frontend de Transolido i aquest portfolio — amb previews automàtiques per cada PR."
+        "detail": "Ilnami, el frontend de Transolido i aquest portfolio — amb previews automàtiques per cada PR."
       },
       "gcloud": {
         "name": "Google Cloud",

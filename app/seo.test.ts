@@ -48,7 +48,7 @@ describe("search-engine routes", () => {
     expect(body).toContain(`${siteUrl}/es`)
     expect(body).toContain("https://github.com/jefmonjor/portfolio")
     expect(body).not.toContain("Other Tales")
-    expect(body).not.toContain("Tavory")
+    expect(body).not.toContain("Ilnami")
     expect(body).not.toMatch(/8 products|ocho productos|vuit productes/i)
   })
 

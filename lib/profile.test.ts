@@ -19,7 +19,7 @@ describe("public profile content", () => {
       { id: "transolido", stage: "live", visibility: "public" },
       { id: "porrix", stage: "live", visibility: "public" },
       { id: "corte1d", stage: "live", visibility: "public" },
-      { id: "tavory", stage: "development", visibility: "private" },
+      { id: "ilnami", stage: "development", visibility: "private" },
       { id: "contactqr", stage: "live", visibility: "public" },
       { id: "portfolio", stage: "live", visibility: "public" },
     ])

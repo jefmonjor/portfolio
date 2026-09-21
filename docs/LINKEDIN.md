@@ -171,7 +171,7 @@ Portfolio trilingüe con stack tipado Next.js + tRPC + Zod: tres CV en PDF gener
 Tarjeta de contacto digital: un QR que añade la ficha (vCard) directamente a la agenda del móvil. Web ligera construida con Astro.
 ```
 
-**Other Tales · Tavory** — `En desarrollo · privados`
+**Other Tales · Ilnami** — `En desarrollo · privados`
 
 ```
 Producto para escritores (app Flutter offline-first + backend Java 21 hexagonal) y memoria gastronómica privada (Next.js, Supabase con PostGIS, Stripe y OCR con IA con flujo manual de respaldo). En desarrollo, sin fecha pública.

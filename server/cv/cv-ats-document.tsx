@@ -158,7 +158,7 @@ const TECHNICAL_PROJECT_IDS = [
   "othertales",
   "porrix",
   "corte1d",
-  "tavory",
+  "ilnami",
   "contactqr",
   "portfolio",
 ] as const

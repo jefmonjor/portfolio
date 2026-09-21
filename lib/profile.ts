@@ -254,7 +254,7 @@ export const profile: Profile = {
       id: "transolido",
       stage: "live",
       visibility: "public",
-      url: "https://transolido.com",
+      url: "https://www.transolido.com",
       stack: [
         "Java 21",
         "Spring Boot 3",
@@ -296,7 +296,7 @@ export const profile: Profile = {
       ],
     },
     {
-      id: "tavory",
+      id: "ilnami",
       stage: "development",
       visibility: "private",
       stack: [

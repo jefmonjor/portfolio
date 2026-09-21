@@ -16,8 +16,10 @@ describe("CV links", () => {
   })
 
   it("keeps external project URLs untouched and strips their scheme", () => {
-    expect(cvLinkHref("https://transolido.com")).toBe("https://transolido.com")
-    expect(cvLinkLabel("https://transolido.com")).toBe("transolido.com")
+    expect(cvLinkHref("https://www.transolido.com")).toBe(
+      "https://www.transolido.com"
+    )
+    expect(cvLinkLabel("https://www.transolido.com")).toBe("transolido.com")
     expect(cvLinkLabel("https://corte1d.jefmonjor.dev/")).toBe(
       "corte1d.jefmonjor.dev"
     )
