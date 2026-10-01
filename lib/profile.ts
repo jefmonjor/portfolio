@@ -297,8 +297,9 @@ export const profile: Profile = {
     },
     {
       id: "ilnami",
-      stage: "development",
-      visibility: "private",
+      stage: "live",
+      visibility: "public",
+      url: "https://ilnami.com",
       stack: [
         "Next.js 16",
         "Supabase",

@@ -26,6 +26,7 @@ const content = `# Jefferson Montesdeoca Jordán
 - [Transolido](https://www.transolido.com): VERI*FACTU-compliant invoicing built around a modular Java 21 and Spring Boot backend.
 - [PRONOQ](https://pronoq.jefmonjor.dev): Trilingual football-pool PWA with live scoring and AI used to explain results, not select predictions.
 - [Corte1D](https://corte1d.jefmonjor.dev): Workshop tool with a deterministic one-dimensional cutting optimizer, stock control, and document exports.
+- [Ilnami](https://ilnami.com): Private gastronomic memory: log what you tried, where, and whether you would return, with AI OCR and a map.
 - [Contact QR](https://contactqr.jefmonjor.dev): Lightweight digital contact card and vCard utility.
 - [Portfolio source](https://github.com/jefmonjor/portfolio): Next.js, TypeScript, tRPC, Zod, localized CV generation, and a bounded AI assistant.
 
