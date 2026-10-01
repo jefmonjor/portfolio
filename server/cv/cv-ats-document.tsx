@@ -151,7 +151,7 @@ type CvTechnicalDocumentProps = {
   readonly tailored?: CvTailoredContent
 }
 
-// Every personal product, ordered by weight. The two private ones carry no
+// Every personal product, ordered by weight. The private one carries no
 // URL; the rest are open in one click, which is the point of listing them.
 const TECHNICAL_PROJECT_IDS = [
   "transolido",
