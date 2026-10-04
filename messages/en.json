@@ -242,6 +242,10 @@
       "deterministic": {
         "title": "Deterministic where it matters",
         "body": "Corte1D keeps optimization in a deterministic engine, while PRONOQ uses AI to explain results rather than decide predictions."
+      },
+      "gates": {
+        "title": "AI behind automated gates",
+        "body": "SpecForge treats the AI as a supervised junior: it does not code against unclarified requirements, its tests must fail before implementation, and code only moves forward once it passes linters, duplication checks and the test suite."
       }
     }
   },
@@ -314,6 +318,16 @@
           "Supabase: Auth, PostgreSQL + PostGIS, Storage and RLS.",
           "AI OCR with a strict JSON contract, always with a manual fallback.",
           "Stripe Checkout and Customer Portal; deployed on Vercel."
+        ]
+      },
+      "specforge": {
+        "name": "SpecForge",
+        "role": "Personal product · Open-source CLI",
+        "summary": "Go CLI that turns AI-assisted coding into a verifiable assembly line: a BDD spec sealed with SHA-256, a Red → Green → Refactor TDD cycle with quality gates, and exact resume after an interruption.",
+        "highlights": [
+          "The AI does not write code while the spec has open questions, and each test must fail before the implementation exists.",
+          "State is persisted at every step: a dropped connection or exhausted quota resumes with --resume without repeating work.",
+          "Hexagonal architecture in Go, swappable Claude and Gemini agents, and in-browser E2E with chromedp; binaries for Windows, macOS and Linux under Apache 2.0."
         ]
       },
       "contactqr": {

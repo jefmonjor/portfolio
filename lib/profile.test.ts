@@ -20,6 +20,7 @@ describe("public profile content", () => {
       { id: "porrix", stage: "live", visibility: "public" },
       { id: "corte1d", stage: "live", visibility: "public" },
       { id: "ilnami", stage: "live", visibility: "public" },
+      { id: "specforge", stage: "live", visibility: "public" },
       { id: "contactqr", stage: "live", visibility: "public" },
       { id: "portfolio", stage: "live", visibility: "public" },
     ])
