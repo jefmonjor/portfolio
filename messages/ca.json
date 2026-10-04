@@ -245,7 +245,7 @@
       },
       "gates": {
         "title": "La IA, darrere de portes automàtiques",
-        "body": "SpecForge tracta la IA com un júnior supervisat: pregunta en lloc d'inventar, els seus tests han de fallar abans d'implementar i no els pot tocar després, i el codi només avança si supera els tests, els linters i la teva revisió."
+        "body": "SpecForge tracta la IA com un júnior supervisat: pregunta en lloc d'inventar, els seus tests han de fallar abans d'implementar i no es poden tocar després, cada font legacy que cita es comprova, i el codi només avança quan supera els tests, les portes de qualitat i la teva revisió."
       }
     }
   },
@@ -323,10 +323,11 @@
       "specforge": {
         "name": "SpecForge",
         "role": "Producte propi · CLI open source",
-        "summary": "CLI en Go que posa Claude Code o Gemini CLI en una línia de muntatge que verifica cada pas: una entrevista completa l'especificació BDD pregunta a pregunta, s'aprova segellada, es revisa el pla i el cicle Red → Green → Refactor acaba amb la teva revisió i un commit per escenari.",
+        "summary": "CLI en Go que posa Claude Code o Gemini CLI en una línia de muntatge que verifica cada pas: una especificació entrevistada i segellada, un pla revisat, Red → Green → Refactor amb la teva revisió i un commit per escenari. La versió 5 hi afegeix migracions legacy verificades (Java 6 → 21) i projectes Java, React, Python i Go a punt per començar.",
         "highlights": [
           "La IA pregunta en lloc d'inventar: cada resposta de l'agent acaba en un contracte JSON (fet, pregunta o bloqueig), i els dubtes arriben al desenvolupador i queden registrats.",
-          "Res no avança per la paraula de l'agent: SpecForge executa els tests, compara els fitxers al disc, fixa l'empremta dels tests després de RED i passa linters i detecció de duplicats.",
+          "Res no avança per la paraula de l'agent: SpecForge executa els tests, compara els fitxers al disc, fixa l'empremta dels tests després de RED i passa linters, duplicació, mutació, ArchUnit i porta de migració.",
+          "Migracions legacy sense inventar: l'agent llegeix el codi antic en només lectura, cada `fitxer:línia` que cita s'obre i es comprova, i el que el codi fa sense explicació es converteix en pregunta. Provat de principi a fi reescrivint una app de servlets Java 6 en Java 21.",
           "Lliurament traçable: DELIVERY.md i cos de PR amb cada escenari enllaçat al seu test i el seu commit. Arquitectura hexagonal en Go, 77 % de cobertura i CI a Windows, macOS i Linux sota Apache 2.0."
         ]
       },

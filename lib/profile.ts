@@ -332,6 +332,7 @@ export const profile: Profile = {
         "Gemini CLI",
         "chromedp",
         "TDD · BDD",
+        "Legacy → Java 21",
       ],
     },
     {

@@ -245,7 +245,7 @@
       },
       "gates": {
         "title": "La IA, bajo puertas automáticas",
-        "body": "SpecForge trata a la IA como a un junior supervisado: pregunta en lugar de inventar, sus tests tienen que fallar antes de implementar y no puede tocarlos después, y el código solo avanza si supera los tests, los linters y tu revisión."
+        "body": "SpecForge trata a la IA como a un junior supervisado: pregunta en lugar de inventar, sus tests deben fallar antes de implementar y no se pueden tocar después, cada fuente legacy que cita se comprueba, y el código solo avanza cuando supera los tests, las puertas de calidad y tu revisión."
       }
     }
   },
@@ -323,10 +323,11 @@
       "specforge": {
         "name": "SpecForge",
         "role": "Producto propio · CLI open source",
-        "summary": "CLI en Go que pone a Claude Code o Gemini CLI en una línea de montaje que verifica cada paso: una entrevista completa la especificación BDD pregunta a pregunta, se aprueba sellada, se revisa el plan y el ciclo Red → Green → Refactor termina con tu revisión y un commit por escenario.",
+        "summary": "CLI en Go que pone a Claude Code o Gemini CLI en una línea de montaje que verifica cada paso: una especificación entrevistada y sellada, un plan revisado, Red → Green → Refactor con tu revisión y un commit por escenario. La versión 5 añade migraciones legacy verificadas (Java 6 → 21) y proyectos Java, React, Python y Go listos para empezar.",
         "highlights": [
           "La IA pregunta en lugar de inventar: cada respuesta del agente termina en un contrato JSON (hecho, pregunta o bloqueo), y las dudas llegan al desarrollador y quedan registradas.",
-          "Nada avanza por la palabra del agente: SpecForge ejecuta los tests, compara los ficheros en disco, fija la huella de los tests tras RED y pasa linters y detección de duplicados.",
+          "Nada avanza por la palabra del agente: SpecForge ejecuta los tests, compara los ficheros en disco, fija la huella de los tests tras RED y pasa linters, duplicación, mutación, ArchUnit y gate de migración.",
+          "Migraciones legacy sin inventar: el agente lee el código antiguo en solo lectura, cada `fichero:línea` que cita se abre y se comprueba, y lo que el código hace sin explicación se convierte en pregunta. Probado de principio a fin reescribiendo una app de servlets Java 6 en Java 21.",
           "Entrega trazable: DELIVERY.md y cuerpo de PR con cada escenario enlazado a su test y su commit. Arquitectura hexagonal en Go, 77 % de cobertura y CI en Windows, macOS y Linux bajo Apache 2.0."
         ]
       },
