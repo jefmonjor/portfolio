@@ -245,7 +245,7 @@
       },
       "gates": {
         "title": "La IA, bajo puertas automáticas",
-        "body": "SpecForge trata a la IA como a un junior supervisado: no programa con requisitos sin aclarar, sus tests tienen que fallar antes de implementar y el código solo avanza si supera linters, detección de duplicados y la suite de tests."
+        "body": "SpecForge trata a la IA como a un junior supervisado: pregunta en lugar de inventar, sus tests tienen que fallar antes de implementar y no puede tocarlos después, y el código solo avanza si supera los tests, los linters y tu revisión."
       }
     }
   },
@@ -323,11 +323,11 @@
       "specforge": {
         "name": "SpecForge",
         "role": "Producto propio · CLI open source",
-        "summary": "CLI en Go que convierte la programación asistida por IA en una línea de montaje verificable: especificación BDD sellada con SHA-256, ciclo TDD Red → Green → Refactor con puertas de calidad y reanudación exacta tras un corte.",
+        "summary": "CLI en Go que pone a Claude Code o Gemini CLI en una línea de montaje que verifica cada paso: una entrevista completa la especificación BDD pregunta a pregunta, se aprueba sellada, se revisa el plan y el ciclo Red → Green → Refactor termina con tu revisión y un commit por escenario.",
         "highlights": [
-          "La IA no programa si la especificación tiene dudas abiertas, y el test debe fallar antes de que exista la implementación.",
-          "Estado persistido en cada paso: un corte de red o de cuota se retoma con --resume sin repetir trabajo.",
-          "Arquitectura hexagonal en Go, agentes Claude y Gemini intercambiables y E2E en navegador con chromedp; binarios para Windows, macOS y Linux bajo Apache 2.0."
+          "La IA pregunta en lugar de inventar: cada respuesta del agente termina en un contrato JSON (hecho, pregunta o bloqueo), y las dudas llegan al desarrollador y quedan registradas.",
+          "Nada avanza por la palabra del agente: SpecForge ejecuta los tests, compara los ficheros en disco, fija la huella de los tests tras RED y pasa linters y detección de duplicados.",
+          "Entrega trazable: DELIVERY.md y cuerpo de PR con cada escenario enlazado a su test y su commit. Arquitectura hexagonal en Go, 77 % de cobertura y CI en Windows, macOS y Linux bajo Apache 2.0."
         ]
       },
       "contactqr": {

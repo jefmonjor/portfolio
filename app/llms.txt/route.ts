@@ -27,7 +27,7 @@ const content = `# Jefferson Montesdeoca Jordán
 - [PRONOQ](https://pronoq.jefmonjor.dev): Trilingual football-pool PWA with live scoring and AI used to explain results, not select predictions.
 - [Corte1D](https://corte1d.jefmonjor.dev): Workshop tool with a deterministic one-dimensional cutting optimizer, stock control, and document exports.
 - [Ilnami](https://ilnami.com): Private gastronomic memory: log what you tried, where, and whether you would return, with AI OCR and a map.
-- [SpecForge](https://github.com/jefmonjor/specforge): Open-source Go CLI for spec-driven, test-first AI coding — sealed BDD specs, a gated Red → Green → Refactor loop, and exact resume after interruptions.
+- [SpecForge](https://github.com/jefmonjor/specforge): Open-source Go CLI that drives Claude Code or Gemini CLI through a verified, spec-first loop — turn-based spec interview, sealed approvals, a reviewed plan, Red → Green → Refactor with per-scenario review and commits, and a traceable delivery.
 - [Contact QR](https://contactqr.jefmonjor.dev): Lightweight digital contact card and vCard utility.
 - [Portfolio source](https://github.com/jefmonjor/portfolio): Next.js, TypeScript, tRPC, Zod, localized CV generation, and a bounded AI assistant.
 
