@@ -245,7 +245,7 @@
       },
       "gates": {
         "title": "AI behind automated gates",
-        "body": "SpecForge treats the AI as a supervised junior: it does not code against unclarified requirements, its tests must fail before implementation, and code only moves forward once it passes linters, duplication checks and the test suite."
+        "body": "SpecForge treats the AI as a supervised junior: it asks instead of inventing, its tests must fail before implementation and cannot be touched afterwards, and code only moves forward once it passes the tests, the linters and your review."
       }
     }
   },
@@ -323,11 +323,11 @@
       "specforge": {
         "name": "SpecForge",
         "role": "Personal product · Open-source CLI",
-        "summary": "Go CLI that turns AI-assisted coding into a verifiable assembly line: a BDD spec sealed with SHA-256, a Red → Green → Refactor TDD cycle with quality gates, and exact resume after an interruption.",
+        "summary": "Go CLI that puts Claude Code or Gemini CLI on an assembly line that verifies every step: an interview completes the BDD spec one question at a time, it is approved and sealed, the plan is reviewed, and the Red → Green → Refactor cycle ends with your review and one commit per scenario.",
         "highlights": [
-          "The AI does not write code while the spec has open questions, and each test must fail before the implementation exists.",
-          "State is persisted at every step: a dropped connection or exhausted quota resumes with --resume without repeating work.",
-          "Hexagonal architecture in Go, swappable Claude and Gemini agents, and in-browser E2E with chromedp; binaries for Windows, macOS and Linux under Apache 2.0."
+          "The AI asks instead of inventing: every agent answer ends with a JSON contract (done, question or blocked), and open questions reach the developer and are recorded.",
+          "Nothing moves forward on the agent's word: SpecForge runs the tests, compares the files on disk, fingerprints the tests after RED, and runs linters and duplication checks.",
+          "Traceable hand-over: DELIVERY.md and a PR body linking each scenario to its test and commit. Hexagonal architecture in Go, 77% test coverage and CI on Windows, macOS and Linux under Apache 2.0."
         ]
       },
       "contactqr": {
