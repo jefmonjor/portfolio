@@ -245,7 +245,7 @@
       },
       "gates": {
         "title": "AI behind automated gates",
-        "body": "SpecForge treats the AI as a supervised junior: it asks instead of inventing, its tests must fail before implementation and cannot be touched afterwards, and code only moves forward once it passes the tests, the linters and your review."
+        "body": "SpecForge treats the AI as a supervised junior: it asks instead of inventing, its tests must fail before implementation and cannot be touched afterwards, every legacy source it cites is checked, and code only moves forward once it passes the tests, the gates and your review."
       }
     }
   },
@@ -323,10 +323,11 @@
       "specforge": {
         "name": "SpecForge",
         "role": "Personal product · Open-source CLI",
-        "summary": "Go CLI that puts Claude Code or Gemini CLI on an assembly line that verifies every step: an interview completes the BDD spec one question at a time, it is approved and sealed, the plan is reviewed, and the Red → Green → Refactor cycle ends with your review and one commit per scenario.",
+        "summary": "Go CLI that puts Claude Code or Gemini CLI on an assembly line that verifies every step: a spec interviewed and sealed, a reviewed plan, Red → Green → Refactor with your review and one commit per scenario. Version 5 adds verified legacy rewrites (Java 6 → 21) and ready-made Java, React, Python and Go projects.",
         "highlights": [
           "The AI asks instead of inventing: every agent answer ends with a JSON contract (done, question or blocked), and open questions reach the developer and are recorded.",
-          "Nothing moves forward on the agent's word: SpecForge runs the tests, compares the files on disk, fingerprints the tests after RED, and runs linters and duplication checks.",
+          "Nothing moves forward on the agent's word: SpecForge runs the tests, compares the files on disk, fingerprints the tests after RED, and runs linters, duplication, mutation, ArchUnit and migration gates.",
+          "Legacy rewrites without invention: the agent reads the old code read-only, every cited `file:line` is opened and checked, and what the code does that nobody can explain becomes a question. Tested end to end on a Java 6 servlet app rewritten on Java 21.",
           "Traceable hand-over: DELIVERY.md and a PR body linking each scenario to its test and commit. Hexagonal architecture in Go, 77% test coverage and CI on Windows, macOS and Linux under Apache 2.0."
         ]
       },
