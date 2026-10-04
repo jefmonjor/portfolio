@@ -242,6 +242,10 @@
       "deterministic": {
         "title": "Determinista quan importa",
         "body": "Corte1D manté l'optimització en un motor determinista i PRONOQ utilitza IA per explicar resultats, no per decidir pronòstics."
+      },
+      "gates": {
+        "title": "La IA, darrere de portes automàtiques",
+        "body": "SpecForge tracta la IA com un júnior supervisat: no programa amb requisits sense aclarir, els seus tests han de fallar abans d'implementar i el codi només avança si supera linters, detecció de duplicats i la suite de tests."
       }
     }
   },
@@ -314,6 +318,16 @@
           "Supabase: Auth, PostgreSQL + PostGIS, Storage i RLS.",
           "OCR amb IA i contracte JSON estricte, sempre amb flux manual de reserva.",
           "Stripe Checkout i Customer Portal; desplegada a Vercel."
+        ]
+      },
+      "specforge": {
+        "name": "SpecForge",
+        "role": "Producte propi · CLI open source",
+        "summary": "CLI en Go que converteix la programació assistida per IA en una línia de muntatge verificable: especificació BDD segellada amb SHA-256, cicle TDD Red → Green → Refactor amb portes de qualitat i represa exacta després d'un tall.",
+        "highlights": [
+          "La IA no programa si l'especificació té dubtes oberts, i el test ha de fallar abans que existeixi la implementació.",
+          "Estat persistit a cada pas: un tall de xarxa o de quota es reprèn amb --resume sense repetir feina.",
+          "Arquitectura hexagonal en Go, agents Claude i Gemini intercanviables i E2E al navegador amb chromedp; binaris per a Windows, macOS i Linux sota Apache 2.0."
         ]
       },
       "contactqr": {

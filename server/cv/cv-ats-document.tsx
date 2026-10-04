@@ -159,6 +159,7 @@ const TECHNICAL_PROJECT_IDS = [
   "porrix",
   "corte1d",
   "ilnami",
+  "specforge",
   "contactqr",
   "portfolio",
 ] as const

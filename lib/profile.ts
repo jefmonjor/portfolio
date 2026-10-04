@@ -1,6 +1,6 @@
 import type { Profile } from "@/types/profile"
 
-export const portfolioUpdatedAt = "2026-09-21"
+export const portfolioUpdatedAt = "2026-10-04"
 
 // Canonical host for metadata, sitemap and JSON-LD. The apex domain
 // redirects here, so machine-readable references must use this one.
@@ -149,7 +149,14 @@ export const profile: Profile = {
   skills: [
     {
       id: "languages",
-      items: ["Java (8 → 21)", "TypeScript", "JavaScript", "Python", "SQL"],
+      items: [
+        "Java (8 → 21)",
+        "TypeScript",
+        "JavaScript",
+        "Go",
+        "Python",
+        "SQL",
+      ],
     },
     {
       id: "backend",
@@ -307,6 +314,24 @@ export const profile: Profile = {
         "Stripe",
         "Mapbox",
         "AI OCR",
+      ],
+    },
+    {
+      id: "specforge",
+      stage: "live",
+      visibility: "public",
+      // A CLI ships as a release, not a website: the public URL is where
+      // the binaries are downloaded.
+      url: "https://github.com/jefmonjor/specforge/releases",
+      repo: "https://github.com/jefmonjor/specforge",
+      stack: [
+        "Go",
+        "Cobra",
+        "Hexagonal Architecture",
+        "chromedp",
+        "Claude API",
+        "Gemini",
+        "TDD · BDD",
       ],
     },
     {

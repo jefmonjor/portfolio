@@ -7,7 +7,22 @@ const EVIDENCE_KEYS = [
   "contracts",
   "limits",
   "deterministic",
+  "gates",
 ] as const
+
+// Two-column grid: an odd last card spans both columns, and only the last
+// row drops its bottom border on md+.
+function cellBorders(index: number, total: number): string {
+  const isLast = index === total - 1
+  const spansRow = isLast && total % 2 === 1
+  const lastRowStart = total - (total % 2 === 1 ? 1 : 2)
+
+  return [
+    spansRow ? "md:col-span-2" : index % 2 === 0 ? "md:border-r" : "",
+    isLast ? "" : "border-b",
+    index >= lastRowStart ? "md:border-b-0" : "",
+  ].join(" ")
+}
 
 function AiApproach() {
   const t = useTranslations("aiApproach")
@@ -29,8 +44,7 @@ function AiApproach() {
             key={key}
             className={[
               "flex min-w-0 flex-col gap-3 border-border p-5 sm:p-6",
-              index % 2 === 0 ? "md:border-r" : "",
-              index < 2 ? "border-b" : index === 2 ? "border-b md:border-b-0" : "",
+              cellBorders(index, EVIDENCE_KEYS.length),
             ].join(" ")}
           >
             <div className="flex items-center gap-3">
