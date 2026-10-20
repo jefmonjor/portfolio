@@ -46,6 +46,7 @@ const openGraphLocale: Record<Locale, string> = {
 const metadataBase = new URL(siteUrl)
 
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION
+const bingSiteVerification = process.env.BING_SITE_VERIFICATION
 
 const alternateLanguages: Record<string, string> = {
   en: "/en",
@@ -90,10 +91,21 @@ export async function generateMetadata({
       index: true,
       follow: true,
     },
-    // Set GOOGLE_SITE_VERIFICATION to keep the Search Console property
-    // verified through the page itself, without touching DNS.
-    ...(googleSiteVerification
-      ? { verification: { google: googleSiteVerification } }
+    // Set GOOGLE_SITE_VERIFICATION / BING_SITE_VERIFICATION to keep the
+    // Search Console and Bing Webmaster Tools properties verified through the
+    // page itself, without touching DNS. Pages are prerendered, so both are
+    // read at build time.
+    ...(googleSiteVerification || bingSiteVerification
+      ? {
+          verification: {
+            ...(googleSiteVerification
+              ? { google: googleSiteVerification }
+              : {}),
+            ...(bingSiteVerification
+              ? { other: { "msvalidate.01": bingSiteVerification } }
+              : {}),
+          },
+        }
       : {}),
     openGraph: {
       title,
