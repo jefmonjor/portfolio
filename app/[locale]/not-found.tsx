@@ -13,21 +13,14 @@ export default async function NotFound() {
     <div className="relative isolate flex min-h-svh flex-col items-center justify-center gap-8 bg-background px-4 text-foreground">
       <Background />
 
-      <pre
+      <p
         aria-hidden
-        className="relative z-10 font-mono text-[10px] leading-tight text-muted-foreground sm:text-xs"
-      >{`  ┌─────────────────────────┐
-  │  404 / NOT FOUND        │
-  │                         │
-  │  signal: ░░░░░░░░░░     │
-  │  route : null           │
-  │  trace : 0xDEADBEEF     │
-  └─────────────────────────┘`}</pre>
+        className="relative z-10 font-heading text-[clamp(4rem,10vw,7rem)] leading-none font-medium tracking-[-0.04em] text-muted-foreground/40 tabular-nums"
+      >
+        404
+      </p>
 
       <div className="relative z-10 flex max-w-md flex-col items-center gap-3 text-center">
-        <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
-          {t("indexLabel")}
-        </span>
         <h1 className="font-heading text-3xl leading-tight font-medium tracking-tight sm:text-5xl">
           {t("title")}
         </h1>

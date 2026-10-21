@@ -24,7 +24,6 @@ function Skills() {
       className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-16 sm:px-8 sm:py-20"
     >
       <SectionHeading
-        index={t("indexLabel")}
         title={t("title")}
         hint={t("hint", { count: totalCount, groups: profile.skills.length })}
       />
@@ -42,10 +41,10 @@ function Skills() {
               ].join(" ")}
             >
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+                <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                   {tGroups(group.id)}
                 </span>
-                <span className="font-mono text-[10px] tracking-widest text-muted-foreground/60 uppercase">
+                <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                   {String(items.length).padStart(2, "0")}
                 </span>
               </div>

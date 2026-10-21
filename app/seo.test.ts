@@ -1,17 +1,27 @@
 import { describe, expect, it } from "vitest"
 
-import robots from "@/app/robots"
+import robots, { aiCrawlers } from "@/app/robots"
 import sitemap from "@/app/sitemap"
 import { GET as getLlmsText } from "@/app/llms.txt/route"
 import { siteUrl } from "@/lib/profile"
+import { buildLlmsFull } from "@/lib/seo/llms"
 
 describe("search-engine routes", () => {
   it("publishes the canonical host in robots.txt", () => {
     expect(robots()).toEqual({
-      rules: { userAgent: "*", allow: "/", disallow: "/api/" },
+      rules: [
+        { userAgent: "*", allow: "/", disallow: "/api/" },
+        { userAgent: [...aiCrawlers], allow: "/", disallow: "/api/" },
+      ],
       sitemap: `${siteUrl}/sitemap.xml`,
       host: siteUrl,
     })
+  })
+
+  it("names the AI search and assistant crawlers it welcomes", () => {
+    expect(aiCrawlers).toEqual(
+      expect.arrayContaining(["GPTBot", "ClaudeBot", "PerplexityBot"])
+    )
   })
 
   it("publishes the canonical localized pages and the CV file", () => {
@@ -50,6 +60,21 @@ describe("search-engine routes", () => {
     expect(body).not.toContain("Other Tales")
     expect(body).toContain("https://ilnami.com")
     expect(body).not.toMatch(/8 products|ocho productos|vuit productes/i)
+  })
+
+  it("builds the full reference as the summary plus one CV", () => {
+    // The route feeds it buildCvMarkdown output; translations need the server
+    // runtime, so the build covers that half.
+    const body = buildLlmsFull("# Jefferson\n\n**Role**\n\n## Experience\n")
+
+    expect(body.startsWith("# Jefferson Montesdeoca Jordán")).toBe(true)
+    expect(body.match(/^# /gm)).toEqual(["# ", "# "])
+    expect(body).toContain("# Full CV\n\n**Role**")
+    expect(body).toContain(`${siteUrl}/llms-full.txt`)
+    expect(body).toContain("For recruiters and AI sourcing agents")
+    expect(body).not.toContain("Other Tales")
+    // The plain-text surfaces never carry an address.
+    expect(body).not.toMatch(/[\w.+-]+@[\w-]+\.[a-z]{2,}/i)
   })
 
   it("keeps the pointer file crawlable but out of the index", () => {

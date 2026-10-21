@@ -1,13 +1,13 @@
 "use client"
 
-import { motion, useScroll, useSpring } from "motion/react"
 import { useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ComputerTerminal01Icon } from "@hugeicons/core-free-icons"
 
 import { CommandPalette } from "@/components/portfolio/command-palette"
 import { LocaleSwitcher } from "@/components/portfolio/locale-switcher"
-import { Terminal, openTerminal } from "@/components/portfolio/terminal/terminal"
+import { openTerminal } from "@/components/portfolio/terminal/events"
+import { TerminalHost } from "@/components/portfolio/terminal/terminal-host"
 import { ThemeToggle } from "@/components/portfolio/theme-toggle"
 import { Button } from "@/components/ui/button"
 import { Kbd } from "@/components/ui/kbd"
@@ -31,19 +31,11 @@ const NAV_IDS = [
 function TopBar() {
   const tNav = useTranslations("nav")
 
-  const { scrollYProgress } = useScroll()
-  const progress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 28,
-    mass: 0.2,
-  })
-
   return (
     <div data-print-hidden className="sticky top-0 z-40 px-3 pt-3 sm:px-4">
-      <motion.div
+      <div
         aria-hidden
-        style={{ scaleX: progress, transformOrigin: "0 50%" }}
-        className="fixed inset-x-0 top-0 h-0.5 bg-brand"
+        className="scroll-progress fixed inset-x-0 top-0 h-0.5 bg-brand"
       />
       <div className="mx-auto flex h-11 max-w-6xl min-w-0 items-center justify-between gap-2 rounded-full border border-border bg-background/85 px-3 shadow-sm backdrop-blur sm:gap-4 sm:px-5">
         <a
@@ -51,16 +43,20 @@ function TopBar() {
           className="flex min-w-0 shrink items-center gap-2 font-mono text-[11px] tracking-widest uppercase hover:text-foreground"
         >
           <span className="inline-block size-1.5 bg-brand" />
-          <span className="sm:hidden">Jefferson</span>
-          <span className="hidden truncate sm:inline">{profile.shortName}</span>
+          {/* The full name where there is room for it; the first name when
+              the section links share the bar (Spanish labels run longest). */}
+          <span className="sm:hidden lg:inline">Jefferson</span>
+          <span className="hidden truncate sm:inline lg:hidden">
+            {profile.shortName}
+          </span>
         </a>
 
-        <nav className="hidden items-center gap-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase lg:flex">
+        <nav className="hidden items-center gap-0.5 text-[13px] whitespace-nowrap text-muted-foreground lg:flex">
           {NAV_IDS.map((id) => (
             <a
               key={id}
               href={`#${id}`}
-              className="px-2 py-1 transition-colors hover:text-foreground"
+              className="rounded-full px-2 py-1 transition-colors hover:bg-foreground/5 hover:text-foreground"
             >
               {tNav(id)}
             </a>
@@ -74,6 +70,7 @@ function TopBar() {
                 type="button"
                 variant="outline"
                 size="icon-sm"
+                data-hit-area
                 aria-label={tNav("terminal")}
                 onClick={openTerminal}
               >
@@ -85,9 +82,9 @@ function TopBar() {
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <span className="flex items-center gap-2 font-mono text-[10px] tracking-wider uppercase">
+              <span className="flex items-center gap-2 font-mono text-[11px] tracking-wider uppercase">
                 {tNav("terminal")}
-                <Kbd className="font-mono text-[10px]">`</Kbd>
+                <Kbd className="font-mono text-[11px]">`</Kbd>
               </span>
             </TooltipContent>
           </Tooltip>
@@ -96,7 +93,7 @@ function TopBar() {
           <ThemeToggle />
         </div>
       </div>
-      <Terminal />
+      <TerminalHost />
     </div>
   )
 }

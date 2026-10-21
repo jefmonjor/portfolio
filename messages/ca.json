@@ -70,7 +70,6 @@
     "detail": "Andorra · Espanya · Remot en fus horari europeu"
   },
   "hero": {
-    "indexLabel": "00 — Perfil",
     "role": "Enginyer de producte amb focus en IA i backend",
     "tagline": "Construeixo productes de principi a fi sobre backends Java/Spring i arquitectures mantenibles. Utilitzo IA quan aporta valor, amb dades validades, límits clars i alternatives manuals.",
     "specs": {
@@ -88,11 +87,11 @@
     "badge": {
       "explore3d": "Explorar en 3D",
       "close3d": "Tornar a la targeta de perfil",
-      "unsupported": "La vista 3D no està disponible en aquest dispositiu"
+      "unsupported": "La vista 3D no està disponible en aquest dispositiu",
+      "loading3d": "Carregant 3D…"
     }
   },
   "about": {
-    "indexLabel": "01 — Sobre mi",
     "title": "Qui soc, en un paràgraf",
     "manifesto": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. He liderat migracions complexes, integrat sistemes legacy i dissenyat arquitectures hexagonals i de microserveis. Fora de la feina construeixo diversos productes propis —alguns públics i en funcionament, d'altres privats i en desenvolupament— per mantenir a prop les decisions de producte, backend, desplegament i IA aplicada.",
     "currentlyWorkingWith": "Treballant ara amb"
@@ -126,7 +125,6 @@
     }
   },
   "experience": {
-    "indexLabel": "02 — Experiència",
     "title": "On he treballat",
     "hint": "{count} rols · 2019 → actualitat",
     "duration": {
@@ -200,7 +198,6 @@
     }
   },
   "skills": {
-    "indexLabel": "03 — Habilitats",
     "title": "Tecnologies amb què treballo",
     "hint": "{count} eines · {groups} grups",
     "groups": {
@@ -223,7 +220,6 @@
     ]
   },
   "aiApproach": {
-    "indexLabel": "04 — IA en producte",
     "title": "IA útil, acotada per enginyeria",
     "hint": "Evidència · límits · alternativa",
     "entries": {
@@ -250,7 +246,6 @@
     }
   },
   "projects": {
-    "indexLabel": "05 — Projectes",
     "title": "Projectes propis",
     "hint": "{count, plural, one {# projecte} other {# projectes}} · producte · backend · IA",
     "status": {
@@ -312,12 +307,13 @@
       },
       "ilnami": {
         "name": "Ilnami",
-        "role": "Producte propi · Web",
-        "summary": "Memòria gastronòmica privada: desa què vas tastar, on i si hi tornaries. OCR amb IA per registrar en segons, mapa amb Mapbox i subscripció Plus amb Stripe.",
+        "role": "Producte propi · Web app (PWA)",
+        "summary": "Diari gastronòmic privat: desa què vas demanar, on, quan i si hi tornaries, al teu propi mapa. Escaneig amb IA de cartes, etiquetes i tiquets que sempre es revisa abans de desar, cercles privats per compartir només el que tries i exportació de les teves dades en JSON. En producció i obert, en castellà i anglès.",
         "highlights": [
-          "Supabase: Auth, PostgreSQL + PostGIS, Storage i RLS.",
-          "OCR amb IA i contracte JSON estricte, sempre amb flux manual de reserva.",
-          "Stripe Checkout i Customer Portal; desplegada a Vercel."
+          "Privat per disseny: sense perfils ni ressenyes públiques; la RLS de PostgreSQL limita cada fila al seu propietari o al cercle amb qui es va compartir.",
+          "IA assistiva, mai autoritativa: OpenAI suggereix lloc, data i plats, amb quotes per pla i alta manual que sempre funciona.",
+          "Supabase a la UE (Frankfurt), Vercel fra1, CSP estricta, Sentry sense dades personals i analítica només amb consentiment.",
+          "Preparat per a agents: llms.txt, llms-full.txt, índex d'Agent Skills i blog també en Markdown."
         ]
       },
       "specforge": {
@@ -354,7 +350,6 @@
     }
   },
   "education": {
-    "indexLabel": "06 — Formació i idiomes",
     "title": "Formació i idiomes",
     "languagesLabel": "Idiomes",
     "entries": {
@@ -379,7 +374,6 @@
     }
   },
   "contact": {
-    "indexLabel": "07 — Contacte",
     "title": "La manera més ràpida de localitzar-me",
     "emailLabel": "Email",
     "copy": "Copiar",
@@ -400,7 +394,7 @@
   },
   "cvToast": {
     "title": "CV preparat",
-    "description": "El PDF s'ha obert o descarregat."
+    "description": "El PDF s'ha descarregat."
   },
   "cvModal": {
     "title": "Descarregar CV",
@@ -420,7 +414,10 @@
     "back": "Tornar",
     "tailorError": "No s'ha pogut adaptar ara mateix. El CV tècnic continua disponible.",
     "tailorLimited": "Límit d'ús assolit. Prova-ho d'aquí a uns minuts o descarrega el CV tècnic.",
-    "tailorUnavailable": "L'adaptació amb IA no està disponible ara mateix. Pots descarregar el CV general o tècnic."
+    "tailorUnavailable": "L'adaptació amb IA no està disponible ara mateix. Pots descarregar el CV general o tècnic.",
+    "preparing": "Preparant el PDF…",
+    "downloadError": "No s'ha pogut descarregar el PDF.",
+    "openDirect": "Obrir PDF"
   },
   "terminal": {
     "title": "Terminal",
@@ -477,7 +474,6 @@
     ]
   },
   "notFound": {
-    "indexLabel": "ERR · 404",
     "title": "Aquesta pàgina no existeix.",
     "body": "La pàgina que cerques pot haver-se reanomenat, eliminat o mogut a una altra ruta.",
     "cta": "Tornar a l'inici"
@@ -506,8 +502,8 @@
     "title": "Assistent · respon sobre Jefferson",
     "open": "Obrir l'assistent",
     "close": "Tancar l'assistent",
-    "intro": "Pregunta per la seva experiència, projectes, stack o encaix amb una oferta. Responc des d'un dossier públic tancat i separo la feina actual del seu perfil objectiu.",
-    "placeholder": "Escriu la teva pregunta…",
+    "intro": "Pregunta per la seva experiència, projectes o stack, o enganxa una oferta completa. Responc des d'un dossier públic tancat: en una oferta només marco com a coincidència el que puc citar literalment, i la resta queda per confirmar.",
+    "placeholder": "Pregunta o enganxa una oferta…",
     "inputLabel": "Pregunta per a l'assistent",
     "send": "Enviar",
     "s1": "Quina evidència té per a un rol backend Java?",
@@ -516,6 +512,9 @@
     "rateLimited": "Has fet moltes preguntes seguides. Espera un moment i torna-ho a provar.",
     "unavailable": "L'assistent no està disponible ara mateix. Escriu a {email}.",
     "error": "No he pogut respondre. Escriu a {email}.",
-    "disclaimer": "IA limitada al perfil públic. No estima dades absents; confirma per email qualsevol decisió important."
+    "disclaimer": "IA limitada al perfil públic. No estima dades absents; confirma per email qualsevol decisió important.",
+    "reset": "Nova",
+    "thinking": "Pensant…",
+    "launcher": "Pregunta a la IA"
   }
 }

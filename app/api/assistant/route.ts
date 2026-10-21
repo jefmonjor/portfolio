@@ -1,13 +1,28 @@
 import { NextResponse } from "next/server"
 import OpenAI from "openai"
+import { zodTextFormat } from "openai/helpers/zod"
 
-import { buildSystemPrompt } from "@/lib/assistant/dossier"
+import type { Locale } from "@/i18n/routing"
+import {
+  buildDossier,
+  buildOfferAnalysisPrompt,
+  buildSystemPrompt,
+} from "@/lib/assistant/dossier"
 import { sanitizeMessages } from "@/lib/assistant/messages"
+import {
+  looksLikeJobOffer,
+  renderOfferAnalysis,
+  verifyOfferAnalysis,
+} from "@/lib/assistant/offer"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
+import { contactEmail } from "@/lib/email"
 import {
   assistantRequestSchema,
   assistantSuccessSchema,
+  offerAnalysisModelOutputSchema,
+  type ChatMessage,
 } from "@/types/assistant"
+import { ASSISTANT_MESSAGE_INPUT_CHARS } from "@/types/limits"
 
 export const runtime = "nodejs"
 
@@ -16,6 +31,18 @@ const MODEL = process.env.ASSISTANT_MODEL ?? "gpt-5-mini"
 const MAX_OUTPUT_TOKENS = intEnv("ASSISTANT_MAX_OUTPUT_TOKENS", 500)
 const MAX_TURNS = intEnv("ASSISTANT_MAX_TURNS", 8)
 const MAX_CHARS = intEnv("ASSISTANT_MAX_CHARS", 800)
+// The latest message may be a full job offer; cutting it at MAX_CHARS used to
+// compare the profile against half a posting.
+const MAX_LAST_CHARS = Math.min(
+  ASSISTANT_MESSAGE_INPUT_CHARS,
+  intEnv("ASSISTANT_MAX_OFFER_CHARS", ASSISTANT_MESSAGE_INPUT_CHARS)
+)
+// The structured comparison spends part of its budget reasoning about which
+// quote backs which requirement.
+const OFFER_MAX_OUTPUT_TOKENS = intEnv(
+  "ASSISTANT_OFFER_MAX_OUTPUT_TOKENS",
+  1600
+)
 // gpt-5 models reason before answering by default, which adds several seconds
 // of latency. A closed-dossier Q&A bot doesn't need it.
 const REASONING = enumEnv(
@@ -55,7 +82,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
 
-  const messages = sanitizeMessages(parsed.data.messages, MAX_TURNS, MAX_CHARS)
+  const messages = sanitizeMessages(
+    parsed.data.messages,
+    MAX_TURNS,
+    MAX_CHARS,
+    MAX_LAST_CHARS
+  )
   if (!messages) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
@@ -65,11 +97,32 @@ export async function POST(request: Request) {
   }
 
   const client = new OpenAI()
+  const locale = parsed.data.locale
+  const latest = messages.at(-1)?.content ?? ""
 
   try {
+    if (looksLikeJobOffer(latest)) {
+      const reply = await compareOffer(client, latest, locale).catch(
+        (error: unknown) => {
+          if (error instanceof OpenAI.RateLimitError) throw error
+          // The structured pass is a safeguard, not a dependency: if it
+          // fails, the question still gets the normal, rule-bound answer.
+          console.error("[assistant] offer comparison failed", {
+            message: error instanceof Error ? error.message : String(error),
+          })
+          return null
+        }
+      )
+      if (reply) {
+        return NextResponse.json(assistantSuccessSchema.parse({ reply }))
+      }
+      // Not an offer after all, or nothing survived verification: answer it
+      // as a normal question, under the same rules.
+    }
+
     const response = await client.responses.create({
       model: MODEL,
-      instructions: buildSystemPrompt(parsed.data.locale),
+      instructions: buildSystemPrompt(locale),
       input: messages,
       max_output_tokens: MAX_OUTPUT_TOKENS,
       reasoning: { effort: REASONING },
@@ -91,4 +144,33 @@ export async function POST(request: Request) {
     }
     return NextResponse.json({ error: "upstream" }, { status: 502 })
   }
+}
+
+async function compareOffer(
+  client: OpenAI,
+  offer: string,
+  locale: Locale
+): Promise<string | null> {
+  const response = await client.responses.parse({
+    model: MODEL,
+    instructions: buildOfferAnalysisPrompt(locale),
+    input: [
+      { role: "user", content: `<job_offer>\n${offer}\n</job_offer>` },
+    ] satisfies ChatMessage[],
+    max_output_tokens: OFFER_MAX_OUTPUT_TOKENS,
+    reasoning: { effort: REASONING },
+    text: {
+      format: zodTextFormat(offerAnalysisModelOutputSchema, "offer_analysis"),
+      verbosity: "low",
+    },
+    store: false,
+  })
+  if (response.status !== "completed" || !response.output_parsed) return null
+
+  const verified = verifyOfferAnalysis(
+    response.output_parsed,
+    offer,
+    buildDossier(locale)
+  )
+  return verified ? renderOfferAnalysis(verified, locale, contactEmail()) : null
 }

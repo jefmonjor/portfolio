@@ -18,7 +18,7 @@ import {
 } from "@hugeicons/core-free-icons"
 
 import { useBackground } from "@/components/background-provider"
-import { openTerminal } from "@/components/portfolio/terminal/terminal"
+import { openTerminal } from "@/components/portfolio/terminal/events"
 import { Button } from "@/components/ui/button"
 import {
   CommandDialog,
@@ -37,10 +37,7 @@ import {
 } from "@/components/ui/tooltip"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { resolveLocale, routing, type Locale } from "@/i18n/routing"
-import {
-  BACKGROUND_VARIANTS,
-  type BackgroundVariant,
-} from "@/lib/background"
+import { BACKGROUND_VARIANTS, type BackgroundVariant } from "@/lib/background"
 
 const BACKGROUND_ICONS: Record<BackgroundVariant, typeof GridIcon> = {
   grid: GridIcon,
@@ -171,6 +168,7 @@ function CommandPalette() {
             type="button"
             variant="outline"
             size="icon-sm"
+            data-hit-area
             aria-label={t("title")}
             onClick={() => setOpen(true)}
             className="sm:h-7 sm:w-auto sm:gap-2 sm:px-2"
@@ -180,16 +178,16 @@ function CommandPalette() {
               className="size-3.5"
               strokeWidth={1.75}
             />
-            <span className="hidden font-mono text-[10px] tracking-widest text-muted-foreground uppercase sm:inline">
+            <span className="hidden text-[13px] text-muted-foreground sm:inline">
               {t("hintLabel")}
             </span>
-            <Kbd className="hidden font-mono text-[10px] sm:inline-flex">
+            <Kbd className="hidden font-mono text-[11px] sm:inline-flex">
               {isMac === false ? "Ctrl" : "⌘"} K
             </Kbd>
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <span className="font-mono text-[10px] tracking-wider uppercase">
+          <span className="font-mono text-[11px] tracking-wider uppercase">
             {t("title")}
           </span>
         </TooltipContent>
@@ -233,7 +231,9 @@ function CommandPalette() {
                 strokeWidth={1.75}
               />
               <span>{t("actions.openTerminal")}</span>
-              <CommandShortcut className="font-mono text-[10px]">`</CommandShortcut>
+              <CommandShortcut className="font-mono text-[11px]">
+                `
+              </CommandShortcut>
             </CommandItem>
 
             <CommandItem
@@ -283,7 +283,7 @@ function CommandPalette() {
                   />
                   <span>{t(`background.${v}`)}</span>
                   {isActive ? (
-                    <CommandShortcut className="font-mono text-[10px] uppercase">
+                    <CommandShortcut className="font-mono text-[11px] uppercase">
                       {t("background.active")}
                     </CommandShortcut>
                   ) : null}

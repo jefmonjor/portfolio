@@ -1,11 +1,12 @@
 import { z } from "zod"
 
 import { assistantLocaleSchema } from "@/types/assistant"
+import {
+  CV_TAILOR_OFFER_MAX_CHARS,
+  CV_TAILOR_OFFER_MIN_CHARS,
+} from "@/types/limits"
 
-// Roughly 4.000 palabras: full postings run long, and truncating one mid-way
-// hides the requirements that usually sit at the end. At ~6 characters per
-// word this is ~7k input tokens, a fraction of a cent on the selection model.
-export const CV_TAILOR_OFFER_MAX_CHARS = 24000
+export { CV_TAILOR_OFFER_MAX_CHARS, CV_TAILOR_OFFER_MIN_CHARS }
 export const CV_TAILOR_SUMMARY_MAX_CHARS = 900
 export const CV_TAILOR_KEYWORDS_MAX = 15
 export const CV_TAILOR_KEYWORD_MAX_CHARS = 120
@@ -14,7 +15,11 @@ export const CV_TAILOR_PROJECT_ID_MAX_CHARS = 40
 
 export const cvTailorRequestSchema = z
   .object({
-    offer: z.string().trim().min(40).max(CV_TAILOR_OFFER_MAX_CHARS),
+    offer: z
+      .string()
+      .trim()
+      .min(CV_TAILOR_OFFER_MIN_CHARS)
+      .max(CV_TAILOR_OFFER_MAX_CHARS),
     locale: assistantLocaleSchema,
   })
   .strict()

@@ -1,9 +1,13 @@
 import { z } from "zod"
 
 import { isLocale, routing } from "@/i18n/routing"
+import {
+  ASSISTANT_HISTORY_INPUT_MESSAGES,
+  ASSISTANT_MESSAGE_INPUT_CHARS,
+  ASSISTANT_REPLY_MAX_CHARS,
+} from "@/types/limits"
 
-export const ASSISTANT_MESSAGE_INPUT_CHARS = 1500
-export const ASSISTANT_HISTORY_INPUT_MESSAGES = 17
+export { ASSISTANT_HISTORY_INPUT_MESSAGES, ASSISTANT_MESSAGE_INPUT_CHARS }
 
 export const assistantLocaleSchema = z.preprocess((value) => {
   const candidate = typeof value === "string" ? value : undefined
@@ -27,8 +31,26 @@ export const assistantRequestSchema = z
 
 export const assistantSuccessSchema = z
   .object({
-    reply: z.string().trim().min(1).max(4000),
+    reply: z.string().trim().min(1).max(ASSISTANT_REPLY_MAX_CHARS),
   })
   .strict()
 
 export type ChatMessage = z.infer<typeof chatMessageSchema>
+
+// What the model returns when the latest message is a job offer. Plain
+// strings and arrays only (Structured Outputs rejects length bounds); every
+// value is re-checked by verifyOfferAnalysis before anything is shown.
+export const offerAnalysisModelOutputSchema = z
+  .object({
+    isJobOffer: z.boolean(),
+    role: z.string(),
+    matches: z.array(
+      z.object({ requirement: z.string(), evidence: z.string() }).strict()
+    ),
+    unverified: z.array(z.string()),
+  })
+  .strict()
+
+export type OfferAnalysisModelOutput = z.infer<
+  typeof offerAnalysisModelOutputSchema
+>

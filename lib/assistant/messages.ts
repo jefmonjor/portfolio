@@ -3,7 +3,10 @@ import type { ChatMessage } from "@/types/assistant"
 export function sanitizeMessages(
   messages: ReadonlyArray<ChatMessage>,
   maxTurns: number,
-  maxChars: number
+  maxChars: number,
+  // The latest user turn may carry a pasted job offer; earlier turns are only
+  // context and stay short.
+  lastMaxChars: number = maxChars
 ): ChatMessage[] | null {
   const turnLimit = Math.max(1, Math.floor(maxTurns))
   const charLimit = Math.max(1, Math.floor(maxChars))
@@ -26,8 +29,12 @@ export function sanitizeMessages(
     if (recent[index]?.role !== expectedRole) return null
   }
 
-  return recent.map(({ role, content }) => ({
+  const lastLimit = Math.max(charLimit, Math.floor(lastMaxChars))
+  return recent.map(({ role, content }, index) => ({
     role,
-    content: content.slice(0, charLimit),
+    content: content.slice(
+      0,
+      index === recent.length - 1 ? lastLimit : charLimit
+    ),
   }))
 }

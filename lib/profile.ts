@@ -1,6 +1,6 @@
 import type { Profile } from "@/types/profile"
 
-export const portfolioUpdatedAt = "2026-10-04"
+export const portfolioUpdatedAt = "2026-10-21"
 
 // Canonical host for metadata, sitemap and JSON-LD. The apex domain
 // redirects here, so machine-readable references must use this one.
@@ -26,31 +26,6 @@ export const profile: Profile = {
     "Next.js",
     "Claude API",
     "AI agents",
-  ],
-  marquee: [
-    "Java",
-    "Spring Boot",
-    "Hibernate",
-    "Microservices",
-    "REST APIs",
-    "Docker",
-    "Kubernetes",
-    "OpenShift",
-    "Jenkins",
-    "Keycloak",
-    "OAuth2",
-    "Oracle",
-    "DB2",
-    "PostgreSQL",
-    "Cassandra",
-    "Hadoop",
-    "Spark",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Claude API",
-    "MCP",
-    "Vercel AI SDK",
   ],
   socials: [
     {
@@ -310,10 +285,12 @@ export const profile: Profile = {
       stack: [
         "Next.js 16",
         "Supabase",
+        "PostgreSQL RLS",
         "PostGIS",
-        "Stripe",
         "Mapbox",
-        "AI OCR",
+        "OpenAI Vision",
+        "PWA",
+        "Sentry",
       ],
     },
     {

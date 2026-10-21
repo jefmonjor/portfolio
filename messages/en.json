@@ -70,7 +70,6 @@
     "detail": "Andorra · Spain · Remote across European time zones"
   },
   "hero": {
-    "indexLabel": "00 — Profile",
     "role": "Product Engineer focused on AI & backend",
     "tagline": "I build products end to end on Java/Spring backends and maintainable architectures. I use AI where it adds value, with validated data, clear limits, and manual fallbacks.",
     "specs": {
@@ -88,11 +87,11 @@
     "badge": {
       "explore3d": "Explore in 3D",
       "close3d": "Return to profile card",
-      "unsupported": "3D view unavailable on this device"
+      "unsupported": "3D view unavailable on this device",
+      "loading3d": "Loading 3D…"
     }
   },
   "about": {
-    "indexLabel": "01 — About",
     "title": "Who I am, in one paragraph",
     "manifesto": "Six-plus years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build several products of my own—some public and live, others private and in development—to keep product, backend, deployment, and applied AI decisions close together.",
     "currentlyWorkingWith": "Currently working with"
@@ -126,7 +125,6 @@
     }
   },
   "experience": {
-    "indexLabel": "02 — Experience",
     "title": "Where I have worked",
     "hint": "{count} roles · 2019 → present",
     "duration": {
@@ -200,7 +198,6 @@
     }
   },
   "skills": {
-    "indexLabel": "03 — Skills",
     "title": "Tools I use most",
     "hint": "{count} tools · {groups} groups",
     "groups": {
@@ -223,7 +220,6 @@
     ]
   },
   "aiApproach": {
-    "indexLabel": "04 — AI in product",
     "title": "Useful AI, bounded by engineering",
     "hint": "Evidence · limits · fallback",
     "entries": {
@@ -250,7 +246,6 @@
     }
   },
   "projects": {
-    "indexLabel": "05 — Projects",
     "title": "Selected projects",
     "hint": "{count, plural, one {# project} other {# projects}} · product · backend · AI",
     "status": {
@@ -312,12 +307,13 @@
       },
       "ilnami": {
         "name": "Ilnami",
-        "role": "Own product · Web",
-        "summary": "Private gastronomy memory: log what you tried, where, and whether you'd go back. AI-powered OCR for instant capture, Mapbox maps and a Stripe-powered Plus tier.",
+        "role": "Own product · Web app (PWA)",
+        "summary": "Private food diary: save what you ordered, where, when and whether you'd go back, on your own map. AI scanning of menus, labels and receipts that is always reviewed before saving, private circles to share only what you choose, and a JSON export of your data. Live and open, in Spanish and English.",
         "highlights": [
-          "Supabase: Auth, PostgreSQL + PostGIS, Storage and RLS.",
-          "AI OCR with a strict JSON contract, always with a manual fallback.",
-          "Stripe Checkout and Customer Portal; deployed on Vercel."
+          "Private by design: no public profiles or reviews; PostgreSQL row-level security limits every row to its owner or the circle it was shared with.",
+          "Assistive, never authoritative AI: OpenAI suggests the place, date and dishes, with per-plan quotas and a manual entry that always works.",
+          "Supabase in the EU (Frankfurt), Vercel fra1, strict CSP, Sentry without personal data and analytics only with consent.",
+          "Agent-ready: llms.txt, llms-full.txt, an Agent Skills index and a blog also published as Markdown."
         ]
       },
       "specforge": {
@@ -354,7 +350,6 @@
     }
   },
   "education": {
-    "indexLabel": "06 — Education & Languages",
     "title": "Education and languages",
     "languagesLabel": "Languages",
     "entries": {
@@ -379,7 +374,6 @@
     }
   },
   "contact": {
-    "indexLabel": "07 — Contact",
     "title": "The fastest way to reach me",
     "emailLabel": "Email",
     "copy": "Copy",
@@ -400,7 +394,7 @@
   },
   "cvToast": {
     "title": "CV ready",
-    "description": "The PDF has opened or downloaded."
+    "description": "The PDF has been downloaded."
   },
   "cvModal": {
     "title": "Download CV",
@@ -420,7 +414,10 @@
     "back": "Back",
     "tailorError": "It couldn't be tailored right now. The technical CV is still available.",
     "tailorLimited": "Usage limit reached. Try again in a few minutes or download the technical CV.",
-    "tailorUnavailable": "AI tailoring is unavailable right now. You can download the general or technical CV."
+    "tailorUnavailable": "AI tailoring is unavailable right now. You can download the general or technical CV.",
+    "preparing": "Preparing the PDF…",
+    "downloadError": "The PDF couldn't be downloaded.",
+    "openDirect": "Open PDF"
   },
   "terminal": {
     "title": "Terminal",
@@ -477,7 +474,6 @@
     ]
   },
   "notFound": {
-    "indexLabel": "ERR · 404",
     "title": "This page does not exist.",
     "body": "The page you are looking for may have been renamed, deleted, or moved to another route.",
     "cta": "Back to home"
@@ -506,8 +502,8 @@
     "title": "Assistant · answers about Jefferson",
     "open": "Open assistant",
     "close": "Close assistant",
-    "intro": "Ask about his experience, projects, stack or fit for a role. I answer from a closed public dossier and keep his current job separate from his target profile.",
-    "placeholder": "Type your question…",
+    "intro": "Ask about his experience, projects or stack, or paste a full job offer. I answer from a closed public dossier: for an offer, I only count as a match what I can quote verbatim, and everything else stays to confirm.",
+    "placeholder": "Ask, or paste a job offer…",
     "inputLabel": "Question for the assistant",
     "send": "Send",
     "s1": "What evidence supports a Java backend role?",
@@ -516,6 +512,9 @@
     "rateLimited": "Too many questions in a row. Wait a moment and try again.",
     "unavailable": "The assistant is unavailable right now. Write to {email}.",
     "error": "I couldn't answer. Write to {email}.",
-    "disclaimer": "AI limited to the public profile. It does not estimate missing facts; confirm important decisions by email."
+    "disclaimer": "AI limited to the public profile. It does not estimate missing facts; confirm important decisions by email.",
+    "reset": "New",
+    "thinking": "Thinking…",
+    "launcher": "Ask the AI"
   }
 }

@@ -19,7 +19,6 @@ export default async function OpengraphImage({
 
   const tMeta = await getTranslations({ locale, namespace: "metadata" })
   const tStatus = await getTranslations({ locale, namespace: "status" })
-  const tHero = await getTranslations({ locale, namespace: "hero" })
 
   const role = tMeta("role")
   const description = tMeta("description")
@@ -61,7 +60,7 @@ export default async function OpengraphImage({
         <div style={{ width: 10, height: 10, backgroundColor: accent }} />
         <span>{profile.shortName}</span>
         <span style={{ color: border }}>/</span>
-        <span>{tHero("indexLabel")}</span>
+        <span>jefmonjor.dev</span>
       </div>
 
       <div
@@ -117,13 +116,15 @@ export default async function OpengraphImage({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: 48,
+          gap: 32,
+          marginTop: 32,
           paddingTop: 24,
-          borderTop: `1px dashed ${border}`,
+          borderTop: `1px solid ${border}`,
           fontFamily: "monospace",
           fontSize: 18,
           color: muted,
-          letterSpacing: 3,
+          letterSpacing: 2,
+          whiteSpace: "nowrap",
           textTransform: "uppercase",
         }}
       >
@@ -138,7 +139,8 @@ export default async function OpengraphImage({
           />
           <span style={{ color: accent }}>{status}</span>
         </div>
-        <span>{profile.focus.slice(0, 4).join(" · ")}</span>
+        {/* Two items fit on one line beside the status at 1200px. */}
+        <span>{profile.focus.slice(0, 2).join(" · ")}</span>
       </div>
     </div>,
     size

@@ -70,7 +70,6 @@
     "detail": "Andorra · España · Remoto en zona horaria europea"
   },
   "hero": {
-    "indexLabel": "00 — Perfil",
     "role": "Product Engineer con foco en IA y backend",
     "tagline": "Construyo productos de principio a fin sobre backends Java/Spring y arquitecturas mantenibles. Uso IA cuando aporta valor, con datos validados, límites claros y alternativas manuales.",
     "specs": {
@@ -88,11 +87,11 @@
     "badge": {
       "explore3d": "Explorar en 3D",
       "close3d": "Volver a la tarjeta de perfil",
-      "unsupported": "La vista 3D no está disponible en este dispositivo"
+      "unsupported": "La vista 3D no está disponible en este dispositivo",
+      "loading3d": "Cargando 3D…"
     }
   },
   "about": {
-    "indexLabel": "01 — Sobre mí",
     "title": "Quién soy, en un párrafo",
     "manifesto": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. He liderado migraciones complejas, integrado sistemas legacy y diseñado arquitecturas hexagonales y de microservicios. Fuera del trabajo construyo varios productos propios —algunos públicos y en funcionamiento, otros privados y en desarrollo— para mantener cerca las decisiones de producto, backend, despliegue e IA aplicada.",
     "currentlyWorkingWith": "Trabajando ahora con"
@@ -126,7 +125,6 @@
     }
   },
   "experience": {
-    "indexLabel": "02 — Experiencia",
     "title": "Dónde he trabajado",
     "hint": "{count} roles · 2019 → actualidad",
     "duration": {
@@ -200,7 +198,6 @@
     }
   },
   "skills": {
-    "indexLabel": "03 — Habilidades",
     "title": "Tecnologías con las que trabajo",
     "hint": "{count} herramientas · {groups} grupos",
     "groups": {
@@ -223,7 +220,6 @@
     ]
   },
   "aiApproach": {
-    "indexLabel": "04 — IA en producto",
     "title": "IA útil, acotada por ingeniería",
     "hint": "Evidencia · límites · alternativa",
     "entries": {
@@ -250,7 +246,6 @@
     }
   },
   "projects": {
-    "indexLabel": "05 — Proyectos",
     "title": "Proyectos propios",
     "hint": "{count, plural, one {# proyecto} other {# proyectos}} · producto · backend · IA",
     "status": {
@@ -312,12 +307,13 @@
       },
       "ilnami": {
         "name": "Ilnami",
-        "role": "Producto propio · Web",
-        "summary": "Memoria gastronómica privada: guarda qué probaste, dónde y si volverías. OCR con IA para registrar en segundos, mapa con Mapbox y suscripción Plus con Stripe.",
+        "role": "Producto propio · Web app (PWA)",
+        "summary": "Diario gastronómico privado: guarda qué pediste, dónde, cuándo y si volverías, en tu propio mapa. Escaneo con IA de cartas, etiquetas y tickets que siempre se revisa antes de guardar, círculos privados para compartir solo lo que eliges y exportación de tus datos en JSON. En producción y en abierto, en español e inglés.",
         "highlights": [
-          "Supabase: Auth, PostgreSQL + PostGIS, Storage y RLS.",
-          "OCR con IA y contrato JSON estricto, siempre con flujo manual de respaldo.",
-          "Stripe Checkout y Customer Portal; desplegada en Vercel."
+          "Privado por diseño: sin perfiles ni reseñas públicas; RLS de PostgreSQL limita cada fila a su dueño o al círculo con el que se compartió.",
+          "IA asistiva, nunca autoritativa: OpenAI extrae sitio, fecha y platos, con cuotas por plan y alta manual que funciona siempre.",
+          "Supabase en la UE (Frankfurt), Vercel fra1, CSP estricta, Sentry sin datos personales y analítica solo con consentimiento.",
+          "Preparado para agentes: llms.txt, llms-full.txt, índice de Agent Skills y blog también en Markdown."
         ]
       },
       "specforge": {
@@ -354,7 +350,6 @@
     }
   },
   "education": {
-    "indexLabel": "06 — Formación e idiomas",
     "title": "Formación e idiomas",
     "languagesLabel": "Idiomas",
     "entries": {
@@ -379,7 +374,6 @@
     }
   },
   "contact": {
-    "indexLabel": "07 — Contacto",
     "title": "La forma más rápida de localizarme",
     "emailLabel": "Email",
     "copy": "Copiar",
@@ -400,7 +394,7 @@
   },
   "cvToast": {
     "title": "CV preparado",
-    "description": "El PDF se ha abierto o descargado."
+    "description": "El PDF se ha descargado."
   },
   "cvModal": {
     "title": "Descargar CV",
@@ -420,7 +414,10 @@
     "back": "Volver",
     "tailorError": "No se pudo adaptar ahora mismo. El CV técnico sigue disponible.",
     "tailorLimited": "Límite de uso alcanzado. Prueba en unos minutos o descarga el CV técnico.",
-    "tailorUnavailable": "La adaptación con IA no está disponible ahora mismo. Puedes descargar el CV general o técnico."
+    "tailorUnavailable": "La adaptación con IA no está disponible ahora mismo. Puedes descargar el CV general o técnico.",
+    "preparing": "Preparando el PDF…",
+    "downloadError": "No se pudo descargar el PDF.",
+    "openDirect": "Abrir PDF"
   },
   "terminal": {
     "title": "Terminal",
@@ -477,7 +474,6 @@
     ]
   },
   "notFound": {
-    "indexLabel": "ERR · 404",
     "title": "Esta página no existe.",
     "body": "La página que buscas puede haberse renombrado, eliminado o movido a otra ruta.",
     "cta": "Volver al inicio"
@@ -506,8 +502,8 @@
     "title": "Asistente · responde sobre Jefferson",
     "open": "Abrir asistente",
     "close": "Cerrar asistente",
-    "intro": "Pregunta por su experiencia, proyectos, stack o encaje con una oferta. Respondo desde un dossier público cerrado y separo su puesto actual de su perfil objetivo.",
-    "placeholder": "Escribe tu pregunta…",
+    "intro": "Pregunta por su experiencia, proyectos o stack, o pega una oferta completa. Respondo desde un dossier público cerrado: en una oferta solo marco como coincidencia lo que puedo citar literalmente, y el resto queda por confirmar.",
+    "placeholder": "Pregunta o pega una oferta…",
     "inputLabel": "Pregunta para el asistente",
     "send": "Enviar",
     "s1": "¿Qué evidencia tiene para un rol backend Java?",
@@ -516,6 +512,9 @@
     "rateLimited": "Has hecho muchas preguntas seguidas. Espera un momento e inténtalo de nuevo.",
     "unavailable": "El asistente no está disponible ahora mismo. Escribe a {email}.",
     "error": "No he podido responder. Escribe a {email}.",
-    "disclaimer": "IA limitada al perfil público. No estima datos ausentes; confirma por email cualquier decisión importante."
+    "disclaimer": "IA limitada al perfil público. No estima datos ausentes; confirma por email cualquier decisión importante.",
+    "reset": "Nueva",
+    "thinking": "Pensando…",
+    "launcher": "Pregunta a la IA"
   }
 }

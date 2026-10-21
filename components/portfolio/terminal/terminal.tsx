@@ -8,6 +8,10 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { Cancel01Icon } from "@hugeicons/core-free-icons"
 
 import { useBackground } from "@/components/background-provider"
+import {
+  isTerminalShortcut,
+  TERMINAL_EVENT,
+} from "@/components/portfolio/terminal/events"
 import { Button } from "@/components/ui/button"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { resolveLocale } from "@/i18n/routing"
@@ -24,13 +28,6 @@ import {
 } from "@/lib/terminal"
 import { cn } from "@/lib/utils"
 
-export const TERMINAL_EVENT = "jefmonjor:terminal:open"
-
-export function openTerminal(): void {
-  if (typeof window === "undefined") return
-  window.dispatchEvent(new CustomEvent(TERMINAL_EVENT))
-}
-
 type HistoryLine = TerminalOutLine & { id: number }
 
 const LINE_CLASS: Record<TerminalLineKind, string> = {
@@ -42,19 +39,12 @@ const LINE_CLASS: Record<TerminalLineKind, string> = {
   head: "font-medium text-foreground",
 }
 
-function isEditableTarget(target: EventTarget | null): boolean {
-  if (!(target instanceof HTMLElement)) return false
-  const tag = target.tagName
-  return (
-    tag === "INPUT" ||
-    tag === "TEXTAREA" ||
-    tag === "SELECT" ||
-    target.isContentEditable
-  )
+type TerminalProps = {
+  readonly defaultOpen?: boolean
 }
 
-function Terminal() {
-  const [open, setOpen] = React.useState(false)
+function Terminal({ defaultOpen = false }: TerminalProps) {
+  const [open, setOpen] = React.useState(defaultOpen)
   const [lines, setLines] = React.useState<ReadonlyArray<HistoryLine>>([])
   const [value, setValue] = React.useState("")
   const [history, setHistory] = React.useState<ReadonlyArray<string>>([])
@@ -175,11 +165,9 @@ function Terminal() {
       setOpen(true)
     }
     function onKey(event: KeyboardEvent) {
-      if (event.key !== "`" || event.metaKey || event.ctrlKey || event.altKey)
-        return
-      // Avoid stealing backticks from regular form fields; the terminal input
-      // handles the same shortcut locally while the dialog is focused.
-      if (isEditableTarget(event.target)) return
+      // Form fields keep their backticks; the terminal input handles the same
+      // shortcut locally while the dialog is focused.
+      if (!isTerminalShortcut(event)) return
       event.preventDefault()
       setOpen((prev) => !prev)
     }
@@ -345,11 +333,16 @@ function Terminal() {
               <span className="size-2.5 rounded-full bg-foreground/20" />
               <span className="size-2.5 rounded-full bg-foreground/20" />
             </div>
-            <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+            <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               {profile.shortName.toLowerCase().replace(/\s+/g, "")}@jefmonjor:~
             </span>
             <DialogPrimitive.Close asChild>
-              <Button variant="ghost" size="icon-sm" aria-label={t("close")}>
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                data-hit-area
+                aria-label={t("close")}
+              >
                 <HugeiconsIcon icon={Cancel01Icon} strokeWidth={2} />
               </Button>
             </DialogPrimitive.Close>
@@ -393,7 +386,7 @@ function Terminal() {
               className="flex-1 bg-transparent text-foreground caret-foreground outline-none placeholder:text-muted-foreground/60"
               placeholder={t("placeholder")}
             />
-            <span className="hidden font-mono text-[10px] tracking-widest text-muted-foreground/70 uppercase sm:inline">
+            <span className="hidden font-mono text-[11px] tracking-widest text-muted-foreground uppercase sm:inline">
               {profileTimeZone.split("/").pop()}
             </span>
           </div>

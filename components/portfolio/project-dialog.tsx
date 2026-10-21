@@ -54,7 +54,7 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
         className="flex max-h-[85svh] flex-col gap-0 overflow-hidden p-0 sm:max-w-xl"
       >
         <DialogHeader className="gap-3 border-b border-border p-5 sm:p-6">
-          <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+          <div className="flex items-center gap-2 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
             <span className="inline-block size-1.5 bg-brand" />
             {project.year ? (
               <span>{project.year}</span>
@@ -73,7 +73,7 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
           <DialogTitle className="font-heading text-2xl tracking-tight sm:text-3xl">
             {name}
           </DialogTitle>
-          <DialogDescription className="font-mono text-[10px] tracking-widest uppercase">
+          <DialogDescription className="font-mono text-[11px] tracking-widest uppercase">
             {status}
             {project.visibility === "public" && host ? ` · ${host}` : ""}
           </DialogDescription>
@@ -90,7 +90,7 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
           ) : null}
 
           <section className="flex flex-col gap-2">
-            <h3 className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+            <h3 className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               {t("detail.overview")}
             </h3>
             <p className="text-sm leading-relaxed">{summary}</p>
@@ -98,7 +98,7 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
 
           {highlights && highlights.length > 0 ? (
             <section className="flex flex-col gap-2">
-              <h3 className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+              <h3 className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                 {t("detail.highlights")}
               </h3>
               <ul className="flex flex-col gap-1.5">
@@ -120,7 +120,7 @@ function ProjectDialog({ project, open, onOpenChange }: ProjectDialogProps) {
 
           {project.stack && project.stack.length > 0 ? (
             <section className="flex flex-col gap-2">
-              <h3 className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+              <h3 className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                 {t("detail.stack")}
               </h3>
               <div className="flex flex-wrap gap-1.5">

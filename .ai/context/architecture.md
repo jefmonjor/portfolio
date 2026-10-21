@@ -5,9 +5,12 @@
 The app is a Next.js App Router application with locale-prefixed routing
 (`/en/...`, `/es/...`).
 
-- `app/[locale]/layout.tsx` wires fonts, theme support, the tRPC/React Query
-  provider, and `NextIntlClientProvider`. It also generates localized
-  `<Metadata>` per locale.
+- `app/[locale]/layout.tsx` wires fonts, theme support, and
+  `NextIntlClientProvider`. It also generates localized `<Metadata>` per
+  locale. The tRPC/React Query provider is not mounted globally: no page
+  component queries tRPC today, and mounting it shipped ~40 KB gzip of client
+  code to every visitor. Wrap only the subtree that needs it in
+  `TRPCProvider` when a component starts using `trpc.*` hooks.
 - `app/[locale]/page.tsx` is the initial route and should remain thin.
 - `app/api/trpc/[trpc]/route.ts` exposes the tRPC endpoint and stays outside
   the `[locale]` segment.

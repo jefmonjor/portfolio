@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local clones of reference repos, never part of the app.
+    ".agent-context/**",
   ]),
 ]);
 

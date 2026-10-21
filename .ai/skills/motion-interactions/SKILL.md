@@ -1,6 +1,6 @@
 ---
 name: motion-interactions
-description: "Add or review animations and transitions in the portfolio using motion."
+description: "Add or review animations and transitions in the portfolio, CSS first."
 ---
 
 # Motion Interactions
@@ -16,7 +16,7 @@ Read:
 
 1. Identify what the animation clarifies: hierarchy, continuity, focus, or
    feedback.
-2. Use `motion` from `motion/react`.
+2. Use CSS (tw-animate-css, keyframes in globals.css); `motion` only via `next/dynamic` for gestures or springs.
 3. Keep content visible and stable before animation begins.
 4. Respect `prefers-reduced-motion`.
 5. Avoid animating layout in ways that cause text overlap or shift.

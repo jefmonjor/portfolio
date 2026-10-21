@@ -34,6 +34,7 @@ function ThemeToggle() {
           type="button"
           variant="outline"
           size="icon-sm"
+          data-hit-area
           aria-label={t("ariaLabel")}
           onClick={onToggle}
         >
@@ -50,7 +51,7 @@ function ThemeToggle() {
         </Button>
       </TooltipTrigger>
       <TooltipContent>
-        <span className="font-mono text-[10px] tracking-wider uppercase">
+        <span className="font-mono text-[11px] tracking-wider uppercase">
           {t("hint")}
         </span>
       </TooltipContent>
