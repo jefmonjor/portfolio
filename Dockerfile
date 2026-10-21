@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------
 # Base image: pinned Node + pnpm via corepack
 # ----------------------------------------------------------------------------
-FROM node:22-alpine AS base
+FROM node:24-alpine AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
@@ -29,8 +29,11 @@ RUN pnpm run build
 # ----------------------------------------------------------------------------
 # Runner: minimal runtime image
 # ----------------------------------------------------------------------------
-FROM node:22-alpine AS runner
+FROM node:24-alpine AS runner
 WORKDIR /app
+
+# Pull the Alpine security patches published after the base image was built
+RUN apk upgrade --no-cache
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -49,5 +52,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 USER nextjs
 
 EXPOSE 3000
+
+# The tRPC health procedure answers without touching OpenAI or the PDF renderer
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+    CMD wget -qO- http://127.0.0.1:3000/api/trpc/health.status >/dev/null || exit 1
 
 CMD ["node", "server.js"]

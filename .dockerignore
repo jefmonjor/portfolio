@@ -31,3 +31,4 @@ AGENTS.md
 .ai
 Dockerfile
 .dockerignore
+.agent-context
