@@ -42,10 +42,10 @@ function Skills() {
               ].join(" ")}
             >
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+                <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                   {tGroups(group.id)}
                 </span>
-                <span className="font-mono text-[10px] tracking-widest text-muted-foreground/60 uppercase">
+                <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                   {String(items.length).padStart(2, "0")}
                 </span>
               </div>

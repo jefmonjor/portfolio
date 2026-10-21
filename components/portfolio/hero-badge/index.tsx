@@ -141,17 +141,17 @@ export function HeroBadge({
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-linear-to-t from-background via-background/5 to-transparent"
+        className="absolute inset-0 bg-linear-to-t from-background from-10% via-background/75 via-30% to-transparent to-55%"
       />
 
       <div className="absolute right-5 bottom-5 left-5 z-10 flex min-w-0 flex-col gap-1.5">
         <span className="font-heading text-xl font-medium tracking-tight text-foreground sm:text-2xl">
           {profile.shortName}
         </span>
-        <span className="max-w-full font-mono text-[10px] leading-relaxed tracking-widest text-muted-foreground uppercase">
+        <span className="max-w-full font-mono text-[11px] leading-relaxed tracking-widest text-muted-foreground uppercase">
           {role}
         </span>
-        <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+        <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
           {meta ?? profile.location}
         </span>
       </div>
@@ -178,7 +178,7 @@ export function HeroBadge({
           {ready ? null : (
             <span
               role="status"
-              className="absolute top-4 right-4 flex items-center gap-2 rounded-full border border-border bg-background/90 px-3 py-1.5 font-mono text-[10px] tracking-widest text-muted-foreground uppercase backdrop-blur"
+              className="absolute top-4 right-4 flex items-center gap-2 rounded-full border border-border bg-background/90 px-3 py-1.5 font-mono text-[11px] tracking-widest text-muted-foreground uppercase backdrop-blur"
             >
               <span
                 aria-hidden

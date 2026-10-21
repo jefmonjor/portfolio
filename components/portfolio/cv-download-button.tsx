@@ -262,7 +262,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent showCloseButton className="gap-0 p-0 sm:max-w-lg">
           <DialogHeader className="gap-2 border-b border-border p-5">
-            <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+            <div className="flex items-center gap-2 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span className="inline-block size-1.5 bg-brand" />
               {tModal("title")}
             </div>
@@ -329,11 +329,11 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                   className="w-full resize-y rounded-md border border-input bg-transparent p-2 text-xs leading-relaxed outline-none focus-visible:border-ring disabled:opacity-60"
                 />
                 <div className="flex items-center justify-between gap-3">
-                  <span className="font-mono text-[10px] text-muted-foreground">
+                  <span className="font-mono text-[11px] text-muted-foreground">
                     {offer.length.toLocaleString(locale)} /{" "}
                     {CV_TAILOR_OFFER_MAX_CHARS.toLocaleString(locale)}
                   </span>
-                  <span className="text-right text-[10px] text-muted-foreground">
+                  <span className="text-right text-[11px] text-muted-foreground">
                     {tModal("privacy")}
                   </span>
                 </div>
@@ -351,7 +351,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                   type="button"
                   disabled={busy}
                   onClick={() => setStep("choose")}
-                  className="mt-1 flex w-fit items-center gap-1.5 font-mono text-[10px] tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground disabled:opacity-60"
+                  className="mt-1 flex w-fit items-center gap-1.5 font-mono text-[11px] tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground disabled:opacity-60"
                 >
                   <HugeiconsIcon
                     icon={ArrowLeft02Icon}

@@ -48,8 +48,9 @@ function LocaleSwitcher() {
             aria-current={current ? "page" : undefined}
             title={t(`names.${loc}`)}
             onClick={(event) => onSelect(event, loc)}
+            data-hit-area="y"
             className={cn(
-              "flex h-full min-w-7 items-center justify-center rounded-full px-1.5 font-mono text-[10px] tracking-widest uppercase transition-colors duration-150",
+              "flex h-full min-w-7 items-center justify-center rounded-full px-1.5 font-mono text-[11px] tracking-widest uppercase transition-colors duration-150",
               current
                 ? "bg-foreground text-background"
                 : "text-muted-foreground hover:text-foreground",

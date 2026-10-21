@@ -90,7 +90,7 @@ function Contact() {
       <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
         <div className="flex flex-col gap-4 rounded-xl border border-border p-5 sm:p-6">
           <div className="flex items-center justify-between gap-3">
-            <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+            <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               {t("emailLabel")}
             </span>
             <Tooltip>
@@ -110,7 +110,7 @@ function Contact() {
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <span className="font-mono text-[10px] tracking-wider uppercase">
+                <span className="font-mono text-[11px] tracking-wider uppercase">
                   {copyLabel}
                 </span>
               </TooltipContent>
@@ -157,7 +157,7 @@ function Contact() {
 
         <dl className="grid grid-cols-1 gap-0 overflow-hidden rounded-xl border border-border">
           <div className="border-b border-border p-4">
-            <dt className="flex items-center gap-3 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+            <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <HugeiconsIcon
                 icon={Location01Icon}
                 className="size-4 shrink-0"
@@ -170,8 +170,11 @@ function Contact() {
             </dd>
           </div>
           <div className="border-b border-border p-4">
-            <dt className="flex items-center gap-3 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-              <span aria-hidden className="relative inline-flex size-1.5 shrink-0">
+            <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
+              <span
+                aria-hidden
+                className="relative inline-flex size-1.5 shrink-0"
+              >
                 <span className="absolute inset-0 animate-ping bg-brand/60" />
                 <span className="relative inline-block size-1.5 bg-brand" />
               </span>
@@ -180,14 +183,14 @@ function Contact() {
             <dd className="mt-1 flex flex-col gap-1 pl-4 text-sm text-foreground">
               <span>{tStatus("label")}</span>
               {statusDetail ? (
-                <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+                <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                   {statusDetail}
                 </span>
               ) : null}
             </dd>
           </div>
           <div className="p-4">
-            <dt className="flex items-center gap-3 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+            <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span
                 aria-hidden
                 className="inline-block size-1.5 shrink-0 bg-foreground/40"

@@ -139,7 +139,7 @@ function Hero() {
                 index % 2 === 0 ? "sm:border-r" : ""
               } ${index >= 2 ? "sm:border-t" : ""}`}
             >
-              <dt className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+              <dt className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                 {row.label}
               </dt>
               <dd className="min-w-0 text-xs break-words text-foreground">

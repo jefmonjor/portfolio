@@ -80,7 +80,7 @@ function Projects() {
                   <h3 className="font-heading text-base font-medium tracking-tight text-foreground sm:text-lg">
                     {name}
                   </h3>
-                  <span className="font-mono text-[10px] tracking-widest text-muted-foreground/70 uppercase">
+                  <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                     {status}
                   </span>
                   {entry.visibility === "public" && entry.url && host ? (
@@ -89,7 +89,7 @@ function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(event) => event.stopPropagation()}
-                      className="pointer-events-auto inline-flex w-fit items-center gap-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground"
+                      className="pointer-events-auto inline-flex w-fit items-center gap-1 font-mono text-[11px] tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground"
                     >
                       <span>{host}</span>
                       <HugeiconsIcon
@@ -129,7 +129,7 @@ function Projects() {
                 </div>
               ) : null}
 
-              <span className="pointer-events-none relative z-10 mt-auto inline-flex items-center gap-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100">
+              <span className="pointer-events-none relative z-10 mt-auto inline-flex items-center gap-1 font-mono text-[11px] tracking-widest text-muted-foreground uppercase opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100">
                 {t("detail.viewDetails")}
                 <HugeiconsIcon
                   icon={ArrowUpRight01Icon}

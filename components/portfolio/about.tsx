@@ -19,11 +19,11 @@ function About() {
         hint={tStatus("detail")}
       />
       <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
-        <p className="max-w-2xl text-sm leading-relaxed text-foreground sm:text-base">
+        <p className="max-w-[33rem] text-sm leading-relaxed text-foreground sm:max-w-[37rem] sm:text-base">
           {t("manifesto")}
         </p>
         <div className="flex flex-col gap-3">
-          <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+          <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
             {t("currentlyWorkingWith")}
           </span>
           <div className="flex flex-wrap gap-1.5">

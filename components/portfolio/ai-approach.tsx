@@ -48,14 +48,14 @@ function AiApproach() {
             ].join(" ")}
           >
             <div className="flex items-center gap-3">
-              <span className="font-mono text-[10px] tracking-widest text-brand tabular-nums">
+              <span className="font-mono text-[11px] tracking-widest text-brand tabular-nums">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="font-heading text-base font-medium tracking-tight text-foreground sm:text-lg">
                 {t(`entries.${key}.title`)}
               </h3>
             </div>
-            <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
+            <p className="max-w-[33rem] text-sm leading-relaxed text-muted-foreground">
               {t(`entries.${key}.body`)}
             </p>
           </li>

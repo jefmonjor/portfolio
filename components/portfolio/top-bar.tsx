@@ -43,16 +43,20 @@ function TopBar() {
           className="flex min-w-0 shrink items-center gap-2 font-mono text-[11px] tracking-widest uppercase hover:text-foreground"
         >
           <span className="inline-block size-1.5 bg-brand" />
-          <span className="sm:hidden">Jefferson</span>
-          <span className="hidden truncate sm:inline">{profile.shortName}</span>
+          {/* The full name where there is room for it; the first name when
+              the section links share the bar (Spanish labels run longest). */}
+          <span className="sm:hidden xl:inline">Jefferson</span>
+          <span className="hidden truncate sm:inline xl:hidden">
+            {profile.shortName}
+          </span>
         </a>
 
-        <nav className="hidden items-center gap-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase lg:flex">
+        <nav className="hidden items-center gap-0.5 font-mono text-[11px] tracking-wider whitespace-nowrap text-muted-foreground uppercase xl:flex">
           {NAV_IDS.map((id) => (
             <a
               key={id}
               href={`#${id}`}
-              className="px-2 py-1 transition-colors hover:text-foreground"
+              className="px-1.5 py-1 transition-colors hover:text-foreground"
             >
               {tNav(id)}
             </a>
@@ -66,6 +70,7 @@ function TopBar() {
                 type="button"
                 variant="outline"
                 size="icon-sm"
+                data-hit-area
                 aria-label={tNav("terminal")}
                 onClick={openTerminal}
               >
@@ -77,9 +82,9 @@ function TopBar() {
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <span className="flex items-center gap-2 font-mono text-[10px] tracking-wider uppercase">
+              <span className="flex items-center gap-2 font-mono text-[11px] tracking-wider uppercase">
                 {tNav("terminal")}
-                <Kbd className="font-mono text-[10px]">`</Kbd>
+                <Kbd className="font-mono text-[11px]">`</Kbd>
               </span>
             </TooltipContent>
           </Tooltip>

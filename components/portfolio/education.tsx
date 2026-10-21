@@ -31,14 +31,14 @@ function Education() {
                 key={entry.id}
                 className="grid grid-cols-[40px_1fr] gap-x-4 border-b border-border py-4 last:border-b-0"
               >
-                <span className="pt-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+                <span className="pt-1 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div className="flex flex-col gap-1">
                   <h3 className="font-heading text-sm font-medium tracking-tight text-foreground sm:text-base">
                     {title}
                   </h3>
-                  <p className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+                  <p className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                     {entry.organization}
                     {location ? ` · ${location}` : ""}
                   </p>
@@ -52,7 +52,7 @@ function Education() {
         </ol>
 
         <div className="flex flex-col gap-4 rounded-xl border border-border p-5">
-          <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+          <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
             {t("languagesLabel")}
           </span>
           <ul className="flex flex-col divide-y divide-solid divide-border">
@@ -64,7 +64,7 @@ function Education() {
                 <span className="text-foreground">
                   {tLanguages(`${lang.id}.name`)}
                 </span>
-                <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+                <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                   {tLanguages(`${lang.id}.level`)}
                 </span>
               </li>

@@ -84,19 +84,19 @@ function Experience() {
                 />
                 <span className="hidden font-mono text-[11px] tracking-widest text-muted-foreground uppercase sm:inline-block">
                   {start}
-                  <span className="block text-[10px] text-muted-foreground/70">
+                  <span className="block text-[11px] text-muted-foreground">
                     → {end}
                   </span>
-                  <span className="mt-1 block font-mono text-[10px] tracking-wider text-muted-foreground/60 normal-case">
+                  <span className="mt-1 block font-mono text-[11px] tracking-wider text-muted-foreground normal-case">
                     {duration}
                   </span>
                 </span>
               </div>
               <div className="flex flex-col gap-3">
                 <div className="flex flex-col gap-1">
-                  <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase sm:hidden">
+                  <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase sm:hidden">
                     {start} → {end}
-                    <span className="ml-2 text-muted-foreground/60 normal-case">
+                    <span className="ml-2 text-muted-foreground normal-case">
                       · {duration}
                     </span>
                   </span>
@@ -108,7 +108,7 @@ function Experience() {
                       {entry.organization}
                     </span>
                   </div>
-                  <p className="font-mono text-[10px] tracking-widest text-muted-foreground/80 uppercase">
+                  <p className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                     {location}
                   </p>
                 </div>

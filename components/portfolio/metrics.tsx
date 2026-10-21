@@ -62,7 +62,10 @@ function Metrics() {
       aria-label={t("ariaLabel")}
       className="mx-auto max-w-6xl px-4 pb-4 sm:px-8"
     >
-      <div ref={gridRef} className="grid grid-cols-2 overflow-hidden rounded-xl border border-border lg:grid-cols-4">
+      <div
+        ref={gridRef}
+        className="grid grid-cols-2 overflow-hidden rounded-xl border border-border lg:grid-cols-4"
+      >
         {METRIC_KEYS.map((key, index) => (
           <div
             key={key}
@@ -80,13 +83,13 @@ function Metrics() {
             >
               {t(`entries.${key}.value`)}
             </span>
-            <span className="font-mono text-[10px] leading-relaxed tracking-widest text-muted-foreground uppercase">
+            <span className="font-mono text-[11px] leading-relaxed tracking-widest text-muted-foreground uppercase">
               {t(`entries.${key}.label`)}
             </span>
           </div>
         ))}
       </div>
-      <p className="mt-3 text-right font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+      <p className="mt-3 text-right font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
         {t("caption")}
       </p>
     </section>

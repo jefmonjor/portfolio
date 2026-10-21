@@ -168,6 +168,7 @@ function CommandPalette() {
             type="button"
             variant="outline"
             size="icon-sm"
+            data-hit-area
             aria-label={t("title")}
             onClick={() => setOpen(true)}
             className="sm:h-7 sm:w-auto sm:gap-2 sm:px-2"
@@ -177,16 +178,16 @@ function CommandPalette() {
               className="size-3.5"
               strokeWidth={1.75}
             />
-            <span className="hidden font-mono text-[10px] tracking-widest text-muted-foreground uppercase sm:inline">
+            <span className="hidden font-mono text-[11px] tracking-widest text-muted-foreground uppercase sm:inline">
               {t("hintLabel")}
             </span>
-            <Kbd className="hidden font-mono text-[10px] sm:inline-flex">
+            <Kbd className="hidden font-mono text-[11px] sm:inline-flex">
               {isMac === false ? "Ctrl" : "⌘"} K
             </Kbd>
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <span className="font-mono text-[10px] tracking-wider uppercase">
+          <span className="font-mono text-[11px] tracking-wider uppercase">
             {t("title")}
           </span>
         </TooltipContent>
@@ -230,7 +231,7 @@ function CommandPalette() {
                 strokeWidth={1.75}
               />
               <span>{t("actions.openTerminal")}</span>
-              <CommandShortcut className="font-mono text-[10px]">
+              <CommandShortcut className="font-mono text-[11px]">
                 `
               </CommandShortcut>
             </CommandItem>
@@ -282,7 +283,7 @@ function CommandPalette() {
                   />
                   <span>{t(`background.${v}`)}</span>
                   {isActive ? (
-                    <CommandShortcut className="font-mono text-[10px] uppercase">
+                    <CommandShortcut className="font-mono text-[11px] uppercase">
                       {t("background.active")}
                     </CommandShortcut>
                   ) : null}

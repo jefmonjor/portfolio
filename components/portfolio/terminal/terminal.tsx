@@ -333,11 +333,16 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
               <span className="size-2.5 rounded-full bg-foreground/20" />
               <span className="size-2.5 rounded-full bg-foreground/20" />
             </div>
-            <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+            <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               {profile.shortName.toLowerCase().replace(/\s+/g, "")}@jefmonjor:~
             </span>
             <DialogPrimitive.Close asChild>
-              <Button variant="ghost" size="icon-sm" aria-label={t("close")}>
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                data-hit-area
+                aria-label={t("close")}
+              >
                 <HugeiconsIcon icon={Cancel01Icon} strokeWidth={2} />
               </Button>
             </DialogPrimitive.Close>
@@ -381,7 +386,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
               className="flex-1 bg-transparent text-foreground caret-foreground outline-none placeholder:text-muted-foreground/60"
               placeholder={t("placeholder")}
             />
-            <span className="hidden font-mono text-[10px] tracking-widest text-muted-foreground/70 uppercase sm:inline">
+            <span className="hidden font-mono text-[11px] tracking-widest text-muted-foreground uppercase sm:inline">
               {profileTimeZone.split("/").pop()}
             </span>
           </div>

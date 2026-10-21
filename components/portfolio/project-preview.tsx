@@ -79,7 +79,7 @@ function ProjectPreview({
         />
       ))}
       {images.length > 1 ? (
-        <span className="absolute right-2 bottom-2 border border-border/60 bg-background/80 px-1.5 py-0.5 font-mono text-[9px] tracking-widest text-muted-foreground backdrop-blur-sm">
+        <span className="absolute right-2 bottom-2 border border-border/60 bg-background/90 px-1.5 py-0.5 font-mono text-[11px] tracking-widest text-foreground tabular-nums backdrop-blur-sm">
           {String(current + 1).padStart(2, "0")} /{" "}
           {String(images.length).padStart(2, "0")}
         </span>
