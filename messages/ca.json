@@ -313,12 +313,13 @@
       },
       "ilnami": {
         "name": "Ilnami",
-        "role": "Producte propi · Web",
-        "summary": "Memòria gastronòmica privada: desa què vas tastar, on i si hi tornaries. OCR amb IA per registrar en segons, mapa amb Mapbox i subscripció Plus amb Stripe.",
+        "role": "Producte propi · Web app (PWA)",
+        "summary": "Diari gastronòmic privat: desa què vas demanar, on, quan i si hi tornaries, al teu propi mapa. Escaneig amb IA de cartes, etiquetes i tiquets que sempre es revisa abans de desar, cercles privats per compartir només el que tries i exportació de les teves dades en JSON. En producció i obert, en castellà i anglès.",
         "highlights": [
-          "Supabase: Auth, PostgreSQL + PostGIS, Storage i RLS.",
-          "OCR amb IA i contracte JSON estricte, sempre amb flux manual de reserva.",
-          "Stripe Checkout i Customer Portal; desplegada a Vercel."
+          "Privat per disseny: sense perfils ni ressenyes públiques; la RLS de PostgreSQL limita cada fila al seu propietari o al cercle amb qui es va compartir.",
+          "IA assistiva, mai autoritativa: OpenAI suggereix lloc, data i plats, amb quotes per pla i alta manual que sempre funciona.",
+          "Supabase a la UE (Frankfurt), Vercel fra1, CSP estricta, Sentry sense dades personals i analítica només amb consentiment.",
+          "Preparat per a agents: llms.txt, llms-full.txt, índex d'Agent Skills i blog també en Markdown."
         ]
       },
       "specforge": {

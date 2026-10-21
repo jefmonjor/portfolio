@@ -16,11 +16,11 @@ Portfolio y CV trilingüe de Jefferson Montesdeoca: Product Engineer con foco en
 - **Email anti-spam** — la dirección nunca aparece en el HTML ni en el bundle JS (se ensambla por códigos de carácter tras la hidratación); en los PDF sí va, porque se generan bajo demanda.
 - **Trilingüe** ES · EN · CA con `next-intl`, tema claro/oscuro, estados explícitos de proyecto y **terminal interactiva** (icono en la barra o tecla `` ` ``: `help`, `projects`, `cv`, `web`).
 - **Identidad accesible y progresiva** — la presentación estática funciona sin WebGL; la credencial 3D es una mejora opcional que solo se carga tras una interacción compatible.
-- **SEO y GEO** — metadata localizada, canonical, `hreflang`, sitemap, JSON-LD de perfil y proyectos públicos, más [`/llms.txt`](https://www.jefmonjor.dev/llms.txt) como resumen complementario para sistemas de recuperación.
+- **SEO y GEO** — metadata localizada, canonical, `hreflang`, sitemap, JSON-LD de perfil y proyectos públicos, más [`/llms.txt`](https://www.jefmonjor.dev/llms.txt) y [`/llms-full.txt`](https://www.jefmonjor.dev/llms-full.txt) (resumen + CV completo) para motores de IA y agentes de selección, y un `robots.txt` que nombra a sus crawlers.
 
 ## Stack
 
-Next.js 16 (App Router + Turbopack) · TypeScript estricto · Tailwind CSS v4 · shadcn/ui · next-intl · motion · tRPC + React Query · Zod · OpenAI SDK · @react-pdf/renderer · Three.js
+Next.js 16 (App Router + Turbopack) · Node 24 LTS · TypeScript estricto · Tailwind CSS v4 · shadcn/ui · next-intl · motion · tRPC + React Query · Zod · OpenAI SDK · @react-pdf/renderer · Three.js
 
 ## Variables de entorno
 
