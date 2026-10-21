@@ -102,7 +102,7 @@ function Assistant() {
   const [input, setInput] = React.useState("")
   const [busy, setBusy] = React.useState(false)
   const scrollRef = React.useRef<HTMLDivElement>(null)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+  const inputRef = React.useRef<HTMLTextAreaElement>(null)
   const triggerRef = React.useRef<HTMLButtonElement>(null)
   const requestRef = React.useRef<AbortController | null>(null)
   const restoredRef = React.useRef(false)
@@ -228,7 +228,7 @@ function Assistant() {
           className="flex h-[min(30rem,calc(100svh-6rem))] w-[min(23rem,calc(100vw-2rem))] origin-bottom-right animate-in flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-lg duration-200 ease-out fade-in-0 zoom-in-95 motion-reduce:zoom-in-100"
         >
           <div className="flex items-center justify-between gap-2 border-b border-border py-1.5 pr-1.5 pl-3">
-            <span className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
+            <span className="flex items-center gap-2 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span aria-hidden className="inline-block size-1.5 bg-brand" />
               {t("title")}
             </span>
@@ -239,7 +239,7 @@ function Assistant() {
                   variant="ghost"
                   size="sm"
                   onClick={resetConversation}
-                  className="h-7 px-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase"
+                  className="h-7 px-2 font-mono text-[11px] tracking-widest text-muted-foreground uppercase"
                 >
                   {t("reset")}
                 </Button>
@@ -248,6 +248,7 @@ function Assistant() {
                 type="button"
                 variant="ghost"
                 size="icon-sm"
+                data-hit-area
                 aria-label={t("close")}
                 onClick={closeAssistant}
               >
@@ -278,7 +279,7 @@ function Assistant() {
                     type="button"
                     disabled={busy}
                     onClick={() => void send(s)}
-                    className="min-h-8 rounded-md border border-border px-2.5 py-1.5 text-left font-mono text-[10px] tracking-wide text-muted-foreground transition-[color,border-color,transform] duration-150 ease-out hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] disabled:opacity-60"
+                    className="min-h-8 rounded-md border border-border px-2.5 py-1.5 text-left font-mono text-[11px] tracking-wide text-muted-foreground transition-[color,border-color,transform] duration-150 ease-out hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] disabled:opacity-60"
                   >
                     {s}
                   </button>
@@ -289,10 +290,10 @@ function Assistant() {
               <div
                 key={i}
                 className={cn(
-                  "max-w-[85%] rounded-lg px-2.5 py-1.5 text-xs leading-relaxed wrap-break-word",
+                  "max-w-[85%] rounded-lg px-2.5 py-1.5 text-xs leading-relaxed wrap-break-word whitespace-pre-line",
                   m.role === "user"
                     ? "ml-auto bg-foreground text-background"
-                    : "border border-border whitespace-pre-line text-foreground"
+                    : "border border-border text-foreground"
                 )}
               >
                 {m.role === "assistant" ? (
@@ -320,26 +321,40 @@ function Assistant() {
           </div>
 
           <form
-            className="flex items-center gap-2 border-t border-border p-2"
+            className="flex items-end gap-2 border-t border-border p-2"
             onSubmit={(event) => {
               event.preventDefault()
               void send(input)
             }}
           >
-            <input
+            {/* A textarea so a pasted job offer keeps its line breaks;
+                Enter still sends and Shift+Enter starts a new line. */}
+            <textarea
               ref={inputRef}
+              rows={1}
               value={input}
               onChange={(event) => setInput(event.target.value)}
+              onKeyDown={(event) => {
+                if (
+                  event.key === "Enter" &&
+                  !event.shiftKey &&
+                  !event.nativeEvent.isComposing
+                ) {
+                  event.preventDefault()
+                  void send(input)
+                }
+              }}
               aria-label={t("inputLabel")}
               placeholder={t("placeholder")}
               maxLength={ASSISTANT_MESSAGE_INPUT_CHARS}
               enterKeyHint="send"
-              className="h-9 min-w-0 flex-1 rounded-md border border-input bg-transparent px-2.5 text-base outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30 sm:h-8 sm:text-xs"
+              className="field-sizing-content max-h-32 min-h-9 min-w-0 flex-1 resize-none rounded-md border border-input bg-transparent px-2.5 py-2 text-base leading-snug outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30 sm:min-h-8 sm:py-1.5 sm:text-xs"
             />
             <Button
               type="submit"
               variant="outline"
               size="icon-sm"
+              data-hit-area
               disabled={busy || input.trim().length === 0}
               aria-label={t("send")}
               className="size-9 sm:size-8"
@@ -351,7 +366,7 @@ function Assistant() {
               />
             </Button>
           </form>
-          <p className="border-t border-border px-3 py-1.5 font-mono text-[9px] leading-relaxed tracking-wide text-pretty text-muted-foreground">
+          <p className="border-t border-border px-3 py-1.5 font-mono text-[11px] leading-relaxed tracking-wide text-pretty text-muted-foreground">
             {t("disclaimer")}
           </p>
         </div>
@@ -371,7 +386,7 @@ function Assistant() {
             className="size-5"
             strokeWidth={1.75}
           />
-          <span className="hidden font-mono text-[10px] tracking-widest uppercase sm:inline">
+          <span className="hidden font-mono text-[11px] tracking-widest uppercase sm:inline">
             {t("launcher")}
           </span>
         </Button>

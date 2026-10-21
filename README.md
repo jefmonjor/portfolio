@@ -8,7 +8,7 @@ Portfolio y CV trilingüe de Jefferson Montesdeoca: Product Engineer con foco en
 
 ## Qué tiene dentro
 
-- **Asistente de IA acotado** — chat sobre el perfil usando la API de OpenAI (`gpt-5-mini`, Responses API) y un dossier público cerrado. Distingue el cargo actual del posicionamiento objetivo, trata las ofertas pegadas como datos no fiables y reconoce cuándo falta información.
+- **Asistente de IA acotado** — chat sobre el perfil usando la API de OpenAI (`gpt-5-mini`, Responses API) y un dossier público cerrado. Distingue el cargo actual del posicionamiento objetivo, trata las ofertas pegadas como datos no fiables y reconoce cuándo falta información. Al pegar una oferta, solo cuenta como coincidencia lo que el servidor puede verificar con una cita literal del dossier; el resto aparece como "por confirmar".
 - **Control de consumo** — rate limiting por IP (minuto y día) más un techo global diario compartido por las funciones de IA, configurable mediante variables de entorno.
 - **Tres CV con propósito distinto** — general editorial, técnico de una columna y **según oferta**. En el último, Structured Outputs solo puede seleccionar términos y proyectos de listas canónicas; el servidor filtra la selección, construye el resumen desde textos verificados y genera el PDF sin aceptar contenido del modelo desde el navegador.
 - **PDFs generados en servidor** con `@react-pdf/renderer` — misma fuente de datos que la web, siempre sincronizados.
@@ -26,20 +26,22 @@ Next.js 16 (App Router + Turbopack) · Node 24 LTS · TypeScript estricto · Tai
 
 Solo una es necesaria para activar la IA; el resto tienen valores por defecto seguros.
 
-| Variable                                         | Por defecto       | Qué hace                                                                                                           |
-| ------------------------------------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `OPENAI_API_KEY`                                 | —                 | Activa el asistente y el adaptador de CV. Sin ella, la web funciona igual y el chat muestra un aviso con el email. |
-| `ASSISTANT_MODEL`                                | `gpt-5-mini`      | Modelo de OpenAI.                                                                                                  |
-| `ASSISTANT_MAX_OUTPUT_TOKENS`                    | `500`             | Tokens de salida por respuesta.                                                                                    |
-| `ASSISTANT_MAX_TURNS` / `ASSISTANT_MAX_CHARS`    | `8` / `800`       | Historial y tamaño de mensaje.                                                                                     |
-| `ASSISTANT_RATE_MINUTE` / `ASSISTANT_RATE_DAILY` | `4` / `20`        | Límites por visitante.                                                                                             |
-| `ASSISTANT_GLOBAL_DAILY`                         | `300`             | Techo global diario de peticiones de IA (todas las funciones).                                                     |
-| `ASSISTANT_REASONING` / `ASSISTANT_VERBOSITY`    | `minimal` / `low` | Latencia y estilo de las respuestas.                                                                               |
-| `CV_TAILOR_MODEL`                                | `gpt-5.6-luna`    | Modelo del CV adaptado. Solo selecciona evidencia del dossier, así que corre en el tramo barato.                   |
-| `CV_TAILOR_FALLBACK_MODEL`                       | `gpt-5-mini`      | Modelo de respaldo si la cuenta no tiene acceso al anterior (404).                                                 |
-| `CV_TAILOR_MAX_OFFER_CHARS`                      | `24000`           | Tamaño máximo de la oferta pegada (~4.000 palabras).                                                               |
-| `CV_TAILOR_MAX_OUTPUT_TOKENS`                    | `2000`            | Presupuesto de salida del paso de selección (incluye los tokens de razonamiento).                                  |
-| `CV_TAILOR_REASONING`                            | `none`            | Esfuerzo de razonamiento al seleccionar la evidencia del CV adaptado.                                              |
+| Variable                                         | Por defecto       | Qué hace                                                                                                             |
+| ------------------------------------------------ | ----------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `OPENAI_API_KEY`                                 | —                 | Activa el asistente y el adaptador de CV. Sin ella, la web funciona igual y el chat muestra un aviso con el email.   |
+| `ASSISTANT_MODEL`                                | `gpt-5-mini`      | Modelo de OpenAI.                                                                                                    |
+| `ASSISTANT_MAX_OUTPUT_TOKENS`                    | `500`             | Tokens de salida por respuesta.                                                                                      |
+| `ASSISTANT_MAX_TURNS` / `ASSISTANT_MAX_CHARS`    | `8` / `800`       | Historial y tamaño de mensaje.                                                                                       |
+| `ASSISTANT_MAX_OFFER_CHARS`                      | `8000`            | Tamaño máximo del último mensaje (una oferta pegada); el historial anterior sigue recortado a `ASSISTANT_MAX_CHARS`. |
+| `ASSISTANT_OFFER_MAX_OUTPUT_TOKENS`              | `1600`            | Presupuesto de la comparación estructurada de ofertas en el chat.                                                    |
+| `ASSISTANT_RATE_MINUTE` / `ASSISTANT_RATE_DAILY` | `4` / `20`        | Límites por visitante.                                                                                               |
+| `ASSISTANT_GLOBAL_DAILY`                         | `300`             | Techo global diario de peticiones de IA (todas las funciones).                                                       |
+| `ASSISTANT_REASONING` / `ASSISTANT_VERBOSITY`    | `minimal` / `low` | Latencia y estilo de las respuestas.                                                                                 |
+| `CV_TAILOR_MODEL`                                | `gpt-5.6-luna`    | Modelo del CV adaptado. Solo selecciona evidencia del dossier, así que corre en el tramo barato.                     |
+| `CV_TAILOR_FALLBACK_MODEL`                       | `gpt-5-mini`      | Modelo de respaldo si la cuenta no tiene acceso al anterior (404).                                                   |
+| `CV_TAILOR_MAX_OFFER_CHARS`                      | `24000`           | Tamaño máximo de la oferta pegada (~4.000 palabras).                                                                 |
+| `CV_TAILOR_MAX_OUTPUT_TOKENS`                    | `2000`            | Presupuesto de salida del paso de selección (incluye los tokens de razonamiento).                                    |
+| `CV_TAILOR_REASONING`                            | `none`            | Esfuerzo de razonamiento al seleccionar la evidencia del CV adaptado.                                                |
 
 ## Ejecutar en local
 

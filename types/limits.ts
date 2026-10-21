@@ -2,7 +2,9 @@
 // apart from the schemas so a client component can read a limit without
 // pulling Zod into the page bundle.
 
-export const ASSISTANT_MESSAGE_INPUT_CHARS = 1500
+// Big enough for a full job offer pasted into the chat. Only the latest
+// message is read at this size; older turns are cut to ASSISTANT_MAX_CHARS.
+export const ASSISTANT_MESSAGE_INPUT_CHARS = 8000
 // Odd on purpose: a client history alternates user/assistant and ends on a
 // user turn, so an odd-sized tail always starts on a user turn too.
 export const ASSISTANT_HISTORY_INPUT_MESSAGES = 17

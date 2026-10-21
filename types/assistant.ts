@@ -36,3 +36,21 @@ export const assistantSuccessSchema = z
   .strict()
 
 export type ChatMessage = z.infer<typeof chatMessageSchema>
+
+// What the model returns when the latest message is a job offer. Plain
+// strings and arrays only (Structured Outputs rejects length bounds); every
+// value is re-checked by verifyOfferAnalysis before anything is shown.
+export const offerAnalysisModelOutputSchema = z
+  .object({
+    isJobOffer: z.boolean(),
+    role: z.string(),
+    matches: z.array(
+      z.object({ requirement: z.string(), evidence: z.string() }).strict()
+    ),
+    unverified: z.array(z.string()),
+  })
+  .strict()
+
+export type OfferAnalysisModelOutput = z.infer<
+  typeof offerAnalysisModelOutputSchema
+>
