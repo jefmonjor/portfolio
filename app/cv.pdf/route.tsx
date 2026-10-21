@@ -35,7 +35,12 @@ export async function GET(request: NextRequest): Promise<Response> {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `inline; filename="${filename}"`,
-      "Cache-Control": "public, max-age=0, must-revalidate",
+      // Rendering a PDF takes about a second, and the result only changes on
+      // deploy (which purges the CDN). The edge keeps one copy per locale and
+      // variant so the download button answers from cache; browsers still
+      // revalidate so a stale copy never outlives a deploy on their side.
+      "Cache-Control":
+        "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800",
       ...(isCanonicalFile
         ? { Link: `<${siteUrl}/cv.pdf>; rel="canonical"` }
         : { "X-Robots-Tag": "noindex, follow" }),

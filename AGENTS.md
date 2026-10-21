@@ -14,8 +14,9 @@ portfolio product, not a generic landing page template.
 
 - Next.js App Router with React and TypeScript.
 - Tailwind CSS v4 and shadcn/ui generated primitives.
-- `motion` for purposeful UI animation.
-- TanStack React Query and tRPC for typed client/server data flows.
+- CSS-first animation (`tw-animate-css`, keyframes in `app/globals.css`).
+- TanStack React Query and tRPC for typed client/server data flows (the
+  provider is mounted per subtree, not globally).
 - Zod for runtime contracts.
 - `superjson` for tRPC serialization.
 - `next-themes` for theme support.
@@ -37,9 +38,11 @@ portfolio product, not a generic landing page template.
   shared browser-safe helpers to `lib/`, and runtime contracts to `types/`.
 - Use tRPC plus React Query for server interactions. Procedure inputs and
   outputs that cross trust boundaries must be backed by Zod schemas.
-- Use `motion` only for interaction clarity, transition quality, and controlled
-  reveals. Animations must not hide content, block navigation, or create layout
-  shift.
+- Animate only for interaction clarity, transition quality, and controlled
+  reveals, with CSS before JavaScript. Animations must not hide content, block
+  navigation, or create layout shift.
+- Keep the first-load bundle lean: heavy or interaction-only UI (3D, terminal,
+  celebrations) loads with `next/dynamic` or `import()` on demand.
 - Every UI-triggered mutation must include success and error feedback.
 - Do not store secrets or private contact data in `.ai/` files.
 
@@ -72,3 +75,4 @@ portfolio product, not a generic landing page template.
 - `pnpm run lint` for React/UI changes.
 - `pnpm run build` for route boundary, metadata, or server/runtime changes.
 - Manual browser checks for visual, responsive, and animation changes.
+- Node 24 LTS (`.nvmrc`, `engines`) and pnpm from `packageManager`.

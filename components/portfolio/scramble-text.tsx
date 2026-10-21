@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { useReducedMotion } from "motion/react"
 
 const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/_<>$#&*"
 
@@ -22,11 +21,10 @@ function ScrambleText({
   delay = 0,
   duration = 900,
 }: ScrambleTextProps) {
-  const reduce = useReducedMotion()
   const [display, setDisplay] = React.useState(value)
 
   React.useEffect(() => {
-    if (reduce) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
     let raf = 0
     const start = performance.now() + delay
@@ -62,7 +60,7 @@ function ScrambleText({
       cancelAnimationFrame(raf)
       clearTimeout(timeoutId)
     }
-  }, [value, delay, duration, reduce])
+  }, [value, delay, duration])
 
   return (
     <span className={className}>

@@ -16,6 +16,7 @@ import { Metrics } from "@/components/portfolio/metrics"
 import { Projects } from "@/components/portfolio/projects"
 import { Reveal } from "@/components/portfolio/reveal"
 import { Skills } from "@/components/portfolio/skills"
+import { TechIconSprite } from "@/components/portfolio/tech-icon-sprite"
 import { TopBar } from "@/components/portfolio/top-bar"
 import { profile } from "@/lib/profile"
 import { routing } from "@/i18n/routing"
@@ -72,6 +73,9 @@ export default async function Page({
         <Footer />
         <Assistant />
       </div>
+      {/* Last in the document: 70 KB of glyph paths must not stream ahead of
+          the hero. <use> resolves forward references once parsed. */}
+      <TechIconSprite />
     </div>
   )
 }

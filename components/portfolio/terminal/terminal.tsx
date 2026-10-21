@@ -8,6 +8,10 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { Cancel01Icon } from "@hugeicons/core-free-icons"
 
 import { useBackground } from "@/components/background-provider"
+import {
+  isTerminalShortcut,
+  TERMINAL_EVENT,
+} from "@/components/portfolio/terminal/events"
 import { Button } from "@/components/ui/button"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { resolveLocale } from "@/i18n/routing"
@@ -24,13 +28,6 @@ import {
 } from "@/lib/terminal"
 import { cn } from "@/lib/utils"
 
-export const TERMINAL_EVENT = "jefmonjor:terminal:open"
-
-export function openTerminal(): void {
-  if (typeof window === "undefined") return
-  window.dispatchEvent(new CustomEvent(TERMINAL_EVENT))
-}
-
 type HistoryLine = TerminalOutLine & { id: number }
 
 const LINE_CLASS: Record<TerminalLineKind, string> = {
@@ -42,19 +39,12 @@ const LINE_CLASS: Record<TerminalLineKind, string> = {
   head: "font-medium text-foreground",
 }
 
-function isEditableTarget(target: EventTarget | null): boolean {
-  if (!(target instanceof HTMLElement)) return false
-  const tag = target.tagName
-  return (
-    tag === "INPUT" ||
-    tag === "TEXTAREA" ||
-    tag === "SELECT" ||
-    target.isContentEditable
-  )
+type TerminalProps = {
+  readonly defaultOpen?: boolean
 }
 
-function Terminal() {
-  const [open, setOpen] = React.useState(false)
+function Terminal({ defaultOpen = false }: TerminalProps) {
+  const [open, setOpen] = React.useState(defaultOpen)
   const [lines, setLines] = React.useState<ReadonlyArray<HistoryLine>>([])
   const [value, setValue] = React.useState("")
   const [history, setHistory] = React.useState<ReadonlyArray<string>>([])
@@ -175,11 +165,9 @@ function Terminal() {
       setOpen(true)
     }
     function onKey(event: KeyboardEvent) {
-      if (event.key !== "`" || event.metaKey || event.ctrlKey || event.altKey)
-        return
-      // Avoid stealing backticks from regular form fields; the terminal input
-      // handles the same shortcut locally while the dialog is focused.
-      if (isEditableTarget(event.target)) return
+      // Form fields keep their backticks; the terminal input handles the same
+      // shortcut locally while the dialog is focused.
+      if (!isTerminalShortcut(event)) return
       event.preventDefault()
       setOpen((prev) => !prev)
     }

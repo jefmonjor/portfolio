@@ -88,7 +88,8 @@
     "badge": {
       "explore3d": "Explore in 3D",
       "close3d": "Return to profile card",
-      "unsupported": "3D view unavailable on this device"
+      "unsupported": "3D view unavailable on this device",
+      "loading3d": "Loading 3D…"
     }
   },
   "about": {
@@ -400,7 +401,7 @@
   },
   "cvToast": {
     "title": "CV ready",
-    "description": "The PDF has opened or downloaded."
+    "description": "The PDF has been downloaded."
   },
   "cvModal": {
     "title": "Download CV",
@@ -420,7 +421,10 @@
     "back": "Back",
     "tailorError": "It couldn't be tailored right now. The technical CV is still available.",
     "tailorLimited": "Usage limit reached. Try again in a few minutes or download the technical CV.",
-    "tailorUnavailable": "AI tailoring is unavailable right now. You can download the general or technical CV."
+    "tailorUnavailable": "AI tailoring is unavailable right now. You can download the general or technical CV.",
+    "preparing": "Preparing the PDF…",
+    "downloadError": "The PDF couldn't be downloaded.",
+    "openDirect": "Open PDF"
   },
   "terminal": {
     "title": "Terminal",
@@ -516,6 +520,9 @@
     "rateLimited": "Too many questions in a row. Wait a moment and try again.",
     "unavailable": "The assistant is unavailable right now. Write to {email}.",
     "error": "I couldn't answer. Write to {email}.",
-    "disclaimer": "AI limited to the public profile. It does not estimate missing facts; confirm important decisions by email."
+    "disclaimer": "AI limited to the public profile. It does not estimate missing facts; confirm important decisions by email.",
+    "reset": "New",
+    "thinking": "Thinking…",
+    "launcher": "Ask the AI"
   }
 }

@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { motion, useReducedMotion } from "motion/react"
 import { useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons"
@@ -14,8 +13,6 @@ import { parseStringArray } from "@/lib/i18n-values"
 import { profile } from "@/lib/profile"
 import type { ProjectEntry } from "@/types/profile"
 
-const ease = [0.16, 1, 0.3, 1] as const
-
 function hostFromUrl(url: string): string {
   try {
     return new URL(url).host.replace(/^www\./, "")
@@ -25,7 +22,6 @@ function hostFromUrl(url: string): string {
 }
 
 function Projects() {
-  const reduce = useReducedMotion()
   const t = useTranslations("projects")
   const tEntries = useTranslations("projects.entries")
   const entries = profile.projects
@@ -56,18 +52,10 @@ function Projects() {
           )}`
 
           return (
-            <motion.li
+            <li
               key={entry.id}
-              initial={reduce ? { opacity: 1 } : { opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{
-                duration: 0.45,
-                ease,
-                delay: reduce ? 0 : Math.min(index * 0.05, 0.25),
-              }}
               className={[
-                "group relative flex flex-col gap-4 border-border p-5 transition-colors hover:bg-foreground/2.5 focus-within:bg-foreground/2.5 sm:p-6",
+                "group relative flex flex-col gap-4 border-border p-5 transition-colors focus-within:bg-foreground/2.5 hover:bg-foreground/2.5 sm:p-6",
                 index % 2 === 0 ? "sm:border-r" : "",
                 "border-b last:border-b-0 sm:[&:nth-last-child(2):nth-child(odd)]:border-b-0",
               ].join(" ")}
@@ -141,7 +129,7 @@ function Projects() {
                 </div>
               ) : null}
 
-              <span className="pointer-events-none relative z-10 mt-auto inline-flex items-center gap-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
+              <span className="pointer-events-none relative z-10 mt-auto inline-flex items-center gap-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100">
                 {t("detail.viewDetails")}
                 <HugeiconsIcon
                   icon={ArrowUpRight01Icon}
@@ -149,7 +137,7 @@ function Projects() {
                   strokeWidth={1.75}
                 />
               </span>
-            </motion.li>
+            </li>
           )
         })}
       </ul>

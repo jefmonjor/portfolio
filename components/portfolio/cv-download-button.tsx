@@ -1,12 +1,13 @@
 "use client"
 
-import confetti from "canvas-confetti"
+import type { Options as ConfettiOptions } from "canvas-confetti"
 import * as React from "react"
 import { useLocale, useTranslations } from "next-intl"
 import {
   ArrowLeft02Icon,
   Download01Icon,
   FileValidationIcon,
+  Loading03Icon,
   SparklesIcon,
   UserIcon,
 } from "@hugeicons/core-free-icons"
@@ -20,16 +21,31 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { CV_TAILOR_OFFER_MAX_CHARS } from "@/types/cv-tailor"
+import { cn } from "@/lib/utils"
+import {
+  CV_TAILOR_OFFER_MAX_CHARS,
+  CV_TAILOR_OFFER_MIN_CHARS,
+} from "@/types/limits"
+
+const CV_OPTIONS = [
+  { key: "general", icon: UserIcon },
+  { key: "technical", icon: FileValidationIcon },
+  { key: "tailor", icon: SparklesIcon },
+] as const
 
 type CvDownloadButtonProps = {
   readonly className?: string
 }
 
 type Step = "choose" | "offer"
+type CvVariant = "general" | "technical"
+type Pending = CvVariant | "tailor"
 
-function fireConfetti(): void {
-  const defaults: confetti.Options = {
+// Loaded on success only: the celebration is not worth shipping on first paint.
+async function fireConfetti(): Promise<void> {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+  const { default: confetti } = await import("canvas-confetti")
+  const defaults: ConfettiOptions = {
     spread: 70,
     ticks: 80,
     gravity: 1,
@@ -67,7 +83,8 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   const [open, setOpen] = React.useState(false)
   const [step, setStep] = React.useState<Step>("choose")
   const [offer, setOffer] = React.useState("")
-  const [busy, setBusy] = React.useState(false)
+  const [pending, setPending] = React.useState<Pending | null>(null)
+  const busy = pending !== null
   const requestRef = React.useRef<AbortController | null>(null)
 
   React.useEffect(
@@ -82,23 +99,14 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     requestRef.current = null
     setStep("choose")
     setOffer("")
-    setBusy(false)
+    setPending(null)
   }
 
   function completeDownload(): void {
-    fireConfetti()
+    void fireConfetti().catch(() => undefined)
     toast.success(tToast("title"), { description: tToast("description") })
     setOpen(false)
     resetDialog()
-  }
-
-  function downloadUrl(url: string): void {
-    const link = document.createElement("a")
-    link.href = url
-    link.target = "_blank"
-    link.rel = "noopener noreferrer"
-    link.click()
-    completeDownload()
   }
 
   function downloadBlob(blob: Blob, filename: string): void {
@@ -113,11 +121,74 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     completeDownload()
   }
 
-  async function tailorAndDownload(): Promise<void> {
+  function filenameFrom(response: Response, fallback: string): string {
+    const disposition = response.headers.get("content-disposition")
+    return disposition?.match(/filename="([^"]+)"/)?.[1] ?? fallback
+  }
+
+  function isPdf(response: Response): boolean {
+    return (
+      response.headers.get("content-type")?.startsWith("application/pdf") ??
+      false
+    )
+  }
+
+  // Starts a request that the dialog owns: closing it, or starting another
+  // download, aborts the previous one so a late response never lands twice.
+  function beginRequest(kind: Pending): AbortController {
     requestRef.current?.abort()
     const controller = new AbortController()
     requestRef.current = controller
-    setBusy(true)
+    setPending(kind)
+    return controller
+  }
+
+  function endRequest(controller: AbortController): void {
+    if (requestRef.current !== controller) return
+    requestRef.current = null
+    setPending(null)
+  }
+
+  // The general and technical CVs used to open through a detached
+  // `target="_blank"` link. Safari and most mobile browsers treat that as a
+  // popup and drop it silently, while the dialog still closed with a success
+  // toast. Fetching the file and saving it as a blob is the same path the
+  // tailored CV already takes, and it works from every browser.
+  async function downloadVariant(variant: CvVariant): Promise<void> {
+    if (busy) return
+    const url = `/cv.pdf?locale=${locale}&variant=${variant}`
+    const controller = beginRequest(variant)
+
+    try {
+      const response = await fetch(url, { signal: controller.signal })
+      if (requestRef.current !== controller) return
+      if (!response.ok || !isPdf(response)) throw new Error("not a pdf")
+
+      const blob = await response.blob()
+      if (requestRef.current !== controller) return
+      downloadBlob(
+        blob,
+        filenameFrom(
+          response,
+          `Jefferson_Montesdeoca_CV_${locale.toUpperCase()}.pdf`
+        )
+      )
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return
+      toast.error(tModal("downloadError"), {
+        action: {
+          label: tModal("openDirect"),
+          onClick: () => window.open(url, "_blank", "noopener"),
+        },
+      })
+    } finally {
+      endRequest(controller)
+    }
+  }
+
+  async function tailorAndDownload(): Promise<void> {
+    if (busy) return
+    const controller = beginRequest("tailor")
 
     try {
       const response = await fetch("/api/cv-tailor", {
@@ -135,31 +206,32 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
         toast.error(tModal("tailorUnavailable"))
         return
       }
-      if (
-        !response.ok ||
-        response.headers.get("content-type") !== "application/pdf"
-      ) {
+      if (!response.ok || !isPdf(response)) {
         toast.error(tModal("tailorError"))
         return
       }
 
-      const disposition = response.headers.get("content-disposition")
-      const filename =
-        disposition?.match(/filename="([^"]+)"/)?.[1] ??
-        `Jefferson_Montesdeoca_CV_${locale.toUpperCase()}.pdf`
       const blob = await response.blob()
       if (requestRef.current !== controller) return
-      downloadBlob(blob, filename)
+      downloadBlob(
+        blob,
+        filenameFrom(
+          response,
+          `Jefferson_Montesdeoca_CV_${locale.toUpperCase()}.pdf`
+        )
+      )
     } catch (error) {
       if (!(error instanceof DOMException && error.name === "AbortError")) {
         toast.error(tModal("tailorError"))
       }
     } finally {
-      if (requestRef.current === controller) {
-        requestRef.current = null
-        setBusy(false)
-      }
+      endRequest(controller)
     }
+  }
+
+  function selectOption(option: Pending): void {
+    if (option === "tailor") setStep("offer")
+    else void downloadVariant(option)
   }
 
   function onOpenChange(next: boolean): void {
@@ -168,7 +240,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   }
 
   const optionClass =
-    "flex w-full items-start gap-3 rounded-lg border border-border p-3 text-left transition-colors hover:border-foreground hover:bg-foreground/2.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground/40"
+    "flex w-full items-start gap-3 rounded-lg border border-border p-3 text-left transition-[color,background-color,border-color,transform,opacity] duration-150 ease-out hover:border-foreground hover:bg-foreground/2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 active:scale-[0.99] disabled:pointer-events-none disabled:opacity-60 aria-busy:opacity-100"
 
   return (
     <>
@@ -202,69 +274,38 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
           <div className="flex flex-col gap-2.5 p-5">
             {step === "choose" ? (
               <>
-                <button
-                  type="button"
-                  className={optionClass}
-                  onClick={() =>
-                    downloadUrl(`/cv.pdf?locale=${locale}&variant=general`)
-                  }
-                >
-                  <HugeiconsIcon
-                    icon={UserIcon}
-                    className="mt-0.5 size-4 shrink-0 text-muted-foreground"
-                    strokeWidth={1.5}
-                  />
-                  <span className="flex flex-col gap-0.5">
-                    <span className="text-sm font-medium text-foreground">
-                      {tModal("general")}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {tModal("generalDesc")}
-                    </span>
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  className={optionClass}
-                  onClick={() =>
-                    downloadUrl(`/cv.pdf?locale=${locale}&variant=technical`)
-                  }
-                >
-                  <HugeiconsIcon
-                    icon={FileValidationIcon}
-                    className="mt-0.5 size-4 shrink-0 text-muted-foreground"
-                    strokeWidth={1.5}
-                  />
-                  <span className="flex flex-col gap-0.5">
-                    <span className="text-sm font-medium text-foreground">
-                      {tModal("technical")}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {tModal("technicalDesc")}
-                    </span>
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  className={optionClass}
-                  onClick={() => setStep("offer")}
-                >
-                  <HugeiconsIcon
-                    icon={SparklesIcon}
-                    className="mt-0.5 size-4 shrink-0 text-muted-foreground"
-                    strokeWidth={1.5}
-                  />
-                  <span className="flex flex-col gap-0.5">
-                    <span className="text-sm font-medium text-foreground">
-                      {tModal("tailor")}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {tModal("tailorDesc")}
-                    </span>
-                  </span>
-                </button>
+                {CV_OPTIONS.map((option) => {
+                  const loading = pending === option.key
+                  return (
+                    <button
+                      key={option.key}
+                      type="button"
+                      className={optionClass}
+                      disabled={busy}
+                      aria-busy={loading}
+                      onClick={() => selectOption(option.key)}
+                    >
+                      <HugeiconsIcon
+                        icon={loading ? Loading03Icon : option.icon}
+                        className={cn(
+                          "mt-0.5 size-4 shrink-0 text-muted-foreground",
+                          loading && "animate-spin motion-reduce:animate-none"
+                        )}
+                        strokeWidth={1.5}
+                      />
+                      <span className="flex min-w-0 flex-col gap-0.5">
+                        <span className="text-sm font-medium text-foreground">
+                          {tModal(option.key)}
+                        </span>
+                        <span className="text-xs text-pretty text-muted-foreground">
+                          {loading
+                            ? tModal("preparing")
+                            : tModal(`${option.key}Desc`)}
+                        </span>
+                      </span>
+                    </button>
+                  )
+                })}
               </>
             ) : (
               <>
@@ -298,7 +339,9 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                 </div>
                 <Button
                   size="sm"
-                  disabled={offer.trim().length < 40 || busy}
+                  disabled={
+                    offer.trim().length < CV_TAILOR_OFFER_MIN_CHARS || busy
+                  }
                   onClick={() => void tailorAndDownload()}
                 >
                   {busy ? tModal("generating") : tModal("generate")}

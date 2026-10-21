@@ -88,7 +88,8 @@
     "badge": {
       "explore3d": "Explorar en 3D",
       "close3d": "Volver a la tarjeta de perfil",
-      "unsupported": "La vista 3D no está disponible en este dispositivo"
+      "unsupported": "La vista 3D no está disponible en este dispositivo",
+      "loading3d": "Cargando 3D…"
     }
   },
   "about": {
@@ -400,7 +401,7 @@
   },
   "cvToast": {
     "title": "CV preparado",
-    "description": "El PDF se ha abierto o descargado."
+    "description": "El PDF se ha descargado."
   },
   "cvModal": {
     "title": "Descargar CV",
@@ -420,7 +421,10 @@
     "back": "Volver",
     "tailorError": "No se pudo adaptar ahora mismo. El CV técnico sigue disponible.",
     "tailorLimited": "Límite de uso alcanzado. Prueba en unos minutos o descarga el CV técnico.",
-    "tailorUnavailable": "La adaptación con IA no está disponible ahora mismo. Puedes descargar el CV general o técnico."
+    "tailorUnavailable": "La adaptación con IA no está disponible ahora mismo. Puedes descargar el CV general o técnico.",
+    "preparing": "Preparando el PDF…",
+    "downloadError": "No se pudo descargar el PDF.",
+    "openDirect": "Abrir PDF"
   },
   "terminal": {
     "title": "Terminal",
@@ -516,6 +520,9 @@
     "rateLimited": "Has hecho muchas preguntas seguidas. Espera un momento e inténtalo de nuevo.",
     "unavailable": "El asistente no está disponible ahora mismo. Escribe a {email}.",
     "error": "No he podido responder. Escribe a {email}.",
-    "disclaimer": "IA limitada al perfil público. No estima datos ausentes; confirma por email cualquier decisión importante."
+    "disclaimer": "IA limitada al perfil público. No estima datos ausentes; confirma por email cualquier decisión importante.",
+    "reset": "Nueva",
+    "thinking": "Pensando…",
+    "launcher": "Pregunta a la IA"
   }
 }

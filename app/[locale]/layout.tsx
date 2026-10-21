@@ -12,7 +12,6 @@ import {
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { TRPCProvider } from "@/lib/trpc/provider"
 import { cn } from "@/lib/utils"
 import { profile, siteUrl } from "@/lib/profile"
 import {
@@ -219,7 +218,7 @@ export default async function LocaleLayout({
           <ThemeProvider>
             <BackgroundProvider>
               <TooltipProvider>
-                <TRPCProvider>{children}</TRPCProvider>
+                {children}
                 <Toaster position="bottom-right" />
               </TooltipProvider>
             </BackgroundProvider>

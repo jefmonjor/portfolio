@@ -136,6 +136,33 @@
   body {
     overflow-x: clip;
     }
+  html {
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+    }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+      }
+    }
+  /* Anchored sections land below the sticky top bar instead of under it. */
+  section[id] {
+    scroll-margin-top: 4.5rem;
+    }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    }
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+    }
+  time,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
+    }
   [data-bg-root] [data-bg-variant] {
     display: none;
     }
@@ -145,6 +172,45 @@
   html[data-bg="noise"] [data-bg-root] [data-bg-variant="noise"] {
     display: block;
     }
+}
+
+/* Marquee: one compositor-only transform loop in CSS instead of a JS-driven
+   animation, so the band costs no main-thread work while it scrolls. */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Reading progress driven by the scroll timeline itself: no scroll listener,
+   no JS. Browsers without scroll-driven animations simply omit the bar. */
+@keyframes scroll-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.scroll-progress {
+  display: none;
+  transform-origin: 0 50%;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block;
+    animation: scroll-progress linear both;
+    animation-timeline: scroll(root block);
+  }
 }
 
 @media print {

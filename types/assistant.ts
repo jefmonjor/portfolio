@@ -1,9 +1,13 @@
 import { z } from "zod"
 
 import { isLocale, routing } from "@/i18n/routing"
+import {
+  ASSISTANT_HISTORY_INPUT_MESSAGES,
+  ASSISTANT_MESSAGE_INPUT_CHARS,
+  ASSISTANT_REPLY_MAX_CHARS,
+} from "@/types/limits"
 
-export const ASSISTANT_MESSAGE_INPUT_CHARS = 1500
-export const ASSISTANT_HISTORY_INPUT_MESSAGES = 17
+export { ASSISTANT_HISTORY_INPUT_MESSAGES, ASSISTANT_MESSAGE_INPUT_CHARS }
 
 export const assistantLocaleSchema = z.preprocess((value) => {
   const candidate = typeof value === "string" ? value : undefined
@@ -27,7 +31,7 @@ export const assistantRequestSchema = z
 
 export const assistantSuccessSchema = z
   .object({
-    reply: z.string().trim().min(1).max(4000),
+    reply: z.string().trim().min(1).max(ASSISTANT_REPLY_MAX_CHARS),
   })
   .strict()
 

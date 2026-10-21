@@ -88,7 +88,8 @@
     "badge": {
       "explore3d": "Explorar en 3D",
       "close3d": "Tornar a la targeta de perfil",
-      "unsupported": "La vista 3D no està disponible en aquest dispositiu"
+      "unsupported": "La vista 3D no està disponible en aquest dispositiu",
+      "loading3d": "Carregant 3D…"
     }
   },
   "about": {
@@ -400,7 +401,7 @@
   },
   "cvToast": {
     "title": "CV preparat",
-    "description": "El PDF s'ha obert o descarregat."
+    "description": "El PDF s'ha descarregat."
   },
   "cvModal": {
     "title": "Descarregar CV",
@@ -420,7 +421,10 @@
     "back": "Tornar",
     "tailorError": "No s'ha pogut adaptar ara mateix. El CV tècnic continua disponible.",
     "tailorLimited": "Límit d'ús assolit. Prova-ho d'aquí a uns minuts o descarrega el CV tècnic.",
-    "tailorUnavailable": "L'adaptació amb IA no està disponible ara mateix. Pots descarregar el CV general o tècnic."
+    "tailorUnavailable": "L'adaptació amb IA no està disponible ara mateix. Pots descarregar el CV general o tècnic.",
+    "preparing": "Preparant el PDF…",
+    "downloadError": "No s'ha pogut descarregar el PDF.",
+    "openDirect": "Obrir PDF"
   },
   "terminal": {
     "title": "Terminal",
@@ -516,6 +520,9 @@
     "rateLimited": "Has fet moltes preguntes seguides. Espera un moment i torna-ho a provar.",
     "unavailable": "L'assistent no està disponible ara mateix. Escriu a {email}.",
     "error": "No he pogut respondre. Escriu a {email}.",
-    "disclaimer": "IA limitada al perfil públic. No estima dades absents; confirma per email qualsevol decisió important."
+    "disclaimer": "IA limitada al perfil públic. No estima dades absents; confirma per email qualsevol decisió important.",
+    "reset": "Nova",
+    "thinking": "Pensant…",
+    "launcher": "Pregunta a la IA"
   }
 }

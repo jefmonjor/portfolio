@@ -1,15 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { motion, useReducedMotion } from "motion/react"
 import { useTranslations } from "next-intl"
 
 import { SectionHeading } from "@/components/portfolio/section-heading"
 import { TechBadge } from "@/components/portfolio/tech-badge"
 import { parseStringArray } from "@/lib/i18n-values"
 import { portfolioUpdatedAt, profile } from "@/lib/profile"
-
-const ease = [0.16, 1, 0.3, 1] as const
 
 function parseISOMonth(value: string): { year: number; month: number } {
   const [year, month] = value.split("-").map(Number)
@@ -28,7 +25,6 @@ function totalMonthsBetween(
 }
 
 function Experience() {
-  const reduce = useReducedMotion()
   const t = useTranslations("experience")
   const tEntries = useTranslations("experience.entries")
   const tDuration = useTranslations("experience.duration")
@@ -62,7 +58,7 @@ function Experience() {
           aria-hidden
           className="absolute top-0 bottom-0 left-[7px] w-px bg-border sm:left-[calc(7rem-1px)]"
         />
-        {entries.map((entry, index) => {
+        {entries.map((entry) => {
           const role = tEntries(`${entry.id}.role`)
           const location = tEntries(`${entry.id}.location`)
           const start = tEntries(`${entry.id}.start`)
@@ -77,16 +73,8 @@ function Experience() {
           )
 
           return (
-            <motion.li
+            <li
               key={entry.id}
-              initial={reduce ? { opacity: 1 } : { opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{
-                duration: 0.45,
-                ease,
-                delay: reduce ? 0 : Math.min(index * 0.05, 0.25),
-              }}
               className="group relative grid grid-cols-[20px_1fr] gap-x-4 border-b border-border py-5 last:border-b-0 sm:grid-cols-[7rem_1fr]"
             >
               <div className="relative flex items-start pt-1 sm:pt-1.5">
@@ -153,7 +141,7 @@ function Experience() {
                   </div>
                 ) : null}
               </div>
-            </motion.li>
+            </li>
           )
         })}
       </ol>

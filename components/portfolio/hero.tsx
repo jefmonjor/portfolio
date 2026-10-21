@@ -7,7 +7,6 @@ import {
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Fragment } from "react"
-import { motion, useReducedMotion } from "motion/react"
 import { useLocale, useTranslations } from "next-intl"
 
 import { CvDownloadButton } from "@/components/portfolio/cv-download-button"
@@ -17,12 +16,9 @@ import { ScrambleText } from "@/components/portfolio/scramble-text"
 import { Button } from "@/components/ui/button"
 import { profile, profileTimeZone } from "@/lib/profile"
 
-const ease = [0.16, 1, 0.3, 1] as const
-
 const titleWords = profile.name.split(" ")
 
 function Hero() {
-  const reduce = useReducedMotion()
   const t = useTranslations("hero")
   const tSpecs = useTranslations("hero.specs")
   const locale = useLocale()
@@ -74,11 +70,7 @@ function Hero() {
           <span aria-hidden className="block">
             {titleWords.map((word, index) => (
               <Fragment key={`${word}-${index}`}>
-                <span
-                  className="block sm:inline-block"
-                >
-                  {word}
-                </span>
+                <span className="block sm:inline-block">{word}</span>
                 {index < titleWords.length - 1 ? (
                   <span className="hidden sm:inline"> </span>
                 ) : null}
@@ -102,16 +94,7 @@ function Hero() {
           </p>
         </div>
 
-        <motion.div
-          initial={reduce ? { opacity: 1 } : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-            ease,
-            delay: reduce ? 0 : 0.08 * titleWords.length + 0.15,
-          }}
-          className="flex flex-wrap items-center gap-2"
-        >
+        <div className="flex animate-in flex-wrap items-center gap-2 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] fade-in-0 [animation-delay:120ms] [animation-fill-mode:both] slide-in-from-bottom-2 motion-reduce:animate-none">
           <Button asChild size="lg">
             <a href={emailHref}>
               <HugeiconsIcon
@@ -146,18 +129,9 @@ function Hero() {
               {t("cta.experience")}
             </a>
           </Button>
-        </motion.div>
+        </div>
 
-        <motion.dl
-          initial={reduce ? { opacity: 1 } : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-            ease,
-            delay: reduce ? 0 : 0.08 * titleWords.length + 0.25,
-          }}
-          className="mt-auto min-w-0 divide-y divide-solid divide-border overflow-hidden rounded-xl border border-border sm:grid sm:grid-cols-2 sm:divide-y-0"
-        >
+        <dl className="mt-auto min-w-0 animate-in divide-y divide-solid divide-border overflow-hidden rounded-xl border border-border duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] fade-in-0 [animation-delay:200ms] [animation-fill-mode:both] slide-in-from-bottom-2 motion-reduce:animate-none sm:grid sm:grid-cols-2 sm:divide-y-0">
           {specRows.map((row, index) => (
             <div
               key={row.label}
@@ -168,12 +142,12 @@ function Hero() {
               <dt className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
                 {row.label}
               </dt>
-              <dd className="min-w-0 break-words text-xs text-foreground">
+              <dd className="min-w-0 text-xs break-words text-foreground">
                 {row.value}
               </dd>
             </div>
           ))}
-        </motion.dl>
+        </dl>
       </div>
 
       <aside className="flex min-w-0 flex-col gap-5">
@@ -182,6 +156,7 @@ function Hero() {
           meta={profile.location}
           exploreLabel={t("badge.explore3d")}
           closeLabel={t("badge.close3d")}
+          loadingLabel={t("badge.loading3d")}
           unavailableLabel={t("badge.unsupported")}
         />
       </aside>

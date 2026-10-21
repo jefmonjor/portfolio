@@ -10,6 +10,7 @@ import {
 } from "@react-three/fiber"
 import { Physics } from "@react-three/rapier"
 import {
+  memo,
   Suspense,
   useCallback,
   useEffect,
@@ -23,23 +24,56 @@ import * as THREE from "three"
 
 import { BadgeBand, type BadgeBandProps } from "./badge-band"
 
+// Module-level so StableCanvas's configure effect sees stable references; the
+// inline literals it used to receive re-ran `configure` on every render.
+// A 1.75 ceiling keeps retina sharp while skipping ~25% of the fill cost of 2x.
+const CAMERA = { position: [0, -1, 7.5] as [number, number, number], fov: 32 }
+const DPR: [number, number] = [1, 1.75]
+const GL = { alpha: true, antialias: true }
+
 type BadgeSceneProps = Pick<
   BadgeBandProps,
   "photoSrc" | "name" | "role" | "meta"
 > & {
   onError?: () => void
+  onReady?: () => void
 }
 
-export function BadgeScene({ onError, ...props }: BadgeSceneProps) {
+// Rendered inside <Physics>, which suspends until Rapier's WASM is ready, so
+// this only mounts once the scene can actually draw. Two frames later the
+// card is on screen and the loader can hand over to the canvas.
+function ReadySignal({ onReady }: { onReady?: () => void }) {
+  useEffect(() => {
+    if (!onReady) return
+    let second = 0
+    const first = requestAnimationFrame(() => {
+      second = requestAnimationFrame(onReady)
+    })
+    return () => {
+      cancelAnimationFrame(first)
+      cancelAnimationFrame(second)
+    }
+  }, [onReady])
+  return null
+}
+
+// Memoized: StableCanvas re-runs `configure` and re-renders the R3F root
+// whenever its children change, and the parent re-renders when the scene
+// reports it is ready.
+export const BadgeScene = memo(function BadgeScene({
+  onError,
+  onReady,
+  ...props
+}: BadgeSceneProps) {
   const handleCreated = useCallback((state: RootState) => {
     state.events.connect?.(state.gl.domElement)
   }, [])
 
   return (
     <StableCanvas
-      camera={{ position: [0, -1, 7.5], fov: 32 }}
-      dpr={[1, 2]}
-      gl={{ alpha: true, antialias: true }}
+      camera={CAMERA}
+      dpr={DPR}
+      gl={GL}
       onCreated={handleCreated}
       onError={onError}
     >
@@ -57,6 +91,7 @@ export function BadgeScene({ onError, ...props }: BadgeSceneProps) {
         numInternalPgsIterations={2}
       >
         <BadgeBand {...props} />
+        <ReadySignal onReady={onReady} />
       </Physics>
       <Environment background={false} blur={0.75}>
         <Lightformer
@@ -90,7 +125,7 @@ export function BadgeScene({ onError, ...props }: BadgeSceneProps) {
       </Environment>
     </StableCanvas>
   )
-}
+})
 
 type StableCanvasProps = {
   camera: { position: [number, number, number]; fov: number }

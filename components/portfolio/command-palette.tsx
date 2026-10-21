@@ -18,7 +18,7 @@ import {
 } from "@hugeicons/core-free-icons"
 
 import { useBackground } from "@/components/background-provider"
-import { openTerminal } from "@/components/portfolio/terminal/terminal"
+import { openTerminal } from "@/components/portfolio/terminal/events"
 import { Button } from "@/components/ui/button"
 import {
   CommandDialog,
@@ -37,10 +37,7 @@ import {
 } from "@/components/ui/tooltip"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { resolveLocale, routing, type Locale } from "@/i18n/routing"
-import {
-  BACKGROUND_VARIANTS,
-  type BackgroundVariant,
-} from "@/lib/background"
+import { BACKGROUND_VARIANTS, type BackgroundVariant } from "@/lib/background"
 
 const BACKGROUND_ICONS: Record<BackgroundVariant, typeof GridIcon> = {
   grid: GridIcon,
@@ -233,7 +230,9 @@ function CommandPalette() {
                 strokeWidth={1.75}
               />
               <span>{t("actions.openTerminal")}</span>
-              <CommandShortcut className="font-mono text-[10px]">`</CommandShortcut>
+              <CommandShortcut className="font-mono text-[10px]">
+                `
+              </CommandShortcut>
             </CommandItem>
 
             <CommandItem
