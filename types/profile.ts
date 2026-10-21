@@ -86,7 +86,6 @@ export type Profile = {
   timezone: string
   since: string
   focus: ReadonlyArray<string>
-  marquee: ReadonlyArray<string>
   socials: ReadonlyArray<Social>
   experience: ReadonlyArray<ExperienceEntry>
   skills: ReadonlyArray<SkillGroup>

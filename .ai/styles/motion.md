@@ -3,8 +3,7 @@
 ## Library
 
 CSS first. Entrances use `tw-animate-css` utilities (`animate-in fade-in-0
-slide-in-from-bottom-2`), loops use keyframes in `app/globals.css` (see
-`animate-marquee`), and scroll-linked effects use scroll-driven animations
+slide-in-from-bottom-2`), loops (if ever needed) use keyframes in `app/globals.css`, and scroll-linked effects use scroll-driven animations
 (`.scroll-progress`). None of them costs JavaScript on first load.
 
 `motion` was removed from the first-load path in October 2026: it shipped

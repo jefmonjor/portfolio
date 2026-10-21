@@ -81,11 +81,7 @@ function Contact() {
       id="contact"
       className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-16 sm:px-8 sm:py-20"
     >
-      <SectionHeading
-        index={t("indexLabel")}
-        title={t("title")}
-        hint={tStatus("label")}
-      />
+      <SectionHeading title={t("title")} hint={tStatus("label")} />
 
       <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
         <div className="flex flex-col gap-4 rounded-xl border border-border p-5 sm:p-6">

@@ -45,18 +45,18 @@ function TopBar() {
           <span className="inline-block size-1.5 bg-brand" />
           {/* The full name where there is room for it; the first name when
               the section links share the bar (Spanish labels run longest). */}
-          <span className="sm:hidden xl:inline">Jefferson</span>
-          <span className="hidden truncate sm:inline xl:hidden">
+          <span className="sm:hidden lg:inline">Jefferson</span>
+          <span className="hidden truncate sm:inline lg:hidden">
             {profile.shortName}
           </span>
         </a>
 
-        <nav className="hidden items-center gap-0.5 font-mono text-[11px] tracking-wider whitespace-nowrap text-muted-foreground uppercase xl:flex">
+        <nav className="hidden items-center gap-0.5 text-[13px] whitespace-nowrap text-muted-foreground lg:flex">
           {NAV_IDS.map((id) => (
             <a
               key={id}
               href={`#${id}`}
-              className="px-1.5 py-1 transition-colors hover:text-foreground"
+              className="rounded-full px-2 py-1 transition-colors hover:bg-foreground/5 hover:text-foreground"
             >
               {tNav(id)}
             </a>

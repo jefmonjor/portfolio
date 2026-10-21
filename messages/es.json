@@ -70,7 +70,6 @@
     "detail": "Andorra · España · Remoto en zona horaria europea"
   },
   "hero": {
-    "indexLabel": "00 — Perfil",
     "role": "Product Engineer con foco en IA y backend",
     "tagline": "Construyo productos de principio a fin sobre backends Java/Spring y arquitecturas mantenibles. Uso IA cuando aporta valor, con datos validados, límites claros y alternativas manuales.",
     "specs": {
@@ -93,7 +92,6 @@
     }
   },
   "about": {
-    "indexLabel": "01 — Sobre mí",
     "title": "Quién soy, en un párrafo",
     "manifesto": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. He liderado migraciones complejas, integrado sistemas legacy y diseñado arquitecturas hexagonales y de microservicios. Fuera del trabajo construyo varios productos propios —algunos públicos y en funcionamiento, otros privados y en desarrollo— para mantener cerca las decisiones de producto, backend, despliegue e IA aplicada.",
     "currentlyWorkingWith": "Trabajando ahora con"
@@ -127,7 +125,6 @@
     }
   },
   "experience": {
-    "indexLabel": "02 — Experiencia",
     "title": "Dónde he trabajado",
     "hint": "{count} roles · 2019 → actualidad",
     "duration": {
@@ -201,7 +198,6 @@
     }
   },
   "skills": {
-    "indexLabel": "03 — Habilidades",
     "title": "Tecnologías con las que trabajo",
     "hint": "{count} herramientas · {groups} grupos",
     "groups": {
@@ -224,7 +220,6 @@
     ]
   },
   "aiApproach": {
-    "indexLabel": "04 — IA en producto",
     "title": "IA útil, acotada por ingeniería",
     "hint": "Evidencia · límites · alternativa",
     "entries": {
@@ -251,7 +246,6 @@
     }
   },
   "projects": {
-    "indexLabel": "05 — Proyectos",
     "title": "Proyectos propios",
     "hint": "{count, plural, one {# proyecto} other {# proyectos}} · producto · backend · IA",
     "status": {
@@ -356,7 +350,6 @@
     }
   },
   "education": {
-    "indexLabel": "06 — Formación e idiomas",
     "title": "Formación e idiomas",
     "languagesLabel": "Idiomas",
     "entries": {
@@ -381,7 +374,6 @@
     }
   },
   "contact": {
-    "indexLabel": "07 — Contacto",
     "title": "La forma más rápida de localizarme",
     "emailLabel": "Email",
     "copy": "Copiar",
@@ -482,7 +474,6 @@
     ]
   },
   "notFound": {
-    "indexLabel": "ERR · 404",
     "title": "Esta página no existe.",
     "body": "La página que buscas puede haberse renombrado, eliminado o movido a otra ruta.",
     "cta": "Volver al inicio"

@@ -17,7 +17,7 @@ function TechBadge({ label, className }: TechBadgeProps) {
   return (
     <Badge
       variant="outline"
-      className={cn("h-auto max-w-full py-1 font-mono text-[11px]", className)}
+      className={cn("h-auto max-w-full py-1 text-xs font-normal", className)}
     >
       <svg
         aria-hidden

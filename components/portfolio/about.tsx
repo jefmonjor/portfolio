@@ -13,11 +13,7 @@ function About() {
       id="about"
       className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-16 sm:px-8 sm:py-20"
     >
-      <SectionHeading
-        index={t("indexLabel")}
-        title={t("title")}
-        hint={tStatus("detail")}
-      />
+      <SectionHeading title={t("title")} hint={tStatus("detail")} />
       <div className="grid gap-8 md:grid-cols-[2fr_1fr]">
         <p className="max-w-[33rem] text-sm leading-relaxed text-foreground sm:max-w-[37rem] sm:text-base">
           {t("manifesto")}
@@ -28,7 +24,11 @@ function About() {
           </span>
           <div className="flex flex-wrap gap-1.5">
             {profile.focus.map((item) => (
-              <Badge key={item} variant="outline" className="font-mono">
+              <Badge
+                key={item}
+                variant="outline"
+                className="h-auto py-1 text-xs font-normal"
+              >
                 {item}
               </Badge>
             ))}

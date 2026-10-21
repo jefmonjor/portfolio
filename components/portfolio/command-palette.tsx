@@ -178,7 +178,7 @@ function CommandPalette() {
               className="size-3.5"
               strokeWidth={1.75}
             />
-            <span className="hidden font-mono text-[11px] tracking-widest text-muted-foreground uppercase sm:inline">
+            <span className="hidden text-[13px] text-muted-foreground sm:inline">
               {t("hintLabel")}
             </span>
             <Kbd className="hidden font-mono text-[11px] sm:inline-flex">

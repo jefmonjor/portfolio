@@ -70,7 +70,6 @@
     "detail": "Andorra · Spain · Remote across European time zones"
   },
   "hero": {
-    "indexLabel": "00 — Profile",
     "role": "Product Engineer focused on AI & backend",
     "tagline": "I build products end to end on Java/Spring backends and maintainable architectures. I use AI where it adds value, with validated data, clear limits, and manual fallbacks.",
     "specs": {
@@ -93,7 +92,6 @@
     }
   },
   "about": {
-    "indexLabel": "01 — About",
     "title": "Who I am, in one paragraph",
     "manifesto": "Six-plus years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build several products of my own—some public and live, others private and in development—to keep product, backend, deployment, and applied AI decisions close together.",
     "currentlyWorkingWith": "Currently working with"
@@ -127,7 +125,6 @@
     }
   },
   "experience": {
-    "indexLabel": "02 — Experience",
     "title": "Where I have worked",
     "hint": "{count} roles · 2019 → present",
     "duration": {
@@ -201,7 +198,6 @@
     }
   },
   "skills": {
-    "indexLabel": "03 — Skills",
     "title": "Tools I use most",
     "hint": "{count} tools · {groups} groups",
     "groups": {
@@ -224,7 +220,6 @@
     ]
   },
   "aiApproach": {
-    "indexLabel": "04 — AI in product",
     "title": "Useful AI, bounded by engineering",
     "hint": "Evidence · limits · fallback",
     "entries": {
@@ -251,7 +246,6 @@
     }
   },
   "projects": {
-    "indexLabel": "05 — Projects",
     "title": "Selected projects",
     "hint": "{count, plural, one {# project} other {# projects}} · product · backend · AI",
     "status": {
@@ -356,7 +350,6 @@
     }
   },
   "education": {
-    "indexLabel": "06 — Education & Languages",
     "title": "Education and languages",
     "languagesLabel": "Languages",
     "entries": {
@@ -381,7 +374,6 @@
     }
   },
   "contact": {
-    "indexLabel": "07 — Contact",
     "title": "The fastest way to reach me",
     "emailLabel": "Email",
     "copy": "Copy",
@@ -482,7 +474,6 @@
     ]
   },
   "notFound": {
-    "indexLabel": "ERR · 404",
     "title": "This page does not exist.",
     "body": "The page you are looking for may have been renamed, deleted, or moved to another route.",
     "cta": "Back to home"

@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server"
 import type { Locale } from "@/i18n/routing"
 import { parseStringArray } from "@/lib/i18n-values"
 import { portfolioUpdatedAt, profile } from "@/lib/profile"
+import { CV_HEADINGS } from "@/server/cv/headings"
 import type {
   CvEducationEntry,
   CvExperienceEntry,
@@ -16,7 +17,6 @@ const METRIC_KEYS = ["years", "sectors", "companies", "products"] as const
 export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
   const [
     tMeta,
-    tHero,
     tCv,
     tCommon,
     tExperience,
@@ -34,7 +34,6 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     tMetrics,
   ] = await Promise.all([
     getTranslations({ locale, namespace: "metadata" }),
-    getTranslations({ locale, namespace: "hero" }),
     getTranslations({ locale, namespace: "cv" }),
     getTranslations({ locale, namespace: "common" }),
     getTranslations({ locale, namespace: "experience" }),
@@ -63,7 +62,7 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
       label: tMetrics(`${key}.label`),
     })),
     sections: {
-      profile: tHero("indexLabel"),
+      profile: CV_HEADINGS[locale].profile,
       experience: tExperience("title"),
       skills: tSkills("title"),
       projects: tProjects("title"),

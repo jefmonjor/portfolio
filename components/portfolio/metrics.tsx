@@ -89,7 +89,7 @@ function Metrics() {
           </div>
         ))}
       </div>
-      <p className="mt-3 text-right font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
+      <p className="mt-3 text-right text-sm text-muted-foreground">
         {t("caption")}
       </p>
     </section>

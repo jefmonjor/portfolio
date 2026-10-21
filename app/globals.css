@@ -212,21 +212,6 @@
   }
 }
 
-/* Marquee: one compositor-only transform loop in CSS instead of a JS-driven
-   animation, so the band costs no main-thread work while it scrolls. */
-@keyframes marquee {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@utility animate-marquee {
-  animation: marquee 40s linear infinite;
-}
-
 /* Reading progress driven by the scroll timeline itself: no scroll listener,
    no JS. Browsers without scroll-driven animations simply omit the bar. */
 @keyframes scroll-progress {

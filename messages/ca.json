@@ -70,7 +70,6 @@
     "detail": "Andorra · Espanya · Remot en fus horari europeu"
   },
   "hero": {
-    "indexLabel": "00 — Perfil",
     "role": "Enginyer de producte amb focus en IA i backend",
     "tagline": "Construeixo productes de principi a fi sobre backends Java/Spring i arquitectures mantenibles. Utilitzo IA quan aporta valor, amb dades validades, límits clars i alternatives manuals.",
     "specs": {
@@ -93,7 +92,6 @@
     }
   },
   "about": {
-    "indexLabel": "01 — Sobre mi",
     "title": "Qui soc, en un paràgraf",
     "manifesto": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. He liderat migracions complexes, integrat sistemes legacy i dissenyat arquitectures hexagonals i de microserveis. Fora de la feina construeixo diversos productes propis —alguns públics i en funcionament, d'altres privats i en desenvolupament— per mantenir a prop les decisions de producte, backend, desplegament i IA aplicada.",
     "currentlyWorkingWith": "Treballant ara amb"
@@ -127,7 +125,6 @@
     }
   },
   "experience": {
-    "indexLabel": "02 — Experiència",
     "title": "On he treballat",
     "hint": "{count} rols · 2019 → actualitat",
     "duration": {
@@ -201,7 +198,6 @@
     }
   },
   "skills": {
-    "indexLabel": "03 — Habilitats",
     "title": "Tecnologies amb què treballo",
     "hint": "{count} eines · {groups} grups",
     "groups": {
@@ -224,7 +220,6 @@
     ]
   },
   "aiApproach": {
-    "indexLabel": "04 — IA en producte",
     "title": "IA útil, acotada per enginyeria",
     "hint": "Evidència · límits · alternativa",
     "entries": {
@@ -251,7 +246,6 @@
     }
   },
   "projects": {
-    "indexLabel": "05 — Projectes",
     "title": "Projectes propis",
     "hint": "{count, plural, one {# projecte} other {# projectes}} · producte · backend · IA",
     "status": {
@@ -356,7 +350,6 @@
     }
   },
   "education": {
-    "indexLabel": "06 — Formació i idiomes",
     "title": "Formació i idiomes",
     "languagesLabel": "Idiomes",
     "entries": {
@@ -381,7 +374,6 @@
     }
   },
   "contact": {
-    "indexLabel": "07 — Contacte",
     "title": "La manera més ràpida de localitzar-me",
     "emailLabel": "Email",
     "copy": "Copiar",
@@ -482,7 +474,6 @@
     ]
   },
   "notFound": {
-    "indexLabel": "ERR · 404",
     "title": "Aquesta pàgina no existeix.",
     "body": "La pàgina que cerques pot haver-se reanomenat, eliminat o mogut a una altra ruta.",
     "cta": "Tornar a l'inici"

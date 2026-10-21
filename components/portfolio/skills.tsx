@@ -24,7 +24,6 @@ function Skills() {
       className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-16 sm:px-8 sm:py-20"
     >
       <SectionHeading
-        index={t("indexLabel")}
         title={t("title")}
         hint={t("hint", { count: totalCount, groups: profile.skills.length })}
       />

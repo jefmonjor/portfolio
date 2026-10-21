@@ -11,14 +11,12 @@ import { Education } from "@/components/portfolio/education"
 import { Experience } from "@/components/portfolio/experience"
 import { Footer } from "@/components/portfolio/footer"
 import { Hero } from "@/components/portfolio/hero"
-import { Marquee } from "@/components/portfolio/marquee"
 import { Metrics } from "@/components/portfolio/metrics"
 import { Projects } from "@/components/portfolio/projects"
 import { Reveal } from "@/components/portfolio/reveal"
 import { Skills } from "@/components/portfolio/skills"
 import { TechIconSprite } from "@/components/portfolio/tech-icon-sprite"
 import { TopBar } from "@/components/portfolio/top-bar"
-import { profile } from "@/lib/profile"
 import { routing } from "@/i18n/routing"
 
 export function generateStaticParams() {
@@ -41,7 +39,6 @@ export default async function Page({
         <TopBar />
         <main>
           <Hero />
-          <Marquee items={profile.marquee} />
           <Reveal>
             <About />
           </Reveal>

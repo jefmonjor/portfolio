@@ -12,7 +12,6 @@ import { useLocale, useTranslations } from "next-intl"
 import { CvDownloadButton } from "@/components/portfolio/cv-download-button"
 import { HeroBadge } from "@/components/portfolio/hero-badge"
 import { LocalClock } from "@/components/portfolio/local-clock"
-import { ScrambleText } from "@/components/portfolio/scramble-text"
 import { Button } from "@/components/ui/button"
 import { profile, profileTimeZone } from "@/lib/profile"
 
@@ -58,11 +57,6 @@ function Hero() {
       className="relative mx-auto grid max-w-6xl min-w-0 gap-10 px-4 pt-12 pb-20 sm:px-8 sm:pt-16 sm:pb-24 lg:grid-cols-[1.4fr_1fr] lg:gap-16"
     >
       <div className="flex min-w-0 flex-col gap-8">
-        <div className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-brand uppercase">
-          <span className="inline-block h-px w-8 bg-brand/50" />
-          {t("indexLabel")}
-        </div>
-
         <h1 className="font-heading text-[clamp(2.5rem,5.5vw+1rem,5rem)] leading-[0.95] font-medium tracking-[-0.03em] text-foreground">
           <span className="sr-only">{profile.name}</span>
           {/* Inline flow (not flex) so text-wrap: balance can even out the
@@ -80,16 +74,15 @@ function Hero() {
         </h1>
 
         <div className="flex flex-col gap-4">
-          <p className="min-w-0 font-mono text-xs leading-relaxed tracking-widest text-muted-foreground uppercase">
-            <ScrambleText
-              value={t("role")}
-              className="text-foreground"
-              delay={400}
-              duration={700}
-            />{" "}
-            <span className="text-border">/</span> {profile.location}
+          {/* The positioning reads as a subtitle, at once: it is the line a
+              recruiter scans for, so it is never scrambled or tracked-out. */}
+          <p className="min-w-0 font-heading text-[clamp(1.25rem,1vw+1rem,1.625rem)] leading-snug font-medium tracking-[-0.015em] text-foreground">
+            {t("role")}
+            <span className="mt-1 block text-[0.72em] font-normal tracking-normal text-muted-foreground">
+              {profile.location}
+            </span>
           </p>
-          <p className="max-w-xl text-sm leading-relaxed text-foreground sm:text-base">
+          <p className="max-w-[36rem] text-sm leading-relaxed text-muted-foreground sm:text-base">
             {t("tagline")}
           </p>
         </div>

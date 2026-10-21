@@ -32,7 +32,7 @@ function Deploy() {
           </div>
         ))}
       </div>
-      <p className="mt-3 text-right font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
+      <p className="mt-3 text-right text-sm text-muted-foreground">
         {t("servicesLabel")} · {t("services")}
       </p>
     </section>
