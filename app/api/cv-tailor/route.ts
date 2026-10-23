@@ -4,6 +4,7 @@ import { zodTextFormat } from "openai/helpers/zod"
 
 import type { Locale } from "@/i18n/routing"
 import { buildSystemPrompt } from "@/lib/assistant/dossier"
+import { wrapJobOffer } from "@/lib/assistant/offer"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
 import { loadCvLabels } from "@/server/cv/labels"
 import { cvFilename, renderCvPdf } from "@/server/cv/render"
@@ -133,12 +134,7 @@ export async function POST(request: Request): Promise<Response> {
     client.responses.parse({
       model,
       instructions: selectionInstructions(parsed.data.locale),
-      input: [
-        {
-          role: "user",
-          content: `<job_offer>\n${offer}\n</job_offer>`,
-        },
-      ],
+      input: [{ role: "user", content: wrapJobOffer(offer) }],
       max_output_tokens: MAX_OUTPUT_TOKENS,
       reasoning: { effort: reasoningFor(model) },
       text: {

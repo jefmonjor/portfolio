@@ -11,8 +11,10 @@ import {
 import { sanitizeMessages } from "@/lib/assistant/messages"
 import {
   looksLikeJobOffer,
+  neutralizeOfferDelimiters,
   renderOfferAnalysis,
   verifyOfferAnalysis,
+  wrapJobOffer,
 } from "@/lib/assistant/offer"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
 import { contactEmail } from "@/lib/email"
@@ -156,11 +158,14 @@ async function compareOffer(
   offer: string,
   locale: Locale
 ): Promise<string | null> {
+  // What the model sees and what its requirements are checked against must
+  // be the same text.
+  const text = neutralizeOfferDelimiters(offer)
   const response = await client.responses.parse({
     model: MODEL,
     instructions: buildOfferAnalysisPrompt(locale),
     input: [
-      { role: "user", content: `<job_offer>\n${offer}\n</job_offer>` },
+      { role: "user", content: wrapJobOffer(text) },
     ] satisfies ChatMessage[],
     max_output_tokens: OFFER_MAX_OUTPUT_TOKENS,
     reasoning: { effort: REASONING },
@@ -174,7 +179,7 @@ async function compareOffer(
 
   const verified = verifyOfferAnalysis(
     response.output_parsed,
-    offer,
+    text,
     buildDossier(locale)
   )
   return verified ? renderOfferAnalysis(verified, locale, contactEmail()) : null
