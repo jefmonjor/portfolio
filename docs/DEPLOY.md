@@ -1,4 +1,31 @@
-# Despliegue en servidor propio (netcup)
+# Despliegue
+
+**Producción corre en Vercel** (`www.jefmonjor.dev`, ver la zona DNS más
+abajo): Vercel construye y publica `main` por su cuenta. Este documento
+describe además la vía alternativa, autoalojada, que hoy solo está a medias:
+el workflow publica la imagen, pero el paso de SSH se salta porque el secreto
+`SSH_HOST` no existe en el repositorio.
+
+## Límites y presupuesto de IA según dónde se despliegue
+
+Los contadores de límites (por IP, techo diario de peticiones, presupuesto
+diario de tokens) se guardan en **Upstash Redis** si existen
+`UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN` (ambas opcionales), y si
+no en la memoria del proceso:
+
+- **Vercel sin Upstash** (la configuración por defecto): cada instancia
+  serverless lleva sus propios contadores y los pierde en cada arranque en
+  frío. Con N instancias, cada límite vale hasta N veces. No hay presupuesto
+  global efectivo: la barrera real es el tope de gasto del panel de OpenAI.
+- **Vercel con Upstash**: límites y presupuesto globales. Crea una base
+  Redis en Upstash (o desde Vercel → Storage → Upstash), copia la *REST URL*
+  y el *REST token* a las variables de entorno del proyecto en Vercel y
+  vuelve a desplegar. Si Redis deja de responder, las rutas de IA responden
+  429 (fallan cerradas); `/cv.pdf` sigue sirviendo.
+- **Docker en un servidor**: un solo proceso, así que los contadores ya son
+  globales; se reinician con el contenedor salvo que se configure Upstash.
+
+## Servidor propio (netcup)
 
 Cada push a `main` dispara `.github/workflows/deploy.yml`:
 
@@ -26,8 +53,12 @@ Cada push a `main` dispara `.github/workflows/deploy.yml`:
 
 - Docker instalado (`curl -fsSL https://get.docker.com | sh`).
 - La clave pública correspondiente a `SSH_KEY` en `~/.ssh/authorized_keys`.
-- Un reverse proxy delante del puerto 3000. Ejemplo con **Caddy**
-  (TLS automático con Let's Encrypt):
+- Un reverse proxy delante del puerto 3000 (el contenedor solo escucha en
+  `127.0.0.1`). Fuera de Vercel, la app cuenta las peticiones por el
+  **último** valor de `X-Forwarded-For`, el que pone el proxy; si el proxy
+  no lo pone, por `X-Real-IP`. Ejemplo con **Caddy** (TLS automático con
+  Let's Encrypt; sin `trusted_proxies`, Caddy descarta el `X-Forwarded-For`
+  que manda el cliente y escribe la IP real):
 
 ```caddyfile
 jefmonjor.dev, www.jefmonjor.dev {
@@ -44,7 +75,10 @@ server {
         proxy_pass http://127.0.0.1:3000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # $remote_addr, no $proxy_add_x_forwarded_for: este proxy es el primer
+        # salto, así que lo que el cliente mande en X-Forwarded-For se descarta
+        # en lugar de concatenarse delante.
+        proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
@@ -92,3 +126,7 @@ subdominios de proyectos. Zona completa:
 docker build -t portfolio .
 docker run -d --name portfolio --restart unless-stopped -p 127.0.0.1:3000:3000 portfolio
 ```
+
+Las variables de entorno (`OPENAI_API_KEY` y, si se quieren, las de Upstash)
+se pasan con `-e` o `--env-file`; el workflow de despliegue no pasa ninguna
+todavía, así que una instancia lanzada por él arranca con la IA desactivada.
