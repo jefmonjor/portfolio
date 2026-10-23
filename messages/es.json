@@ -417,7 +417,8 @@
     "tailorUnavailable": "La adaptación con IA no está disponible ahora mismo. Puedes descargar el CV general o técnico.",
     "preparing": "Preparando el PDF…",
     "downloadError": "No se pudo descargar el PDF.",
-    "openDirect": "Abrir PDF"
+    "openDirect": "Abrir PDF",
+    "pdfLimited": "Demasiadas descargas seguidas. Espera un minuto e inténtalo de nuevo."
   },
   "terminal": {
     "title": "Terminal",

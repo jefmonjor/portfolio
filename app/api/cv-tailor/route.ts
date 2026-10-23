@@ -4,6 +4,7 @@ import { zodTextFormat } from "openai/helpers/zod"
 
 import type { Locale } from "@/i18n/routing"
 import { buildSystemPrompt } from "@/lib/assistant/dossier"
+import { wrapJobOffer } from "@/lib/assistant/offer"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
 import { loadCvLabels } from "@/server/cv/labels"
 import { cvFilename, renderCvPdf } from "@/server/cv/render"
@@ -12,6 +13,7 @@ import {
   normalizeTailorModelOutput,
   tailoringEvidence,
 } from "@/server/cv/tailoring"
+import { readJsonBody } from "@/server/http/read-json-body"
 import {
   CV_TAILOR_KEYWORDS_MAX,
   CV_TAILOR_OFFER_MAX_CHARS,
@@ -20,6 +22,7 @@ import {
   cvTailorModelOutputSchema,
   cvTailorRequestSchema,
 } from "@/types/cv-tailor"
+import { CV_TAILOR_BODY_MAX_BYTES } from "@/types/limits"
 
 export const runtime = "nodejs"
 
@@ -38,6 +41,11 @@ const MAX_OFFER_CHARS = Math.min(
 // gets spent thinking and comes back `incomplete` with nothing parsed. A full
 // selection is ~200 tokens; the rest is headroom for the reasoning pass.
 const MAX_OUTPUT_TOKENS = intEnv("CV_TAILOR_MAX_OUTPUT_TOKENS", 2000)
+// The SDK default is a 10-minute timeout with two retries. A selection of
+// ~200 tokens without reasoning answers in seconds; past 30 s it is stuck, and
+// every retry is paid again.
+const OPENAI_TIMEOUT_MS = 30_000
+const OPENAI_MAX_RETRIES = 1
 // Selection needs no deliberation, and reasoning here is what pushed the old
 // budget over the edge. The floor is named per family — "none" on gpt-5.x,
 // "minimal" on the gpt-5 models — so the fallback cannot inherit an effort
@@ -107,35 +115,34 @@ export async function POST(request: Request): Promise<Response> {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 })
   }
 
-  let input: unknown
-  try {
-    input = await request.json()
-  } catch {
-    return NextResponse.json({ error: "bad_request" }, { status: 400 })
+  const body = await readJsonBody(request, CV_TAILOR_BODY_MAX_BYTES)
+  if (!body.ok) {
+    return NextResponse.json(
+      { error: body.status === 413 ? "too_large" : "bad_request" },
+      { status: body.status }
+    )
   }
 
-  const parsed = cvTailorRequestSchema.safeParse(input)
+  const parsed = cvTailorRequestSchema.safeParse(body.value)
   if (!parsed.success) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
 
-  if (checkLimit(requestIp(request)) !== "ok") {
+  if ((await checkLimit(requestIp(request))) !== "ok") {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 })
   }
 
   const offer = parsed.data.offer.slice(0, MAX_OFFER_CHARS)
-  const client = new OpenAI()
+  const client = new OpenAI({
+    timeout: OPENAI_TIMEOUT_MS,
+    maxRetries: OPENAI_MAX_RETRIES,
+  })
 
-  const select = (model: string) =>
-    client.responses.parse({
+  const select = async (model: string) => {
+    const response = await client.responses.parse({
       model,
       instructions: selectionInstructions(parsed.data.locale),
-      input: [
-        {
-          role: "user",
-          content: `<job_offer>\n${offer}\n</job_offer>`,
-        },
-      ],
+      input: [{ role: "user", content: wrapJobOffer(offer) }],
       max_output_tokens: MAX_OUTPUT_TOKENS,
       reasoning: { effort: reasoningFor(model) },
       text: {
@@ -144,6 +151,13 @@ export async function POST(request: Request): Promise<Response> {
       },
       store: false,
     })
+    // Charged to the budget the chat shares. A response without usage counts
+    // as its output budget, never as free.
+    await checkLimit.recordUsage(
+      response.usage?.total_tokens ?? MAX_OUTPUT_TOKENS
+    )
+    return response
+  }
 
   let usedModel = MODEL
 

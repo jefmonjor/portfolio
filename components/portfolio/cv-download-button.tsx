@@ -15,6 +15,8 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
+import { resolveLocale } from "@/i18n/routing"
+import { cvPdfPath } from "@/lib/cv-pdf"
 import {
   Dialog,
   DialogContent,
@@ -156,7 +158,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   // tailored CV already takes, and it works from every browser.
   async function downloadVariant(variant: CvVariant): Promise<void> {
     if (busy) return
-    const url = `/cv.pdf?locale=${locale}&variant=${variant}`
+    const url = cvPdfPath(resolveLocale(locale), variant)
     const controller = beginRequest(variant)
 
     try {

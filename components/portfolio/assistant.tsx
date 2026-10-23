@@ -10,49 +10,26 @@ import {
 } from "@hugeicons/core-free-icons"
 
 import { Button } from "@/components/ui/button"
+import {
+  parseConversation,
+  readReply,
+  requestMessages,
+  serializeConversation,
+} from "@/lib/assistant/conversation"
 import { contactEmail } from "@/lib/email"
 import { cn } from "@/lib/utils"
 import type { ChatMessage } from "@/types/assistant"
-import {
-  ASSISTANT_HISTORY_INPUT_MESSAGES,
-  ASSISTANT_MESSAGE_INPUT_CHARS,
-  ASSISTANT_REPLY_MAX_CHARS,
-} from "@/types/limits"
+import { ASSISTANT_MESSAGE_INPUT_CHARS } from "@/types/limits"
 
 const STORAGE_KEY = "jefmonjor:assistant"
 const URL_PATTERN = /(https?:\/\/[^\s)]+[^\s).,;:!?])/g
 
-// The route returns `{ reply }` or an error code. A hand-written guard keeps
-// Zod out of the page bundle; the server already validated the shape.
-function readReply(body: unknown): string | null {
-  if (typeof body !== "object" || body === null || !("reply" in body)) {
-    return null
-  }
-  const reply = body.reply
-  if (typeof reply !== "string") return null
-  const trimmed = reply.trim()
-  return trimmed.length > 0 && trimmed.length <= ASSISTANT_REPLY_MAX_CHARS
-    ? trimmed
-    : null
-}
-
-function isChatMessage(value: unknown): value is ChatMessage {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    "role" in value &&
-    "content" in value &&
-    (value.role === "user" || value.role === "assistant") &&
-    typeof value.content === "string"
-  )
-}
-
+// Each assistant reply is stored with the signature the server sent, so it
+// can go back as context; the local error notices below carry none and stay
+// on this side.
 function loadConversation(): ChatMessage[] {
   try {
-    const raw = window.sessionStorage.getItem(STORAGE_KEY)
-    if (!raw) return []
-    const parsed: unknown = JSON.parse(raw)
-    return Array.isArray(parsed) && parsed.every(isChatMessage) ? parsed : []
+    return parseConversation(window.sessionStorage.getItem(STORAGE_KEY))
   } catch {
     return []
   }
@@ -61,7 +38,12 @@ function loadConversation(): ChatMessage[] {
 function saveConversation(messages: ReadonlyArray<ChatMessage>): void {
   try {
     if (messages.length === 0) window.sessionStorage.removeItem(STORAGE_KEY)
-    else window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
+    else {
+      window.sessionStorage.setItem(
+        STORAGE_KEY,
+        serializeConversation(messages)
+      )
+    }
   } catch {
     // Private mode or blocked storage: the chat still works, it just won't
     // survive a reload.
@@ -149,38 +131,37 @@ function Assistant() {
     const controller = new AbortController()
     requestRef.current = controller
 
-    let reply: string
+    const notice = (content: string): ChatMessage => ({
+      role: "assistant",
+      content,
+    })
+    let reply: ChatMessage
     try {
       const res = await fetch("/api/assistant", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // The route accepts a bounded window and trims it further. Sending the
-        // whole history used to break the chat on the ninth question, when the
-        // array outgrew the request contract and every send became a 400.
-        body: JSON.stringify({
-          messages: history.slice(-ASSISTANT_HISTORY_INPUT_MESSAGES),
-          locale,
-        }),
+        body: JSON.stringify({ messages: requestMessages(history), locale }),
         signal: controller.signal,
       })
       if (requestRef.current !== controller) return
       if (res.status === 429) {
-        reply = t("rateLimited")
+        reply = notice(t("rateLimited"))
       } else if (res.status === 503) {
-        reply = t("unavailable", { email: contactEmail() })
+        reply = notice(t("unavailable", { email: contactEmail() }))
       } else if (!res.ok) {
-        reply = t("error", { email: contactEmail() })
+        reply = notice(t("error", { email: contactEmail() }))
       } else {
         reply =
-          readReply(await res.json()) ?? t("error", { email: contactEmail() })
+          readReply(await res.json()) ??
+          notice(t("error", { email: contactEmail() }))
       }
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return
-      reply = t("error", { email: contactEmail() })
+      reply = notice(t("error", { email: contactEmail() }))
     }
 
     if (requestRef.current !== controller) return
-    commit([...history, { role: "assistant", content: reply }])
+    commit([...history, reply])
     requestRef.current = null
     setBusy(false)
   }

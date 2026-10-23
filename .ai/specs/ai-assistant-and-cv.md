@@ -56,6 +56,22 @@ Primary surfaces:
 - `GET /cv.pdf` accepts `general` or `technical`. Legacy `full` and `ats`
   values resolve to `general` and `technical` for compatibility; tailored
   content is available only through the validated POST flow.
+- Each PDF has one URL (`cvPdfPath` in `lib/cv-pdf.ts`): bare `/cv.pdf` for
+  the English general CV, `?locale=…&variant=…` (in that order) for the rest.
+  Any other query — unknown or repeated keys, legacy or invalid values, other
+  order — answers 308 to that URL without rendering. Each process renders a
+  file once and keeps it in memory; the route has its own per-IP bucket that
+  stays open if the shared store is down.
+- Every assistant reply carries an HMAC-SHA256 signature
+  (`lib/assistant/signature.ts`; key derived with HKDF from `OPENAI_API_KEY`,
+  or `ASSISTANT_SIGNING_SECRET`). The browser stores it with the reply in
+  `sessionStorage` and sends it back; `sanitizeMessages` drops any assistant
+  turn whose signature does not verify, together with the question before
+  it. Local error notices are unsigned and never reach the model.
+- Pasted offers are wrapped in `<job_offer>` tags after every tag of that
+  name inside the text has been removed (`wrapJobOffer`).
+- Both POST routes refuse with 413 a body larger than the largest one their
+  contract accepts, before parsing it (`server/http/read-json-body.ts`).
 - `cvTailorRequestSchema` validates locale and an offer of 40–4,000 characters.
 - The model response uses OpenAI Structured Outputs with a strict JSON schema.
 - The model selection contains canonical keywords, canonical project IDs, and
@@ -102,6 +118,11 @@ Primary surfaces:
 - Current role, target positioning, public/private project status, language
   level, availability, and contact answers stay consistent with the dossier.
 - Existing assistant message limits and shared AI rate limits remain enforced.
+  The daily ceiling counts requests and the tokens OpenAI reports for every
+  model call (an offer turn that falls back to chat pays for both). Counters
+  are global only with Upstash configured (`UPSTASH_REDIS_REST_URL` and
+  `UPSTASH_REDIS_REST_TOKEN`); otherwise they are per process. With Upstash
+  configured and unreachable, AI routes fail closed (429).
 - All new user-facing copy exists in `es`, `en`, and `ca` with matching keys.
 
 ## Verification
