@@ -1,5 +1,5 @@
 // Rate limiting and spend control for every AI-backed route (assistant chat,
-// CV tailoring).
+// CV tailoring) plus a separate, more generous bucket for the PDF route.
 //
 // Where the counters live decides what "global" means:
 // - With UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN set, every
@@ -277,6 +277,19 @@ export const checkLimit = createRateLimiter({
   globalDailyTokens: intEnv("ASSISTANT_GLOBAL_DAILY_TOKENS", 1_500_000),
   store: sharedStore,
   bucket: "ai",
+})
+
+// GET /cv.pdf renders on the server. Each instance keeps the few possible
+// files in memory, so this bucket only stops one client from hammering cold
+// instances. It stays open if the store is down: the CV download must not
+// depend on Redis, and its cost is already bounded by that cache.
+export const checkPdfLimit = createRateLimiter({
+  rateMinute: intEnv("CV_PDF_RATE_MINUTE", 20),
+  rateDaily: intEnv("CV_PDF_RATE_DAILY", 200),
+  globalDaily: Number.POSITIVE_INFINITY,
+  store: sharedStore,
+  bucket: "pdf",
+  onStoreError: "ok",
 })
 
 // Which address to count. A client can put anything in X-Forwarded-For; only

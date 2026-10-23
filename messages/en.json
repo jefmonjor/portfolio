@@ -417,7 +417,8 @@
     "tailorUnavailable": "AI tailoring is unavailable right now. You can download the general or technical CV.",
     "preparing": "Preparing the PDF…",
     "downloadError": "The PDF couldn't be downloaded.",
-    "openDirect": "Open PDF"
+    "openDirect": "Open PDF",
+    "pdfLimited": "Too many downloads in a row. Wait a minute and try again."
   },
   "terminal": {
     "title": "Terminal",

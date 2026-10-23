@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { resolveLocale } from "@/i18n/routing"
 import { parseString, parseStringArray } from "@/lib/i18n-values"
+import { cvPdfPath } from "@/lib/cv-pdf"
 import { contactEmail } from "@/lib/email"
 import { profile, profileTimeZone } from "@/lib/profile"
 import {
@@ -202,7 +203,11 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
           close = true
           break
         case "cv":
-          window.open(`/cv.pdf?locale=${locale}`, "_blank", "noopener")
+          window.open(
+            cvPdfPath(resolveLocale(locale), "general"),
+            "_blank",
+            "noopener"
+          )
           break
         case "theme":
           setTheme(
