@@ -62,6 +62,20 @@ const VERBOSITY = enumEnv(
   "low"
 )
 
+// The SDK default is a 10-minute timeout with two retries. A chat answer that
+// has not arrived in 20 s is not coming, and every retry is paid again.
+const OPENAI_TIMEOUT_MS = 20_000
+const OPENAI_MAX_RETRIES = 1
+
+// What a call cost, as OpenAI reports it. A response without usage is charged
+// its output budget so it never counts as free.
+function tokensSpent(
+  response: { usage?: { total_tokens?: number } | null },
+  outputBudget: number
+): number {
+  return response.usage?.total_tokens ?? outputBudget
+}
+
 function enumEnv<T extends string>(
   name: string,
   allowed: readonly T[],
@@ -99,11 +113,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
 
-  if (checkLimit(requestIp(request)) !== "ok") {
+  if ((await checkLimit(requestIp(request))) !== "ok") {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 })
   }
 
-  const client = new OpenAI()
+  const client = new OpenAI({
+    timeout: OPENAI_TIMEOUT_MS,
+    maxRetries: OPENAI_MAX_RETRIES,
+  })
   const locale = parsed.data.locale
   const latest = messages.at(-1)?.content ?? ""
 
@@ -136,6 +153,7 @@ export async function POST(request: Request) {
       text: { verbosity: VERBOSITY },
       store: false,
     })
+    await checkLimit.recordUsage(tokensSpent(response, MAX_OUTPUT_TOKENS))
 
     if (response.status !== "completed") {
       return NextResponse.json({ error: "upstream" }, { status: 502 })
@@ -175,6 +193,9 @@ async function compareOffer(
     },
     store: false,
   })
+  // Spent whether or not the comparison survives: a turn that falls back to
+  // the normal chat pays for both calls.
+  await checkLimit.recordUsage(tokensSpent(response, OFFER_MAX_OUTPUT_TOKENS))
   if (response.status !== "completed" || !response.output_parsed) return null
 
   const verified = verifyOfferAnalysis(
