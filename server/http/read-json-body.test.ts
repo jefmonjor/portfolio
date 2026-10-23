@@ -74,6 +74,7 @@ describe("readJsonBody", () => {
         () => ({
           role: "assistant",
           content: worstChar.repeat(ASSISTANT_MESSAGE_INPUT_CHARS),
+          signature: "s".repeat(128),
         })
       ),
     })

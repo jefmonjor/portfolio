@@ -9,6 +9,9 @@ export const ASSISTANT_MESSAGE_INPUT_CHARS = 8000
 // user turn, so an odd-sized tail always starts on a user turn too.
 export const ASSISTANT_HISTORY_INPUT_MESSAGES = 17
 export const ASSISTANT_REPLY_MAX_CHARS = 4000
+// An HMAC-SHA256 in base64url is 43 characters; the contract leaves room so a
+// malformed one is dropped by the signature check, not rejected as a 400.
+export const ASSISTANT_SIGNATURE_MAX_CHARS = 128
 
 // Roughly 4.000 palabras: full postings run long, and truncating one mid-way
 // hides the requirements that usually sit at the end. At ~6 characters per
@@ -25,10 +28,12 @@ export const CV_TAILOR_OFFER_MIN_CHARS = 40
 const JSON_BYTES_PER_CHAR = 3
 const JSON_ENVELOPE_BYTES = 1024
 
-// ≈ 400 KiB: 17 turns of up to 8.000 characters.
+// ≈ 403 KiB: 17 turns of up to 8.000 characters, each with its signature.
 export const ASSISTANT_BODY_MAX_BYTES =
   ASSISTANT_HISTORY_INPUT_MESSAGES *
-    (ASSISTANT_MESSAGE_INPUT_CHARS * JSON_BYTES_PER_CHAR + 64) +
+    (ASSISTANT_MESSAGE_INPUT_CHARS * JSON_BYTES_PER_CHAR +
+      ASSISTANT_SIGNATURE_MAX_CHARS +
+      64) +
   JSON_ENVELOPE_BYTES
 
 // ≈ 71 KiB: one offer of up to 24.000 characters.

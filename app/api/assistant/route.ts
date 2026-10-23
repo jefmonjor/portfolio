@@ -17,13 +17,14 @@ import {
   wrapJobOffer,
 } from "@/lib/assistant/offer"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
+import { signReply } from "@/lib/assistant/signature"
 import { contactEmail } from "@/lib/email"
 import { readJsonBody } from "@/server/http/read-json-body"
 import {
   assistantRequestSchema,
   assistantSuccessSchema,
   offerAnalysisModelOutputSchema,
-  type ChatMessage,
+  type ModelMessage,
 } from "@/types/assistant"
 import {
   ASSISTANT_BODY_MAX_BYTES,
@@ -76,6 +77,12 @@ function tokensSpent(
   return response.usage?.total_tokens ?? outputBudget
 }
 
+function reply(text: string): Response {
+  return NextResponse.json(
+    assistantSuccessSchema.parse({ reply: text, signature: signReply(text) })
+  )
+}
+
 function enumEnv<T extends string>(
   name: string,
   allowed: readonly T[],
@@ -126,7 +133,7 @@ export async function POST(request: Request) {
 
   try {
     if (looksLikeJobOffer(latest)) {
-      const reply = await compareOffer(client, latest, locale).catch(
+      const comparison = await compareOffer(client, latest, locale).catch(
         (error: unknown) => {
           if (error instanceof OpenAI.RateLimitError) throw error
           // The structured pass is a safeguard, not a dependency: if it
@@ -137,9 +144,7 @@ export async function POST(request: Request) {
           return null
         }
       )
-      if (reply) {
-        return NextResponse.json(assistantSuccessSchema.parse({ reply }))
-      }
+      if (comparison) return reply(comparison)
       // Not an offer after all, or nothing survived verification: answer it
       // as a normal question, under the same rules.
     }
@@ -158,11 +163,11 @@ export async function POST(request: Request) {
     if (response.status !== "completed") {
       return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
-    const reply = response.output_text?.trim()
-    if (!reply) {
+    const text = response.output_text?.trim()
+    if (!text) {
       return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
-    return NextResponse.json(assistantSuccessSchema.parse({ reply }))
+    return reply(text)
   } catch (error) {
     if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json({ error: "rate_limited" }, { status: 429 })
@@ -184,7 +189,7 @@ async function compareOffer(
     instructions: buildOfferAnalysisPrompt(locale),
     input: [
       { role: "user", content: wrapJobOffer(text) },
-    ] satisfies ChatMessage[],
+    ] satisfies ModelMessage[],
     max_output_tokens: OFFER_MAX_OUTPUT_TOKENS,
     reasoning: { effort: REASONING },
     text: {
