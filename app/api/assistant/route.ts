@@ -16,13 +16,17 @@ import {
 } from "@/lib/assistant/offer"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
 import { contactEmail } from "@/lib/email"
+import { readJsonBody } from "@/server/http/read-json-body"
 import {
   assistantRequestSchema,
   assistantSuccessSchema,
   offerAnalysisModelOutputSchema,
   type ChatMessage,
 } from "@/types/assistant"
-import { ASSISTANT_MESSAGE_INPUT_CHARS } from "@/types/limits"
+import {
+  ASSISTANT_BODY_MAX_BYTES,
+  ASSISTANT_MESSAGE_INPUT_CHARS,
+} from "@/types/limits"
 
 export const runtime = "nodejs"
 
@@ -70,14 +74,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 })
   }
 
-  let input: unknown
-  try {
-    input = await request.json()
-  } catch {
-    return NextResponse.json({ error: "bad_request" }, { status: 400 })
+  const body = await readJsonBody(request, ASSISTANT_BODY_MAX_BYTES)
+  if (!body.ok) {
+    return NextResponse.json(
+      { error: body.status === 413 ? "too_large" : "bad_request" },
+      { status: body.status }
+    )
   }
 
-  const parsed = assistantRequestSchema.safeParse(input)
+  const parsed = assistantRequestSchema.safeParse(body.value)
   if (!parsed.success) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }

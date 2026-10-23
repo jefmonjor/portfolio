@@ -12,6 +12,7 @@ import {
   normalizeTailorModelOutput,
   tailoringEvidence,
 } from "@/server/cv/tailoring"
+import { readJsonBody } from "@/server/http/read-json-body"
 import {
   CV_TAILOR_KEYWORDS_MAX,
   CV_TAILOR_OFFER_MAX_CHARS,
@@ -20,6 +21,7 @@ import {
   cvTailorModelOutputSchema,
   cvTailorRequestSchema,
 } from "@/types/cv-tailor"
+import { CV_TAILOR_BODY_MAX_BYTES } from "@/types/limits"
 
 export const runtime = "nodejs"
 
@@ -107,14 +109,15 @@ export async function POST(request: Request): Promise<Response> {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 })
   }
 
-  let input: unknown
-  try {
-    input = await request.json()
-  } catch {
-    return NextResponse.json({ error: "bad_request" }, { status: 400 })
+  const body = await readJsonBody(request, CV_TAILOR_BODY_MAX_BYTES)
+  if (!body.ok) {
+    return NextResponse.json(
+      { error: body.status === 413 ? "too_large" : "bad_request" },
+      { status: body.status }
+    )
   }
 
-  const parsed = cvTailorRequestSchema.safeParse(input)
+  const parsed = cvTailorRequestSchema.safeParse(body.value)
   if (!parsed.success) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
