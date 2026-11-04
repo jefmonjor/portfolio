@@ -51,7 +51,7 @@ function Education() {
           })}
         </ol>
 
-        <div className="flex flex-col gap-4 rounded-xl border border-border p-5">
+        <div className="flex flex-col gap-4 border-t border-border pt-4">
           <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
             {t("languagesLabel")}
           </span>

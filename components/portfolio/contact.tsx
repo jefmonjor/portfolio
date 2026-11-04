@@ -84,7 +84,7 @@ function Contact() {
       <SectionHeading title={t("title")} hint={tStatus("label")} />
 
       <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
-        <div className="flex flex-col gap-4 rounded-xl border border-border p-5 sm:p-6">
+        <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between gap-3">
             <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               {t("emailLabel")}
@@ -151,8 +151,8 @@ function Contact() {
           </div>
         </div>
 
-        <dl className="grid grid-cols-1 gap-0 overflow-hidden rounded-xl border border-border">
-          <div className="border-b border-border p-4">
+        <dl className="grid grid-cols-1 gap-0 border-t border-border">
+          <div className="border-b border-border py-4">
             <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <HugeiconsIcon
                 icon={Location01Icon}
@@ -165,7 +165,7 @@ function Contact() {
               {profile.location}
             </dd>
           </div>
-          <div className="border-b border-border p-4">
+          <div className="border-b border-border py-4">
             <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span
                 aria-hidden
@@ -185,7 +185,7 @@ function Contact() {
               ) : null}
             </dd>
           </div>
-          <div className="p-4">
+          <div className="border-b border-border py-4">
             <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span
                 aria-hidden

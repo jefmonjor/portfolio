@@ -240,7 +240,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   }
 
   const optionClass =
-    "flex w-full items-start gap-3 rounded-lg border border-border p-3 text-left transition-[color,background-color,border-color,transform,opacity] duration-150 ease-out hover:border-foreground hover:bg-foreground/2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 active:scale-[0.99] disabled:pointer-events-none disabled:opacity-60 aria-busy:opacity-100"
+    "flex w-full items-start gap-3 border border-border p-3 text-left transition-[color,background-color,border-color,transform,opacity] duration-150 ease-out hover:border-foreground hover:bg-foreground/2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 active:scale-[0.99] disabled:pointer-events-none disabled:opacity-60 aria-busy:opacity-100"
 
   return (
     <>
@@ -326,7 +326,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                   maxLength={CV_TAILOR_OFFER_MAX_CHARS}
                   rows={8}
                   disabled={busy}
-                  className="w-full resize-y rounded-md border border-input bg-transparent p-2 text-xs leading-relaxed outline-none focus-visible:border-ring disabled:opacity-60"
+                  className="w-full resize-y border border-input bg-transparent p-2 text-xs leading-relaxed outline-none focus-visible:border-ring disabled:opacity-60"
                 />
                 <div className="flex items-center justify-between gap-3">
                   <span className="font-mono text-[11px] text-muted-foreground">

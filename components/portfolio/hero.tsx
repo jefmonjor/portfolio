@@ -124,13 +124,11 @@ function Hero() {
           </Button>
         </div>
 
-        <dl className="mt-auto min-w-0 animate-in divide-y divide-solid divide-border overflow-hidden rounded-xl border border-border duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] fade-in-0 [animation-delay:200ms] [animation-fill-mode:both] slide-in-from-bottom-2 motion-reduce:animate-none sm:grid sm:grid-cols-2 sm:divide-y-0">
-          {specRows.map((row, index) => (
+        <dl className="mt-auto min-w-0 animate-in border-t border-border duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] fade-in-0 [animation-delay:200ms] [animation-fill-mode:both] slide-in-from-bottom-2 motion-reduce:animate-none sm:grid sm:grid-cols-2 sm:gap-x-8">
+          {specRows.map((row) => (
             <div
               key={row.label}
-              className={`grid min-w-0 grid-cols-[88px_minmax(0,1fr)] items-center gap-3 px-3 py-2.5 sm:border-border ${
-                index % 2 === 0 ? "sm:border-r" : ""
-              } ${index >= 2 ? "sm:border-t" : ""}`}
+              className="grid min-w-0 grid-cols-[88px_minmax(0,1fr)] items-center gap-3 border-b border-border py-2.5"
             >
               <dt className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                 {row.label}

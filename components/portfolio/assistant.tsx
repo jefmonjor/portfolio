@@ -225,7 +225,7 @@ function Assistant() {
               closeAssistant()
             }
           }}
-          className="flex h-[min(30rem,calc(100svh-6rem))] w-[min(23rem,calc(100vw-2rem))] origin-bottom-right animate-in flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-lg duration-200 ease-out fade-in-0 zoom-in-95 motion-reduce:zoom-in-100"
+          className="flex h-[min(30rem,calc(100svh-6rem))] w-[min(23rem,calc(100vw-2rem))] origin-bottom-right animate-in flex-col overflow-hidden border border-border bg-background shadow-lg duration-200 ease-out fade-in-0 zoom-in-95 motion-reduce:zoom-in-100"
         >
           <div className="flex items-center justify-between gap-2 border-b border-border py-1.5 pr-1.5 pl-3">
             <span className="flex items-center gap-2 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
@@ -279,7 +279,7 @@ function Assistant() {
                     type="button"
                     disabled={busy}
                     onClick={() => void send(s)}
-                    className="min-h-8 rounded-md border border-border px-2.5 py-1.5 text-left font-mono text-[11px] tracking-wide text-muted-foreground transition-[color,border-color,transform] duration-150 ease-out hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] disabled:opacity-60"
+                    className="min-h-8 border border-border px-2.5 py-1.5 text-left font-mono text-[11px] tracking-wide text-muted-foreground transition-[color,border-color,transform] duration-150 ease-out hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] disabled:opacity-60"
                   >
                     {s}
                   </button>
@@ -290,7 +290,7 @@ function Assistant() {
               <div
                 key={i}
                 className={cn(
-                  "max-w-[85%] rounded-lg px-2.5 py-1.5 text-xs leading-relaxed wrap-break-word whitespace-pre-line",
+                  "max-w-[85%] px-2.5 py-1.5 text-xs leading-relaxed wrap-break-word whitespace-pre-line",
                   m.role === "user"
                     ? "ml-auto bg-foreground text-background"
                     : "border border-border text-foreground"
@@ -305,7 +305,7 @@ function Assistant() {
             ))}
             {busy ? (
               <div
-                className="flex w-fit items-center gap-1 rounded-lg border border-border px-2.5 py-2"
+                className="flex w-fit items-center gap-1 border border-border px-2.5 py-2"
                 aria-label={t("thinking")}
               >
                 {[0, 150, 300].map((delay) => (
@@ -348,7 +348,7 @@ function Assistant() {
               placeholder={t("placeholder")}
               maxLength={ASSISTANT_MESSAGE_INPUT_CHARS}
               enterKeyHint="send"
-              className="field-sizing-content max-h-32 min-h-9 min-w-0 flex-1 resize-none rounded-md border border-input bg-transparent px-2.5 py-2 text-base leading-snug outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30 sm:min-h-8 sm:py-1.5 sm:text-xs"
+              className="field-sizing-content max-h-32 min-h-9 min-w-0 flex-1 resize-none border border-input bg-transparent px-2.5 py-2 text-base leading-snug outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30 sm:min-h-8 sm:py-1.5 sm:text-xs"
             />
             <Button
               type="submit"

@@ -37,7 +37,7 @@ function Projects() {
         hint={t("hint", { count: entries.length })}
       />
 
-      <ul className="grid grid-cols-1 gap-0 overflow-hidden rounded-xl border border-border sm:grid-cols-2">
+      <ul className="grid grid-cols-1 gap-0 border border-border sm:grid-cols-2">
         {entries.map((entry, index) => {
           const name = tEntries(`${entry.id}.name`)
           const summary = tEntries(`${entry.id}.summary`)
