@@ -39,9 +39,12 @@ Primary surfaces:
 
 ### CV variants
 
-1. `general`: complete editorial profile for a person who wants the broad
-   story, including all canonical experience, projects, education, languages,
-   availability, and contact paths.
+1. `general`: the CV a technical reader opens on a first-page preview: one
+   column, one typeface, black on white, no colour, icons, technology chips,
+   section numbers or letter-spaced labels. Header with name, role, one
+   contact line with full addresses and availability; summary; complete
+   experience with a summary and bullets per role; three featured projects
+   plus one line for the rest; grouped skills; education and languages last.
 2. `technical`: one-column, ATS-readable engineering CV that foregrounds
    technical skills, practices, experience stacks, and the strongest technical
    projects. It is deterministic and does not require AI.

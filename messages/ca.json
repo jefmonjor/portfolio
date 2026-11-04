@@ -100,27 +100,8 @@
     "headline": "Producte de principi a fi sobre backends Java/Spring: arquitectura mantenible, integració amb sistemes crítics i IA aplicada on aporta valor real.",
     "summary": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. Migracions complexes, integració amb sistemes legacy i arquitectures hexagonals i de microserveis. En paral·lel, productes propis —en funcionament i en desenvolupament— que cobreixen el cicle complet: producte, backend, desplegament i IA aplicada amb dades validades i alternatives manuals.",
     "portfolioName": "Portfolio personal",
-    "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + tRPC + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert."
-  },
-  "metrics": {
-    "entries": {
-      "years": {
-        "value": "6+",
-        "label": "Anys de software en producció"
-      },
-      "sectors": {
-        "value": "3",
-        "label": "Sectors · banca, legal i energia"
-      },
-      "companies": {
-        "value": "5",
-        "label": "Empreses · de Sevilla a Andorra"
-      },
-      "products": {
-        "value": "E2E",
-        "label": "Producte · del problema al desplegament"
-      }
-    }
+    "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + tRPC + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert.",
+    "otherProjects": "Altres projectes"
   },
   "experience": {
     "title": "On he treballat",
@@ -398,7 +379,7 @@
     "title": "Descarregar CV",
     "question": "Tria la versió que encaixa millor",
     "general": "CV general",
-    "generalDesc": "La història completa: experiència, projectes, formació i idiomes en disseny editorial.",
+    "generalDesc": "Per llegir d'una passada: resum, experiència i projectes en text pla, sense adorns.",
     "technical": "CV tècnic",
     "technicalDesc": "Una columna, lectura ATS i més pes per a stack, pràctiques i projectes tècnics.",
     "tailor": "CV segons l'oferta",

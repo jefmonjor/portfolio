@@ -14,6 +14,13 @@ import { contactEmail, contactMailto } from "@/lib/email"
 import { profile, siteUrlShort } from "@/lib/profile"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
 
+// The general CV is read by a person, usually on the first-page preview of a
+// hiring tool, so the first page carries everything that matters: who, how to
+// reach him, a summary and the work history. It is deliberately plain: one
+// column, one typeface, black on white, no colour, no icons, no technology
+// chips, no section numbers, no letter-spaced labels. Education and languages
+// close the document.
+
 const FONT_DIR = path.join(process.cwd(), "public/fonts/cv")
 
 Font.register({
@@ -26,14 +33,6 @@ Font.register({
   ],
 })
 
-Font.register({
-  family: "GeistMono",
-  fonts: [
-    { src: path.join(FONT_DIR, "GeistMono-Regular.ttf"), fontWeight: 400 },
-    { src: path.join(FONT_DIR, "GeistMono-Medium.ttf"), fontWeight: 500 },
-  ],
-})
-
 Font.registerHyphenationCallback((word) => [word])
 
 type CvLabels = {
@@ -42,7 +41,7 @@ type CvLabels = {
   readonly headline: string
   readonly summary: string
   readonly availability: string
-  readonly metrics: ReadonlyArray<{ value: string; label: string }>
+  readonly otherProjects: string
   readonly sections: {
     readonly profile: string
     readonly experience: string
@@ -87,447 +86,189 @@ export type CvLanguageEntry = {
   readonly level: string
 }
 
+// The three projects that say the most about the work (invoicing under a
+// legal standard, AI over geodata, a Go CLI built test-first). The rest are
+// one closing line with their addresses.
+const FEATURED_PROJECT_IDS: ReadonlyArray<string> = [
+  "transolido",
+  "ilnami",
+  "specforge",
+]
+
 const palette = {
-  background: "#ffffff",
-  ink: "#0a0a0a",
-  body: "#27272a",
-  muted: "#71717a",
-  faint: "#a1a1aa",
-  rule: "#e4e4e7",
-  hairline: "#f4f4f5",
-  // Print-friendly terracotta matching the website's --brand token.
-  brand: "#b5691e",
+  ink: "#111111",
+  body: "#222222",
+  muted: "#555555",
+  rule: "#999999",
 } as const
 
 const styles = StyleSheet.create({
   page: {
     paddingTop: 40,
-    paddingBottom: 42,
+    paddingBottom: 44,
     paddingHorizontal: 46,
-    fontSize: 9.5,
-    color: palette.body,
-    backgroundColor: palette.background,
-    lineHeight: 1.5,
     fontFamily: "Figtree",
     fontWeight: 400,
+    fontSize: 9.5,
+    lineHeight: 1.4,
+    color: palette.body,
+    backgroundColor: "#ffffff",
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    paddingBottom: 12,
-    marginBottom: 14,
-    borderBottomWidth: 0.75,
-    borderBottomColor: palette.ink,
-  },
-  runningHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "baseline",
-    marginBottom: 14,
-  },
-  runningName: {
-    fontFamily: "GeistMono",
-    fontWeight: 500,
-    fontSize: 7.5,
-    letterSpacing: 1.4,
-    textTransform: "uppercase",
-    color: palette.muted,
-  },
-  runningMeta: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 7,
-    letterSpacing: 1.2,
-    textTransform: "uppercase",
-    color: palette.faint,
-  },
-  headerLeft: {
-    flexDirection: "column",
-    maxWidth: "65%",
-  },
-  eyebrow: {
-    fontFamily: "GeistMono",
-    fontSize: 7,
-    letterSpacing: 1.6,
-    textTransform: "uppercase",
-    color: palette.brand,
-    marginBottom: 8,
-  },
-  availability: {
-    marginTop: 3,
-    fontFamily: "GeistMono",
-    fontWeight: 500,
-    fontSize: 7,
-    letterSpacing: 0.8,
-    textTransform: "uppercase",
-    color: palette.brand,
-  },
-  metricsRow: {
-    flexDirection: "row",
-    borderTopWidth: 0.5,
-    borderTopColor: palette.rule,
-    borderBottomWidth: 0.5,
-    borderBottomColor: palette.rule,
-    paddingVertical: 7,
-    marginBottom: 12,
-  },
-  metricCell: {
-    flex: 1,
-    flexDirection: "column",
-    gap: 1,
-  },
-  metricValue: {
-    fontFamily: "GeistMono",
-    fontWeight: 500,
-    fontSize: 11,
-    color: palette.ink,
-  },
-  metricLabel: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 6,
-    letterSpacing: 0.8,
-    textTransform: "uppercase",
-    color: palette.muted,
+    alignItems: "center",
+    marginBottom: 10,
   },
   name: {
-    fontFamily: "Figtree",
     fontWeight: 700,
-    fontSize: 24,
+    fontSize: 19,
+    lineHeight: 1.15,
     color: palette.ink,
-    letterSpacing: -0.6,
-    lineHeight: 1.1,
+    textAlign: "center",
   },
-  roleLine: {
-    marginTop: 6,
-    fontSize: 9.5,
-    color: palette.muted,
+  role: {
+    marginTop: 3,
+    fontWeight: 600,
+    fontSize: 10.5,
+    color: palette.ink,
+    textAlign: "center",
   },
-  headerRight: {
-    flexDirection: "column",
-    alignItems: "flex-end",
-    gap: 3,
-  },
-  contactRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-  },
-  contactLabel: {
-    fontFamily: "GeistMono",
-    fontSize: 7,
-    letterSpacing: 1.4,
-    textTransform: "uppercase",
-    color: palette.faint,
-    width: 42,
-    textAlign: "right",
-  },
-  contactValue: {
-    fontFamily: "Figtree",
-    fontWeight: 500,
+  contactLine: {
+    marginTop: 3,
     fontSize: 9,
-    color: palette.ink,
+    color: palette.body,
+    textAlign: "center",
+  },
+  availability: {
+    marginTop: 2,
+    fontSize: 8.5,
+    color: palette.muted,
+    textAlign: "center",
+  },
+  link: {
+    color: palette.body,
     textDecoration: "none",
   },
-  intro: {
-    flexDirection: "column",
-    gap: 5,
-    marginBottom: 12,
-  },
-  headline: {
-    fontFamily: "Figtree",
-    fontWeight: 500,
-    fontSize: 11,
-    color: palette.ink,
-    lineHeight: 1.45,
-  },
-  summary: {
-    fontSize: 9.5,
-    color: palette.muted,
-    lineHeight: 1.55,
-  },
   section: {
-    marginTop: 2,
-    marginBottom: 8,
-  },
-  sectionHeader: {
-    flexDirection: "row",
-    alignItems: "baseline",
-    gap: 10,
-    marginBottom: 8,
-  },
-  sectionIndex: {
-    fontFamily: "GeistMono",
-    fontWeight: 500,
-    fontSize: 8,
-    letterSpacing: 1.4,
-    color: palette.brand,
+    marginTop: 8,
   },
   sectionTitle: {
-    fontFamily: "Figtree",
-    fontWeight: 600,
-    fontSize: 13,
+    fontWeight: 700,
+    fontSize: 10,
+    textTransform: "uppercase",
     color: palette.ink,
-    letterSpacing: -0.2,
-  },
-  sectionRule: {
-    flexGrow: 1,
-    height: 0,
-    borderBottomWidth: 0.5,
+    paddingBottom: 2,
+    marginBottom: 5,
+    borderBottomWidth: 0.6,
     borderBottomColor: palette.rule,
-    transform: "translateY(-3px)",
   },
-  experienceItem: {
-    flexDirection: "row",
-    gap: 14,
-    marginBottom: 9,
-  },
-  experienceTimeline: {
-    width: 72,
-    flexShrink: 0,
-    flexDirection: "column",
-    gap: 1,
-  },
-  experienceDate: {
-    fontFamily: "GeistMono",
-    fontWeight: 500,
-    fontSize: 7.5,
-    letterSpacing: 0.6,
-    textTransform: "uppercase",
-    color: palette.ink,
-  },
-  experienceDateEnd: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 7.5,
-    letterSpacing: 0.6,
-    textTransform: "uppercase",
-    color: palette.faint,
-  },
-  experienceBody: {
-    flex: 1,
-    flexDirection: "column",
-    gap: 2,
-  },
-  roleHeader: {
-    flexDirection: "row",
-    alignItems: "baseline",
-    flexWrap: "wrap",
-    gap: 6,
-  },
-  experienceRole: {
-    fontFamily: "Figtree",
+  headline: {
     fontWeight: 600,
-    fontSize: 11,
+    fontSize: 9.5,
     color: palette.ink,
-    letterSpacing: -0.1,
+    marginBottom: 2,
   },
-  experienceOrg: {
-    fontFamily: "Figtree",
-    fontWeight: 500,
-    fontSize: 9,
+  paragraph: {
+    fontSize: 9.5,
+    lineHeight: 1.4,
     color: palette.body,
   },
-  experienceMeta: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 7.5,
-    letterSpacing: 0.6,
-    textTransform: "uppercase",
-    color: palette.muted,
-    marginTop: 1,
+  job: {
+    marginBottom: 7,
   },
-  experienceSummary: {
+  jobHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "baseline",
+    gap: 10,
+  },
+  jobTitle: {
+    flex: 1,
+    fontSize: 10,
+    color: palette.ink,
+  },
+  jobRole: {
+    fontWeight: 700,
+  },
+  jobOrg: {
+    fontWeight: 400,
+  },
+  jobDates: {
+    fontSize: 9,
+    color: palette.muted,
+    flexShrink: 0,
+  },
+  jobLocation: {
+    fontSize: 8.5,
+    color: palette.muted,
+    marginBottom: 2,
+  },
+  jobSummary: {
     fontSize: 9.5,
     color: palette.body,
-    lineHeight: 1.5,
-    marginTop: 3,
+    marginBottom: 1,
   },
   bullet: {
     flexDirection: "row",
-    gap: 7,
-    marginTop: 1,
+    gap: 5,
+    paddingLeft: 6,
   },
   bulletMark: {
+    width: 6,
     fontSize: 9.5,
-    color: palette.brand,
-    width: 8,
+    color: palette.body,
   },
   bulletText: {
     flex: 1,
     fontSize: 9.5,
+    lineHeight: 1.4,
     color: palette.body,
-    lineHeight: 1.5,
   },
-  stackRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: 5,
-  },
-  stackItem: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 7.5,
-    letterSpacing: 0.3,
+  skillLine: {
+    fontSize: 9.5,
+    lineHeight: 1.4,
     color: palette.body,
-    backgroundColor: palette.hairline,
-    paddingHorizontal: 5,
-    paddingVertical: 1.5,
-    marginRight: 4,
-    marginBottom: 3,
-    borderRadius: 2,
+    marginBottom: 1,
   },
-  twoColumn: {
-    flexDirection: "row",
-    gap: 22,
+  skillName: {
+    fontWeight: 700,
+    color: palette.ink,
   },
-  columnHalf: {
-    flex: 1,
-    flexDirection: "column",
-  },
-  skillGroup: {
-    flexDirection: "column",
-    marginBottom: 10,
-  },
-  skillGroupHeader: {
-    flexDirection: "row",
-    alignItems: "baseline",
-    justifyContent: "space-between",
+  project: {
     marginBottom: 4,
   },
-  skillGroupName: {
-    fontFamily: "Figtree",
-    fontWeight: 600,
-    fontSize: 9,
-    color: palette.ink,
-    letterSpacing: 0.2,
-  },
-  skillGroupCount: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 7,
-    letterSpacing: 1,
-    color: palette.faint,
-  },
-  skillGroupItems: {
+  projectTitle: {
     fontSize: 9.5,
-    color: palette.body,
-    lineHeight: 1.55,
-  },
-  projectItem: {
-    flexDirection: "column",
-    marginBottom: 9,
-    paddingBottom: 9,
-    borderBottomWidth: 0.5,
-    borderBottomColor: palette.hairline,
-  },
-  projectItemLast: {
-    borderBottomWidth: 0,
-    paddingBottom: 0,
-    marginBottom: 0,
-  },
-  projectHeader: {
-    flexDirection: "row",
-    alignItems: "baseline",
-    gap: 8,
-    marginBottom: 3,
+    color: palette.ink,
   },
   projectName: {
-    fontFamily: "Figtree",
-    fontWeight: 600,
-    fontSize: 11,
-    color: palette.ink,
+    fontWeight: 700,
   },
   projectUrl: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 8,
     color: palette.muted,
-    textDecoration: "none",
-    letterSpacing: 0.2,
   },
   projectSummary: {
     fontSize: 9.5,
+    lineHeight: 1.4,
     color: palette.body,
-    lineHeight: 1.55,
   },
-  projectStatus: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 7.5,
-    color: palette.muted,
-    textTransform: "uppercase",
-    letterSpacing: 0.4,
-    marginBottom: 3,
+  line: {
+    fontSize: 9.5,
+    lineHeight: 1.4,
+    color: palette.body,
+    marginBottom: 1,
   },
-  educationItem: {
-    flexDirection: "column",
-    marginBottom: 8,
-  },
-  educationTitle: {
-    fontFamily: "Figtree",
+  lineStrong: {
     fontWeight: 600,
-    fontSize: 10,
     color: palette.ink,
-  },
-  educationOrg: {
-    fontFamily: "Figtree",
-    fontWeight: 500,
-    fontSize: 9,
-    color: palette.body,
-    marginTop: 1,
-  },
-  educationMeta: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 7.5,
-    letterSpacing: 0.6,
-    textTransform: "uppercase",
-    color: palette.muted,
-    marginTop: 2,
-  },
-  languageItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "baseline",
-    paddingVertical: 4,
-    borderBottomWidth: 0.5,
-    borderBottomColor: palette.hairline,
-  },
-  languageName: {
-    fontFamily: "Figtree",
-    fontWeight: 500,
-    fontSize: 10,
-    color: palette.ink,
-  },
-  languageLevel: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 7.5,
-    letterSpacing: 0.6,
-    textTransform: "uppercase",
-    color: palette.muted,
   },
   footer: {
     position: "absolute",
-    bottom: 18,
+    bottom: 20,
     left: 46,
     right: 46,
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
-    paddingTop: 6,
-    borderTopWidth: 0.5,
-    borderTopColor: palette.rule,
-    height: 22,
-  },
-  footerText: {
-    fontFamily: "GeistMono",
-    fontWeight: 400,
-    fontSize: 7,
-    letterSpacing: 1.2,
-    textTransform: "uppercase",
+    fontSize: 7.5,
     color: palette.muted,
   },
 })
@@ -536,12 +277,8 @@ type CvDocumentProps = {
   readonly labels: CvLabels
 }
 
-function findSocialHref(kind: string): string | undefined {
-  return profile.socials.find((s) => s.kind === kind)?.href
-}
-
-function findSocialHandle(kind: string): string | undefined {
-  return profile.socials.find((s) => s.kind === kind)?.handle
+function findSocial(kind: string) {
+  return profile.socials.find((s) => s.kind === kind)
 }
 
 function CvDocument({ labels }: CvDocumentProps) {
@@ -549,10 +286,54 @@ function CvDocument({ labels }: CvDocumentProps) {
   // static HTML — safe to print it in the downloadable document.
   const email = contactEmail()
   const emailHref = contactMailto()
-  const linkedinHref = findSocialHref("linkedin")
-  const linkedinHandle = findSocialHandle("linkedin")
-  const githubHref = findSocialHref("github")
-  const githubHandle = findSocialHandle("github")
+  const linkedin = findSocial("linkedin")
+  const github = findSocial("github")
+
+  // Full addresses, written out: a reader can type them and a parser can
+  // keep them as one token each.
+  const contacts: ReadonlyArray<{
+    href: string
+    label: string
+    prefix?: string
+  }> = [
+    ...(email && emailHref ? [{ href: emailHref, label: email }] : []),
+    ...(linkedin
+      ? [
+          {
+            href: linkedin.href,
+            label: cvLinkLabel(linkedin.href),
+            prefix: "LinkedIn",
+          },
+        ]
+      : []),
+    ...(github
+      ? [
+          {
+            href: github.href,
+            label: cvLinkLabel(github.href),
+            prefix: "GitHub",
+          },
+        ]
+      : []),
+    {
+      href: siteUrlShort,
+      label: cvLinkLabel(siteUrlShort),
+      prefix: "Portfolio",
+    },
+  ]
+
+  const featured = FEATURED_PROJECT_IDS.flatMap((id) => {
+    const entry = profile.projects.find((p) => p.id === id)
+    return entry ? [{ entry, data: labels.projectEntry(id) }] : []
+  })
+  const others = profile.projects
+    .filter(
+      (p) =>
+        !FEATURED_PROJECT_IDS.includes(p.id) &&
+        p.visibility === "public" &&
+        p.url
+    )
+    .map((p) => `${labels.projectEntry(p.id).name} (${cvLinkLabel(p.url!)})`)
 
   return (
     <Document
@@ -563,272 +344,151 @@ function CvDocument({ labels }: CvDocumentProps) {
       producer="portfolio"
     >
       <Page size="A4" style={styles.page} wrap>
-        <View style={styles.runningHeader} fixed>
-          <Text style={styles.runningName}>{profile.name}</Text>
-          <Text style={styles.runningMeta}>
+        <View style={styles.header}>
+          <Text style={styles.name}>{profile.name}</Text>
+          <Text style={styles.role}>
             {labels.role} · {profile.location}
           </Text>
-        </View>
-
-        <View style={styles.header}>
-          <View style={styles.headerLeft}>
-            <Text style={styles.eyebrow}>{labels.sections.profile}</Text>
-            <Text style={styles.name}>{profile.name}</Text>
-            <Text style={styles.roleLine}>
-              {labels.role} · {profile.timezone}
-            </Text>
-            <Text style={styles.availability}>{labels.availability}</Text>
-          </View>
-          <View style={styles.headerRight}>
-            {email && emailHref ? (
-              <View style={styles.contactRow}>
-                <Text style={styles.contactLabel}>Email</Text>
-                <Link src={emailHref} style={styles.contactValue}>
-                  {email}
+          <Text style={styles.contactLine}>
+            {contacts.map((contact, index) => (
+              <Text key={contact.href}>
+                {index > 0 ? "  ·  " : ""}
+                {contact.prefix ? `${contact.prefix}: ` : ""}
+                <Link src={contact.href} style={styles.link}>
+                  {contact.label}
                 </Link>
-              </View>
-            ) : null}
-            {linkedinHref ? (
-              <View style={styles.contactRow}>
-                <Text style={styles.contactLabel}>LinkedIn</Text>
-                <Link src={linkedinHref} style={styles.contactValue}>
-                  {linkedinHandle ?? "linkedin"}
-                </Link>
-              </View>
-            ) : null}
-            {githubHref ? (
-              <View style={styles.contactRow}>
-                <Text style={styles.contactLabel}>GitHub</Text>
-                <Link src={githubHref} style={styles.contactValue}>
-                  {githubHandle ?? "github"}
-                </Link>
-              </View>
-            ) : null}
-            <View style={styles.contactRow}>
-              <Text style={styles.contactLabel}>Web</Text>
-              <Link src={siteUrlShort} style={styles.contactValue}>
-                {cvLinkLabel(siteUrlShort)}
-              </Link>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.intro}>
-          <Text style={styles.headline}>{labels.headline}</Text>
-          <Text style={styles.summary}>{labels.summary}</Text>
-        </View>
-
-        {labels.metrics.length > 0 ? (
-          <View style={styles.metricsRow}>
-            {labels.metrics.map((metric) => (
-              <View key={metric.label} style={styles.metricCell}>
-                <Text style={styles.metricValue}>{metric.value}</Text>
-                <Text style={styles.metricLabel}>{metric.label}</Text>
-              </View>
+              </Text>
             ))}
-          </View>
-        ) : null}
+          </Text>
+          <Text style={styles.availability}>{labels.availability}</Text>
+        </View>
 
         <View style={styles.section}>
-          <SectionTitle index="02" title={labels.sections.experience} />
+          <Text style={styles.sectionTitle}>{labels.sections.profile}</Text>
+          <Text style={styles.headline}>{labels.headline}</Text>
+          <Text style={styles.paragraph}>{labels.summary}</Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{labels.sections.experience}</Text>
           {profile.experience.map((entry) => {
             const data = labels.experienceEntry(entry.id)
             return (
-              <View key={entry.id} style={styles.experienceItem} wrap={false}>
-                <View style={styles.experienceTimeline}>
-                  <Text style={styles.experienceDate}>{data.start}</Text>
-                  <Text style={styles.experienceDateEnd}>→ {data.end}</Text>
+              <View key={entry.id} style={styles.job}>
+                <View style={styles.jobHeader} minPresenceAhead={60}>
+                  <Text style={styles.jobTitle}>
+                    <Text style={styles.jobRole}>{data.role}</Text>
+                    <Text style={styles.jobOrg}> — {entry.organization}</Text>
+                  </Text>
+                  <Text style={styles.jobDates}>
+                    {data.start} – {data.end}
+                  </Text>
                 </View>
-                <View style={styles.experienceBody}>
-                  <View style={styles.roleHeader}>
-                    <Text style={styles.experienceRole}>{data.role}</Text>
-                    <Text style={styles.experienceOrg}>
-                      · {entry.organization}
-                    </Text>
+                <Text style={styles.jobLocation}>{data.location}</Text>
+                {data.summary ? (
+                  <Text style={styles.jobSummary}>{data.summary}</Text>
+                ) : null}
+                {data.highlights.map((highlight, index) => (
+                  <View key={index} style={styles.bullet}>
+                    <Text style={styles.bulletMark}>•</Text>
+                    <Text style={styles.bulletText}>{highlight}</Text>
                   </View>
-                  <Text style={styles.experienceMeta}>{data.location}</Text>
-                  {data.summary ? (
-                    <Text style={styles.experienceSummary}>{data.summary}</Text>
-                  ) : null}
-                  {data.highlights.map((hl, i) => (
-                    <View key={i} style={styles.bullet}>
-                      <Text style={styles.bulletMark}>—</Text>
-                      <Text style={styles.bulletText}>{hl}</Text>
-                    </View>
-                  ))}
-                  {entry.stack && entry.stack.length > 0 ? (
-                    <View style={styles.stackRow}>
-                      {entry.stack.map((tech) => (
-                        <Text key={tech} style={styles.stackItem}>
-                          {tech}
-                        </Text>
-                      ))}
-                    </View>
-                  ) : null}
-                </View>
+                ))}
               </View>
             )
           })}
-        </View>
-
-        <View style={styles.section} wrap={false}>
-          <SectionTitle index="03" title={labels.sections.skills} />
-          <View style={styles.twoColumn}>
-            <View style={styles.columnHalf}>
-              {profile.skills
-                .filter((_, i) => i % 2 === 0)
-                .map((group) => (
-                  <SkillGroup
-                    key={group.id}
-                    title={labels.skillGroupName(group.id)}
-                    items={
-                      group.id === "practice"
-                        ? labels.practiceItems
-                        : group.items
-                    }
-                  />
-                ))}
-            </View>
-            <View style={styles.columnHalf}>
-              {profile.skills
-                .filter((_, i) => i % 2 === 1)
-                .map((group) => (
-                  <SkillGroup
-                    key={group.id}
-                    title={labels.skillGroupName(group.id)}
-                    items={
-                      group.id === "practice"
-                        ? labels.practiceItems
-                        : group.items
-                    }
-                  />
-                ))}
-            </View>
-          </View>
         </View>
 
         <View style={styles.section}>
-          <SectionTitle index="04" title={labels.sections.projects} />
-          {profile.projects.map((entry, idx) => {
-            const data = labels.projectEntry(entry.id)
-            const isLast = idx === profile.projects.length - 1
-            return (
-              <View
-                key={entry.id}
-                style={
-                  isLast
-                    ? [styles.projectItem, styles.projectItemLast]
-                    : styles.projectItem
-                }
-                wrap={false}
-              >
-                <View style={styles.projectHeader}>
-                  <Text style={styles.projectName}>{data.name}</Text>
-                  {entry.url ? (
-                    <Link src={cvLinkHref(entry.url)} style={styles.projectUrl}>
+          <Text style={styles.sectionTitle}>{labels.sections.projects}</Text>
+          {featured.map(({ entry, data }) => (
+            <View key={entry.id} style={styles.project}>
+              <Text style={styles.projectTitle}>
+                <Text style={styles.projectName}>{data.name}</Text>
+                {entry.url ? (
+                  <Text style={styles.projectUrl}>
+                    {"  ·  "}
+                    <Link src={cvLinkHref(entry.url)} style={styles.link}>
                       {cvLinkLabel(entry.url)}
                     </Link>
-                  ) : null}
-                </View>
-                <Text style={styles.projectStatus}>{data.status}</Text>
-                <Text style={styles.projectSummary}>{data.summary}</Text>
-                {entry.stack && entry.stack.length > 0 ? (
-                  <View style={styles.stackRow}>
-                    {entry.stack.map((tech) => (
-                      <Text key={tech} style={styles.stackItem}>
-                        {tech}
-                      </Text>
-                    ))}
-                  </View>
+                  </Text>
                 ) : null}
-              </View>
+              </Text>
+              <Text style={styles.projectSummary}>{data.summary}</Text>
+            </View>
+          ))}
+          {others.length > 0 ? (
+            <Text style={styles.line}>
+              <Text style={styles.lineStrong}>{labels.otherProjects}: </Text>
+              {others.join(" · ")}
+            </Text>
+          ) : null}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{labels.sections.skills}</Text>
+          {profile.skills.map((group) => {
+            const items =
+              group.id === "practice" ? labels.practiceItems : group.items
+            // "Hadoop · HDFS · YARN" is one chip on the site and three terms
+            // on paper: a parser keeps each as its own keyword.
+            const terms = Array.from(
+              new Set(
+                items.flatMap((item) =>
+                  group.id === "practice" ? [item] : item.split(" · ")
+                )
+              )
+            )
+            return (
+              <Text key={group.id} style={styles.skillLine}>
+                <Text style={styles.skillName}>
+                  {labels.skillGroupName(group.id)}:{" "}
+                </Text>
+                {terms.join(", ")}
+              </Text>
             )
           })}
         </View>
 
-        <View style={styles.section} wrap={false}>
-          <View style={styles.twoColumn}>
-            <View style={styles.columnHalf}>
-              <SectionTitle index="05" title={labels.sections.education} />
-              {profile.education.map((entry) => {
-                const data = labels.educationEntry(entry.id)
-                return (
-                  <View
-                    key={entry.id}
-                    style={styles.educationItem}
-                    wrap={false}
-                  >
-                    <Text style={styles.educationTitle}>{data.title}</Text>
-                    <Text style={styles.educationOrg}>
-                      {entry.organization}
-                    </Text>
-                    <Text style={styles.educationMeta}>
-                      {data.dates}
-                      {data.location ? ` · ${data.location}` : ""}
-                    </Text>
-                  </View>
-                )
-              })}
-            </View>
-            <View style={styles.columnHalf}>
-              <SectionTitle index="06" title={labels.sections.languages} />
-              {profile.languages.map((lang) => {
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{labels.sections.education}</Text>
+          {profile.education.map((entry) => {
+            const data = labels.educationEntry(entry.id)
+            return (
+              <Text key={entry.id} style={styles.line}>
+                <Text style={styles.lineStrong}>{data.title}</Text>
+                {" — "}
+                {entry.organization}
+                {data.location ? `, ${data.location}` : ""}
+                {" · "}
+                {data.dates}
+              </Text>
+            )
+          })}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{labels.sections.languages}</Text>
+          <Text style={styles.line}>
+            {profile.languages
+              .map((lang) => {
                 const data = labels.languageEntry(lang.id)
-                return (
-                  <View key={lang.id} style={styles.languageItem}>
-                    <Text style={styles.languageName}>{data.name}</Text>
-                    <Text style={styles.languageLevel}>{data.level}</Text>
-                  </View>
-                )
-              })}
-            </View>
-          </View>
+                return `${data.name} (${data.level})`
+              })
+              .join(" · ")}
+          </Text>
         </View>
 
         <View style={styles.footer} fixed>
-          <Text style={styles.footerText}>{labels.footer}</Text>
-          <Text style={styles.footerText}>{profile.shortName}</Text>
+          <Text>{labels.footer}</Text>
+          <Text
+            render={({ pageNumber, totalPages }) =>
+              `${profile.shortName} · ${pageNumber} / ${totalPages}`
+            }
+          />
         </View>
       </Page>
     </Document>
-  )
-}
-
-function SectionTitle({
-  index,
-  title,
-}: {
-  readonly index: string
-  readonly title: string
-}) {
-  return (
-    <View style={styles.sectionHeader}>
-      <Text style={styles.sectionIndex}>{index}</Text>
-      <Text style={styles.sectionTitle}>{title}</Text>
-      <View style={styles.sectionRule} />
-    </View>
-  )
-}
-
-function SkillGroup({
-  title,
-  items,
-}: {
-  readonly title: string
-  readonly items: ReadonlyArray<string>
-}) {
-  return (
-    <View style={styles.skillGroup} wrap={false}>
-      <View style={styles.skillGroupHeader}>
-        <Text style={styles.skillGroupName}>{title}</Text>
-        <Text style={styles.skillGroupCount}>
-          {items.length.toString().padStart(2, "0")}
-        </Text>
-      </View>
-      {/* Single spaces around the separator: with double spaces @react-pdf
-          breaks the line with a hyphen and prints "Bootstrap-". */}
-      <Text style={styles.skillGroupItems}>{items.join(" · ")}</Text>
-    </View>
   )
 }
 

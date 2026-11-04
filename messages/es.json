@@ -100,27 +100,8 @@
     "headline": "Producto de principio a fin sobre backends Java/Spring: arquitectura mantenible, integración con sistemas críticos e IA aplicada donde aporta valor real.",
     "summary": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. Migraciones complejas, integración con sistemas legacy y arquitecturas hexagonales y de microservicios. En paralelo, productos propios —en funcionamiento y en desarrollo— que cubren el ciclo completo: producto, backend, despliegue e IA aplicada con datos validados y alternativas manuales.",
     "portfolioName": "Portfolio personal",
-    "portfolioSummary": "Portfolio y CV trilingüe con stack tipado Next.js + tRPC + Zod: tres CV en PDF generados en servidor desde una única fuente de datos, asistente de IA acotado a un dossier cerrado con límites de consumo, terminal interactiva y SEO/GEO completo. Código abierto."
-  },
-  "metrics": {
-    "entries": {
-      "years": {
-        "value": "6+",
-        "label": "Años de software en producción"
-      },
-      "sectors": {
-        "value": "3",
-        "label": "Sectores · banca, legal y energía"
-      },
-      "companies": {
-        "value": "5",
-        "label": "Empresas · de Sevilla a Andorra"
-      },
-      "products": {
-        "value": "E2E",
-        "label": "Producto · del problema al despliegue"
-      }
-    }
+    "portfolioSummary": "Portfolio y CV trilingüe con stack tipado Next.js + tRPC + Zod: tres CV en PDF generados en servidor desde una única fuente de datos, asistente de IA acotado a un dossier cerrado con límites de consumo, terminal interactiva y SEO/GEO completo. Código abierto.",
+    "otherProjects": "Otros proyectos"
   },
   "experience": {
     "title": "Dónde he trabajado",
@@ -398,7 +379,7 @@
     "title": "Descargar CV",
     "question": "Elige la versión que mejor encaja",
     "general": "CV general",
-    "generalDesc": "La historia completa: experiencia, proyectos, formación e idiomas en diseño editorial.",
+    "generalDesc": "Para leer de una pasada: resumen, experiencia y proyectos en texto plano, sin adornos.",
     "technical": "CV técnico",
     "technicalDesc": "Una columna, lectura ATS y más peso para stack, prácticas y proyectos técnicos.",
     "tailor": "CV según la oferta",

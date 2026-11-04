@@ -100,27 +100,8 @@
     "headline": "End-to-end product work on Java/Spring backends: maintainable architecture, integration with critical systems, and AI applied where it adds real value.",
     "summary": "Six-plus years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and manual fallbacks.",
     "portfolioName": "Personal portfolio",
-    "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + tRPC + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source."
-  },
-  "metrics": {
-    "entries": {
-      "years": {
-        "value": "6+",
-        "label": "Years of software in production"
-      },
-      "sectors": {
-        "value": "3",
-        "label": "Industries · banking, legal, energy"
-      },
-      "companies": {
-        "value": "5",
-        "label": "Companies · from Seville to Andorra"
-      },
-      "products": {
-        "value": "E2E",
-        "label": "Product · from problem to deployment"
-      }
-    }
+    "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + tRPC + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source.",
+    "otherProjects": "Other projects"
   },
   "experience": {
     "title": "Where I have worked",
@@ -398,7 +379,7 @@
     "title": "Download CV",
     "question": "Choose the version that fits",
     "general": "General CV",
-    "generalDesc": "The complete story: experience, projects, education and languages in an editorial layout.",
+    "generalDesc": "Read in one pass: summary, experience and projects in plain text, no decoration.",
     "technical": "Technical CV",
     "technicalDesc": "Single column, ATS-readable, with more weight on stack, practices and technical projects.",
     "tailor": "CV for a job offer",
