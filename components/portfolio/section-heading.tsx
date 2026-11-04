@@ -20,7 +20,7 @@ function SectionHeading({ title, hint, className, id }: SectionHeadingProps) {
         className
       )}
     >
-      <h2 className="flex items-center gap-3 font-heading text-[clamp(1.5rem,1.1vw+1.15rem,2rem)] leading-tight font-medium tracking-[-0.02em] text-foreground">
+      <h2 className="flex items-center gap-3 font-heading text-[clamp(1.5rem,1.1vw+1.15rem,2rem)] leading-tight font-medium tracking-[-0.01em] text-foreground">
         <span aria-hidden className="inline-block size-1.5 shrink-0 bg-brand" />
         {title}
       </h2>

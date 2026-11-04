@@ -6,8 +6,8 @@ Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar es
 
 | Capa | Fuente | Uso |
 |---|---|---|
-| Display (`--font-display` → `font-heading`) | **Geist** | h1–h3, nombre, posicionamiento del hero, títulos de sección. Tracking apretado (h1: `-0.03em`, h2: `-0.02em`) |
-| Cuerpo (`--font-sans`) | **Figtree** | Párrafos, descripciones, navegación, botones, pistas de sección |
+| Display (`--font-display` → `font-heading`) | **Fraunces** (serif variable, eje `opsz`) | h1–h3, nombre, posicionamiento del hero, títulos de sección, email de contacto, 404. Peso 500; tracking suave (h1: `-0.02em`, h2 y posicionamiento: `-0.01em`). Es la única fuente elegida por carácter: una serif de ojo grande junto a una interfaz de cantos rectos y datos en mono |
+| Cuerpo (`--font-sans`) | **Figtree** | Solo texto corrido y controles: párrafos, descripciones, navegación, botones, pistas de sección. Es la neutra; no se usa en titulares |
 | Mono (`--font-mono`) | **Geist Mono** | Solo datos: fechas, zona horaria, metadatos de la ficha y de cada puesto, atajos de teclado, terminal. Los badges de tecnología van en sans |
 
 - Tamaños fluidos con `clamp()`: h1 `clamp(2.5rem,5.5vw+1rem,5rem)`, h2 `clamp(1.5rem,1.1vw+1.15rem,2rem)`, posicionamiento del hero `clamp(1.25rem,1vw+1rem,1.625rem)`, email `clamp(1.25rem,2.2vw+0.75rem,1.875rem)`, métricas `clamp(1.75rem,1.8vw+1.1rem,2.25rem)`.

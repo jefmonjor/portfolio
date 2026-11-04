@@ -15,7 +15,7 @@ export default async function NotFound() {
 
       <p
         aria-hidden
-        className="relative z-10 font-heading text-[clamp(4rem,10vw,7rem)] leading-none font-medium tracking-[-0.04em] text-muted-foreground/40 tabular-nums"
+        className="relative z-10 font-heading text-[clamp(4rem,10vw,7rem)] leading-none font-medium tracking-[-0.02em] text-muted-foreground/40 tabular-nums"
       >
         404
       </p>
