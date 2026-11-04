@@ -103,8 +103,6 @@
     "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + tRPC + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert."
   },
   "metrics": {
-    "ariaLabel": "Mètriques de trajectòria",
-    "caption": "Mesurat en sistemes reals en producció",
     "entries": {
       "years": {
         "value": "6+",

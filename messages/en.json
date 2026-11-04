@@ -103,8 +103,6 @@
     "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + tRPC + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source."
   },
   "metrics": {
-    "ariaLabel": "Track-record metrics",
-    "caption": "Measured on real production systems",
     "entries": {
       "years": {
         "value": "6+",

@@ -10,10 +10,10 @@ Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar es
 | Cuerpo (`--font-sans`) | **Figtree** | Solo texto corrido y controles: párrafos, descripciones, navegación, botones, pistas de sección. Es la neutra; no se usa en titulares |
 | Mono (`--font-mono`) | **Geist Mono** | Solo datos: fechas, zona horaria, metadatos de la ficha y de cada puesto, atajos de teclado, terminal. Los badges de tecnología van en sans |
 
-- Tamaños fluidos con `clamp()`: h1 `clamp(2.5rem,5.5vw+1rem,5rem)`, h2 `clamp(1.5rem,1.1vw+1.15rem,2rem)`, posicionamiento del hero `clamp(1.25rem,1vw+1rem,1.625rem)`, email `clamp(1.25rem,2.2vw+0.75rem,1.875rem)`, métricas `clamp(1.75rem,1.8vw+1.1rem,2.25rem)`.
+- Tamaños fluidos con `clamp()`: h1 `clamp(2.5rem,5.5vw+1rem,5rem)`, h2 `clamp(1.5rem,1.1vw+1.15rem,2rem)`, posicionamiento del hero `clamp(1.25rem,1vw+1rem,1.625rem)`, email `clamp(1.25rem,2.2vw+0.75rem,1.875rem)`.
 - Títulos multi-línea llevan `text-balance` (sin viudas). Nunca cursiva en titulares.
 - **Suelo de 11px** para cualquier texto funcional; la medida de lectura no pasa de ~75 caracteres.
-- **Sin kickers ni numeración de secciones** ("01 — Sobre mí"): el título carga la sección. Retirados en octubre de 2026 tras la auditoría de Impeccable, junto con el texto "scramble" del hero y la franja marquee infinita.
+- **Sin kickers ni numeración de secciones** ("01 — Sobre mí"): el título carga la sección. Retirados en octubre de 2026 tras la auditoría de Impeccable, junto con el texto "scramble" del hero y la franja marquee infinita. La tira de métricas (6+ años · 3 sectores · 5 empresas) se retiró en noviembre de 2026: los números ya se cuentan con contexto en el párrafo de «Quién soy».
 
 ## Color
 

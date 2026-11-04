@@ -11,7 +11,6 @@ import { Education } from "@/components/portfolio/education"
 import { Experience } from "@/components/portfolio/experience"
 import { Footer } from "@/components/portfolio/footer"
 import { Hero } from "@/components/portfolio/hero"
-import { Metrics } from "@/components/portfolio/metrics"
 import { Projects } from "@/components/portfolio/projects"
 import { Reveal } from "@/components/portfolio/reveal"
 import { Skills } from "@/components/portfolio/skills"
@@ -41,9 +40,6 @@ export default async function Page({
           <Hero />
           <Reveal>
             <About />
-          </Reveal>
-          <Reveal>
-            <Metrics />
           </Reveal>
           <Reveal>
             <Experience />
