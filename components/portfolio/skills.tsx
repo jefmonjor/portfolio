@@ -28,17 +28,13 @@ function Skills() {
         hint={t("hint", { count: totalCount, groups: profile.skills.length })}
       />
 
-      <div className="grid grid-cols-1 gap-0 overflow-hidden rounded-xl border border-border sm:grid-cols-2 lg:grid-cols-3">
-        {profile.skills.map((group, index) => {
+      <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+        {profile.skills.map((group) => {
           const items = group.id === "practice" ? practiceItems : group.items
           return (
             <div
               key={group.id}
-              className={[
-                "flex flex-col gap-3 border-border p-4 sm:p-5",
-                index % 2 === 0 ? "sm:border-r" : "lg:border-r",
-                "border-b last:border-b-0 lg:border-r [&:nth-child(3n)]:lg:border-r-0",
-              ].join(" ")}
+              className="flex flex-col gap-3 border-t border-border pt-4"
             >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">

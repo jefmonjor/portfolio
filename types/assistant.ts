@@ -5,6 +5,7 @@ import {
   ASSISTANT_HISTORY_INPUT_MESSAGES,
   ASSISTANT_MESSAGE_INPUT_CHARS,
   ASSISTANT_REPLY_MAX_CHARS,
+  CV_TAILOR_OFFER_MIN_CHARS,
 } from "@/types/limits"
 
 export { ASSISTANT_HISTORY_INPUT_MESSAGES, ASSISTANT_MESSAGE_INPUT_CHARS }
@@ -29,9 +30,35 @@ export const assistantRequestSchema = z
   })
   .strict()
 
+// What the reply lets the visitor do next. A "cv" action downloads a ready
+// variant from GET /cv.pdf; "cv-tailor" carries the pasted offer back so the
+// client can POST it to /api/cv-tailor. The server decides which to offer;
+// the client only renders buttons.
+export const assistantActionSchema = z.discriminatedUnion("type", [
+  z
+    .object({
+      type: z.literal("cv"),
+      variant: z.enum(["general", "technical"]),
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("cv-tailor"),
+      offer: z
+        .string()
+        .trim()
+        .min(CV_TAILOR_OFFER_MIN_CHARS)
+        .max(ASSISTANT_MESSAGE_INPUT_CHARS),
+    })
+    .strict(),
+])
+
+export type AssistantAction = z.infer<typeof assistantActionSchema>
+
 export const assistantSuccessSchema = z
   .object({
     reply: z.string().trim().min(1).max(ASSISTANT_REPLY_MAX_CHARS),
+    actions: z.array(assistantActionSchema).max(3).optional(),
   })
   .strict()
 

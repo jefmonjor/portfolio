@@ -21,6 +21,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import {
+  cvPdfUrl,
+  downloadCv,
+  downloadTailoredCv,
+  type CvDownloadError,
+  type CvDownloadResult,
+  type CvVariant,
+} from "@/lib/cv-download"
 import { cn } from "@/lib/utils"
 import {
   CV_TAILOR_OFFER_MAX_CHARS,
@@ -38,7 +46,6 @@ type CvDownloadButtonProps = {
 }
 
 type Step = "choose" | "offer"
-type CvVariant = "general" | "technical"
 type Pending = CvVariant | "tailor"
 
 // Loaded on success only: the celebration is not worth shipping on first paint.
@@ -109,30 +116,6 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     resetDialog()
   }
 
-  function downloadBlob(blob: Blob, filename: string): void {
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement("a")
-    link.href = url
-    link.download = filename
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    window.setTimeout(() => URL.revokeObjectURL(url), 60_000)
-    completeDownload()
-  }
-
-  function filenameFrom(response: Response, fallback: string): string {
-    const disposition = response.headers.get("content-disposition")
-    return disposition?.match(/filename="([^"]+)"/)?.[1] ?? fallback
-  }
-
-  function isPdf(response: Response): boolean {
-    return (
-      response.headers.get("content-type")?.startsWith("application/pdf") ??
-      false
-    )
-  }
-
   // Starts a request that the dialog owns: closing it, or starting another
   // download, aborts the previous one so a late response never lands twice.
   function beginRequest(kind: Pending): AbortController {
@@ -149,84 +132,57 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     setPending(null)
   }
 
-  // The general and technical CVs used to open through a detached
-  // `target="_blank"` link. Safari and most mobile browsers treat that as a
-  // popup and drop it silently, while the dialog still closed with a success
-  // toast. Fetching the file and saving it as a blob is the same path the
-  // tailored CV already takes, and it works from every browser.
-  async function downloadVariant(variant: CvVariant): Promise<void> {
+  function reportFailure(
+    kind: Pending,
+    error: CvDownloadError,
+    directUrl?: string
+  ): void {
+    if (kind !== "tailor") {
+      toast.error(tModal("downloadError"), {
+        action: directUrl
+          ? {
+              label: tModal("openDirect"),
+              onClick: () => window.open(directUrl, "_blank", "noopener"),
+            }
+          : undefined,
+      })
+      return
+    }
+    if (error === "rate_limited") toast.error(tModal("tailorLimited"))
+    else if (error === "unavailable") toast.error(tModal("tailorUnavailable"))
+    else toast.error(tModal("tailorError"))
+  }
+
+  async function run(
+    kind: Pending,
+    task: (signal: AbortSignal) => Promise<CvDownloadResult>,
+    directUrl?: string
+  ): Promise<void> {
     if (busy) return
-    const url = `/cv.pdf?locale=${locale}&variant=${variant}`
-    const controller = beginRequest(variant)
-
+    const controller = beginRequest(kind)
     try {
-      const response = await fetch(url, { signal: controller.signal })
+      const result = await task(controller.signal)
       if (requestRef.current !== controller) return
-      if (!response.ok || !isPdf(response)) throw new Error("not a pdf")
-
-      const blob = await response.blob()
-      if (requestRef.current !== controller) return
-      downloadBlob(
-        blob,
-        filenameFrom(
-          response,
-          `Jefferson_Montesdeoca_CV_${locale.toUpperCase()}.pdf`
-        )
-      )
+      if (result.ok) completeDownload()
+      else reportFailure(kind, result.error, directUrl)
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return
-      toast.error(tModal("downloadError"), {
-        action: {
-          label: tModal("openDirect"),
-          onClick: () => window.open(url, "_blank", "noopener"),
-        },
-      })
+      reportFailure(kind, "failed", directUrl)
     } finally {
       endRequest(controller)
     }
   }
 
-  async function tailorAndDownload(): Promise<void> {
-    if (busy) return
-    const controller = beginRequest("tailor")
+  function downloadVariant(variant: CvVariant): Promise<void> {
+    return run(
+      variant,
+      (signal) => downloadCv(variant, locale, signal),
+      cvPdfUrl(locale, variant)
+    )
+  }
 
-    try {
-      const response = await fetch("/api/cv-tailor", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ offer, locale }),
-        signal: controller.signal,
-      })
-      if (requestRef.current !== controller) return
-      if (response.status === 429) {
-        toast.error(tModal("tailorLimited"))
-        return
-      }
-      if (response.status === 503) {
-        toast.error(tModal("tailorUnavailable"))
-        return
-      }
-      if (!response.ok || !isPdf(response)) {
-        toast.error(tModal("tailorError"))
-        return
-      }
-
-      const blob = await response.blob()
-      if (requestRef.current !== controller) return
-      downloadBlob(
-        blob,
-        filenameFrom(
-          response,
-          `Jefferson_Montesdeoca_CV_${locale.toUpperCase()}.pdf`
-        )
-      )
-    } catch (error) {
-      if (!(error instanceof DOMException && error.name === "AbortError")) {
-        toast.error(tModal("tailorError"))
-      }
-    } finally {
-      endRequest(controller)
-    }
+  function tailorAndDownload(): Promise<void> {
+    return run("tailor", (signal) => downloadTailoredCv(offer, locale, signal))
   }
 
   function selectOption(option: Pending): void {
@@ -240,7 +196,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
   }
 
   const optionClass =
-    "flex w-full items-start gap-3 rounded-lg border border-border p-3 text-left transition-[color,background-color,border-color,transform,opacity] duration-150 ease-out hover:border-foreground hover:bg-foreground/2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 active:scale-[0.99] disabled:pointer-events-none disabled:opacity-60 aria-busy:opacity-100"
+    "flex w-full items-start gap-3 border border-border p-3 text-left transition-[color,background-color,border-color,transform,opacity] duration-150 ease-out hover:border-foreground hover:bg-foreground/2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 active:scale-[0.99] disabled:pointer-events-none disabled:opacity-60 aria-busy:opacity-100"
 
   return (
     <>
@@ -326,7 +282,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                   maxLength={CV_TAILOR_OFFER_MAX_CHARS}
                   rows={8}
                   disabled={busy}
-                  className="w-full resize-y rounded-md border border-input bg-transparent p-2 text-xs leading-relaxed outline-none focus-visible:border-ring disabled:opacity-60"
+                  className="w-full resize-y border border-input bg-transparent p-2 text-xs leading-relaxed outline-none focus-visible:border-ring disabled:opacity-60"
                 />
                 <div className="flex items-center justify-between gap-3">
                   <span className="font-mono text-[11px] text-muted-foreground">

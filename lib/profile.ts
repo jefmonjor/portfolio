@@ -57,11 +57,13 @@ export const profile: Profile = {
       stack: [
         "Java 21",
         "Spring Boot 3",
+        "Clean Architecture",
         "OpenShift",
         "Keycloak",
         "DB2",
         "COBOL/AS400",
         "SonarQube",
+        "Gemini Code Assist",
       ],
     },
     {
@@ -143,6 +145,7 @@ export const profile: Profile = {
         "Node.js",
         "FastAPI",
         "Hexagonal Architecture",
+        "Clean Architecture",
         "Microservices",
       ],
     },
@@ -198,19 +201,21 @@ export const profile: Profile = {
     },
     {
       id: "ai",
+      // What is in production first (Andbank's Gemini Code Assist rollout,
+      // the Claude API behind the products and SpecForge), tooling last.
       items: [
         "Claude · Claude API",
         "Claude Code",
+        "Gemini Code Assist",
+        "Gemini",
         "Codex",
         "ChatGPT",
-        "Gemini",
-        "Gemini Code Assist",
+        "Vercel AI SDK",
+        "MCP workflows",
+        "AI agents",
+        "SDD · spec-kit",
         "Antigravity IDE",
         "Orca",
-        "SDD · spec-kit",
-        "MCP workflows",
-        "Vercel AI SDK",
-        "AI agents",
       ],
     },
     {
@@ -220,9 +225,10 @@ export const profile: Profile = {
   ],
   projects: [
     {
-      id: "othertales",
-      stage: "development",
-      visibility: "private",
+      id: "othertwist",
+      stage: "live",
+      visibility: "public",
+      url: "https://othertwist.com",
       stack: [
         "Flutter",
         "Riverpod",
@@ -350,6 +356,8 @@ export const profile: Profile = {
       kind: "certification",
       completed: true,
       startISO: "2023",
+      credentialUrl:
+        "https://campus.eigp.net/badges/0ec04cb3912c4f08874dd03716f80df1/367486863b932a9c259baf556c40f653/beb04c41b45927cf7e9f8fd4bb519e86",
     },
     {
       id: "beng-software",

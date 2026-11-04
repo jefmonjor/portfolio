@@ -44,6 +44,19 @@ function Education() {
                   </p>
                   <p className="text-xs text-muted-foreground sm:text-sm">
                     {dates}
+                    {entry.credentialUrl ? (
+                      <>
+                        {" · "}
+                        <a
+                          href={entry.credentialUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline underline-offset-2 transition-colors hover:text-foreground"
+                        >
+                          {t("verifyCredential")}
+                        </a>
+                      </>
+                    ) : null}
                   </p>
                 </div>
               </li>
@@ -51,7 +64,7 @@ function Education() {
           })}
         </ol>
 
-        <div className="flex flex-col gap-4 rounded-xl border border-border p-5">
+        <div className="flex flex-col gap-4 border-t border-border pt-4">
           <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
             {t("languagesLabel")}
           </span>

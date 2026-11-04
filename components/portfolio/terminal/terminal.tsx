@@ -15,12 +15,18 @@ import {
 import { Button } from "@/components/ui/button"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { resolveLocale } from "@/i18n/routing"
+import {
+  downloadCv,
+  downloadTailoredCv,
+  type CvDownloadResult,
+} from "@/lib/cv-download"
 import { parseString, parseStringArray } from "@/lib/i18n-values"
 import { contactEmail } from "@/lib/email"
 import { profile, profileTimeZone } from "@/lib/profile"
 import {
   completions,
   execute,
+  TERMINAL_OFFER_MIN_CHARS,
   type TerminalData,
   type TerminalLineKind,
   type TerminalOutLine,
@@ -49,6 +55,8 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
   const [value, setValue] = React.useState("")
   const [history, setHistory] = React.useState<ReadonlyArray<string>>([])
   const [historyIndex, setHistoryIndex] = React.useState<number | null>(null)
+  // `cv tailored` without an offer: the next line typed is the offer.
+  const [offerMode, setOfferMode] = React.useState(false)
 
   const lineId = React.useRef(0)
   const scrollRef = React.useRef<HTMLDivElement>(null)
@@ -135,6 +143,14 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
       langAlready: raw("langAlready"),
       sudo: raw("sudo"),
       emptyArg: raw("emptyArg"),
+      cvUsage: raw("cvUsage"),
+      cvPasteOffer: raw("cvPasteOffer"),
+      cvPreparing: raw("cvPreparing"),
+      cvDone: raw("cvDone"),
+      cvError: raw("cvError"),
+      cvLimited: raw("cvLimited"),
+      cvUnavailable: raw("cvUnavailable"),
+      cvOfferTooShort: raw("cvOfferTooShort"),
     }
   }, [t])
 
@@ -189,6 +205,28 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
     if (node) node.scrollTop = node.scrollHeight
   }, [lines, open])
 
+  // The CV commands call the same routes as the download button; the
+  // terminal only reports what came back.
+  function runCv(task: () => Promise<CvDownloadResult>): void {
+    void task()
+      .then((result) => {
+        if (result.ok) {
+          pushLines([
+            { kind: "ok", text: strings.cvDone.replace("%s", result.filename) },
+          ])
+          return
+        }
+        const text =
+          result.error === "rate_limited"
+            ? strings.cvLimited
+            : result.error === "unavailable"
+              ? strings.cvUnavailable
+              : strings.cvError
+        pushLines([{ kind: "err", text }])
+      })
+      .catch(() => pushLines([{ kind: "err", text: strings.cvError }]))
+  }
+
   function runEffects(effects: ReturnType<typeof execute>["effects"]) {
     let close = false
     let gotoSection: string | null = null
@@ -202,8 +240,14 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
           close = true
           break
         case "cv":
-          window.open(`/cv.pdf?locale=${locale}`, "_blank", "noopener")
+          runCv(() => downloadCv(effect.variant, locale))
           break
+        case "cv-tailor": {
+          const offer = effect.offer
+          if (offer === null) setOfferMode(true)
+          else runCv(() => downloadTailoredCv(offer, locale))
+          break
+        }
         case "theme":
           setTheme(
             effect.value ??
@@ -243,8 +287,31 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
     }
   }
 
+  function submitOffer(raw: string) {
+    const offer = raw.trim()
+    const shown = offer.length > 80 ? `${offer.slice(0, 80)}…` : offer
+    pushLines([{ kind: "in", text: `> ${shown}` }])
+    setValue("")
+    const word = offer.toLowerCase()
+    if (!offer || word === "cancel" || word === "exit") {
+      setOfferMode(false)
+      return
+    }
+    if (offer.length < TERMINAL_OFFER_MIN_CHARS) {
+      pushLines([{ kind: "err", text: strings.cvOfferTooShort }])
+      return
+    }
+    setOfferMode(false)
+    pushLines([{ kind: "muted", text: strings.cvPreparing }])
+    runCv(() => downloadTailoredCv(offer, locale))
+  }
+
   function submit() {
     const raw = value
+    if (offerMode) {
+      submitOffer(raw)
+      return
+    }
     pushLines([{ kind: "in", text: `$ ${raw}` }])
     if (raw.trim()) {
       setHistory((prev) => [...prev, raw])
@@ -318,7 +385,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
             event.preventDefault()
             inputRef.current?.focus()
           }}
-          className="fixed top-1/2 left-1/2 z-50 flex h-[min(34rem,80svh)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-xl bg-popover text-popover-foreground ring-1 ring-foreground/15 duration-100 outline-none sm:max-w-2xl data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95"
+          className="fixed top-1/2 left-1/2 z-50 flex h-[min(34rem,80svh)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden bg-popover text-popover-foreground ring-1 ring-foreground/15 duration-100 outline-none sm:max-w-2xl data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95"
         >
           <DialogPrimitive.Title className="sr-only">
             {t("title")}
@@ -372,7 +439,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
 
           <div className="flex items-center gap-2 border-t border-border px-3 py-2.5 font-mono text-xs">
             <span aria-hidden className="text-muted-foreground select-none">
-              $
+              {offerMode ? ">" : "$"}
             </span>
             <input
               ref={inputRef}
@@ -384,7 +451,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
               autoCapitalize="off"
               aria-label={t("inputLabel")}
               className="flex-1 bg-transparent text-foreground caret-foreground outline-none placeholder:text-muted-foreground/60"
-              placeholder={t("placeholder")}
+              placeholder={offerMode ? t("offerPlaceholder") : t("placeholder")}
             />
             <span className="hidden font-mono text-[11px] tracking-widest text-muted-foreground uppercase sm:inline">
               {profileTimeZone.split("/").pop()}

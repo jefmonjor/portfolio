@@ -84,7 +84,7 @@ function Contact() {
       <SectionHeading title={t("title")} hint={tStatus("label")} />
 
       <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
-        <div className="flex flex-col gap-4 rounded-xl border border-border p-5 sm:p-6">
+        <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between gap-3">
             <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               {t("emailLabel")}
@@ -151,8 +151,8 @@ function Contact() {
           </div>
         </div>
 
-        <dl className="grid grid-cols-1 gap-0 overflow-hidden rounded-xl border border-border">
-          <div className="border-b border-border p-4">
+        <dl className="grid grid-cols-1 gap-0 border-t border-border">
+          <div className="border-b border-border py-4">
             <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <HugeiconsIcon
                 icon={Location01Icon}
@@ -165,18 +165,20 @@ function Contact() {
               {profile.location}
             </dd>
           </div>
-          <div className="border-b border-border p-4">
+          <div className="border-b border-border py-4">
             <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span
                 aria-hidden
-                className="relative inline-flex size-1.5 shrink-0"
+                className="flex size-4 shrink-0 items-center justify-center"
               >
-                <span className="absolute inset-0 animate-ping bg-brand/60" />
-                <span className="relative inline-block size-1.5 bg-brand" />
+                <span className="relative inline-flex size-1.5">
+                  <span className="absolute inset-0 animate-ping bg-brand/60" />
+                  <span className="relative inline-block size-1.5 bg-brand" />
+                </span>
               </span>
               {t("status")}
             </dt>
-            <dd className="mt-1 flex flex-col gap-1 pl-4 text-sm text-foreground">
+            <dd className="mt-1 flex flex-col gap-1 pl-7 text-sm text-foreground">
               <span>{tStatus("label")}</span>
               {statusDetail ? (
                 <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
@@ -185,15 +187,17 @@ function Contact() {
               ) : null}
             </dd>
           </div>
-          <div className="p-4">
+          <div className="border-b border-border py-4">
             <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span
                 aria-hidden
-                className="inline-block size-1.5 shrink-0 bg-foreground/40"
-              />
+                className="flex size-4 shrink-0 items-center justify-center"
+              >
+                <span className="inline-block size-1.5 bg-foreground/40" />
+              </span>
               {t("timezone")}
             </dt>
-            <dd className="mt-1 pl-4 text-sm text-foreground">
+            <dd className="mt-1 pl-7 text-sm text-foreground">
               {profile.timezone}
             </dd>
           </div>

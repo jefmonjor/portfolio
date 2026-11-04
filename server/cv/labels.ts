@@ -12,14 +12,11 @@ import type {
   CvProjectEntry,
 } from "@/server/cv/cv-document"
 
-const METRIC_KEYS = ["years", "sectors", "companies", "products"] as const
-
 export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
   const [
     tMeta,
     tCv,
     tCommon,
-    tExperience,
     tExperienceEntries,
     tSkills,
     tSkillsGroups,
@@ -31,12 +28,10 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     tContact,
     tFooter,
     tStatus,
-    tMetrics,
   ] = await Promise.all([
     getTranslations({ locale, namespace: "metadata" }),
     getTranslations({ locale, namespace: "cv" }),
     getTranslations({ locale, namespace: "common" }),
-    getTranslations({ locale, namespace: "experience" }),
     getTranslations({ locale, namespace: "experience.entries" }),
     getTranslations({ locale, namespace: "skills" }),
     getTranslations({ locale, namespace: "skills.groups" }),
@@ -48,7 +43,6 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     getTranslations({ locale, namespace: "contact" }),
     getTranslations({ locale, namespace: "footer" }),
     getTranslations({ locale, namespace: "status" }),
-    getTranslations({ locale, namespace: "metrics.entries" }),
   ])
 
   return {
@@ -57,18 +51,18 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     headline: tCv("headline"),
     summary: tCv("summary"),
     availability: `${tStatus("label")} · ${tStatus("detail")}`,
-    metrics: METRIC_KEYS.map((key) => ({
-      value: tMetrics(`${key}.value`),
-      label: tMetrics(`${key}.label`),
-    })),
+    otherProjects: tCv("otherProjects"),
+    credential: tEducation("verifyCredential"),
+    // Standard headings in every export: the website's editorial titles
+    // ("Dónde he trabajado") read worse on paper and parse worse by machine.
     sections: {
       profile: CV_HEADINGS[locale].profile,
-      experience: tExperience("title"),
-      skills: tSkills("title"),
-      projects: tProjects("title"),
-      education: tEducation("title"),
+      experience: CV_HEADINGS[locale].experience,
+      skills: CV_HEADINGS[locale].skills,
+      projects: CV_HEADINGS[locale].projects,
+      education: CV_HEADINGS[locale].education,
       contact: tContact("title"),
-      languages: tEducation("languagesLabel"),
+      languages: CV_HEADINGS[locale].languages,
     },
     skillGroupName: (id) => tSkillsGroups(id),
     experienceEntry: (id): CvExperienceEntry => {

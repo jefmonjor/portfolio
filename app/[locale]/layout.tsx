@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Figtree, Geist, Geist_Mono } from "next/font/google"
+import { Figtree, Fraunces, Geist_Mono } from "next/font/google"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
@@ -25,10 +25,13 @@ const figtree = Figtree({
   variable: "--font-sans",
 })
 
-// Display face for headings — Vercel-school grotesk, pairs with Geist Mono.
-const fontDisplay = Geist({
+// Display face for headings: a serif with optical sizes, so the hero name
+// at 80px and a card title at 16px are drawn differently. Figtree stays for
+// running text only; Geist Mono keeps the data.
+const fontDisplay = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
+  axes: ["opsz"],
 })
 
 const fontMono = Geist_Mono({
@@ -128,7 +131,7 @@ export async function generateMetadata({
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: dark)", color: "#130e0b" },
   ],
 }
 

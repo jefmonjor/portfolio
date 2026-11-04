@@ -36,12 +36,27 @@ Primary surfaces:
   fintech; years are the dossier's dates, never summed or rounded up).
 - Keep the conversation short, keyboard-accessible, and resilient to request
   failure, rate limiting, aborts, incomplete model output, and refusal.
+- Hand out the CVs. A short message asking for the CV (`asksForCv` in
+  `lib/assistant/cv-intent.ts`) is answered without the model, and without an
+  API key: a fixed reply naming the three variants plus `actions` the client
+  renders as buttons. `cv` actions fetch `GET /cv.pdf`; a `cv-tailor` action
+  carries the most recent pasted offer back so the client can `POST
+  /api/cv-tailor`. An offer comparison reply always carries the `cv-tailor`
+  action for that offer. Actions never travel back to the route: the request
+  contract stays role + content.
+- The terminal offers the same three files: `cv [general|technical|tailored]`.
+  `cv tailored` without text switches the prompt to offer capture (the next
+  line is the offer, `cancel` leaves it). All three surfaces download through
+  `lib/cv-download.ts`.
 
 ### CV variants
 
-1. `general`: complete editorial profile for a person who wants the broad
-   story, including all canonical experience, projects, education, languages,
-   availability, and contact paths.
+1. `general`: the CV a technical reader opens on a first-page preview: one
+   column, one typeface, black on white, no colour, icons, technology chips,
+   section numbers or letter-spaced labels. Header with name, role, one
+   contact line with full addresses and availability; summary; complete
+   experience with a summary and bullets per role; three featured projects
+   plus one line for the rest; grouped skills; education and languages last.
 2. `technical`: one-column, ATS-readable engineering CV that foregrounds
    technical skills, practices, experience stacks, and the strongest technical
    projects. It is deterministic and does not require AI.
@@ -53,6 +68,12 @@ Primary surfaces:
 ## Data And Contracts
 
 - `lib/profile.ts` and localized `messages/*.json` remain the source of truth.
+- Contact phones live in `lib/phone.ts`, assembled at call time like the
+  email, and are printed only in the PDFs: never in the HTML, the bundle, the
+  dossier or the crawlable `cv.md` / `cv.json` exports.
+- The general CV lists only the skills its own content backs
+  (`server/cv/skills.ts`: the jobs' stacks plus the live products' stacks);
+  the technical CV keeps the full catalogue for keyword screening.
 - `GET /cv.pdf` accepts `general` or `technical`. Legacy `full` and `ats`
   values resolve to `general` and `technical` for compatibility; tailored
   content is available only through the validated POST flow.

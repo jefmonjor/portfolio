@@ -25,6 +25,7 @@ export const llmsSummary = `# Jefferson Montesdeoca Jordán
 ## Public work
 
 - [Transolido](https://www.transolido.com): VERI*FACTU-compliant invoicing built around a modular Java 21 and Spring Boot backend.
+- [Other Twist](https://othertwist.com): All-in-one platform for writers in production — offline-first Flutter app on a Java 21 / Spring Boot hexagonal backend, sign-in at app.othertwist.com.
 - [PRONOQ](https://pronoq.jefmonjor.dev): Trilingual football-pool PWA with live scoring and AI used to explain results, not select predictions.
 - [Corte1D](https://corte1d.jefmonjor.dev): Workshop tool with a deterministic one-dimensional cutting optimizer, stock control, and document exports.
 - [Ilnami](https://ilnami.com): Private food diary in production — save what you ordered, where and whether you would go back, on a private map. Reviewed AI scanning of menus, labels and receipts with a manual fallback, invite-only circles, PostgreSQL row-level security, EU data residency, and its own llms.txt and Agent Skills index.

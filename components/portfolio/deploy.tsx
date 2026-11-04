@@ -14,14 +14,11 @@ function Deploy() {
         <span className="inline-block size-1.5 bg-brand" />
         <span>{t("title")}</span>
       </div>
-      <div className="grid overflow-hidden rounded-xl border border-border md:grid-cols-3">
-        {PLATFORM_KEYS.map((key, index) => (
+      <div className="grid gap-x-8 gap-y-6 md:grid-cols-3">
+        {PLATFORM_KEYS.map((key) => (
           <div
             key={key}
-            className={
-              "flex flex-col gap-2 border-border p-5 sm:p-6 " +
-              (index > 0 ? "border-t md:border-t-0 md:border-l" : "")
-            }
+            className="flex flex-col gap-2 border-t border-border pt-4"
           >
             <span className="font-mono text-xs font-bold tracking-widest text-foreground uppercase">
               {t(`platforms.${key}.name`)}

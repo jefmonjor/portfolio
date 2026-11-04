@@ -57,7 +57,6 @@ describe("search-engine routes", () => {
     expect(body).toContain("# Jefferson Montesdeoca Jordán")
     expect(body).toContain(`${siteUrl}/es`)
     expect(body).toContain("https://github.com/jefmonjor/portfolio")
-    expect(body).not.toContain("Other Tales")
     expect(body).toContain("https://ilnami.com")
     expect(body).not.toMatch(/8 products|ocho productos|vuit productes/i)
   })
@@ -72,7 +71,6 @@ describe("search-engine routes", () => {
     expect(body).toContain("# Full CV\n\n**Role**")
     expect(body).toContain(`${siteUrl}/llms-full.txt`)
     expect(body).toContain("For recruiters and AI sourcing agents")
-    expect(body).not.toContain("Other Tales")
     // The plain-text surfaces never carry an address.
     expect(body).not.toMatch(/[\w.+-]+@[\w-]+\.[a-z]{2,}/i)
   })

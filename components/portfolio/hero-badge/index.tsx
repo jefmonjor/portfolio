@@ -122,7 +122,7 @@ export function HeroBadge({
   }
 
   return (
-    <div className="relative aspect-4/5 w-full min-w-0 overflow-hidden rounded-xl border border-border bg-muted select-none">
+    <div className="relative aspect-4/5 w-full min-w-0 overflow-hidden border border-border bg-muted select-none">
       <span
         aria-hidden
         className="absolute top-3 left-3 z-20 inline-block size-2 bg-foreground"

@@ -100,29 +100,8 @@
     "headline": "Producte de principi a fi sobre backends Java/Spring: arquitectura mantenible, integració amb sistemes crítics i IA aplicada on aporta valor real.",
     "summary": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. Migracions complexes, integració amb sistemes legacy i arquitectures hexagonals i de microserveis. En paral·lel, productes propis —en funcionament i en desenvolupament— que cobreixen el cicle complet: producte, backend, desplegament i IA aplicada amb dades validades i alternatives manuals.",
     "portfolioName": "Portfolio personal",
-    "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + tRPC + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert."
-  },
-  "metrics": {
-    "ariaLabel": "Mètriques de trajectòria",
-    "caption": "Mesurat en sistemes reals en producció",
-    "entries": {
-      "years": {
-        "value": "6+",
-        "label": "Anys de software en producció"
-      },
-      "sectors": {
-        "value": "3",
-        "label": "Sectors · banca, legal i energia"
-      },
-      "companies": {
-        "value": "5",
-        "label": "Empreses · de Sevilla a Andorra"
-      },
-      "products": {
-        "value": "E2E",
-        "label": "Producte · del problema al desplegament"
-      }
-    }
+    "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + tRPC + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert.",
+    "otherProjects": "Altres projectes"
   },
   "experience": {
     "title": "On he treballat",
@@ -265,10 +244,10 @@
       "repo": "Codi"
     },
     "entries": {
-      "othertales": {
-        "name": "Other Tales",
+      "othertwist": {
+        "name": "Other Twist",
         "role": "Producte propi · App + Backend",
-        "summary": "Plataforma all-in-one per a escriptors: app Flutter amb escriptura offline i backend Java 21 / Spring Boot 3.5 en arquitectura hexagonal, dockeritzat i en migració a VPS propi.",
+        "summary": "Plataforma all-in-one per a escriptors: app Flutter amb escriptura offline i backend Java 21 / Spring Boot 3.5 en arquitectura hexagonal, dockeritzat i en migració a VPS propi. Web a othertwist.com i app amb accés a app.othertwist.com.",
         "highlights": [
           "App offline-first: Riverpod, GoRouter i base local Drift/SQLite amb sincronització.",
           "Backend hexagonal amb OAuth2/JWT (Supabase Auth), Flyway i Redis.",
@@ -352,6 +331,7 @@
   "education": {
     "title": "Formació i idiomes",
     "languagesLabel": "Idiomes",
+    "verifyCredential": "Verificar credencial",
     "entries": {
       "smpc-cert": {
         "title": "Scrum Master Professional Certified (SMPC)",
@@ -400,7 +380,7 @@
     "title": "Descarregar CV",
     "question": "Tria la versió que encaixa millor",
     "general": "CV general",
-    "generalDesc": "La història completa: experiència, projectes, formació i idiomes en disseny editorial.",
+    "generalDesc": "Per llegir d'una passada: resum, experiència i projectes en text pla, sense adorns.",
     "technical": "CV tècnic",
     "technicalDesc": "Una columna, lectura ATS i més pes per a stack, pràctiques i projectes tècnics.",
     "tailor": "CV segons l'oferta",
@@ -439,7 +419,7 @@
       "  experience         trajectòria laboral",
       "  skills             tecnologies que més uso",
       "  contact            com contactar-me",
-      "  cv                 descarrega el meu CV",
+      "  cv [variant]       descarrega el meu CV: general, technical o tailored",
       "  web                què fa la IA per tu en aquesta web",
       "  theme [dark|light] canvia el tema",
       "  lang <en|es|ca>    canvia l'idioma",
@@ -460,6 +440,15 @@
     "langAlready": "ja ets en aquest idioma",
     "sudo": "bon intent — aquí ja ets root.",
     "emptyArg": "",
+    "cvUsage": "ús: cv [general|technical|tailored] — tailored demana l'oferta",
+    "cvPasteOffer": "enganxa l'oferta completa i prem Enter (o escriu 'cancel')",
+    "cvPreparing": "preparant el PDF…",
+    "cvDone": "descarregat %s",
+    "cvError": "no s'ha pogut generar el PDF — prova 'cv general'",
+    "cvLimited": "límit d'ús assolit — prova d'aquí a uns minuts",
+    "cvUnavailable": "l'adaptació amb IA no està disponible — prova 'cv technical'",
+    "cvOfferTooShort": "l'oferta és massa curta (mínim 40 caràcters) — enganxa el text complet o escriu 'cancel'",
+    "offerPlaceholder": "enganxa aquí l'oferta…",
     "web": [
       "IA EN AQUESTA WEB — UTILITAT DIRECTA",
       "  · Assistent (bombolla a baix a la dreta): pregunta-li el que",
@@ -484,7 +473,7 @@
     "platforms": {
       "vps": {
         "name": "VPS propi · netcup",
-        "detail": "Docker + GitHub Actions sobre el meu propi servidor. PRONOQ en producció (web + worker) i Other Tales en migració des de Cloud Run."
+        "detail": "Docker + GitHub Actions sobre el meu propi servidor. PRONOQ en producció (web + worker) i Other Twist en migració des de Cloud Run."
       },
       "vercel": {
         "name": "Vercel",
@@ -515,6 +504,10 @@
     "disclaimer": "IA limitada al perfil públic. No estima dades absents; confirma per email qualsevol decisió important.",
     "reset": "Nova",
     "thinking": "Pensant…",
-    "launcher": "Pregunta a la IA"
+    "launcher": "Pregunta a la IA",
+    "cvGeneral": "CV general (PDF)",
+    "cvTechnical": "CV tècnic (PDF)",
+    "cvTailored": "CV adaptat a aquesta oferta (PDF)",
+    "cvPreparing": "Preparant…"
   }
 }

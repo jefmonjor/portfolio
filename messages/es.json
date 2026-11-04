@@ -100,29 +100,8 @@
     "headline": "Producto de principio a fin sobre backends Java/Spring: arquitectura mantenible, integración con sistemas críticos e IA aplicada donde aporta valor real.",
     "summary": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. Migraciones complejas, integración con sistemas legacy y arquitecturas hexagonales y de microservicios. En paralelo, productos propios —en funcionamiento y en desarrollo— que cubren el ciclo completo: producto, backend, despliegue e IA aplicada con datos validados y alternativas manuales.",
     "portfolioName": "Portfolio personal",
-    "portfolioSummary": "Portfolio y CV trilingüe con stack tipado Next.js + tRPC + Zod: tres CV en PDF generados en servidor desde una única fuente de datos, asistente de IA acotado a un dossier cerrado con límites de consumo, terminal interactiva y SEO/GEO completo. Código abierto."
-  },
-  "metrics": {
-    "ariaLabel": "Métricas de trayectoria",
-    "caption": "Medido en sistemas reales en producción",
-    "entries": {
-      "years": {
-        "value": "6+",
-        "label": "Años de software en producción"
-      },
-      "sectors": {
-        "value": "3",
-        "label": "Sectores · banca, legal y energía"
-      },
-      "companies": {
-        "value": "5",
-        "label": "Empresas · de Sevilla a Andorra"
-      },
-      "products": {
-        "value": "E2E",
-        "label": "Producto · del problema al despliegue"
-      }
-    }
+    "portfolioSummary": "Portfolio y CV trilingüe con stack tipado Next.js + tRPC + Zod: tres CV en PDF generados en servidor desde una única fuente de datos, asistente de IA acotado a un dossier cerrado con límites de consumo, terminal interactiva y SEO/GEO completo. Código abierto.",
+    "otherProjects": "Otros proyectos"
   },
   "experience": {
     "title": "Dónde he trabajado",
@@ -265,10 +244,10 @@
       "repo": "Código"
     },
     "entries": {
-      "othertales": {
-        "name": "Other Tales",
+      "othertwist": {
+        "name": "Other Twist",
         "role": "Producto propio · App + Backend",
-        "summary": "Plataforma all-in-one para escritores: app Flutter con escritura offline y backend Java 21 / Spring Boot 3.5 en arquitectura hexagonal, dockerizado y en migración a VPS propio.",
+        "summary": "Plataforma all-in-one para escritores: app Flutter con escritura offline y backend Java 21 / Spring Boot 3.5 en arquitectura hexagonal, dockerizado y en migración a VPS propio. Web en othertwist.com y app con acceso en app.othertwist.com.",
         "highlights": [
           "App offline-first: Riverpod, GoRouter y base local Drift/SQLite con sincronización.",
           "Backend hexagonal con OAuth2/JWT (Supabase Auth), Flyway y Redis.",
@@ -352,6 +331,7 @@
   "education": {
     "title": "Formación e idiomas",
     "languagesLabel": "Idiomas",
+    "verifyCredential": "Verificar credencial",
     "entries": {
       "smpc-cert": {
         "title": "Scrum Master Professional Certified (SMPC)",
@@ -400,7 +380,7 @@
     "title": "Descargar CV",
     "question": "Elige la versión que mejor encaja",
     "general": "CV general",
-    "generalDesc": "La historia completa: experiencia, proyectos, formación e idiomas en diseño editorial.",
+    "generalDesc": "Para leer de una pasada: resumen, experiencia y proyectos en texto plano, sin adornos.",
     "technical": "CV técnico",
     "technicalDesc": "Una columna, lectura ATS y más peso para stack, prácticas y proyectos técnicos.",
     "tailor": "CV según la oferta",
@@ -439,7 +419,7 @@
       "  experience         trayectoria laboral",
       "  skills             tecnologías que más uso",
       "  contact            cómo contactarme",
-      "  cv                 descarga mi CV",
+      "  cv [variante]      descarga mi CV: general, technical o tailored",
       "  web                qué hace la IA por ti en esta web",
       "  theme [dark|light] cambia el tema",
       "  lang <en|es|ca>    cambia el idioma",
@@ -460,6 +440,15 @@
     "langAlready": "ya estás en este idioma",
     "sudo": "buen intento — aquí ya eres root.",
     "emptyArg": "",
+    "cvUsage": "uso: cv [general|technical|tailored] — tailored pide la oferta",
+    "cvPasteOffer": "pega la oferta completa y pulsa Enter (o escribe 'cancel')",
+    "cvPreparing": "preparando el PDF…",
+    "cvDone": "descargado %s",
+    "cvError": "no se pudo generar el PDF — prueba 'cv general'",
+    "cvLimited": "límite de uso alcanzado — prueba en unos minutos",
+    "cvUnavailable": "la adaptación con IA no está disponible — prueba 'cv technical'",
+    "cvOfferTooShort": "la oferta es demasiado corta (mínimo 40 caracteres) — pega el texto completo o escribe 'cancel'",
+    "offerPlaceholder": "pega aquí la oferta…",
     "web": [
       "IA EN ESTA WEB — UTILIDAD DIRECTA",
       "  · Asistente (burbuja abajo a la derecha): pregúntale lo que",
@@ -484,7 +473,7 @@
     "platforms": {
       "vps": {
         "name": "VPS propio · netcup",
-        "detail": "Docker + GitHub Actions sobre mi propio servidor. PRONOQ en producción (web + worker) y Other Tales en migración desde Cloud Run."
+        "detail": "Docker + GitHub Actions sobre mi propio servidor. PRONOQ en producción (web + worker) y Other Twist en migración desde Cloud Run."
       },
       "vercel": {
         "name": "Vercel",
@@ -515,6 +504,10 @@
     "disclaimer": "IA limitada al perfil público. No estima datos ausentes; confirma por email cualquier decisión importante.",
     "reset": "Nueva",
     "thinking": "Pensando…",
-    "launcher": "Pregunta a la IA"
+    "launcher": "Pregunta a la IA",
+    "cvGeneral": "CV general (PDF)",
+    "cvTechnical": "CV técnico (PDF)",
+    "cvTailored": "CV adaptado a esta oferta (PDF)",
+    "cvPreparing": "Preparando…"
   }
 }

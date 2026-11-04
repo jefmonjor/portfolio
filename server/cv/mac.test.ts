@@ -10,7 +10,8 @@ const labels: CvLabels = {
   headline: "Product and backend engineering",
   summary: "Canonical professional summary.",
   availability: "Selectively open to relevant opportunities",
-  metrics: [],
+  otherProjects: "Other projects",
+  credential: "Verify credential",
   sections: {
     profile: "Profile",
     experience: "Experience",

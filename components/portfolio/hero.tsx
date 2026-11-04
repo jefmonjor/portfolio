@@ -57,26 +57,24 @@ function Hero() {
       className="relative mx-auto grid max-w-6xl min-w-0 gap-10 px-4 pt-12 pb-20 sm:px-8 sm:pt-16 sm:pb-24 lg:grid-cols-[1.4fr_1fr] lg:gap-16"
     >
       <div className="flex min-w-0 flex-col gap-8">
-        <h1 className="font-heading text-[clamp(2.5rem,5.5vw+1rem,5rem)] leading-[0.95] font-medium tracking-[-0.03em] text-foreground">
-          <span className="sr-only">{profile.name}</span>
+        <h1 className="font-heading text-[clamp(2.5rem,5.5vw+1rem,5rem)] leading-[0.95] font-medium tracking-[-0.02em] text-foreground">
           {/* Inline flow (not flex) so text-wrap: balance can even out the
-              line breaks on any viewport — no more dangling last words. */}
-          <span aria-hidden className="block">
-            {titleWords.map((word, index) => (
-              <Fragment key={`${word}-${index}`}>
-                <span className="block sm:inline-block">{word}</span>
-                {index < titleWords.length - 1 ? (
-                  <span className="hidden sm:inline"> </span>
-                ) : null}
-              </Fragment>
-            ))}
-          </span>
+              line breaks on any viewport — no more dangling last words. One
+              copy of the name only: the spans are the accessible text. */}
+          {titleWords.map((word, index) => (
+            <Fragment key={`${word}-${index}`}>
+              <span className="block sm:inline-block">{word}</span>
+              {index < titleWords.length - 1 ? (
+                <span className="hidden sm:inline"> </span>
+              ) : null}
+            </Fragment>
+          ))}
         </h1>
 
         <div className="flex flex-col gap-4">
           {/* The positioning reads as a subtitle, at once: it is the line a
               recruiter scans for, so it is never scrambled or tracked-out. */}
-          <p className="min-w-0 font-heading text-[clamp(1.25rem,1vw+1rem,1.625rem)] leading-snug font-medium tracking-[-0.015em] text-foreground">
+          <p className="min-w-0 font-heading text-[clamp(1.25rem,1vw+1rem,1.625rem)] leading-snug font-medium tracking-[-0.01em] text-foreground">
             {t("role")}
             <span className="mt-1 block text-[0.72em] font-normal tracking-normal text-muted-foreground">
               {profile.location}
@@ -124,13 +122,11 @@ function Hero() {
           </Button>
         </div>
 
-        <dl className="mt-auto min-w-0 animate-in divide-y divide-solid divide-border overflow-hidden rounded-xl border border-border duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] fade-in-0 [animation-delay:200ms] [animation-fill-mode:both] slide-in-from-bottom-2 motion-reduce:animate-none sm:grid sm:grid-cols-2 sm:divide-y-0">
-          {specRows.map((row, index) => (
+        <dl className="mt-auto min-w-0 animate-in border-t border-border duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] fade-in-0 [animation-delay:200ms] [animation-fill-mode:both] slide-in-from-bottom-2 motion-reduce:animate-none sm:grid sm:grid-cols-2 sm:gap-x-8">
+          {specRows.map((row) => (
             <div
               key={row.label}
-              className={`grid min-w-0 grid-cols-[88px_minmax(0,1fr)] items-center gap-3 px-3 py-2.5 sm:border-border ${
-                index % 2 === 0 ? "sm:border-r" : ""
-              } ${index >= 2 ? "sm:border-t" : ""}`}
+              className="grid min-w-0 grid-cols-[88px_minmax(0,1fr)] items-center gap-3 border-b border-border py-2.5"
             >
               <dt className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
                 {row.label}
