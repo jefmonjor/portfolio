@@ -169,14 +169,16 @@ function Contact() {
             <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span
                 aria-hidden
-                className="relative inline-flex size-1.5 shrink-0"
+                className="flex size-4 shrink-0 items-center justify-center"
               >
-                <span className="absolute inset-0 animate-ping bg-brand/60" />
-                <span className="relative inline-block size-1.5 bg-brand" />
+                <span className="relative inline-flex size-1.5">
+                  <span className="absolute inset-0 animate-ping bg-brand/60" />
+                  <span className="relative inline-block size-1.5 bg-brand" />
+                </span>
               </span>
               {t("status")}
             </dt>
-            <dd className="mt-1 flex flex-col gap-1 pl-4 text-sm text-foreground">
+            <dd className="mt-1 flex flex-col gap-1 pl-7 text-sm text-foreground">
               <span>{tStatus("label")}</span>
               {statusDetail ? (
                 <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
@@ -189,11 +191,13 @@ function Contact() {
             <dt className="flex items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span
                 aria-hidden
-                className="inline-block size-1.5 shrink-0 bg-foreground/40"
-              />
+                className="flex size-4 shrink-0 items-center justify-center"
+              >
+                <span className="inline-block size-1.5 bg-foreground/40" />
+              </span>
               {t("timezone")}
             </dt>
-            <dd className="mt-1 pl-4 text-sm text-foreground">
+            <dd className="mt-1 pl-7 text-sm text-foreground">
               {profile.timezone}
             </dd>
           </div>

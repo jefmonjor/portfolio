@@ -65,13 +65,14 @@
 
 :root {
   --radius: 0px;
-  /* Paper: a warm off-white, not #fff. Ink: warm near-black. */
-  --background: oklch(0.985 0.006 85);
+  /* Page: white. The warmth lives in the ink, the raised surfaces and the
+     borders, not in a cream page tint. Ink: warm near-black. */
+  --background: oklch(1 0 0);
   --foreground: oklch(0.21 0.018 55);
   --brand: oklch(0.55 0.12 55);
   --card: oklch(0.975 0.007 85);
   --card-foreground: oklch(0.21 0.018 55);
-  --popover: oklch(0.99 0.005 85);
+  --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.21 0.018 55);
   --primary: oklch(0.26 0.02 55);
   --primary-foreground: oklch(0.975 0.008 85);
@@ -79,7 +80,7 @@
   --secondary-foreground: oklch(0.26 0.02 55);
   --muted: oklch(0.95 0.011 82);
   /* 0.47: secondary text sits on --muted surfaces too. Measures 5.9:1 on
-     --muted and 6.6:1 on --background. */
+     --muted and 7:1 on --background. */
   --muted-foreground: oklch(0.47 0.022 58);
   --accent: oklch(0.93 0.035 75);
   --accent-foreground: oklch(0.26 0.02 55);

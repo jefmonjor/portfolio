@@ -58,19 +58,17 @@ function Hero() {
     >
       <div className="flex min-w-0 flex-col gap-8">
         <h1 className="font-heading text-[clamp(2.5rem,5.5vw+1rem,5rem)] leading-[0.95] font-medium tracking-[-0.02em] text-foreground">
-          <span className="sr-only">{profile.name}</span>
           {/* Inline flow (not flex) so text-wrap: balance can even out the
-              line breaks on any viewport — no more dangling last words. */}
-          <span aria-hidden className="block">
-            {titleWords.map((word, index) => (
-              <Fragment key={`${word}-${index}`}>
-                <span className="block sm:inline-block">{word}</span>
-                {index < titleWords.length - 1 ? (
-                  <span className="hidden sm:inline"> </span>
-                ) : null}
-              </Fragment>
-            ))}
-          </span>
+              line breaks on any viewport — no more dangling last words. One
+              copy of the name only: the spans are the accessible text. */}
+          {titleWords.map((word, index) => (
+            <Fragment key={`${word}-${index}`}>
+              <span className="block sm:inline-block">{word}</span>
+              {index < titleWords.length - 1 ? (
+                <span className="hidden sm:inline"> </span>
+              ) : null}
+            </Fragment>
+          ))}
         </h1>
 
         <div className="flex flex-col gap-4">
