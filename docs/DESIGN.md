@@ -17,15 +17,16 @@ Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar es
 
 ## Color
 
-- Neutros oklch en `app/globals.css` (`--background`, `--foreground`, `--muted-foreground`, `--border`…), tema claro y oscuro. `--muted-foreground` claro es `0.5` (≥5,5:1 sobre `--muted`); nada de opacidades `/60`–`/80` sobre texto.
+- Neutros **cálidos** en oklch en `app/globals.css` (`--background`, `--foreground`, `--muted-foreground`, `--border`…): papel (`oklch(0.985 0.006 85)`) y tinta (`oklch(0.21 0.018 55)`) en claro, carbón cálido (`oklch(0.17 0.01 60)`) en oscuro. Ningún neutro es gris puro: todos llevan un poco del matiz terracota. `--muted-foreground` claro es `0.47` (5,9:1 sobre `--muted`, 6,6:1 sobre fondo); oscuro `0.72` (6,1:1 sobre `--muted`). Nada de opacidades `/60`–`/80` sobre texto.
 - **Acento único: `--brand` (terracota)** — claro `oklch(0.55 0.12 55)`, oscuro `oklch(0.74 0.115 60)`. Solo como marca: el cuadrado junto a cada título de sección y a la marca de la barra, ping de estado, barra de progreso, selección de texto y caret. Nunca en bloques grandes ni texto de cuerpo.
 - Prohibido introducir un segundo acento o hex sueltos: todo color nuevo se declara como token.
 
 ## Superficies
 
-- Tarjetas: borde **sólido** `border-border` + `rounded-xl` (+ `overflow-hidden` si tienen divisiones internas). Los bordes discontinuos están retirados — eran la huella de la plantilla original.
+- **Radio: ninguno.** `--radius` es `0px` y toda la escala (`rounded-sm`…`rounded-4xl`) resuelve al mismo canto recto, como el cuadrado de la marca. Solo lleva curva lo que es redondo de verdad (puntos de estado, avatar, píldora de navegación, lanzador del chat) y usa `rounded-full`. No se declara ningún radio en componentes.
+- Marcos: borde **sólido** `border-border`, sin radio. Los bordes discontinuos están retirados — eran la huella de la plantilla original.
 - Nav: **píldora flotante** (`rounded-full`, `bg-background/85`, blur, `shadow-sm`) separada del borde superior; progreso de scroll como línea `h-0.5 bg-brand` fija arriba.
-- Chat del asistente: panel `rounded-2xl`, lanzador `rounded-full`. Diálogos `rounded-xl`.
+- Chat del asistente: panel recto con `shadow-lg`, lanzador `rounded-full`. Diálogos y terminal rectos.
 
 ## Movimiento
 
