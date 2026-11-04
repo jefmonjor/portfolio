@@ -15,7 +15,7 @@ describe("public profile content", () => {
         visibility,
       }))
     ).toEqual([
-      { id: "othertwist", stage: "development", visibility: "public" },
+      { id: "othertwist", stage: "live", visibility: "public" },
       { id: "transolido", stage: "live", visibility: "public" },
       { id: "porrix", stage: "live", visibility: "public" },
       { id: "corte1d", stage: "live", visibility: "public" },

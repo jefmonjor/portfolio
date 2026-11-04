@@ -226,7 +226,7 @@ export const profile: Profile = {
   projects: [
     {
       id: "othertwist",
-      stage: "development",
+      stage: "live",
       visibility: "public",
       url: "https://othertwist.com",
       stack: [
