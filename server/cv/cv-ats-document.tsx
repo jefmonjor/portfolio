@@ -8,6 +8,7 @@ import {
 } from "@react-pdf/renderer"
 
 import { contactEmail } from "@/lib/email"
+import { contactPhones } from "@/lib/phone"
 import { profile, siteUrlShort } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
 import { CV_HEADINGS } from "@/server/cv/headings"
@@ -155,7 +156,7 @@ type CvTechnicalDocumentProps = {
 // URL; the rest are open in one click, which is the point of listing them.
 const TECHNICAL_PROJECT_IDS = [
   "transolido",
-  "othertales",
+  "othertwist",
   "porrix",
   "corte1d",
   "ilnami",
@@ -208,6 +209,10 @@ function CvTechnicalDocument({
         </Text>
         <Text style={styles.contactLine}>
           {`${email} · `}
+          {contactPhones()
+            .map((phone) => phone.display)
+            .join(" · ")}
+          {" · "}
           {linkedin ? (
             // One string per link: split children extract as
             // "linkedin.com/in/ jefmonjor" and break the parsed URL.
@@ -319,7 +324,17 @@ function CvTechnicalDocument({
                 <Text style={styles.entryRole}>{data.title}</Text>
                 <Text style={styles.entryDates}>{data.dates}</Text>
               </View>
-              <Text style={styles.entryOrg}>{entry.organization}</Text>
+              <Text style={styles.entryOrg}>
+                {entry.organization}
+                {entry.credentialUrl ? (
+                  <>
+                    {" · "}
+                    <Link src={entry.credentialUrl} style={styles.contactLink}>
+                      {`${labels.credential}: ${cvLinkLabel(entry.credentialUrl).split("/")[0]}`}
+                    </Link>
+                  </>
+                ) : null}
+              </Text>
             </View>
           )
         })}

@@ -22,6 +22,7 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     tSkillsGroups,
     tProjects,
     tProjectEntries,
+    tEducation,
     tEducationEntries,
     tLanguages,
     tContact,
@@ -36,6 +37,7 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     getTranslations({ locale, namespace: "skills.groups" }),
     getTranslations({ locale, namespace: "projects" }),
     getTranslations({ locale, namespace: "projects.entries" }),
+    getTranslations({ locale, namespace: "education" }),
     getTranslations({ locale, namespace: "education.entries" }),
     getTranslations({ locale, namespace: "education.languageEntries" }),
     getTranslations({ locale, namespace: "contact" }),
@@ -50,6 +52,7 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     summary: tCv("summary"),
     availability: `${tStatus("label")} · ${tStatus("detail")}`,
     otherProjects: tCv("otherProjects"),
+    credential: tEducation("verifyCredential"),
     // Standard headings in every export: the website's editorial titles
     // ("Dónde he trabajado") read worse on paper and parse worse by machine.
     sections: {

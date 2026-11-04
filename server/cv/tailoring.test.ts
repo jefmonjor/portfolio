@@ -43,20 +43,20 @@ describe("CV tailoring evidence", () => {
 
   // A CV written for one offer must never carry less than the technical one.
   it("orders the selection first without dropping anything", () => {
-    const projects = ["transolido", "othertales", "corte1d", "contactqr"]
+    const projects = ["transolido", "othertwist", "corte1d", "contactqr"]
     const ordered = prioritizeItems(projects, ["corte1d", "contactqr"])
 
     expect(ordered).toEqual([
       "corte1d",
       "contactqr",
       "transolido",
-      "othertales",
+      "othertwist",
     ])
     expect([...ordered].sort()).toEqual([...projects].sort())
   })
 
   it("leaves the order untouched when nothing was selected", () => {
-    const projects = ["transolido", "othertales", "corte1d"]
+    const projects = ["transolido", "othertwist", "corte1d"]
 
     expect(prioritizeItems(projects, [])).toEqual(projects)
   })

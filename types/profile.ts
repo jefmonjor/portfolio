@@ -41,6 +41,8 @@ export type EducationEntry = {
   /** Year or year-month. Exports that need a full date anchor it to day one. */
   startISO: string
   endISO?: string
+  /** Public verification page of a certification, when the issuer has one. */
+  credentialUrl?: string
 }
 
 export type SkillGroup = {

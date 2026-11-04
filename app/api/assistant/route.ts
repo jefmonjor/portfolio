@@ -4,6 +4,13 @@ import { zodTextFormat } from "openai/helpers/zod"
 
 import type { Locale } from "@/i18n/routing"
 import {
+  asksForCv,
+  cvActions,
+  cvReply,
+  lastOffer,
+  offerCvHint,
+} from "@/lib/assistant/cv-intent"
+import {
   buildDossier,
   buildOfferAnalysisPrompt,
   buildSystemPrompt,
@@ -66,10 +73,6 @@ function enumEnv<T extends string>(
 }
 
 export async function POST(request: Request) {
-  if (!process.env.OPENAI_API_KEY) {
-    return NextResponse.json({ error: "unconfigured" }, { status: 503 })
-  }
-
   let input: unknown
   try {
     input = await request.json()
@@ -92,13 +95,31 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
 
+  const locale = parsed.data.locale
+  const latest = messages.at(-1)?.content ?? ""
+
+  // Handing out the CV needs no model and no key: the variants are fixed and
+  // the files come from the CV routes, so the reply is written here and the
+  // buttons call those routes from the chat.
+  if (!looksLikeJobOffer(latest) && asksForCv(latest)) {
+    const offer = lastOffer(messages)
+    return NextResponse.json(
+      assistantSuccessSchema.parse({
+        reply: cvReply(locale, offer !== null),
+        actions: cvActions(offer),
+      })
+    )
+  }
+
+  if (!process.env.OPENAI_API_KEY) {
+    return NextResponse.json({ error: "unconfigured" }, { status: 503 })
+  }
+
   if (checkLimit(requestIp(request)) !== "ok") {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 })
   }
 
   const client = new OpenAI()
-  const locale = parsed.data.locale
-  const latest = messages.at(-1)?.content ?? ""
 
   try {
     if (looksLikeJobOffer(latest)) {
@@ -114,7 +135,14 @@ export async function POST(request: Request) {
         }
       )
       if (reply) {
-        return NextResponse.json(assistantSuccessSchema.parse({ reply }))
+        // The comparison is the moment a tailored CV makes sense: the offer
+        // goes back with the reply so one click renders it.
+        return NextResponse.json(
+          assistantSuccessSchema.parse({
+            reply: `${reply}\n\n${offerCvHint(locale)}`,
+            actions: cvActions(latest),
+          })
+        )
       }
       // Not an offer after all, or nothing survived verification: answer it
       // as a normal question, under the same rules.

@@ -244,10 +244,10 @@
       "repo": "Código"
     },
     "entries": {
-      "othertales": {
-        "name": "Other Tales",
+      "othertwist": {
+        "name": "Other Twist",
         "role": "Producto propio · App + Backend",
-        "summary": "Plataforma all-in-one para escritores: app Flutter con escritura offline y backend Java 21 / Spring Boot 3.5 en arquitectura hexagonal, dockerizado y en migración a VPS propio.",
+        "summary": "Plataforma all-in-one para escritores: app Flutter con escritura offline y backend Java 21 / Spring Boot 3.5 en arquitectura hexagonal, dockerizado y en migración a VPS propio. Web en othertwist.com y app con acceso en app.othertwist.com.",
         "highlights": [
           "App offline-first: Riverpod, GoRouter y base local Drift/SQLite con sincronización.",
           "Backend hexagonal con OAuth2/JWT (Supabase Auth), Flyway y Redis.",
@@ -331,6 +331,7 @@
   "education": {
     "title": "Formación e idiomas",
     "languagesLabel": "Idiomas",
+    "verifyCredential": "Verificar credencial",
     "entries": {
       "smpc-cert": {
         "title": "Scrum Master Professional Certified (SMPC)",
@@ -418,7 +419,7 @@
       "  experience         trayectoria laboral",
       "  skills             tecnologías que más uso",
       "  contact            cómo contactarme",
-      "  cv                 descarga mi CV",
+      "  cv [variante]      descarga mi CV: general, technical o tailored",
       "  web                qué hace la IA por ti en esta web",
       "  theme [dark|light] cambia el tema",
       "  lang <en|es|ca>    cambia el idioma",
@@ -439,6 +440,15 @@
     "langAlready": "ya estás en este idioma",
     "sudo": "buen intento — aquí ya eres root.",
     "emptyArg": "",
+    "cvUsage": "uso: cv [general|technical|tailored] — tailored pide la oferta",
+    "cvPasteOffer": "pega la oferta completa y pulsa Enter (o escribe 'cancel')",
+    "cvPreparing": "preparando el PDF…",
+    "cvDone": "descargado %s",
+    "cvError": "no se pudo generar el PDF — prueba 'cv general'",
+    "cvLimited": "límite de uso alcanzado — prueba en unos minutos",
+    "cvUnavailable": "la adaptación con IA no está disponible — prueba 'cv technical'",
+    "cvOfferTooShort": "la oferta es demasiado corta (mínimo 40 caracteres) — pega el texto completo o escribe 'cancel'",
+    "offerPlaceholder": "pega aquí la oferta…",
     "web": [
       "IA EN ESTA WEB — UTILIDAD DIRECTA",
       "  · Asistente (burbuja abajo a la derecha): pregúntale lo que",
@@ -463,7 +473,7 @@
     "platforms": {
       "vps": {
         "name": "VPS propio · netcup",
-        "detail": "Docker + GitHub Actions sobre mi propio servidor. PRONOQ en producción (web + worker) y Other Tales en migración desde Cloud Run."
+        "detail": "Docker + GitHub Actions sobre mi propio servidor. PRONOQ en producción (web + worker) y Other Twist en migración desde Cloud Run."
       },
       "vercel": {
         "name": "Vercel",
@@ -494,6 +504,10 @@
     "disclaimer": "IA limitada al perfil público. No estima datos ausentes; confirma por email cualquier decisión importante.",
     "reset": "Nueva",
     "thinking": "Pensando…",
-    "launcher": "Pregunta a la IA"
+    "launcher": "Pregunta a la IA",
+    "cvGeneral": "CV general (PDF)",
+    "cvTechnical": "CV técnico (PDF)",
+    "cvTailored": "CV adaptado a esta oferta (PDF)",
+    "cvPreparing": "Preparando…"
   }
 }

@@ -92,7 +92,12 @@ export function buildCvMarkdown(labels: CvLabels, locale: Locale): string {
   lines.push(`## ${headings.education}`, "")
   for (const entry of profile.education) {
     const data = labels.educationEntry(entry.id)
-    lines.push(`- **${data.title}** — ${entry.organization} · ${data.dates}`)
+    const credential = entry.credentialUrl
+      ? ` · [${labels.credential}](${entry.credentialUrl})`
+      : ""
+    lines.push(
+      `- **${data.title}** — ${entry.organization} · ${data.dates}${credential}`
+    )
   }
 
   lines.push("", `## ${headings.languages}`, "")

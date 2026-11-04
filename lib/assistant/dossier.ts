@@ -60,21 +60,24 @@ export function buildDossier(locale: Locale): string {
     locale === "ca"
       ? `SOBRE AQUESTA WEB (on estàs xatejant):
 - Construïda per Jefferson amb Next.js 16, TypeScript i Tailwind; codi obert a github.com/jefmonjor/portfolio. Desplegada a Vercel.
-- El botó "Descarregar CV" ofereix tres versions: general editorial, tècnica d'una columna i segons oferta. En l'última, la IA només selecciona evidència canònica; no escriu fets nous del candidat.
-- Té una terminal interactiva (icona a la barra superior o tecla \`) amb ordres com help, projects, experience, cv o contact.
+- El botó "Descarregar CV" ofereix tres versions: general en text pla, tècnica d'una columna i segons oferta. En l'última, la IA només selecciona evidència canònica; no escriu fets nous del candidat.
+- Aquest xat també lliura els CV: si el visitant demana el CV, rep els botons de descàrrega; si ha enganxat una oferta, també el CV adaptat a ella.
+- Té una terminal interactiva (icona a la barra superior o tecla \`) amb ordres com help, projects, experience, cv [general|technical|tailored] o contact.
 - Aquest xat funciona amb l'API d'OpenAI sobre un dossier tancat del perfil de Jefferson; si una dada no hi és, ha d'indicar-ho.
 - En espanyol, anglès i català, tema clar/fosc, disseny propi amb sistema documentat.`
       : locale === "es"
         ? `SOBRE ESTA WEB (donde estás chateando):
 - Construida por Jefferson con Next.js 16, TypeScript y Tailwind; código abierto en github.com/jefmonjor/portfolio. Desplegada en Vercel.
-- El botón "Descargar CV" ofrece tres versiones: general editorial, técnica de una columna y según oferta. En la última, la IA solo selecciona evidencia canónica; no redacta hechos nuevos del candidato.
-- Tiene una terminal interactiva (icono en la barra superior o tecla \`) con comandos como help, projects, experience, cv o contact.
+- El botón "Descargar CV" ofrece tres versiones: general en texto plano, técnica de una columna y según oferta. En la última, la IA solo selecciona evidencia canónica; no redacta hechos nuevos del candidato.
+- Este chat también entrega los CV: si el visitante pide el CV, recibe los botones de descarga; si ha pegado una oferta, también el CV adaptado a ella.
+- Tiene una terminal interactiva (icono en la barra superior o tecla \`) con comandos como help, projects, experience, cv [general|technical|tailored] o contact.
 - Este chat funciona con la API de OpenAI sobre un dossier cerrado del perfil de Jefferson; si un dato no aparece, debe indicarlo.
 - En español, inglés y catalán, tema claro/oscuro, diseño propio con sistema documentado.`
         : `ABOUT THIS WEBSITE (where you are chatting):
 - Built by Jefferson with Next.js 16, TypeScript and Tailwind; open source at github.com/jefmonjor/portfolio. Deployed on Vercel.
-- The "Download CV" button offers three versions: editorial general, single-column technical and job-tailored. In the last one, AI only selects canonical evidence; it does not write new candidate facts.
-- It has an interactive terminal (icon in the top bar or the \` key) with commands like help, projects, experience, cv or contact.
+- The "Download CV" button offers three versions: plain-text general, single-column technical and job-tailored. In the last one, AI only selects canonical evidence; it does not write new candidate facts.
+- This chat hands out the CVs too: when the visitor asks for the CV they get the download buttons, and after pasting an offer, the CV tailored to it as well.
+- It has an interactive terminal (icon in the top bar or the \` key) with commands like help, projects, experience, cv [general|technical|tailored] or contact.
 - This chat runs on the OpenAI API over a closed profile dossier and must state when a requested detail is not included.
 - In Spanish, English and Catalan, light/dark theme, custom design with a documented system.`
 

@@ -14,7 +14,9 @@ export type TerminalOutLine = {
 export type TerminalEffect =
   | { type: "clear" }
   | { type: "close" }
-  | { type: "cv" }
+  | { type: "cv"; variant: "general" | "technical" }
+  // A null offer asks the host to capture it on the next prompt.
+  | { type: "cv-tailor"; offer: string | null }
   | { type: "theme"; value: "dark" | "light" | null }
   | { type: "lang"; value: "en" | "es" | "ca" }
   | { type: "bg"; value: BackgroundVariant }
@@ -68,7 +70,39 @@ export type TerminalStrings = {
   langAlready: string
   sudo: string
   emptyArg: string
+  cvUsage: string
+  cvPasteOffer: string
+  cvPreparing: string
+  cvDone: string
+  cvError: string
+  cvLimited: string
+  cvUnavailable: string
+  cvOfferTooShort: string
 }
+
+// Mirrors CV_TAILOR_OFFER_MIN_CHARS without pulling the contracts module
+// into the terminal bundle.
+export const TERMINAL_OFFER_MIN_CHARS = 40
+
+const CV_GENERAL = new Set(["", "general", "g"])
+const CV_TECHNICAL = new Set([
+  "technical",
+  "tech",
+  "ats",
+  "t",
+  "tecnico",
+  "técnico",
+  "tècnic",
+])
+const CV_TAILORED = new Set([
+  "tailored",
+  "tailor",
+  "offer",
+  "oferta",
+  "adaptado",
+  "adaptat",
+  "a",
+])
 
 const COMMANDS = [
   "help",
@@ -258,11 +292,33 @@ export function execute(
       }
 
     case "cv":
-    case "resume":
-      return {
-        lines: [out("cv.pdf", "ok")],
-        effects: [{ type: "cv" }],
+    case "resume": {
+      const [variant = "", ...offerWords] = rest
+      const kind = variant.toLowerCase()
+      if (CV_GENERAL.has(kind))
+        return {
+          lines: [out(`cv general → ${t.cvPreparing}`, "ok")],
+          effects: [{ type: "cv", variant: "general" }],
+        }
+      if (CV_TECHNICAL.has(kind))
+        return {
+          lines: [out(`cv technical → ${t.cvPreparing}`, "ok")],
+          effects: [{ type: "cv", variant: "technical" }],
+        }
+      if (CV_TAILORED.has(kind)) {
+        const offer = offerWords.join(" ").trim()
+        if (offer.length >= TERMINAL_OFFER_MIN_CHARS)
+          return {
+            lines: [out(`cv tailored → ${t.cvPreparing}`, "ok")],
+            effects: [{ type: "cv-tailor", offer }],
+          }
+        return {
+          lines: [out(t.cvPasteOffer, "muted")],
+          effects: [{ type: "cv-tailor", offer: null }],
+        }
       }
+      return { lines: [out(t.cvUsage, "err")], effects: [] }
+    }
 
     case "theme": {
       const value = arg.toLowerCase()

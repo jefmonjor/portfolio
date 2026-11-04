@@ -42,7 +42,7 @@ describe("buildSystemPrompt", () => {
     expect(prompt).toContain(
       "CARGO ACTUAL: Arquitecto de Soluciones / Technical PM — Andbank"
     )
-    expect(prompt).toContain("Other Tales [En desarrollo · Privado]")
+    expect(prompt).toContain("Other Twist [En desarrollo · Público]")
     expect(prompt).toContain("Inglés (B1 profesional)")
     expect(prompt).toContain("expectativas salariales")
     expect(prompt).toContain("fechas de incorporación")

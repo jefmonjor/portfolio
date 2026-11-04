@@ -57,11 +57,13 @@ export const profile: Profile = {
       stack: [
         "Java 21",
         "Spring Boot 3",
+        "Clean Architecture",
         "OpenShift",
         "Keycloak",
         "DB2",
         "COBOL/AS400",
         "SonarQube",
+        "Gemini Code Assist",
       ],
     },
     {
@@ -223,9 +225,10 @@ export const profile: Profile = {
   ],
   projects: [
     {
-      id: "othertales",
+      id: "othertwist",
       stage: "development",
-      visibility: "private",
+      visibility: "public",
+      url: "https://othertwist.com",
       stack: [
         "Flutter",
         "Riverpod",
@@ -353,6 +356,8 @@ export const profile: Profile = {
       kind: "certification",
       completed: true,
       startISO: "2023",
+      credentialUrl:
+        "https://campus.eigp.net/badges/0ec04cb3912c4f08874dd03716f80df1/367486863b932a9c259baf556c40f653/beb04c41b45927cf7e9f8fd4bb519e86",
     },
     {
       id: "beng-software",

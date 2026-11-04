@@ -9,10 +9,13 @@ import {
   Cancel01Icon,
 } from "@hugeicons/core-free-icons"
 
+import { toast } from "sonner"
+
 import { Button } from "@/components/ui/button"
+import { downloadCv, downloadTailoredCv } from "@/lib/cv-download"
 import { contactEmail } from "@/lib/email"
 import { cn } from "@/lib/utils"
-import type { ChatMessage } from "@/types/assistant"
+import type { AssistantAction, ChatMessage } from "@/types/assistant"
 import {
   ASSISTANT_HISTORY_INPUT_MESSAGES,
   ASSISTANT_MESSAGE_INPUT_CHARS,
@@ -22,43 +25,84 @@ import {
 const STORAGE_KEY = "jefmonjor:assistant"
 const URL_PATTERN = /(https?:\/\/[^\s)]+[^\s).,;:!?])/g
 
-// The route returns `{ reply }` or an error code. A hand-written guard keeps
-// Zod out of the page bundle; the server already validated the shape.
-function readReply(body: unknown): string | null {
+// A reply may carry actions: CV downloads the visitor can run from the chat.
+// They stay on the client's copy of the conversation and never go back to
+// the route, whose contract is role + content only.
+type Message = ChatMessage & {
+  readonly actions?: ReadonlyArray<AssistantAction>
+}
+
+function isAction(value: unknown): value is AssistantAction {
+  if (typeof value !== "object" || value === null || !("type" in value)) {
+    return false
+  }
+  if (value.type === "cv") {
+    return (
+      "variant" in value &&
+      (value.variant === "general" || value.variant === "technical")
+    )
+  }
+  if (value.type === "cv-tailor") {
+    return (
+      "offer" in value &&
+      typeof value.offer === "string" &&
+      value.offer.trim().length > 0
+    )
+  }
+  return false
+}
+
+// The route returns `{ reply, actions? }` or an error code. A hand-written
+// guard keeps Zod out of the page bundle; the server already validated it.
+function readSuccess(body: unknown): Message | null {
   if (typeof body !== "object" || body === null || !("reply" in body)) {
     return null
   }
   const reply = body.reply
   if (typeof reply !== "string") return null
-  const trimmed = reply.trim()
-  return trimmed.length > 0 && trimmed.length <= ASSISTANT_REPLY_MAX_CHARS
-    ? trimmed
-    : null
+  const content = reply.trim()
+  if (content.length === 0 || content.length > ASSISTANT_REPLY_MAX_CHARS) {
+    return null
+  }
+  const actions =
+    "actions" in body && Array.isArray(body.actions)
+      ? body.actions.filter(isAction).slice(0, 3)
+      : []
+  return actions.length > 0
+    ? { role: "assistant", content, actions }
+    : { role: "assistant", content }
 }
 
-function isChatMessage(value: unknown): value is ChatMessage {
+function isMessage(value: unknown): value is Message {
+  if (
+    typeof value !== "object" ||
+    value === null ||
+    !("role" in value) ||
+    !("content" in value) ||
+    (value.role !== "user" && value.role !== "assistant") ||
+    typeof value.content !== "string"
+  ) {
+    return false
+  }
   return (
-    typeof value === "object" &&
-    value !== null &&
-    "role" in value &&
-    "content" in value &&
-    (value.role === "user" || value.role === "assistant") &&
-    typeof value.content === "string"
+    !("actions" in value) ||
+    value.actions === undefined ||
+    (Array.isArray(value.actions) && value.actions.every(isAction))
   )
 }
 
-function loadConversation(): ChatMessage[] {
+function loadConversation(): Message[] {
   try {
     const raw = window.sessionStorage.getItem(STORAGE_KEY)
     if (!raw) return []
     const parsed: unknown = JSON.parse(raw)
-    return Array.isArray(parsed) && parsed.every(isChatMessage) ? parsed : []
+    return Array.isArray(parsed) && parsed.every(isMessage) ? parsed : []
   } catch {
     return []
   }
 }
 
-function saveConversation(messages: ReadonlyArray<ChatMessage>): void {
+function saveConversation(messages: ReadonlyArray<Message>): void {
   try {
     if (messages.length === 0) window.sessionStorage.removeItem(STORAGE_KEY)
     else window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
@@ -95,12 +139,15 @@ function Linkified({ text }: { text: string }) {
 
 function Assistant() {
   const t = useTranslations("assistant")
+  const tModal = useTranslations("cvModal")
+  const tToast = useTranslations("cvToast")
   const locale = useLocale()
   const panelId = React.useId()
   const [open, setOpen] = React.useState(false)
-  const [messages, setMessages] = React.useState<ChatMessage[]>([])
+  const [messages, setMessages] = React.useState<Message[]>([])
   const [input, setInput] = React.useState("")
   const [busy, setBusy] = React.useState(false)
+  const [pendingAction, setPendingAction] = React.useState<string | null>(null)
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const inputRef = React.useRef<HTMLTextAreaElement>(null)
   const triggerRef = React.useRef<HTMLButtonElement>(null)
@@ -131,15 +178,54 @@ function Assistant() {
     setOpen(true)
   }
 
-  function commit(next: ChatMessage[]): void {
+  function commit(next: Message[]): void {
     setMessages(next)
     saveConversation(next)
+  }
+
+  function actionKey(action: AssistantAction): string {
+    return action.type === "cv" ? `cv:${action.variant}` : "cv-tailor"
+  }
+
+  function actionLabel(action: AssistantAction): string {
+    if (action.type === "cv-tailor") return t("cvTailored")
+    return action.variant === "technical" ? t("cvTechnical") : t("cvGeneral")
+  }
+
+  // Same routes as the download button in the hero: GET /cv.pdf for the
+  // ready variants, POST /api/cv-tailor with the pasted offer for the third.
+  async function runAction(action: AssistantAction): Promise<void> {
+    if (pendingAction) return
+    setPendingAction(actionKey(action))
+    try {
+      const result =
+        action.type === "cv"
+          ? await downloadCv(action.variant, locale)
+          : await downloadTailoredCv(action.offer, locale)
+      if (result.ok) {
+        toast.success(tToast("title"), { description: tToast("description") })
+      } else if (action.type === "cv") {
+        toast.error(tModal("downloadError"))
+      } else if (result.error === "rate_limited") {
+        toast.error(tModal("tailorLimited"))
+      } else if (result.error === "unavailable") {
+        toast.error(tModal("tailorUnavailable"))
+      } else {
+        toast.error(tModal("tailorError"))
+      }
+    } catch {
+      toast.error(
+        action.type === "cv" ? tModal("downloadError") : tModal("tailorError")
+      )
+    } finally {
+      setPendingAction(null)
+    }
   }
 
   async function send(text: string) {
     const question = text.trim()
     if (!question || busy) return
-    const history: ChatMessage[] = [
+    const history: Message[] = [
       ...messages,
       { role: "user", content: question },
     ]
@@ -149,7 +235,11 @@ function Assistant() {
     const controller = new AbortController()
     requestRef.current = controller
 
-    let reply: string
+    let reply: Message
+    const failure = (content: string): Message => ({
+      role: "assistant",
+      content,
+    })
     try {
       const res = await fetch("/api/assistant", {
         method: "POST",
@@ -158,29 +248,32 @@ function Assistant() {
         // whole history used to break the chat on the ninth question, when the
         // array outgrew the request contract and every send became a 400.
         body: JSON.stringify({
-          messages: history.slice(-ASSISTANT_HISTORY_INPUT_MESSAGES),
+          messages: history
+            .slice(-ASSISTANT_HISTORY_INPUT_MESSAGES)
+            .map(({ role, content }) => ({ role, content })),
           locale,
         }),
         signal: controller.signal,
       })
       if (requestRef.current !== controller) return
       if (res.status === 429) {
-        reply = t("rateLimited")
+        reply = failure(t("rateLimited"))
       } else if (res.status === 503) {
-        reply = t("unavailable", { email: contactEmail() })
+        reply = failure(t("unavailable", { email: contactEmail() }))
       } else if (!res.ok) {
-        reply = t("error", { email: contactEmail() })
+        reply = failure(t("error", { email: contactEmail() }))
       } else {
         reply =
-          readReply(await res.json()) ?? t("error", { email: contactEmail() })
+          readSuccess(await res.json()) ??
+          failure(t("error", { email: contactEmail() }))
       }
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return
-      reply = t("error", { email: contactEmail() })
+      reply = failure(t("error", { email: contactEmail() }))
     }
 
     if (requestRef.current !== controller) return
-    commit([...history, { role: "assistant", content: reply }])
+    commit([...history, reply])
     requestRef.current = null
     setBusy(false)
   }
@@ -301,6 +394,26 @@ function Assistant() {
                 ) : (
                   m.content
                 )}
+                {m.role === "assistant" && m.actions ? (
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {m.actions.map((action) => {
+                      const key = actionKey(action)
+                      const loading = pendingAction === key
+                      return (
+                        <button
+                          key={key}
+                          type="button"
+                          disabled={pendingAction !== null}
+                          aria-busy={loading}
+                          onClick={() => void runAction(action)}
+                          className="min-h-7 border border-border bg-background px-2 py-1 text-left font-mono text-[11px] tracking-wide text-foreground transition-[border-color,transform] duration-150 ease-out hover:border-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] disabled:opacity-60"
+                        >
+                          {loading ? t("cvPreparing") : actionLabel(action)}
+                        </button>
+                      )
+                    })}
+                  </div>
+                ) : null}
               </div>
             ))}
             {busy ? (

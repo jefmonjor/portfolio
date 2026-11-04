@@ -11,8 +11,10 @@ import {
 } from "@react-pdf/renderer"
 
 import { contactEmail, contactMailto } from "@/lib/email"
+import { contactPhones } from "@/lib/phone"
 import { profile, siteUrlShort } from "@/lib/profile"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
+import { evidencedSkillGroups } from "@/server/cv/skills"
 
 // The general CV is read by a person, usually on the first-page preview of a
 // hiring tool, so the first page carries everything that matters: who, how to
@@ -42,6 +44,7 @@ type CvLabels = {
   readonly summary: string
   readonly availability: string
   readonly otherProjects: string
+  readonly credential: string
   readonly sections: {
     readonly profile: string
     readonly experience: string
@@ -297,6 +300,10 @@ function CvDocument({ labels }: CvDocumentProps) {
     prefix?: string
   }> = [
     ...(email && emailHref ? [{ href: emailHref, label: email }] : []),
+    ...contactPhones().map((phone) => ({
+      href: `tel:${phone.tel}`,
+      label: phone.display,
+    })),
     ...(linkedin
       ? [
           {
@@ -427,17 +434,15 @@ function CvDocument({ labels }: CvDocumentProps) {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{labels.sections.skills}</Text>
-          {profile.skills.map((group) => {
-            const items =
-              group.id === "practice" ? labels.practiceItems : group.items
+          {evidencedSkillGroups(
+            profile.projects
+              .filter((project) => project.stage === "live")
+              .map((project) => project.id)
+          ).map((group) => {
             // "Hadoop · HDFS · YARN" is one chip on the site and three terms
             // on paper: a parser keeps each as its own keyword.
             const terms = Array.from(
-              new Set(
-                items.flatMap((item) =>
-                  group.id === "practice" ? [item] : item.split(" · ")
-                )
-              )
+              new Set(group.items.flatMap((item) => item.split(" · ")))
             )
             return (
               <Text key={group.id} style={styles.skillLine}>
@@ -462,6 +467,15 @@ function CvDocument({ labels }: CvDocumentProps) {
                 {data.location ? `, ${data.location}` : ""}
                 {" · "}
                 {data.dates}
+                {entry.credentialUrl ? (
+                  <Text style={styles.projectUrl}>
+                    {" · "}
+                    <Link src={entry.credentialUrl} style={styles.link}>
+                      {labels.credential}:{" "}
+                      {cvLinkLabel(entry.credentialUrl).split("/")[0]}
+                    </Link>
+                  </Text>
+                ) : null}
               </Text>
             )
           })}

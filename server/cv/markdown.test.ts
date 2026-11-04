@@ -10,6 +10,7 @@ const labels: CvLabels = {
   summary: "Canonical professional summary.",
   availability: "Selectively open to relevant opportunities",
   otherProjects: "Other projects",
+  credential: "Verify credential",
   sections: {
     profile: "Profile",
     experience: "Experience",
