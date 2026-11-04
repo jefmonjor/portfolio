@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Local clones of reference repos, never part of the app.
     ".agent-context/**",
+    // Impeccable design skill (installed with `npx skills add pbakaus/impeccable`).
+    ".agents/**",
   ]),
 ]);
 
