@@ -34,6 +34,12 @@ function MobileMenu({ label, children }: MobileMenuProps) {
 
   useCloseWhenTouchingOutside(menuRef)
 
+  function closeAfterChoosingLink(event: React.MouseEvent<HTMLDetailsElement>) {
+    if (event.target instanceof Element && event.target.closest("a")) {
+      menuRef.current?.removeAttribute("open")
+    }
+  }
+
   function closeOnEscape(event: React.KeyboardEvent<HTMLDetailsElement>) {
     if (event.key !== "Escape" || !menuRef.current?.open) return
     menuRef.current.removeAttribute("open")
@@ -44,6 +50,7 @@ function MobileMenu({ label, children }: MobileMenuProps) {
     <details
       ref={menuRef}
       onKeyDown={closeOnEscape}
+      onClick={closeAfterChoosingLink}
       className="group md:hidden"
     >
       <summary className="site-press -mr-2 flex size-11 cursor-pointer list-none items-center justify-center text-foreground [&::-webkit-details-marker]:hidden">

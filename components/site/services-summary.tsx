@@ -37,7 +37,7 @@ function ServicesSummary({ locale, services, cta }: ServicesSummaryProps) {
         </Link>
         <Link
           href={localizedPath(locale, "/services")}
-          className="site-link self-start text-[1.0625rem] font-medium sm:self-auto"
+          className="site-link inline-flex min-h-11 items-center self-start text-[1.0625rem] font-medium sm:self-auto"
         >
           <ArrowLabel>{services.details}</ArrowLabel>
         </Link>

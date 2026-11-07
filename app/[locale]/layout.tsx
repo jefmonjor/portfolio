@@ -19,6 +19,7 @@ const fontDisplay = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
   axes: ["opsz"],
+  display: "optional",
 })
 
 const fontMono = Geist_Mono({

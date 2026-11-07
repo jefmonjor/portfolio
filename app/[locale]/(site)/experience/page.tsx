@@ -57,7 +57,7 @@ export default async function ExperiencePage({ params }: SitePageProps) {
           {experience.cvLead}
           <Link
             href={localizedPath(locale, "/cv")}
-            className="site-link self-start font-medium"
+            className="site-link inline-flex min-h-11 items-center self-start font-medium"
           >
             <ArrowLabel>{experience.cvLink}</ArrowLabel>
           </Link>

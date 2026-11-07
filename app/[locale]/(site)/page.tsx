@@ -59,7 +59,7 @@ export default async function HomePage({ params }: SitePageProps) {
         </div>
         <Link
           href={localizedPath(locale, "/work")}
-          className="site-link mt-8 inline-block text-[1.0625rem] font-medium"
+          className="site-link mt-6 inline-flex min-h-11 items-center text-[1.0625rem] font-medium"
         >
           <ArrowLabel>{content.selectedWork.allCases}</ArrowLabel>
         </Link>
@@ -77,7 +77,7 @@ export default async function HomePage({ params }: SitePageProps) {
         <ExperienceTimeline groups={content.experience.groups} />
         <Link
           href={localizedPath(locale, "/experience")}
-          className="site-link mt-10 inline-block text-[1.0625rem] font-medium"
+          className="site-link mt-8 inline-flex min-h-11 items-center text-[1.0625rem] font-medium"
         >
           <ArrowLabel>{content.experience.fullHistory}</ArrowLabel>
         </Link>

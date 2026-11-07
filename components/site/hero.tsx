@@ -15,7 +15,7 @@ function Hero({ locale, content }: HeroProps) {
   return (
     <section
       aria-labelledby="hero-title"
-      className="site-container pt-12 pb-16 md:pt-24 md:pb-24"
+      className="site-container pt-8 pb-16 sm:pt-12 md:pt-24 md:pb-24"
     >
       <h1
         id="hero-title"
@@ -29,7 +29,7 @@ function Hero({ locale, content }: HeroProps) {
         </span>
       </h1>
 
-      <p className="hero-line mt-6 max-w-[22ch] font-heading text-[clamp(2rem,3.6vw+1.25rem,4rem)] leading-[1.08] font-medium tracking-[-0.02em] text-foreground [--line:2] sm:max-w-[24ch]">
+      <p className="hero-line mt-6 max-w-[22ch] font-heading text-[clamp(1.875rem,3.6vw+1.25rem,4rem)] leading-[1.08] font-medium tracking-[-0.02em] text-foreground [--line:2] sm:max-w-[24ch]">
         {hero.value}
       </p>
 
@@ -56,7 +56,7 @@ function Hero({ locale, content }: HeroProps) {
 
       <Link
         href={localizedPath(locale, "/contact")}
-        className="site-button mt-8 w-full sm:w-auto"
+        className="site-button mt-6 w-full sm:mt-8 sm:w-auto"
       >
         <ArrowLabel>{content.cta}</ArrowLabel>
       </Link>

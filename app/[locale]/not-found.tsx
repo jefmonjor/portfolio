@@ -16,6 +16,7 @@ export default async function NotFound() {
 
   return (
     <div className="relative isolate flex min-h-svh flex-col items-center justify-center gap-8 bg-background px-4 text-foreground">
+      <title>{t("title")}</title>
       <Background />
 
       <p
