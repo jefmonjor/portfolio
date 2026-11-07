@@ -24,20 +24,43 @@ describe("search-engine routes", () => {
     )
   })
 
-  it("publishes the canonical localized pages and the CV file", () => {
-    const entries = sitemap()
+  it("publishes every page of the site in English and Spanish", () => {
+    const urls = sitemap().map(({ url }) => url)
 
-    expect(entries.map(({ url }) => url)).toEqual([
-      `${siteUrl}/en`,
-      `${siteUrl}/es`,
-      `${siteUrl}/ca`,
-      `${siteUrl}/cv.pdf`,
-    ])
-    expect(entries[0]?.alternates?.languages).toEqual({
-      en: `${siteUrl}/en`,
-      es: `${siteUrl}/es`,
-      ca: `${siteUrl}/ca`,
-      "x-default": siteUrl,
+    expect(urls).toEqual(
+      expect.arrayContaining([
+        siteUrl,
+        `${siteUrl}/es`,
+        `${siteUrl}/services`,
+        `${siteUrl}/es/services`,
+        `${siteUrl}/work/private-bank-modernization`,
+        `${siteUrl}/es/work/specforge-verified-ai-delivery`,
+        `${siteUrl}/experience`,
+        `${siteUrl}/contact`,
+      ])
+    )
+    expect(urls).not.toContain(`${siteUrl}/ca`)
+    expect(urls).not.toContain(`${siteUrl}/ca/services`)
+  })
+
+  it("pairs each site page with its translation and an English default", () => {
+    const services = sitemap().find(({ url }) => url === `${siteUrl}/services`)
+
+    expect(services?.alternates?.languages).toEqual({
+      en: `${siteUrl}/services`,
+      es: `${siteUrl}/es/services`,
+      "x-default": `${siteUrl}/services`,
+    })
+  })
+
+  it("keeps the full CV in its three languages", () => {
+    const cv = sitemap().find(({ url }) => url === `${siteUrl}/cv`)
+
+    expect(cv?.alternates?.languages).toEqual({
+      en: `${siteUrl}/cv`,
+      es: `${siteUrl}/es/cv`,
+      ca: `${siteUrl}/ca/cv`,
+      "x-default": `${siteUrl}/cv`,
     })
   })
 
@@ -56,28 +79,26 @@ describe("search-engine routes", () => {
     )
     expect(body).toContain("# Jefferson Montesdeoca Jordán")
     expect(body).toContain(`${siteUrl}/es`)
+    expect(body).toContain(`${siteUrl}/services`)
+    expect(body).toContain("Software Architect & Senior Backend Engineer")
+    expect(body).not.toMatch(/Not offering|Product Engineer/)
     expect(body).toContain("https://github.com/jefmonjor/portfolio")
     expect(body).toContain("https://ilnami.com")
     expect(body).not.toMatch(/8 products|ocho productos|vuit productes/i)
   })
 
   it("builds the full reference as the summary plus one CV", () => {
-    // The route feeds it buildCvMarkdown output; translations need the server
-    // runtime, so the build covers that half.
     const body = buildLlmsFull("# Jefferson\n\n**Role**\n\n## Experience\n")
 
     expect(body.startsWith("# Jefferson Montesdeoca Jordán")).toBe(true)
     expect(body.match(/^# /gm)).toEqual(["# ", "# "])
     expect(body).toContain("# Full CV\n\n**Role**")
     expect(body).toContain(`${siteUrl}/llms-full.txt`)
-    expect(body).toContain("For recruiters and AI sourcing agents")
-    // The plain-text surfaces never carry an address.
+    expect(body).toContain("For clients, recruiters and AI sourcing agents")
     expect(body).not.toMatch(/[\w.+-]+@[\w-]+\.[a-z]{2,}/i)
   })
 
   it("keeps the pointer file crawlable but out of the index", () => {
-    // The CV routes carry the same header; they resolve translations through
-    // the server runtime, so they are covered by the build instead.
     expect(getLlmsText().headers.get("x-robots-tag")).toBe("noindex, follow")
   })
 })

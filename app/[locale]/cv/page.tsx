@@ -10,6 +10,7 @@ import { Deploy } from "@/components/portfolio/deploy"
 import { Education } from "@/components/portfolio/education"
 import { Experience } from "@/components/portfolio/experience"
 import { Footer } from "@/components/portfolio/footer"
+import { FullSiteBanner } from "@/components/portfolio/full-site-banner"
 import { Hero } from "@/components/portfolio/hero"
 import { Projects } from "@/components/portfolio/projects"
 import { Reveal } from "@/components/portfolio/reveal"
@@ -35,6 +36,7 @@ export default async function Page({
       <Background />
       <div className="relative z-10">
         <ConsoleSignature />
+        <FullSiteBanner />
         <TopBar />
         <main>
           <Hero />

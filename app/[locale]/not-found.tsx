@@ -1,13 +1,18 @@
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { getTranslations } from "next-intl/server"
+import Link from "next/link"
+import { getLocale, getTranslations } from "next-intl/server"
 
 import { Background } from "@/components/portfolio/background"
 import { Button } from "@/components/ui/button"
-import { Link } from "@/i18n/navigation"
+import { localizedPath, nearestSiteLocale, resolveLocale } from "@/i18n/routing"
 
 export default async function NotFound() {
   const t = await getTranslations("notFound")
+  const home = localizedPath(
+    nearestSiteLocale(resolveLocale(await getLocale())),
+    "/"
+  )
 
   return (
     <div className="relative isolate flex min-h-svh flex-col items-center justify-center gap-8 bg-background px-4 text-foreground">
@@ -30,7 +35,7 @@ export default async function NotFound() {
       </div>
 
       <Button asChild variant="outline" className="relative z-10">
-        <Link href="/">
+        <Link href={home}>
           <HugeiconsIcon
             icon={ArrowLeft01Icon}
             className="size-3.5"

@@ -19,9 +19,6 @@ function Footer() {
           <span className="text-border">/</span>
           <span>{tHero("role")}</span>
         </div>
-        {/* Crawlable links between locales: the header switcher is a JS
-            control, so these anchors are what lets a crawler walk from one
-            language to the next instead of trusting hreflang alone. */}
         <nav
           aria-label={t("languagesLabel")}
           className="flex flex-wrap items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase"
@@ -38,7 +35,7 @@ function Footer() {
             ) : (
               <Link
                 key={candidate}
-                href="/"
+                href="/cv"
                 locale={candidate}
                 hrefLang={candidate}
                 rel="alternate"

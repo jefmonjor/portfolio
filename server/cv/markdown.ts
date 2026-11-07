@@ -18,9 +18,9 @@ const CONTACT_LABEL: Record<Locale, string> = {
 }
 
 const CONTACT_HINT: Record<Locale, string> = {
-  es: `Formulario y dirección en ${siteUrlShort}/es#contact`,
-  ca: `Formulari i adreça a ${siteUrlShort}/ca#contact`,
-  en: `Contact paths at ${siteUrlShort}/en#contact`,
+  es: `Formas de contacto en ${siteUrlShort}/es/contact`,
+  ca: `Vies de contacte a ${siteUrlShort}/es/contact`,
+  en: `Contact paths at ${siteUrlShort}/contact`,
 }
 
 const STACK_LABEL: Record<Locale, string> = {

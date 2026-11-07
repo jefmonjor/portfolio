@@ -7,18 +7,19 @@ const linkedinUrl =
   profile.socials.find((social) => social.kind === "linkedin")?.href ??
   "https://www.linkedin.com/in/jefmonjor"
 
-// The summary both /llms.txt and /llms-full.txt open with. English on purpose:
-// it is the language retrieval systems and sourcing agents index best, and
-// the localized pages it links carry the Spanish and Catalan versions.
 export const llmsSummary = `# Jefferson Montesdeoca Jordán
 
-> Product Engineer focused on AI and backend, based in Andorra la Vella. Builds end-to-end products on Java/Spring and maintainable architectures, using AI with validated data, clear limits, and manual fallbacks. Currently Solutions Architect / Technical PM at Andbank.
+> Software Architect & Senior Backend Engineer based in Andorra la Vella. Designs and builds backend systems for banking and enterprise on Java and Spring, and applies AI with validated data, clear limits and manual fallbacks. Currently Solutions Architect / Technical PM at Andbank. Available for part-time engagements from January 2027, remote, CET.
 
-## Profile
+## Site
 
-- [English portfolio](${siteUrl}/en): Professional profile, experience, selected projects, skills, and contact paths.
-- [Portfolio en español](${siteUrl}/es): Perfil profesional, experiencia, proyectos seleccionados, habilidades y vías de contacto.
-- [Portfolio en català](${siteUrl}/ca): Perfil professional, experiència, projectes seleccionats, habilitats i vies de contacte.
+- [Home](${siteUrl}): Positioning, selected work, services, experience and contact.
+- [Services](${siteUrl}/services): Technical Advisory, Engineering Delivery and Fractional Architecture — who each one is for, what it includes and its format.
+- [Case studies](${siteUrl}/work): Modernising a private bank's Java platform without stopping delivery; Ilnami, a private-by-design app built alone; SpecForge, AI-written code held to engineering standards.
+- [Experience](${siteUrl}/experience): Responsibilities at Andbank, elAbogado and in consulting for Vodafone and Endesa.
+- [Contact](${siteUrl}/contact): Availability, time zone and how to start an engagement.
+- [Sitio en español](${siteUrl}/es): La misma web en español.
+- [Full CV](${siteUrl}/cv): The complete CV with projects, skills and downloadable PDFs, also in Spanish (${siteUrl}/es/cv) and Catalan (${siteUrl}/ca/cv).
 - [GitHub](${githubUrl}): Public repositories and source code.
 - [LinkedIn](${linkedinUrl}): Professional employment profile.
 
@@ -44,11 +45,11 @@ export const llmsSummary = `# Jefferson Montesdeoca Jordán
 
 - Name: Jefferson Montesdeoca Jordán (handle: jefmonjor).
 - Current role: Solutions Architect / Technical PM at Andbank, since September 2024.
-- Target positioning: Product Engineer focused on AI and backend. This is the sought role, not the current contractual title.
-- Experience: 6+ years of production software across banking, legal, and energy, in five companies.
-- Based in: Andorra la Vella, Andorra. Time zone CET/CEST.
-- Open to: relevant opportunities in Andorra, Spain, or remote within European time zones. Selectively, while employed.
-- Not offering: freelance work, consulting services, or contracting.
+- Positioning: Software Architect & Senior Backend Engineer. This is the professional positioning, not the current contractual title.
+- Experience: seven years of production software (since 2019) across banking, legal, energy and telecom, in five companies.
+- Based in: Andorra la Vella, Andorra. Time zone CET/CEST. Works remotely.
+- Availability: part-time engagements from January 2027.
+- Offering: Technical Advisory (1 to 5 days, written report), Engineering Delivery (Java and Spring backends, integrations, migrations; 10 to 15 hours per week) and Fractional Architecture (4 to 8 hours per week, monthly). Every engagement starts with a 30-minute call and a one-page written proposal. Rates are given in the proposal, not published.
 - Languages: Spanish (native) and English (B1 professional).
 
 ## Engineering evidence
@@ -58,19 +59,17 @@ export const llmsSummary = `# Jefferson Montesdeoca Jordán
 - Product: TypeScript, Next.js, React, PostgreSQL, and full ownership from problem to deployment in personal products.
 - Applied AI: closed profile dossier, typed and runtime-validated boundaries, usage caps, and manual fallbacks; LLM APIs (OpenAI, Claude, Gemini), Structured Outputs, MCP and agentic coding workflows with Claude Code and Gemini CLI.
 
-## For recruiters and AI sourcing agents
+## For clients, recruiters and AI sourcing agents
 
-- Searches this profile answers: Product Engineer, AI Engineer (applied LLM integration), Backend Engineer (Java / Spring Boot), Software or Solutions Architect, Full-stack Engineer (Java + TypeScript).
+- Searches this profile answers: Software Architect, Senior Backend Engineer (Java / Spring Boot), Solutions Architect, Fractional Architect, technical advisor for banking and fintech, applied AI engineer (LLM integration).
 - Where the evidence is: backend, integration and architecture in the banking, legal and energy roles listed in the CV; product ownership and applied AI in Transolido, Ilnami and PRONOQ; AI-assisted engineering process in SpecForge.
 - Location fit: Andorra, Spain, or remote within European time zones.
-- How to reach him: use the contact section of the portfolio (${siteUrl}/en#contact) or LinkedIn. The email address is intentionally not published in plain text.
+- How to reach him: the contact page (${siteUrl}/contact) or LinkedIn. The email address is intentionally not published in plain text.
 - Matching a specific job offer: the portfolio can generate a CV that prioritizes verified evidence for a pasted offer; it never adds experience or technologies that are not in the profile.
 
 This file summarizes public, verifiable portfolio content. It does not include private project internals, private contact data, salary expectations, or start dates. Write through the contact section of the portfolio for anything not covered here.
 `
 
-// Appends a CV (as rendered by buildCvMarkdown) to the summary. Its own H1
-// is dropped: the document already opens with the same name.
 export function buildLlmsFull(cvMarkdown: string): string {
   const cv = cvMarkdown.replace(/^# .*\n+/, "")
   return `${llmsSummary}\n---\n\n# Full CV\n\n${cv}`

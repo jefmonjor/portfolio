@@ -55,6 +55,6 @@ describe("Markdown CV", () => {
 
   it("never prints the email: this surface is crawlable plain text", () => {
     expect(markdown).not.toMatch(/@[a-z0-9.-]+\.[a-z]{2,}/i)
-    expect(markdown).toContain("#contact")
+    expect(markdown).toContain("jefmonjor.dev/contact")
   })
 })

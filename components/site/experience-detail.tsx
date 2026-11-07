@@ -1,0 +1,58 @@
+import { getExperienceEntry } from "@/content/site"
+import type { ExperienceGroup } from "@/content/site/types"
+import type { SiteLocale } from "@/i18n/routing"
+import { profile } from "@/lib/profile"
+
+type ExperienceDetailProps = {
+  locale: SiteLocale
+  group: ExperienceGroup
+  presentLabel: string
+}
+
+function organizationOf(entryId: string): string {
+  return (
+    profile.experience.find((entry) => entry.id === entryId)?.organization ?? ""
+  )
+}
+
+function ExperienceDetail({
+  locale,
+  group,
+  presentLabel,
+}: ExperienceDetailProps) {
+  return (
+    <div className="mt-6 flex flex-col gap-8">
+      {group.entries.map((entryId) => {
+        const entry = getExperienceEntry(locale, entryId)
+        const end = entry.end === "present" ? presentLabel : entry.end
+
+        return (
+          <div key={entryId} className="flex flex-col gap-3">
+            {group.entries.length > 1 ? (
+              <p className="text-[1rem] text-foreground">
+                <span className="font-medium">{organizationOf(entryId)}</span>
+                <span className="text-muted-foreground"> · {entry.role}</span>
+              </p>
+            ) : null}
+            <p className="text-sm text-muted-foreground tabular-nums">
+              {entry.start} — {end} · {entry.location}
+            </p>
+            <ul className="flex flex-col gap-2 text-[1rem] leading-relaxed text-foreground">
+              {entry.highlights.map((highlight) => (
+                <li key={highlight} className="flex gap-3">
+                  <span
+                    aria-hidden
+                    className="mt-[0.65em] inline-block size-1 shrink-0 bg-muted-foreground"
+                  />
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+export { ExperienceDetail }

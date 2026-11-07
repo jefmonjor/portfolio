@@ -4,9 +4,9 @@ import { buildSystemPrompt } from "@/lib/assistant/dossier"
 
 describe("buildSystemPrompt", () => {
   it.each([
-    ["ca", "Ets l'assistent", "DISPONIBILITAT", "Enginyer de producte"],
-    ["es", "Eres el asistente", "DISPONIBILIDAD", "Product Engineer"],
-    ["en", "You are the assistant", "AVAILABILITY", "Product Engineer"],
+    ["ca", "Ets l'assistent", "DISPONIBILITAT", "Software Architect"],
+    ["es", "Eres el asistente", "DISPONIBILIDAD", "Software Architect"],
+    ["en", "You are the assistant", "AVAILABILITY", "Software Architect"],
   ] as const)(
     "builds the %s dossier in its requested language",
     (locale, rule, section, positioning) => {

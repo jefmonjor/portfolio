@@ -1,0 +1,67 @@
+import Link from "next/link"
+
+import { ArrowLabel } from "@/components/site/arrow-label"
+import type { SiteContent } from "@/content/site/types"
+import { localizedPath, type SiteLocale } from "@/i18n/routing"
+
+type HeroProps = {
+  locale: SiteLocale
+  content: SiteContent
+}
+
+function Hero({ locale, content }: HeroProps) {
+  const { hero } = content
+
+  return (
+    <section
+      aria-labelledby="hero-title"
+      className="site-container pt-12 pb-16 md:pt-24 md:pb-24"
+    >
+      <h1
+        id="hero-title"
+        className="flex flex-col gap-1 text-[1.0625rem] leading-snug"
+      >
+        <span className="hero-line font-medium text-foreground [--line:0]">
+          {hero.name}
+        </span>
+        <span className="hero-line text-muted-foreground [--line:1]">
+          {hero.role}
+        </span>
+      </h1>
+
+      <p className="hero-line mt-6 max-w-[22ch] font-heading text-[clamp(2rem,3.6vw+1.25rem,4rem)] leading-[1.08] font-medium tracking-[-0.02em] text-foreground [--line:2] sm:max-w-[24ch]">
+        {hero.value}
+      </p>
+
+      <ul className="hero-line mt-8 flex flex-wrap gap-x-3 gap-y-1 text-[0.9375rem] font-medium text-foreground [--line:3]">
+        {hero.tags.map((tag, index) => (
+          <li key={tag} className="flex items-center gap-3">
+            {index > 0 ? (
+              <span aria-hidden className="text-border">
+                ·
+              </span>
+            ) : null}
+            {tag}
+          </li>
+        ))}
+      </ul>
+
+      <p className="hero-line mt-4 flex items-start gap-2.5 text-[0.9375rem] leading-snug text-muted-foreground [--line:4]">
+        <span
+          aria-hidden
+          className="mt-[0.45em] inline-block size-2 shrink-0 rounded-full bg-brand"
+        />
+        {hero.availability}
+      </p>
+
+      <Link
+        href={localizedPath(locale, "/contact")}
+        className="hero-line site-button mt-8 w-full [--line:5] sm:w-auto"
+      >
+        <ArrowLabel>{content.cta}</ArrowLabel>
+      </Link>
+    </section>
+  )
+}
+
+export { Hero }

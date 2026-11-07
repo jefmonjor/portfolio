@@ -2,13 +2,13 @@ import type { Profile } from "@/types/profile"
 
 export const portfolioUpdatedAt = "2026-10-21"
 
-// Canonical host for metadata, sitemap and JSON-LD. The apex domain
-// redirects here, so machine-readable references must use this one.
 export const siteUrl = "https://www.jefmonjor.dev"
 
-// Short form printed in the CV PDFs: shorter to read and to type from paper,
-// and it resolves to the canonical host.
 export const siteUrlShort = "https://jefmonjor.dev"
+
+export function absoluteUrl(path: string): string {
+  return path === "/" ? siteUrl : `${siteUrl}${path}`
+}
 
 export const profileTimeZone = "Europe/Andorra"
 

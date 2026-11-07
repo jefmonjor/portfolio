@@ -2,12 +2,28 @@ import createNextIntlPlugin from "next-intl/plugin"
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts")
 
+const standaloneForDockerOnly =
+  process.env.VERCEL === "1" ? undefined : "standalone"
+
+const portfolioMovedToCv = [
+  { source: "/en", destination: "/cv" },
+  { source: "/ca", destination: "/ca/cv" },
+]
+
+const cvPdfByLanguage = ["en", "es", "ca"].map((locale) => ({
+  source: `/cv-${locale}.pdf`,
+  destination: `/cv.pdf?locale=${locale}`,
+}))
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Next 16.3 does not emit the root NFT manifest when Vercel's build adapter
-  // is active, while the standalone finalizer still tries to read it. Vercel
-  // does not use the standalone bundle; keep it only for the Docker deployment.
-  output: process.env.VERCEL === "1" ? undefined : "standalone",
+  output: standaloneForDockerOnly,
+  async redirects() {
+    return portfolioMovedToCv.map((rule) => ({ ...rule, statusCode: 301 }))
+  },
+  async rewrites() {
+    return cvPdfByLanguage
+  },
 }
 
 export default withNextIntl(nextConfig)

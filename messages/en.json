@@ -4,10 +4,11 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Product Engineer focused on AI and backend. I build end-to-end products on Java/Spring, with validated data, clear limits and manual fallbacks.",
+    "description": "Software Architect & Senior Backend Engineer based in Andorra. Seven years building backend systems for banking, legal and energy: Java, Spring, architecture and applied AI. Full CV, projects and downloadable PDFs.",
     "applicationName": "{shortName} · Portfolio",
-    "role": "Product Engineer · AI & Backend",
-    "currentJobTitle": "Solutions Architect / Technical PM"
+    "role": "Software Architect & Senior Backend Engineer",
+    "currentJobTitle": "Solutions Architect / Technical PM",
+    "cvTitle": "CV · {shortName} — {role}"
   },
   "nav": {
     "about": "About",
@@ -66,12 +67,12 @@
     }
   },
   "status": {
-    "label": "Selectively open to relevant opportunities",
-    "detail": "Andorra · Spain · Remote across European time zones"
+    "label": "Available for part-time engagements from January 2027",
+    "detail": "Andorra · Remote · CET"
   },
   "hero": {
-    "role": "Product Engineer focused on AI & backend",
-    "tagline": "I build products end to end on Java/Spring backends and maintainable architectures. I use AI where it adds value, with validated data, clear limits, and manual fallbacks.",
+    "role": "Software Architect & Senior Backend Engineer",
+    "tagline": "I design and build backend systems for banking and enterprise on Java and Spring, with architectures a team can maintain. I apply AI where it adds value: validated data, clear limits and manual fallbacks.",
     "specs": {
       "location": "Location",
       "timezone": "Timezone",
@@ -93,12 +94,12 @@
   },
   "about": {
     "title": "Who I am, in one paragraph",
-    "manifesto": "Six-plus years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build several products of my own—some public and live, others private and in development—to keep product, backend, deployment, and applied AI decisions close together.",
+    "manifesto": "Seven years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build several products of my own—some public and live, others private and in development—to keep product, backend, deployment, and applied AI decisions close together.",
     "currentlyWorkingWith": "Currently working with"
   },
   "cv": {
     "headline": "End-to-end product work on Java/Spring backends: maintainable architecture, integration with critical systems, and AI applied where it adds real value.",
-    "summary": "Six-plus years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and manual fallbacks.",
+    "summary": "Seven years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and manual fallbacks.",
     "portfolioName": "Personal portfolio",
     "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + tRPC + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source.",
     "otherProjects": "Other projects"
@@ -360,7 +361,7 @@
     "copied": "Copied",
     "copyFailed": "Copy failed",
     "copyAriaLabel": "Copy email address",
-    "body": "Project, role, or question: send a short message with the context and I will reply within two business days.",
+    "body": "Project, role, or question: send a short message with the context and I will reply within one business day.",
     "sendEmail": "Send email",
     "openLinkedIn": "Open LinkedIn",
     "basedIn": "Based in",
@@ -406,7 +407,7 @@
     "inputLabel": "Terminal input",
     "placeholder": "type a command — try 'help'",
     "banner": [
-      "Jefferson Montesdeoca — Product Engineer · AI & Backend",
+      "Jefferson Montesdeoca — Software Architect & Senior Backend Engineer",
       "type 'help' to get started · press ESC or ` to close",
       ""
     ],
@@ -509,5 +510,9 @@
     "cvTechnical": "Technical CV (PDF)",
     "cvTailored": "CV tailored to this offer (PDF)",
     "cvPreparing": "Preparing…"
+  },
+  "cvBanner": {
+    "lead": "Looking for the full site?",
+    "link": "Services, case studies and contact"
   }
 }
