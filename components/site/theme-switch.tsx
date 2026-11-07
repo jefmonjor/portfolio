@@ -14,7 +14,7 @@ function ThemeSwitch({ label }: { label: string }) {
       onClick={toggleTheme}
       aria-label={label}
       title={label}
-      className="site-press inline-flex size-11 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+      className="site-press inline-flex size-11 items-center justify-center rounded-10 text-icon-sub-600 transition-colors hover:bg-bg-weak-50 hover:text-icon-strong-950 md:size-9"
     >
       <HugeiconsIcon
         icon={MoonIcon}

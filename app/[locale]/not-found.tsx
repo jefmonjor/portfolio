@@ -1,48 +1,54 @@
-import { ArrowLeft01Icon } from "@hugeicons/core-free-icons"
+import { ArrowLeft02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { Inter } from "next/font/google"
 import Link from "next/link"
 import { getLocale, getTranslations } from "next-intl/server"
 
-import { Background } from "@/components/portfolio/background"
-import { Button } from "@/components/ui/button"
+import { SiteShell } from "@/components/site/site-shell"
+import { getSiteContent } from "@/content/site"
 import { localizedPath, nearestSiteLocale } from "@/i18n/routing"
+
+// This boundary is part of every route under [locale], /cv included, so a
+// preloaded font here would be preloaded on /cv as well.
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  preload: false,
+})
 
 export default async function NotFound() {
   const t = await getTranslations("notFound")
-  const home = localizedPath(nearestSiteLocale(await getLocale()), "/")
+  const locale = nearestSiteLocale(await getLocale())
 
   return (
-    <div className="relative isolate flex min-h-svh flex-col items-center justify-center gap-8 bg-background px-4 text-foreground">
+    <SiteShell
+      fontVariable={inter.variable}
+      locale={locale}
+      content={getSiteContent(locale)}
+    >
       <title>{t("title")}</title>
-      <Background />
-
-      <p
-        aria-hidden
-        className="relative z-10 font-heading text-[clamp(4rem,10vw,7rem)] leading-none font-medium tracking-[-0.02em] text-muted-foreground/40 tabular-nums"
-      >
-        404
-      </p>
-
-      <div className="relative z-10 flex max-w-md flex-col items-center gap-3 text-center">
-        <h1 className="font-heading text-3xl leading-tight font-medium tracking-tight sm:text-5xl">
+      <section className="site-container flex flex-col items-start gap-5 pt-20 pb-12 md:pt-32">
+        <p className="text-subheading-xs text-text-sub-600 uppercase tabular-nums">
+          404
+        </p>
+        <h1 className="max-w-[20ch] text-title-h2 text-text-strong-950">
           {t("title")}
         </h1>
-        <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-          {t("body")}
-        </p>
-      </div>
-
-      <Button asChild variant="outline" className="relative z-10 min-h-11 px-4">
-        <Link href={home}>
+        <p className="site-prose text-text-sub-600">{t("body")}</p>
+        <Link
+          href={localizedPath(locale, "/")}
+          className="site-button site-button-stroke mt-3"
+        >
           <HugeiconsIcon
-            icon={ArrowLeft01Icon}
-            className="size-3.5"
+            icon={ArrowLeft02Icon}
+            aria-hidden
+            className="size-[18px] text-icon-sub-600"
             strokeWidth={1.75}
-            data-icon="inline-start"
           />
           {t("cta")}
         </Link>
-      </Button>
-    </div>
+      </section>
+    </SiteShell>
   )
 }

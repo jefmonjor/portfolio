@@ -4,31 +4,58 @@ import { ImageResponse } from "next/og"
 
 export const ogImageSize = { width: 1200, height: 630 }
 
-const palette = {
-  background: "#0d0c0b",
-  ink: "#f2efea",
-  muted: "#a39b91",
-  rule: "#2a2622",
-  brand: "#e9a760",
-}
+const ogThemes = {
+  site: {
+    font: "Inter",
+    files: { 500: "site/Inter-Medium.ttf", 600: "site/Inter-SemiBold.ttf" },
+    palette: {
+      background: "#ffffff",
+      ink: "#0e121b",
+      muted: "#525866",
+      rule: "#e1e4ea",
+      mark: "#462cf2",
+      eyebrow: "#525866",
+    },
+  },
+  cv: {
+    font: "Figtree",
+    files: { 500: "cv/Figtree-Medium.ttf", 600: "cv/Figtree-SemiBold.ttf" },
+    palette: {
+      background: "#0d0c0b",
+      ink: "#f2efea",
+      muted: "#a39b91",
+      rule: "#2a2622",
+      mark: "#e9a760",
+      eyebrow: "#e9a760",
+    },
+  },
+} as const
 
 const longTitleCharacters = 80
 
 export type OgCard = {
+  theme: keyof typeof ogThemes
   name: string
   role: string
   eyebrow: string
   title: string
 }
 
-function figtree(weight: "Medium" | "SemiBold") {
-  return readFile(join(process.cwd(), `public/fonts/cv/Figtree-${weight}.ttf`))
+function fontFile(path: string) {
+  return readFile(join(process.cwd(), "public/fonts", path))
 }
 
-export async function renderOgCard({ name, role, eyebrow, title }: OgCard) {
+export async function renderOgCard({
+  theme,
+  name,
+  role,
+  eyebrow,
+  title,
+}: OgCard) {
+  const { font, files, palette } = ogThemes[theme]
   const [medium, semiBold] = await Promise.all([
-    figtree("Medium"),
-    figtree("SemiBold"),
+    fontFile(files[500]),
+    fontFile(files[600]),
   ])
 
   return new ImageResponse(
@@ -42,19 +69,17 @@ export async function renderOgCard({ name, role, eyebrow, title }: OgCard) {
         padding: 72,
         backgroundColor: palette.background,
         color: palette.ink,
-        fontFamily: "Figtree",
+        fontFamily: font,
       }}
     >
       <div
         style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28 }}
       >
-        <div
-          style={{ width: 14, height: 14, backgroundColor: palette.brand }}
-        />
+        <div style={{ width: 14, height: 14, backgroundColor: palette.mark }} />
         <span>{name}</span>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-        <span style={{ fontSize: 28, color: palette.brand }}>{eyebrow}</span>
+        <span style={{ fontSize: 28, color: palette.eyebrow }}>{eyebrow}</span>
         <span
           style={{
             fontSize: title.length > longTitleCharacters ? 56 : 68,
@@ -88,8 +113,8 @@ export async function renderOgCard({ name, role, eyebrow, title }: OgCard) {
           "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=86400",
       },
       fonts: [
-        { name: "Figtree", data: medium, weight: 500, style: "normal" },
-        { name: "Figtree", data: semiBold, weight: 600, style: "normal" },
+        { name: font, data: medium, weight: 500, style: "normal" },
+        { name: font, data: semiBold, weight: 600, style: "normal" },
       ],
     }
   )

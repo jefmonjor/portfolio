@@ -36,7 +36,7 @@ function MobileMenu({ label, children }: MobileMenuProps) {
       <button
         type="button"
         popoverTarget={menuId}
-        className="site-press -mr-2 flex size-11 items-center justify-center text-foreground md:hidden"
+        className="site-press -mr-2 flex size-11 items-center justify-center rounded-10 text-icon-strong-950 md:hidden"
       >
         <span className="sr-only">{label}</span>
         <HugeiconsIcon
@@ -57,7 +57,7 @@ function MobileMenu({ label, children }: MobileMenuProps) {
         popover="auto"
         onClick={hideAfterChoosingLink}
         onBlur={hideWhenFocusLeaves}
-        className="site-menu-panel fixed inset-x-0 top-16 bottom-0 m-0 h-auto w-full max-w-none overflow-y-auto overscroll-contain border-0 border-t border-border bg-background p-0 text-foreground md:hidden"
+        className="site-menu-panel fixed inset-x-0 top-16 bottom-0 m-0 h-auto w-full max-w-none overflow-y-auto overscroll-contain border-0 border-t border-stroke-soft-200 bg-bg-white-0 p-0 text-text-strong-950 md:hidden"
       >
         {children}
       </div>

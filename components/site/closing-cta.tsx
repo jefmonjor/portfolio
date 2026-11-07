@@ -9,11 +9,13 @@ type ClosingCtaProps = {
 
 function ClosingCta({ locale, content }: ClosingCtaProps) {
   return (
-    <section className="site-container mt-8 border-t border-border pt-14 md:pt-20">
-      <p className="max-w-[30ch] font-heading text-[clamp(1.5rem,1.6vw+1.1rem,2.25rem)] leading-snug font-medium tracking-[-0.01em] text-foreground">
-        {content.services.closing}
-      </p>
-      <ContactButton locale={locale} label={content.cta} className="mt-8" />
+    <section className="site-container mt-16">
+      <div className="site-card bg-bg-weak-50 px-6 py-10 md:px-12 md:py-14">
+        <p className="max-w-[28ch] text-title-h4 text-text-strong-950">
+          {content.services.closing}
+        </p>
+        <ContactButton locale={locale} label={content.cta} className="mt-8" />
+      </div>
     </section>
   )
 }

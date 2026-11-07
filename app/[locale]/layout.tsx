@@ -1,32 +1,12 @@
 import type { Metadata, Viewport } from "next"
-import { Fraunces, Geist, Geist_Mono } from "next/font/google"
 import { notFound } from "next/navigation"
 import { setRequestLocale } from "next-intl/server"
 
 import "../globals.css"
 import { BackgroundInitScript } from "@/components/background-init-script"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils"
 import { profile, siteUrl } from "@/lib/profile"
 import { isLocale, routing } from "@/i18n/routing"
-
-const fontSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
-
-const fontDisplay = Fraunces({
-  subsets: ["latin"],
-  weight: "500",
-  variable: "--font-display",
-  display: "swap",
-})
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  preload: false,
-})
 
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION
 const bingSiteVerification = process.env.BING_SITE_VERIFICATION
@@ -56,7 +36,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d0c0b" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e121b" },
   ],
 }
 
@@ -81,12 +61,7 @@ export default async function LocaleLayout({
       lang={locale}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
-      className={cn(
-        "font-sans antialiased",
-        fontSans.variable,
-        fontDisplay.variable,
-        fontMono.variable
-      )}
+      className="antialiased"
     >
       <head>
         <BackgroundInitScript />

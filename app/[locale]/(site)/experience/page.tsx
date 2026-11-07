@@ -33,7 +33,7 @@ export default async function ExperiencePage({ params }: SitePageProps) {
           },
         ]}
       />
-      <div className="site-container site-column border-t border-border pt-12">
+      <div className="site-container site-column border-t border-stroke-soft-200 pt-12">
         <ExperienceTimeline
           groups={experience.groups}
           renderDetail={(group) => (
@@ -44,7 +44,7 @@ export default async function ExperiencePage({ params }: SitePageProps) {
             />
           )}
         />
-        <p className="mt-14 flex flex-col gap-2 border-t border-border pt-8 text-[1.0625rem] text-muted-foreground">
+        <p className="mt-14 flex flex-col gap-2 border-t border-stroke-soft-200 pt-8 text-paragraph-md text-text-sub-600">
           {experience.cvLead}
           <ArrowLink
             href={localizedPath(locale, "/cv")}

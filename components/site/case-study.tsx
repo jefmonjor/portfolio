@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArchitectureDiagram } from "@/components/site/architecture-diagram"
 import { ArrowLabel } from "@/components/site/arrow-label"
 import { BulletList } from "@/components/site/bullet-list"
+import { TagList } from "@/components/site/tag-list"
 import type {
   CaseStudy as CaseStudyContent,
   SiteContent,
@@ -26,11 +27,9 @@ function CaseSection({
   return (
     <section
       data-reveal
-      className="flex flex-col gap-5 border-t border-border pt-10"
+      className="flex flex-col gap-5 border-t border-stroke-soft-200 pt-10"
     >
-      <h2 className="font-heading text-[clamp(1.5rem,1.1vw+1.15rem,2rem)] leading-tight font-medium tracking-[-0.01em] text-foreground">
-        {title}
-      </h2>
+      <h2 className="text-title-h5 text-text-strong-950">{title}</h2>
       {children}
     </section>
   )
@@ -38,7 +37,7 @@ function CaseSection({
 
 function Paragraphs({ items }: { items: ReadonlyArray<string> }) {
   return (
-    <div className="site-prose flex flex-col gap-4 text-foreground">
+    <div className="site-prose flex flex-col gap-4 text-text-strong-950">
       {items.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
@@ -57,14 +56,11 @@ function CaseSummary({
   ]
 
   return (
-    <dl className="grid border-y border-border md:grid-cols-3">
+    <dl className="site-card grid divide-y divide-stroke-soft-200 md:grid-cols-3 md:divide-x md:divide-y-0">
       {rows.map((row) => (
-        <div
-          key={row.term}
-          className="flex flex-col gap-1 border-b border-border py-4 last:border-b-0 md:border-b-0 md:border-l md:px-5 md:first:border-l-0 md:first:pl-0"
-        >
-          <dt className="text-sm text-muted-foreground">{row.term}</dt>
-          <dd className="text-[1rem] leading-relaxed text-foreground">
+        <div key={row.term} className="flex flex-col gap-1 p-5">
+          <dt className="text-label-sm text-text-sub-600">{row.term}</dt>
+          <dd className="text-paragraph-md text-text-strong-950">
             {row.value}
           </dd>
         </div>
@@ -82,20 +78,20 @@ function Decisions({
       {study.decisions.map((decision, index) => (
         <li
           key={decision.choice}
-          className="grid grid-cols-[2rem_minmax(0,1fr)] gap-x-2"
+          className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-x-2"
         >
-          <span className="font-heading text-[1.25rem] leading-snug text-muted-foreground tabular-nums">
+          <span className="flex size-7 items-center justify-center rounded-full bg-bg-weak-50 text-label-xs text-text-sub-600 tabular-nums ring-1 ring-stroke-soft-200 ring-inset">
             {index + 1}
           </span>
           <div className="flex flex-col gap-3">
-            <h3 className="font-heading text-[1.25rem] leading-snug font-medium tracking-[-0.01em] text-foreground">
+            <h3 className="text-title-h6 text-text-strong-950">
               {decision.choice}
             </h3>
-            <p className="text-[1.0625rem] leading-relaxed text-foreground">
+            <p className="text-paragraph-md text-text-strong-950">
               <span className="font-medium">{labels.reason}: </span>
               {decision.reason}
             </p>
-            <p className="text-[1rem] leading-relaxed text-muted-foreground">
+            <p className="text-paragraph-sm text-text-sub-600">
               <span className="font-medium">{labels.rejected}: </span>
               {decision.rejected}
             </p>
@@ -118,13 +114,13 @@ function CaseStudy({ locale, study, next, labels }: CaseStudyProps) {
       <CaseSection title={labels.responsibility}>
         <div className="grid gap-8 md:grid-cols-2">
           <div className="flex flex-col gap-4">
-            <h3 className="text-[1rem] font-medium text-foreground">
+            <h3 className="text-label-md text-text-strong-950">
               {labels.owned}
             </h3>
             <BulletList items={study.responsibility.owned} />
           </div>
           <div className="flex flex-col gap-4">
-            <h3 className="text-[1rem] font-medium text-foreground">
+            <h3 className="text-label-md text-text-strong-950">
               {labels.notOwned}
             </h3>
             <BulletList items={study.responsibility.notOwned} />
@@ -153,16 +149,7 @@ function CaseStudy({ locale, study, next, labels }: CaseStudyProps) {
       </CaseSection>
 
       <CaseSection title={labels.stack}>
-        <ul className="flex flex-wrap gap-2">
-          {study.stack.map((item) => (
-            <li
-              key={item}
-              className="border border-border px-2.5 py-1 text-[0.875rem] text-foreground"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
+        <TagList items={study.stack} />
         {study.links.length > 0 ? (
           <ul className="flex flex-wrap gap-x-6">
             {study.links.map((link) => (
@@ -171,7 +158,7 @@ function CaseStudy({ locale, study, next, labels }: CaseStudyProps) {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="site-link inline-flex min-h-11 items-center text-[1.0625rem]"
+                  className="site-link inline-flex min-h-11 items-center text-label-md"
                 >
                   {link.label}
                 </a>
@@ -181,11 +168,14 @@ function CaseStudy({ locale, study, next, labels }: CaseStudyProps) {
         ) : null}
       </CaseSection>
 
-      <nav aria-label={labels.next} className="border-t border-border pt-10">
-        <p className="text-sm text-muted-foreground">{labels.next}</p>
+      <nav
+        aria-label={labels.next}
+        className="border-t border-stroke-soft-200 pt-10"
+      >
+        <p className="text-label-sm text-text-sub-600">{labels.next}</p>
         <Link
           href={localizedPath(locale, `/work/${next.slug}`)}
-          className="mt-2 inline-block font-heading text-[clamp(1.25rem,1vw+1rem,1.625rem)] leading-snug font-medium tracking-[-0.01em] text-foreground hover:text-brand"
+          className="group/arrow mt-2 inline-block text-title-h5 text-text-strong-950 decoration-stroke-sub-300 underline-offset-4 hover:underline"
         >
           <ArrowLabel>{next.title}</ArrowLabel>
         </Link>

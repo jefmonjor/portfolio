@@ -30,7 +30,7 @@ function ArchitectureDiagram({ id, title, nodes }: ArchitectureDiagramProps) {
   const centre = box.x + box.width / 2
 
   return (
-    <figure className="mx-auto w-full max-w-[26rem]">
+    <figure className="site-card mx-auto w-full max-w-[30rem] bg-bg-weak-50 p-5 sm:p-6">
       <svg
         role="img"
         aria-labelledby={`${id}-title ${id}-description`}
@@ -49,7 +49,7 @@ function ArchitectureDiagram({ id, title, nodes }: ArchitectureDiagramProps) {
             markerHeight="7"
             orient="auto-start-reverse"
           >
-            <path d="M0 0 L10 5 L0 10 z" className="fill-muted-foreground" />
+            <path d="M0 0 L10 5 L0 10 z" className="fill-icon-soft-400" />
           </marker>
         </defs>
         {nodes.map((node, index) => {
@@ -63,27 +63,21 @@ function ArchitectureDiagram({ id, title, nodes }: ArchitectureDiagramProps) {
                 y={top}
                 width={box.width}
                 height={box.height}
-                className="fill-card stroke-border"
+                rx={10}
+                className="fill-bg-white-0 stroke-stroke-soft-200"
                 strokeWidth={1}
-              />
-              <rect
-                x={box.x}
-                y={top}
-                width={3}
-                height={box.height}
-                className="fill-brand"
               />
               <text
                 x={box.x + 16}
                 y={top + 24}
-                className="fill-foreground text-[14px] font-medium"
+                className="fill-text-strong-950 text-[14px] font-medium"
               >
                 {node.label}
               </text>
               <text
                 x={box.x + 16}
                 y={top + 42}
-                className="fill-muted-foreground text-[11.5px]"
+                className="fill-text-sub-600 text-[11.5px]"
               >
                 {node.detail}
               </text>
@@ -93,7 +87,7 @@ function ArchitectureDiagram({ id, title, nodes }: ArchitectureDiagramProps) {
                   y1={top + box.height}
                   x2={centre}
                   y2={top + box.height + connectorLength - 2}
-                  className="stroke-muted-foreground"
+                  className="stroke-stroke-sub-300"
                   strokeWidth={1}
                   markerEnd={`url(#${arrowId})`}
                 />
@@ -102,7 +96,7 @@ function ArchitectureDiagram({ id, title, nodes }: ArchitectureDiagramProps) {
           )
         })}
       </svg>
-      <figcaption className="mt-3 text-center text-sm text-muted-foreground">
+      <figcaption className="mt-4 text-center text-label-sm text-text-sub-600">
         {title}
       </figcaption>
     </figure>

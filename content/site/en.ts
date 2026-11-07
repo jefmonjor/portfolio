@@ -59,8 +59,10 @@ export const en: SiteContent = {
     ],
     subtitle:
       "Java and Spring backends, legacy integration and maintainable architecture.",
-    availability:
-      "Available for part-time work from January 2027\u00a0· Remote\u00a0· Andorra time (CET)",
+    availability: {
+      status: "Available part-time from January 2027",
+      detail: "Remote\u00a0· Andorra time (CET)",
+    },
     proof: [
       "7 years in banking and critical systems",
       "Architect in private banking",

@@ -45,6 +45,7 @@ export function generateStaticParams() {
 async function cvCard(locale: Locale): Promise<OgCard> {
   const tMeta = await getTranslations({ locale, namespace: "metadata" })
   return {
+    theme: "cv",
     name: profile.shortName,
     role: tMeta("role"),
     eyebrow: "CV",
@@ -105,7 +106,12 @@ async function cardFor(locale: Locale, page: SitePath) {
   const content = getSiteContent(locale)
   const text = sitePageText(content, page)
   return text
-    ? { name: profile.shortName, role: content.hero.role, ...text }
+    ? {
+        theme: "site" as const,
+        name: profile.shortName,
+        role: content.hero.role,
+        ...text,
+      }
     : null
 }
 

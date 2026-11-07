@@ -1,4 +1,4 @@
-import { CaseCard } from "@/components/site/case-card"
+import { CaseDeck } from "@/components/site/case-deck"
 import { ClosingCta } from "@/components/site/closing-cta"
 import { PageIntro } from "@/components/site/page-intro"
 import {
@@ -25,17 +25,14 @@ export default async function WorkPage({ params }: SitePageProps) {
         intro={work.intro}
         crumbs={[{ name: work.title, path: "/work" }]}
       />
-      <div className="site-container flex flex-col border-t border-border pt-10">
-        {work.cases.map((study) => (
-          <CaseCard
-            key={study.slug}
-            locale={locale}
-            study={study}
-            readLabel={content.selectedWork.readCase}
-            stackLabel={work.labels.stack}
-            headingLevel="h2"
-          />
-        ))}
+      <div className="site-container">
+        <CaseDeck
+          locale={locale}
+          cases={work.cases}
+          readLabel={content.selectedWork.readCase}
+          stackLabel={work.labels.stack}
+          headingLevel="h2"
+        />
       </div>
       <ClosingCta locale={locale} content={content} />
     </>

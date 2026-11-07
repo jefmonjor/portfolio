@@ -61,8 +61,10 @@ export const es: SiteContent = {
     ],
     subtitle:
       "Backends Java y Spring, integración con legacy y arquitectura mantenible.",
-    availability:
-      "Disponible para colaboraciones a tiempo parcial desde enero de 2027\u00a0· Remoto\u00a0· Hora de Andorra (CET)",
+    availability: {
+      status: "Disponible a tiempo parcial desde enero de 2027",
+      detail: "Remoto\u00a0· Hora de Andorra (CET)",
+    },
     proof: [
       "7 años en banca y sistemas críticos",
       "Arquitecto en banca privada",

@@ -29,20 +29,20 @@ function ExperienceDetail({
         return (
           <div key={entryId} className="flex flex-col gap-3">
             {group.entries.length > 1 ? (
-              <p className="text-[1rem] text-foreground">
-                <span className="font-medium">{organizationOf(entryId)}</span>
-                <span className="text-muted-foreground"> · {entry.role}</span>
+              <p className="text-label-md text-text-strong-950">
+                <span>{organizationOf(entryId)}</span>
+                <span className="text-text-sub-600"> · {entry.role}</span>
               </p>
             ) : null}
-            <p className="text-sm text-muted-foreground tabular-nums">
+            <p className="text-label-sm text-text-sub-600 tabular-nums">
               {entry.start} — {end} · {entry.location}
             </p>
-            <ul className="flex flex-col gap-2 text-[1rem] leading-relaxed text-foreground">
+            <ul className="flex flex-col gap-2 text-paragraph-md text-text-strong-950">
               {entry.highlights.map((highlight) => (
                 <li key={highlight} className="flex gap-3">
                   <span
                     aria-hidden
-                    className="mt-[0.65em] inline-block size-1 shrink-0 bg-muted-foreground"
+                    className="mt-[0.6875rem] inline-block size-1 shrink-0 rounded-full bg-icon-soft-400"
                   />
                   {highlight}
                 </li>

@@ -31,7 +31,7 @@ export default async function ContactPage({ params }: SitePageProps) {
           },
         ]}
       />
-      <div className="site-container border-t border-border pt-12">
+      <div className="site-container border-t border-stroke-soft-200 pt-12">
         <ContactBlock contact={contact} />
       </div>
       <SiteSection id="include" title={contact.includeTitle} className="mt-14">

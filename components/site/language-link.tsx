@@ -13,9 +13,9 @@ const languageNames: Record<SiteLocale, string> = {
 const otherLanguage: Record<SiteLocale, SiteLocale> = { en: "es", es: "en" }
 
 const variantClasses = {
-  bar: "text-sm",
-  footer: "text-[0.9375rem]",
-  short: "min-w-11 justify-center text-sm font-medium uppercase",
+  bar: "px-2 text-label-sm",
+  footer: "text-paragraph-sm",
+  short: "min-w-11 justify-center text-label-sm uppercase",
 } as const
 
 type LanguageLinkProps = {
@@ -34,7 +34,7 @@ function LanguageLink({ current, variant = "bar" }: LanguageLinkProps) {
       lang={target}
       rel="alternate"
       prefetch={false}
-      className={`inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground ${variantClasses[variant]}`}
+      className={`inline-flex min-h-11 items-center text-text-sub-600 transition-colors hover:text-text-strong-950 ${variantClasses[variant]}`}
     >
       {variant === "short" ? (
         <>

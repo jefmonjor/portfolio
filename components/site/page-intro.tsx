@@ -1,3 +1,5 @@
+import { ArrowRight01Icon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
 
 import { StructuredDataScript } from "@/components/site/structured-data-script"
@@ -31,32 +33,35 @@ function PageIntro({
   return (
     <header className="site-container pt-8 pb-12 md:pt-12 md:pb-16">
       <nav aria-label={content.nav.breadcrumb}>
-        <ol className="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+        <ol className="flex flex-wrap items-center gap-x-2 text-label-sm text-text-sub-600">
           {ancestors.map((crumb) => (
             <li key={crumb.path} className="flex items-center gap-2">
               <Link
                 href={localizedPath(locale, crumb.path)}
-                className="inline-flex min-h-11 items-center transition-colors hover:text-foreground"
+                className="inline-flex min-h-11 items-center transition-colors hover:text-text-strong-950"
               >
                 {crumb.name}
               </Link>
-              <span aria-hidden className="text-border">
-                /
-              </span>
+              <HugeiconsIcon
+                icon={ArrowRight01Icon}
+                aria-hidden
+                className="size-3.5 text-icon-soft-400"
+                strokeWidth={1.75}
+              />
             </li>
           ))}
         </ol>
       </nav>
       {eyebrow ? (
-        <p className="mt-4 text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase">
+        <p className="mt-4 text-subheading-xs text-text-sub-600 uppercase">
           {eyebrow}
         </p>
       ) : null}
-      <h1 className="mt-2 max-w-[24ch] font-heading text-[clamp(2.25rem,3vw+1.5rem,3.75rem)] leading-[1.06] font-medium tracking-[-0.02em] text-foreground">
+      <h1 className="mt-3 max-w-[22ch] text-title-h2 text-text-strong-950">
         {title}
       </h1>
       {intro ? (
-        <p className="site-prose mt-6 text-muted-foreground">{intro}</p>
+        <p className="site-prose mt-5 text-text-sub-600">{intro}</p>
       ) : null}
       <StructuredDataScript data={breadcrumbStructuredData(locale, trail)} />
     </header>

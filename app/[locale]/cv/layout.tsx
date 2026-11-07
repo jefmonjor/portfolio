@@ -1,9 +1,10 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { BackgroundProvider } from "@/components/background-provider"
+import { CvFonts } from "@/components/portfolio/cv-fonts"
 import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { isLocale, localizedPath, routing, type Locale } from "@/i18n/routing"
@@ -21,6 +22,13 @@ function cvTitle(
   tMeta: Awaited<ReturnType<typeof getTranslations<"metadata">>>
 ) {
   return tMeta("cvTitle", { shortName: profile.shortName, role: tMeta("role") })
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0d0c0b" },
+  ],
 }
 
 async function resolveCvLocale(params: CvLayoutProps["params"]) {
@@ -93,6 +101,7 @@ export default async function CvLayout({ children, params }: CvLayoutProps) {
 
   return (
     <NextIntlClientProvider>
+      <CvFonts />
       <BackgroundProvider>
         <TooltipProvider>
           {children}

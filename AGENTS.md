@@ -35,9 +35,13 @@ in ten seconds what he does, why to trust him and how to hire him.
   shadcn CLI when a primitive is missing.
 - Do not override core shadcn design tokens in component code. Radius, colors,
   borders, and theme variables belong in `app/globals.css`.
-- Use semantic Tailwind tokens such as `bg-background`, `text-foreground`,
-  `text-muted-foreground`, `border-border`, and component variants before
-  custom styling.
+- Two design systems, never mixed (see `docs/DESIGN.md`): the commercial
+  site (`components/site/`) uses only Underlay tokens (`bg-bg-white-0`,
+  `text-text-sub-600`, `ring-stroke-soft-200`, `bg-primary-base`,
+  `text-title-h4`, `shadow-elevation-card`…); `/cv` uses the shadcn tokens
+  (`bg-background`, `text-foreground`, `text-muted-foreground`,
+  `border-border`). The brand violet only appears on primary buttons, active
+  items, selection and focus rings.
 - Keep pages thin. Site UI lives in `components/site/`, CV UI in
   `components/portfolio/`, server logic in `server/`, shared helpers in
   `lib/`, and runtime contracts in `types/`.

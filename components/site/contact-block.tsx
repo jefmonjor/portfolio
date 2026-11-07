@@ -5,23 +5,25 @@ import { publicProfiles } from "@/lib/profile"
 function ContactBlock({ contact }: { contact: SiteContent["contact"] }) {
   return (
     <div className="flex flex-col gap-10">
-      <p className="site-prose text-muted-foreground">{contact.intro}</p>
+      <p className="site-prose text-text-sub-600">{contact.intro}</p>
 
       <EmailActions email={contact.email} />
 
-      <dl className="grid gap-x-8 border-t border-border sm:grid-cols-2">
+      <dl className="grid gap-3 sm:grid-cols-2">
         {contact.facts.map((fact) => (
           <div
             key={fact.label}
-            className="flex flex-col gap-0.5 border-b border-border py-3"
+            className="site-card flex flex-col gap-1 rounded-16 px-4 py-3.5"
           >
-            <dt className="text-sm text-muted-foreground">{fact.label}</dt>
-            <dd className="text-[1rem] text-foreground">{fact.value}</dd>
+            <dt className="text-label-sm text-text-sub-600">{fact.label}</dt>
+            <dd className="text-paragraph-md text-text-strong-950">
+              {fact.value}
+            </dd>
           </div>
         ))}
       </dl>
 
-      <p className="flex flex-wrap items-center gap-x-5 text-[1rem] text-muted-foreground">
+      <p className="flex flex-wrap items-center gap-x-5 text-paragraph-md text-text-sub-600">
         {contact.elsewhere}
         {publicProfiles.map((channel) => (
           <a

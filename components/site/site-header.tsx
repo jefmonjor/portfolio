@@ -30,7 +30,7 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
         <BrandLink href={localizedPath(locale, "/")} name={profile.shortName} />
 
         <nav aria-label={content.nav.label} className="hidden md:block">
-          <ul className="flex items-center gap-6 text-[0.9375rem]">
+          <ul className="flex items-center gap-1">
             {links.map((link) => (
               <li key={link.path}>
                 <NavLink href={link.href}>{link.label}</NavLink>
@@ -39,12 +39,12 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
           </ul>
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-1 md:flex">
           <LanguageLink current={locale} />
           <ThemeSwitch label={content.nav.toggleTheme} />
           <Link
             href={contactHref}
-            className="site-button hidden min-h-10 px-4 text-[0.9375rem] wide:inline-flex"
+            className="site-button ml-2 hidden min-h-9 px-3.5 text-label-sm wide:inline-flex"
           >
             {content.cta}
           </Link>
@@ -58,7 +58,7 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
                 {links.map((link) => (
                   <li
                     key={link.path}
-                    className="border-b border-border last:border-b-0"
+                    className="border-b border-stroke-soft-200 last:border-b-0"
                   >
                     <NavLink href={link.href} variant="menu">
                       {link.label}
@@ -68,7 +68,7 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
               </ul>
               <Link
                 href={contactHref}
-                className="site-button mt-8 min-h-14 w-full"
+                className="site-button mt-8 min-h-12 w-full"
               >
                 {content.cta}
               </Link>

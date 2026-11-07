@@ -17,11 +17,9 @@ function DetailRow({
   children: React.ReactNode
 }) {
   return (
-    <div className="grid gap-2 border-t border-border pt-4 md:grid-cols-[9rem_minmax(0,1fr)] md:gap-8">
-      <dt className="text-sm font-medium text-muted-foreground">{term}</dt>
-      <dd className="text-[1.0625rem] leading-relaxed text-foreground">
-        {children}
-      </dd>
+    <div className="grid gap-2 border-t border-stroke-soft-200 pt-4 md:grid-cols-[9rem_minmax(0,1fr)] md:gap-8">
+      <dt className="text-label-sm text-text-sub-600">{term}</dt>
+      <dd className="text-paragraph-md text-text-strong-950">{children}</dd>
     </div>
   )
 }
@@ -29,7 +27,7 @@ function DetailRow({
 function ServiceDetails({ service, labels }: ServiceDetailsProps) {
   return (
     <>
-      <p className="site-prose text-foreground">{service.summary}</p>
+      <p className="site-prose text-text-strong-950">{service.summary}</p>
       <dl className="mt-8 flex flex-col gap-6">
         <DetailRow term={labels.audienceLabel}>{service.audience}</DetailRow>
         <DetailRow term={labels.includesLabel}>

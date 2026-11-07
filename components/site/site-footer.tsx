@@ -20,17 +20,17 @@ function SiteFooter({ locale, content }: SiteFooterProps) {
   ]
 
   return (
-    <footer className="mt-24 border-t border-border">
+    <footer className="mt-24 border-t border-stroke-soft-200">
       <div className="site-container grid gap-10 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="flex flex-col gap-2">
           <BrandLink
             href={localizedPath(locale, "/")}
             name={profile.shortName}
           />
-          <p className="text-[0.9375rem] text-muted-foreground">
+          <p className="text-paragraph-sm text-text-sub-600">
             {content.hero.role}
           </p>
-          <p className="text-[0.9375rem] text-muted-foreground">
+          <p className="text-paragraph-sm text-text-sub-600">
             {content.footer.location}
           </p>
         </div>
@@ -42,7 +42,7 @@ function SiteFooter({ locale, content }: SiteFooterProps) {
                 <Link
                   href={localizedPath(locale, link.path)}
                   prefetch={link.path === "/cv" ? false : undefined}
-                  className="inline-flex min-h-11 items-center text-[0.9375rem] text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex min-h-11 items-center text-paragraph-sm text-text-sub-600 transition-colors hover:text-text-strong-950"
                 >
                   {link.label}
                 </Link>
@@ -58,7 +58,7 @@ function SiteFooter({ locale, content }: SiteFooterProps) {
               href={social.href}
               rel="me noopener noreferrer"
               target="_blank"
-              className="inline-flex min-h-11 items-center text-[0.9375rem] text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex min-h-11 items-center text-paragraph-sm text-text-sub-600 transition-colors hover:text-text-strong-950"
             >
               {social.name}
             </a>

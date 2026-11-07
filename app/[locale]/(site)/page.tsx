@@ -1,5 +1,5 @@
 import { ArrowLink } from "@/components/site/arrow-link"
-import { CaseCard } from "@/components/site/case-card"
+import { CaseDeck } from "@/components/site/case-deck"
 import { ContactBlock } from "@/components/site/contact-block"
 import { ExperienceTimeline } from "@/components/site/experience-timeline"
 import { Hero } from "@/components/site/hero"
@@ -26,7 +26,7 @@ export default async function HomePage({ params }: SitePageProps) {
       <Hero locale={locale} content={content} />
 
       <SiteSection id="about" title={content.about.title}>
-        <div className="site-prose flex flex-col gap-5 text-foreground">
+        <div className="site-prose flex flex-col gap-5 text-text-strong-950">
           {content.about.paragraphs.map((paragraph, index) => (
             <p key={index}>
               <RichText locale={locale} content={paragraph} />
@@ -36,18 +36,14 @@ export default async function HomePage({ params }: SitePageProps) {
       </SiteSection>
 
       <SiteSection id="work" title={content.selectedWork.title}>
-        <div className="flex flex-col">
-          {content.work.cases.map((study) => (
-            <CaseCard
-              key={study.slug}
-              locale={locale}
-              study={study}
-              readLabel={content.selectedWork.readCase}
-              stackLabel={content.work.labels.stack}
-            />
-          ))}
-        </div>
-        <ArrowLink href={localizedPath(locale, "/work")} className="mt-6">
+        <CaseDeck
+          locale={locale}
+          cases={content.work.cases}
+          readLabel={content.selectedWork.readCase}
+          stackLabel={content.work.labels.stack}
+          stacked
+        />
+        <ArrowLink href={localizedPath(locale, "/work")} className="mt-8">
           {content.selectedWork.allCases}
         </ArrowLink>
       </SiteSection>

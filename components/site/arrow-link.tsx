@@ -19,7 +19,7 @@ function ArrowLink({
     <Link
       href={href}
       prefetch={prefetch}
-      className={`group/arrow site-link inline-flex min-h-11 items-center text-[1.0625rem] font-medium ${className}`}
+      className={`group/arrow site-link inline-flex min-h-11 items-center text-label-md ${className}`}
     >
       <ArrowLabel>{children}</ArrowLabel>
     </Link>

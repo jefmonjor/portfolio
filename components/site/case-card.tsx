@@ -1,12 +1,14 @@
 import Link from "next/link"
 
 import { ArrowLabel } from "@/components/site/arrow-label"
+import { TagList } from "@/components/site/tag-list"
 import type { CaseStudy } from "@/content/site/types"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
 
 type CaseCardProps = {
   locale: SiteLocale
   study: CaseStudy
+  order: string
   readLabel: string
   stackLabel: string
   headingLevel?: "h2" | "h3"
@@ -15,6 +17,7 @@ type CaseCardProps = {
 function CaseCard({
   locale,
   study,
+  order,
   readLabel,
   stackLabel,
   headingLevel = "h3",
@@ -22,34 +25,33 @@ function CaseCard({
   const Heading = headingLevel
 
   return (
-    <article className="group/arrow relative flex flex-col gap-3 border-t border-border py-7 transition-colors first:border-t-0 first:pt-0 md:hover:[&_.case-title]:text-brand">
-      <p className="text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase">
-        {study.sector}
-      </p>
-      <Heading className="case-title font-heading text-[clamp(1.375rem,1vw+1.1rem,1.75rem)] leading-snug font-medium tracking-[-0.01em] text-foreground transition-colors">
+    <article className="group/arrow site-card relative flex h-full flex-col gap-4 p-6 md:p-8">
+      <div className="flex items-baseline justify-between gap-4">
+        <p className="text-subheading-xs text-text-sub-600 uppercase">
+          {study.sector}
+        </p>
+        <span
+          aria-hidden
+          className="text-label-xs text-text-soft-400 tabular-nums"
+        >
+          {order}
+        </span>
+      </div>
+      <Heading className="text-title-h5 text-text-strong-950">
         <Link
           href={localizedPath(locale, `/work/${study.slug}`)}
-          className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-ring"
+          className="decoration-stroke-sub-300 underline-offset-4 group-hover/arrow:underline after:absolute after:inset-0 after:rounded-20 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-primary-stroke"
         >
           {study.title}
         </Link>
       </Heading>
-      <p className="max-w-[40rem] text-[1.0625rem] leading-relaxed text-muted-foreground">
+      <p className="max-w-[40rem] text-paragraph-md text-text-sub-600">
         {study.outcome}
       </p>
-      <ul className="flex flex-wrap gap-2" aria-label={stackLabel}>
-        {study.tags.map((tag) => (
-          <li
-            key={tag}
-            className="border border-border px-2.5 py-1 text-[0.8125rem] text-foreground"
-          >
-            {tag}
-          </li>
-        ))}
-      </ul>
+      <TagList items={study.tags} label={stackLabel} />
       <p
         aria-hidden
-        className="mt-1 text-[0.9375rem] font-medium text-foreground"
+        className="mt-auto pt-2 text-label-sm text-text-strong-950"
       >
         <ArrowLabel>{readLabel}</ArrowLabel>
       </p>

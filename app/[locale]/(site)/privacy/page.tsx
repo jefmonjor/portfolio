@@ -29,14 +29,14 @@ export default async function PrivacyPage({ params }: SitePageProps) {
           },
         ]}
       />
-      <div className="site-container site-column flex flex-col gap-10 border-t border-border pt-10">
+      <div className="site-container site-column flex flex-col gap-10 border-t border-stroke-soft-200 pt-10">
         {privacy.sections.map((section) => (
           <section key={section.title} className="flex flex-col gap-3">
-            <h2 className="font-heading text-[1.375rem] leading-snug font-medium tracking-[-0.01em] text-foreground">
+            <h2 className="text-title-h6 text-text-strong-950">
               {section.title}
             </h2>
             {section.paragraphs.map((paragraph, index) => (
-              <p key={index} className="site-prose text-foreground">
+              <p key={index} className="site-prose text-text-strong-950">
                 <RichText locale={locale} content={paragraph} />
               </p>
             ))}

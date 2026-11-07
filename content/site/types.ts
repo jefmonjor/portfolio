@@ -129,7 +129,7 @@ export type SiteContent = {
     eyebrow: string
     headline: Headline
     subtitle: string
-    availability: string
+    availability: { status: string; detail: string }
     proof: ReadonlyArray<string>
     seeWork: string
   }

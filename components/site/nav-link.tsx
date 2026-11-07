@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation"
 import { withoutLocalePrefix } from "@/i18n/locales"
 
 const variantClasses = {
-  bar: "min-h-11 text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground",
-  menu: "min-h-16 w-full font-heading text-[1.75rem] tracking-[-0.01em] text-foreground",
+  bar: "relative h-9 rounded-10 px-3 text-label-sm text-text-sub-600 hover:bg-bg-weak-50 hover:text-text-strong-950 aria-[current=page]:text-text-strong-950 after:absolute after:inset-x-3 after:-bottom-3.5 after:h-0.5 after:rounded-full after:bg-primary-stroke after:opacity-0 aria-[current=page]:after:opacity-100",
+  menu: "min-h-16 w-full gap-3 text-title-h5 text-text-sub-600 aria-[current=page]:text-text-strong-950 before:size-1.5 before:rounded-full before:bg-primary-stroke before:opacity-0 aria-[current=page]:before:opacity-100",
 } as const
 
 type NavLinkProps = {
