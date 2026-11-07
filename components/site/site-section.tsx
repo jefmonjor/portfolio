@@ -22,7 +22,7 @@ function SiteSection({ id, title, children, className }: SiteSectionProps) {
     >
       <h2
         id={headingId}
-        className="self-start text-title-h4 text-text-strong-950 lg:sticky lg:top-24"
+        className="self-start font-heading text-title-h4 text-text-strong-950 lg:sticky lg:top-24"
       >
         {title}
       </h2>

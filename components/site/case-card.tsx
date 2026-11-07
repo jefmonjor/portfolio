@@ -37,10 +37,10 @@ function CaseCard({
           {order}
         </span>
       </div>
-      <Heading className="text-title-h5 text-text-strong-950">
+      <Heading className="font-heading text-title-h5 text-text-strong-950">
         <Link
           href={localizedPath(locale, `/work/${study.slug}`)}
-          className="decoration-stroke-sub-300 underline-offset-4 group-hover/arrow:underline after:absolute after:inset-0 after:rounded-20 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-primary-stroke"
+          className="decoration-stroke-sub-300 underline-offset-4 group-hover/arrow:underline after:absolute after:inset-0 after:rounded-20 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-primary-base"
         >
           {study.title}
         </Link>

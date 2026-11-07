@@ -29,7 +29,9 @@ function CaseSection({
       data-reveal
       className="flex flex-col gap-5 border-t border-stroke-soft-200 pt-10"
     >
-      <h2 className="text-title-h5 text-text-strong-950">{title}</h2>
+      <h2 className="font-heading text-title-h4 text-text-strong-950">
+        {title}
+      </h2>
       {children}
     </section>
   )
@@ -84,7 +86,7 @@ function Decisions({
             {index + 1}
           </span>
           <div className="flex flex-col gap-3">
-            <h3 className="text-title-h6 text-text-strong-950">
+            <h3 className="font-heading text-title-h6 text-text-strong-950">
               {decision.choice}
             </h3>
             <p className="text-paragraph-md text-text-strong-950">
@@ -175,7 +177,7 @@ function CaseStudy({ locale, study, next, labels }: CaseStudyProps) {
         <p className="text-label-sm text-text-sub-600">{labels.next}</p>
         <Link
           href={localizedPath(locale, `/work/${next.slug}`)}
-          className="group/arrow mt-2 inline-block text-title-h5 text-text-strong-950 decoration-stroke-sub-300 underline-offset-4 hover:underline"
+          className="group/arrow mt-2 inline-block font-heading text-title-h5 text-text-strong-950 decoration-stroke-sub-300 underline-offset-4 hover:underline"
         >
           <ArrowLabel>{next.title}</ArrowLabel>
         </Link>

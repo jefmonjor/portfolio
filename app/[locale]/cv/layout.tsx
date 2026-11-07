@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next"
+import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { NextIntlClientProvider } from "next-intl"
 import { getTranslations, setRequestLocale } from "next-intl/server"
@@ -22,13 +22,6 @@ function cvTitle(
   tMeta: Awaited<ReturnType<typeof getTranslations<"metadata">>>
 ) {
   return tMeta("cvTitle", { shortName: profile.shortName, role: tMeta("role") })
-}
-
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d0c0b" },
-  ],
 }
 
 async function resolveCvLocale(params: CvLayoutProps["params"]) {

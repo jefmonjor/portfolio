@@ -63,21 +63,21 @@ Quedan conocidos y aceptados: el email de `/contact` abierto en frío espera a l
 
 ## Rendimiento (Lighthouse 12, móvil simulado, mediana de 3)
 
-Tras la adopción de Underlay (Inter, baraja de trabajos y reparto de servicios en CSS):
+Underlay con tema Ámbar, titulares en Fraunces (precargada y compartida con `/cv`), baraja de trabajos y reparto de servicios en CSS:
 
 | Página | Rendimiento | Accesibilidad | Buenas prácticas | SEO | FCP | LCP | TBT | CLS |
 |---|---|---|---|---|---|---|---|---|
-| `/` | 96 | 100 | 100 | 100 | 1,2 s | 2,5 s | 128 ms | 0 |
-| `/es` | 97 | 100 | 100 | 100 | 1,2 s | 2,5 s | 116 ms | 0 |
-| `/services` | 96 | 100 | 100 | 100 | 1,2 s | 2,8 s | 58 ms | 0 |
-| `/work/private-bank-modernization` | 96 | 100 | 100 | 100 | 1,2 s | 2,7 s | 90 ms | 0 |
-| `/contact` | 96 | 100 | 100 | 100 | 1,1 s | 2,6 s | 82 ms | 0 |
+| `/` | 96 | 100 | 100 | 100 | 1,2 s | 2,6 s | 113 ms | 0 |
+| `/es` | 96 | 100 | 100 | 100 | 1,2 s | 2,6 s | 97 ms | 0 |
+| `/work/private-bank-modernization` | 96 | 100 | 100 | 100 | 1,2 s | 2,7 s | 56 ms | 0 |
+| `/contact` | 96 | 100 | 100 | 100 | 1,1 s | 2,6 s | 126 ms | 0 |
 | `/cv` | 89 | 100 | — | — | — | 3,3 s | 179 ms | — |
 
-- La web precarga una sola fuente (Inter); Geist y Fraunces solo se precargan en `/cv`.
+- La web precarga Fraunces e Inter; `/cv`, Fraunces y Geist. Fraunces es la misma descarga en ambos.
+- El LCP de laboratorio se mide en «4G lento» simulado (1,6 Mbps, 150 ms de RTT); el objetivo del plan de < 2 s en 4G real no se puede verificar desde aquí.
 - JavaScript inicial de la web comercial: casi todo React y el runtime de Next. El objetivo del plan (< 80 KB) no es alcanzable con App Router sin cambiar de framework; el movimiento nuevo no añade JavaScript (scroll-driven animations en CSS).
 - Probado y descartado: `experimental.inlineCss` adelanta el FCP pero sube el HTML de la Home a 57 KB comprimidos y empeora el LCP de `/contact` y `/cv`.
-- La entrada de tarjetas al hacer scroll es solo desplazamiento (sin opacidad): Lighthouse medía las tarjetas bajo el pliegue atenuadas y marcaba contraste insuficiente.
+- La aparición de secciones solo atenúa lo que estaba bajo el pliegue al cargar y solo con JavaScript: Lighthouse no ve contenido atenuado.
 
 ## Pendiente de decisión del propietario
 

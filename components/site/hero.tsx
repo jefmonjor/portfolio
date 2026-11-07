@@ -1,7 +1,4 @@
-import {
-  ArrowDown02Icon,
-  CheckmarkCircle02Icon,
-} from "@hugeicons/core-free-icons"
+import { ArrowDown02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
 import { ContactButton } from "@/components/site/contact-button"
@@ -77,17 +74,20 @@ function Hero({ locale, content }: HeroProps) {
   return (
     <section
       aria-labelledby="hero-title"
-      className="site-container grid gap-12 pt-10 pb-16 md:pt-16 md:pb-24 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:items-center lg:gap-14"
+      className="site-container grid gap-10 pt-10 pb-14 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] md:items-center md:gap-10 md:pt-16 md:pb-20 lg:gap-16"
     >
       <div className="flex flex-col">
         {runBeforeFirstPaint(
           `(${playIntroOncePerSession.toString()})(document.documentElement)`
         )}
-        <p className="hero-reveal text-subheading-xs text-text-sub-600 uppercase [--step:0]">
+        <p className="hero-reveal text-subheading-xs text-text-sub-600 uppercase [--step:0] sm:tracking-[0.18em]">
           {hero.eyebrow}
         </p>
 
-        <h1 id="hero-title" className="mt-4 text-title-h1 text-text-sub-600">
+        <h1
+          id="hero-title"
+          className="mt-5 font-heading text-title-h1 text-text-strong-950 md:text-title-h1-split"
+        >
           <span className="sr-only">
             {profile.shortName}, {hero.role}.{" "}
           </span>
@@ -97,47 +97,45 @@ function Hero({ locale, content }: HeroProps) {
           `(${numberHeadlineLines.toString()})(document.getElementById("hero-title"))`
         )}
 
-        <p className="hero-reveal mt-6 max-w-[34rem] text-paragraph-lg text-text-sub-600 [--step:6]">
+        <p className="hero-reveal mt-6 text-paragraph-lg text-text-sub-600 [--step:6]">
           {hero.subtitle}
         </p>
 
-        <div className="hero-reveal mt-8 flex flex-col gap-3 [--step:7] sm:flex-row">
-          <ContactButton locale={locale} label={content.cta} />
-          <a href="#work" className="site-button site-button-stroke">
+        <p className="hero-reveal mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-paragraph-sm text-text-sub-600 [--step:7]">
+          <StatusBadge>{hero.availability.status}</StatusBadge>
+          {hero.availability.detail}
+        </p>
+
+        <div className="hero-reveal mt-8 flex flex-col gap-2 [--step:8] sm:flex-row sm:items-center sm:gap-6">
+          <ContactButton
+            locale={locale}
+            label={content.cta}
+            className="min-h-14 px-6"
+          />
+          <a
+            href="#work"
+            className="site-link inline-flex min-h-11 items-center justify-center gap-1.5 self-center text-label-md sm:self-auto"
+          >
             {hero.seeWork}
             <HugeiconsIcon
               icon={ArrowDown02Icon}
               aria-hidden
-              className="size-[18px] text-icon-sub-600"
+              className="size-4"
               strokeWidth={1.75}
             />
           </a>
         </div>
 
-        <p className="hero-reveal mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-paragraph-sm text-text-sub-600 [--step:8]">
-          <StatusBadge>{hero.availability.status}</StatusBadge>
-          {hero.availability.detail}
-        </p>
-
-        <ul className="hero-reveal mt-10 flex flex-col gap-2.5 border-t border-stroke-soft-200 pt-6 [--step:9] sm:flex-row sm:flex-wrap sm:gap-x-6">
-          {hero.proof.map((item) => (
-            <li
-              key={item}
-              className="flex items-center gap-2 text-label-sm text-text-sub-600"
-            >
-              <HugeiconsIcon
-                icon={CheckmarkCircle02Icon}
-                aria-hidden
-                className="size-4 shrink-0 text-icon-sub-600"
-                strokeWidth={1.75}
-              />
-              {item}
-            </li>
-          ))}
-        </ul>
+        <div className="hero-reveal mt-8 overflow-hidden [--step:9]">
+          <ul className="proof-list text-paragraph-sm text-text-sub-600">
+            {hero.proof.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
 
-      <HeroDiagram className="hero-reveal mx-auto w-full max-w-[28rem] [--step:4]" />
+      <HeroDiagram className="hero-reveal mx-auto w-full max-w-[26rem] [--step:4]" />
     </section>
   )
 }

@@ -32,7 +32,7 @@ export default async function PrivacyPage({ params }: SitePageProps) {
       <div className="site-container site-column flex flex-col gap-10 border-t border-stroke-soft-200 pt-10">
         {privacy.sections.map((section) => (
           <section key={section.title} className="flex flex-col gap-3">
-            <h2 className="text-title-h6 text-text-strong-950">
+            <h2 className="font-heading text-title-h5 text-text-strong-950">
               {section.title}
             </h2>
             {section.paragraphs.map((paragraph, index) => (

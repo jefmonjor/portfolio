@@ -9,12 +9,12 @@ const ogThemes = {
     font: "Inter",
     files: { 500: "site/Inter-Medium.ttf", 600: "site/Inter-SemiBold.ttf" },
     palette: {
-      background: "#ffffff",
-      ink: "#0e121b",
-      muted: "#525866",
-      rule: "#e1e4ea",
-      mark: "#462cf2",
-      eyebrow: "#525866",
+      background: "#0d0c0b",
+      ink: "#f2efea",
+      muted: "#a39b91",
+      rule: "#2a2622",
+      mark: "#e9a760",
+      eyebrow: "#e9a760",
     },
   },
   cv: {

@@ -22,7 +22,7 @@ function ExperienceTimeline({ groups, renderDetail }: ExperienceTimelineProps) {
             <p className="text-label-sm text-text-sub-600 tabular-nums">
               {group.period}
             </p>
-            <h3 className="mt-1.5 text-title-h6 text-text-strong-950">
+            <h3 className="mt-1.5 font-heading text-title-h5 text-text-strong-950">
               {group.organization}
             </h3>
             <p className="text-label-md text-text-strong-950">{group.role}</p>

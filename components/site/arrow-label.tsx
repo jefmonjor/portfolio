@@ -8,6 +8,7 @@ function ArrowLabel({ children }: { children: React.ReactNode }) {
       <HugeiconsIcon
         icon={ArrowRight02Icon}
         aria-hidden
+        data-arrow
         className="size-4 translate-y-px transition-transform duration-200 ease-[var(--ease-out-expo)] group-hover/arrow:translate-x-1 group-focus-visible/arrow:translate-x-1"
         strokeWidth={1.75}
       />

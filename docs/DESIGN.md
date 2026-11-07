@@ -1,71 +1,70 @@
 # Sistema de diseño
 
-Dos productos, dos sistemas que no se mezclan:
+Dos productos con la misma marca (ámbar quemado, Fraunces en titulares) y dos implementaciones:
 
-- **Web comercial** (`/`, `/es`, la 404): **Underlay**, tema Violet, Inter.
-- **`/cv`** (portfolio y CV): acento ámbar, Fraunces + Geist, cantos rectos.
+- **Web comercial** (`/`, `/es`, la 404): arquitectura de tokens **Underlay** con el tema **Ámbar**; Fraunces + Inter.
+- **`/cv`** (portfolio y CV): tokens shadcn en ámbar; Fraunces + Geist.
 
-Cada uno carga solo sus fuentes: la web precarga Inter; `/cv` precarga Geist y Fraunces (sus variables viven en `:root` porque los diálogos se montan en `<body>`); la 404 usa Inter sin precarga para no añadirla a `/cv`.
+Fraunces se carga en el layout raíz y la comparten ambos (una sola descarga en caché). Inter solo se precarga en la web; Geist solo en `/cv` (sus variables viven en `:root` porque los diálogos se montan en `<body>`); la 404 usa Inter sin precarga.
 
-## Web comercial: Underlay (Violet)
+## Web comercial: Underlay con tema Ámbar
 
 ### Cadena de color
 
-`Foundations → Theme → Tokens → Layers`, todo en `app/globals.css`. Los componentes solo leen tokens; ningún hex ni escala cruda en `components/site/`.
+`Foundations → Theme → Tokens → Layers`, todo en `app/globals.css`. Los componentes solo leen tokens; ningún hex ni escala cruda en `components/site/`. Cambiar de marca es cambiar el bloque Theme (así se pasó de Violet a Ámbar sin tocar componentes).
 
 | Capa | Qué contiene | Ejemplos |
 |---|---|---|
-| Foundations | Escalas crudas | `--gray-0…950`, `--violet-300/500/600/700`, `--green/red/orange/blue-50/200/500/950` |
-| Theme | La marca, derivada de una escala | `--primary-base` `#462CF2`, `--primary-dark`, `--primary-darker`, `--primary-stroke` (violet-500 en claro, violet-300 en oscuro), `--primary-alpha-10/16/24` |
-| Tokens | Semántica, cambia con el modo | `bg/strong-950`, `bg/surface-800`, `bg/sub-300`, `bg/soft-200`, `bg/weak-50`, `bg/white-0`; `text/strong-950`, `text/sub-600`, `text/soft-400`, `text/disabled-400`, `text/white-0`; `stroke/strong-950`, `stroke/sub-300`, `stroke/soft-200`, `stroke/white-0`; `icon/*`; `overlay`; `state/{success,error,warning,information,faded}-{dark,base,light,lighter}`; `elevation-*`; `static-white/black` |
+| Foundations | Escalas crudas | `--gray-0…1000` (neutros cálidos: tinta `#141210`, papel oscuro `#0D0C0B`), `--amber-300/500`, `--green/red/orange/blue-50/200/500/950` |
+| Theme | La marca | `--primary-base` (`#B8621B` claro, `#E9A760` oscuro), `--primary-inverse` (el ámbar del otro modo, para superficies invertidas), `--primary-alpha-6/10/24` |
+| Tokens | Semántica, cambia con el modo | `bg/strong-950`, `bg/surface-800`, `bg/sub-300`, `bg/soft-200`, `bg/weak-50`, `bg/white-0`; `text/strong-950`, `text/sub-600`, `text/soft-400`, `text/disabled-400`, `text/white-0`; `stroke/*`; `icon/*`; `overlay`; `state/{success,error,warning,information,faded}-{dark,base,light,lighter}`; `elevation-*`; `static-white/black` |
 | Layers | Componentes y páginas | `components/site/*`, clases `.site-*` |
 
 - Utilidades Tailwind generadas: `bg-bg-white-0`, `text-text-sub-600`, `ring-stroke-soft-200`, `fill-primary-alpha-10`, `bg-state-success-lighter`, `shadow-elevation-card`…
-- **Modo oscuro:** solo cambian los tokens (y `--primary-stroke`/alfas del tema). Neutros y estados nunca cambian con la marca.
+- Contraste: `text-sub-600` 7,1:1 en claro y en oscuro; ámbar de foco 4,4:1 sobre blanco y 9,5:1 sobre `#0D0C0B`.
 - `avatar/*` no se declara: la web no tiene avatares. Un token entra cuando una capa lo necesita.
 
-### Dónde va la marca
+### Dónde va el ámbar
 
-Solo en el **botón primario** (`.site-button`), el **elemento activo** (indicador de navegación, nodo activo del diagrama), la **selección** (`--primary-alpha-24`) y el **anillo de foco** (`--primary-stroke`, ≥ 3:1 en ambos modos). Nunca en texto, enlaces, iconos decorativos ni la marca del logo, que es `bg-strong-950`.
+Marca cuadrada del logo (gira 90° en hover), subrayado que se dibuja bajo «banks and fintechs» / «IA», atmósfera del fondo (6 %), flecha del CTA, indicador de navegación activo, nodo activo del diagrama, selección y anillo de foco. Nunca en bloques grandes ni texto de cuerpo. El CTA es tinta (`bg-strong-950`, texto `text-white-0`; invertido en oscuro) con la flecha en `--primary-inverse`: más contraste que un botón ámbar (el blanco sobre `#B8621B` no llega a 4,5:1).
 
 ### Tipografía
 
-Solo **Inter** (variable, `swap`, precargada). Escala en tokens `--text-*` con interlineado, tracking y peso:
+- **Fraunces 500** (estática, `swap`, precargada) en todos los titulares (`font-heading` + `text-title-*`); **Inter** en el resto.
+- Escala: `title-h1` `clamp(2.4rem, 8vw, 5.5rem)` / 1,05 / −0,02 em (en dos columnas, `title-h1-split` con 4,6 vw), `title-h2…h6`, `label-lg/md/sm/xs`, `paragraph-lg/md/sm`, `subheading-sm/xs` (mayúsculas, tracking +0,06/0,08 em; la etiqueta del hero sube a 0,18 em desde `sm`).
+- **Juego normal** para texto de varias líneas. **Juego Trim** (`trim` = `text-box: trim-both cap alphabetic`) para texto de una línea dentro de una caja: insignias, etiquetas, contadores.
+- `text-soft-400` solo para adornos con `aria-hidden` (contador `01 / 03`, separadores); nunca texto legible.
 
-- `title-h1…h6` (h1–h4 fluidos con `clamp()`; h1 36→56 px, tracking −0,032 em), `label-lg/md/sm/xs`, `paragraph-lg/md/sm`, `subheading-sm/xs` (mayúsculas, tracking +0,06/0,08 em).
-- **Juego normal** para texto de varias líneas. **Juego Trim** (`trim` = `text-box: trim-both cap alphabetic`) para texto de una línea dentro de una caja: insignias, etiquetas, contadores; el texto queda centrado ópticamente.
-- `text-soft-400` (2,6:1) solo para adornos con `aria-hidden` (contador `01 / 03`, separadores); nunca texto legible.
+### Hero
+
+Etiqueta → titular → subtítulo (`paragraph-lg`, secundario) → disponibilidad (insignia verde con punto pulsante + «Remoto · Hora de Andorra») → CTA de 56 px (ancho completo en móvil, flecha que se desplaza 4 px) con «Ver trabajos seleccionados ↓» como enlace de texto → fila de prueba en texto pequeño separada por puntos. Los puntos están en `::before` y se recortan al principio de cada línea, así nunca queda uno colgando al partir la fila. Diagrama de arquitectura decorativo a la derecha desde 768 px y debajo en móvil.
 
 ### Superficies
 
 - **Anillo de 1 px en lugar de borde** en todo componente con contorno: tarjetas (`.site-card` = `inset 0 0 0 1px stroke-soft-200` + `elevation-card`), etiquetas, insignias, botones secundarios. Los separadores entre bloques son reglas `border-stroke-soft-200`.
-- **Elevaciones:** `card`, `input`, `outline`, `badge`, `dropdown`, `modal` (sombras sobre `gray-950`; negras en oscuro).
+- **Atmósfera:** gradiente radial desde la esquina superior derecha con `--primary-alpha-6` y grano SVG fijo al 3 % (5 % en oscuro).
+- **Elevaciones:** `card`, `input`, `outline`, `badge`, `dropdown`, `modal`.
 - **Radios:** `rounded-6` (etiquetas), `rounded-10` (botones, iconos), `rounded-16` (datos de contacto), `rounded-20` (tarjetas), `rounded-full` (insignias de estado).
-- Botones: primario violeta con texto `static-white` (7,2:1); secundario `.site-button-stroke` (fondo `bg-white-0`, anillo, `elevation-outline`).
 
 ### Estado
 
-Siempre **icono + texto**: disponibilidad = insignia `state/success` con punto pulsante y etiqueta; copiar email = icono de check en `success-base` o de alerta en `error-base` junto al texto «Copiado»/«No se pudo copiar».
+Siempre **icono + texto**: disponibilidad = insignia `state/success` con punto pulsante y etiqueta; copiar email = icono de check en `success-base` o de alerta en `error-base` junto al texto.
 
-### Movimiento (CSS, sin librerías ni WebGL)
+### Movimiento (CSS, sin librerías ni WebGL, 0 KB de JavaScript)
 
-1. **Hero:** titular por líneas con máscara, una vez por sesión, < 1,2 s; líneas del diagrama que se dibujan y pulso hacia el nodo activo.
-2. **Trabajos — baraja apilada:** cada caso es `position: sticky` y se apila sobre el anterior con 14 px de desfase; el de debajo se encoge (`scale` 0,93/0,965) con `animation-timeline: view()` sobre la lista. Filas iguales (`grid-auto-rows: 1fr`) para que ninguna tarjeta asome por debajo. El caso con foco sube encima (`:focus-within`). Solo con pantallas de ≥ 640 px de alto.
-3. **Servicios — reparto:** desde 768 px las tres tarjetas salen apiladas y giradas desde el centro y se reparten en su columna a medida que la sección entra (`cover 0% → 40%`); en móvil cada tarjeta sube y se endereza al entrar.
-4. **Raíl de experiencia** que se dibuja con el scroll y **cabecera** que se vuelve translúcida a partir de 40 px.
+1. **Hero:** etiqueta → titular por líneas con máscara (`translateY(110%) → 0`, 600 ms, `cubic-bezier(.2,.8,.2,1)`, 80 ms entre líneas, numeradas antes del primer pintado) → subrayado ámbar que se dibuja → subtítulo → disponibilidad → CTA → prueba; < 1,2 s y una vez por sesión. Líneas del diagrama que se dibujan y pulso cada 4 s hacia el nodo activo.
+2. **Trabajos — baraja apilada:** cada caso es `position: sticky` y se apila sobre el anterior con 14 px de desfase; el de debajo se encoge (`scale` 0,93/0,965) con `animation-timeline: view()` sobre la lista. Filas iguales (`grid-auto-rows: 1fr`). El caso con foco sube encima (`:focus-within`). Solo con pantallas de ≥ 640 px de alto.
+3. **Servicios — reparto:** desde 768 px las tres tarjetas salen apiladas y giradas desde el centro y se reparten en su columna (`cover 0% → 40%`); en móvil cada tarjeta sube y se endereza al entrar.
+4. **Cabecera** transparente que se vuelve translúcida con desenfoque y línea inferior a partir de 40 px; **secciones** que aparecen con IntersectionObserver (`opacity` + 16 px) al cruzar el 20 % inferior de la pantalla; **raíl de experiencia** que se dibuja con el scroll.
 
-`prefers-reduced-motion` desactiva todo (la baraja pasa a lista normal); sin soporte de scroll-driven animations la baraja se apila igualmente con `sticky` y los servicios quedan en su rejilla; al imprimir todo es estático. Ninguna animación oculta contenido sin JavaScript.
-
-### Accesibilidad (WCAG 2.2 AA)
-
-Texto ≥ 4,5:1 (`text-sub-600` 7,1:1 en claro y oscuro), foco visible con contraste ≥ 3:1, objetivos táctiles de 44 px en móvil, estado nunca solo por color, foco nunca tapado por la baraja.
+GSAP o Motion añadirían 25–40 KB a una página que ya está en el suelo de React; todo lo anterior es CSS. `prefers-reduced-motion` lo desactiva todo (la baraja pasa a lista normal); sin soporte de scroll-driven animations la baraja se apila igualmente con `sticky` y los servicios quedan en su rejilla; al imprimir todo es estático. Ninguna animación oculta contenido sin JavaScript.
 
 ### Reglas de maquetación
 
-- Mobile-first en 390 px; hero en dos columnas desde `lg`; secciones con título fijo a la izquierda desde `lg`; botón de contacto en la cabecera desde `wide` (1200 px).
+- Mobile-first en 390 px; hero y secciones en dos columnas desde `md`/`lg`; botón de contacto en la cabecera desde `wide` (1200 px). Controles de 44 px en móvil; menú móvil a pantalla completa con la API `popover`.
 - **Un solo CTA** («Let's discuss your project» / «Hablemos de tu proyecto»), siempre hacia `/contact`.
 - Diagramas en SVG inline, máximo 6 cajas (lo comprueba `content/site/content.test.ts`).
-- Imagen OG de la web en paleta Underlay (fondo blanco, Inter, marca violeta); la de `/cv` sigue en ámbar.
+- Imagen OG de la web en la misma paleta que la de `/cv` (fondo `#0D0C0B`, ámbar), con Inter.
 
 ## `/cv`: sistema ámbar
 
@@ -75,7 +74,7 @@ Texto ≥ 4,5:1 (`text-sub-600` 7,1:1 en claro y oscuro), foco visible con contr
 
 - **Color.** Texto `#141210` / `#F2EFEA`. Acento único ámbar quemado `#B8621B` (claro) / `#E9A760` (oscuro), solo en marcas y el foco; nunca en texto pequeño. Fondo oscuro `#0D0C0B`.
 - **Tipografía.** Fraunces 500 (estática, `swap`, precargada) para titulares; Geist para el resto. Etiquetas en versalitas con tracking 0,14–0,18 em en `text-muted-foreground`.
-- Hasta esta revisión la web comercial compartía este sistema; desde la adopción de Underlay solo lo usa `/cv`.
+- La web comercial comparte marca (ámbar, Fraunces) pero no tokens: usa Underlay (arriba).
 
 Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar estos tokens y pasar las verificaciones del final. Género: **modern-minimal** (escuela Apple / Notion / Vercel / Linear), con un único acento terracota y la mono reservada a datos.
 

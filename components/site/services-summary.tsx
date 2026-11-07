@@ -39,7 +39,7 @@ function ServicesSummary({ locale, services, cta }: ServicesSummaryProps) {
                 strokeWidth={1.5}
               />
             </span>
-            <h3 className="mt-5 text-title-h6 text-text-strong-950">
+            <h3 className="mt-5 font-heading text-title-h5 text-text-strong-950">
               {service.name}
             </h3>
             <p className="mt-2 text-paragraph-sm text-text-sub-600">

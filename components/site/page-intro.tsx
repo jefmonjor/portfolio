@@ -57,7 +57,7 @@ function PageIntro({
           {eyebrow}
         </p>
       ) : null}
-      <h1 className="mt-3 max-w-[22ch] text-title-h2 text-text-strong-950">
+      <h1 className="mt-3 max-w-[22ch] font-heading text-title-h2 text-text-strong-950">
         {title}
       </h1>
       {intro ? (

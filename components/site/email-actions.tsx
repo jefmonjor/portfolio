@@ -83,7 +83,7 @@ function EmailActions({ email: labels }: EmailActionsProps) {
       <p className="flex flex-col gap-1">
         <span className="text-label-sm text-text-sub-600">{labels.label}</span>
         <span
-          className={`min-h-8 text-title-h5 break-all text-text-strong-950 select-all md:text-title-h4 ${isHydrated ? "" : "w-[14ch] max-w-full animate-pulse rounded-6 bg-bg-weak-50"}`}
+          className={`min-h-8 font-heading text-title-h5 break-all text-text-strong-950 select-all md:text-title-h4 ${isHydrated ? "" : "w-[14ch] max-w-full animate-pulse rounded-6 bg-bg-weak-50"}`}
         >
           {isHydrated ? contactEmail() : null}
         </span>

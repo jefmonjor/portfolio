@@ -73,7 +73,7 @@ function HeroDiagram({ className }: { className?: string }) {
                 rx={10}
                 className={
                   isActive
-                    ? "fill-primary-alpha-10 stroke-primary-stroke"
+                    ? "fill-primary-alpha-10 stroke-primary-base"
                     : "fill-bg-white-0 stroke-stroke-soft-200"
                 }
                 strokeWidth={1}
@@ -92,7 +92,7 @@ function HeroDiagram({ className }: { className?: string }) {
             </g>
           )
         })}
-        <circle r={3.5} className="diagram-pulse fill-primary-stroke">
+        <circle r={3.5} className="diagram-pulse fill-primary-base">
           <animateMotion
             dur="4s"
             repeatCount="indefinite"

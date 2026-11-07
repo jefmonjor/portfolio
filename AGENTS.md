@@ -40,8 +40,7 @@ in ten seconds what he does, why to trust him and how to hire him.
   `text-text-sub-600`, `ring-stroke-soft-200`, `bg-primary-base`,
   `text-title-h4`, `shadow-elevation-card`…); `/cv` uses the shadcn tokens
   (`bg-background`, `text-foreground`, `text-muted-foreground`,
-  `border-border`). The brand violet only appears on primary buttons, active
-  items, selection and focus rings.
+  `border-border`). Both share the brand: burnt amber and Fraunces headlines.
 - Keep pages thin. Site UI lives in `components/site/`, CV UI in
   `components/portfolio/`, server logic in `server/`, shared helpers in
   `lib/`, and runtime contracts in `types/`.

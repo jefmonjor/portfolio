@@ -32,7 +32,7 @@ export default async function NotFound() {
         <p className="text-subheading-xs text-text-sub-600 uppercase tabular-nums">
           404
         </p>
-        <h1 className="max-w-[20ch] text-title-h2 text-text-strong-950">
+        <h1 className="max-w-[20ch] font-heading text-title-h2 text-text-strong-950">
           {t("title")}
         </h1>
         <p className="site-prose text-text-sub-600">{t("body")}</p>
