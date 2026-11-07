@@ -15,7 +15,7 @@ function Hero({ locale, content }: HeroProps) {
   return (
     <section
       aria-labelledby="hero-title"
-      className="site-container pt-8 pb-16 sm:pt-12 md:pt-24 md:pb-24"
+      className="site-container pt-6 pb-16 sm:pt-12 md:pt-24 md:pb-24"
     >
       <h1
         id="hero-title"
@@ -29,24 +29,24 @@ function Hero({ locale, content }: HeroProps) {
         </span>
       </h1>
 
-      <p className="hero-line mt-6 max-w-[22ch] font-heading text-[clamp(1.75rem,3.6vw+1.25rem,4rem)] leading-[1.08] font-medium tracking-[-0.02em] text-foreground [--line:2] sm:max-w-[24ch]">
+      <p className="hero-line mt-5 max-w-[22ch] font-heading text-[clamp(1.625rem,3.6vw+1.25rem,4rem)] leading-[1.08] font-medium tracking-[-0.02em] text-foreground [--line:2] sm:mt-6 sm:max-w-[24ch]">
         {hero.value}
       </p>
 
-      <ul className="hero-line mt-8 flex flex-wrap gap-x-3 gap-y-1 text-[0.9375rem] font-medium text-foreground [--line:3]">
+      <ul className="hero-line mt-5 flex flex-wrap gap-x-3 gap-y-1 text-[0.9375rem] font-medium text-foreground [--line:3] sm:mt-8">
         {hero.tags.map((tag, index) => (
           <li key={tag} className="flex items-center gap-3">
-            {index > 0 ? (
+            {tag}
+            {index < hero.tags.length - 1 ? (
               <span aria-hidden className="text-border">
                 ·
               </span>
             ) : null}
-            {tag}
           </li>
         ))}
       </ul>
 
-      <p className="mt-4 flex items-start gap-2.5 text-[0.9375rem] leading-snug text-muted-foreground">
+      <p className="mt-3 flex items-start gap-2.5 text-[0.9375rem] leading-snug text-muted-foreground sm:mt-4">
         <span
           aria-hidden
           className="mt-[0.45em] inline-block size-2 shrink-0 rounded-full bg-brand"
@@ -56,7 +56,7 @@ function Hero({ locale, content }: HeroProps) {
 
       <Link
         href={localizedPath(locale, "/contact")}
-        className="site-button mt-6 w-full sm:mt-8 sm:w-auto"
+        className="site-button mt-4 w-full sm:mt-8 sm:w-auto"
       >
         <ArrowLabel>{content.cta}</ArrowLabel>
       </Link>
