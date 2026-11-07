@@ -1,8 +1,6 @@
 import { NextRequest } from "next/server"
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
-// Rendering is the expensive part this route has to protect, so it is the
-// part every test watches.
 const renderCvPdf = vi.fn(async () => Buffer.from("%PDF-1.7 test"))
 
 vi.mock("@/server/cv/render", () => ({
@@ -30,7 +28,6 @@ describe("GET /cv.pdf", () => {
   })
   afterEach(() => vi.unstubAllEnvs())
 
-  // Any extra query key used to miss the CDN cache and force a fresh render.
   it("redirects an unknown query key to the canonical URL without rendering", async () => {
     const response = await get("?locale=es&variant=technical&zz=1")
 
@@ -89,7 +86,7 @@ describe("GET /cv.pdf", () => {
     expect(limited.status).toBe(429)
     expect(limited.headers.get("retry-after")).toBe("60")
     expect(await limited.text()).toMatch(/descargas/i)
-    // Another visitor is unaffected.
-    expect((await get("", "203.0.113.99")).status).toBe(200)
+    const anotherVisitor = "203.0.113.99"
+    expect((await get("", anotherVisitor)).status).toBe(200)
   })
 })

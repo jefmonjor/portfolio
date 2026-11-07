@@ -11,17 +11,17 @@ import { cvPdfVariantSchema } from "@/types/cv"
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
-// Six possible files, and they only change with a deploy (which also starts
-// new processes). Rendering one takes about a second of CPU, so each process
-// renders each file once and serves the bytes from memory afterwards.
-const rendered = new Map<string, Promise<Uint8Array>>()
+const EDGE_CACHED_UNTIL_NEXT_DEPLOY =
+  "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+
+const renderedForThisDeploy = new Map<string, Promise<Uint8Array>>()
 
 function renderOnce(
   locale: Locale,
   variant: CvPdfVariantName
 ): Promise<Uint8Array> {
   const key = `${locale}:${variant}`
-  const cached = rendered.get(key)
+  const cached = renderedForThisDeploy.get(key)
   if (cached) return cached
 
   const pending = loadCvLabels(locale)
@@ -33,9 +33,9 @@ function renderOnce(
       )
     )
     .then((buffer) => new Uint8Array(buffer))
-  rendered.set(key, pending)
-  // A failed render must not be served from the cache forever.
-  pending.catch(() => rendered.delete(key))
+  renderedForThisDeploy.set(key, pending)
+  const forgetFailedRender = () => renderedForThisDeploy.delete(key)
+  pending.catch(forgetFailedRender)
   return pending
 }
 
@@ -51,10 +51,6 @@ export async function GET(request: NextRequest): Promise<Response> {
   const locale = resolveLocale(params.get("locale"))
   const variant = cvPdfVariantSchema.parse(params.get("variant"))
 
-  // Unknown keys, repeated keys, legacy or invalid values and a different key
-  // order all describe one of the same six files. Answering them with a
-  // redirect keeps a random query string from forcing a render and from
-  // multiplying the copies the CDN keeps.
   const canonical = cvPdfPath(locale, variant)
   if (`/cv.pdf${request.nextUrl.search}` !== canonical) {
     return new Response(null, {
@@ -79,11 +75,6 @@ export async function GET(request: NextRequest): Promise<Response> {
   const suffix = variant === "technical" ? "Technical" : "General"
   const filename = cvFilename(suffix, locale)
 
-  // Only the bare /cv.pdf is indexable. Every locale and variant combination
-  // is the same CV again, so the parameterized URLs stay out of the index
-  // instead of forming a cluster of near-duplicate files. The canonical one
-  // says so in its headers: a PDF has no <head> to declare it, and without the
-  // declaration the file competes with the page it was built from.
   const isCanonicalFile = request.nextUrl.search === ""
 
   return new Response(buffer.slice(), {
@@ -91,12 +82,7 @@ export async function GET(request: NextRequest): Promise<Response> {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `inline; filename="${filename}"`,
-      // The result only changes on deploy (which purges the CDN). The edge
-      // keeps one copy per file so the download button answers from cache;
-      // browsers still revalidate so a stale copy never outlives a deploy on
-      // their side.
-      "Cache-Control":
-        "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800",
+      "Cache-Control": EDGE_CACHED_UNTIL_NEXT_DEPLOY,
       ...(isCanonicalFile
         ? { Link: `<${siteUrl}/cv.pdf>; rel="canonical"` }
         : { "X-Robots-Tag": "noindex, follow" }),

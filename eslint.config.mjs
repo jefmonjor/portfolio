@@ -2,20 +2,22 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 
+const eslintConfigNextDefaultIgnores = [
+  ".next/**",
+  "out/**",
+  "build/**",
+  "next-env.d.ts",
+];
+const localReferenceRepoClones = [".agent-context/**"];
+const installedAgentSkills = [".agents/**"];
+
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  // Override default ignores of eslint-config-next.
   globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
-    // Local clones of reference repos, never part of the app.
-    ".agent-context/**",
-    // Impeccable design skill (installed with `npx skills add pbakaus/impeccable`).
-    ".agents/**",
+    ...eslintConfigNextDefaultIgnores,
+    ...localReferenceRepoClones,
+    ...installedAgentSkills,
   ]),
 ]);
 

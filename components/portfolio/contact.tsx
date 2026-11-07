@@ -25,16 +25,19 @@ type CopyState = "idle" | "copied" | "failed"
 
 const linkedin = profile.socials.find((s) => s.kind === "linkedin")?.href ?? "#"
 
-function Contact() {
-  const [copyState, setCopyState] = React.useState<CopyState>("idle")
-  // Assembled after mount so the address never ships in the static HTML.
+function useEmailAssembledAfterMount(): string {
   const [email, setEmail] = React.useState("")
-  const resetTimerRef = React.useRef<number | null>(null)
-
   React.useEffect(() => {
     const id = window.setTimeout(() => setEmail(contactEmail()), 0)
     return () => window.clearTimeout(id)
   }, [])
+  return email
+}
+
+function Contact() {
+  const [copyState, setCopyState] = React.useState<CopyState>("idle")
+  const email = useEmailAssembledAfterMount()
+  const resetTimerRef = React.useRef<number | null>(null)
 
   const locale = useLocale()
   const mailto = email ? contactMailto(cvContactSubject(locale)) : "#contact"

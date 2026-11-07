@@ -6,15 +6,15 @@ const CODES: ReadonlyArray<{
   { region: "AD", codes: [43, 51, 55, 54, 51, 56, 56, 55, 51, 55] },
 ]
 
+type E164Number = string
+
 export type ContactPhone = {
   readonly region: "ES" | "AD"
-  /** E.164, for tel: links. */
-  readonly tel: string
-  /** Grouped in threes for reading, after the country code. */
+  readonly tel: E164Number
   readonly display: string
 }
 
-function group(tel: string): string {
+function groupInThreesAfterCountryCode(tel: E164Number): string {
   if (tel.startsWith("+34")) {
     return `+34 ${tel.slice(3, 6)} ${tel.slice(6, 9)} ${tel.slice(9)}`
   }
@@ -24,6 +24,6 @@ function group(tel: string): string {
 export function contactPhones(): ReadonlyArray<ContactPhone> {
   return CODES.map(({ region, codes }) => {
     const tel = String.fromCharCode(...codes)
-    return { region, tel, display: group(tel) }
+    return { region, tel, display: groupInThreesAfterCountryCode(tel) }
   })
 }

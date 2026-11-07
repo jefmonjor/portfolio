@@ -1,15 +1,15 @@
 import { Badge } from "@/components/ui/badge"
-import { techIconId } from "@/lib/tech-icons"
+import {
+  TECH_ICON_FALLBACK_ID,
+  techIconId,
+  techIconSymbolId,
+} from "@/lib/tech-icons"
 import { cn } from "@/lib/utils"
 
 type TechBadgeProps = {
   label: string
   className?: string
 }
-
-// Mirrors techIconSymbolId() in tech-icon-sprite.tsx, which stays server-only
-// because it imports every path; this file is rendered by client components.
-const FALLBACK_SYMBOL = "#ti-fallback"
 
 function TechBadge({ label, className }: TechBadgeProps) {
   const id = techIconId(label)
@@ -27,7 +27,7 @@ function TechBadge({ label, className }: TechBadgeProps) {
           !id && "opacity-60"
         )}
       >
-        <use href={id ? `#ti-${id}` : FALLBACK_SYMBOL} />
+        <use href={`#${id ? techIconSymbolId(id) : TECH_ICON_FALLBACK_ID}`} />
       </svg>
       {label}
     </Badge>

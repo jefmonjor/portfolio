@@ -4,13 +4,6 @@ import type { CvLabels } from "@/server/cv/cv-document"
 import { CV_HEADINGS } from "@/server/cv/headings"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
 
-// A Markdown twin of the technical PDF, from the same labels. Sourcing agents
-// and CV analyzers parse plain text far more reliably than a PDF, and this is
-// the one CV surface a crawler can read without downloading a binary.
-//
-// The email is deliberately absent: unlike the PDFs, this endpoint is plain
-// text on a public URL, which is exactly what lib/email.ts keeps it out of.
-
 const CONTACT_LABEL: Record<Locale, string> = {
   es: "Contacto",
   ca: "Contacte",

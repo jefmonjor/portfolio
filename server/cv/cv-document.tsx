@@ -16,13 +16,6 @@ import { profile, siteUrlShort } from "@/lib/profile"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
 import { evidencedSkillGroups } from "@/server/cv/skills"
 
-// The general CV is read by a person, usually on the first-page preview of a
-// hiring tool, so the first page carries everything that matters: who, how to
-// reach him, a summary and the work history. It is deliberately plain: one
-// column, one typeface, black on white, no colour, no icons, no technology
-// chips, no section numbers, no letter-spaced labels. Education and languages
-// close the document.
-
 const FONT_DIR = path.join(process.cwd(), "public/fonts/cv")
 
 Font.register({
@@ -90,9 +83,6 @@ export type CvLanguageEntry = {
   readonly level: string
 }
 
-// The three projects that say the most about the work (invoicing under a
-// legal standard, AI over geodata, a Go CLI built test-first). The rest are
-// one closing line with their addresses.
 const FEATURED_PROJECT_IDS: ReadonlyArray<string> = [
   "transolido",
   "ilnami",
@@ -291,9 +281,7 @@ function CvDocument({ labels }: CvDocumentProps) {
   const linkedin = findSocial("linkedin")
   const github = findSocial("github")
 
-  // Full addresses, written out: a reader can type them and a parser can
-  // keep them as one token each.
-  const contacts: ReadonlyArray<{
+  const contactsWrittenInFull: ReadonlyArray<{
     href: string
     label: string
     prefix?: string
@@ -356,7 +344,7 @@ function CvDocument({ labels }: CvDocumentProps) {
             {labels.role} · {profile.location}
           </Text>
           <Text style={styles.contactLine}>
-            {contacts.map((contact, index) => (
+            {contactsWrittenInFull.map((contact, index) => (
               <Text key={contact.href}>
                 {index > 0 ? "  ·  " : ""}
                 {contact.prefix ? `${contact.prefix}: ` : ""}
@@ -438,9 +426,7 @@ function CvDocument({ labels }: CvDocumentProps) {
               .filter((project) => project.stage === "live")
               .map((project) => project.id)
           ).map((group) => {
-            // "Hadoop · HDFS · YARN" is one chip on the site and three terms
-            // on paper: a parser keeps each as its own keyword.
-            const terms = Array.from(
+            const chipTermsAsSeparateKeywords = Array.from(
               new Set(group.items.flatMap((item) => item.split(" · ")))
             )
             return (
@@ -448,7 +434,7 @@ function CvDocument({ labels }: CvDocumentProps) {
                 <Text style={styles.skillName}>
                   {labels.skillGroupName(group.id)}:{" "}
                 </Text>
-                {terms.join(", ")}
+                {chipTermsAsSeparateKeywords.join(", ")}
               </Text>
             )
           })}

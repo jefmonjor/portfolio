@@ -18,6 +18,11 @@ export const assistantLocaleSchema = z.preprocess((value) => {
   return isLocale(candidate) ? candidate : "es"
 }, z.enum(routing.locales))
 
+const unverifiedSignatureSchema = z
+  .string()
+  .max(ASSISTANT_SIGNATURE_MAX_CHARS)
+  .optional()
+
 export const chatMessageSchema = z.object({
   role: z.enum(["user", "assistant"]),
   content: z
@@ -26,9 +31,7 @@ export const chatMessageSchema = z.object({
     .min(1)
     .max(ASSISTANT_MESSAGE_INPUT_CHARS)
     .refine(hasVisibleText),
-  // The HMAC the server returned with an assistant reply. A missing or wrong
-  // one is not a 400: sanitizeMessages drops that turn and carries on.
-  signature: z.string().max(ASSISTANT_SIGNATURE_MAX_CHARS).optional(),
+  signature: unverifiedSignatureSchema,
 })
 
 export const assistantRequestSchema = z
@@ -41,10 +44,6 @@ export const assistantRequestSchema = z
   })
   .strict()
 
-// What the reply lets the visitor do next. A "cv" action downloads a ready
-// variant from GET /cv.pdf; "cv-tailor" carries the pasted offer back so the
-// client can POST it to /api/cv-tailor. The server decides which to offer;
-// the client only renders buttons.
 export const assistantActionSchema = z.discriminatedUnion("type", [
   z
     .object({
@@ -76,12 +75,9 @@ export const assistantSuccessSchema = z
 
 export type ChatMessage = z.infer<typeof chatMessageSchema>
 
-// What reaches the model: role and text, never the signature.
 export type ModelMessage = Pick<ChatMessage, "role" | "content">
 
-// What the model returns when the latest message is a job offer. Plain
-// strings and arrays only (Structured Outputs rejects length bounds); every
-// value is re-checked by verifyOfferAnalysis before anything is shown.
+// OpenAI Structured Outputs rejects length bounds; verifyOfferAnalysis applies them.
 export const offerAnalysisModelOutputSchema = z
   .object({
     isJobOffer: z.boolean(),

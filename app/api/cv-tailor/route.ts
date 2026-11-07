@@ -27,35 +27,30 @@ import { CV_TAILOR_BODY_MAX_BYTES } from "@/types/limits"
 
 export const runtime = "nodejs"
 
-// Copying exact strings out of two closed lists is the cheapest thing an LLM
-// can be asked to do, so this route runs its own model instead of inheriting
-// the chat assistant's: gpt-5.6-luna is the cost tier ($0.20/$1.20 per 1M vs
-// gpt-5-mini's $0.25/$2.00) and still a current-generation model. FALLBACK
-// covers an account without access to it — a 404 here used to be an opaque 502.
-const MODEL = process.env.CV_TAILOR_MODEL ?? "gpt-5.6-luna"
+const CHEAP_MODEL = process.env.CV_TAILOR_MODEL ?? "gpt-5.6-luna"
 const FALLBACK_MODEL = process.env.CV_TAILOR_FALLBACK_MODEL ?? "gpt-5-mini"
 const MAX_OFFER_CHARS = Math.min(
   CV_TAILOR_OFFER_MAX_CHARS,
   Math.max(40, intEnv("CV_TAILOR_MAX_OFFER_CHARS", CV_TAILOR_OFFER_MAX_CHARS))
 )
-// The cap covers reasoning tokens too, so a budget sized for the JSON alone
-// gets spent thinking and comes back `incomplete` with nothing parsed. A full
-// selection is ~200 tokens; the rest is headroom for the reasoning pass.
-const MAX_OUTPUT_TOKENS = intEnv("CV_TAILOR_MAX_OUTPUT_TOKENS", 2000)
-// The SDK default is a 10-minute timeout with two retries. A selection of
-// ~200 tokens without reasoning answers in seconds; past 30 s it is stuck, and
-// every retry is paid again.
-const OPENAI_TIMEOUT_MS = 30_000
-const OPENAI_MAX_RETRIES = 1
-// Selection needs no deliberation, and reasoning here is what pushed the old
-// budget over the edge. The floor is named per family — "none" on gpt-5.x,
-// "minimal" on the gpt-5 models — so the fallback cannot inherit an effort
-// its model would reject.
+const SELECTION_JSON_TOKENS = 200
+const REASONING_HEADROOM_TOKENS = 1_800
+const MAX_OUTPUT_TOKENS = intEnv(
+  "CV_TAILOR_MAX_OUTPUT_TOKENS",
+  SELECTION_JSON_TOKENS + REASONING_HEADROOM_TOKENS
+)
+const STUCK_SELECTION_AFTER_MS = 30_000
+const MAX_PAID_RETRIES = 1
+
+function lowestReasoningEffortAcceptedBy(model: string): "none" | "minimal" {
+  return model.startsWith("gpt-5.") ? "none" : "minimal"
+}
+
 function reasoningFor(model: string) {
   return enumEnv(
     "CV_TAILOR_REASONING",
     ["none", "minimal", "low", "medium", "high"] as const,
-    model.startsWith("gpt-5.") ? "none" : "minimal"
+    lowestReasoningEffortAcceptedBy(model)
   )
 }
 
@@ -68,9 +63,6 @@ function enumEnv<T extends string>(
   return allowed.includes(value as T) ? (value as T) : fallback
 }
 
-// Every 502 this route returns is opaque from the browser, so the reason has
-// to reach the platform logs — otherwise a schema rejection and a spent token
-// budget look exactly alike.
 function logFailure(reason: string, detail: Record<string, unknown>): void {
   console.error(`[cv-tailor] ${reason}`, detail)
 }
@@ -138,8 +130,8 @@ export async function POST(request: Request): Promise<Response> {
 
   const offer = parsed.data.offer.slice(0, MAX_OFFER_CHARS)
   const client = new OpenAI({
-    timeout: OPENAI_TIMEOUT_MS,
-    maxRetries: OPENAI_MAX_RETRIES,
+    timeout: STUCK_SELECTION_AFTER_MS,
+    maxRetries: MAX_PAID_RETRIES,
   })
 
   const select = async (model: string) => {
@@ -155,29 +147,22 @@ export async function POST(request: Request): Promise<Response> {
       },
       store: false,
     })
-    // Charged to the budget the chat shares. A response without usage counts
-    // as its output budget, never as free.
     await checkLimit.recordUsage(
       response.usage?.total_tokens ?? MAX_OUTPUT_TOKENS
     )
     return response
   }
 
-  let usedModel = MODEL
+  let usedModel = CHEAP_MODEL
 
   try {
-    const response = await select(MODEL).catch((error: unknown) => {
-      // An account without access to the selection model answers 404. That is
-      // a configuration problem, not a request problem, so serve the CV from
-      // the fallback model instead of failing the download.
-      if (
-        !(error instanceof OpenAI.NotFoundError) ||
-        FALLBACK_MODEL === MODEL
-      ) {
+    const response = await select(CHEAP_MODEL).catch((error: unknown) => {
+      const modelMissingFromAccount = error instanceof OpenAI.NotFoundError
+      if (!modelMissingFromAccount || FALLBACK_MODEL === CHEAP_MODEL) {
         throw error
       }
       logFailure("model unavailable, retrying with the fallback", {
-        model: MODEL,
+        model: CHEAP_MODEL,
         fallback: FALLBACK_MODEL,
         message: error.message,
       })

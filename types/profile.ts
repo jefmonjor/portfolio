@@ -6,8 +6,7 @@ export type Social = {
   handle?: string
 }
 
-/** Organization sizes as the MAC (Manfred Awesomic CV) schema names them. */
-export type OrganizationType =
+export type MacSchemaOrganizationType =
   | "startup"
   | "SME"
   | "bigCorp"
@@ -19,29 +18,24 @@ export type OrganizationType =
 export type ExperienceEntry = {
   id: string
   organization: string
-  organizationType: OrganizationType
+  organizationType: MacSchemaOrganizationType
   location: string
   startISO: string
   endISO: string | "present"
   stack?: ReadonlyArray<string>
 }
 
+type YearOrYearMonth = string
+
 export type EducationEntry = {
   id: string
   organization: string
   dates: string
   location?: string
-  /** Academic degrees back `alumniOf`; certifications never do. */
   kind: "degree" | "certification"
-  /**
-   * False for studies attended without obtaining the qualification. Only a
-   * completed degree may claim `alumniOf` or MAC's `degreeAchieved`.
-   */
   completed: boolean
-  /** Year or year-month. Exports that need a full date anchor it to day one. */
-  startISO: string
-  endISO?: string
-  /** Public verification page of a certification, when the issuer has one. */
+  startISO: YearOrYearMonth
+  endISO?: YearOrYearMonth
   credentialUrl?: string
 }
 
@@ -50,24 +44,26 @@ export type SkillGroup = {
   items: ReadonlyArray<string>
 }
 
-/** Proficiency wording taken verbatim from the MAC schema enumeration. */
-export type LanguageProficiency =
+export type MacSchemaLanguageProficiency =
   | "Elementary proficiency"
   | "Limited working proficiency"
   | "Professional working proficiency"
   | "Full professional proficiency"
   | "Native or bilingual proficiency"
 
+type Iso6391LanguageCode = string
+
 export type LanguageEntry = {
   id: string
-  /** ISO 639-1 code, as machine-readable exports require. */
-  code: string
-  level: LanguageProficiency
+  code: Iso6391LanguageCode
+  level: MacSchemaLanguageProficiency
 }
 
 export type ProjectStage = "live" | "development"
 
 export type ProjectVisibility = "public" | "private"
+
+type ScreenshotPathUnderPublic = string
 
 export type ProjectEntry = {
   id: string
@@ -77,8 +73,7 @@ export type ProjectEntry = {
   repo?: string
   year?: string
   stack?: ReadonlyArray<string>
-  /** Screenshot paths under /public — shown as a looping preview. */
-  images?: ReadonlyArray<string>
+  images?: ReadonlyArray<ScreenshotPathUnderPublic>
 }
 
 export type Profile = {

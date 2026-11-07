@@ -3,8 +3,6 @@ import { join } from "node:path"
 
 import { describe, expect, it } from "vitest"
 
-// The CI configuration is part of the supply chain: these checks keep the
-// guarantees it gives from being dropped in a later edit.
 const root = join(import.meta.dirname, "..")
 const read = (path: string) => readFileSync(join(root, path), "utf8")
 const workflowDir = ".github/workflows"
@@ -12,7 +10,7 @@ const workflows = readdirSync(join(root, workflowDir)).filter((name) =>
   /\.ya?ml$/.test(name)
 )
 
-describe("GitHub configuration", () => {
+describe("GitHub configuration keeps its supply-chain guarantees", () => {
   it("pins every action to a full commit SHA", () => {
     for (const name of workflows) {
       const uses = [...read(join(workflowDir, name)).matchAll(/uses:\s*(\S+)/g)]

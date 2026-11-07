@@ -64,23 +64,22 @@ describe("readJsonBody", () => {
     ).toEqual({ ok: false, status: 400 })
   })
 
-  // The caps must never refuse a request the contract accepts.
-  it("fits the largest valid request of each route", () => {
-    const worstChar = "€" // 3 bytes in UTF-8
+  it("never refuses the largest request each contract accepts", () => {
+    const threeByteUtf8Char = "€"
     const assistant = JSON.stringify({
       locale: "es",
       messages: Array.from(
         { length: ASSISTANT_HISTORY_INPUT_MESSAGES },
         () => ({
           role: "assistant",
-          content: worstChar.repeat(ASSISTANT_MESSAGE_INPUT_CHARS),
+          content: threeByteUtf8Char.repeat(ASSISTANT_MESSAGE_INPUT_CHARS),
           signature: "s".repeat(128),
         })
       ),
     })
     const tailor = JSON.stringify({
       locale: "es",
-      offer: worstChar.repeat(CV_TAILOR_OFFER_MAX_CHARS),
+      offer: threeByteUtf8Char.repeat(CV_TAILOR_OFFER_MAX_CHARS),
     })
 
     expect(new TextEncoder().encode(assistant).byteLength).toBeLessThanOrEqual(

@@ -1,9 +1,5 @@
 import { profile } from "@/lib/profile"
 
-// The general CV lists only the technologies the rest of the document backs:
-// what the jobs' stacks and the named products were built with. The website
-// keeps the full catalogue; on paper a long list dilutes the work.
-
 function fold(value: string): string {
   return value
     .normalize("NFKD")
@@ -12,22 +8,31 @@ function fold(value: string): string {
     .replace(/[^\p{L}\p{N}]+/gu, "")
 }
 
-// "COBOL/AS400" is two technologies; "Java (8 → 21)" is one, named "Java".
-function terms(item: string): string[] {
-  const base = item.replace(/\s*\(.*\)\s*$/, "")
+const TRAILING_VERSION_NOTE = /\s*\(.*\)\s*$/
+const TECHNOLOGY_SEPARATOR = /\s*[·/→+]\s*/
+const MIN_SKILL_CHARS_FOUND_INSIDE_EVIDENCE = 3
+const MIN_EVIDENCE_CHARS_FOUND_INSIDE_SKILL = 7
+
+function technologiesNamedIn(item: string): string[] {
+  const base = item.replace(TRAILING_VERSION_NOTE, "")
   return base
-    .split(/\s*[·/→+]\s*/)
+    .split(TECHNOLOGY_SEPARATOR)
     .map(fold)
     .filter((term) => term.length > 0)
 }
 
 function matches(skill: string, evidence: string): boolean {
   if (skill === evidence) return true
-  // "java" in "java21", "redis" in "upstashredis"; the reverse only for long
-  // tokens so "cloudrun" backs "Google Cloud Run" but "vercel" does not back
-  // "Vercel AI SDK".
-  if (skill.length >= 3 && evidence.includes(skill)) return true
-  return evidence.length >= 7 && skill.includes(evidence)
+  if (
+    skill.length >= MIN_SKILL_CHARS_FOUND_INSIDE_EVIDENCE &&
+    evidence.includes(skill)
+  ) {
+    return true
+  }
+  return (
+    evidence.length >= MIN_EVIDENCE_CHARS_FOUND_INSIDE_SKILL &&
+    skill.includes(evidence)
+  )
 }
 
 export function evidencedSkillGroups(
@@ -39,7 +44,7 @@ export function evidencedSkillGroups(
       ...profile.projects
         .filter((project) => projectIds.includes(project.id))
         .flatMap((project) => project.stack ?? []),
-    ].flatMap(terms)
+    ].flatMap(technologiesNamedIn)
   )
 
   return profile.skills
@@ -47,7 +52,7 @@ export function evidencedSkillGroups(
     .map((group) => ({
       id: group.id,
       items: group.items.filter((item) =>
-        terms(item).some((skill) =>
+        technologiesNamedIn(item).some((skill) =>
           Array.from(evidence).some((token) => matches(skill, token))
         )
       ),

@@ -16,11 +16,9 @@ const BadgeScene = dynamic(loadBadgeScene, {
   loading: () => null,
 })
 
-// The 3D card spends most of its start-up fetching three.js and compiling the
-// Rapier physics WASM (~2 MB). Both are warmed ahead of the click — on intent
-// (hover/focus) and, on fast desktop connections, once the page is idle — so
-// opening it only has to build the scene. Rapier's `init()` is idempotent:
-// the scene's own call returns the module this one already compiled.
+const AFTER_PAGE_SETTLES_MS = 3500
+
+// rapier.init() is idempotent: the scene's own call reuses the module compiled here.
 let warmup: Promise<unknown> | null = null
 
 function warmBadgeScene(): void {
@@ -66,7 +64,7 @@ export function HeroBadge({
 }: HeroBadgeProps) {
   const [hardwareCapable, setHardwareCapable] = React.useState(false)
   const [show3d, setShow3d] = React.useState(false)
-  const [ready, setReady] = React.useState(false)
+  const [cardDrawn, setCardDrawn] = React.useState(false)
   const [failed, setFailed] = React.useState(false)
   const canExplore = hardwareCapable && !failed
 
@@ -91,34 +89,33 @@ export function HeroBadge({
 
   React.useEffect(() => {
     if (!canExplore || !prefersIdleWarmup()) return
-    // Late enough that the page's own scripts and images have settled.
     const timer = window.setTimeout(() => {
       if ("requestIdleCallback" in window) {
         window.requestIdleCallback(warmBadgeScene, { timeout: 4000 })
       } else {
         warmBadgeScene()
       }
-    }, 3500)
+    }, AFTER_PAGE_SETTLES_MS)
     return () => window.clearTimeout(timer)
   }, [canExplore])
 
   const handleSceneError = React.useCallback(() => {
     setFailed(true)
     setShow3d(false)
-    setReady(false)
+    setCardDrawn(false)
   }, [])
 
-  const handleSceneReady = React.useCallback(() => setReady(true), [])
+  const handleSceneReady = React.useCallback(() => setCardDrawn(true), [])
 
   function open3d(): void {
     warmBadgeScene()
-    setReady(false)
+    setCardDrawn(false)
     setShow3d(true)
   }
 
   function close3d(): void {
     setShow3d(false)
-    setReady(false)
+    setCardDrawn(false)
   }
 
   return (
@@ -158,12 +155,10 @@ export function HeroBadge({
 
       {show3d ? (
         <div className="absolute inset-0 z-30">
-          {/* The photo stays visible until the first frame is drawn, so
-              opening the 3D view never flashes an empty panel. */}
           <div
             className={cn(
               "absolute inset-0 bg-background transition-opacity duration-300 ease-out",
-              ready ? "opacity-100" : "opacity-0"
+              cardDrawn ? "opacity-100" : "opacity-0"
             )}
           >
             <BadgeScene
@@ -175,7 +170,7 @@ export function HeroBadge({
               onReady={handleSceneReady}
             />
           </div>
-          {ready ? null : (
+          {cardDrawn ? null : (
             <span
               role="status"
               className="absolute top-4 right-4 flex items-center gap-2 rounded-full border border-border bg-background/90 px-3 py-1.5 font-mono text-[11px] tracking-widest text-muted-foreground uppercase backdrop-blur"

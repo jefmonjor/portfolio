@@ -9,10 +9,8 @@ type SectionHeadingProps = {
   id?: string
 }
 
-// The heading carries the section on its own: no numbered eyebrow above it.
-// The brand square is the one accent mark, the same one the top bar uses. From
-// sm up it hangs in the gutter so the title text sits on the same left edge as
-// the body below it; on phones the gutter is too narrow and it stays inline.
+const BRAND_SQUARE_HANGS_IN_GUTTER_FROM_SM = "sm:-ml-[1.125rem]"
+
 function SectionHeading({ title, hint, className, id }: SectionHeadingProps) {
   return (
     <header
@@ -22,7 +20,9 @@ function SectionHeading({ title, hint, className, id }: SectionHeadingProps) {
         className
       )}
     >
-      <h2 className="flex items-center gap-3 font-heading text-[clamp(1.5rem,1.1vw+1.15rem,2rem)] leading-tight font-medium tracking-[-0.01em] text-foreground sm:-ml-[1.125rem]">
+      <h2
+        className={`flex items-center gap-3 font-heading text-[clamp(1.5rem,1.1vw+1.15rem,2rem)] leading-tight font-medium tracking-[-0.01em] text-foreground ${BRAND_SQUARE_HANGS_IN_GUTTER_FROM_SM}`}
+      >
         <span aria-hidden className="inline-block size-1.5 shrink-0 bg-brand" />
         {title}
       </h2>
