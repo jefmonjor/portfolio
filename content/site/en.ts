@@ -32,7 +32,7 @@ export const en: SiteContent = {
     privacy: {
       title: "Privacy — what this site does with your data",
       description:
-        "No analytics, no tracking cookies, no forms. What happens to an email you send, to text you give the AI assistant on /cv, and to server logs.",
+        "No analytics, no tracking cookies, no contact forms. What happens to an email you send, to text you give the AI assistant on /cv, and to server logs.",
     },
   },
   nav: {
@@ -238,7 +238,7 @@ export const en: SiteContent = {
           owned: [
             "Backend architecture for new services and the new homebanking",
             "Development standards for internal teams and vendors",
-            "The plan and technical lead for the Spring Boot 3 and Tomcat upgrades",
+            "The plan and technical lead for the framework and application server upgrades",
             "The identity rollout with Keycloak",
             "Code quality tooling across all repositories",
             "Technical vendor management and advice on whether to build or buy",
@@ -267,7 +267,7 @@ export const en: SiteContent = {
           {
             choice: "Upgrade the platform in small increments",
             reason:
-              "Each step — Spring Boot 2 to 3 with the Jakarta namespace, Tomcat 7 and 8 to 9 and 10 — stays small enough to test and roll back while feature work continues.",
+              "Each step — the Spring Boot 3 migration with the Jakarta namespace, the application server upgrades — stays small enough to test and roll back while feature work continues.",
             rejected:
               "A freeze-and-migrate project that stops delivery for months.",
           },
@@ -624,7 +624,7 @@ export const en: SiteContent = {
         title: "Hosting and server logs",
         paragraphs: [
           [
-            "The site runs on Vercel. Like any web server, it processes your IP address and the request to deliver each page and to protect the site against abuse. The AI features count requests per IP address, or per network for IPv6, and those counters expire within 24 hours.",
+            "The site runs on Vercel. Like any web server, it processes your IP address and the request to deliver each page and to protect the site against abuse. The AI features and the PDF downloads count requests per IP address, or per network for IPv6, in a counter store that deletes them within 24 hours.",
           ],
         ],
       },
@@ -633,6 +633,14 @@ export const en: SiteContent = {
         paragraphs: [
           [
             "A cookie named NEXT_LOCALE remembers the language, and local storage remembers the theme and the background of /cv. They are functional only and never leave your device except as part of normal page requests.",
+          ],
+        ],
+      },
+      {
+        title: "Legal basis and international transfers",
+        paragraphs: [
+          [
+            "Email: to answer the request you send. AI features: because you choose to use them. Server logs and request counters: the legitimate interest in keeping the site secure and available. OpenAI, Vercel and Google are based in the United States and may process data outside Andorra and the EU under their own data-transfer safeguards.",
           ],
         ],
       },

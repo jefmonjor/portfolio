@@ -34,7 +34,7 @@ export const es: SiteContent = {
     privacy: {
       title: "Privacidad — qué hace esta web con tus datos",
       description:
-        "Sin analítica, sin cookies de seguimiento, sin formularios. Qué pasa con un email que envías, con el texto que das al asistente de IA de /cv y con los registros del servidor.",
+        "Sin analítica, sin cookies de seguimiento, sin formularios de contacto. Qué pasa con un email que envías, con el texto que das al asistente de IA de /cv y con los registros del servidor.",
     },
   },
   nav: {
@@ -240,7 +240,7 @@ export const es: SiteContent = {
           owned: [
             "La arquitectura backend de los nuevos servicios y de la nueva banca online",
             "Los estándares de desarrollo para equipos internos y proveedores",
-            "El plan y la dirección técnica de las migraciones a Spring Boot 3 y Tomcat",
+            "El plan y la dirección técnica de las actualizaciones de framework y de servidor de aplicaciones",
             "El despliegue de identidad con Keycloak",
             "Las herramientas de calidad de código en todos los repositorios",
             "La gestión técnica de proveedores y las recomendaciones de construir o comprar",
@@ -269,7 +269,7 @@ export const es: SiteContent = {
           {
             choice: "Actualizar la plataforma en incrementos pequeños",
             reason:
-              "Cada paso — Spring Boot 2 a 3 con el espacio de nombres Jakarta, Tomcat 7 y 8 a 9 y 10 — es lo bastante pequeño para probarlo y revertirlo mientras sigue el desarrollo.",
+              "Cada paso — la migración a Spring Boot 3 con el espacio de nombres Jakarta, las actualizaciones del servidor de aplicaciones — es lo bastante pequeño para probarlo y revertirlo mientras sigue el desarrollo.",
             rejected:
               "Un proyecto de congelar y migrar que detiene las entregas durante meses.",
           },
@@ -630,7 +630,7 @@ export const es: SiteContent = {
         title: "Alojamiento y registros del servidor",
         paragraphs: [
           [
-            "La web funciona en Vercel. Como cualquier servidor web, trata tu dirección IP y la petición para servir cada página y proteger la web frente a abusos. Las funciones de IA cuentan peticiones por dirección IP, o por red en IPv6, y esos contadores caducan en menos de 24 horas.",
+            "La web funciona en Vercel. Como cualquier servidor web, trata tu dirección IP y la petición para servir cada página y proteger la web frente a abusos. Las funciones de IA y las descargas de PDF cuentan peticiones por dirección IP, o por red en IPv6, en un almacén de contadores que los borra en menos de 24 horas.",
           ],
         ],
       },
@@ -639,6 +639,14 @@ export const es: SiteContent = {
         paragraphs: [
           [
             "Una cookie llamada NEXT_LOCALE recuerda el idioma, y el almacenamiento local recuerda el tema y el fondo de /cv. Son solo funcionales y no salen de tu dispositivo salvo como parte de las peticiones normales a las páginas.",
+          ],
+        ],
+      },
+      {
+        title: "Base legal y transferencias internacionales",
+        paragraphs: [
+          [
+            "Email: para responder a la petición que me envías. Funciones de IA: porque decides usarlas. Registros del servidor y contadores de peticiones: el interés legítimo en mantener la web segura y disponible. OpenAI, Vercel y Google tienen sede en Estados Unidos y pueden tratar datos fuera de Andorra y de la UE con sus propias garantías de transferencia.",
           ],
         ],
       },

@@ -393,7 +393,7 @@
     "offerPlaceholder": "Paste the job offer text here…",
     "generate": "Generate tailored CV",
     "generating": "Tailoring…",
-    "privacy": "Sent to OpenAI to choose the evidence; this site does not store it.",
+    "privacy": "Sent to OpenAI to choose the evidence; this site does not store it. Do not paste confidential details.",
     "back": "Back",
     "tailorError": "It couldn't be tailored right now. The technical CV is still available.",
     "tailorLimited": "Usage limit reached. Try again in a few minutes or download the technical CV.",

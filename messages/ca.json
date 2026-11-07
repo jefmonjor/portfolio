@@ -393,7 +393,7 @@
     "offerPlaceholder": "Enganxa aquí el text de l'oferta…",
     "generate": "Generar CV adaptat",
     "generating": "Adaptant…",
-    "privacy": "S'envia a OpenAI per triar l'evidència; aquesta web no la desa.",
+    "privacy": "S'envia a OpenAI per triar l'evidència; aquesta web no la desa. No hi enganxis dades confidencials.",
     "back": "Tornar",
     "tailorError": "No s'ha pogut adaptar ara mateix. El CV tècnic continua disponible.",
     "tailorLimited": "Límit d'ús assolit. Prova-ho d'aquí a uns minuts o descarrega el CV tècnic.",
