@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   CopyIcon,
@@ -18,7 +18,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { contactEmail, contactMailto } from "@/lib/email"
+import { contactEmail, contactMailto, cvContactSubject } from "@/lib/email"
 import { profile } from "@/lib/profile"
 
 type CopyState = "idle" | "copied" | "failed"
@@ -36,7 +36,8 @@ function Contact() {
     return () => window.clearTimeout(id)
   }, [])
 
-  const mailto = email ? contactMailto() : "#contact"
+  const locale = useLocale()
+  const mailto = email ? contactMailto(cvContactSubject(locale)) : "#contact"
   const t = useTranslations("contact")
   const tStatus = useTranslations("status")
 

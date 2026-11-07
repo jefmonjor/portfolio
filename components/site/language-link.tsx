@@ -15,10 +15,15 @@ const otherLanguage: Record<SiteLocale, SiteLocale> = { en: "es", es: "en" }
 
 type LanguageLinkProps = {
   current: SiteLocale
+  short?: boolean
   className?: string
 }
 
-function LanguageLink({ current, className }: LanguageLinkProps) {
+function LanguageLink({
+  current,
+  short = false,
+  className,
+}: LanguageLinkProps) {
   const pathname = usePathname()
   const target = otherLanguage[current]
 
@@ -29,12 +34,14 @@ function LanguageLink({ current, className }: LanguageLinkProps) {
       lang={target}
       rel="alternate"
       prefetch={false}
+      aria-label={short ? languageNames[target] : undefined}
       className={cn(
         "inline-flex min-h-11 items-center text-sm text-muted-foreground transition-colors hover:text-foreground",
+        short && "min-w-11 justify-center font-medium uppercase",
         className
       )}
     >
-      {languageNames[target]}
+      {short ? target : languageNames[target]}
     </Link>
   )
 }

@@ -17,6 +17,7 @@ type EmailActionsProps = {
     copied: string
     copyFailed: string
     withoutJavaScript: string
+    noMailApp: string
   }
 }
 
@@ -102,6 +103,7 @@ function EmailActions({ subject, labels }: EmailActionsProps) {
           {copyLabel}
         </button>
       </div>
+      <p className="text-sm text-muted-foreground">{labels.noMailApp}</p>
       <p aria-live="polite" className="sr-only">
         {copyState === "idle" ? "" : copyLabel}
       </p>

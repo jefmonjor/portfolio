@@ -5,7 +5,7 @@ import { ViewTransition } from "react"
 import { SiteFooter } from "@/components/site/site-footer"
 import { SiteHeader } from "@/components/site/site-header"
 import { StructuredDataScript } from "@/components/site/structured-data-script"
-import { getSiteContent } from "@/content/site"
+import { getCurrentJobTitle, getSiteContent } from "@/content/site"
 import { isSiteLocale } from "@/i18n/routing"
 import { buildSiteStructuredData } from "@/lib/seo/structured-data"
 
@@ -32,7 +32,8 @@ export default async function SiteLayout({
       <SiteFooter locale={locale} content={content} />
       <StructuredDataScript
         data={buildSiteStructuredData({
-          jobTitle: content.hero.role,
+          positioning: content.hero.role,
+          currentJobTitle: getCurrentJobTitle(locale),
           description: content.meta.home.description,
         })}
       />

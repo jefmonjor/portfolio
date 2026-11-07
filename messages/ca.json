@@ -371,7 +371,8 @@
   "footer": {
     "lastUpdated": "Actualitzat · {date}",
     "builtLine": "Dissenyat i construït amb Next.js",
-    "languagesLabel": "Idiomes"
+    "languagesLabel": "Idiomes",
+    "privacy": "Privadesa"
   },
   "cvToast": {
     "title": "CV preparat",
@@ -391,7 +392,7 @@
     "offerPlaceholder": "Enganxa aquí el text de l'oferta…",
     "generate": "Generar CV adaptat",
     "generating": "Adaptant…",
-    "privacy": "S'envia al proveïdor d'IA; aquest portfolio no la desa.",
+    "privacy": "S'envia a OpenAI per triar l'evidència; aquesta web no la desa.",
     "back": "Tornar",
     "tailorError": "No s'ha pogut adaptar ara mateix. El CV tècnic continua disponible.",
     "tailorLimited": "Límit d'ús assolit. Prova-ho d'aquí a uns minuts o descarrega el CV tècnic.",
@@ -503,7 +504,7 @@
     "rateLimited": "Has fet moltes preguntes seguides. Espera un moment i torna-ho a provar.",
     "unavailable": "L'assistent no està disponible ara mateix. Escriu a {email}.",
     "error": "No he pogut respondre. Escriu a {email}.",
-    "disclaimer": "IA limitada al perfil públic. No estima dades absents; confirma per email qualsevol decisió important.",
+    "disclaimer": "IA limitada al perfil públic. Els teus missatges van a OpenAI per redactar la resposta i aquesta web no els desa. Confirma les decisions importants per email.",
     "reset": "Nova",
     "thinking": "Pensant…",
     "launcher": "Pregunta a la IA",

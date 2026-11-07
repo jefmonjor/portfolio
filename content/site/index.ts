@@ -19,6 +19,7 @@ export const indexableSitePaths: ReadonlyArray<SitePath> = [
   ...caseStudySlugs.map((slug) => `/work/${slug}` as const),
   "/experience",
   "/contact",
+  "/privacy",
 ]
 
 const contentByLocale: Record<SiteLocale, SiteContent> = { en, es }
@@ -39,6 +40,15 @@ export type ExperienceEntry = {
 
 export function getSiteContent(locale: SiteLocale): SiteContent {
   return contentByLocale[locale]
+}
+
+const currentJobTitleByLocale: Record<SiteLocale, string> = {
+  en: enMessages.metadata.currentJobTitle,
+  es: esMessages.metadata.currentJobTitle,
+}
+
+export function getCurrentJobTitle(locale: SiteLocale): string {
+  return currentJobTitleByLocale[locale]
 }
 
 export function getExperienceEntry(

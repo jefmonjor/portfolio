@@ -13,6 +13,7 @@ export type SitePath =
   | "/experience"
   | "/contact"
   | "/cv"
+  | "/privacy"
   | `/work/${CaseStudySlug}`
 
 export type InlineLink = {
@@ -98,7 +99,7 @@ export type ExperienceGroup = {
 export type SiteContent = {
   siteName: string
   meta: Record<
-    "home" | "services" | "work" | "experience" | "contact",
+    "home" | "services" | "work" | "experience" | "contact" | "privacy",
     PageMeta
   >
   nav: {
@@ -192,12 +193,22 @@ export type SiteContent = {
       copyFailed: string
       withoutJavaScript: string
       subject: string
+      noMailApp: string
     }
     elsewhere: string
   }
   footer: {
     location: string
     fullCv: string
+    privacy: string
     languages: string
+  }
+  privacy: {
+    title: string
+    updated: string
+    sections: ReadonlyArray<{
+      title: string
+      paragraphs: ReadonlyArray<RichText>
+    }>
   }
 }

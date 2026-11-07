@@ -17,7 +17,8 @@ function nodeOfType(graph: ReadonlyArray<GraphNode>, type: string): GraphNode {
 }
 
 const person = {
-  jobTitle: "Software Architect & Senior Backend Engineer",
+  positioning: "Software Architect & Senior Backend Engineer",
+  currentJobTitle: "Solutions Architect / Technical PM",
   description: "Backend systems for banks and fintechs.",
 }
 
@@ -63,7 +64,7 @@ describe("CV structured data", () => {
 
   it("states the occupation for agents that read the graph, not the prose", () => {
     expect(nodeOfType(graph, "Person").hasOccupation).toMatchObject({
-      name: person.jobTitle,
+      name: person.positioning,
       occupationalCategory: expect.stringContaining("15-1252.00"),
     })
   })
@@ -78,7 +79,7 @@ describe("site structured data", () => {
     expect(nodeOfType(site, "Person")).toMatchObject({
       "@id": personId,
       name: "Jefferson Montesdeoca Jordán",
-      jobTitle: person.jobTitle,
+      jobTitle: person.currentJobTitle,
       homeLocation: { address: { addressCountry: "AD" } },
       sameAs: expect.arrayContaining(["https://www.linkedin.com/in/jefmonjor"]),
     })

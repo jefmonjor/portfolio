@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
+import { withoutLocalePrefix } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
 
 type NavLinkProps = {
@@ -12,7 +13,9 @@ type NavLinkProps = {
 }
 
 function isWithinSection(pathname: string, href: string): boolean {
-  return pathname === href || pathname.startsWith(`${href}/`)
+  const current = withoutLocalePrefix(pathname)
+  const section = withoutLocalePrefix(href)
+  return current === section || current.startsWith(`${section}/`)
 }
 
 function NavLink({ href, children, className }: NavLinkProps) {

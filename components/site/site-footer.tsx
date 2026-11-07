@@ -28,6 +28,7 @@ function SiteFooter({ locale, content }: SiteFooterProps) {
   const footerLinks = [
     ...primaryNavigation(content.nav),
     { path: "/cv" as const, label: content.footer.fullCv },
+    { path: "/privacy" as const, label: content.footer.privacy },
   ]
 
   return (

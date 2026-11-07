@@ -371,7 +371,8 @@
   "footer": {
     "lastUpdated": "Actualizado · {date}",
     "builtLine": "Diseñado y construido con Next.js",
-    "languagesLabel": "Idiomas"
+    "languagesLabel": "Idiomas",
+    "privacy": "Privacidad"
   },
   "cvToast": {
     "title": "CV preparado",
@@ -391,7 +392,7 @@
     "offerPlaceholder": "Pega aquí el texto de la oferta…",
     "generate": "Generar CV adaptado",
     "generating": "Adaptando…",
-    "privacy": "Se envía al proveedor de IA; este portfolio no la guarda.",
+    "privacy": "Se envía a OpenAI para elegir la evidencia; esta web no la guarda.",
     "back": "Volver",
     "tailorError": "No se pudo adaptar ahora mismo. El CV técnico sigue disponible.",
     "tailorLimited": "Límite de uso alcanzado. Prueba en unos minutos o descarga el CV técnico.",
@@ -503,7 +504,7 @@
     "rateLimited": "Has hecho muchas preguntas seguidas. Espera un momento e inténtalo de nuevo.",
     "unavailable": "El asistente no está disponible ahora mismo. Escribe a {email}.",
     "error": "No he podido responder. Escribe a {email}.",
-    "disclaimer": "IA limitada al perfil público. No estima datos ausentes; confirma por email cualquier decisión importante.",
+    "disclaimer": "IA limitada al perfil público. Tus mensajes van a OpenAI para redactar la respuesta y esta web no los guarda. Confirma las decisiones importantes por email.",
     "reset": "Nueva",
     "thinking": "Pensando…",
     "launcher": "Pregunta a la IA",

@@ -101,7 +101,8 @@ async function cvStructuredData(locale: Locale) {
       role: tMeta("role"),
     }),
     description: tMeta("description"),
-    jobTitle: tMeta("role"),
+    positioning: tMeta("role"),
+    currentJobTitle: tMeta("currentJobTitle"),
     publicProjects,
   })
 }

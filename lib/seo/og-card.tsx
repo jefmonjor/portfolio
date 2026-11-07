@@ -48,7 +48,9 @@ export async function renderOgCard({ name, role, eyebrow, title }: OgCard) {
       <div
         style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28 }}
       >
-        <div style={{ width: 14, height: 14, backgroundColor: palette.brand }} />
+        <div
+          style={{ width: 14, height: 14, backgroundColor: palette.brand }}
+        />
         <span>{name}</span>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>

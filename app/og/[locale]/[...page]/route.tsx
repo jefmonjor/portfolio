@@ -71,6 +71,13 @@ function siteCard(
     const study = findCaseStudy(content, slug)
     return { ...identity, eyebrow: study.sector, title: study.title }
   }
+  if (page === "/privacy") {
+    return {
+      ...identity,
+      eyebrow: content.footer.privacy,
+      title: content.meta.privacy.title,
+    }
+  }
   const sections = ["services", "work", "experience", "contact"] as const
   const section = sections.find((candidate) => page === `/${candidate}`)
   return section

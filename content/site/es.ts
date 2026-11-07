@@ -31,6 +31,11 @@ export const es: SiteContent = {
       description:
         "Disponible para colaboraciones a tiempo parcial desde enero de 2027. Remoto, CET. Escribe unas líneas sobre tu proyecto y te respondo en un día laborable.",
     },
+    privacy: {
+      title: "Privacidad — qué hace esta web con tus datos",
+      description:
+        "Sin analítica, sin cookies de seguimiento, sin formularios. Qué pasa con un email que envías, con el texto que das al asistente de IA de /cv y con los registros del servidor.",
+    },
   },
   nav: {
     label: "Principal",
@@ -53,7 +58,7 @@ export const es: SiteContent = {
       "Diseño y construyo los sistemas backend sobre los que funcionan bancos y fintechs, y la IA que empieza a funcionar dentro de ellos.",
     tags: ["Java", "Spring", "Arquitectura", "IA aplicada"],
     availability:
-      "Disponible para colaboraciones a tiempo parcial desde enero de 2027 · Remoto · CET",
+      "Disponible para colaboraciones a tiempo parcial desde enero de 2027 · Remoto · Hora de Andorra (CET)",
   },
   about: {
     title: "Sobre mí",
@@ -64,7 +69,7 @@ export const es: SiteContent = {
         ".",
       ],
       [
-        "Trabajo en remoto y en asíncrono, y dejo las decisiones por escrito: qué elegimos, por qué y qué descartamos. Mi objetivo es un sistema que tu equipo pueda operar y cambiar sin mí, con la arquitectura documentada, tests que explican el comportamiento y un traspaso limpio. Tienes tres ejemplos en los ",
+        "Trabajo en remoto y en asíncrono, y dejo las decisiones por escrito: qué elegimos, por qué y qué descartamos. Mi objetivo es un sistema que tu equipo pueda operar y cambiar sin mí: la arquitectura documentada, tests que explican el comportamiento y un traspaso completo del código, los documentos y el conocimiento. Tienes tres ejemplos en los ",
         { text: "casos de estudio", href: "/work" },
         ".",
       ],
@@ -92,8 +97,8 @@ export const es: SiteContent = {
           "Revisión de arquitectura",
           "Auditoría de backend y de código",
           "Plan de modernización de sistemas legacy",
-          "Decisiones de stack y de construir o comprar",
-          "Due diligence técnica",
+          "Elección del stack y decidir si construir o comprar",
+          "Due diligence técnica: una revisión técnica antes de invertir o comprar",
         ],
         format:
           "De 1 a 5 días. Recibes un informe escrito con hallazgos, riesgos y un plan priorizado.",
@@ -107,13 +112,13 @@ export const es: SiteContent = {
           "Empresas que necesitan construir o modernizar un backend y llevarlo a producción.",
         includes: [
           "Backends con Java y Spring Boot",
-          "Integraciones: core bancario, BaaS, pasarelas de pago y APIs de terceros",
+          "Integraciones: core bancario, banca como servicio (BaaS), pasarelas de pago y APIs de terceros",
           "Microservicios y APIs",
           "Migraciones y actualizaciones de framework",
           "Preparación y puesta en producción",
         ],
         format:
-          "Por día o por proyecto cerrado. Ahora, de 10 a 15 horas por semana; jornada completa cuando mi disponibilidad lo permita.",
+          "Por día o a precio cerrado para un alcance cerrado. Desde enero de 2027: de 10 a 15 horas por semana; jornada completa cuando mi disponibilidad lo permita.",
       },
       {
         id: "fractional",
@@ -126,7 +131,7 @@ export const es: SiteContent = {
           "Revisiones periódicas de arquitectura y de código",
           "Roadmap técnico",
           "Mentoría del equipo",
-          "IA en procesos reales, con límites y una vía manual",
+          "IA en procesos reales, con límites y una forma manual de trabajar cuando la IA falla",
         ],
         format: "Acuerdo mensual, de 4 a 8 horas por semana.",
       },
@@ -135,9 +140,9 @@ export const es: SiteContent = {
     includesLabel: "Incluye",
     formatLabel: "Formato",
     details: "Ver los servicios en detalle",
-    startTitle: "Cómo empieza cada colaboración",
+    startTitle: "Cómo empezamos a trabajar juntos",
     startSteps: [
-      "Una llamada de 30 minutos sobre tu contexto y tu problema.",
+      "Me escribes y reservamos una videollamada de 30 minutos sobre tu contexto y tu problema.",
       "Una propuesta escrita de una página: alcance, formato y fechas.",
       "Empezamos.",
     ],
@@ -213,7 +218,7 @@ export const es: SiteContent = {
         title:
           "Modernizar la plataforma Java de un banco privado sin parar las entregas",
         outcome:
-          "Actualizaciones de plataforma, una nueva arquitectura de banca online y un único proveedor de identidad, mientras el banco seguía publicando.",
+          "Actualizaciones de plataforma, una nueva arquitectura de banca online y un único proveedor de identidad, mientras el banco seguía lanzando versiones.",
         tags: ["Java 21", "Spring Boot 3", "Keycloak"],
         meta: {
           title: "Caso: modernizar la plataforma Java de un banco privado",
@@ -228,7 +233,7 @@ export const es: SiteContent = {
             "Una plataforma que avanza en pasos pequeños y una nueva arquitectura de banca online, sin detener las entregas.",
         },
         context: [
-          "El banco atiende a sus clientes con aplicaciones Java que se apoyan en un core mucho más antiguo: programas COBOL sobre AS400, con DB2 como sistema de registro. Con los años, la parte Java se había quedado atrás: aplicaciones en Spring Boot 2 y versiones de Tomcat que ya no reciben actualizaciones.",
+          "El banco atiende a sus clientes con aplicaciones Java que se apoyan en un core mucho más antiguo: programas COBOL sobre AS400, con DB2 como sistema de registro. Con los años, la parte Java se había quedado atrás respecto a las versiones actuales de su framework y de sus servidores de aplicaciones.",
           "El banco necesitaba una nueva banca online, una autenticación de clientes más fuerte y una plataforma que pudiera mantener al día. Parar el desarrollo de funcionalidades durante una migración larga no era una opción.",
         ],
         responsibility: {
@@ -286,7 +291,7 @@ export const es: SiteContent = {
         implementation: [
           "El trabajo se reparte entre equipos internos y proveedores externos. Mi papel mezcla arquitectura y dirección técnica: defino los estándares con los que construyen los proveedores, reviso diseños y decido qué se construye y qué se compra.",
           "Los servicios nuevos usan Java 21 y Spring Boot 3 y se ejecutan en OpenShift. El acceso al core legacy pasa por adaptadores, de modo que los servicios no dependen de los detalles de COBOL ni de DB2.",
-          "Las puertas de calidad de SonarQube se ejecutan en todos los repositorios, también en el código COBOL.",
+          "Los controles de calidad de SonarQube se ejecutan en todos los repositorios, también en el código COBOL.",
           "También lideré la primera adopción de IA del departamento: Gemini Code Assist para todo el equipo.",
         ],
         result: [
@@ -295,7 +300,7 @@ export const es: SiteContent = {
           "Un único proveedor de identidad con MFA y reglas por jurisdicción.",
           "Deuda técnica visible en toda la plataforma, código legacy incluido.",
           "La primera herramienta de IA del departamento, en uso diario por todo el equipo.",
-          "Las cifras se omiten a propósito: los datos del banco son confidenciales.",
+          "Los detalles internos y las cifras son confidenciales.",
         ],
         stack: [
           "Java 21",
@@ -327,7 +332,7 @@ export const es: SiteContent = {
           "Una app privada por diseño, construida en solitario de la base de datos a producción",
         outcome:
           "En producción en español e inglés. La propia base de datos mantiene privado cada diario, y la IA sugiere pero nunca guarda.",
-        tags: ["Next.js", "PostgreSQL RLS", "OpenAI Vision"],
+        tags: ["Next.js", "Seguridad por fila en PostgreSQL", "OpenAI Vision"],
         meta: {
           title:
             "Caso: Ilnami, una app privada por diseño construida en solitario",
@@ -377,9 +382,9 @@ export const es: SiteContent = {
             rejected: "Guardar lo que el modelo extraiga.",
           },
           {
-            choice: "Los datos se quedan en la UE",
+            choice: "Los datos guardados se quedan en la UE",
             reason:
-              "Supabase en Fráncfort y Vercel en fra1: RGPD por defecto y baja latencia para usuarios europeos.",
+              "Supabase en Fráncfort y Vercel en fra1: la base de datos y la aplicación funcionan en la UE. Solo las imágenes que el usuario decide escanear se envían a OpenAI para obtener sugerencias.",
             rejected: "Las regiones de EE. UU. por defecto.",
           },
           {
@@ -399,7 +404,7 @@ export const es: SiteContent = {
           "En producción y abierta en ilnami.com, en español e inglés.",
           "Privacidad garantizada por la base de datos, no solo por la interfaz.",
           "Una IA que ahorra tiempo sin escribir nunca datos por su cuenta.",
-          "Datos personales alojados en la UE y analítica solo tras el consentimiento.",
+          "La base de datos y la aplicación alojadas en la UE, y analítica solo tras el consentimiento.",
         ],
         stack: [
           "Next.js 16",
@@ -433,12 +438,12 @@ export const es: SiteContent = {
         title:
           "Que el código escrito por IA se gane su sitio en el repositorio",
         outcome:
-          "Una CLI open source donde lo que produce el agente solo avanza tras los tests, las puertas de calidad y una revisión humana.",
+          "Una CLI open source donde lo que produce el agente solo avanza tras los tests, los controles de calidad y una revisión humana.",
         tags: ["Go", "Claude Code", "TDD"],
         meta: {
           title: "Caso: SpecForge, entrega asistida por IA y verificada",
           description:
-            "Una CLI open source en Go que guía a Claude Code o Gemini CLI con especificaciones selladas, tests que no se pueden editar, puertas automáticas y reescrituras legacy verificadas.",
+            "Una CLI open source en Go que guía a Claude Code o Gemini CLI con especificaciones selladas, tests que no se pueden editar, controles automáticos y reescrituras legacy verificadas.",
         },
         summary: {
           sector:
@@ -476,13 +481,13 @@ export const es: SiteContent = {
             rejected: "Interpretar un chat en texto libre.",
           },
           {
-            choice: "Confiar en el disco, no en el agente",
+            choice: "Comprobar los ficheros en disco, no el informe del agente",
             reason:
               "SpecForge ejecuta los tests por su cuenta y compara los ficheros en disco. Los tests reciben una huella tras la fase roja, así que nadie puede editarlos después para que el código pase.",
             rejected: "Aceptar el informe del propio agente.",
           },
           {
-            choice: "Puertas automáticas antes de que avance cualquier paso",
+            choice: "Controles automáticos antes de que avance cualquier paso",
             reason:
               "Linters, detección de duplicados, mutation testing, ArchUnit y comprobaciones de migración en cada escenario.",
             rejected: "Revisar solo a ojo.",
@@ -522,7 +527,7 @@ export const es: SiteContent = {
           },
           { label: "Plan revisado", detail: "Aprobado por el desarrollador" },
           { label: "Agente", detail: "Claude Code o Gemini CLI" },
-          { label: "Puertas", detail: "Tests · mutación · ArchUnit · lint" },
+          { label: "Controles", detail: "Tests · mutación · ArchUnit · lint" },
           { label: "Revisión humana", detail: "Un commit por escenario" },
           { label: "Entrega trazable", detail: "DELIVERY.md · descripción PR" },
         ],
@@ -547,11 +552,15 @@ export const es: SiteContent = {
     facts: [
       {
         label: "Disponibilidad",
-        value: "Colaboraciones a tiempo parcial desde enero de 2027",
+        value:
+          "Colaboraciones a tiempo parcial desde enero de 2027. Puedes escribir ya para planificar el inicio.",
       },
       { label: "Ubicación", value: "Andorra · remoto" },
-      { label: "Zona horaria", value: "CET (UTC+1)" },
-      { label: "Respuesta", value: "En un día laborable" },
+      {
+        label: "Zona horaria",
+        value: "Hora de Andorra: CET, UTC+1 en invierno y UTC+2 en verano",
+      },
+      { label: "Respuesta", value: "En un día laborable (de lunes a viernes)" },
     ],
     includeTitle: "Conviene incluir",
     include: [
@@ -568,12 +577,79 @@ export const es: SiteContent = {
       withoutJavaScript:
         "La dirección de email aparece con JavaScript activado. También puedes escribirme por LinkedIn.",
       subject: "Consulta de proyecto — jefmonjor.dev",
+      noMailApp:
+        "Se abre tu aplicación de correo. ¿No tienes ninguna? Copia la dirección y escribe desde tu webmail.",
     },
     elsewhere: "También en",
   },
   footer: {
-    location: "Andorra · Remoto · CET",
+    location: "Andorra · Remoto · Hora de Andorra (CET)",
     fullCv: "CV completo",
+    privacy: "Privacidad",
     languages: "Idiomas",
+  },
+  privacy: {
+    title: "Privacidad",
+    updated: "Última actualización: 7 de noviembre de 2026",
+    sections: [
+      {
+        title: "Quién es el responsable",
+        paragraphs: [
+          [
+            "Jefferson Montesdeoca Jordán, Andorra la Vella, Andorra. Para cualquier cuestión sobre tus datos, escribe a la dirección de la ",
+            { text: "página de contacto", href: "/contact" },
+            ".",
+          ],
+        ],
+      },
+      {
+        title: "Qué no hace esta web",
+        paragraphs: [
+          [
+            "Sin analítica, sin publicidad, sin cookies de seguimiento y sin formularios de contacto. Las fuentes y los scripts se sirven desde este dominio; las páginas no cargan nada de terceros.",
+          ],
+        ],
+      },
+      {
+        title: "Si me envías un email",
+        paragraphs: [
+          [
+            "Recibo tu dirección y tu mensaje en mi buzón, alojado por Google. Los uso solo para responderte y, si trabajamos juntos, para gestionar ese trabajo. Los conservo mientras hagan falta para eso y para mis obligaciones legales.",
+          ],
+        ],
+      },
+      {
+        title: "El asistente de IA y el CV adaptado de /cv",
+        paragraphs: [
+          [
+            "Lo que escribes en el asistente, o pegas para obtener un CV adaptado a una oferta, se envía a OpenAI para generar la respuesta. Esta web pide a OpenAI que no almacene las respuestas y no guarda tu texto en su propio servidor. La conversación se queda en el almacenamiento de sesión de tu navegador y desaparece al cerrar la pestaña. Por favor, no pegues datos personales ni información confidencial. OpenAI trata el texto según sus propias condiciones de API y su política de privacidad.",
+          ],
+        ],
+      },
+      {
+        title: "Alojamiento y registros del servidor",
+        paragraphs: [
+          [
+            "La web funciona en Vercel. Como cualquier servidor web, trata tu dirección IP y la petición para servir cada página y proteger la web frente a abusos. Las funciones de IA cuentan peticiones por dirección IP, o por red en IPv6, y esos contadores caducan en menos de 24 horas.",
+          ],
+        ],
+      },
+      {
+        title: "En tu navegador",
+        paragraphs: [
+          [
+            "Una cookie llamada NEXT_LOCALE recuerda el idioma, y el almacenamiento local recuerda el tema y el fondo de /cv. Son solo funcionales y no salen de tu dispositivo salvo como parte de las peticiones normales a las páginas.",
+          ],
+        ],
+      },
+      {
+        title: "Tus derechos",
+        paragraphs: [
+          [
+            "Puedes pedir el acceso a tus datos y su rectificación, supresión, limitación o portabilidad, u oponerte a su uso, según la Ley 29/2021 de protección de datos personales de Andorra y, cuando sea aplicable, el RGPD. Escribe a la dirección de la página de contacto. También puedes reclamar ante la Agencia Andorrana de Protección de Datos (APDA).",
+          ],
+        ],
+      },
+    ],
   },
 }

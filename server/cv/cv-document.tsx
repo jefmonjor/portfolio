@@ -43,6 +43,7 @@ type CvLabels = {
   readonly headline: string
   readonly summary: string
   readonly availability: string
+  readonly contactSubject: string
   readonly otherProjects: string
   readonly credential: string
   readonly sections: {
@@ -285,10 +286,8 @@ function findSocial(kind: string) {
 }
 
 function CvDocument({ labels }: CvDocumentProps) {
-  // Server-rendered on demand, so the plain address never reaches the
-  // static HTML — safe to print it in the downloadable document.
   const email = contactEmail()
-  const emailHref = contactMailto()
+  const emailHref = contactMailto(labels.contactSubject)
   const linkedin = findSocial("linkedin")
   const github = findSocial("github")
 

@@ -5,7 +5,8 @@ export const personId = `${siteUrl}/#person`
 const websiteId = `${siteUrl}/#website`
 
 type PersonInput = {
-  jobTitle: string
+  positioning: string
+  currentJobTitle: string
   description: string
 }
 
@@ -65,7 +66,11 @@ function currentEmployer() {
     : {}
 }
 
-function personNode({ jobTitle, description }: PersonInput) {
+function personNode({
+  positioning,
+  currentJobTitle,
+  description,
+}: PersonInput) {
   const alumniOf = completedDegrees()
 
   return {
@@ -81,7 +86,7 @@ function personNode({ jobTitle, description }: PersonInput) {
       height: 1175,
     },
     description,
-    jobTitle,
+    jobTitle: currentJobTitle,
     homeLocation: {
       "@type": "Place",
       name: profile.location,
@@ -95,7 +100,7 @@ function personNode({ jobTitle, description }: PersonInput) {
     knowsAbout: topicsKnown(),
     hasOccupation: {
       "@type": "Occupation",
-      name: jobTitle,
+      name: positioning,
       occupationalCategory: "15-1252.00 Software Developers",
       skills: profile.focus.join(", "),
       occupationLocation: { "@type": "Place", name: profile.location },

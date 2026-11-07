@@ -30,7 +30,7 @@ export const llmsSummary = `# Jefferson Montesdeoca Jordán
 - [Other Twist](https://othertwist.com): All-in-one platform for writers in production — offline-first Flutter app on a Java 21 / Spring Boot hexagonal backend, sign-in at app.othertwist.com.
 - [PRONOQ](https://pronoq.jefmonjor.dev): Trilingual football-pool PWA with live scoring and AI used to explain results, not select predictions.
 - [Corte1D](https://corte1d.jefmonjor.dev): Workshop tool with a deterministic one-dimensional cutting optimizer, stock control, and document exports.
-- [Ilnami](https://ilnami.com): Private food diary in production — save what you ordered, where and whether you would go back, on a private map. Reviewed AI scanning of menus, labels and receipts with a manual fallback, invite-only circles, PostgreSQL row-level security, EU data residency, and its own llms.txt and Agent Skills index.
+- [Ilnami](https://ilnami.com): Private food diary in production — save what you ordered, where and whether you would go back, on a private map. Reviewed AI scanning of menus, labels and receipts with a manual fallback, invite-only circles, PostgreSQL row-level security, an EU-hosted database, and its own llms.txt and Agent Skills index.
 - [SpecForge](https://github.com/jefmonjor/specforge): Open-source Go CLI that drives Claude Code or Gemini CLI through a verified, spec-first loop — turn-based spec interview, sealed approvals, a reviewed plan, Red → Green → Refactor with per-scenario review and commits, a traceable delivery, verified legacy rewrites (Java 6 → 21, every cited source checked, legacy code read-only) and ready-made Java, React, Python and Go projects.
 - [Contact QR](https://contactqr.jefmonjor.dev): Lightweight digital contact card and vCard utility.
 - [Portfolio source](https://github.com/jefmonjor/portfolio): Next.js, TypeScript, Zod, localized CV generation, and a bounded AI assistant.
@@ -65,10 +65,10 @@ export const llmsSummary = `# Jefferson Montesdeoca Jordán
 - Searches this profile answers: Software Architect, Senior Backend Engineer (Java / Spring Boot), Solutions Architect, Fractional Architect, technical advisor for banking and fintech, applied AI engineer (LLM integration).
 - Where the evidence is: backend, integration and architecture in the banking, legal and energy roles listed in the CV; product ownership and applied AI in Transolido, Ilnami and PRONOQ; AI-assisted engineering process in SpecForge.
 - Location fit: Andorra, Spain, or remote within European time zones.
-- How to reach him: the contact page (${siteUrl}/contact) or LinkedIn. The email address is intentionally not published in plain text.
+- How to reach him: the contact page (${siteUrl}/contact) or LinkedIn. The email address is shown on the contact page and is not written in this file.
 - Matching a specific job offer: the portfolio can generate a CV that prioritizes verified evidence for a pasted offer; it never adds experience or technologies that are not in the profile.
 
-This file summarizes public, verifiable portfolio content. It does not include private project internals, private contact data, salary expectations, or start dates. Write through the contact section of the portfolio for anything not covered here.
+This file summarizes public, verifiable portfolio content. It does not include private project internals, private contact data or salary expectations. Write through the contact section of the portfolio for anything not covered here.
 `
 
 export function buildLlmsFull(cvMarkdown: string): string {

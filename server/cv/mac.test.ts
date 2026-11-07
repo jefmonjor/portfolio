@@ -9,7 +9,8 @@ const labels: CvLabels = {
   present: "Present",
   headline: "Product and backend engineering",
   summary: "Canonical professional summary.",
-  availability: "Selectively open to relevant opportunities",
+  availability: "Available for part-time work from January 2027",
+  contactSubject: "[Portfolio] Contact",
   otherProjects: "Other projects",
   credential: "Verify credential",
   sections: {
@@ -112,12 +113,15 @@ describe("MAC export", () => {
     expect(location.openToRelocate).toBe(true)
   })
 
-  it("offers employment, never freelance", () => {
+  it("offers the part-time engagements the commercial site sells", () => {
     expect(mac.careerPreferences.requirements.contractTypes).toEqual([
-      "permanent",
+      "freelance",
     ])
     expect(mac.careerPreferences.status).toBe("openToOffers")
-    expect(JSON.stringify(mac)).not.toMatch(/freelance/i)
+  })
+
+  it("counts the same seven years the rest of the site states", () => {
+    expect(mac.aboutMe.relevantYearsOfExperience).toBe(7)
   })
 
   it("publishes only public projects, with the short portfolio URL", () => {

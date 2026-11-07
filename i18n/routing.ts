@@ -39,9 +39,9 @@ export function nearestSiteLocale(locale: Locale): SiteLocale {
   return isSiteLocale(locale) ? locale : "es"
 }
 
-function withoutLocalePrefix(pathname: string): `/${string}` {
+export function withoutLocalePrefix(pathname: string): `/${string}` {
   const [, firstSegment, ...rest] = pathname.split("/")
-  if (isLocale(firstSegment) && firstSegment !== routing.defaultLocale) {
+  if (isLocale(firstSegment)) {
     return `/${rest.join("/")}`
   }
   return isRootedPath(pathname) ? pathname : `/${pathname}`

@@ -27,7 +27,12 @@ export const en: SiteContent = {
     contact: {
       title: "Contact — Let's discuss your project",
       description:
-        "Available for part-time engagements from January 2027. Remote, CET. Send a few lines about your project and get a reply within one business day.",
+        "Available for part-time work from January 2027. Remote, Andorra time (CET). Send a few lines about your project and get a reply within one business day.",
+    },
+    privacy: {
+      title: "Privacy — what this site does with your data",
+      description:
+        "No analytics, no tracking cookies, no forms. What happens to an email you send, to text you give the AI assistant on /cv, and to server logs.",
     },
   },
   nav: {
@@ -51,7 +56,7 @@ export const en: SiteContent = {
       "I design and build the backend systems banks and fintechs run on\u00a0— and the AI that is starting to run inside them.",
     tags: ["Java", "Spring", "Architecture", "Applied AI"],
     availability:
-      "Available for part-time engagements from January 2027 · Remote · CET",
+      "Available for part-time work from January 2027 · Remote · Andorra time (CET)",
   },
   about: {
     title: "About",
@@ -62,7 +67,7 @@ export const en: SiteContent = {
         ".",
       ],
       [
-        "I work remotely and asynchronously, and I write decisions down: what we chose, why, and what we rejected. My goal is a system your team can run and change without me, with a documented architecture, tests that explain the behaviour and a clean handover. You can see three examples in the ",
+        "I work remotely and asynchronously, and I write decisions down: what we chose, why, and what we rejected. My goal is a system your team can run and change without me: a documented architecture, tests that explain the behaviour, and a complete handover of the code, the documents and the knowledge. You can see three examples in the ",
         { text: "case studies", href: "/work" },
         ".",
       ],
@@ -90,8 +95,8 @@ export const en: SiteContent = {
           "Architecture review",
           "Backend and code audit",
           "Modernisation plan for legacy systems",
-          "Stack and build-or-buy decisions",
-          "Technical due diligence",
+          "Choosing the stack, and deciding whether to build or buy",
+          "Technical due diligence: a technical check before you invest or buy",
         ],
         format:
           "1 to 5 days. You receive a written report with findings, risks and a prioritised plan.",
@@ -105,13 +110,13 @@ export const en: SiteContent = {
           "Companies that need to build or modernise a backend and take it to production.",
         includes: [
           "Java and Spring Boot backends",
-          "Integrations: core banking, BaaS, payment providers and third-party APIs",
+          "Integrations: core banking, banking-as-a-service (BaaS), payment providers and third-party APIs",
           "Microservices and APIs",
           "Migrations and framework upgrades",
-          "Production readiness and go-live",
+          "Preparing for production and the launch itself",
         ],
         format:
-          "Daily rate or fixed-scope project. Currently 10 to 15 hours per week; full time when my availability allows it.",
+          "A daily rate, or a fixed price for a fixed scope. From January 2027: 10 to 15 hours per week; full time when my availability allows it.",
       },
       {
         id: "fractional",
@@ -124,7 +129,7 @@ export const en: SiteContent = {
           "Recurring architecture and code reviews",
           "Technical roadmap",
           "Mentoring for the team",
-          "Bringing AI into real processes, with limits and a manual fallback",
+          "Bringing AI into real processes, with limits and a manual way to work when the AI fails",
         ],
         format: "Monthly agreement, 4 to 8 hours per week.",
       },
@@ -133,9 +138,9 @@ export const en: SiteContent = {
     includesLabel: "Includes",
     formatLabel: "Format",
     details: "See the services in detail",
-    startTitle: "How every engagement starts",
+    startTitle: "How we start working together",
     startSteps: [
-      "A 30-minute call about your context and your problem.",
+      "You write to me and we book a 30-minute video call about your context and your problem.",
       "A one-page written proposal: scope, format and dates.",
       "We start.",
     ],
@@ -226,7 +231,7 @@ export const en: SiteContent = {
             "A platform that moves forward in small steps and a new homebanking architecture, while releases continue.",
         },
         context: [
-          "The bank serves its customers through Java applications that sit on top of a much older core: COBOL programs on AS400, with DB2 as the system of record. Over the years the Java side had fallen behind: applications on Spring Boot 2 and Tomcat versions that no longer receive updates.",
+          "The bank serves its customers through Java applications that sit on top of a much older core: COBOL programs on AS400, with DB2 as the system of record. Over the years the Java side had fallen behind the current versions of its framework and application servers.",
           "The bank needed a new homebanking, stronger customer authentication and a platform it could keep up to date. Stopping feature work for a long migration was not an option.",
         ],
         responsibility: {
@@ -293,7 +298,7 @@ export const en: SiteContent = {
           "One identity provider with MFA and rules per jurisdiction.",
           "Technical debt visible across the whole platform, legacy code included.",
           "The department's first AI tool in daily use by the whole team.",
-          "Figures are left out on purpose: the bank's data is confidential.",
+          "Internal details and figures stay confidential.",
         ],
         stack: [
           "Java 21",
@@ -327,8 +332,8 @@ export const en: SiteContent = {
         title:
           "A private-by-design app, built alone from database to production",
         outcome:
-          "Live in Spanish and English. The database itself keeps each diary private, and the AI suggests but never saves.",
-        tags: ["Next.js", "PostgreSQL RLS", "OpenAI Vision"],
+          "Online in Spanish and English. The database itself keeps each diary private, and the AI suggests but never saves.",
+        tags: ["Next.js", "PostgreSQL row-level security", "OpenAI Vision"],
         meta: {
           title: "Case study: Ilnami, a private-by-design app built alone",
           description:
@@ -377,9 +382,9 @@ export const en: SiteContent = {
             rejected: "Saving whatever the model extracts.",
           },
           {
-            choice: "Data stays in the EU",
+            choice: "Stored data stays in the EU",
             reason:
-              "Supabase in Frankfurt and Vercel in fra1: GDPR by default and low latency for European users.",
+              "Supabase in Frankfurt and Vercel in fra1: the database and the app run in the EU. Only the images a user chooses to scan are sent to OpenAI for suggestions.",
             rejected: "Default US regions.",
           },
           {
@@ -398,7 +403,7 @@ export const en: SiteContent = {
           "Live and open at ilnami.com, in Spanish and English.",
           "Privacy enforced by the database, not only by the interface.",
           "AI that saves time without ever writing data on its own.",
-          "Personal data hosted in the EU, with analytics only after consent.",
+          "The database and the app hosted in the EU, with analytics only after consent.",
         ],
         stack: [
           "Next.js 16",
@@ -470,7 +475,7 @@ export const en: SiteContent = {
             rejected: "Parsing free-form chat.",
           },
           {
-            choice: "Trust the disk, not the agent",
+            choice: "Check the files on disk, not the agent's report",
             reason:
               "SpecForge runs the tests itself and compares the files on disk. Tests are fingerprinted after the red phase, so nobody can edit them later to make the code pass.",
             rejected: "Accepting the agent's own report.",
@@ -538,11 +543,18 @@ export const en: SiteContent = {
     facts: [
       {
         label: "Availability",
-        value: "Part-time engagements from January 2027",
+        value:
+          "Part-time work from January 2027. You can write now to plan a start date.",
       },
       { label: "Location", value: "Andorra · remote" },
-      { label: "Time zone", value: "CET (UTC+1)" },
-      { label: "Reply time", value: "Within one business day" },
+      {
+        label: "Time zone",
+        value: "Andorra time: CET, UTC+1 in winter and UTC+2 in summer",
+      },
+      {
+        label: "Reply time",
+        value: "Within one business day (Monday to Friday)",
+      },
     ],
     includeTitle: "Useful to include",
     include: [
@@ -559,12 +571,79 @@ export const en: SiteContent = {
       withoutJavaScript:
         "The email address appears when JavaScript is on. You can also write to me on LinkedIn.",
       subject: "Project enquiry — jefmonjor.dev",
+      noMailApp:
+        "This opens your email app. No email app? Copy the address and write from your webmail.",
     },
     elsewhere: "Also on",
   },
   footer: {
-    location: "Andorra · Remote · CET",
+    location: "Andorra · Remote · Andorra time (CET)",
     fullCv: "Full CV",
+    privacy: "Privacy",
     languages: "Languages",
+  },
+  privacy: {
+    title: "Privacy",
+    updated: "Last updated: 7 November 2026",
+    sections: [
+      {
+        title: "Who is responsible",
+        paragraphs: [
+          [
+            "Jefferson Montesdeoca Jordán, Andorra la Vella, Andorra. For anything about your data, write to the address on the ",
+            { text: "contact page", href: "/contact" },
+            ".",
+          ],
+        ],
+      },
+      {
+        title: "What this site does not do",
+        paragraphs: [
+          [
+            "No analytics, no advertising, no tracking cookies and no contact forms. Fonts and scripts are served from this domain; the pages load nothing from third parties.",
+          ],
+        ],
+      },
+      {
+        title: "If you send me an email",
+        paragraphs: [
+          [
+            "I receive your address and your message in my mailbox, which is hosted by Google. I use them only to answer you and, if we work together, to manage that work. I keep them while they are needed for that and for my legal obligations.",
+          ],
+        ],
+      },
+      {
+        title: "The AI assistant and the tailored CV on /cv",
+        paragraphs: [
+          [
+            "What you type into the assistant, or paste to get a CV tailored to a job offer, is sent to OpenAI to produce the answer. This site asks OpenAI not to store the responses and does not save your text on its own server. The conversation stays in your browser's session storage and disappears when you close the tab. Please do not paste personal or confidential information. OpenAI processes the text under its own API terms and privacy policy.",
+          ],
+        ],
+      },
+      {
+        title: "Hosting and server logs",
+        paragraphs: [
+          [
+            "The site runs on Vercel. Like any web server, it processes your IP address and the request to deliver each page and to protect the site against abuse. The AI features count requests per IP address, or per network for IPv6, and those counters expire within 24 hours.",
+          ],
+        ],
+      },
+      {
+        title: "In your browser",
+        paragraphs: [
+          [
+            "A cookie named NEXT_LOCALE remembers the language, and local storage remembers the theme and the background of /cv. They are functional only and never leave your device except as part of normal page requests.",
+          ],
+        ],
+      },
+      {
+        title: "Your rights",
+        paragraphs: [
+          [
+            "You can ask for access to your data, and for its correction, deletion, restriction or portability, or object to its use, under Andorra's Law 29/2021 on personal data protection and, where it applies, the GDPR. Write to the address on the contact page. You can also complain to the Andorran Data Protection Agency (APDA).",
+          ],
+        ],
+      },
+    ],
   },
 }

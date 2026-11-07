@@ -371,7 +371,8 @@
   "footer": {
     "lastUpdated": "Last updated · {date}",
     "builtLine": "Designed and built with Next.js",
-    "languagesLabel": "Languages"
+    "languagesLabel": "Languages",
+    "privacy": "Privacy"
   },
   "cvToast": {
     "title": "CV ready",
@@ -391,7 +392,7 @@
     "offerPlaceholder": "Paste the job offer text here…",
     "generate": "Generate tailored CV",
     "generating": "Tailoring…",
-    "privacy": "Sent to the AI provider; this portfolio does not store it.",
+    "privacy": "Sent to OpenAI to choose the evidence; this site does not store it.",
     "back": "Back",
     "tailorError": "It couldn't be tailored right now. The technical CV is still available.",
     "tailorLimited": "Usage limit reached. Try again in a few minutes or download the technical CV.",
@@ -503,7 +504,7 @@
     "rateLimited": "Too many questions in a row. Wait a moment and try again.",
     "unavailable": "The assistant is unavailable right now. Write to {email}.",
     "error": "I couldn't answer. Write to {email}.",
-    "disclaimer": "AI limited to the public profile. It does not estimate missing facts; confirm important decisions by email.",
+    "disclaimer": "AI limited to the public profile. Your messages go to OpenAI to write the answer and are not stored by this site. Confirm important decisions by email.",
     "reset": "New",
     "thinking": "Thinking…",
     "launcher": "Ask the AI",
