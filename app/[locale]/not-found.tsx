@@ -35,7 +35,7 @@ export default async function NotFound() {
         </p>
       </div>
 
-      <Button asChild variant="outline" className="relative z-10">
+      <Button asChild variant="outline" className="relative z-10 min-h-11 px-4">
         <Link href={home}>
           <HugeiconsIcon
             icon={ArrowLeft01Icon}

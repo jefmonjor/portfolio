@@ -29,7 +29,7 @@ function Hero({ locale, content }: HeroProps) {
         </span>
       </h1>
 
-      <p className="hero-line mt-6 max-w-[22ch] font-heading text-[clamp(1.875rem,3.6vw+1.25rem,4rem)] leading-[1.08] font-medium tracking-[-0.02em] text-foreground [--line:2] sm:max-w-[24ch]">
+      <p className="hero-line mt-6 max-w-[22ch] font-heading text-[clamp(1.75rem,3.6vw+1.25rem,4rem)] leading-[1.08] font-medium tracking-[-0.02em] text-foreground [--line:2] sm:max-w-[24ch]">
         {hero.value}
       </p>
 

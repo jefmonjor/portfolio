@@ -24,13 +24,24 @@ function useCloseWhenTouchingOutside(
   }, [menuRef])
 }
 
+function useCloseWhenRouteChanges(
+  menuRef: React.RefObject<HTMLDetailsElement | null>,
+  pathname: string
+) {
+  const shownPathname = useRef(pathname)
+
+  useEffect(() => {
+    if (shownPathname.current === pathname) return
+    shownPathname.current = pathname
+    menuRef.current?.removeAttribute("open")
+  }, [menuRef, pathname])
+}
+
 function MobileMenu({ label, children }: MobileMenuProps) {
   const menuRef = useRef<HTMLDetailsElement>(null)
   const pathname = usePathname()
 
-  useEffect(() => {
-    menuRef.current?.removeAttribute("open")
-  }, [pathname])
+  useCloseWhenRouteChanges(menuRef, pathname)
 
   useCloseWhenTouchingOutside(menuRef)
 
