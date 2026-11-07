@@ -63,15 +63,17 @@ Quedan conocidos y aceptados: el email de `/contact` abierto en frío espera a l
 
 ## Rendimiento (Lighthouse 12, móvil simulado, mediana de 3)
 
-Underlay con tema Ámbar, titulares en Fraunces (precargada y compartida con `/cv`), baraja de trabajos y reparto de servicios en CSS:
+Con la pila 3D del hero, la banda de prueba con contadores, el relleno de texto, la baraja 3D con inclinación y las cartas que se voltean:
 
-| Página | Rendimiento | Accesibilidad | Buenas prácticas | SEO | FCP | LCP | TBT | CLS |
-|---|---|---|---|---|---|---|---|---|
-| `/` | 96 | 100 | 100 | 100 | 1,2 s | 2,6 s | 113 ms | 0 |
-| `/es` | 96 | 100 | 100 | 100 | 1,2 s | 2,6 s | 97 ms | 0 |
-| `/work/private-bank-modernization` | 96 | 100 | 100 | 100 | 1,2 s | 2,7 s | 56 ms | 0 |
-| `/contact` | 96 | 100 | 100 | 100 | 1,1 s | 2,6 s | 126 ms | 0 |
-| `/cv` | 89 | 100 | — | — | — | 3,3 s | 179 ms | — |
+| Página | Rendimiento | Accesibilidad | Buenas prácticas | SEO | LCP | TBT | CLS |
+|---|---|---|---|---|---|---|---|
+| `/` | 95 | 100 | 100 | 100 | 2,7 s | 127 ms | 0 |
+| `/es` | 95 | 100 | 100 | 100 | 2,7 s | 117 ms | 0 |
+| `/services` | 95 | 100 | 100 | 100 | 2,9 s | 55 ms | 0 |
+| `/contact` | 95 | 100 | 100 | 100 | 2,8 s | 120 ms | 0 |
+
+- La primera versión de la pila animaba una propiedad registrada al cargar y subió el TBT a 174 ms (rendimiento 93); la entrada pasó a `translate` y se quitó la flotación en bucle.
+| `/cv` | 89 | 100 | — | — | 3,3 s | 179 ms | — |
 
 - La web precarga Fraunces e Inter; `/cv`, Fraunces y Geist. Fraunces es la misma descarga en ambos.
 - El LCP de laboratorio se mide en «4G lento» simulado (1,6 Mbps, 150 ms de RTT); el objetivo del plan de < 2 s en 4G real no se puede verificar desde aquí.

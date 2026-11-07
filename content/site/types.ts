@@ -133,8 +133,14 @@ export type SiteContent = {
     proof: ReadonlyArray<string>
     seeWork: string
   }
+  credentials: {
+    label: string
+    companies: ReadonlyArray<string>
+    stats: ReadonlyArray<{ value: number; label: string }>
+  }
   about: {
     title: string
+    lead: string
     paragraphs: readonly [RichText, RichText]
   }
   selectedWork: {
@@ -210,6 +216,7 @@ export type SiteContent = {
     location: string
     fullCv: string
     privacy: string
+    backToTop: string
   }
   privacy: {
     title: string

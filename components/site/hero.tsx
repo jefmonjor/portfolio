@@ -2,7 +2,7 @@ import { ArrowDown02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
 import { ContactButton } from "@/components/site/contact-button"
-import { HeroDiagram } from "@/components/site/hero-diagram"
+import { ArchitectureStack } from "@/components/site/architecture-stack"
 import { StatusBadge } from "@/components/site/status-badge"
 import type { Headline, SiteContent } from "@/content/site/types"
 import type { SiteLocale } from "@/i18n/routing"
@@ -135,7 +135,7 @@ function Hero({ locale, content }: HeroProps) {
         </div>
       </div>
 
-      <HeroDiagram className="hero-reveal mx-auto w-full max-w-[26rem] [--step:4]" />
+      <ArchitectureStack className="hero-reveal mx-auto w-full max-w-[30rem] [--step:4]" />
     </section>
   )
 }

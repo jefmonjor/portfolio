@@ -26,7 +26,7 @@ function CaseCard({
   const Heading = headingLevel
 
   return (
-    <article className="group/arrow site-card relative grid h-full gap-8 p-6 md:grid-cols-[minmax(0,1fr)_13rem] md:p-8">
+    <article className="group/arrow site-card site-card-spotlight relative grid h-full gap-8 p-6 md:grid-cols-[minmax(0,1fr)_13rem] md:p-8">
       <div className="flex min-w-0 flex-col gap-4">
         <div className="flex items-baseline justify-between gap-4">
           <p className="text-subheading-xs text-text-sub-600 uppercase">

@@ -1,8 +1,9 @@
 import { ArrowLink } from "@/components/site/arrow-link"
 import { CaseDeck } from "@/components/site/case-deck"
-import { ContactBlock } from "@/components/site/contact-block"
+import { CredentialsBand } from "@/components/site/credentials-band"
 import { DeckCounter } from "@/components/site/deck-counter"
 import { ExperienceTimeline } from "@/components/site/experience-timeline"
+import { FinalCta } from "@/components/site/final-cta"
 import { Hero } from "@/components/site/hero"
 import { RichText } from "@/components/site/rich-text"
 import { ServicesSummary } from "@/components/site/services-summary"
@@ -26,8 +27,13 @@ export default async function HomePage({ params }: SitePageProps) {
     <>
       <Hero locale={locale} content={content} />
 
+      <CredentialsBand credentials={content.credentials} />
+
       <SiteSection id="about" title={content.about.title}>
-        <div className="site-prose flex flex-col gap-5 text-text-strong-950">
+        <p className="scroll-fill-block max-w-[24ch] font-heading text-title-h3 text-text-strong-950">
+          <span className="scroll-fill">{content.about.lead}</span>
+        </p>
+        <div className="site-prose mt-8 flex flex-col gap-5 text-text-strong-950">
           {content.about.paragraphs.map((paragraph, index) => (
             <p key={index}>
               <RichText locale={locale} content={paragraph} />
@@ -69,9 +75,10 @@ export default async function HomePage({ params }: SitePageProps) {
         </ArrowLink>
       </SiteSection>
 
-      <SiteSection id="contact" title={content.contact.homeTitle}>
-        <ContactBlock contact={content.contact} />
-      </SiteSection>
+      <FinalCta
+        contact={content.contact}
+        availability={content.hero.availability.status}
+      />
     </>
   )
 }

@@ -72,11 +72,23 @@ export const es: SiteContent = {
     ],
     seeWork: "Ver trabajos seleccionados",
   },
+  credentials: {
+    label: "Experiencia en",
+    companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
+    stats: [
+      { value: 7, label: "años en banca y sistemas críticos" },
+      {
+        value: 4,
+        label: "sectores: banca, legal, energía y telecomunicaciones",
+      },
+    ],
+  },
   about: {
     title: "Sobre mí",
+    lead: "Siete años construyendo software donde los errores salen caros.",
     paragraphs: [
       [
-        "Llevo siete años construyendo software donde los errores salen caros. Hoy soy arquitecto de soluciones y technical PM en Andbank, un banco privado de Andorra. Antes modernicé la plataforma de elAbogado, el marketplace legal líder en España, y construí sistemas Java y de big data para empresas de energía y telecomunicaciones como consultor. En paralelo, construyo mis propios productos desde la primera tabla de la base de datos hasta producción. Tienes el detalle en la ",
+        "Hoy soy arquitecto de soluciones y technical PM en Andbank, un banco privado de Andorra. Antes modernicé la plataforma de elAbogado, el marketplace legal líder en España, y construí sistemas Java y de big data para empresas de energía y telecomunicaciones como consultor. En paralelo, construyo mis propios productos desde la primera tabla de la base de datos hasta producción. Tienes el detalle en la ",
         { text: "página de experiencia", href: "/experience" },
         ".",
       ],
@@ -597,6 +609,7 @@ export const es: SiteContent = {
     location: "Andorra · Remoto · Hora de Andorra (CET)",
     fullCv: "CV completo",
     privacy: "Privacidad",
+    backToTop: "Volver arriba",
   },
   privacy: {
     title: "Privacidad",

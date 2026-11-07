@@ -8,6 +8,7 @@ import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react"
 
 import { ArrowLink } from "@/components/site/arrow-link"
 import { ContactButton } from "@/components/site/contact-button"
+import { PointerTilt } from "@/components/site/pointer-tilt"
 import { ProcessSteps } from "@/components/site/process-steps"
 import type { ServiceId, SiteContent } from "@/content/site/types"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
@@ -30,36 +31,46 @@ function ServicesSummary({ locale, services, cta }: ServicesSummaryProps) {
     <div className="flex flex-col gap-10">
       <ul className="service-deal grid md:grid-cols-3">
         {services.items.map((service, index) => (
-          <li key={service.id} className="site-card flex flex-col p-6">
-            <div aria-hidden className="flex items-start justify-between">
-              <span className="flex size-10 items-center justify-center rounded-10 bg-bg-weak-50 text-icon-sub-600 ring-1 ring-stroke-soft-200 ring-inset">
-                <HugeiconsIcon
-                  icon={serviceIcons[service.id]}
-                  className="size-5"
-                  strokeWidth={1.5}
-                />
-              </span>
-              <span className="text-label-xs text-text-soft-400 tabular-nums">
-                {twoDigits(index + 1)}
-              </span>
-            </div>
-            <h3 className="mt-5 font-heading text-title-h5 text-text-strong-950">
-              {service.name}
-            </h3>
-            <p className="mt-2 text-paragraph-sm text-text-sub-600">
-              {service.summary}
-            </p>
-            <div className="mt-auto pt-6">
-              <p className="flex gap-2 border-t border-stroke-soft-200 pt-4 text-paragraph-sm text-text-sub-600">
-                <HugeiconsIcon
-                  icon={Clock01Icon}
-                  aria-hidden
-                  className="mt-0.5 size-4 shrink-0 text-icon-sub-600"
-                  strokeWidth={1.75}
-                />
-                {service.format}
-              </p>
-            </div>
+          <li key={service.id} className="service-slot">
+            <PointerTilt className="service-flip tilt-card" maxDegrees={5}>
+              <div className="service-face site-card site-card-spotlight relative flex h-full flex-col p-6">
+                <div aria-hidden className="flex items-start justify-between">
+                  <span className="flex size-10 items-center justify-center rounded-10 bg-bg-weak-50 text-icon-sub-600 ring-1 ring-stroke-soft-200 ring-inset">
+                    <HugeiconsIcon
+                      icon={serviceIcons[service.id]}
+                      className="size-5"
+                      strokeWidth={1.5}
+                    />
+                  </span>
+                  <span className="text-label-xs text-text-soft-400 tabular-nums">
+                    {twoDigits(index + 1)}
+                  </span>
+                </div>
+                <h3 className="mt-5 font-heading text-title-h5 text-text-strong-950">
+                  {service.name}
+                </h3>
+                <p className="mt-2 text-paragraph-sm text-text-sub-600">
+                  {service.summary}
+                </p>
+                <div className="mt-auto pt-6">
+                  <p className="flex gap-2 border-t border-stroke-soft-200 pt-4 text-paragraph-sm text-text-sub-600">
+                    <HugeiconsIcon
+                      icon={Clock01Icon}
+                      aria-hidden
+                      className="mt-0.5 size-4 shrink-0 text-icon-sub-600"
+                      strokeWidth={1.75}
+                    />
+                    {service.format}
+                  </p>
+                </div>
+              </div>
+              <div aria-hidden className="service-back">
+                <span className="size-3 bg-primary-base" />
+                <span className="font-heading text-title-h2 tabular-nums">
+                  {twoDigits(index + 1)}
+                </span>
+              </div>
+            </PointerTilt>
           </li>
         ))}
       </ul>

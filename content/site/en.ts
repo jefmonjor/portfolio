@@ -70,11 +70,20 @@ export const en: SiteContent = {
     ],
     seeWork: "See selected work",
   },
+  credentials: {
+    label: "Experience at",
+    companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
+    stats: [
+      { value: 7, label: "years in banking and critical systems" },
+      { value: 4, label: "sectors: banking, legal, energy and telecom" },
+    ],
+  },
   about: {
     title: "About",
+    lead: "Seven years building software where mistakes are expensive.",
     paragraphs: [
       [
-        "I have spent seven years building software where mistakes are expensive. Today I am solutions architect and technical PM at Andbank, a private bank in Andorra. Before that I modernised the platform of elAbogado, Spain's leading legal marketplace, and built Java and big-data systems for energy and telecom companies as a consultant. In parallel, I build my own products from the first database table to production. The details are on the ",
+        "Today I am solutions architect and technical PM at Andbank, a private bank in Andorra. Before that I modernised the platform of elAbogado, Spain's leading legal marketplace, and built Java and big-data systems for energy and telecom companies as a consultant. In parallel, I build my own products from the first database table to production. The details are on the ",
         { text: "experience page", href: "/experience" },
         ".",
       ],
@@ -591,6 +600,7 @@ export const en: SiteContent = {
     location: "Andorra · Remote · Andorra time (CET)",
     fullCv: "Full CV",
     privacy: "Privacy",
+    backToTop: "Back to top",
   },
   privacy: {
     title: "Privacy",

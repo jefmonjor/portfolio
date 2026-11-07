@@ -48,7 +48,8 @@ in ten seconds what he does, why to trust him and how to hire him.
   boundary are validated with Zod, bodies are size-limited, and AI routes
   reject cross-site requests.
 - Commercial pages are static (SSG), work without JavaScript, and ship only
-  the client components they need: theme, language, menu and email.
+  the client components they need: theme, language, menu, email and the
+  pointer tilt that feeds CSS variables to the 3D pieces.
 - Code speaks for itself: names, small functions and types instead of
   comments. A comment is only for a constraint the code cannot express.
 - Animate only for interaction clarity, transition quality, and controlled
