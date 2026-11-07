@@ -46,11 +46,7 @@ function BackgroundProvider({ children }: { children: React.ReactNode }) {
 
   const setVariant = React.useCallback((next: BackgroundVariant) => {
     document.documentElement.dataset.bg = next
-    try {
-      window.localStorage.setItem(BACKGROUND_STORAGE_KEY, next)
-    } catch {
-      // localStorage may be unavailable (private mode, quota); ignore.
-    }
+    rememberWhereStorageAllows(next)
     window.dispatchEvent(new Event(BACKGROUND_CHANGE_EVENT))
   }, [])
 
@@ -66,6 +62,14 @@ function BackgroundProvider({ children }: { children: React.ReactNode }) {
   )
 }
 
+function rememberWhereStorageAllows(variant: BackgroundVariant): void {
+  try {
+    window.localStorage.setItem(BACKGROUND_STORAGE_KEY, variant)
+  } catch {
+    return
+  }
+}
+
 function useBackground(): BackgroundContextValue {
   const ctx = React.useContext(BackgroundContext)
   if (!ctx) {
@@ -74,7 +78,7 @@ function useBackground(): BackgroundContextValue {
   return ctx
 }
 
-const BACKGROUND_INIT_SCRIPT = `(() => {
+const APPLY_STORED_BACKGROUND_BEFORE_HYDRATION = `(() => {
   try {
     var stored = window.localStorage.getItem(${JSON.stringify(BACKGROUND_STORAGE_KEY)});
     var allowed = ${JSON.stringify(BACKGROUND_VARIANTS)};
@@ -91,8 +95,9 @@ const BACKGROUND_INIT_SCRIPT = `(() => {
 function BackgroundInitScript() {
   return (
     <script
-      // Runs before hydration to prevent flicker between variants.
-      dangerouslySetInnerHTML={{ __html: BACKGROUND_INIT_SCRIPT }}
+      dangerouslySetInnerHTML={{
+        __html: APPLY_STORED_BACKGROUND_BEFORE_HYDRATION,
+      }}
     />
   )
 }

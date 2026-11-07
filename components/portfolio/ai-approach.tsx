@@ -10,9 +10,7 @@ const EVIDENCE_KEYS = [
   "gates",
 ] as const
 
-// Open two-column list: a rule above each point, no box around them. An odd
-// last point spans both columns so its rule runs the full width.
-function spanClass(index: number, total: number): string {
+function oddLastPointSpansBothColumns(index: number, total: number): string {
   return index === total - 1 && total % 2 === 1 ? "md:col-span-2" : ""
 }
 
@@ -32,7 +30,7 @@ function AiApproach() {
             key={key}
             className={[
               "flex min-w-0 flex-col gap-3 border-t border-border pt-4",
-              spanClass(index, EVIDENCE_KEYS.length),
+              oddLastPointSpansBothColumns(index, EVIDENCE_KEYS.length),
             ].join(" ")}
           >
             <div className="flex items-center gap-3">

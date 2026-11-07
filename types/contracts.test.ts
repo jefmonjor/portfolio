@@ -82,10 +82,7 @@ describe("API contracts", () => {
     expect(format.strict).toBe(true)
   })
 
-  // Structured Outputs rejects the whole request with a 400 when the schema
-  // carries a keyword it does not implement, which the route can only surface
-  // as an opaque 502. Bounds belong server-side, not in the model contract.
-  it("keeps unsupported JSON Schema keywords out of the model contract", () => {
+  it("keeps keywords Structured Outputs rejects out of the model contract", () => {
     const { schema } = zodTextFormat(cvTailorModelOutputSchema, "cv_tailoring")
     const keywords = new Set<string>()
     const walk = (node: unknown): void => {

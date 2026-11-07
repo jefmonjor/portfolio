@@ -1,10 +1,3 @@
-// One download path for every surface that hands out a CV: the chooser in
-// the hero, the assistant's buttons and the terminal's `cv` command. The
-// general and technical variants come from GET /cv.pdf; the tailored one is
-// rendered by POST /api/cv-tailor from a pasted offer. Fetching the file and
-// saving it as a blob works from every browser; a detached `target="_blank"`
-// link is dropped as a popup by Safari and most mobile browsers.
-
 import { resolveLocale } from "@/i18n/routing"
 import { cvPdfPath, type CvPdfVariantName } from "@/lib/cv-pdf"
 
@@ -30,6 +23,7 @@ function filenameFrom(response: Response, locale: string): string {
   )
 }
 
+// Safari and most mobile browsers drop a detached target="_blank" link as a popup.
 function saveBlob(blob: Blob, filename: string): void {
   const url = URL.createObjectURL(blob)
   const link = document.createElement("a")
@@ -53,7 +47,6 @@ async function save(
   return { ok: true, filename }
 }
 
-// Aborts propagate as the DOMException the caller already handles.
 export async function downloadCv(
   variant: CvVariant,
   locale: string,

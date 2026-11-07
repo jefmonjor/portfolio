@@ -4,9 +4,6 @@ import { buildCvMarkdown } from "@/server/cv/markdown"
 
 export const dynamic = "force-static"
 
-// The summary plus the complete English CV in one document, for engines that
-// read a single file instead of following links. Built from the same labels as
-// /cv.md and the PDFs, so it can never disagree with them.
 export async function GET(): Promise<Response> {
   const labels = await loadCvLabels("en")
 

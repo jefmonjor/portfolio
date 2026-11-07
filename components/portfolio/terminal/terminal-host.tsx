@@ -16,15 +16,13 @@ const Terminal = dynamic(
   { ssr: false }
 )
 
-// Listens for the first request to open the terminal, then mounts it already
-// open. From then on the terminal owns its shortcut and event listeners.
 function TerminalHost() {
-  const [requested, setRequested] = React.useState(false)
+  const [firstOpenRequested, setFirstOpenRequested] = React.useState(false)
 
   React.useEffect(() => {
-    if (requested) return
+    if (firstOpenRequested) return
     function request() {
-      setRequested(true)
+      setFirstOpenRequested(true)
     }
     function onKey(event: KeyboardEvent) {
       if (!isTerminalShortcut(event)) return
@@ -37,9 +35,9 @@ function TerminalHost() {
       window.removeEventListener(TERMINAL_EVENT, request)
       window.removeEventListener("keydown", onKey)
     }
-  }, [requested])
+  }, [firstOpenRequested])
 
-  return requested ? <Terminal defaultOpen /> : null
+  return firstOpenRequested ? <Terminal defaultOpen /> : null
 }
 
 export { TerminalHost }

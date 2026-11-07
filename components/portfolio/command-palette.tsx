@@ -67,17 +67,6 @@ const SECTIONS: ReadonlyArray<SectionId> = [
   "contact",
 ]
 
-function isEditableTarget(target: EventTarget | null): boolean {
-  if (!(target instanceof HTMLElement)) return false
-  const tag = target.tagName
-  return (
-    tag === "INPUT" ||
-    tag === "TEXTAREA" ||
-    tag === "SELECT" ||
-    target.isContentEditable
-  )
-}
-
 function withCurrentHash(pathname: string): string {
   if (typeof window === "undefined") return pathname
   return `${pathname}${window.location.hash}`
@@ -112,9 +101,6 @@ function CommandPalette() {
       if (event.key.toLowerCase() !== "k") return
       if (!(event.metaKey || event.ctrlKey)) return
       if (event.altKey) return
-      if (isEditableTarget(event.target)) {
-        // Still allow palette toggle from inputs; this overrides default.
-      }
       event.preventDefault()
       setOpen((prev) => !prev)
     }

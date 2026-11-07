@@ -39,7 +39,9 @@ function loadConversation(): Message[] {
   }
 }
 
-function saveConversation(messages: ReadonlyArray<Message>): void {
+function saveConversationIfStorageAllows(
+  messages: ReadonlyArray<Message>
+): void {
   try {
     if (messages.length === 0) window.sessionStorage.removeItem(STORAGE_KEY)
     else {
@@ -49,14 +51,11 @@ function saveConversation(messages: ReadonlyArray<Message>): void {
       )
     }
   } catch {
-    // Private mode or blocked storage: the chat still works, it just won't
-    // survive a reload.
+    return
   }
 }
 
-// Replies are plain text. Links are the only markup worth rendering, and
-// building them as elements (never as HTML) keeps model output inert.
-function Linkified({ text }: { text: string }) {
+function InertTextWithLinks({ text }: { text: string }) {
   const parts = text.split(URL_PATTERN)
   return (
     <>
@@ -92,7 +91,7 @@ function Assistant() {
   const [pendingAction, setPendingAction] = React.useState<string | null>(null)
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const inputRef = React.useRef<HTMLTextAreaElement>(null)
-  const triggerRef = React.useRef<HTMLButtonElement>(null)
+  const launcherRef = React.useRef<HTMLButtonElement>(null)
   const requestRef = React.useRef<AbortController | null>(null)
   const restoredRef = React.useRef(false)
 
@@ -122,7 +121,7 @@ function Assistant() {
 
   function commit(next: Message[]): void {
     setMessages(next)
-    saveConversation(next)
+    saveConversationIfStorageAllows(next)
   }
 
   function actionKey(action: AssistantAction): string {
@@ -134,8 +133,6 @@ function Assistant() {
     return action.variant === "technical" ? t("cvTechnical") : t("cvGeneral")
   }
 
-  // Same routes as the download button in the hero: GET /cv.pdf for the
-  // ready variants, POST /api/cv-tailor with the pasted offer for the third.
   async function runAction(action: AssistantAction): Promise<void> {
     if (pendingAction) return
     setPendingAction(actionKey(action))
@@ -212,6 +209,19 @@ function Assistant() {
     setBusy(false)
   }
 
+  function sendOnEnterKeepShiftEnterAsNewLine(
+    event: React.KeyboardEvent<HTMLTextAreaElement>
+  ): void {
+    if (
+      event.key === "Enter" &&
+      !event.shiftKey &&
+      !event.nativeEvent.isComposing
+    ) {
+      event.preventDefault()
+      void send(input)
+    }
+  }
+
   function closeAssistant(): void {
     requestRef.current?.abort()
     requestRef.current = null
@@ -222,8 +232,7 @@ function Assistant() {
     }
     setBusy(false)
     setOpen(false)
-    // Return focus to the launcher once it is back in the DOM.
-    requestAnimationFrame(() => triggerRef.current?.focus())
+    requestAnimationFrame(() => launcherRef.current?.focus())
   }
 
   function resetConversation(): void {
@@ -324,7 +333,7 @@ function Assistant() {
                 )}
               >
                 {m.role === "assistant" ? (
-                  <Linkified text={m.content} />
+                  <InertTextWithLinks text={m.content} />
                 ) : (
                   m.content
                 )}
@@ -374,23 +383,12 @@ function Assistant() {
               void send(input)
             }}
           >
-            {/* A textarea so a pasted job offer keeps its line breaks;
-                Enter still sends and Shift+Enter starts a new line. */}
             <textarea
               ref={inputRef}
               rows={1}
               value={input}
               onChange={(event) => setInput(event.target.value)}
-              onKeyDown={(event) => {
-                if (
-                  event.key === "Enter" &&
-                  !event.shiftKey &&
-                  !event.nativeEvent.isComposing
-                ) {
-                  event.preventDefault()
-                  void send(input)
-                }
-              }}
+              onKeyDown={sendOnEnterKeepShiftEnterAsNewLine}
               aria-label={t("inputLabel")}
               placeholder={t("placeholder")}
               maxLength={ASSISTANT_MESSAGE_INPUT_CHARS}
@@ -419,7 +417,7 @@ function Assistant() {
         </div>
       ) : (
         <Button
-          ref={triggerRef}
+          ref={launcherRef}
           type="button"
           variant="outline"
           aria-label={t("open")}

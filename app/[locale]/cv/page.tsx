@@ -70,8 +70,7 @@ export default async function Page({
         <Footer />
         <Assistant />
       </div>
-      {/* Last in the document: 70 KB of glyph paths must not stream ahead of
-          the hero. <use> resolves forward references once parsed. */}
+      {/* SVG <use> resolves forward references, so the 70 KB sprite streams last. */}
       <TechIconSprite />
     </div>
   )

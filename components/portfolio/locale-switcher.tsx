@@ -7,8 +7,6 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation"
 import { routing, type Locale } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
 
-// Plain links instead of a select: every language is one tap away, crawlers
-// can follow the alternates, and the control needs no popover library.
 function LocaleSwitcher() {
   const t = useTranslations("localeSwitcher")
   const locale = useLocale()
@@ -21,9 +19,9 @@ function LocaleSwitcher() {
       return
     event.preventDefault()
     if (next === locale) return
-    // Keep the reader on the same section after the language changes.
+    const sameSection = `${pathname}${window.location.hash}`
     startTransition(() => {
-      router.push(`${pathname}${window.location.hash}`, { locale: next })
+      router.push(sameSection, { locale: next })
     })
   }
 
@@ -40,8 +38,6 @@ function LocaleSwitcher() {
             key={loc}
             href={pathname}
             locale={loc}
-            // Switching language is rare; prefetching both other locales on
-            // every visit cost ~50 KB of RSC payload nobody asked for.
             prefetch={false}
             hrefLang={loc}
             lang={loc}

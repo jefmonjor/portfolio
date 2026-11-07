@@ -49,7 +49,6 @@ type CvDownloadButtonProps = {
 type Step = "choose" | "offer"
 type Pending = CvVariant | "tailor"
 
-// Loaded on success only: the celebration is not worth shipping on first paint.
 async function fireConfetti(): Promise<void> {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
   const { default: confetti } = await import("canvas-confetti")
@@ -117,9 +116,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     resetDialog()
   }
 
-  // Starts a request that the dialog owns: closing it, or starting another
-  // download, aborts the previous one so a late response never lands twice.
-  function beginRequest(kind: Pending): AbortController {
+  function beginRequestAbortingPrevious(kind: Pending): AbortController {
     requestRef.current?.abort()
     const controller = new AbortController()
     requestRef.current = controller
@@ -160,7 +157,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     directUrl?: string
   ): Promise<void> {
     if (busy) return
-    const controller = beginRequest(kind)
+    const controller = beginRequestAbortingPrevious(kind)
     try {
       const result = await task(controller.signal)
       if (requestRef.current !== controller) return

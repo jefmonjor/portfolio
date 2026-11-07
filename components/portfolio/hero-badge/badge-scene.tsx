@@ -24,11 +24,9 @@ import * as THREE from "three"
 
 import { BadgeBand, type BadgeBandProps } from "./badge-band"
 
-// Module-level so StableCanvas's configure effect sees stable references; the
-// inline literals it used to receive re-ran `configure` on every render.
-// A 1.75 ceiling keeps retina sharp while skipping ~25% of the fill cost of 2x.
+const RETINA_SHARP_ENOUGH_DPR = 1.75
 const CAMERA = { position: [0, -1, 7.5] as [number, number, number], fov: 32 }
-const DPR: [number, number] = [1, 1.75]
+const DPR: [number, number] = [1, RETINA_SHARP_ENOUGH_DPR]
 const GL = { alpha: true, antialias: true }
 
 type BadgeSceneProps = Pick<
@@ -39,27 +37,21 @@ type BadgeSceneProps = Pick<
   onReady?: () => void
 }
 
-// Rendered inside <Physics>, which suspends until Rapier's WASM is ready, so
-// this only mounts once the scene can actually draw. Two frames later the
-// card is on screen and the loader can hand over to the canvas.
-function ReadySignal({ onReady }: { onReady?: () => void }) {
+function SignalReadyOnceCardIsDrawn({ onReady }: { onReady?: () => void }) {
   useEffect(() => {
     if (!onReady) return
-    let second = 0
-    const first = requestAnimationFrame(() => {
-      second = requestAnimationFrame(onReady)
+    let frameWithCard = 0
+    const firstFrame = requestAnimationFrame(() => {
+      frameWithCard = requestAnimationFrame(onReady)
     })
     return () => {
-      cancelAnimationFrame(first)
-      cancelAnimationFrame(second)
+      cancelAnimationFrame(firstFrame)
+      cancelAnimationFrame(frameWithCard)
     }
   }, [onReady])
   return null
 }
 
-// Memoized: StableCanvas re-runs `configure` and re-renders the R3F root
-// whenever its children change, and the parent re-renders when the scene
-// reports it is ready.
 export const BadgeScene = memo(function BadgeScene({
   onError,
   onReady,
@@ -91,7 +83,7 @@ export const BadgeScene = memo(function BadgeScene({
         numInternalPgsIterations={2}
       >
         <BadgeBand {...props} />
-        <ReadySignal onReady={onReady} />
+        <SignalReadyOnceCardIsDrawn onReady={onReady} />
       </Physics>
       <Environment background={false} blur={0.75}>
         <Lightformer

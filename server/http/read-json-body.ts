@@ -1,8 +1,3 @@
-// request.json() reads whatever arrives before anything can look at it. This
-// reads at most `maxBytes`: a declared Content-Length over the cap is refused
-// without reading, and a body without one (chunked) is cut off as soon as it
-// passes the cap.
-
 export type JsonBody =
   { ok: true; value: unknown } | { ok: false; status: 400 | 413 }
 
@@ -42,9 +37,9 @@ export async function readJsonBody(
     offset += chunk.byteLength
   }
 
+  const utf8WithoutBom = new TextDecoder()
   try {
-    // Same decoding as request.json(): UTF-8, BOM stripped.
-    return { ok: true, value: JSON.parse(new TextDecoder().decode(bytes)) }
+    return { ok: true, value: JSON.parse(utf8WithoutBom.decode(bytes)) }
   } catch {
     return { ok: false, status: 400 }
   }

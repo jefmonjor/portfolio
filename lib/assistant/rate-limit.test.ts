@@ -71,9 +71,7 @@ describe("createRateLimiter", () => {
     expect(await check("203.0.113.2")).toBe("ok")
   })
 
-  // Every serverless instance used to keep its own Map, so N instances meant
-  // N times every limit. Instances that share a store share the ceiling.
-  it("two limiters on the same store see each other's requests", async () => {
+  it("instances that share a store share the ceiling", async () => {
     const store = createMemoryStore({ now: () => 0 })
     const options = {
       rateMinute: 10,
@@ -145,10 +143,7 @@ describe("createRateLimiter", () => {
     expect(await check("203.0.113.1")).toBe("ok")
   })
 
-  // A request is not the unit of spend: one chat turn may call the model twice
-  // and a pasted offer costs far more than a greeting. The daily budget counts
-  // the tokens OpenAI reports.
-  it("turns requests away once the daily token budget is spent", async () => {
+  it("turns requests away once the reported daily tokens are spent", async () => {
     const check = createRateLimiter({
       rateMinute: 10,
       rateDaily: 10,
@@ -182,7 +177,6 @@ describe("createRateLimiter", () => {
   })
 })
 
-// Minimal Upstash REST stand-in: the commands the store sends, nothing else.
 function fakeUpstash(options: { fail?: boolean } = {}) {
   const data = new Map<string, number>()
   const calls: Array<{ url: string; auth: string | null; body: unknown }> = []
@@ -241,13 +235,13 @@ describe("createUpstashStore", () => {
 
     expect(await createRateLimiter(options)("203.0.113.1")).toBe("ok")
     expect(await createRateLimiter(options)("203.0.113.2")).toBe("limited")
-    expect(redis.calls[0]?.url).toBe("https://eu1-example.upstash.io/pipeline")
-    expect(redis.calls[0]?.auth).toBe("Bearer secret-token")
-    // Counters are created with an expiry before they are incremented.
-    expect(redis.calls[1]?.url).toBe(
+    const [lookup, countWithExpiry] = redis.calls
+    expect(lookup?.url).toBe("https://eu1-example.upstash.io/pipeline")
+    expect(lookup?.auth).toBe("Bearer secret-token")
+    expect(countWithExpiry?.url).toBe(
       "https://eu1-example.upstash.io/multi-exec"
     )
-    expect(JSON.stringify(redis.calls[1]?.body)).toMatch(/"SET",.*"PX"/)
+    expect(JSON.stringify(countWithExpiry?.body)).toMatch(/"SET",.*"PX"/)
   })
 
   it("fails closed when Upstash errors", async () => {

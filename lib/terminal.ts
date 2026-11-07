@@ -4,6 +4,7 @@ import {
   type BackgroundVariant,
 } from "@/lib/background"
 import type { CvPdfVariantName } from "@/lib/cv-pdf"
+import { CV_TAILOR_OFFER_MIN_CHARS } from "@/types/limits"
 
 export type TerminalLineKind = "in" | "out" | "err" | "ok" | "muted" | "head"
 
@@ -12,12 +13,13 @@ export type TerminalOutLine = {
   text: string
 }
 
+type OfferOrCaptureFromNextPrompt = string | null
+
 export type TerminalEffect =
   | { type: "clear" }
   | { type: "close" }
   | { type: "cv"; variant: CvPdfVariantName }
-  // A null offer asks the host to capture it on the next prompt.
-  | { type: "cv-tailor"; offer: string | null }
+  | { type: "cv-tailor"; offer: OfferOrCaptureFromNextPrompt }
   | { type: "theme"; value: "dark" | "light" | null }
   | { type: "lang"; value: "en" | "es" | "ca" }
   | { type: "bg"; value: BackgroundVariant }
@@ -81,9 +83,7 @@ export type TerminalStrings = {
   cvOfferTooShort: string
 }
 
-// Mirrors CV_TAILOR_OFFER_MIN_CHARS without pulling the contracts module
-// into the terminal bundle.
-export const TERMINAL_OFFER_MIN_CHARS = 40
+export const TERMINAL_OFFER_MIN_CHARS = CV_TAILOR_OFFER_MIN_CHARS
 
 const CV_GENERAL = new Set(["", "general", "g"])
 const CV_TECHNICAL = new Set([
@@ -154,11 +154,6 @@ function projectList(data: TerminalData): TerminalOutLine[] {
   })
 }
 
-/**
- * Pure command interpreter for the interactive terminal. All side effects are
- * returned as declarative `effects` so the React layer stays the only place
- * that touches the DOM, theme, router, or downloads.
- */
 export function execute(
   raw: string,
   data: TerminalData,

@@ -1,11 +1,13 @@
 import type * as TechIconPaths from "@/lib/tech-icons.generated"
 
-// The ids of the generated symbols. A type-only import: the paths themselves
-// reach the page once, through <TechIconSprite />, never the JS bundle.
 export type TechIconId = Exclude<keyof typeof TechIconPaths, "TechIcon">
 
-// Tools without an icon here (trademark removals in simple-icons, or too
-// niche) simply render as text-only badges — that's intentional.
+export const TECH_ICON_FALLBACK_ID = "ti-fallback"
+
+export function techIconSymbolId(id: TechIconId): string {
+  return `ti-${id}`
+}
+
 const ICONS: Record<string, TechIconId> = {
   java: "siOpenjdk",
   typescript: "siTypescript",
@@ -72,9 +74,7 @@ const ICONS: Record<string, TechIconId> = {
   zod: "siZod",
 }
 
-// "Java (8 → 21)" → "java" · "Redis · Upstash" → "redis" · "Spring Boot 3"
-// → "spring boot". Falls back through progressively simpler forms.
-function normalize(label: string): string[] {
+function progressivelySimplerForms(label: string): string[] {
   const base = label.toLowerCase().split("(")[0].trim()
   const candidates = [base]
   if (base.includes("·")) {
@@ -86,7 +86,7 @@ function normalize(label: string): string[] {
 }
 
 export function techIconId(label: string): TechIconId | null {
-  for (const key of normalize(label)) {
+  for (const key of progressivelySimplerForms(label)) {
     const icon = ICONS[key]
     if (icon) return icon
   }

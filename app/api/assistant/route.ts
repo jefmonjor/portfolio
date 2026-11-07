@@ -42,25 +42,18 @@ import {
 
 export const runtime = "nodejs"
 
-// Cost controls — every knob is overridable per environment without a deploy.
 const MODEL = process.env.ASSISTANT_MODEL ?? "gpt-5-mini"
 const MAX_OUTPUT_TOKENS = intEnv("ASSISTANT_MAX_OUTPUT_TOKENS", 500)
 const MAX_TURNS = intEnv("ASSISTANT_MAX_TURNS", 8)
 const MAX_CHARS = intEnv("ASSISTANT_MAX_CHARS", 800)
-// The latest message may be a full job offer; cutting it at MAX_CHARS used to
-// compare the profile against half a posting.
-const MAX_LAST_CHARS = Math.min(
+const MAX_PASTED_OFFER_CHARS = Math.min(
   ASSISTANT_MESSAGE_INPUT_CHARS,
   intEnv("ASSISTANT_MAX_OFFER_CHARS", ASSISTANT_MESSAGE_INPUT_CHARS)
 )
-// The structured comparison spends part of its budget reasoning about which
-// quote backs which requirement.
 const OFFER_MAX_OUTPUT_TOKENS = intEnv(
   "ASSISTANT_OFFER_MAX_OUTPUT_TOKENS",
   1600
 )
-// gpt-5 models reason before answering by default, which adds several seconds
-// of latency. A closed-dossier Q&A bot doesn't need it.
 const REASONING = enumEnv(
   "ASSISTANT_REASONING",
   ["minimal", "low", "medium", "high"] as const,
@@ -72,18 +65,14 @@ const VERBOSITY = enumEnv(
   "low"
 )
 
-// The SDK default is a 10-minute timeout with two retries. A chat answer that
-// has not arrived in 20 s is not coming, and every retry is paid again.
-const OPENAI_TIMEOUT_MS = 20_000
-const OPENAI_MAX_RETRIES = 1
+const CHAT_ANSWER_DEADLINE_MS = 20_000
+const MAX_PAID_RETRIES = 1
 
-// What a call cost, as OpenAI reports it. A response without usage is charged
-// its output budget so it never counts as free.
 function tokensSpent(
   response: { usage?: { total_tokens?: number } | null },
-  outputBudget: number
+  chargedWhenUnreported: number
 ): number {
-  return response.usage?.total_tokens ?? outputBudget
+  return response.usage?.total_tokens ?? chargedWhenUnreported
 }
 
 function reply(
@@ -129,7 +118,7 @@ export async function POST(request: Request) {
     parsed.data.messages,
     MAX_TURNS,
     MAX_CHARS,
-    MAX_LAST_CHARS
+    MAX_PASTED_OFFER_CHARS
   )
   if (!messages) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
@@ -152,22 +141,14 @@ export async function POST(request: Request) {
   }
 
   const client = new OpenAI({
-    timeout: OPENAI_TIMEOUT_MS,
-    maxRetries: OPENAI_MAX_RETRIES,
+    timeout: CHAT_ANSWER_DEADLINE_MS,
+    maxRetries: MAX_PAID_RETRIES,
   })
 
   try {
     if (looksLikeJobOffer(latest)) {
       const comparison = await compareOffer(client, latest, locale).catch(
-        (error: unknown) => {
-          if (error instanceof OpenAI.RateLimitError) throw error
-          // The structured pass is a safeguard, not a dependency: if it
-          // fails, the question still gets the normal, rule-bound answer.
-          console.error("[assistant] offer comparison failed", {
-            message: error instanceof Error ? error.message : String(error),
-          })
-          return null
-        }
+        answerAsChatInstead
       )
       if (comparison) {
         return reply(
@@ -175,8 +156,6 @@ export async function POST(request: Request) {
           cvActions(latest)
         )
       }
-      // Not an offer after all, or nothing survived verification: answer it
-      // as a normal question, under the same rules.
     }
 
     const response = await client.responses.create({
@@ -206,19 +185,25 @@ export async function POST(request: Request) {
   }
 }
 
+function answerAsChatInstead(error: unknown): null {
+  if (error instanceof OpenAI.RateLimitError) throw error
+  console.error("[assistant] offer comparison failed", {
+    message: error instanceof Error ? error.message : String(error),
+  })
+  return null
+}
+
 async function compareOffer(
   client: OpenAI,
   offer: string,
   locale: Locale
 ): Promise<string | null> {
-  // What the model sees and what its requirements are checked against must
-  // be the same text.
-  const text = neutralizeOfferDelimiters(offer)
+  const offerAsTheModelSeesIt = neutralizeOfferDelimiters(offer)
   const response = await client.responses.parse({
     model: MODEL,
     instructions: buildOfferAnalysisPrompt(locale),
     input: [
-      { role: "user", content: wrapJobOffer(text) },
+      { role: "user", content: wrapJobOffer(offerAsTheModelSeesIt) },
     ] satisfies ModelMessage[],
     max_output_tokens: OFFER_MAX_OUTPUT_TOKENS,
     reasoning: { effort: REASONING },
@@ -228,14 +213,12 @@ async function compareOffer(
     },
     store: false,
   })
-  // Spent whether or not the comparison survives: a turn that falls back to
-  // the normal chat pays for both calls.
   await checkLimit.recordUsage(tokensSpent(response, OFFER_MAX_OUTPUT_TOKENS))
   if (response.status !== "completed" || !response.output_parsed) return null
 
   const verified = verifyOfferAnalysis(
     response.output_parsed,
-    text,
+    offerAsTheModelSeesIt,
     buildDossier(locale)
   )
   return verified ? renderOfferAnalysis(verified, locale, contactEmail()) : null

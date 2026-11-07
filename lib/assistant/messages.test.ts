@@ -45,7 +45,6 @@ describe("sanitizeMessages", () => {
     expect(history[0]?.content).toBe("123456")
   })
 
-  // 4.1 — the client used to be able to put words in the assistant's mouth.
   it("returns no assistant turn the server did not sign", () => {
     const history: ChatMessage[] = [
       { role: "user", content: "¿Tiene experiencia con Kotlin?" },

@@ -95,7 +95,6 @@ function Experience() {
                 <div className="flex flex-col gap-1">
                   <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase sm:hidden">
                     {start} → {end}
-                    {/* Lowercase words do not take label tracking. */}
                     <span className="ml-2 tracking-normal text-muted-foreground normal-case">
                       · {duration}
                     </span>
