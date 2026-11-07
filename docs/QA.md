@@ -36,6 +36,31 @@ Cinco usuarios sintéticos recorrieron la build de producción en un Chromium re
 | 20 | Mensajes solo con espacios de anchura cero; `/cv` sin skip link; cambiar de idioma en el CV rompía Atrás. | 1 (destructor) | Menor | Corregido |
 | 21 | `llms.txt` afirmaba que no publica el email ni fechas; claim de datos en la UE en Ilnami; JSON-LD con el posicionamiento como cargo. | 1 (escéptico) | Menor | Corregido |
 
+## Segunda ejecución: verificación
+
+Los cinco volvieron a recorrer la build corregida, cada uno con su lista anterior.
+
+| Persona | Primer éxito | Hallazgos anteriores | Nuevos (corregidos después) |
+|---|---|---|---|
+| Impaciente | 1 clic/toque; `mailto` listo a 0,32 s (1,3 s con CPU 4×); CTA visible en el primer fotograma | 7/7 corregidos | La página nueva se abría en la posición antigua y subía en 0,7 s (`data-scroll-behavior="smooth"`); breadcrumb bajo la cabecera |
+| Escéptico | Sí; «enviaría el email» | 8 corregidos, 1 parcial (versiones de Tomcat en una decisión) | Base legal y transferencias en `/privacy`; aviso de no pegar datos confidenciales en el CV adaptado |
+| Móvil (3G lento, CPU 4×) | 1 toque, sin scroll | 8 corregidos, 2 parciales | El menú abierto antes de hidratar se cerraba solo; botón de la 404 de 32 px; CTA en español a 320 px |
+| No nativo | 1 clic | 6 corregidos, 4 parciales (restos de jerga en `/cv`) | Restos de jerga |
+| Destructor | Sí; sin XSS ni `pageerror` en 35 scripts | 7 corregidos, 2 parciales | Otros invisibles (bidi, guion blando, Hangul, Braille) también en el CV adaptado; foco tras un botón de CV; menú al salir el foco; diálogo en horizontal |
+
+Métricas en móvil con 3G lento y CPU 4× (mediana de 3 cargas en frío):
+
+| Métrica | Inicio, antes | Inicio, después | `/contact`, antes | `/contact`, después |
+|---|---|---|---|---|
+| CTA visible y pulsable | 2,8 s | 2,0 s (con el primer pintado) | — | — |
+| LCP | 4,1 s | 2,0 s | — | 2,0 s |
+| CLS | 0,0015 | 0 | 0,036 | 0 |
+| Transferido / JS | 324 / 176 KB | 326 / 176 KB | 314 KB | 316 KB |
+
+Todos los arreglos de la segunda ronda se comprobaron después en navegador: scroll a 0 tras navegar, menú abierto durante la hidratación, cierre al salir el foco, 404 con título y botón de 44 px, y el CTA del hero dentro de la primera pantalla a 320×667 en inglés y en español.
+
+Quedan conocidos y aceptados: el email de `/contact` abierto en frío espera a la hidratación (protección anti-spam, sin salto de layout); la 404 sin JavaScript sale en blanco (shell de error de Next); URLs con codificación porcentual rota devuelven 500 desde el propio Next 16.4.2.
+
 ## Pendiente de decisión del propietario
 
 - «banks and fintechs» en el titular: decisión de posicionamiento; el escéptico pide un caso fintech que lo respalde.
