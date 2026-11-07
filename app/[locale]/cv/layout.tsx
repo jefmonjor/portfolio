@@ -8,6 +8,8 @@ import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { isLocale, localizedPath, routing, type Locale } from "@/i18n/routing"
 import { absoluteUrl, profile } from "@/lib/profile"
+import { ogImageSize } from "@/lib/seo/og-card"
+import { ogImagePath } from "@/lib/seo/og-path"
 import {
   alternateOpenGraphLocales,
   languageAlternates,
@@ -38,6 +40,7 @@ export async function generateMetadata({
   })
   const description = tMeta("description")
   const url = localizedPath(locale, "/cv")
+  const image = { url: ogImagePath(locale, "/cv"), ...ogImageSize, alt: title }
 
   return {
     title,
@@ -58,8 +61,14 @@ export async function generateMetadata({
       url,
       locale: openGraphLocale[locale],
       alternateLocale: alternateOpenGraphLocales(routing.locales, locale),
+      images: [image],
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
   }
 }
 

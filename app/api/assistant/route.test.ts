@@ -48,6 +48,7 @@ async function post(body: BodyInit, headers: Record<string, string> = {}) {
     body: (await response.json()) as {
       reply?: string
       signature?: string
+      actions?: unknown
       error?: string
     },
   }
@@ -331,5 +332,35 @@ describe("requests from other websites", () => {
 
     expect(status).toBe(403)
     expect(create).not.toHaveBeenCalled()
+  })
+})
+
+describe("CV requests after a pasted offer", () => {
+  beforeEach(() => {
+    vi.stubEnv("OPENAI_API_KEY", "test")
+    create.mockReset()
+  })
+  afterEach(() => vi.unstubAllEnvs())
+
+  it("tailors the CV to the whole offer, not the 800 characters kept as context", async () => {
+    const longOffer = `Senior Java Engineer en banca privada. Requisitos: Java 21, Spring Boot 3, Kafka y Kubernetes. ${"Responsabilidades del puesto y contexto del equipo. ".repeat(30)}`
+    const { signReply } = await import("@/lib/assistant/signature")
+    const comparison = "Coincide en Java 21 y Spring Boot 3."
+    const { status, body } = await askHistory([
+      { role: "user", content: longOffer },
+      {
+        role: "assistant",
+        content: comparison,
+        signature: signReply(comparison),
+      },
+      { role: "user", content: "¿Me pasas el CV para esta oferta?" },
+    ])
+
+    expect(status).toBe(200)
+    expect(create).not.toHaveBeenCalled()
+    expect(body.actions).toContainEqual({
+      type: "cv-tailor",
+      offer: longOffer.trim(),
+    })
   })
 })

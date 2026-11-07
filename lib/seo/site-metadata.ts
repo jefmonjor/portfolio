@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 
-import type { PageMeta } from "@/content/site/types"
+import type { PageMeta, SitePath } from "@/content/site/types"
 import { localizedPath, siteLocales, type SiteLocale } from "@/i18n/routing"
+import { ogImageSize } from "@/lib/seo/og-card"
+import { ogImagePath } from "@/lib/seo/og-path"
 import {
   alternateOpenGraphLocales,
   languageAlternates,
@@ -10,7 +12,7 @@ import {
 
 type SitePageMetadataInput = {
   locale: SiteLocale
-  path: `/${string}`
+  path: SitePath
   meta: PageMeta
   siteName: string
   type?: "website" | "article"
@@ -24,6 +26,11 @@ export function sitePageMetadata({
   type = "website",
 }: SitePageMetadataInput): Metadata {
   const url = localizedPath(locale, path)
+  const image = {
+    url: ogImagePath(locale, path),
+    ...ogImageSize,
+    alt: meta.title,
+  }
 
   return {
     title: { absolute: meta.title },
@@ -40,11 +47,13 @@ export function sitePageMetadata({
       siteName,
       locale: openGraphLocale[locale],
       alternateLocale: alternateOpenGraphLocales(siteLocales, locale),
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: meta.title,
       description: meta.description,
+      images: [image],
     },
   }
 }
