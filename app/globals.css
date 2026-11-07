@@ -322,6 +322,25 @@
   }
 }
 
+@keyframes hero-rise {
+  from {
+    opacity: 0.25;
+    transform: translateY(0.35em);
+  }
+}
+
+@keyframes view-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes view-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
 @keyframes settle-in {
   from {
     opacity: 0.3;
@@ -351,8 +370,14 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-line {
-    animation: rise-in 520ms var(--ease-out-expo) both;
-    animation-delay: calc(var(--line, 0) * 80ms);
+    animation: hero-rise 420ms var(--ease-out-expo) both;
+    animation-delay: calc(var(--line, 0) * 50ms);
+  }
+  ::view-transition-old(*) {
+    animation: view-fade-out 120ms ease-out both;
+  }
+  ::view-transition-new(*) {
+    animation: view-fade-in 180ms 60ms ease-out both;
   }
   details[open] > .site-menu-panel {
     animation: menu-in 180ms var(--ease-out-expo);

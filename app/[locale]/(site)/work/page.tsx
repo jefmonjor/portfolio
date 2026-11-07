@@ -1,4 +1,5 @@
 import { CaseCard } from "@/components/site/case-card"
+import { ClosingCta } from "@/components/site/closing-cta"
 import { PageIntro } from "@/components/site/page-intro"
 import { sitePageMetadata } from "@/lib/seo/site-metadata"
 import { trailFromHome } from "@/lib/site-breadcrumbs"
@@ -45,6 +46,11 @@ export default async function WorkPage({ params }: SitePageProps) {
           />
         ))}
       </div>
+      <ClosingCta
+        locale={locale}
+        statement={content.services.closing}
+        cta={content.cta}
+      />
     </>
   )
 }

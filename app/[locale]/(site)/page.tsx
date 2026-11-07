@@ -66,7 +66,11 @@ export default async function HomePage({ params }: SitePageProps) {
       </SiteSection>
 
       <SiteSection id="services" title={content.services.homeTitle}>
-        <ServicesSummary locale={locale} services={content.services} />
+        <ServicesSummary
+          locale={locale}
+          services={content.services}
+          cta={content.cta}
+        />
       </SiteSection>
 
       <SiteSection id="experience" title={content.experience.title}>

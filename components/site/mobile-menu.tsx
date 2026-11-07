@@ -10,6 +10,20 @@ type MobileMenuProps = {
   children: React.ReactNode
 }
 
+function useCloseWhenTouchingOutside(
+  menuRef: React.RefObject<HTMLDetailsElement | null>
+) {
+  useEffect(() => {
+    function closeIfOutside(event: PointerEvent) {
+      const menu = menuRef.current
+      if (!menu?.open || !(event.target instanceof Node)) return
+      if (!menu.contains(event.target)) menu.removeAttribute("open")
+    }
+    document.addEventListener("pointerdown", closeIfOutside)
+    return () => document.removeEventListener("pointerdown", closeIfOutside)
+  }, [menuRef])
+}
+
 function MobileMenu({ label, children }: MobileMenuProps) {
   const menuRef = useRef<HTMLDetailsElement>(null)
   const pathname = usePathname()
@@ -17,6 +31,8 @@ function MobileMenu({ label, children }: MobileMenuProps) {
   useEffect(() => {
     menuRef.current?.removeAttribute("open")
   }, [pathname])
+
+  useCloseWhenTouchingOutside(menuRef)
 
   function closeOnEscape(event: React.KeyboardEvent<HTMLDetailsElement>) {
     if (event.key !== "Escape" || !menuRef.current?.open) return

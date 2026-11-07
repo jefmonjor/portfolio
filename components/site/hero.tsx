@@ -46,7 +46,7 @@ function Hero({ locale, content }: HeroProps) {
         ))}
       </ul>
 
-      <p className="hero-line mt-4 flex items-start gap-2.5 text-[0.9375rem] leading-snug text-muted-foreground [--line:4]">
+      <p className="mt-4 flex items-start gap-2.5 text-[0.9375rem] leading-snug text-muted-foreground">
         <span
           aria-hidden
           className="mt-[0.45em] inline-block size-2 shrink-0 rounded-full bg-brand"
@@ -56,7 +56,7 @@ function Hero({ locale, content }: HeroProps) {
 
       <Link
         href={localizedPath(locale, "/contact")}
-        className="hero-line site-button mt-8 w-full [--line:5] sm:w-auto"
+        className="site-button mt-8 w-full sm:w-auto"
       >
         <ArrowLabel>{content.cta}</ArrowLabel>
       </Link>

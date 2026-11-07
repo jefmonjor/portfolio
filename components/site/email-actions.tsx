@@ -5,6 +5,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 
 import { contactEmail, contactMailto } from "@/lib/email"
+import { cn } from "@/lib/utils"
 
 type CopyState = "idle" | "copied" | "failed"
 
@@ -35,8 +36,7 @@ function useIsHydrated(): boolean {
   )
 }
 
-function EmailActions({ subject, labels }: EmailActionsProps) {
-  const isHydrated = useIsHydrated()
+function useCopyAddress() {
   const [copyState, setCopyState] = useState<CopyState>("idle")
   const resetTimer = useRef<number | undefined>(undefined)
 
@@ -56,13 +56,12 @@ function EmailActions({ subject, labels }: EmailActionsProps) {
     )
   }
 
-  if (!isHydrated) {
-    return (
-      <p className="text-[0.9375rem] text-muted-foreground">
-        {labels.withoutJavaScript}
-      </p>
-    )
-  }
+  return { copyState, copyAddress }
+}
+
+function EmailActions({ subject, labels }: EmailActionsProps) {
+  const isHydrated = useIsHydrated()
+  const { copyState, copyAddress } = useCopyAddress()
 
   const copyLabel =
     copyState === "copied"
@@ -75,12 +74,26 @@ function EmailActions({ subject, labels }: EmailActionsProps) {
     <div className="flex flex-col gap-4">
       <p className="flex flex-col gap-1">
         <span className="text-sm text-muted-foreground">{labels.label}</span>
-        <span className="font-heading text-[clamp(1.25rem,2vw+0.75rem,1.75rem)] font-medium break-all text-foreground select-all">
-          {contactEmail()}
+        <span
+          className={cn(
+            "min-h-[1.5em] font-heading text-[clamp(1.25rem,2vw+0.75rem,1.75rem)] font-medium break-all text-foreground select-all",
+            !isHydrated && "w-[14ch] max-w-full animate-pulse bg-muted"
+          )}
+        >
+          {isHydrated ? contactEmail() : null}
         </span>
       </p>
+      <noscript>
+        <p className="text-[0.9375rem] text-muted-foreground">
+          {labels.withoutJavaScript}
+        </p>
+      </noscript>
       <div className="flex flex-col gap-3 sm:flex-row">
-        <a href={contactMailto(subject)} className="site-button">
+        <a
+          href={isHydrated ? contactMailto(subject) : undefined}
+          aria-disabled={!isHydrated}
+          className="site-button aria-disabled:pointer-events-none aria-disabled:opacity-60"
+        >
           <HugeiconsIcon
             icon={Mail01Icon}
             aria-hidden
@@ -92,7 +105,8 @@ function EmailActions({ subject, labels }: EmailActionsProps) {
         <button
           type="button"
           onClick={copyAddress}
-          className="site-button site-button-quiet"
+          disabled={!isHydrated}
+          className="site-button site-button-quiet disabled:opacity-60"
         >
           <HugeiconsIcon
             icon={copyState === "copied" ? Tick02Icon : Copy01Icon}
