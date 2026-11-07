@@ -654,7 +654,9 @@ export const es: SiteContent = {
         title: "Tus derechos",
         paragraphs: [
           [
-            "Puedes pedir el acceso a tus datos y su rectificación, supresión, limitación o portabilidad, u oponerte a su uso, según la Ley 29/2021 de protección de datos personales de Andorra y, cuando sea aplicable, el RGPD. Escribe a la dirección de la página de contacto. También puedes reclamar ante la Agencia Andorrana de Protección de Datos (APDA).",
+            "Puedes pedir el acceso a tus datos y su rectificación, supresión, limitación o portabilidad, u oponerte a su uso, según la Ley 29/2021 de protección de datos personales de Andorra y, cuando sea aplicable, el RGPD. Escribe a la dirección de la ",
+            { text: "página de contacto", href: "/contact" },
+            ". También puedes reclamar ante la Agencia Andorrana de Protección de Datos (APDA).",
           ],
         ],
       },

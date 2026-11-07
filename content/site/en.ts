@@ -648,7 +648,9 @@ export const en: SiteContent = {
         title: "Your rights",
         paragraphs: [
           [
-            "You can ask for access to your data, and for its correction, deletion, restriction or portability, or object to its use, under Andorra's Law 29/2021 on personal data protection and, where it applies, the GDPR. Write to the address on the contact page. You can also complain to the Andorran Data Protection Agency (APDA).",
+            "You can ask for access to your data, and for its correction, deletion, restriction or portability, or object to its use, under Andorra's Law 29/2021 on personal data protection and, where it applies, the GDPR. Write to the address on the ",
+            { text: "contact page", href: "/contact" },
+            ". You can also complain to the Andorran Data Protection Agency (APDA).",
           ],
         ],
       },
