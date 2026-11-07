@@ -24,7 +24,10 @@ function CaseSection({
   children: React.ReactNode
 }) {
   return (
-    <section className="flex flex-col gap-5 border-t border-border pt-10">
+    <section
+      data-reveal
+      className="flex flex-col gap-5 border-t border-border pt-10"
+    >
       <h2 className="font-heading text-[clamp(1.5rem,1.1vw+1.15rem,2rem)] leading-tight font-medium tracking-[-0.01em] text-foreground">
         {title}
       </h2>
@@ -81,7 +84,7 @@ function Decisions({
           key={decision.choice}
           className="grid grid-cols-[2rem_minmax(0,1fr)] gap-x-2"
         >
-          <span className="font-heading text-[1.25rem] leading-snug text-brand tabular-nums">
+          <span className="font-heading text-[1.25rem] leading-snug text-muted-foreground tabular-nums">
             {index + 1}
           </span>
           <div className="flex flex-col gap-3">

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Figtree, Fraunces, Geist_Mono } from "next/font/google"
+import { Fraunces, Geist, Geist_Mono } from "next/font/google"
 import { notFound } from "next/navigation"
 import { setRequestLocale } from "next-intl/server"
 
@@ -10,16 +10,16 @@ import { cn } from "@/lib/utils"
 import { profile, siteUrl } from "@/lib/profile"
 import { isLocale, routing } from "@/i18n/routing"
 
-const fontSans = Figtree({
+const fontSans = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
 })
 
 const fontDisplay = Fraunces({
   subsets: ["latin"],
+  weight: "500",
   variable: "--font-display",
-  axes: ["opsz"],
-  display: "optional",
+  display: "swap",
 })
 
 const fontMono = Geist_Mono({
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#130e0b" },
+    { media: "(prefers-color-scheme: dark)", color: "#0d0c0b" },
   ],
 }
 

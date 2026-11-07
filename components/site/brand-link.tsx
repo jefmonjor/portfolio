@@ -4,9 +4,12 @@ function BrandLink({ href, name }: { href: string; name: string }) {
   return (
     <Link
       href={href}
-      className="inline-flex min-h-11 items-center gap-2.5 font-heading text-[1.0625rem] font-medium tracking-[-0.01em] text-foreground"
+      className="group inline-flex min-h-11 items-center gap-2.5 font-heading text-[1.0625rem] font-medium tracking-[-0.01em] text-foreground"
     >
-      <span aria-hidden className="inline-block size-2 bg-brand" />
+      <span
+        aria-hidden
+        className="inline-block size-2 bg-brand transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:rotate-90 group-focus-visible:rotate-90 motion-reduce:transition-none"
+      />
       {name}
     </Link>
   )

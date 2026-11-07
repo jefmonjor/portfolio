@@ -9,7 +9,7 @@ function EngagementStart({ services }: { services: SiteContent["services"] }) {
             key={step}
             className="grid grid-cols-[2.5rem_minmax(0,1fr)] items-baseline border-b border-border py-4 first:border-t"
           >
-            <span className="font-heading text-[1.25rem] text-brand tabular-nums">
+            <span className="font-heading text-[1.25rem] text-muted-foreground tabular-nums">
               {index + 1}
             </span>
             <span className="text-[1.0625rem] leading-relaxed text-foreground">

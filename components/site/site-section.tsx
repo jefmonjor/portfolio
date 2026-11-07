@@ -13,6 +13,7 @@ function SiteSection({ id, title, children, className }: SiteSectionProps) {
   return (
     <section
       id={id}
+      data-reveal
       aria-labelledby={headingId}
       className={cn(
         "site-container grid gap-6 border-t border-border py-14 md:py-20 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-12",

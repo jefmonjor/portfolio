@@ -52,11 +52,24 @@ export const en: SiteContent = {
   hero: {
     name: "Jefferson Montesdeoca",
     role: "Software Architect & Senior Backend Engineer",
-    value:
-      "I design and build the backend systems banks and fintechs run on\u00a0— and the AI that is starting to run inside them.",
-    tags: ["Java", "Spring", "Architecture", "Applied AI"],
+    eyebrow: "Software Architect · Backend · Applied AI",
+    headline: [
+      "I design and build the backend systems ",
+      { emphasis: "banks and fintechs" },
+      " run on\u00a0— and the ",
+      { emphasis: "AI" },
+      " that is starting to run inside them.",
+    ],
+    subtitle:
+      "Java and Spring backends, legacy integration and maintainable architecture.",
     availability:
-      "Available for part-time work from January 2027 · Remote · Andorra time (CET)",
+      "Available for part-time work from January 2027\u00a0· Remote\u00a0· Andorra time (CET)",
+    proof: [
+      "7 years in banking and critical systems",
+      "Architect in private banking",
+      "Own products in production",
+    ],
+    seeWork: "See selected work",
   },
   about: {
     title: "About",

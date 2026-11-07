@@ -6,7 +6,7 @@ import {
   indexableSitePaths,
   isCaseStudySlug,
 } from "@/content/site"
-import type { SitePath } from "@/content/site/types"
+import { headlineText, type SitePath } from "@/content/site/types"
 import {
   isLocale,
   isSiteLocale,
@@ -65,7 +65,7 @@ function siteCard(
     return {
       ...identity,
       eyebrow: content.hero.role,
-      title: content.hero.value,
+      title: headlineText(content.hero.headline),
     }
   if (page.startsWith("/work/") && isCaseStudySlug(slug)) {
     const study = findCaseStudy(content, slug)

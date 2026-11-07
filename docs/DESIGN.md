@@ -1,5 +1,17 @@
 # Sistema de diseño
 
+> Revisión de noviembre de 2026: acento ámbar quemado, cuerpo en Geist, hero editorial con diagrama y movimiento de entrada. Lo que sigue manda sobre cualquier valor anterior de este documento.
+
+## Revisión de noviembre de 2026
+
+- **Color.** Texto `#141210` / `#F2EFEA`. Acento único ámbar quemado `#B8621B` (claro) / `#E9A760` (oscuro), solo en marcas, el subrayado y las palabras clave del titular (texto grande: 4,4:1 sobre blanco) y el foco; nunca en texto pequeño. Fondo oscuro `#0D0C0B`. Verde de estado (`--available`) solo para el punto de disponibilidad.
+- **Atmósfera.** Gradiente radial desde la esquina superior derecha con el acento al 6 % y grano SVG al 3 % (5 % en oscuro): el fondo deja de ser un folio plano sin añadir imágenes.
+- **Tipografía.** Fraunces 500 (estática, `swap`, precargada) para titulares; Geist para el resto. Etiquetas en versalitas con tracking 0,14–0,18 em en `text-muted-foreground`.
+- **Hero.** Etiqueta → titular (`clamp(2.4rem, 8vw, 5.5rem)`, 4,6 vw desde 768 px, interlineado 1,05) con «banks and fintechs» e «IA» en acento y subrayado que se dibuja → subtítulo → disponibilidad con punto pulsante → CTA de 56 px y «Ver trabajos» → fila de prueba. Diagrama de arquitectura decorativo a la derecha desde 768 px y debajo en móvil.
+- **Movimiento (CSS, sin librerías).** Titular por líneas con máscara (`translateY(110%) → 0`, 600 ms, `cubic-bezier(.2,.8,.2,1)`, 80 ms entre líneas; las líneas se numeran antes del primer pintado), resto en secuencia, todo < 1,2 s y una sola vez por sesión. Cabecera transparente que se vuelve translúcida con desenfoque a partir de 40 px de scroll. Secciones que aparecen con IntersectionObserver (`opacity` + 16 px), solo si estaban bajo el pliegue al cargar. Líneas del diagrama que se dibujan y un pulso cada 4 s. Todo se apaga con `prefers-reduced-motion` y nada oculta contenido sin JavaScript.
+- **Menú móvil.** Panel a pantalla completa con la API `popover`: cierra al tocar fuera, con Escape, al elegir enlace y al cambiar de ruta; bloquea el scroll del documento.
+
+
 Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar estos tokens y pasar las verificaciones del final. Género: **modern-minimal** (escuela Apple / Notion / Vercel / Linear), con un único acento terracota y la mono reservada a datos.
 
 ## Tipografía

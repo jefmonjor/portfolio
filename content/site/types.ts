@@ -23,6 +23,16 @@ export type InlineLink = {
 
 export type RichText = ReadonlyArray<string | InlineLink>
 
+export type Emphasis = { emphasis: string }
+
+export type Headline = ReadonlyArray<string | Emphasis>
+
+export function headlineText(headline: Headline): string {
+  return headline
+    .map((part) => (typeof part === "string" ? part : part.emphasis))
+    .join("")
+}
+
 export type PageMeta = {
   title: string
   description: string
@@ -119,9 +129,12 @@ export type SiteContent = {
   hero: {
     name: string
     role: string
-    value: string
-    tags: ReadonlyArray<string>
+    eyebrow: string
+    headline: Headline
+    subtitle: string
     availability: string
+    proof: ReadonlyArray<string>
+    seeWork: string
   }
   about: {
     title: string

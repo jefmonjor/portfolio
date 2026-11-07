@@ -22,7 +22,7 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
   const contactHref = localizedPath(locale, "/contact")
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/92 backdrop-blur-md">
+    <header className="site-header sticky top-0 z-40">
       <a href="#main" className="site-skip-link">
         {content.nav.skipToContent}
       </a>
@@ -53,7 +53,7 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
         <div className="flex items-center gap-1 md:hidden">
           <LanguageLink current={locale} short />
           <MobileMenu label={content.nav.menu}>
-            <nav aria-label={content.nav.label} className="site-container py-3">
+            <nav aria-label={content.nav.label} className="site-container py-6">
               <ul className="flex flex-col">
                 {links.map((link) => (
                   <li
@@ -62,14 +62,17 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
                   >
                     <NavLink
                       href={link.href}
-                      className="min-h-12 w-full text-lg"
+                      className="min-h-16 w-full font-heading text-[1.75rem] tracking-[-0.01em] text-foreground"
                     >
                       {link.label}
                     </NavLink>
                   </li>
                 ))}
               </ul>
-              <Link href={contactHref} className="site-button mt-4 w-full">
+              <Link
+                href={contactHref}
+                className="site-button mt-8 min-h-14 w-full"
+              >
                 {content.cta}
               </Link>
               <div className="mt-2 flex items-center justify-between">

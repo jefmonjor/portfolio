@@ -5,11 +5,11 @@ import { ImageResponse } from "next/og"
 export const ogImageSize = { width: 1200, height: 630 }
 
 const palette = {
-  background: "#17110d",
-  ink: "#f6f1ea",
-  muted: "#b9ada0",
-  rule: "#3a2f27",
-  brand: "#d39a5f",
+  background: "#0d0c0b",
+  ink: "#f2efea",
+  muted: "#a39b91",
+  rule: "#2a2622",
+  brand: "#e9a760",
 }
 
 const longTitleCharacters = 80

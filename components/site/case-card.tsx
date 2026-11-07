@@ -22,8 +22,10 @@ function CaseCard({
   const Heading = headingLevel
 
   return (
-    <article className="enter-on-scroll group/arrow relative flex flex-col gap-3 border-t border-border py-7 transition-colors first:border-t-0 first:pt-0 md:hover:[&_.case-title]:text-brand">
-      <p className="text-sm font-medium text-brand">{study.sector}</p>
+    <article className="group/arrow relative flex flex-col gap-3 border-t border-border py-7 transition-colors first:border-t-0 first:pt-0 md:hover:[&_.case-title]:text-brand">
+      <p className="text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase">
+        {study.sector}
+      </p>
       <Heading className="case-title font-heading text-[clamp(1.375rem,1vw+1.1rem,1.75rem)] leading-snug font-medium tracking-[-0.01em] text-foreground transition-colors">
         <Link
           href={localizedPath(locale, `/work/${study.slug}`)}

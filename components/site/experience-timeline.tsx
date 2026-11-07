@@ -14,7 +14,7 @@ function ExperienceTimeline({ groups, renderDetail }: ExperienceTimelineProps) {
       />
       <ol className="flex flex-col gap-10">
         {groups.map((group) => (
-          <li key={group.id} className="enter-on-scroll relative pl-8">
+          <li key={group.id} className="relative pl-8">
             <span
               aria-hidden
               className="absolute top-[0.55rem] left-0 size-[7px] bg-brand"

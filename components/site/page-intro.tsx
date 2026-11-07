@@ -45,7 +45,9 @@ function PageIntro({
         </ol>
       </nav>
       {eyebrow ? (
-        <p className="mt-4 text-sm font-medium text-brand">{eyebrow}</p>
+        <p className="mt-4 text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase">
+          {eyebrow}
+        </p>
       ) : null}
       <h1 className="mt-2 max-w-[24ch] font-heading text-[clamp(2.25rem,3vw+1.5rem,3.75rem)] leading-[1.06] font-medium tracking-[-0.02em] text-foreground">
         {title}
