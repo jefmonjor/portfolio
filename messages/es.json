@@ -221,8 +221,8 @@
         "body": "Corte1D mantiene la optimización en un motor determinista y PRONOQ usa IA para explicar resultados, no para decidir pronósticos."
       },
       "gates": {
-        "title": "La IA, bajo puertas automáticas",
-        "body": "SpecForge trata a la IA como a un junior supervisado: pregunta en lugar de inventar, sus tests deben fallar antes de implementar y no se pueden tocar después, cada fuente legacy que cita se comprueba, y el código solo avanza cuando supera los tests, las puertas de calidad y tu revisión."
+        "title": "La IA, bajo controles automáticos",
+        "body": "SpecForge trata a la IA como a un junior supervisado: pregunta en lugar de inventar, sus tests deben fallar antes de implementar y no se pueden tocar después, cada fuente legacy que cita se comprueba, y el código solo avanza cuando supera los tests, los controles de calidad y tu revisión."
       }
     }
   },

@@ -105,7 +105,7 @@ export const en: SiteContent = {
         id: "delivery",
         name: "Engineering Delivery",
         summary:
-          "I design and build the backend with your team: Java and Spring services, integrations, migrations and go-live.",
+          "I design and build the backend with your team: Java and Spring services, integrations, migrations and the launch to production.",
         audience:
           "Companies that need to build or modernise a backend and take it to production.",
         includes: [
@@ -241,7 +241,7 @@ export const en: SiteContent = {
             "The plan and technical lead for the Spring Boot 3 and Tomcat upgrades",
             "The identity rollout with Keycloak",
             "Code quality tooling across all repositories",
-            "Technical vendor management and build-or-buy recommendations",
+            "Technical vendor management and advice on whether to build or buy",
             "Evaluation of AI tools for the team",
           ],
           notOwned: [
@@ -342,7 +342,7 @@ export const en: SiteContent = {
         summary: {
           sector: "Consumer app, my own product",
           role: "Everything: product, architecture, backend, frontend and operations",
-          result: "Live and open at ilnami.com, in Spanish and English.",
+          result: "Online and open at ilnami.com, in Spanish and English.",
         },
         context: [
           "Review apps answer the question “what do strangers think of this place?”. Ilnami answers a different one: what did I order here, and would I go back? It is a private food diary on your own map: the place, the date, the dishes and your verdict.",
@@ -400,7 +400,7 @@ export const en: SiteContent = {
           "The site is ready for AI agents too: llms.txt, llms-full.txt, an Agent Skills index and a blog that is also published as Markdown.",
         ],
         result: [
-          "Live and open at ilnami.com, in Spanish and English.",
+          "Online and open at ilnami.com, in Spanish and English.",
           "Privacy enforced by the database, not only by the interface.",
           "AI that saves time without ever writing data on its own.",
           "The database and the app hosted in the EU, with analytics only after consent.",

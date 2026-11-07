@@ -68,12 +68,12 @@
     }
   },
   "status": {
-    "label": "Available for part-time engagements from January 2027",
+    "label": "Available for part-time work from January 2027",
     "detail": "Andorra · Remote · CET"
   },
   "hero": {
     "role": "Software Architect & Senior Backend Engineer",
-    "tagline": "I design and build backend systems for banking and enterprise on Java and Spring, with architectures a team can maintain. I apply AI where it adds value: validated data, clear limits and manual fallbacks.",
+    "tagline": "I design and build backend systems for banking and enterprise on Java and Spring, with architectures a team can maintain. I apply AI where it adds value: validated data, clear limits and a manual way to work when the AI fails.",
     "specs": {
       "location": "Location",
       "timezone": "Timezone",
@@ -100,7 +100,7 @@
   },
   "cv": {
     "headline": "End-to-end product work on Java/Spring backends: maintainable architecture, integration with critical systems, and AI applied where it adds real value.",
-    "summary": "Seven years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and manual fallbacks.",
+    "summary": "Seven years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and a manual way to work when it fails.",
     "portfolioName": "Personal portfolio",
     "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source.",
     "otherProjects": "Other projects"
@@ -126,7 +126,7 @@
           "Integrate legacy systems (COBOL, AS400, DB2), evolve shipping-carrier integration APIs, and roll out Keycloak with MFA and per-jurisdiction rules.",
           "Extend SonarQube across every repository, including analysis of 12,000+ COBOL files.",
           "Rolled out Gemini Code Assist for the whole team as the department's first AI adoption.",
-          "Manage vendors technically, drive build-vs-buy decisions, and control technical debt on OpenShift (OCP4)."
+          "Manage vendors technically, decide whether to build or buy, and control technical debt on OpenShift (OCP4)."
         ]
       },
       "elabogado-2022": {
@@ -289,7 +289,7 @@
       "ilnami": {
         "name": "Ilnami",
         "role": "Own product · Web app (PWA)",
-        "summary": "Private food diary: save what you ordered, where, when and whether you'd go back, on your own map. AI scanning of menus, labels and receipts that is always reviewed before saving, private circles to share only what you choose, and a JSON export of your data. Live and open, in Spanish and English.",
+        "summary": "Private food diary: save what you ordered, where, when and whether you'd go back, on your own map. AI scanning of menus, labels and receipts that is always reviewed before saving, private circles to share only what you choose, and a JSON export of your data. Online and open, in Spanish and English.",
         "highlights": [
           "Private by design: no public profiles or reviews; PostgreSQL row-level security limits every row to its owner or the circle it was shared with.",
           "Assistive, never authoritative AI: OpenAI suggests the place, date and dishes, with per-plan quotas and a manual entry that always works.",
