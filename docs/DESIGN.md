@@ -35,6 +35,19 @@ Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar es
 - Un momento propio: la credencial 3D. El resto son entradas sobrias de sección y feedback de interacción, todo en CSS.
 - Todo respeta `prefers-reduced-motion` (fallbacks CSS `motion-reduce:*`).
 
+## Web comercial (`/`, `/es`)
+
+Misma marca que `/cv` (tokens, Fraunces + Figtree, terracota, cantos rectos), con estas reglas propias:
+
+- **Dos tipografías.** Fraunces en titulares y Figtree en todo lo demás; la mono solo aparece en `/cv` y se carga sin `preload`.
+- **Mobile-first en 390 px.** Una columna hasta 768 px; desde `lg` las secciones ponen el título a la izquierda (fijo al hacer scroll) y el contenido a la derecha. Breakpoint `wide` (1200 px) para el botón de contacto en la cabecera. Gutter de 20 px en móvil y 32 px desde 768 px.
+- **Lectura.** Cuerpo de 17 px en móvil y 18 px desde 768 px, interlineado 1,65 y medida máxima de 40 rem (`.site-prose`).
+- **Táctil.** Todo control mide al menos 44 px (`min-h-11`, `size-11`); botones con `:active { scale(0.98) }` (`.site-button`, `.site-press`).
+- **Un solo CTA** («Let's discuss your project» / «Hablemos de tu proyecto»), siempre hacia `/contact`.
+- **Cuatro momentos de movimiento, todos en CSS:** entrada del hero línea a línea (520 ms, `--ease-out-expo`), tarjetas y bloques que se asientan al entrar en pantalla (`animation-timeline: view()`, desde opacidad 0,3 para que el contenido nunca quede oculto si el scroll no se evalúa), raíl de experiencia que se dibuja con el scroll desde 768 px, y transición entre páginas con `ViewTransition`. `prefers-reduced-motion` los desactiva todos; al imprimir también.
+- **Sin JavaScript** la web se lee y se navega entera: el menú móvil es un `<details>`, los enlaces de idioma son `<a>`. Solo el tema, el idioma activo y el email necesitan hidratarse; sin JS el email se sustituye por un aviso con LinkedIn.
+- **Diagramas** de arquitectura en SVG inline, máximo 6 cajas, etiquetas de 24 caracteres y detalles de 34 (lo comprueba `content/site/content.test.ts`).
+
 ## Verificación obligatoria antes de cada merge visual
 
 1. `pnpm typecheck && pnpm lint && pnpm build` en verde.

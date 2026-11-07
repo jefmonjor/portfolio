@@ -16,7 +16,6 @@ task.
 │   └── design-system.md
 ├── patterns/
 │   ├── spec-driven-development.md
-│   ├── trpc-react-query.md
 │   └── component-structure.md
 ├── styles/
 │   ├── ui-system.md

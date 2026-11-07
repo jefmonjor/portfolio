@@ -1,6 +1,7 @@
 "use client"
 
 import { useTheme } from "next-themes"
+import { useCallback } from "react"
 
 type Theme = "light" | "dark"
 
@@ -12,6 +13,8 @@ function themeShownNow(resolvedTheme: string | undefined): Theme {
 
 export function useThemeToggle(): () => void {
   const { resolvedTheme, setTheme } = useTheme()
-  return () =>
-    setTheme(themeShownNow(resolvedTheme) === "dark" ? "light" : "dark")
+  return useCallback(
+    () => setTheme(themeShownNow(resolvedTheme) === "dark" ? "light" : "dark"),
+    [resolvedTheme, setTheme]
+  )
 }

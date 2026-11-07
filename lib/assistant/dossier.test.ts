@@ -47,4 +47,10 @@ describe("buildSystemPrompt", () => {
     expect(prompt).toContain("expectativas salariales")
     expect(prompt).toContain("fechas de incorporación")
   })
+
+  it("labels every dossier line in the visitor's language", () => {
+    expect(buildSystemPrompt("ca")).toContain("Serveis: ")
+    expect(buildSystemPrompt("ca")).not.toContain("Services: ")
+    expect(buildSystemPrompt("es")).toContain("Servicios: ")
+  })
 })

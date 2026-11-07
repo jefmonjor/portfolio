@@ -26,14 +26,14 @@ Verification:
 - Data source and ownership.
 - UI states: loading, empty, error, success, and responsive behavior when
   relevant.
-- Contract decisions: Zod schemas, tRPC procedures, route params, or typed
+- Contract decisions: Zod schemas, route handler contracts, route params, or typed
   content models.
 - Verification commands and manual checks.
 
 ## When To Update Specs
 
 - A feature changes the user's flow.
-- A new tRPC router or shared contract is added.
+- A new route handler or shared contract is added.
 - A styling rule or design-system convention changes.
 - A new content model is introduced.
 - A decision previously left implicit becomes important.

@@ -1,12 +1,11 @@
 "use client"
 
-import * as React from "react"
-import { useTheme } from "next-themes"
 import { useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { MoonIcon, SunIcon } from "@hugeicons/core-free-icons"
 
 import { Button } from "@/components/ui/button"
+import { useThemeToggle } from "@/hooks/use-theme-toggle"
 import {
   Tooltip,
   TooltipContent,
@@ -14,18 +13,8 @@ import {
 } from "@/components/ui/tooltip"
 
 function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme()
+  const onToggle = useThemeToggle()
   const t = useTranslations("themeToggle")
-
-  function onToggle() {
-    const current =
-      resolvedTheme ??
-      (typeof document !== "undefined" &&
-      document.documentElement.classList.contains("dark")
-        ? "dark"
-        : "light")
-    setTheme(current === "dark" ? "light" : "dark")
-  }
 
   return (
     <Tooltip>

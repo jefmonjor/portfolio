@@ -1,6 +1,9 @@
-# Portfolio — Jefferson Montesdeoca
+# jefmonjor.dev — Jefferson Montesdeoca
 
-Portfolio y CV trilingüe de Jefferson Montesdeoca: Product Engineer con foco en IA y backend, actualmente Arquitecto de Soluciones / Technical PM. Construido con Next.js 16 y desplegado en Vercel.
+Web comercial de Jefferson Montesdeoca, Software Architect & Senior Backend Engineer, con su CV completo en `/cv`. Construida con Next.js 16 y desplegada en Vercel.
+
+- **`/` y `/es`** — inicio, servicios (Technical Advisory, Engineering Delivery, Fractional Architecture), tres casos de estudio, experiencia y contacto. Páginas estáticas, navegables sin JavaScript, con JSON-LD, `hreflang`, sitemap y una imagen Open Graph por página.
+- **`/cv`, `/es/cv`, `/ca/cv`** — el portfolio y CV trilingüe de siempre, con el asistente de IA, la terminal y los PDF. Las URLs antiguas (`/en`, `/ca`) redirigen con 301.
 
 **En vivo:** [jefmonjor.dev](https://jefmonjor.dev)
 
@@ -20,7 +23,7 @@ Portfolio y CV trilingüe de Jefferson Montesdeoca: Product Engineer con foco en
 
 ## Stack
 
-Next.js 16 (App Router + Turbopack) · Node 24 LTS · TypeScript estricto · Tailwind CSS v4 · shadcn/ui · next-intl · motion · tRPC + React Query · Zod · OpenAI SDK · @react-pdf/renderer · Three.js
+Next.js 16 (App Router + Turbopack) · Node 24 LTS · TypeScript estricto · Tailwind CSS v4 · shadcn/ui · next-intl · Zod · OpenAI SDK · @react-pdf/renderer · Three.js
 
 ## Variables de entorno
 
@@ -87,10 +90,14 @@ pnpm build        # build de producción
 ## Estructura
 
 ```text
-app/                  Rutas, layouts y route handlers (assistant, cv-tailor, cv.pdf, cv.md, cv.json)
-components/           Componentes de la web (portfolio/) y primitivas shadcn (ui/)
-lib/                  Perfil, dossier del asistente, rate limiting, email ofuscado
-messages/             Textos ES · EN · CA (next-intl)
+app/[locale]/(site)/  Web comercial: inicio, services, work, experience, contact (EN · ES)
+app/[locale]/cv/      Portfolio y CV completos (EN · ES · CA)
+app/og/               Imágenes Open Graph estáticas por página
+app/api/              Asistente, CV adaptado y health check
+content/site/         Textos tipados de la web comercial (EN · ES)
+components/           Web comercial (site/), CV (portfolio/) y primitivas shadcn (ui/)
+lib/                  Perfil, dossier del asistente, rate limiting, email ofuscado, SEO
+messages/             Textos del CV ES · EN · CA (next-intl)
 server/               Documentos PDF del CV y lógica de servidor
 public/projects/      Capturas de los proyectos para los previews en bucle
 ```

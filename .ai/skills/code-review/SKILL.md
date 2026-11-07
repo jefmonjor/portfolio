@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: "Review portfolio changes for architecture, type safety, shadcn consistency, tRPC contracts, motion accessibility, and content quality."
+description: "Review portfolio changes for architecture, type safety, shadcn consistency, route handler contracts, motion accessibility, and content quality."
 ---
 
 # Code Review

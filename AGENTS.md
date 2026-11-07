@@ -6,22 +6,26 @@ file, then load only the `.ai/` files that match the current task.
 
 ## Product Intent
 
-The app presents Jefferson's professional profile, CV information, selected
-projects, technical strengths, and contact paths. It should feel like a usable
-portfolio product, not a generic landing page template.
+jefmonjor.dev is the commercial site of an independent Software Architect &
+Senior Backend Engineer. A fintech CTO or head of engineering must understand
+in ten seconds what he does, why to trust him and how to hire him.
+
+- `/` (EN) and `/es` (ES): home, services, case studies, experience, contact.
+- `/cv`, `/es/cv`, `/ca/cv`: the full portfolio and CV, with PDFs, the AI
+  assistant and the terminal.
+- Old URLs (`/en`, `/ca`) answer 301 to their `/cv` equivalent.
 
 ## Current Stack
 
 - Next.js App Router with React and TypeScript.
 - Tailwind CSS v4 and shadcn/ui generated primitives.
 - CSS-first animation (`tw-animate-css`, keyframes in `app/globals.css`).
-- TanStack React Query and tRPC for typed client/server data flows (the
-  provider is mounted per subtree, not globally).
-- Zod for runtime contracts.
-- `superjson` for tRPC serialization.
+- Route handlers with Zod contracts at every trust boundary.
 - `next-themes` for theme support.
-- `next-intl` for App Router internationalization (English, Spanish, and
-  Catalan, path prefix `/en`, `/es`, `/ca`).
+- `next-intl` with `localePrefix: "as-needed"` and no locale detection:
+  English without prefix, `/es`, and `/ca` (Catalan exists only under `/cv`).
+- Commercial site copy as typed TypeScript in `content/site/{en,es}.ts`;
+  CV copy in `messages/*.json`.
 
 ## Non-Negotiable Rules
 
@@ -34,10 +38,16 @@ portfolio product, not a generic landing page template.
 - Use semantic Tailwind tokens such as `bg-background`, `text-foreground`,
   `text-muted-foreground`, `border-border`, and component variants before
   custom styling.
-- Keep pages thin. Move feature UI to `components/`, server logic to `server/`,
-  shared browser-safe helpers to `lib/`, and runtime contracts to `types/`.
-- Use tRPC plus React Query for server interactions. Procedure inputs and
-  outputs that cross trust boundaries must be backed by Zod schemas.
+- Keep pages thin. Site UI lives in `components/site/`, CV UI in
+  `components/portfolio/`, server logic in `server/`, shared helpers in
+  `lib/`, and runtime contracts in `types/`.
+- Server interactions go through route handlers. Inputs that cross a trust
+  boundary are validated with Zod, bodies are size-limited, and AI routes
+  reject cross-site requests.
+- Commercial pages are static (SSG), work without JavaScript, and ship only
+  the client components they need: theme, language, menu and email.
+- Code speaks for itself: names, small functions and types instead of
+  comments. A comment is only for a constraint the code cannot express.
 - Animate only for interaction clarity, transition quality, and controlled
   reveals, with CSS before JavaScript. Animations must not hide content, block
   navigation, or create layout shift.
@@ -71,7 +81,7 @@ portfolio product, not a generic landing page template.
 
 ## Verification Baseline
 
-- `pnpm run typecheck` for contracts, tRPC, and TypeScript changes.
+- `pnpm run typecheck` for contracts and TypeScript changes.
 - `pnpm run lint` for React/UI changes.
 - `pnpm run build` for route boundary, metadata, or server/runtime changes.
 - Manual browser checks for visual, responsive, and animation changes.

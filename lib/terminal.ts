@@ -3,6 +3,7 @@ import {
   isBackgroundVariant,
   type BackgroundVariant,
 } from "@/lib/background"
+import type { CvPdfVariantName } from "@/lib/cv-pdf"
 
 export type TerminalLineKind = "in" | "out" | "err" | "ok" | "muted" | "head"
 
@@ -14,7 +15,7 @@ export type TerminalOutLine = {
 export type TerminalEffect =
   | { type: "clear" }
   | { type: "close" }
-  | { type: "cv"; variant: "general" | "technical" }
+  | { type: "cv"; variant: CvPdfVariantName }
   // A null offer asks the host to capture it on the next prompt.
   | { type: "cv-tailor"; offer: string | null }
   | { type: "theme"; value: "dark" | "light" | null }

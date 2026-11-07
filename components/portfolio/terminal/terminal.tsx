@@ -3,6 +3,8 @@
 import * as React from "react"
 import { Dialog as DialogPrimitive } from "radix-ui"
 import { useTheme } from "next-themes"
+
+import { useThemeToggle } from "@/hooks/use-theme-toggle"
 import { useLocale, useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Cancel01Icon } from "@hugeicons/core-free-icons"
@@ -71,6 +73,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
   const tSkills = useTranslations("skills.groups")
 
   const { setTheme } = useTheme()
+  const toggleTheme = useThemeToggle()
   const { setVariant } = useBackground()
   const router = useRouter()
   const pathname = usePathname()
@@ -249,12 +252,8 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
           break
         }
         case "theme":
-          setTheme(
-            effect.value ??
-              (document.documentElement.classList.contains("dark")
-                ? "light"
-                : "dark")
-          )
+          if (effect.value) setTheme(effect.value)
+          else toggleTheme()
           break
         case "lang":
           router.replace(`${pathname}${window.location.hash}`, {

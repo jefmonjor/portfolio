@@ -1,6 +1,6 @@
 ---
 name: feature-implementation
-description: "Implement portfolio features. Use for adding pages, CV/project sections, tRPC procedures, typed content models, contact flows, or user-facing workflows."
+description: "Implement portfolio features. Use for adding pages, CV/project sections, route handlers, typed content models, contact flows, or user-facing workflows."
 ---
 
 # Feature Implementation
@@ -19,10 +19,10 @@ Read:
 
 1. Define the user outcome in one paragraph.
 2. Identify the data boundary: static typed content, browser-only state,
-   tRPC/server, persisted local state, or external service.
+   route handler/server, persisted local state, or external service.
 3. Add or update Zod contracts in `types/` when data crosses a trust boundary.
 4. Implement server/domain logic outside React.
-5. Wire tRPC if server work is needed.
+5. Add a route handler with a Zod contract if server work is needed.
 6. Build UI with shadcn primitives and semantic Tailwind tokens.
 7. Add loading, empty, error, success, and responsive states.
 8. Use `motion` only when it improves clarity and passes reduced-motion checks.

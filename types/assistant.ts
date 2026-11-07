@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+import { CV_PDF_VARIANTS } from "@/lib/cv-pdf"
+
 import { isLocale, routing } from "@/i18n/routing"
 import {
   ASSISTANT_HISTORY_INPUT_MESSAGES,
@@ -42,7 +44,7 @@ export const assistantActionSchema = z.discriminatedUnion("type", [
   z
     .object({
       type: z.literal("cv"),
-      variant: z.enum(["general", "technical"]),
+      variant: z.enum(CV_PDF_VARIANTS),
     })
     .strict(),
   z

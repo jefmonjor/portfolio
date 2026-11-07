@@ -101,7 +101,7 @@
     "headline": "Producte de principi a fi sobre backends Java/Spring: arquitectura mantenible, integració amb sistemes crítics i IA aplicada on aporta valor real.",
     "summary": "Set anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. Migracions complexes, integració amb sistemes legacy i arquitectures hexagonals i de microserveis. En paral·lel, productes propis —en funcionament i en desenvolupament— que cobreixen el cicle complet: producte, backend, desplegament i IA aplicada amb dades validades i alternatives manuals.",
     "portfolioName": "Portfolio personal",
-    "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + tRPC + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert.",
+    "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert.",
     "otherProjects": "Altres projectes"
   },
   "experience": {
@@ -319,9 +319,9 @@
       "portfolio": {
         "name": "Aquest portfolio",
         "role": "Projecte personal",
-        "summary": "El mateix lloc que estàs llegint: stack tipat de Next.js + tRPC + Zod amb enrutament multilingüe, terminal interactiva, paleta d'ordres i CV en PDF generat des de les mateixes dades que veus en pantalla.",
+        "summary": "El mateix lloc que estàs llegint: stack tipat de Next.js + Zod amb enrutament multilingüe, terminal interactiva, paleta d'ordres i CV en PDF generat des de les mateixes dades que veus en pantalla.",
         "highlights": [
-          "Stack tipat Next.js + tRPC + Zod amb enrutament multilingüe.",
+          "Stack tipat Next.js + Zod amb enrutament multilingüe.",
           "Terminal interactiva i paleta d'ordres ⌘K per navegar.",
           "CV en PDF generat al servidor des d'una única font de dades.",
           "Animació amb propòsit que mai amaga contingut ni desplaça el layout."
@@ -370,7 +370,7 @@
   },
   "footer": {
     "lastUpdated": "Actualitzat · {date}",
-    "builtLine": "Dissenyat i construït des de zero · Next.js",
+    "builtLine": "Dissenyat i construït amb Next.js",
     "languagesLabel": "Idiomes"
   },
   "cvToast": {

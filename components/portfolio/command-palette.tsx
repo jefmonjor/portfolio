@@ -2,6 +2,8 @@
 
 import * as React from "react"
 import { useTheme } from "next-themes"
+
+import { useThemeToggle } from "@/hooks/use-theme-toggle"
 import { useLocale, useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
@@ -97,7 +99,8 @@ function CommandPalette() {
   const t = useTranslations("commandPalette")
   const tNav = useTranslations("nav")
 
-  const { resolvedTheme, setTheme } = useTheme()
+  const { resolvedTheme } = useTheme()
+  const flipTheme = useThemeToggle()
   const { variant: backgroundVariant, setVariant: setBackgroundVariant } =
     useBackground()
   const router = useRouter()
@@ -134,12 +137,7 @@ function CommandPalette() {
   }
 
   function toggleTheme() {
-    runAndClose(() => {
-      const current =
-        resolvedTheme ??
-        (document.documentElement.classList.contains("dark") ? "dark" : "light")
-      setTheme(current === "dark" ? "light" : "dark")
-    })
+    runAndClose(flipTheme)
   }
 
   function switchLocale(next: Locale) {

@@ -101,7 +101,7 @@
     "headline": "End-to-end product work on Java/Spring backends: maintainable architecture, integration with critical systems, and AI applied where it adds real value.",
     "summary": "Seven years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and manual fallbacks.",
     "portfolioName": "Personal portfolio",
-    "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + tRPC + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source.",
+    "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source.",
     "otherProjects": "Other projects"
   },
   "experience": {
@@ -319,9 +319,9 @@
       "portfolio": {
         "name": "This portfolio",
         "role": "Personal project",
-        "summary": "The site you are reading: a type-safe Next.js + tRPC + Zod stack with trilingual routing, an interactive terminal, a command palette, and a PDF CV generated from the same profile data.",
+        "summary": "The site you are reading: a type-safe Next.js + Zod stack with trilingual routing, an interactive terminal, a command palette, and a PDF CV generated from the same profile data.",
         "highlights": [
-          "Type-safe Next.js + tRPC + Zod stack with English, Spanish and Catalan routing.",
+          "Type-safe Next.js + Zod stack with English, Spanish and Catalan routing.",
           "Interactive terminal and ⌘K command palette for navigation.",
           "Server-generated PDF CV from a single source of truth.",
           "Purposeful motion that never blocks content or shifts layout."
@@ -370,7 +370,7 @@
   },
   "footer": {
     "lastUpdated": "Last updated · {date}",
-    "builtLine": "Designed and built from scratch · Next.js",
+    "builtLine": "Designed and built with Next.js",
     "languagesLabel": "Languages"
   },
   "cvToast": {

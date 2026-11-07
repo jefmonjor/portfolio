@@ -339,12 +339,10 @@ export const profile: Profile = {
       stack: [
         "Next.js",
         "TypeScript",
-        "tRPC",
         "Zod",
         "Tailwind CSS",
         "shadcn/ui",
         "next-intl",
-        "Motion",
       ],
     },
   ],

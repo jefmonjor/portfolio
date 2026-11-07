@@ -1,10 +1,9 @@
 import { routing, type Locale } from "@/i18n/routing"
 
-export type CvPdfVariantName = "general" | "technical"
+export const CV_PDF_VARIANTS = ["general", "technical"] as const
 
-// The one URL each PDF is served from. The CDN keys its cache on the full
-// query string, so every other spelling is redirected here instead of being
-// rendered again. The default file keeps the bare, indexable /cv.pdf.
+export type CvPdfVariantName = (typeof CV_PDF_VARIANTS)[number]
+
 export function cvPdfPath(locale: Locale, variant: CvPdfVariantName): string {
   if (locale === routing.defaultLocale && variant === "general") {
     return "/cv.pdf"

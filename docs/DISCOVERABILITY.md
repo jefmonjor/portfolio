@@ -18,7 +18,7 @@ Este documento contiene las acciones externas que no puede aplicar el repositori
 
 - Descripción: `Trilingual portfolio and CV with a bounded AI assistant, technical PDF generation and a type-safe Next.js stack.`
 - Homepage: `https://www.jefmonjor.dev`
-- Topics: `portfolio`, `nextjs`, `typescript`, `trpc`, `next-intl`, `openai`, `ai-assistant`, `pdf-generation`.
+- Topics: `portfolio`, `nextjs`, `typescript`, `next-intl`, `openai`, `ai-assistant`, `pdf-generation`.
 - La licencia debe aparecer como MIT después de publicar este cambio.
 - Integrar o cerrar el PR que corrige `Trasolido` por `Transolido` antes de sustituir el README de perfil.
 
