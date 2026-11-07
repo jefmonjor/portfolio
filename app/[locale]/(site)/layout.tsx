@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation"
 import { setRequestLocale } from "next-intl/server"
-import { ViewTransition } from "react"
 
 import { SiteFooter } from "@/components/site/site-footer"
 import { SiteHeader } from "@/components/site/site-header"
@@ -24,11 +23,9 @@ export default async function SiteLayout({
   return (
     <div className="flex min-h-svh flex-col bg-background text-foreground">
       <SiteHeader locale={locale} content={content} />
-      <ViewTransition>
-        <main id="main" tabIndex={-1} className="flex-1 outline-none">
-          {children}
-        </main>
-      </ViewTransition>
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
+        {children}
+      </main>
       <SiteFooter locale={locale} content={content} />
       <StructuredDataScript
         data={buildSiteStructuredData({

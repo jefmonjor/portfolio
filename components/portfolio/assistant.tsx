@@ -22,6 +22,7 @@ import {
 } from "@/lib/assistant/conversation"
 import { contactEmail } from "@/lib/email"
 import { cn } from "@/lib/utils"
+import { hasVisibleText } from "@/lib/visible-text"
 import type { AssistantAction } from "@/types/assistant"
 import { ASSISTANT_MESSAGE_INPUT_CHARS } from "@/types/limits"
 
@@ -165,7 +166,7 @@ function Assistant() {
 
   async function send(text: string) {
     const question = text.trim()
-    if (!question || busy) return
+    if (!hasVisibleText(question) || busy) return
     const history: Message[] = [
       ...messages,
       { role: "user", content: question },
@@ -401,7 +402,7 @@ function Assistant() {
               variant="outline"
               size="icon-sm"
               data-hit-area
-              disabled={busy || input.trim().length === 0}
+              disabled={busy || !hasVisibleText(input)}
               aria-label={t("send")}
               className="size-9 sm:size-8"
             >

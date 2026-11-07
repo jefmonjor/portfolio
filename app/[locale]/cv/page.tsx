@@ -11,6 +11,7 @@ import { Education } from "@/components/portfolio/education"
 import { Experience } from "@/components/portfolio/experience"
 import { Footer } from "@/components/portfolio/footer"
 import { FullSiteBanner } from "@/components/portfolio/full-site-banner"
+import { SkipToContent } from "@/components/portfolio/skip-to-content"
 import { Hero } from "@/components/portfolio/hero"
 import { Projects } from "@/components/portfolio/projects"
 import { Reveal } from "@/components/portfolio/reveal"
@@ -35,10 +36,11 @@ export default async function Page({
     <div className="relative isolate min-h-svh bg-background text-foreground">
       <Background />
       <div className="relative z-10">
+        <SkipToContent />
         <ConsoleSignature />
         <FullSiteBanner />
         <TopBar />
-        <main>
+        <main id="main" tabIndex={-1} className="outline-none">
           <Hero />
           <Reveal>
             <About />

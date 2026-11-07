@@ -15,6 +15,7 @@ import {
   TERMINAL_EVENT,
 } from "@/components/portfolio/terminal/events"
 import { Button } from "@/components/ui/button"
+import { DialogContentReturningFocus } from "@/components/ui/dialog"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { resolveLocale } from "@/i18n/routing"
 import {
@@ -256,7 +257,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
           else toggleTheme()
           break
         case "lang":
-          router.replace(`${pathname}${window.location.hash}`, {
+          router.push(`${pathname}${window.location.hash}`, {
             locale: effect.value,
           })
           break
@@ -379,7 +380,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
     <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/30 duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0" />
-        <DialogPrimitive.Content
+        <DialogContentReturningFocus
           onOpenAutoFocus={(event) => {
             event.preventDefault()
             inputRef.current?.focus()
@@ -456,7 +457,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
               {profileTimeZone.split("/").pop()}
             </span>
           </div>
-        </DialogPrimitive.Content>
+        </DialogContentReturningFocus>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
   )

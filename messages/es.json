@@ -18,7 +18,8 @@
     "projects": "Proyectos",
     "education": "Formación",
     "contact": "Contacto",
-    "terminal": "Terminal"
+    "terminal": "Terminal",
+    "skipToContent": "Saltar al contenido"
   },
   "themeToggle": {
     "ariaLabel": "Cambiar tema",

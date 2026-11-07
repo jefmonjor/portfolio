@@ -42,6 +42,10 @@ export function signReply(content: string): string {
   return mac(key, content).toString("base64url")
 }
 
+export function signatureFor(content: string): { signature?: string } {
+  return signingKey() ? { signature: signReply(content) } : {}
+}
+
 export function isSignedReply(
   content: string,
   signature: string | undefined

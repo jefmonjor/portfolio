@@ -50,7 +50,6 @@ export const metadata: Metadata = {
   creator: profile.name,
   publisher: profile.name,
   category: "technology",
-  robots: { index: true, follow: true },
   ...(verification ? { verification } : {}),
 }
 

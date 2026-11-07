@@ -142,7 +142,7 @@ function CommandPalette() {
 
   function switchLocale(next: Locale) {
     runAndClose(() => {
-      router.replace(withCurrentHash(pathname), { locale: next })
+      router.push(withCurrentHash(pathname), { locale: next })
     })
   }
 

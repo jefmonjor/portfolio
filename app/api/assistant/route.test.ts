@@ -364,3 +364,36 @@ describe("CV requests after a pasted offer", () => {
     })
   })
 })
+
+describe("CV requests without any signing key", () => {
+  beforeEach(() => {
+    vi.resetModules()
+    vi.stubEnv("OPENAI_API_KEY", "")
+    vi.stubEnv("ASSISTANT_SIGNING_SECRET", "")
+    create.mockReset()
+  })
+  afterEach(() => vi.unstubAllEnvs())
+
+  it("still hands out the CV, unsigned, instead of failing with 500", async () => {
+    const { status, body } = await ask("¿Me pasas tu CV?")
+
+    expect(status).toBe(200)
+    expect(body.signature).toBeUndefined()
+    expect(body.actions).toContainEqual({ type: "cv", variant: "technical" })
+  })
+})
+
+describe("messages with nothing visible in them", () => {
+  beforeEach(() => {
+    vi.stubEnv("OPENAI_API_KEY", "test")
+    create.mockReset()
+  })
+  afterEach(() => vi.unstubAllEnvs())
+
+  it("rejects a zero-width-only question before it reaches the model", async () => {
+    const { status } = await ask("\u200B\u200B\u200B")
+
+    expect(status).toBe(400)
+    expect(create).not.toHaveBeenCalled()
+  })
+})

@@ -24,7 +24,7 @@ import {
   wrapJobOffer,
 } from "@/lib/assistant/offer"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
-import { signReply } from "@/lib/assistant/signature"
+import { signatureFor } from "@/lib/assistant/signature"
 import { contactEmail } from "@/lib/email"
 import { readJsonBody } from "@/server/http/read-json-body"
 import { rejectForeignRequest } from "@/server/http/same-origin"
@@ -93,7 +93,7 @@ function reply(
   return NextResponse.json(
     assistantSuccessSchema.parse({
       reply: text,
-      signature: signReply(text),
+      ...signatureFor(text),
       ...(actions ? { actions } : {}),
     })
   )

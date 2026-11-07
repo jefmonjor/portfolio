@@ -23,7 +23,7 @@ function LocaleSwitcher() {
     if (next === locale) return
     // Keep the reader on the same section after the language changes.
     startTransition(() => {
-      router.replace(`${pathname}${window.location.hash}`, { locale: next })
+      router.push(`${pathname}${window.location.hash}`, { locale: next })
     })
   }
 

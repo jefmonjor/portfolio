@@ -1,8 +1,8 @@
 import { z } from "zod"
 
-import { CV_PDF_VARIANTS } from "@/lib/cv-pdf"
-
 import { isLocale, routing } from "@/i18n/routing"
+import { CV_PDF_VARIANTS } from "@/lib/cv-pdf"
+import { hasVisibleText } from "@/lib/visible-text"
 import {
   ASSISTANT_HISTORY_INPUT_MESSAGES,
   ASSISTANT_MESSAGE_INPUT_CHARS,
@@ -20,7 +20,12 @@ export const assistantLocaleSchema = z.preprocess((value) => {
 
 export const chatMessageSchema = z.object({
   role: z.enum(["user", "assistant"]),
-  content: z.string().trim().min(1).max(ASSISTANT_MESSAGE_INPUT_CHARS),
+  content: z
+    .string()
+    .trim()
+    .min(1)
+    .max(ASSISTANT_MESSAGE_INPUT_CHARS)
+    .refine(hasVisibleText),
   // The HMAC the server returned with an assistant reply. A missing or wrong
   // one is not a 400: sanitizeMessages drops that turn and carries on.
   signature: z.string().max(ASSISTANT_SIGNATURE_MAX_CHARS).optional(),
@@ -64,7 +69,7 @@ export type AssistantAction = z.infer<typeof assistantActionSchema>
 export const assistantSuccessSchema = z
   .object({
     reply: z.string().trim().min(1).max(ASSISTANT_REPLY_MAX_CHARS),
-    signature: z.string().min(1).max(ASSISTANT_SIGNATURE_MAX_CHARS),
+    signature: z.string().min(1).max(ASSISTANT_SIGNATURE_MAX_CHARS).optional(),
     actions: z.array(assistantActionSchema).max(3).optional(),
   })
   .strict()
