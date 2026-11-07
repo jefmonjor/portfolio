@@ -61,6 +61,22 @@ Todos los arreglos de la segunda ronda se comprobaron después en navegador: scr
 
 Quedan conocidos y aceptados: el email de `/contact` abierto en frío espera a la hidratación (protección anti-spam, sin salto de layout); la 404 sin JavaScript sale en blanco (shell de error de Next); URLs con codificación porcentual rota devuelven 500 desde el propio Next 16.4.2.
 
+## Rendimiento (Lighthouse 12, móvil simulado, mediana de 3)
+
+| Página | Rendimiento | Accesibilidad | Buenas prácticas | SEO | FCP | LCP | TBT | CLS |
+|---|---|---|---|---|---|---|---|---|
+| `/` | 94 | 100 | 100 | 100 | 1,2 s | 3,0 s | 66 ms | 0 |
+| `/es` | 94 | 100 | 100 | 100 | 1,2 s | 3,1 s | 71 ms | 0 |
+| `/services` | 95 | 100 | 100 | 100 | 1,2 s | 2,9 s | 62 ms | 0 |
+| `/work/private-bank-modernization` | 95 | 100 | 100 | 100 | 1,2 s | 2,9 s | 58 ms | 0 |
+| `/contact` | 98 | 100 | 100 | 100 | 1,1 s | 2,3 s | 98 ms | 0 |
+| `/cv` | 89 | 100 | 100 | 100 | 1,5 s | 3,6 s | 117 ms | 0 |
+
+- El LCP de laboratorio supone que el titular espera a Fraunces; con `font-display: optional`, en un 3G lento real el titular se pinta con la serif de respaldo y el LCP medido coincide con el FCP (2,0 s, ver tabla anterior).
+- JavaScript inicial de la web comercial: 172 KB comprimidos, casi todo React y el runtime de Next (71 + 45 KB). El objetivo del plan (< 80 KB) no es alcanzable con App Router sin cambiar de framework; la web solo añade los componentes de tema, idioma, menú y email.
+- Probado y descartado: `experimental.inlineCss` adelanta el FCP pero sube el HTML de la Home a 57 KB comprimidos y empeora el LCP de `/contact` y `/cv`.
+- La entrada de tarjetas al hacer scroll es solo desplazamiento (sin opacidad): Lighthouse medía las tarjetas bajo el pliegue atenuadas y marcaba contraste insuficiente.
+
 ## Pendiente de decisión del propietario
 
 - «banks and fintechs» en el titular: decisión de posicionamiento; el escéptico pide un caso fintech que lo respalde.

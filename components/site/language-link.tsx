@@ -34,14 +34,20 @@ function LanguageLink({
       lang={target}
       rel="alternate"
       prefetch={false}
-      aria-label={short ? languageNames[target] : undefined}
       className={cn(
         "inline-flex min-h-11 items-center text-sm text-muted-foreground transition-colors hover:text-foreground",
         short && "min-w-11 justify-center font-medium uppercase",
         className
       )}
     >
-      {short ? target : languageNames[target]}
+      {short ? (
+        <>
+          {target}
+          <span className="sr-only"> · {languageNames[target]}</span>
+        </>
+      ) : (
+        languageNames[target]
+      )}
     </Link>
   )
 }
