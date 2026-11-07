@@ -143,3 +143,20 @@ describe("requests from other websites", () => {
     expect(parse).not.toHaveBeenCalled()
   })
 })
+
+describe("job offers with nothing visible in them", () => {
+  beforeEach(() => {
+    vi.stubEnv("OPENAI_API_KEY", "test")
+    parse.mockReset()
+  })
+  afterEach(() => vi.unstubAllEnvs())
+
+  it("refuses an offer of invisible characters before spending on the model", async () => {
+    const response = await tailor(
+      JSON.stringify({ offer: "\u200B".repeat(60), locale: "en" })
+    )
+
+    expect(response.status).toBe(400)
+    expect(parse).not.toHaveBeenCalled()
+  })
+})

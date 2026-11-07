@@ -51,6 +51,13 @@ function MobileMenu({ label, children }: MobileMenuProps) {
     }
   }
 
+  function closeWhenFocusLeaves(event: React.FocusEvent<HTMLDetailsElement>) {
+    const next = event.relatedTarget
+    if (next instanceof Node && !menuRef.current?.contains(next)) {
+      menuRef.current?.removeAttribute("open")
+    }
+  }
+
   function closeOnEscape(event: React.KeyboardEvent<HTMLDetailsElement>) {
     if (event.key !== "Escape" || !menuRef.current?.open) return
     menuRef.current.removeAttribute("open")
@@ -62,6 +69,7 @@ function MobileMenu({ label, children }: MobileMenuProps) {
       ref={menuRef}
       onKeyDown={closeOnEscape}
       onClick={closeAfterChoosingLink}
+      onBlur={closeWhenFocusLeaves}
       className="group md:hidden"
     >
       <summary className="site-press -mr-2 flex size-11 cursor-pointer list-none items-center justify-center text-foreground [&::-webkit-details-marker]:hidden">

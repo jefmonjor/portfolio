@@ -1,5 +1,10 @@
-const INVISIBLE_CHARACTERS = /[​-‍⁠﻿]/g
+const INVISIBLE_OR_BLANK =
+  /[\p{Default_Ignorable_Code_Point}\p{White_Space}⠀]/gu
+
+export function visibleLength(text: string): number {
+  return text.replace(INVISIBLE_OR_BLANK, "").length
+}
 
 export function hasVisibleText(text: string): boolean {
-  return text.replace(INVISIBLE_CHARACTERS, "").trim().length > 0
+  return visibleLength(text) > 0
 }

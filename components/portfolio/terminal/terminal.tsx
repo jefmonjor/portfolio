@@ -25,6 +25,7 @@ import {
 } from "@/lib/cv-download"
 import { parseString, parseStringArray } from "@/lib/i18n-values"
 import { contactEmail } from "@/lib/email"
+import { visibleLength } from "@/lib/visible-text"
 import { profile, profileTimeZone } from "@/lib/profile"
 import {
   completions,
@@ -290,7 +291,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
       setNextLineIsOffer(false)
       return
     }
-    if (offer.length < TERMINAL_OFFER_MIN_CHARS) {
+    if (visibleLength(offer) < TERMINAL_OFFER_MIN_CHARS) {
       pushLines([{ kind: "err", text: strings.cvOfferTooShort }])
       return
     }

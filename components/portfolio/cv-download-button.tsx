@@ -31,6 +31,7 @@ import {
   type CvVariant,
 } from "@/lib/cv-download"
 import { cn } from "@/lib/utils"
+import { visibleLength } from "@/lib/visible-text"
 import {
   CV_TAILOR_OFFER_MAX_CHARS,
   CV_TAILOR_OFFER_MIN_CHARS,
@@ -214,7 +215,10 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
       </Button>
 
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent showCloseButton className="gap-0 p-0 sm:max-w-lg">
+        <DialogContent
+          showCloseButton
+          className="max-h-[calc(100svh-2rem)] gap-0 overflow-y-auto p-0 sm:max-w-lg"
+        >
           <DialogHeader className="gap-2 border-b border-border p-5">
             <div className="flex items-center gap-2 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span className="inline-block size-1.5 bg-brand" />
@@ -294,7 +298,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                 <Button
                   size="sm"
                   disabled={
-                    offer.trim().length < CV_TAILOR_OFFER_MIN_CHARS || busy
+                    visibleLength(offer) < CV_TAILOR_OFFER_MIN_CHARS || busy
                   }
                   onClick={() => void tailorAndDownload()}
                 >

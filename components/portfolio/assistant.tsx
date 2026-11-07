@@ -315,7 +315,7 @@ function Assistant() {
                     type="button"
                     disabled={busy}
                     onClick={() => void send(s)}
-                    className="min-h-8 border border-border px-2.5 py-1.5 text-left font-mono text-[11px] tracking-wide text-muted-foreground transition-[color,border-color,transform] duration-150 ease-out hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] disabled:opacity-60"
+                    className="min-h-8 border border-border px-2.5 py-1.5 text-left font-mono text-[11px] tracking-wide text-muted-foreground transition-[color,border-color,transform] duration-150 ease-out hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] aria-disabled:opacity-60"
                   >
                     {s}
                   </button>
@@ -346,10 +346,10 @@ function Assistant() {
                         <button
                           key={key}
                           type="button"
-                          disabled={pendingAction !== null}
+                          aria-disabled={pendingAction !== null}
                           aria-busy={loading}
                           onClick={() => void runAction(action)}
-                          className="min-h-7 border border-border bg-background px-2 py-1 text-left font-mono text-[11px] tracking-wide text-foreground transition-[border-color,transform] duration-150 ease-out hover:border-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] disabled:opacity-60"
+                          className="min-h-7 border border-border bg-background px-2 py-1 text-left font-mono text-[11px] tracking-wide text-foreground transition-[border-color,transform] duration-150 ease-out hover:border-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] aria-disabled:opacity-60"
                         >
                           {loading ? t("cvPreparing") : actionLabel(action)}
                         </button>
