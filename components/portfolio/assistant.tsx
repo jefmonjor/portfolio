@@ -13,90 +13,26 @@ import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import { downloadCv, downloadTailoredCv } from "@/lib/cv-download"
+import {
+  parseConversation,
+  readReply,
+  requestMessages,
+  serializeConversation,
+  type ConversationMessage,
+} from "@/lib/assistant/conversation"
 import { contactEmail } from "@/lib/email"
 import { cn } from "@/lib/utils"
-import type { AssistantAction, ChatMessage } from "@/types/assistant"
-import {
-  ASSISTANT_HISTORY_INPUT_MESSAGES,
-  ASSISTANT_MESSAGE_INPUT_CHARS,
-  ASSISTANT_REPLY_MAX_CHARS,
-} from "@/types/limits"
+import type { AssistantAction } from "@/types/assistant"
+import { ASSISTANT_MESSAGE_INPUT_CHARS } from "@/types/limits"
 
 const STORAGE_KEY = "jefmonjor:assistant"
 const URL_PATTERN = /(https?:\/\/[^\s)]+[^\s).,;:!?])/g
 
-// A reply may carry actions: CV downloads the visitor can run from the chat.
-// They stay on the client's copy of the conversation and never go back to
-// the route, whose contract is role + content only.
-type Message = ChatMessage & {
-  readonly actions?: ReadonlyArray<AssistantAction>
-}
-
-function isAction(value: unknown): value is AssistantAction {
-  if (typeof value !== "object" || value === null || !("type" in value)) {
-    return false
-  }
-  if (value.type === "cv") {
-    return (
-      "variant" in value &&
-      (value.variant === "general" || value.variant === "technical")
-    )
-  }
-  if (value.type === "cv-tailor") {
-    return (
-      "offer" in value &&
-      typeof value.offer === "string" &&
-      value.offer.trim().length > 0
-    )
-  }
-  return false
-}
-
-// The route returns `{ reply, actions? }` or an error code. A hand-written
-// guard keeps Zod out of the page bundle; the server already validated it.
-function readSuccess(body: unknown): Message | null {
-  if (typeof body !== "object" || body === null || !("reply" in body)) {
-    return null
-  }
-  const reply = body.reply
-  if (typeof reply !== "string") return null
-  const content = reply.trim()
-  if (content.length === 0 || content.length > ASSISTANT_REPLY_MAX_CHARS) {
-    return null
-  }
-  const actions =
-    "actions" in body && Array.isArray(body.actions)
-      ? body.actions.filter(isAction).slice(0, 3)
-      : []
-  return actions.length > 0
-    ? { role: "assistant", content, actions }
-    : { role: "assistant", content }
-}
-
-function isMessage(value: unknown): value is Message {
-  if (
-    typeof value !== "object" ||
-    value === null ||
-    !("role" in value) ||
-    !("content" in value) ||
-    (value.role !== "user" && value.role !== "assistant") ||
-    typeof value.content !== "string"
-  ) {
-    return false
-  }
-  return (
-    !("actions" in value) ||
-    value.actions === undefined ||
-    (Array.isArray(value.actions) && value.actions.every(isAction))
-  )
-}
+type Message = ConversationMessage
 
 function loadConversation(): Message[] {
   try {
-    const raw = window.sessionStorage.getItem(STORAGE_KEY)
-    if (!raw) return []
-    const parsed: unknown = JSON.parse(raw)
-    return Array.isArray(parsed) && parsed.every(isMessage) ? parsed : []
+    return parseConversation(window.sessionStorage.getItem(STORAGE_KEY))
   } catch {
     return []
   }
@@ -105,7 +41,12 @@ function loadConversation(): Message[] {
 function saveConversation(messages: ReadonlyArray<Message>): void {
   try {
     if (messages.length === 0) window.sessionStorage.removeItem(STORAGE_KEY)
-    else window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
+    else {
+      window.sessionStorage.setItem(
+        STORAGE_KEY,
+        serializeConversation(messages)
+      )
+    }
   } catch {
     // Private mode or blocked storage: the chat still works, it just won't
     // survive a reload.
@@ -235,41 +176,33 @@ function Assistant() {
     const controller = new AbortController()
     requestRef.current = controller
 
-    let reply: Message
-    const failure = (content: string): Message => ({
+    const notice = (content: string): Message => ({
       role: "assistant",
       content,
     })
+    let reply: Message
     try {
       const res = await fetch("/api/assistant", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // The route accepts a bounded window and trims it further. Sending the
-        // whole history used to break the chat on the ninth question, when the
-        // array outgrew the request contract and every send became a 400.
-        body: JSON.stringify({
-          messages: history
-            .slice(-ASSISTANT_HISTORY_INPUT_MESSAGES)
-            .map(({ role, content }) => ({ role, content })),
-          locale,
-        }),
+        body: JSON.stringify({ messages: requestMessages(history), locale }),
         signal: controller.signal,
       })
       if (requestRef.current !== controller) return
       if (res.status === 429) {
-        reply = failure(t("rateLimited"))
+        reply = notice(t("rateLimited"))
       } else if (res.status === 503) {
-        reply = failure(t("unavailable", { email: contactEmail() }))
+        reply = notice(t("unavailable", { email: contactEmail() }))
       } else if (!res.ok) {
-        reply = failure(t("error", { email: contactEmail() }))
+        reply = notice(t("error", { email: contactEmail() }))
       } else {
         reply =
-          readSuccess(await res.json()) ??
-          failure(t("error", { email: contactEmail() }))
+          readReply(await res.json()) ??
+          notice(t("error", { email: contactEmail() }))
       }
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return
-      reply = failure(t("error", { email: contactEmail() }))
+      reply = notice(t("error", { email: contactEmail() }))
     }
 
     if (requestRef.current !== controller) return

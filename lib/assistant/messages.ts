@@ -1,4 +1,9 @@
-import type { ChatMessage } from "@/types/assistant"
+import { isSignedReply } from "@/lib/assistant/signature"
+import type { ChatMessage, ModelMessage } from "@/types/assistant"
+
+// Only replies this server signed may go back to the model as its own words.
+const isAuthenticReply = (message: ChatMessage): boolean =>
+  isSignedReply(message.content, message.signature)
 
 export function sanitizeMessages(
   messages: ReadonlyArray<ChatMessage>,
@@ -6,8 +11,9 @@ export function sanitizeMessages(
   maxChars: number,
   // The latest user turn may carry a pasted job offer; earlier turns are only
   // context and stay short.
-  lastMaxChars: number = maxChars
-): ChatMessage[] | null {
+  lastMaxChars: number = maxChars,
+  isAuthentic: (message: ChatMessage) => boolean = isAuthenticReply
+): ModelMessage[] | null {
   const turnLimit = Math.max(1, Math.floor(maxTurns))
   const charLimit = Math.max(1, Math.floor(maxChars))
   const wasTrimmed = messages.length > turnLimit
@@ -29,12 +35,24 @@ export function sanitizeMessages(
     if (recent[index]?.role !== expectedRole) return null
   }
 
+  // An assistant turn without a valid signature was written by the client
+  // (or is a local error notice the browser showed). It is dropped together
+  // with the question it claims to answer, so the history still alternates.
+  const authentic: ChatMessage[] = []
+  for (let index = 0; index < recent.length; index += 2) {
+    const question = recent[index]
+    const reply = recent[index + 1]
+    if (!question) continue
+    if (!reply) authentic.push(question)
+    else if (isAuthentic(reply)) authentic.push(question, reply)
+  }
+
   const lastLimit = Math.max(charLimit, Math.floor(lastMaxChars))
-  return recent.map(({ role, content }, index) => ({
+  return authentic.map(({ role, content }, index) => ({
     role,
     content: content.slice(
       0,
-      index === recent.length - 1 ? lastLimit : charLimit
+      index === authentic.length - 1 ? lastLimit : charLimit
     ),
   }))
 }

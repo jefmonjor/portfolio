@@ -82,6 +82,25 @@ function clip(value: string, maxChars: number): string {
   return `${cut.slice(0, boundary > 0 ? boundary : undefined)}…`
 }
 
+// The offer reaches the model between <job_offer> tags. A pasted text that
+// closes the tag itself could put words outside the data block, so any tag
+// with that name (any case, any spacing) is removed first — repeatedly, so
+// removing one cannot assemble another out of the pieces around it.
+const OFFER_DELIMITER = /<\s*\/?\s*job_offer\b[^>]*>/gi
+
+export function neutralizeOfferDelimiters(text: string): string {
+  let current = text
+  for (;;) {
+    const next = current.replace(OFFER_DELIMITER, "")
+    if (next === current) return current
+    current = next
+  }
+}
+
+export function wrapJobOffer(offer: string): string {
+  return `<job_offer>\n${neutralizeOfferDelimiters(offer)}\n</job_offer>`
+}
+
 export function looksLikeJobOffer(text: string): boolean {
   const trimmed = text.trim()
   if (trimmed.length < 200) return false

@@ -5,6 +5,7 @@ import {
   ASSISTANT_HISTORY_INPUT_MESSAGES,
   ASSISTANT_MESSAGE_INPUT_CHARS,
   ASSISTANT_REPLY_MAX_CHARS,
+  ASSISTANT_SIGNATURE_MAX_CHARS,
   CV_TAILOR_OFFER_MIN_CHARS,
 } from "@/types/limits"
 
@@ -18,6 +19,9 @@ export const assistantLocaleSchema = z.preprocess((value) => {
 export const chatMessageSchema = z.object({
   role: z.enum(["user", "assistant"]),
   content: z.string().trim().min(1).max(ASSISTANT_MESSAGE_INPUT_CHARS),
+  // The HMAC the server returned with an assistant reply. A missing or wrong
+  // one is not a 400: sanitizeMessages drops that turn and carries on.
+  signature: z.string().max(ASSISTANT_SIGNATURE_MAX_CHARS).optional(),
 })
 
 export const assistantRequestSchema = z
@@ -58,11 +62,15 @@ export type AssistantAction = z.infer<typeof assistantActionSchema>
 export const assistantSuccessSchema = z
   .object({
     reply: z.string().trim().min(1).max(ASSISTANT_REPLY_MAX_CHARS),
+    signature: z.string().min(1).max(ASSISTANT_SIGNATURE_MAX_CHARS),
     actions: z.array(assistantActionSchema).max(3).optional(),
   })
   .strict()
 
 export type ChatMessage = z.infer<typeof chatMessageSchema>
+
+// What reaches the model: role and text, never the signature.
+export type ModelMessage = Pick<ChatMessage, "role" | "content">
 
 // What the model returns when the latest message is a job offer. Plain
 // strings and arrays only (Structured Outputs rejects length bounds); every

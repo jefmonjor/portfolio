@@ -7,7 +7,8 @@ import type { AssistantAction, ChatMessage } from "@/types/assistant"
 // and the reply only has to say which is which. The actions travel with the
 // reply so the client can call those routes from the chat itself.
 
-const CV_WORDS = /\b(cv|curr[ií]cul[uo]m|curriculum|r[ée]sum[ée]|resume)\b/iu
+const CV_WORDS =
+  /(?<!\p{L})(?:cv|curr[ií]cul[uo]m|résumé|résume|resumé|(?:his|her|your|the|a|my|their|full)\s+resume)(?!\p{L})/iu
 // Longer messages are questions (or offers) that mention the CV in passing.
 const CV_REQUEST_MAX_CHARS = 400
 

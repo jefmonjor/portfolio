@@ -5,17 +5,16 @@
 // saving it as a blob works from every browser; a detached `target="_blank"`
 // link is dropped as a popup by Safari and most mobile browsers.
 
-export type CvVariant = "general" | "technical"
+import { resolveLocale } from "@/i18n/routing"
+import { cvPdfPath, type CvPdfVariantName } from "@/lib/cv-pdf"
+
+export type CvVariant = CvPdfVariantName
 
 export type CvDownloadError = "rate_limited" | "unavailable" | "failed"
 
 export type CvDownloadResult =
   | { readonly ok: true; readonly filename: string }
   | { readonly ok: false; readonly error: CvDownloadError }
-
-export function cvPdfUrl(locale: string, variant: CvVariant): string {
-  return `/cv.pdf?locale=${locale}&variant=${variant}`
-}
 
 function isPdf(response: Response): boolean {
   return (
@@ -60,7 +59,9 @@ export async function downloadCv(
   locale: string,
   signal?: AbortSignal
 ): Promise<CvDownloadResult> {
-  const response = await fetch(cvPdfUrl(locale, variant), { signal })
+  const response = await fetch(cvPdfPath(resolveLocale(locale), variant), {
+    signal,
+  })
   return save(response, locale)
 }
 

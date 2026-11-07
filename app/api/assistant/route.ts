@@ -18,18 +18,27 @@ import {
 import { sanitizeMessages } from "@/lib/assistant/messages"
 import {
   looksLikeJobOffer,
+  neutralizeOfferDelimiters,
   renderOfferAnalysis,
   verifyOfferAnalysis,
+  wrapJobOffer,
 } from "@/lib/assistant/offer"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
+import { signReply } from "@/lib/assistant/signature"
 import { contactEmail } from "@/lib/email"
+import { readJsonBody } from "@/server/http/read-json-body"
+import { rejectForeignRequest } from "@/server/http/same-origin"
 import {
   assistantRequestSchema,
   assistantSuccessSchema,
   offerAnalysisModelOutputSchema,
-  type ChatMessage,
+  type AssistantAction,
+  type ModelMessage,
 } from "@/types/assistant"
-import { ASSISTANT_MESSAGE_INPUT_CHARS } from "@/types/limits"
+import {
+  ASSISTANT_BODY_MAX_BYTES,
+  ASSISTANT_MESSAGE_INPUT_CHARS,
+} from "@/types/limits"
 
 export const runtime = "nodejs"
 
@@ -63,6 +72,33 @@ const VERBOSITY = enumEnv(
   "low"
 )
 
+// The SDK default is a 10-minute timeout with two retries. A chat answer that
+// has not arrived in 20 s is not coming, and every retry is paid again.
+const OPENAI_TIMEOUT_MS = 20_000
+const OPENAI_MAX_RETRIES = 1
+
+// What a call cost, as OpenAI reports it. A response without usage is charged
+// its output budget so it never counts as free.
+function tokensSpent(
+  response: { usage?: { total_tokens?: number } | null },
+  outputBudget: number
+): number {
+  return response.usage?.total_tokens ?? outputBudget
+}
+
+function reply(
+  text: string,
+  actions?: ReadonlyArray<AssistantAction>
+): Response {
+  return NextResponse.json(
+    assistantSuccessSchema.parse({
+      reply: text,
+      signature: signReply(text),
+      ...(actions ? { actions } : {}),
+    })
+  )
+}
+
 function enumEnv<T extends string>(
   name: string,
   allowed: readonly T[],
@@ -73,14 +109,18 @@ function enumEnv<T extends string>(
 }
 
 export async function POST(request: Request) {
-  let input: unknown
-  try {
-    input = await request.json()
-  } catch {
-    return NextResponse.json({ error: "bad_request" }, { status: 400 })
+  const foreign = rejectForeignRequest(request)
+  if (foreign) return foreign
+
+  const body = await readJsonBody(request, ASSISTANT_BODY_MAX_BYTES)
+  if (!body.ok) {
+    return NextResponse.json(
+      { error: body.status === 413 ? "too_large" : "bad_request" },
+      { status: body.status }
+    )
   }
 
-  const parsed = assistantRequestSchema.safeParse(input)
+  const parsed = assistantRequestSchema.safeParse(body.value)
   if (!parsed.success) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
@@ -98,32 +138,27 @@ export async function POST(request: Request) {
   const locale = parsed.data.locale
   const latest = messages.at(-1)?.content ?? ""
 
-  // Handing out the CV needs no model and no key: the variants are fixed and
-  // the files come from the CV routes, so the reply is written here and the
-  // buttons call those routes from the chat.
   if (!looksLikeJobOffer(latest) && asksForCv(latest)) {
-    const offer = lastOffer(messages)
-    return NextResponse.json(
-      assistantSuccessSchema.parse({
-        reply: cvReply(locale, offer !== null),
-        actions: cvActions(offer),
-      })
-    )
+    const offer = lastOffer(parsed.data.messages)
+    return reply(cvReply(locale, offer !== null), cvActions(offer))
   }
 
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 })
   }
 
-  if (checkLimit(requestIp(request)) !== "ok") {
+  if ((await checkLimit(requestIp(request))) !== "ok") {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 })
   }
 
-  const client = new OpenAI()
+  const client = new OpenAI({
+    timeout: OPENAI_TIMEOUT_MS,
+    maxRetries: OPENAI_MAX_RETRIES,
+  })
 
   try {
     if (looksLikeJobOffer(latest)) {
-      const reply = await compareOffer(client, latest, locale).catch(
+      const comparison = await compareOffer(client, latest, locale).catch(
         (error: unknown) => {
           if (error instanceof OpenAI.RateLimitError) throw error
           // The structured pass is a safeguard, not a dependency: if it
@@ -134,14 +169,10 @@ export async function POST(request: Request) {
           return null
         }
       )
-      if (reply) {
-        // The comparison is the moment a tailored CV makes sense: the offer
-        // goes back with the reply so one click renders it.
-        return NextResponse.json(
-          assistantSuccessSchema.parse({
-            reply: `${reply}\n\n${offerCvHint(locale)}`,
-            actions: cvActions(latest),
-          })
+      if (comparison) {
+        return reply(
+          `${comparison}\n\n${offerCvHint(locale)}`,
+          cvActions(latest)
         )
       }
       // Not an offer after all, or nothing survived verification: answer it
@@ -157,15 +188,16 @@ export async function POST(request: Request) {
       text: { verbosity: VERBOSITY },
       store: false,
     })
+    await checkLimit.recordUsage(tokensSpent(response, MAX_OUTPUT_TOKENS))
 
     if (response.status !== "completed") {
       return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
-    const reply = response.output_text?.trim()
-    if (!reply) {
+    const text = response.output_text?.trim()
+    if (!text) {
       return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
-    return NextResponse.json(assistantSuccessSchema.parse({ reply }))
+    return reply(text)
   } catch (error) {
     if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json({ error: "rate_limited" }, { status: 429 })
@@ -179,12 +211,15 @@ async function compareOffer(
   offer: string,
   locale: Locale
 ): Promise<string | null> {
+  // What the model sees and what its requirements are checked against must
+  // be the same text.
+  const text = neutralizeOfferDelimiters(offer)
   const response = await client.responses.parse({
     model: MODEL,
     instructions: buildOfferAnalysisPrompt(locale),
     input: [
-      { role: "user", content: `<job_offer>\n${offer}\n</job_offer>` },
-    ] satisfies ChatMessage[],
+      { role: "user", content: wrapJobOffer(text) },
+    ] satisfies ModelMessage[],
     max_output_tokens: OFFER_MAX_OUTPUT_TOKENS,
     reasoning: { effort: REASONING },
     text: {
@@ -193,11 +228,14 @@ async function compareOffer(
     },
     store: false,
   })
+  // Spent whether or not the comparison survives: a turn that falls back to
+  // the normal chat pays for both calls.
+  await checkLimit.recordUsage(tokensSpent(response, OFFER_MAX_OUTPUT_TOKENS))
   if (response.status !== "completed" || !response.output_parsed) return null
 
   const verified = verifyOfferAnalysis(
     response.output_parsed,
-    offer,
+    text,
     buildDossier(locale)
   )
   return verified ? renderOfferAnalysis(verified, locale, contactEmail()) : null

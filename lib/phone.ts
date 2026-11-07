@@ -1,14 +1,8 @@
-// Contact phones assembled at call time, like the email: the numbers go only
-// into the downloadable CVs (server-rendered on demand) and must never appear
-// as literals in the static HTML, the JS bundle or the crawlable exports.
-// Built from char codes because the minifier constant-folds string joins.
 const CODES: ReadonlyArray<{
   readonly region: "ES" | "AD"
   readonly codes: ReadonlyArray<number>
 }> = [
-  // +34 615 059 743
   { region: "ES", codes: [43, 51, 52, 54, 49, 53, 48, 53, 57, 55, 52, 51] },
-  // +376 388 737
   { region: "AD", codes: [43, 51, 55, 54, 51, 56, 56, 55, 51, 55] },
 ]
 
@@ -16,7 +10,7 @@ export type ContactPhone = {
   readonly region: "ES" | "AD"
   /** E.164, for tel: links. */
   readonly tel: string
-  /** Grouped for reading: "+34 615 059 743". */
+  /** Grouped in threes for reading, after the country code. */
   readonly display: string
 }
 

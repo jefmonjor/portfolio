@@ -9,7 +9,7 @@ Portfolio y CV trilingüe de Jefferson Montesdeoca: Product Engineer con foco en
 ## Qué tiene dentro
 
 - **Asistente de IA acotado** — chat sobre el perfil usando la API de OpenAI (`gpt-5-mini`, Responses API) y un dossier público cerrado. Distingue el cargo actual del posicionamiento objetivo, trata las ofertas pegadas como datos no fiables y reconoce cuándo falta información. Al pegar una oferta, solo cuenta como coincidencia lo que el servidor puede verificar con una cita literal del dossier; el resto aparece como "por confirmar".
-- **Control de consumo** — rate limiting por IP (minuto y día) más un techo global diario compartido por las funciones de IA, configurable mediante variables de entorno.
+- **Control de consumo** — límite por IP (minuto y día), un techo diario de peticiones y un presupuesto diario de tokens (lo que OpenAI factura de verdad, sumando las dos llamadas que puede hacer una pregunta con oferta) para todas las funciones de IA juntas. Qué alcance tienen depende de dónde se guardan los contadores; ver [Límites: qué es global y qué no](#límites-qué-es-global-y-qué-no).
 - **Tres CV con propósito distinto** — general editorial, técnico de una columna y **según oferta**. En el último, Structured Outputs solo puede seleccionar términos y proyectos de listas canónicas; el servidor filtra la selección, construye el resumen desde textos verificados y genera el PDF sin aceptar contenido del modelo desde el navegador.
 - **PDFs generados en servidor** con `@react-pdf/renderer` — misma fuente de datos que la web, siempre sincronizados.
 - **El CV también en formato máquina** — [`/cv.md`](https://www.jefmonjor.dev/cv.md) en texto plano y [`/cv.json`](https://www.jefmonjor.dev/cv.json) en [MAC](https://github.com/getmanfred/mac), el esquema abierto de CV que usan varias plataformas de recruiting. Un agente lo lee sin descargar un PDF; el email nunca aparece en estas superficies.
@@ -26,22 +26,47 @@ Next.js 16 (App Router + Turbopack) · Node 24 LTS · TypeScript estricto · Tai
 
 Solo una es necesaria para activar la IA; el resto tienen valores por defecto seguros.
 
-| Variable                                         | Por defecto       | Qué hace                                                                                                             |
-| ------------------------------------------------ | ----------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `OPENAI_API_KEY`                                 | —                 | Activa el asistente y el adaptador de CV. Sin ella, la web funciona igual y el chat muestra un aviso con el email.   |
-| `ASSISTANT_MODEL`                                | `gpt-5-mini`      | Modelo de OpenAI.                                                                                                    |
-| `ASSISTANT_MAX_OUTPUT_TOKENS`                    | `500`             | Tokens de salida por respuesta.                                                                                      |
-| `ASSISTANT_MAX_TURNS` / `ASSISTANT_MAX_CHARS`    | `8` / `800`       | Historial y tamaño de mensaje.                                                                                       |
-| `ASSISTANT_MAX_OFFER_CHARS`                      | `8000`            | Tamaño máximo del último mensaje (una oferta pegada); el historial anterior sigue recortado a `ASSISTANT_MAX_CHARS`. |
-| `ASSISTANT_OFFER_MAX_OUTPUT_TOKENS`              | `1600`            | Presupuesto de la comparación estructurada de ofertas en el chat.                                                    |
-| `ASSISTANT_RATE_MINUTE` / `ASSISTANT_RATE_DAILY` | `4` / `20`        | Límites por visitante.                                                                                               |
-| `ASSISTANT_GLOBAL_DAILY`                         | `300`             | Techo global diario de peticiones de IA (todas las funciones).                                                       |
-| `ASSISTANT_REASONING` / `ASSISTANT_VERBOSITY`    | `minimal` / `low` | Latencia y estilo de las respuestas.                                                                                 |
-| `CV_TAILOR_MODEL`                                | `gpt-5.6-luna`    | Modelo del CV adaptado. Solo selecciona evidencia del dossier, así que corre en el tramo barato.                     |
-| `CV_TAILOR_FALLBACK_MODEL`                       | `gpt-5-mini`      | Modelo de respaldo si la cuenta no tiene acceso al anterior (404).                                                   |
-| `CV_TAILOR_MAX_OFFER_CHARS`                      | `24000`           | Tamaño máximo de la oferta pegada (~4.000 palabras).                                                                 |
-| `CV_TAILOR_MAX_OUTPUT_TOKENS`                    | `2000`            | Presupuesto de salida del paso de selección (incluye los tokens de razonamiento).                                    |
-| `CV_TAILOR_REASONING`                            | `none`            | Esfuerzo de razonamiento al seleccionar la evidencia del CV adaptado.                                                |
+| Variable                                              | Por defecto       | Qué hace                                                                                                                                                       |
+| ----------------------------------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `OPENAI_API_KEY`                                      | —                 | Activa el asistente y el adaptador de CV. Sin ella, la web funciona igual y el chat muestra un aviso con el email.                                             |
+| `ASSISTANT_MODEL`                                     | `gpt-5-mini`      | Modelo de OpenAI.                                                                                                                                              |
+| `ASSISTANT_MAX_OUTPUT_TOKENS`                         | `500`             | Tokens de salida por respuesta.                                                                                                                                |
+| `ASSISTANT_MAX_TURNS` / `ASSISTANT_MAX_CHARS`         | `8` / `800`       | Historial y tamaño de mensaje.                                                                                                                                 |
+| `ASSISTANT_MAX_OFFER_CHARS`                           | `8000`            | Tamaño máximo del último mensaje (una oferta pegada); el historial anterior sigue recortado a `ASSISTANT_MAX_CHARS`.                                           |
+| `ASSISTANT_OFFER_MAX_OUTPUT_TOKENS`                   | `1600`            | Presupuesto de la comparación estructurada de ofertas en el chat.                                                                                              |
+| `ASSISTANT_RATE_MINUTE` / `ASSISTANT_RATE_DAILY`      | `4` / `20`        | Límites por visitante (IP), por minuto y por día UTC.                                                                                                          |
+| `ASSISTANT_GLOBAL_DAILY`                              | `300`             | Techo diario de peticiones de IA (chat y CV adaptado juntos). Alcance: ver la sección de límites.                                                              |
+| `ASSISTANT_GLOBAL_DAILY_TOKENS`                       | `1500000`         | Presupuesto diario de tokens (entrada + salida, según `usage` de OpenAI) de todas las funciones de IA.                                                         |
+| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | —                 | **Opcionales.** Si están las dos, los contadores viven en Upstash Redis y valen para todas las instancias. Si Redis falla, la IA responde 429 (falla cerrada). |
+| `ASSISTANT_SIGNING_SECRET`                            | —                 | **Opcional.** Clave para firmar las respuestas del asistente. Sin ella se deriva (HKDF) de `OPENAI_API_KEY`.                                                   |
+| `CV_PDF_RATE_MINUTE` / `CV_PDF_RATE_DAILY`            | `20` / `200`      | Límite por IP de `GET /cv.pdf`, en un cubo propio.                                                                                                             |
+| `ASSISTANT_REASONING` / `ASSISTANT_VERBOSITY`         | `minimal` / `low` | Latencia y estilo de las respuestas.                                                                                                                           |
+| `CV_TAILOR_MODEL`                                     | `gpt-5.6-luna`    | Modelo del CV adaptado. Solo selecciona evidencia del dossier, así que corre en el tramo barato.                                                               |
+| `CV_TAILOR_FALLBACK_MODEL`                            | `gpt-5-mini`      | Modelo de respaldo si la cuenta no tiene acceso al anterior (404).                                                                                             |
+| `CV_TAILOR_MAX_OFFER_CHARS`                           | `24000`           | Tamaño máximo de la oferta pegada (~4.000 palabras).                                                                                                           |
+| `CV_TAILOR_MAX_OUTPUT_TOKENS`                         | `2000`            | Presupuesto de salida del paso de selección (incluye los tokens de razonamiento).                                                                              |
+| `CV_TAILOR_REASONING`                                 | `none`            | Esfuerzo de razonamiento al seleccionar la evidencia del CV adaptado.                                                                                          |
+
+### Límites: qué es global y qué no
+
+Los contadores se guardan en Upstash Redis si `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN` existen, y si no en la memoria del proceso. Eso decide su alcance:
+
+| Despliegue                              | Límite por IP                                       | Techo de peticiones y presupuesto de tokens                     |
+| --------------------------------------- | --------------------------------------------------- | --------------------------------------------------------------- |
+| Vercel (producción hoy) **sin** Upstash | Por instancia; se reinicia en cada arranque en frío | Por instancia: con N instancias vivas, hasta N veces cada cifra |
+| Vercel **con** Upstash                  | Global                                              | Global                                                          |
+| Docker en un servidor (un contenedor)   | Global (un solo proceso)                            | Global; se reinicia al reiniciar el contenedor                  |
+| Docker con Upstash                      | Global                                              | Global y persistente entre reinicios                            |
+
+Las ventanas son fijas (minuto y día UTC). En cualquier caso, el tope de gasto del panel de OpenAI sigue siendo la última barrera.
+
+Otras protecciones que no dependen de dónde se despliegue:
+
+- La IP se toma de `x-vercel-forwarded-for` en Vercel y, fuera de Vercel, del **último** valor de `X-Forwarded-For` (el que añade el proxy propio), con `X-Real-IP` como alternativa. Ver el bloque de nginx en [`docs/DEPLOY.md`](docs/DEPLOY.md).
+- `POST /api/assistant` y `POST /api/cv-tailor` responden 413 a un cuerpo mayor que el máximo que admite su contrato (~403 KiB y ~71 KiB), antes de leerlo entero.
+- Cada respuesta del asistente va firmada (HMAC-SHA256); el historial que reenvía el navegador solo llega al modelo con las respuestas cuya firma verifica.
+- `GET /cv.pdf` redirige (308) cualquier query que no sea la canónica, renderiza cada uno de los seis PDF una vez por proceso y tiene su propio límite por IP.
+- El cliente de OpenAI corta a los 20 s (chat) o 30 s (CV adaptado), con un reintento como máximo.
 
 ## Ejecutar en local
 
@@ -56,8 +81,8 @@ pnpm build        # build de producción
 
 ## Despliegue
 
-- **Vercel** — despliegue automático de `main` y previews por PR.
-- **GitHub Actions** — CI (lint, typecheck, build) en cada PR, y workflow de despliegue por Docker + SSH a VPS propio (netcup), listo para activar con los secretos `SSH_HOST`, `SSH_USER` y `SSH_KEY`. Detalles en [`docs/DEPLOY.md`](docs/DEPLOY.md).
+- **Vercel** — producción (`www.jefmonjor.dev`): despliegue automático de `main` y previews por PR.
+- **GitHub Actions** — CI (auditoría de dependencias de producción, lint, tests, typecheck, build) en cada PR; Dependabot semanal para npm y mensual para las acciones. El workflow `Deploy` publica además una imagen Docker en GHCR en cada push a `main`; el paso de despliegue por SSH a un VPS propio (netcup) se salta mientras no existan los secretos `SSH_HOST`, `SSH_USER` y `SSH_KEY`. Detalles en [`docs/DEPLOY.md`](docs/DEPLOY.md).
 
 ## Estructura
 

@@ -17,12 +17,15 @@ describe("asksForCv", () => {
   it("recognizes a request for the CV in the three locales", () => {
     expect(asksForCv("¿Me pasas tu CV?")).toBe(true)
     expect(asksForCv("Can I get his resume?")).toBe(true)
+    expect(asksForCv("Send me the résumé")).toBe(true)
     expect(asksForCv("Vull el currículum en PDF")).toBe(true)
     expect(asksForCv("cv")).toBe(true)
   })
 
   it("leaves questions and offers to the model", () => {
     expect(asksForCv("¿Qué experiencia tiene en banca?")).toBe(false)
+    expect(asksForCv("Resume lo anterior.")).toBe(false)
+    expect(asksForCv("Resume su experiencia en banca")).toBe(false)
     expect(asksForCv("")).toBe(false)
     expect(asksForCv(`${OFFER}\n¿Encaja el CV?`.repeat(2))).toBe(false)
   })

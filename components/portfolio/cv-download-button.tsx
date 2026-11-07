@@ -15,6 +15,8 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
+import { resolveLocale } from "@/i18n/routing"
+import { cvPdfPath } from "@/lib/cv-pdf"
 import {
   Dialog,
   DialogContent,
@@ -22,7 +24,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import {
-  cvPdfUrl,
   downloadCv,
   downloadTailoredCv,
   type CvDownloadError,
@@ -177,7 +178,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     return run(
       variant,
       (signal) => downloadCv(variant, locale, signal),
-      cvPdfUrl(locale, variant)
+      cvPdfPath(resolveLocale(locale), variant)
     )
   }
 
