@@ -29,8 +29,8 @@ export default async function WorkPage({ params }: SitePageProps) {
         <CaseDeck
           locale={locale}
           cases={work.cases}
+          labels={work.labels}
           readLabel={content.selectedWork.readCase}
-          stackLabel={work.labels.stack}
           headingLevel="h2"
         />
       </div>

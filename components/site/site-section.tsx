@@ -3,11 +3,18 @@ import { cn } from "@/lib/utils"
 type SiteSectionProps = {
   id: string
   title: string
+  aside?: React.ReactNode
   children: React.ReactNode
   className?: string
 }
 
-function SiteSection({ id, title, children, className }: SiteSectionProps) {
+function SiteSection({
+  id,
+  title,
+  aside,
+  children,
+  className,
+}: SiteSectionProps) {
   const headingId = `${id}-title`
 
   return (
@@ -20,12 +27,15 @@ function SiteSection({ id, title, children, className }: SiteSectionProps) {
         className
       )}
     >
-      <h2
-        id={headingId}
-        className="self-start font-heading text-title-h4 text-text-strong-950 lg:sticky lg:top-24"
-      >
-        {title}
-      </h2>
+      <div className="self-start lg:sticky lg:top-24">
+        <h2
+          id={headingId}
+          className="font-heading text-title-h4 text-text-strong-950"
+        >
+          {title}
+        </h2>
+        {aside}
+      </div>
       <div className="min-w-0">{children}</div>
     </section>
   )

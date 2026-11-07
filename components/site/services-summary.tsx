@@ -8,8 +8,10 @@ import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react"
 
 import { ArrowLink } from "@/components/site/arrow-link"
 import { ContactButton } from "@/components/site/contact-button"
+import { ProcessSteps } from "@/components/site/process-steps"
 import type { ServiceId, SiteContent } from "@/content/site/types"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
+import { twoDigits } from "@/lib/numbering"
 
 const serviceIcons = {
   advisory: DocumentValidationIcon,
@@ -27,18 +29,20 @@ function ServicesSummary({ locale, services, cta }: ServicesSummaryProps) {
   return (
     <div className="flex flex-col gap-10">
       <ul className="service-deal grid md:grid-cols-3">
-        {services.items.map((service) => (
+        {services.items.map((service, index) => (
           <li key={service.id} className="site-card flex flex-col p-6">
-            <span
-              aria-hidden
-              className="flex size-10 items-center justify-center rounded-10 bg-bg-weak-50 text-icon-sub-600 ring-1 ring-stroke-soft-200 ring-inset"
-            >
-              <HugeiconsIcon
-                icon={serviceIcons[service.id]}
-                className="size-5"
-                strokeWidth={1.5}
-              />
-            </span>
+            <div aria-hidden className="flex items-start justify-between">
+              <span className="flex size-10 items-center justify-center rounded-10 bg-bg-weak-50 text-icon-sub-600 ring-1 ring-stroke-soft-200 ring-inset">
+                <HugeiconsIcon
+                  icon={serviceIcons[service.id]}
+                  className="size-5"
+                  strokeWidth={1.5}
+                />
+              </span>
+              <span className="text-label-xs text-text-soft-400 tabular-nums">
+                {twoDigits(index + 1)}
+              </span>
+            </div>
             <h3 className="mt-5 font-heading text-title-h5 text-text-strong-950">
               {service.name}
             </h3>
@@ -59,6 +63,12 @@ function ServicesSummary({ locale, services, cta }: ServicesSummaryProps) {
           </li>
         ))}
       </ul>
+      <div className="flex flex-col gap-6">
+        <h3 className="font-heading text-title-h5 text-text-strong-950">
+          {services.startTitle}
+        </h3>
+        <ProcessSteps steps={services.startSteps} />
+      </div>
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
         <ContactButton locale={locale} label={cta} />
         <ArrowLink

@@ -1,6 +1,7 @@
 import { ArrowLink } from "@/components/site/arrow-link"
 import { CaseDeck } from "@/components/site/case-deck"
 import { ContactBlock } from "@/components/site/contact-block"
+import { DeckCounter } from "@/components/site/deck-counter"
 import { ExperienceTimeline } from "@/components/site/experience-timeline"
 import { Hero } from "@/components/site/hero"
 import { RichText } from "@/components/site/rich-text"
@@ -35,12 +36,17 @@ export default async function HomePage({ params }: SitePageProps) {
         </div>
       </SiteSection>
 
-      <SiteSection id="work" title={content.selectedWork.title}>
+      <SiteSection
+        id="work"
+        title={content.selectedWork.title}
+        aside={<DeckCounter total={content.work.cases.length} />}
+        className="case-deck-scope"
+      >
         <CaseDeck
           locale={locale}
           cases={content.work.cases}
+          labels={content.work.labels}
           readLabel={content.selectedWork.readCase}
-          stackLabel={content.work.labels.stack}
           stacked
         />
         <ArrowLink href={localizedPath(locale, "/work")} className="mt-8">

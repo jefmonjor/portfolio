@@ -1,26 +1,22 @@
 import { CaseCard } from "@/components/site/case-card"
-import type { CaseStudy } from "@/content/site/types"
+import type { CaseStudy, SiteContent } from "@/content/site/types"
 import type { SiteLocale } from "@/i18n/routing"
+import { twoDigits } from "@/lib/numbering"
 
 type CaseDeckProps = {
   locale: SiteLocale
   cases: ReadonlyArray<CaseStudy>
+  labels: SiteContent["work"]["labels"]
   readLabel: string
-  stackLabel: string
   stacked?: boolean
   headingLevel?: "h2" | "h3"
-}
-
-function caseOrder(index: number, total: number): string {
-  const pad = (value: number) => String(value).padStart(2, "0")
-  return `${pad(index + 1)} / ${pad(total)}`
 }
 
 function CaseDeck({
   locale,
   cases,
+  labels,
   readLabel,
-  stackLabel,
   stacked = false,
   headingLevel,
 }: CaseDeckProps) {
@@ -31,9 +27,9 @@ function CaseDeck({
           <CaseCard
             locale={locale}
             study={study}
-            order={caseOrder(index, cases.length)}
+            order={`${twoDigits(index + 1)} / ${twoDigits(cases.length)}`}
+            labels={labels}
             readLabel={readLabel}
-            stackLabel={stackLabel}
             headingLevel={headingLevel}
           />
         </li>

@@ -808,6 +808,162 @@ html:has(#site-menu:popover-open) {
   }
 }
 
+.case-flow > li + li {
+  position: relative;
+  padding-top: 0.625rem;
+}
+
+.case-flow > li + li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+  width: 1px;
+  height: 0.625rem;
+  background: var(--stroke-sub-300);
+  transform-origin: top;
+}
+
+.case-flow > li:last-child > span {
+  background: var(--primary-alpha-10);
+  box-shadow: inset 0 0 0 1px var(--primary-base);
+  color: var(--text-strong-950);
+}
+
+.case-flow > li:nth-child(2) {
+  --flow-step: 1;
+}
+
+.case-flow > li:nth-child(3) {
+  --flow-step: 2;
+}
+
+.case-flow > li:nth-child(4) {
+  --flow-step: 3;
+}
+
+.case-flow > li:nth-child(5) {
+  --flow-step: 4;
+}
+
+.case-flow > li:nth-child(6) {
+  --flow-step: 5;
+}
+
+.deck-counter {
+  display: none;
+}
+
+.deck-counter-window {
+  --count-step: 1.2em;
+  display: inline-block;
+  height: var(--count-step);
+  overflow: hidden;
+  line-height: var(--count-step);
+}
+
+.deck-counter-strip {
+  display: flex;
+  flex-direction: column;
+}
+
+.deck-progress {
+  position: relative;
+  height: 2px;
+  border-radius: 9999px;
+  background: var(--stroke-soft-200);
+}
+
+.deck-progress::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--primary-base);
+  transform-origin: left;
+  scale: 0 1;
+}
+
+.process-steps {
+  --marker: 2rem;
+  position: relative;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.process-steps > li {
+  position: relative;
+  min-height: var(--marker);
+  padding-inline-start: calc(var(--marker) + 1rem);
+}
+
+.process-steps > li:nth-child(2) {
+  --step-at: 0.5;
+}
+
+.process-steps > li:nth-child(3) {
+  --step-at: 1;
+}
+
+.process-steps::before,
+.process-steps::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--marker) / 2);
+  bottom: calc(var(--marker) / 2);
+  left: calc(var(--marker) / 2);
+  width: 1px;
+  background: var(--stroke-soft-200);
+}
+
+.process-steps::after {
+  --fill-from: 1 0;
+  background: var(--primary-base);
+  transform-origin: top;
+  scale: var(--fill-from);
+}
+
+.process-marker {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--marker);
+  height: var(--marker);
+  border-radius: 9999px;
+  background: var(--bg-white-0);
+  box-shadow: inset 0 0 0 1px var(--stroke-soft-200);
+  color: var(--text-sub-600);
+  font-size: var(--text-label-xs);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (width >= 48rem) {
+  .process-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+  .process-steps > li {
+    padding-inline-start: 0;
+    padding-top: calc(var(--marker) + 1rem);
+  }
+  .process-steps::before,
+  .process-steps::after {
+    bottom: auto;
+    right: calc((100% - 4rem) / 3 - var(--marker) / 2);
+    width: auto;
+    height: 1px;
+  }
+  .process-steps::after {
+    --fill-from: 0 1;
+    transform-origin: left;
+  }
+}
+
 .service-deal {
   --deal-gap: 1rem;
   gap: var(--deal-gap);
@@ -878,6 +1034,41 @@ html:has(#site-menu:popover-open) {
   from {
     translate: var(--deal-x) 2.5rem;
     rotate: var(--deal-tilt);
+  }
+}
+
+@keyframes flow-in {
+  from {
+    translate: -0.5rem 0;
+  }
+}
+
+@keyframes deck-count {
+  0%,
+  18% {
+    translate: 0 0;
+  }
+  30%,
+  48% {
+    translate: 0 calc(-1 * var(--count-step));
+  }
+  60%,
+  100% {
+    translate: 0 calc(-2 * var(--count-step));
+  }
+}
+
+@keyframes fill-line {
+  to {
+    scale: 1 1;
+  }
+}
+
+@keyframes marker-on {
+  to {
+    background: color-mix(in srgb, var(--primary-base) 12%, var(--bg-white-0));
+    box-shadow: inset 0 0 0 1px var(--primary-base);
+    color: var(--text-strong-950);
   }
 }
 
@@ -980,6 +1171,59 @@ html:has(#site-menu:popover-open) {
       --deal-tilt: 6deg;
     }
   }
+  @media (prefers-reduced-motion: no-preference) {
+    .case-flow {
+      view-timeline: --case-flow;
+    }
+    .case-flow > li > span,
+    .case-flow > li + li::before {
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --case-flow;
+      animation-range: entry calc(var(--flow-step, 0) * 12%) entry
+        calc(var(--flow-step, 0) * 12% + 30%);
+    }
+    .case-flow > li > span {
+      animation-name: flow-in;
+    }
+    .case-flow > li + li::before {
+      animation-name: draw-down;
+    }
+    .process-steps {
+      view-timeline: --process;
+    }
+    .process-steps::after {
+      animation: fill-line linear both;
+      animation-timeline: --process;
+      animation-range: cover 20% cover 50%;
+    }
+    .process-marker {
+      animation: marker-on linear both;
+      animation-timeline: --process;
+      animation-range: cover calc(18% + var(--step-at, 0) * 30%) cover
+        calc(21% + var(--step-at, 0) * 30%);
+    }
+  }
+  @supports (timeline-scope: --case-deck) {
+    @media (prefers-reduced-motion: no-preference) and (height >= 40rem) and (width >= 64rem) {
+      .case-deck-scope {
+        timeline-scope: --case-deck;
+      }
+      .deck-counter {
+        display: flex;
+      }
+      .deck-counter-strip {
+        animation: deck-count linear both;
+        animation-timeline: --case-deck;
+        animation-range: exit-crossing 0% exit-crossing 100%;
+      }
+      .deck-progress::after {
+        animation: fill-line linear both;
+        animation-timeline: --case-deck;
+        animation-range: exit-crossing 0% exit-crossing 58%;
+      }
+    }
+  }
   @media (prefers-reduced-motion: no-preference) and (width < 48rem) {
     .service-deal > li {
       animation: deal-rise linear both;
@@ -1039,6 +1283,9 @@ html:has(#site-menu:popover-open) {
   .hero-word > span,
   .service-deal > li,
   .case-deck > li > *,
+  .case-flow > li > span,
+  .case-flow > li + li::before,
+  .process-marker,
   [data-reveal] {
     animation: none !important;
     opacity: 1 !important;
