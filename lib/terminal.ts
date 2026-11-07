@@ -4,8 +4,7 @@ import {
   type BackgroundVariant,
 } from "@/lib/background"
 import type { CvPdfVariantName } from "@/lib/cv-pdf"
-import { visibleLength } from "@/lib/visible-text"
-import { CV_TAILOR_OFFER_MIN_CHARS } from "@/types/limits"
+import { isTailorableOffer } from "@/lib/visible-text"
 
 export type TerminalLineKind = "in" | "out" | "err" | "ok" | "muted" | "head"
 
@@ -83,8 +82,6 @@ export type TerminalStrings = {
   cvUnavailable: string
   cvOfferTooShort: string
 }
-
-export const TERMINAL_OFFER_MIN_CHARS = CV_TAILOR_OFFER_MIN_CHARS
 
 const CV_GENERAL = new Set(["", "general", "g"])
 const CV_TECHNICAL = new Set([
@@ -304,7 +301,7 @@ export function execute(
         }
       if (CV_TAILORED.has(kind)) {
         const offer = offerWords.join(" ").trim()
-        if (visibleLength(offer) >= TERMINAL_OFFER_MIN_CHARS)
+        if (isTailorableOffer(offer))
           return {
             lines: [out(`cv tailored → ${t.cvPreparing}`, "ok")],
             effects: [{ type: "cv-tailor", offer }],

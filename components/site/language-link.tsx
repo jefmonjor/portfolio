@@ -3,8 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { samePathInLocale, type SiteLocale } from "@/i18n/routing"
-import { cn } from "@/lib/utils"
+import { samePathInLocale, type SiteLocale } from "@/i18n/locales"
 
 const languageNames: Record<SiteLocale, string> = {
   en: "English",
@@ -13,17 +12,18 @@ const languageNames: Record<SiteLocale, string> = {
 
 const otherLanguage: Record<SiteLocale, SiteLocale> = { en: "es", es: "en" }
 
+const variantClasses = {
+  bar: "text-sm",
+  footer: "text-[0.9375rem]",
+  short: "min-w-11 justify-center text-sm font-medium uppercase",
+} as const
+
 type LanguageLinkProps = {
   current: SiteLocale
-  short?: boolean
-  className?: string
+  variant?: keyof typeof variantClasses
 }
 
-function LanguageLink({
-  current,
-  short = false,
-  className,
-}: LanguageLinkProps) {
+function LanguageLink({ current, variant = "bar" }: LanguageLinkProps) {
   const pathname = usePathname()
   const target = otherLanguage[current]
 
@@ -34,13 +34,9 @@ function LanguageLink({
       lang={target}
       rel="alternate"
       prefetch={false}
-      className={cn(
-        "inline-flex min-h-11 items-center text-sm text-muted-foreground transition-colors hover:text-foreground",
-        short && "min-w-11 justify-center font-medium uppercase",
-        className
-      )}
+      className={`inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground ${variantClasses[variant]}`}
     >
-      {short ? (
+      {variant === "short" ? (
         <>
           {target}
           <span className="sr-only"> · {languageNames[target]}</span>

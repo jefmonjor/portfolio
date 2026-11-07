@@ -8,19 +8,19 @@ import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { isLocale, localizedPath, routing, type Locale } from "@/i18n/routing"
 import { absoluteUrl, profile } from "@/lib/profile"
-import { ogImageSize } from "@/lib/seo/og-card"
-import { ogImagePath } from "@/lib/seo/og-path"
-import {
-  alternateOpenGraphLocales,
-  languageAlternates,
-  openGraphLocale,
-} from "@/lib/seo/alternates"
+import { pageMetadata } from "@/lib/seo/site-metadata"
 import { StructuredDataScript } from "@/components/site/structured-data-script"
 import { buildCvStructuredData } from "@/lib/seo/structured-data"
 
 type CvLayoutProps = {
   children: React.ReactNode
   params: Promise<{ locale: string }>
+}
+
+function cvTitle(
+  tMeta: Awaited<ReturnType<typeof getTranslations<"metadata">>>
+) {
+  return tMeta("cvTitle", { shortName: profile.shortName, role: tMeta("role") })
 }
 
 async function resolveCvLocale(params: CvLayoutProps["params"]) {
@@ -34,40 +34,22 @@ export async function generateMetadata({
 }: Omit<CvLayoutProps, "children">): Promise<Metadata> {
   const locale = await resolveCvLocale(params)
   const tMeta = await getTranslations({ locale, namespace: "metadata" })
-  const title = tMeta("cvTitle", {
-    shortName: profile.shortName,
-    role: tMeta("role"),
+  const metadata = pageMetadata({
+    locale,
+    path: "/cv",
+    meta: { title: cvTitle(tMeta), description: tMeta("description") },
+    locales: routing.locales,
+    type: "profile",
   })
-  const description = tMeta("description")
-  const url = localizedPath(locale, "/cv")
-  const image = { url: ogImagePath(locale, "/cv"), ...ogImageSize, alt: title }
 
   return {
-    title,
-    description,
+    ...metadata,
     alternates: {
-      canonical: url,
-      languages: languageAlternates(routing.locales, "/cv"),
+      ...metadata.alternates,
       types: {
         "text/markdown": `/cv.md?locale=${locale}`,
         "application/json": `/cv.json?locale=${locale}`,
       },
-    },
-    openGraph: {
-      title,
-      description,
-      type: "profile",
-      siteName: profile.shortName,
-      url,
-      locale: openGraphLocale[locale],
-      alternateLocale: alternateOpenGraphLocales(routing.locales, locale),
-      images: [image],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [image],
     },
   }
 }
@@ -96,10 +78,7 @@ async function cvStructuredData(locale: Locale) {
   return buildCvStructuredData({
     locale,
     pageUrl: absoluteUrl(localizedPath(locale, "/cv")),
-    title: tMeta("cvTitle", {
-      shortName: profile.shortName,
-      role: tMeta("role"),
-    }),
+    title: cvTitle(tMeta),
     description: tMeta("description"),
     positioning: tMeta("role"),
     currentJobTitle: tMeta("currentJobTitle"),

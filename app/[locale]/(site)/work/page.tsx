@@ -1,25 +1,16 @@
 import { CaseCard } from "@/components/site/case-card"
 import { ClosingCta } from "@/components/site/closing-cta"
 import { PageIntro } from "@/components/site/page-intro"
-import { sitePageMetadata } from "@/lib/seo/site-metadata"
-import { trailFromHome } from "@/lib/site-breadcrumbs"
 import {
   resolveSitePage,
+  siteMetadataFor,
   siteStaticParams,
   type SitePageProps,
 } from "@/lib/site-params"
 
 export const generateStaticParams = siteStaticParams
 
-export async function generateMetadata({ params }: SitePageProps) {
-  const { locale, content } = await resolveSitePage(params)
-  return sitePageMetadata({
-    locale,
-    path: "/work",
-    meta: content.meta.work,
-    siteName: content.siteName,
-  })
-}
+export const generateMetadata = siteMetadataFor("/work", "work")
 
 export default async function WorkPage({ params }: SitePageProps) {
   const { locale, content } = await resolveSitePage(params)
@@ -29,10 +20,10 @@ export default async function WorkPage({ params }: SitePageProps) {
     <>
       <PageIntro
         locale={locale}
+        content={content}
         title={work.title}
         intro={work.intro}
-        trail={trailFromHome(content, { name: work.title, path: "/work" })}
-        breadcrumbLabel={content.nav.breadcrumb}
+        crumbs={[{ name: work.title, path: "/work" }]}
       />
       <div className="site-container flex flex-col border-t border-border pt-10">
         {work.cases.map((study) => (
@@ -46,11 +37,7 @@ export default async function WorkPage({ params }: SitePageProps) {
           />
         ))}
       </div>
-      <ClosingCta
-        locale={locale}
-        statement={content.services.closing}
-        cta={content.cta}
-      />
+      <ClosingCta locale={locale} content={content} />
     </>
   )
 }

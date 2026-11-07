@@ -1,10 +1,10 @@
 import type { AssistantAction, ChatMessage } from "@/types/assistant"
+import { isTailorableOffer } from "@/lib/visible-text"
 import {
+  ASSISTANT_ACTIONS_MAX,
   ASSISTANT_HISTORY_INPUT_MESSAGES,
   ASSISTANT_REPLY_MAX_CHARS,
 } from "@/types/limits"
-
-const MAX_ACTIONS_PER_REPLY = 3
 
 export type ConversationMessage = ChatMessage & {
   readonly actions?: ReadonlyArray<AssistantAction>
@@ -22,13 +22,13 @@ function isAction(value: unknown): value is AssistantAction {
   return (
     value.type === "cv-tailor" &&
     typeof value.offer === "string" &&
-    value.offer.trim().length > 0
+    isTailorableOffer(value.offer)
   )
 }
 
 function actionsFrom(value: unknown): AssistantAction[] {
   return Array.isArray(value)
-    ? value.filter(isAction).slice(0, MAX_ACTIONS_PER_REPLY)
+    ? value.filter(isAction).slice(0, ASSISTANT_ACTIONS_MAX)
     : []
 }
 
@@ -73,12 +73,6 @@ export function parseConversation(raw: string | null): ConversationMessage[] {
   } catch {
     return []
   }
-}
-
-export function serializeConversation(
-  messages: ReadonlyArray<ConversationMessage>
-): string {
-  return JSON.stringify(messages)
 }
 
 export function requestMessages(

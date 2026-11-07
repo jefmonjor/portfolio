@@ -1,8 +1,6 @@
 import { resolveLocale } from "@/i18n/routing"
 import { cvPdfPath, type CvPdfVariantName } from "@/lib/cv-pdf"
 
-export type CvVariant = CvPdfVariantName
-
 export type CvDownloadError = "rate_limited" | "unavailable" | "failed"
 
 export type CvDownloadResult =
@@ -48,7 +46,7 @@ async function save(
 }
 
 export async function downloadCv(
-  variant: CvVariant,
+  variant: CvPdfVariantName,
   locale: string,
   signal?: AbortSignal
 ): Promise<CvDownloadResult> {

@@ -5,19 +5,7 @@ import { BrandLink } from "@/components/site/brand-link"
 import { LanguageLink } from "@/components/site/language-link"
 import { primaryNavigation } from "@/components/site/site-nav"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
-import { profile } from "@/lib/profile"
-import type { SocialKind } from "@/types/profile"
-
-const profileNames: Record<Exclude<SocialKind, "email">, string> = {
-  linkedin: "LinkedIn",
-  github: "GitHub",
-}
-
-const publicProfiles = profile.socials.flatMap((social) =>
-  social.kind === "email"
-    ? []
-    : [{ href: social.href, name: profileNames[social.kind] }]
-)
+import { profile, publicProfiles } from "@/lib/profile"
 
 type SiteFooterProps = {
   locale: SiteLocale
@@ -37,7 +25,7 @@ function SiteFooter({ locale, content }: SiteFooterProps) {
         <div className="flex flex-col gap-2">
           <BrandLink
             href={localizedPath(locale, "/")}
-            name={content.siteName}
+            name={profile.shortName}
           />
           <p className="text-[0.9375rem] text-muted-foreground">
             {content.hero.role}
@@ -53,6 +41,7 @@ function SiteFooter({ locale, content }: SiteFooterProps) {
               <li key={link.path}>
                 <Link
                   href={localizedPath(locale, link.path)}
+                  prefetch={link.path === "/cv" ? false : undefined}
                   className="inline-flex min-h-11 items-center text-[0.9375rem] text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
@@ -74,7 +63,7 @@ function SiteFooter({ locale, content }: SiteFooterProps) {
               {social.name}
             </a>
           ))}
-          <LanguageLink current={locale} className="text-[0.9375rem]" />
+          <LanguageLink current={locale} variant="footer" />
         </div>
       </div>
     </footer>

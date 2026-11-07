@@ -1,14 +1,11 @@
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 
-import { localizedPath, nearestSiteLocale, resolveLocale } from "@/i18n/routing"
+import { localizedPath, nearestSiteLocale } from "@/i18n/routing"
 
 function FullSiteBanner() {
   const t = useTranslations("cvBanner")
-  const siteHome = localizedPath(
-    nearestSiteLocale(resolveLocale(useLocale())),
-    "/"
-  )
+  const siteHome = localizedPath(nearestSiteLocale(useLocale()), "/")
 
   return (
     <aside

@@ -1,6 +1,4 @@
-import Link from "next/link"
-
-import { ArrowLabel } from "@/components/site/arrow-label"
+import { ArrowLink } from "@/components/site/arrow-link"
 import { CaseCard } from "@/components/site/case-card"
 import { ContactBlock } from "@/components/site/contact-block"
 import { ExperienceTimeline } from "@/components/site/experience-timeline"
@@ -9,24 +7,16 @@ import { RichText } from "@/components/site/rich-text"
 import { ServicesSummary } from "@/components/site/services-summary"
 import { SiteSection } from "@/components/site/site-section"
 import { localizedPath } from "@/i18n/routing"
-import { sitePageMetadata } from "@/lib/seo/site-metadata"
 import {
   resolveSitePage,
+  siteMetadataFor,
   siteStaticParams,
   type SitePageProps,
 } from "@/lib/site-params"
 
 export const generateStaticParams = siteStaticParams
 
-export async function generateMetadata({ params }: SitePageProps) {
-  const { locale, content } = await resolveSitePage(params)
-  return sitePageMetadata({
-    locale,
-    path: "/",
-    meta: content.meta.home,
-    siteName: content.siteName,
-  })
-}
+export const generateMetadata = siteMetadataFor("/", "home")
 
 export default async function HomePage({ params }: SitePageProps) {
   const { locale, content } = await resolveSitePage(params)
@@ -57,12 +47,9 @@ export default async function HomePage({ params }: SitePageProps) {
             />
           ))}
         </div>
-        <Link
-          href={localizedPath(locale, "/work")}
-          className="site-link mt-6 inline-flex min-h-11 items-center text-[1.0625rem] font-medium"
-        >
-          <ArrowLabel>{content.selectedWork.allCases}</ArrowLabel>
-        </Link>
+        <ArrowLink href={localizedPath(locale, "/work")} className="mt-6">
+          {content.selectedWork.allCases}
+        </ArrowLink>
       </SiteSection>
 
       <SiteSection id="services" title={content.services.homeTitle}>
@@ -75,12 +62,9 @@ export default async function HomePage({ params }: SitePageProps) {
 
       <SiteSection id="experience" title={content.experience.title}>
         <ExperienceTimeline groups={content.experience.groups} />
-        <Link
-          href={localizedPath(locale, "/experience")}
-          className="site-link mt-8 inline-flex min-h-11 items-center text-[1.0625rem] font-medium"
-        >
-          <ArrowLabel>{content.experience.fullHistory}</ArrowLabel>
-        </Link>
+        <ArrowLink href={localizedPath(locale, "/experience")} className="mt-8">
+          {content.experience.fullHistory}
+        </ArrowLink>
       </SiteSection>
 
       <SiteSection id="contact" title={content.contact.homeTitle}>

@@ -16,7 +16,7 @@ import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import { resolveLocale } from "@/i18n/routing"
-import { cvPdfPath } from "@/lib/cv-pdf"
+import { cvPdfPath, type CvPdfVariantName } from "@/lib/cv-pdf"
 import {
   Dialog,
   DialogContent,
@@ -28,13 +28,11 @@ import {
   downloadTailoredCv,
   type CvDownloadError,
   type CvDownloadResult,
-  type CvVariant,
 } from "@/lib/cv-download"
 import { cn } from "@/lib/utils"
-import { visibleLength } from "@/lib/visible-text"
+import { isTailorableOffer } from "@/lib/visible-text"
 import {
   CV_TAILOR_OFFER_MAX_CHARS,
-  CV_TAILOR_OFFER_MIN_CHARS,
 } from "@/types/limits"
 
 const CV_OPTIONS = [
@@ -48,7 +46,7 @@ type CvDownloadButtonProps = {
 }
 
 type Step = "choose" | "offer"
-type Pending = CvVariant | "tailor"
+type Pending = CvPdfVariantName | "tailor"
 
 async function fireConfetti(): Promise<void> {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
@@ -172,7 +170,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     }
   }
 
-  function downloadVariant(variant: CvVariant): Promise<void> {
+  function downloadVariant(variant: CvPdfVariantName): Promise<void> {
     return run(
       variant,
       (signal) => downloadCv(variant, locale, signal),
@@ -297,9 +295,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                 </div>
                 <Button
                   size="sm"
-                  disabled={
-                    visibleLength(offer) < CV_TAILOR_OFFER_MIN_CHARS || busy
-                  }
+                  disabled={!isTailorableOffer(offer) || busy}
                   onClick={() => void tailorAndDownload()}
                 >
                   {busy ? tModal("generating") : tModal("generate")}

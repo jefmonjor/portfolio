@@ -4,22 +4,13 @@ import { Copy01Icon, Mail01Icon, Tick02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 
+import type { SiteContent } from "@/content/site/types"
 import { contactEmail, contactMailto } from "@/lib/email"
-import { cn } from "@/lib/utils"
 
 type CopyState = "idle" | "copied" | "failed"
 
 type EmailActionsProps = {
-  subject: string
-  labels: {
-    label: string
-    write: string
-    copy: string
-    copied: string
-    copyFailed: string
-    withoutJavaScript: string
-    noMailApp: string
-  }
+  email: SiteContent["contact"]["email"]
 }
 
 const copyFeedbackMs = 2000
@@ -59,7 +50,7 @@ function useCopyAddress() {
   return { copyState, copyAddress }
 }
 
-function EmailActions({ subject, labels }: EmailActionsProps) {
+function EmailActions({ email: labels }: EmailActionsProps) {
   const isHydrated = useIsHydrated()
   const { copyState, copyAddress } = useCopyAddress()
 
@@ -75,10 +66,7 @@ function EmailActions({ subject, labels }: EmailActionsProps) {
       <p className="flex flex-col gap-1">
         <span className="text-sm text-muted-foreground">{labels.label}</span>
         <span
-          className={cn(
-            "min-h-[1.5em] font-heading text-[clamp(1.25rem,2vw+0.75rem,1.75rem)] font-medium break-all text-foreground select-all",
-            !isHydrated && "w-[14ch] max-w-full animate-pulse bg-muted"
-          )}
+          className={`min-h-[1.5em] font-heading text-[clamp(1.25rem,2vw+0.75rem,1.75rem)] font-medium break-all text-foreground select-all ${isHydrated ? "" : "w-[14ch] max-w-full animate-pulse bg-muted"}`}
         >
           {isHydrated ? contactEmail() : null}
         </span>
@@ -90,7 +78,7 @@ function EmailActions({ subject, labels }: EmailActionsProps) {
       </noscript>
       <div className="flex flex-col gap-3 sm:flex-row">
         <a
-          href={isHydrated ? contactMailto(subject) : undefined}
+          href={isHydrated ? contactMailto(labels.subject) : undefined}
           aria-disabled={!isHydrated}
           className="site-button aria-disabled:pointer-events-none aria-disabled:opacity-60"
         >

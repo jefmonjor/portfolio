@@ -1,5 +1,6 @@
-import { resolveLocale, type Locale } from "@/i18n/routing"
+import { resolveLocale, type Locale } from "@/i18n/locales"
 
+// Char codes, not a literal: the minifier folds any string concatenation back into the address.
 const ADDRESS_CHAR_CODES = [
   106, 101, 102, 109, 111, 110, 106, 111, 114, 64, 103, 109, 97, 105, 108, 46,
   99, 111, 109,

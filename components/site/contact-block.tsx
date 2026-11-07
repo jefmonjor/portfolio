@@ -1,20 +1,13 @@
 import { EmailActions } from "@/components/site/email-actions"
 import type { SiteContent } from "@/content/site/types"
-import { profile } from "@/lib/profile"
-
-const linkedin = profile.socials.find((social) => social.kind === "linkedin")
-const github = profile.socials.find((social) => social.kind === "github")
-const elsewhere = [
-  ...(linkedin ? [{ name: "LinkedIn", href: linkedin.href }] : []),
-  ...(github ? [{ name: "GitHub", href: github.href }] : []),
-]
+import { publicProfiles } from "@/lib/profile"
 
 function ContactBlock({ contact }: { contact: SiteContent["contact"] }) {
   return (
     <div className="flex flex-col gap-10">
       <p className="site-prose text-muted-foreground">{contact.intro}</p>
 
-      <EmailActions subject={contact.email.subject} labels={contact.email} />
+      <EmailActions email={contact.email} />
 
       <dl className="grid gap-x-8 border-t border-border sm:grid-cols-2">
         {contact.facts.map((fact) => (
@@ -30,7 +23,7 @@ function ContactBlock({ contact }: { contact: SiteContent["contact"] }) {
 
       <p className="flex flex-wrap items-center gap-x-5 text-[1rem] text-muted-foreground">
         {contact.elsewhere}
-        {elsewhere.map((channel) => (
+        {publicProfiles.map((channel) => (
           <a
             key={channel.href}
             href={channel.href}

@@ -83,6 +83,10 @@ export async function renderOgCard({ name, role, eyebrow, title }: OgCard) {
     </div>,
     {
       ...ogImageSize,
+      headers: {
+        "Cache-Control":
+          "public, max-age=86400, s-maxage=31536000, stale-while-revalidate=86400",
+      },
       fonts: [
         { name: "Figtree", data: medium, weight: 500, style: "normal" },
         { name: "Figtree", data: semiBold, weight: 600, style: "normal" },

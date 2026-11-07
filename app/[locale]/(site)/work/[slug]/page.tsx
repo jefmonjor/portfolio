@@ -6,8 +6,7 @@ import { PageIntro } from "@/components/site/page-intro"
 import { caseStudyAfter, findCaseStudy, isCaseStudySlug } from "@/content/site"
 import { caseStudySlugs } from "@/content/site/types"
 import { siteLocales } from "@/i18n/routing"
-import { sitePageMetadata } from "@/lib/seo/site-metadata"
-import { trailFromHome } from "@/lib/site-breadcrumbs"
+import { pageMetadata } from "@/lib/seo/site-metadata"
 import { resolveSitePage } from "@/lib/site-params"
 
 type CasePageProps = {
@@ -30,12 +29,11 @@ async function resolveCasePage(params: CasePageProps["params"]) {
 }
 
 export async function generateMetadata({ params }: CasePageProps) {
-  const { locale, content, study } = await resolveCasePage(params)
-  return sitePageMetadata({
+  const { locale, study } = await resolveCasePage(params)
+  return pageMetadata({
     locale,
     path: `/work/${study.slug}`,
     meta: study.meta,
-    siteName: content.siteName,
     type: "article",
   })
 }
@@ -47,14 +45,13 @@ export default async function CasePage({ params }: CasePageProps) {
     <article>
       <PageIntro
         locale={locale}
+        content={content}
         title={study.title}
         eyebrow={study.sector}
-        trail={trailFromHome(
-          content,
+        crumbs={[
           { name: content.work.title, path: "/work" },
-          { name: study.title, path: `/work/${study.slug}` }
-        )}
-        breadcrumbLabel={content.nav.breadcrumb}
+          { name: study.title, path: `/work/${study.slug}` },
+        ]}
       />
       <CaseStudy
         locale={locale}
@@ -62,11 +59,7 @@ export default async function CasePage({ params }: CasePageProps) {
         next={caseStudyAfter(content, study.slug)}
         labels={content.work.labels}
       />
-      <ClosingCta
-        locale={locale}
-        statement={content.services.closing}
-        cta={content.cta}
-      />
+      <ClosingCta locale={locale} content={content} />
     </article>
   )
 }

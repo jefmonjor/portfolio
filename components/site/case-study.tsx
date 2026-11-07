@@ -108,7 +108,7 @@ function Decisions({
 
 function CaseStudy({ locale, study, next, labels }: CaseStudyProps) {
   return (
-    <div className="site-container flex max-w-[52rem] flex-col gap-12 lg:ml-[max(0px,calc((100vw-72rem)/2))]">
+    <div className="site-container site-column flex flex-col gap-12">
       <CaseSummary study={study} labels={labels} />
 
       <CaseSection title={labels.context}>

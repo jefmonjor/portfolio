@@ -2,13 +2,13 @@ import { z } from "zod"
 
 import { isLocale, routing } from "@/i18n/routing"
 import { CV_PDF_VARIANTS } from "@/lib/cv-pdf"
-import { hasVisibleText } from "@/lib/visible-text"
+import { hasVisibleText, isTailorableOffer } from "@/lib/visible-text"
 import {
+  ASSISTANT_ACTIONS_MAX,
   ASSISTANT_HISTORY_INPUT_MESSAGES,
   ASSISTANT_MESSAGE_INPUT_CHARS,
   ASSISTANT_REPLY_MAX_CHARS,
   ASSISTANT_SIGNATURE_MAX_CHARS,
-  CV_TAILOR_OFFER_MIN_CHARS,
 } from "@/types/limits"
 
 export { ASSISTANT_HISTORY_INPUT_MESSAGES, ASSISTANT_MESSAGE_INPUT_CHARS }
@@ -28,7 +28,6 @@ export const chatMessageSchema = z.object({
   content: z
     .string()
     .trim()
-    .min(1)
     .max(ASSISTANT_MESSAGE_INPUT_CHARS)
     .refine(hasVisibleText),
   signature: unverifiedSignatureSchema,
@@ -57,8 +56,8 @@ export const assistantActionSchema = z.discriminatedUnion("type", [
       offer: z
         .string()
         .trim()
-        .min(CV_TAILOR_OFFER_MIN_CHARS)
-        .max(ASSISTANT_MESSAGE_INPUT_CHARS),
+        .max(ASSISTANT_MESSAGE_INPUT_CHARS)
+        .refine(isTailorableOffer),
     })
     .strict(),
 ])
@@ -69,7 +68,10 @@ export const assistantSuccessSchema = z
   .object({
     reply: z.string().trim().min(1).max(ASSISTANT_REPLY_MAX_CHARS),
     signature: z.string().min(1).max(ASSISTANT_SIGNATURE_MAX_CHARS).optional(),
-    actions: z.array(assistantActionSchema).max(3).optional(),
+    actions: z
+      .array(assistantActionSchema)
+      .max(ASSISTANT_ACTIONS_MAX)
+      .optional(),
   })
   .strict()
 

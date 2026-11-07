@@ -25,12 +25,11 @@ import {
 } from "@/lib/cv-download"
 import { parseString, parseStringArray } from "@/lib/i18n-values"
 import { contactEmail } from "@/lib/email"
-import { visibleLength } from "@/lib/visible-text"
+import { isTailorableOffer } from "@/lib/visible-text"
 import { profile, profileTimeZone } from "@/lib/profile"
 import {
   completions,
   execute,
-  TERMINAL_OFFER_MIN_CHARS,
   type TerminalData,
   type TerminalLineKind,
   type TerminalOutLine,
@@ -291,7 +290,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
       setNextLineIsOffer(false)
       return
     }
-    if (visibleLength(offer) < TERMINAL_OFFER_MIN_CHARS) {
+    if (!isTailorableOffer(offer)) {
       pushLines([{ kind: "err", text: strings.cvOfferTooShort }])
       return
     }

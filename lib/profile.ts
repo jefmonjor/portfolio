@@ -1,4 +1,8 @@
-import type { MacSchemaLanguageProficiency, Profile } from "@/types/profile"
+import type {
+  MacSchemaLanguageProficiency,
+  Profile,
+  SocialKind,
+} from "@/types/profile"
 
 export const portfolioUpdatedAt = "2026-10-21"
 
@@ -369,3 +373,14 @@ export const profile: Profile = {
     { id: "en", code: "EN", level: CEFR_B1 },
   ],
 }
+
+const publicProfileNames: Record<Exclude<SocialKind, "email">, string> = {
+  linkedin: "LinkedIn",
+  github: "GitHub",
+}
+
+export const publicProfiles = profile.socials.flatMap((social) =>
+  social.kind === "email"
+    ? []
+    : [{ name: publicProfileNames[social.kind], href: social.href }]
+)

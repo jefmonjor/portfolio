@@ -1,25 +1,16 @@
-import { notFound } from "next/navigation"
-import { setRequestLocale } from "next-intl/server"
-
 import { SiteFooter } from "@/components/site/site-footer"
 import { ScrollReveal } from "@/components/site/scroll-reveal"
 import { SiteHeader } from "@/components/site/site-header"
 import { StructuredDataScript } from "@/components/site/structured-data-script"
-import { getCurrentJobTitle, getSiteContent } from "@/content/site"
-import { isSiteLocale } from "@/i18n/routing"
+import { getCurrentJobTitle } from "@/content/site"
 import { buildSiteStructuredData } from "@/lib/seo/structured-data"
+import { resolveSitePage, type SitePageProps } from "@/lib/site-params"
 
 export default async function SiteLayout({
   children,
   params,
-}: {
-  children: React.ReactNode
-  params: Promise<{ locale: string }>
-}) {
-  const { locale } = await params
-  if (!isSiteLocale(locale)) notFound()
-  setRequestLocale(locale)
-  const content = getSiteContent(locale)
+}: SitePageProps & { children: React.ReactNode }) {
+  const { locale, content } = await resolveSitePage(params)
 
   return (
     <div className="site-atmosphere relative isolate flex min-h-svh flex-col bg-background text-foreground">

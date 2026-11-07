@@ -1,5 +1,10 @@
 import { routing, type Locale } from "@/i18n/routing"
-import { portfolioUpdatedAt, profile, siteUrl } from "@/lib/profile"
+import {
+  portfolioUpdatedAt,
+  profile,
+  publicProfiles,
+  siteUrl,
+} from "@/lib/profile"
 
 export const personId = `${siteUrl}/#person`
 const websiteId = `${siteUrl}/#website`
@@ -26,19 +31,9 @@ type CvStructuredDataInput = PersonInput & {
   publicProjects: ReadonlyArray<PublicProject>
 }
 
-type SiteStructuredDataInput = PersonInput & {
-  breadcrumbs?: ReadonlyArray<Breadcrumb>
-}
-
 export type Breadcrumb = {
   name: string
   url: string
-}
-
-function publicProfileLinks(): string[] {
-  return profile.socials
-    .filter((social) => social.kind !== "email")
-    .map((social) => social.href)
 }
 
 function topicsKnown(): string[] {
@@ -115,7 +110,7 @@ function personNode({
       name: "Scrum Master Professional Certified (SMPC)",
       credentialCategory: "certification",
     },
-    sameAs: publicProfileLinks(),
+    sameAs: publicProfiles.map((link) => link.href),
   }
 }
 
@@ -142,17 +137,10 @@ export function buildBreadcrumbList(trail: ReadonlyArray<Breadcrumb>) {
   }
 }
 
-export function buildSiteStructuredData({
-  breadcrumbs,
-  ...person
-}: SiteStructuredDataInput) {
+export function buildSiteStructuredData(person: PersonInput) {
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      websiteNode(),
-      personNode(person),
-      ...(breadcrumbs ? [buildBreadcrumbList(breadcrumbs)] : []),
-    ],
+    "@graph": [websiteNode(), personNode(person)],
   }
 }
 

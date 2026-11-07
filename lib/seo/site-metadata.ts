@@ -1,30 +1,31 @@
 import type { Metadata } from "next"
 
 import type { PageMeta, SitePath } from "@/content/site/types"
-import { localizedPath, siteLocales, type SiteLocale } from "@/i18n/routing"
-import { ogImageSize } from "@/lib/seo/og-card"
-import { ogImagePath } from "@/lib/seo/og-path"
+import { localizedPath, siteLocales, type Locale } from "@/i18n/routing"
+import { profile } from "@/lib/profile"
 import {
   alternateOpenGraphLocales,
   languageAlternates,
   openGraphLocale,
 } from "@/lib/seo/alternates"
+import { ogImageSize } from "@/lib/seo/og-card"
+import { ogImagePath } from "@/lib/seo/og-path"
 
-type SitePageMetadataInput = {
-  locale: SiteLocale
+type PageMetadataInput = {
+  locale: Locale
   path: SitePath
   meta: PageMeta
-  siteName: string
-  type?: "website" | "article"
+  locales?: ReadonlyArray<Locale>
+  type?: "website" | "article" | "profile"
 }
 
-export function sitePageMetadata({
+export function pageMetadata({
   locale,
   path,
   meta,
-  siteName,
+  locales = siteLocales,
   type = "website",
-}: SitePageMetadataInput): Metadata {
+}: PageMetadataInput): Metadata {
   const url = localizedPath(locale, path)
   const image = {
     url: ogImagePath(locale, path),
@@ -33,20 +34,20 @@ export function sitePageMetadata({
   }
 
   return {
-    title: { absolute: meta.title },
+    title: meta.title,
     description: meta.description,
     alternates: {
       canonical: url,
-      languages: languageAlternates(siteLocales, path),
+      languages: languageAlternates(locales, path),
     },
     openGraph: {
       title: meta.title,
       description: meta.description,
       url,
       type,
-      siteName,
+      siteName: profile.shortName,
       locale: openGraphLocale[locale],
-      alternateLocale: alternateOpenGraphLocales(siteLocales, locale),
+      alternateLocale: alternateOpenGraphLocales(locales, locale),
       images: [image],
     },
     twitter: {

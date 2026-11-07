@@ -1,6 +1,5 @@
-import Link from "next/link"
-
-import { ArrowLabel } from "@/components/site/arrow-label"
+import { ArrowLink } from "@/components/site/arrow-link"
+import { ContactButton } from "@/components/site/contact-button"
 import type { SiteContent } from "@/content/site/types"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
 
@@ -29,18 +28,13 @@ function ServicesSummary({ locale, services, cta }: ServicesSummaryProps) {
         ))}
       </ul>
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
-        <Link
-          href={localizedPath(locale, "/contact")}
-          className="site-button w-full sm:w-auto"
-        >
-          <ArrowLabel>{cta}</ArrowLabel>
-        </Link>
-        <Link
+        <ContactButton locale={locale} label={cta} />
+        <ArrowLink
           href={localizedPath(locale, "/services")}
-          className="site-link inline-flex min-h-11 items-center self-start text-[1.0625rem] font-medium sm:self-auto"
+          className="self-start sm:self-auto"
         >
-          <ArrowLabel>{services.details}</ArrowLabel>
-        </Link>
+          {services.details}
+        </ArrowLink>
       </div>
     </div>
   )

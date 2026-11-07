@@ -1,12 +1,11 @@
 import { getTranslations } from "next-intl/server"
 
+import { getSiteContent, indexableSitePaths } from "@/content/site"
 import {
-  findCaseStudy,
-  getSiteContent,
-  indexableSitePaths,
-  isCaseStudySlug,
-} from "@/content/site"
-import { headlineText, type SitePath } from "@/content/site/types"
+  headlineText,
+  type SiteContent,
+  type SitePath,
+} from "@/content/site/types"
 import {
   isLocale,
   isSiteLocale,
@@ -16,7 +15,7 @@ import {
 } from "@/i18n/routing"
 import { profile } from "@/lib/profile"
 import { renderOgCard, type OgCard } from "@/lib/seo/og-card"
-import { ogImagePath, ogPageFromSegments } from "@/lib/seo/og-path"
+import { ogImagePath } from "@/lib/seo/og-path"
 
 export const dynamic = "force-static"
 export const dynamicParams = false
@@ -53,52 +52,66 @@ async function cvCard(locale: Locale): Promise<OgCard> {
   }
 }
 
-function siteCard(
-  locale: Parameters<typeof getSiteContent>[0],
-  page: string
-): OgCard | null {
-  const content = getSiteContent(locale)
-  const identity = { name: content.hero.name, role: content.hero.role }
-  const slug = page.replace(/^\/work\//, "")
+function sitePageText(
+  content: SiteContent,
+  page: SitePath
+): Pick<OgCard, "eyebrow" | "title"> | null {
+  const study = content.work.cases.find(
+    (entry) => `/work/${entry.slug}` === page
+  )
+  if (study) return { eyebrow: study.sector, title: study.title }
 
-  if (page === "/")
-    return {
-      ...identity,
-      eyebrow: content.hero.role,
-      title: headlineText(content.hero.headline),
-    }
-  if (page.startsWith("/work/") && isCaseStudySlug(slug)) {
-    const study = findCaseStudy(content, slug)
-    return { ...identity, eyebrow: study.sector, title: study.title }
-  }
-  if (page === "/privacy") {
-    return {
-      ...identity,
-      eyebrow: content.footer.privacy,
-      title: content.meta.privacy.title,
-    }
-  }
-  const sections = ["services", "work", "experience", "contact"] as const
-  const section = sections.find((candidate) => page === `/${candidate}`)
-  return section
-    ? {
-        ...identity,
-        eyebrow: content.nav[section],
-        title: content.meta[section].title,
+  switch (page) {
+    case "/":
+      return {
+        eyebrow: content.hero.role,
+        title: headlineText(content.hero.headline),
       }
+    case "/services":
+      return {
+        eyebrow: content.nav.services,
+        title: content.meta.services.title,
+      }
+    case "/work":
+      return { eyebrow: content.nav.work, title: content.meta.work.title }
+    case "/experience":
+      return {
+        eyebrow: content.nav.experience,
+        title: content.meta.experience.title,
+      }
+    case "/contact":
+      return { eyebrow: content.nav.contact, title: content.meta.contact.title }
+    case "/privacy":
+      return {
+        eyebrow: content.footer.privacy,
+        title: content.meta.privacy.title,
+      }
+    default:
+      return null
+  }
+}
+
+function publishedPage(locale: Locale, segments: ReadonlyArray<string>) {
+  const requested = `/og/${locale}/${segments.join("/")}`
+  const pages: ReadonlyArray<SitePath> = isSiteLocale(locale)
+    ? [...indexableSitePaths, "/cv"]
+    : ["/cv"]
+  return pages.find((page) => ogImagePath(locale, page) === requested)
+}
+
+async function cardFor(locale: Locale, page: SitePath) {
+  if (page === "/cv") return cvCard(locale)
+  if (!isSiteLocale(locale)) return null
+  const content = getSiteContent(locale)
+  const text = sitePageText(content, page)
+  return text
+    ? { name: profile.shortName, role: content.hero.role, ...text }
     : null
 }
 
 export async function GET(_request: Request, { params }: OgRouteContext) {
   const { locale, page: segments } = await params
-  const page = ogPageFromSegments(segments)
-  if (!isLocale(locale)) return new Response(null, { status: 404 })
-
-  const card =
-    page === "/cv"
-      ? await cvCard(locale)
-      : isSiteLocale(locale)
-        ? siteCard(locale, page)
-        : null
+  const page = isLocale(locale) ? publishedPage(locale, segments) : undefined
+  const card = page && isLocale(locale) ? await cardFor(locale, page) : null
   return card ? renderOgCard(card) : new Response(null, { status: 404 })
 }

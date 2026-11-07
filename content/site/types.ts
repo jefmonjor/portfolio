@@ -107,7 +107,6 @@ export type ExperienceGroup = {
 }
 
 export type SiteContent = {
-  siteName: string
   meta: Record<
     "home" | "services" | "work" | "experience" | "contact" | "privacy",
     PageMeta
@@ -122,12 +121,10 @@ export type SiteContent = {
     menu: string
     skipToContent: string
     toggleTheme: string
-    language: string
     breadcrumb: string
   }
   cta: string
   hero: {
-    name: string
     role: string
     eyebrow: string
     headline: Headline
@@ -186,7 +183,6 @@ export type SiteContent = {
       results: string
       stack: string
       architecture: string
-      links: string
       next: string
     }
     cases: readonly [CaseStudy, CaseStudy, CaseStudy]
@@ -214,7 +210,6 @@ export type SiteContent = {
     location: string
     fullCv: string
     privacy: string
-    languages: string
   }
   privacy: {
     title: string

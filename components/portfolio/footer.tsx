@@ -3,12 +3,7 @@ import { useLocale, useTranslations } from "next-intl"
 import NextLink from "next/link"
 
 import { Link } from "@/i18n/navigation"
-import {
-  localizedPath,
-  nearestSiteLocale,
-  resolveLocale,
-  routing,
-} from "@/i18n/routing"
+import { localizedPath, nearestSiteLocale, routing } from "@/i18n/routing"
 import { portfolioUpdatedAt, profile } from "@/lib/profile"
 
 function Footer() {
@@ -55,10 +50,7 @@ function Footer() {
         </nav>
         <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
           <NextLink
-            href={localizedPath(
-              nearestSiteLocale(resolveLocale(locale)),
-              "/privacy"
-            )}
+            href={localizedPath(nearestSiteLocale(locale), "/privacy")}
             className="transition-colors hover:text-foreground"
           >
             {t("privacy")}

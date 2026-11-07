@@ -4,7 +4,7 @@ import { notFound } from "next/navigation"
 import { setRequestLocale } from "next-intl/server"
 
 import "../globals.css"
-import { BackgroundInitScript } from "@/components/background-provider"
+import { BackgroundInitScript } from "@/components/background-init-script"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { profile, siteUrl } from "@/lib/profile"

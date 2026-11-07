@@ -5,14 +5,11 @@ import { getLocale, getTranslations } from "next-intl/server"
 
 import { Background } from "@/components/portfolio/background"
 import { Button } from "@/components/ui/button"
-import { localizedPath, nearestSiteLocale, resolveLocale } from "@/i18n/routing"
+import { localizedPath, nearestSiteLocale } from "@/i18n/routing"
 
 export default async function NotFound() {
   const t = await getTranslations("notFound")
-  const home = localizedPath(
-    nearestSiteLocale(resolveLocale(await getLocale())),
-    "/"
-  )
+  const home = localizedPath(nearestSiteLocale(await getLocale()), "/")
 
   return (
     <div className="relative isolate flex min-h-svh flex-col items-center justify-center gap-8 bg-background px-4 text-foreground">

@@ -1,4 +1,4 @@
-import { setRequestLocale } from "next-intl/server"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 
 import { About } from "@/components/portfolio/about"
 import { AiApproach } from "@/components/portfolio/ai-approach"
@@ -11,7 +11,7 @@ import { Education } from "@/components/portfolio/education"
 import { Experience } from "@/components/portfolio/experience"
 import { Footer } from "@/components/portfolio/footer"
 import { FullSiteBanner } from "@/components/portfolio/full-site-banner"
-import { SkipToContent } from "@/components/portfolio/skip-to-content"
+import { SkipToContent } from "@/components/skip-to-content"
 import { Hero } from "@/components/portfolio/hero"
 import { Projects } from "@/components/portfolio/projects"
 import { Reveal } from "@/components/portfolio/reveal"
@@ -31,12 +31,13 @@ export default async function Page({
 }) {
   const { locale } = await params
   setRequestLocale(locale)
+  const tNav = await getTranslations({ locale, namespace: "nav" })
 
   return (
     <div className="relative isolate min-h-svh bg-background text-foreground">
       <Background />
       <div className="relative z-10">
-        <SkipToContent />
+        <SkipToContent label={tNav("skipToContent")} />
         <ConsoleSignature />
         <FullSiteBanner />
         <TopBar />

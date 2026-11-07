@@ -2,6 +2,7 @@ import createNextIntlPlugin from "next-intl/plugin"
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts")
 
+// Next 16.3 does not emit the root NFT manifest under the Vercel adapter, which breaks the standalone build there.
 const standaloneForDockerOnly =
   process.env.VERCEL === "1" ? undefined : "standalone"
 

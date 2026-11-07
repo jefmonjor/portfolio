@@ -13,8 +13,7 @@ import {
   normalizeTailorModelOutput,
   tailoringEvidence,
 } from "@/server/cv/tailoring"
-import { readJsonBody } from "@/server/http/read-json-body"
-import { rejectForeignRequest } from "@/server/http/same-origin"
+import { readGuardedJson } from "@/server/http/guarded-json"
 import {
   CV_TAILOR_KEYWORDS_MAX,
   CV_TAILOR_OFFER_MAX_CHARS,
@@ -104,20 +103,12 @@ LIMITS — keywords ≤ ${CV_TAILOR_KEYWORDS_MAX} · projectIds ≤ ${CV_TAILOR_
 }
 
 export async function POST(request: Request): Promise<Response> {
-  const foreign = rejectForeignRequest(request)
-  if (foreign) return foreign
-
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 })
   }
 
-  const body = await readJsonBody(request, CV_TAILOR_BODY_MAX_BYTES)
-  if (!body.ok) {
-    return NextResponse.json(
-      { error: body.status === 413 ? "too_large" : "bad_request" },
-      { status: body.status }
-    )
-  }
+  const body = await readGuardedJson(request, CV_TAILOR_BODY_MAX_BYTES)
+  if (!body.ok) return body.response
 
   const parsed = cvTailorRequestSchema.safeParse(body.value)
   if (!parsed.success) {

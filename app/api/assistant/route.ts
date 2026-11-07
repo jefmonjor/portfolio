@@ -26,8 +26,7 @@ import {
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
 import { signatureFor } from "@/lib/assistant/signature"
 import { contactEmail } from "@/lib/email"
-import { readJsonBody } from "@/server/http/read-json-body"
-import { rejectForeignRequest } from "@/server/http/same-origin"
+import { readGuardedJson } from "@/server/http/guarded-json"
 import {
   assistantRequestSchema,
   assistantSuccessSchema,
@@ -98,16 +97,8 @@ function enumEnv<T extends string>(
 }
 
 export async function POST(request: Request) {
-  const foreign = rejectForeignRequest(request)
-  if (foreign) return foreign
-
-  const body = await readJsonBody(request, ASSISTANT_BODY_MAX_BYTES)
-  if (!body.ok) {
-    return NextResponse.json(
-      { error: body.status === 413 ? "too_large" : "bad_request" },
-      { status: body.status }
-    )
-  }
+  const body = await readGuardedJson(request, ASSISTANT_BODY_MAX_BYTES)
+  if (!body.ok) return body.response
 
   const parsed = assistantRequestSchema.safeParse(body.value)
   if (!parsed.success) {

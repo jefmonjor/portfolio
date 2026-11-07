@@ -1,33 +1,36 @@
 import Link from "next/link"
 
 import { StructuredDataScript } from "@/components/site/structured-data-script"
+import type { SiteContent } from "@/content/site/types"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
 import { breadcrumbStructuredData, type Crumb } from "@/lib/site-breadcrumbs"
 
 type PageIntroProps = {
   locale: SiteLocale
+  content: SiteContent
   title: string
   intro?: string
   eyebrow?: string
-  trail: ReadonlyArray<Crumb>
-  breadcrumbLabel: string
-  children?: React.ReactNode
+  crumbs: ReadonlyArray<Crumb>
 }
 
 function PageIntro({
   locale,
+  content,
   title,
   intro,
   eyebrow,
-  trail,
-  breadcrumbLabel,
-  children,
+  crumbs,
 }: PageIntroProps) {
+  const trail: ReadonlyArray<Crumb> = [
+    { name: content.nav.home, path: "/" },
+    ...crumbs,
+  ]
   const ancestors = trail.slice(0, -1)
 
   return (
     <header className="site-container pt-8 pb-12 md:pt-12 md:pb-16">
-      <nav aria-label={breadcrumbLabel}>
+      <nav aria-label={content.nav.breadcrumb}>
         <ol className="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
           {ancestors.map((crumb) => (
             <li key={crumb.path} className="flex items-center gap-2">
@@ -55,7 +58,6 @@ function PageIntro({
       {intro ? (
         <p className="site-prose mt-6 text-muted-foreground">{intro}</p>
       ) : null}
-      {children}
       <StructuredDataScript data={breadcrumbStructuredData(locale, trail)} />
     </header>
   )

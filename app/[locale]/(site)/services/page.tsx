@@ -3,25 +3,16 @@ import { EngagementStart } from "@/components/site/engagement-start"
 import { PageIntro } from "@/components/site/page-intro"
 import { ServiceDetails } from "@/components/site/service-details"
 import { SiteSection } from "@/components/site/site-section"
-import { sitePageMetadata } from "@/lib/seo/site-metadata"
-import { trailFromHome } from "@/lib/site-breadcrumbs"
 import {
   resolveSitePage,
+  siteMetadataFor,
   siteStaticParams,
   type SitePageProps,
 } from "@/lib/site-params"
 
 export const generateStaticParams = siteStaticParams
 
-export async function generateMetadata({ params }: SitePageProps) {
-  const { locale, content } = await resolveSitePage(params)
-  return sitePageMetadata({
-    locale,
-    path: "/services",
-    meta: content.meta.services,
-    siteName: content.siteName,
-  })
-}
+export const generateMetadata = siteMetadataFor("/services", "services")
 
 export default async function ServicesPage({ params }: SitePageProps) {
   const { locale, content } = await resolveSitePage(params)
@@ -31,13 +22,15 @@ export default async function ServicesPage({ params }: SitePageProps) {
     <>
       <PageIntro
         locale={locale}
+        content={content}
         title={services.title}
         intro={services.intro}
-        trail={trailFromHome(content, {
-          name: services.title,
-          path: "/services",
-        })}
-        breadcrumbLabel={content.nav.breadcrumb}
+        crumbs={[
+          {
+            name: services.title,
+            path: "/services",
+          },
+        ]}
       />
 
       {services.items.map((service) => (
@@ -50,11 +43,7 @@ export default async function ServicesPage({ params }: SitePageProps) {
         <EngagementStart services={services} />
       </SiteSection>
 
-      <ClosingCta
-        locale={locale}
-        statement={services.closing}
-        cta={content.cta}
-      />
+      <ClosingCta locale={locale} content={content} />
     </>
   )
 }

@@ -1,7 +1,6 @@
 import type { SiteContent } from "@/content/site/types"
 
 export const en: SiteContent = {
-  siteName: "Jefferson Montesdeoca",
   meta: {
     home: {
       title:
@@ -45,12 +44,10 @@ export const en: SiteContent = {
     menu: "Menu",
     skipToContent: "Skip to content",
     toggleTheme: "Switch between light and dark theme",
-    language: "Language",
     breadcrumb: "Breadcrumb",
   },
   cta: "Let's discuss your project",
   hero: {
-    name: "Jefferson Montesdeoca",
     role: "Software Architect & Senior Backend Engineer",
     eyebrow: "Software Architect · Backend · Applied AI",
     headline: [
@@ -219,7 +216,6 @@ export const en: SiteContent = {
       results: "Result",
       stack: "Stack",
       architecture: "Simplified architecture",
-      links: "Links",
       next: "Next case study",
     },
     cases: [
@@ -593,7 +589,6 @@ export const en: SiteContent = {
     location: "Andorra · Remote · Andorra time (CET)",
     fullCv: "Full CV",
     privacy: "Privacy",
-    languages: "Languages",
   },
   privacy: {
     title: "Privacy",

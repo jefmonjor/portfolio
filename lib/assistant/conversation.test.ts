@@ -4,7 +4,6 @@ import {
   parseConversation,
   readReply,
   requestMessages,
-  serializeConversation,
 } from "@/lib/assistant/conversation"
 import type { ChatMessage } from "@/types/assistant"
 
@@ -31,7 +30,7 @@ describe("assistant conversation (browser side)", () => {
       { role: "assistant", content: "Java 21.", signature },
     ]
 
-    expect(parseConversation(serializeConversation(conversation))).toEqual(
+    expect(parseConversation(JSON.stringify(conversation))).toEqual(
       conversation
     )
   })
@@ -74,7 +73,10 @@ describe("assistant conversation (browser side)", () => {
           { type: "cv", variant: "technical" },
           { type: "cv", variant: "unknown" },
           { type: "cv-tailor", offer: "   " },
-          { type: "cv-tailor", offer: "Senior Java engineer" },
+          {
+            type: "cv-tailor",
+            offer: "Senior Java engineer, Spring Boot 3 and Kafka",
+          },
         ],
       })
     ).toEqual({
@@ -83,7 +85,10 @@ describe("assistant conversation (browser side)", () => {
       signature,
       actions: [
         { type: "cv", variant: "technical" },
-        { type: "cv-tailor", offer: "Senior Java engineer" },
+        {
+          type: "cv-tailor",
+          offer: "Senior Java engineer, Spring Boot 3 and Kafka",
+        },
       ],
     })
   })

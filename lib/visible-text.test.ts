@@ -26,8 +26,9 @@ describe("hasVisibleText", () => {
     }
   })
 
-  it("counts only the characters a reader can see", () => {
-    expect(visibleLength("a\u200Bb c")).toBe(3)
+  it("drops invisible characters but keeps the spaces between words", () => {
+    expect(visibleLength(" a\u200Bb c ")).toBe(4)
+    expect(visibleLength("\u200B \u3164 ")).toBe(0)
   })
 
   it("keeps any visible character, emoji included", () => {

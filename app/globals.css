@@ -243,6 +243,14 @@
       padding-inline: 2rem;
     }
   }
+  .site-column {
+    max-width: 52rem;
+  }
+  @media (width >= 64rem) {
+    .site-column {
+      margin-left: max(0px, calc((100vw - 72rem) / 2));
+    }
+  }
   .site-prose {
     max-width: 40rem;
     font-size: 1.0625rem;
@@ -474,8 +482,7 @@ html:has(#site-menu:popover-open) {
       line-rise 600ms var(--ease-line-reveal) both,
       underline-draw 700ms var(--ease-out-expo) both;
     animation-delay:
-      calc(80ms + var(--line, 0) * 80ms),
-      calc(700ms + var(--line, 0) * 80ms);
+      calc(80ms + var(--line, 0) * 80ms), calc(700ms + var(--line, 0) * 80ms);
   }
   html:not([data-intro="played"]) .diagram-line {
     stroke-dasharray: 1;

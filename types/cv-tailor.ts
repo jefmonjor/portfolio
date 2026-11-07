@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { visibleLength } from "@/lib/visible-text"
+import { isTailorableOffer } from "@/lib/visible-text"
 
 import { assistantLocaleSchema } from "@/types/assistant"
 import {
@@ -21,7 +21,7 @@ export const cvTailorRequestSchema = z
       .string()
       .trim()
       .max(CV_TAILOR_OFFER_MAX_CHARS)
-      .refine((offer) => visibleLength(offer) >= CV_TAILOR_OFFER_MIN_CHARS),
+      .refine(isTailorableOffer),
     locale: assistantLocaleSchema,
   })
   .strict()

@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import type { SiteContent } from "@/content/site/types"
+import { SkipToContent } from "@/components/skip-to-content"
 import { BrandLink } from "@/components/site/brand-link"
 import { LanguageLink } from "@/components/site/language-link"
 import { MobileMenu } from "@/components/site/mobile-menu"
@@ -8,6 +9,7 @@ import { NavLink } from "@/components/site/nav-link"
 import { primaryNavigation } from "@/components/site/site-nav"
 import { ThemeSwitch } from "@/components/site/theme-switch"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
+import { profile } from "@/lib/profile"
 
 type SiteHeaderProps = {
   locale: SiteLocale
@@ -23,11 +25,9 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
 
   return (
     <header className="site-header sticky top-0 z-40">
-      <a href="#main" className="site-skip-link">
-        {content.nav.skipToContent}
-      </a>
+      <SkipToContent label={content.nav.skipToContent} />
       <div className="site-container relative flex h-16 items-center justify-between gap-6">
-        <BrandLink href={localizedPath(locale, "/")} name={content.siteName} />
+        <BrandLink href={localizedPath(locale, "/")} name={profile.shortName} />
 
         <nav aria-label={content.nav.label} className="hidden md:block">
           <ul className="flex items-center gap-6 text-[0.9375rem]">
@@ -51,7 +51,7 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
         </div>
 
         <div className="flex items-center gap-1 md:hidden">
-          <LanguageLink current={locale} short />
+          <LanguageLink current={locale} variant="short" />
           <MobileMenu label={content.nav.menu}>
             <nav aria-label={content.nav.label} className="site-container py-6">
               <ul className="flex flex-col">
@@ -60,10 +60,7 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
                     key={link.path}
                     className="border-b border-border last:border-b-0"
                   >
-                    <NavLink
-                      href={link.href}
-                      className="min-h-16 w-full font-heading text-[1.75rem] tracking-[-0.01em] text-foreground"
-                    >
+                    <NavLink href={link.href} variant="menu">
                       {link.label}
                     </NavLink>
                   </li>

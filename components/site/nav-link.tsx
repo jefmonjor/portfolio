@@ -3,13 +3,17 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { withoutLocalePrefix } from "@/i18n/routing"
-import { cn } from "@/lib/utils"
+import { withoutLocalePrefix } from "@/i18n/locales"
+
+const variantClasses = {
+  bar: "min-h-11 text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground",
+  menu: "min-h-16 w-full font-heading text-[1.75rem] tracking-[-0.01em] text-foreground",
+} as const
 
 type NavLinkProps = {
   href: string
   children: React.ReactNode
-  className?: string
+  variant?: keyof typeof variantClasses
 }
 
 function isWithinSection(pathname: string, href: string): boolean {
@@ -18,17 +22,14 @@ function isWithinSection(pathname: string, href: string): boolean {
   return current === section || current.startsWith(`${section}/`)
 }
 
-function NavLink({ href, children, className }: NavLinkProps) {
+function NavLink({ href, children, variant = "bar" }: NavLinkProps) {
   const isCurrent = isWithinSection(usePathname(), href)
 
   return (
     <Link
       href={href}
       aria-current={isCurrent ? "page" : undefined}
-      className={cn(
-        "inline-flex min-h-11 items-center text-muted-foreground transition-colors hover:text-foreground aria-[current=page]:text-foreground",
-        className
-      )}
+      className={`inline-flex items-center transition-colors ${variantClasses[variant]}`}
     >
       {children}
     </Link>

@@ -1,11 +1,11 @@
 import { ArrowDown02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import Link from "next/link"
 
-import { ArrowLabel } from "@/components/site/arrow-label"
+import { ContactButton } from "@/components/site/contact-button"
 import { HeroDiagram } from "@/components/site/hero-diagram"
 import type { Headline, SiteContent } from "@/content/site/types"
-import { localizedPath, type SiteLocale } from "@/i18n/routing"
+import type { SiteLocale } from "@/i18n/routing"
+import { profile } from "@/lib/profile"
 
 type HeroProps = {
   locale: SiteLocale
@@ -88,7 +88,7 @@ function Hero({ locale, content }: HeroProps) {
           className="mt-5 font-heading text-[clamp(2.4rem,8vw,5.5rem)] leading-[1.05] font-medium tracking-[-0.02em] text-foreground md:text-[clamp(2.4rem,4.6vw,5.5rem)]"
         >
           <span className="sr-only">
-            {hero.name}, {hero.role}.{" "}
+            {profile.shortName}, {hero.role}.{" "}
           </span>
           <HeadlineWords headline={hero.headline} />
         </h1>
@@ -106,12 +106,11 @@ function Hero({ locale, content }: HeroProps) {
         </p>
 
         <div className="hero-reveal mt-8 flex flex-col gap-2 [--step:8] sm:flex-row sm:items-center sm:gap-6">
-          <Link
-            href={localizedPath(locale, "/contact")}
-            className="group/arrow site-button min-h-14 w-full px-6 text-[1.0625rem] sm:w-auto"
-          >
-            <ArrowLabel>{content.cta}</ArrowLabel>
-          </Link>
+          <ContactButton
+            locale={locale}
+            label={content.cta}
+            className="min-h-14 px-6 text-[1.0625rem]"
+          />
           <a
             href="#work"
             className="site-link inline-flex min-h-11 items-center justify-center gap-1.5 self-center text-[0.9375rem] font-medium sm:self-auto"

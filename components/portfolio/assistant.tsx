@@ -17,7 +17,6 @@ import {
   parseConversation,
   readReply,
   requestMessages,
-  serializeConversation,
   type ConversationMessage,
 } from "@/lib/assistant/conversation"
 import { contactEmail } from "@/lib/email"
@@ -45,10 +44,7 @@ function saveConversationIfStorageAllows(
   try {
     if (messages.length === 0) window.sessionStorage.removeItem(STORAGE_KEY)
     else {
-      window.sessionStorage.setItem(
-        STORAGE_KEY,
-        serializeConversation(messages)
-      )
+      window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
     }
   } catch {
     return
