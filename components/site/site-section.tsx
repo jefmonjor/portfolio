@@ -1,20 +1,15 @@
+import { DisplayTitle } from "@/components/site/display-title"
+import type { Headline } from "@/content/site/types"
 import { cn } from "@/lib/utils"
 
 type SiteSectionProps = {
   id: string
-  title: string
-  aside?: React.ReactNode
+  title: string | Headline
   children: React.ReactNode
   className?: string
 }
 
-function SiteSection({
-  id,
-  title,
-  aside,
-  children,
-  className,
-}: SiteSectionProps) {
+function SiteSection({ id, title, children, className }: SiteSectionProps) {
   const headingId = `${id}-title`
 
   return (
@@ -22,21 +17,15 @@ function SiteSection({
       id={id}
       data-reveal
       aria-labelledby={headingId}
-      className={cn(
-        "site-container grid gap-8 border-t border-stroke-soft-200 py-16 md:py-24 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-12",
-        className
-      )}
+      className={cn("site-container py-20 md:py-28", className)}
     >
-      <div className="self-start lg:sticky lg:top-24">
-        <h2
-          id={headingId}
-          className="font-heading text-title-h4 text-text-strong-950"
-        >
-          {title}
-        </h2>
-        {aside}
-      </div>
-      <div className="min-w-0">{children}</div>
+      <h2
+        id={headingId}
+        className="max-w-[18ch] font-heading text-title-h2 text-text-strong-950"
+      >
+        <DisplayTitle title={title} />
+      </h2>
+      <div className="mt-10 min-w-0 md:mt-14">{children}</div>
     </section>
   )
 }

@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google"
+import { Instrument_Serif, Inter } from "next/font/google"
 
 import { SiteShell } from "@/components/site/site-shell"
 import { StructuredDataScript } from "@/components/site/structured-data-script"
@@ -12,6 +12,14 @@ const inter = Inter({
   display: "swap",
 })
 
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+})
+
 export default async function SiteLayout({
   children,
   params,
@@ -19,7 +27,11 @@ export default async function SiteLayout({
   const { locale, content } = await resolveSitePage(params)
 
   return (
-    <SiteShell fontVariable={inter.variable} locale={locale} content={content}>
+    <SiteShell
+      fontVariable={`${inter.variable} ${instrumentSerif.variable}`}
+      locale={locale}
+      content={content}
+    >
       {children}
       <StructuredDataScript
         data={buildSiteStructuredData({

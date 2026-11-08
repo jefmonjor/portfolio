@@ -28,17 +28,6 @@ function CaseCard({
   return (
     <article className="group/arrow site-card site-card-spotlight relative grid h-full gap-8 p-6 md:grid-cols-[minmax(0,1fr)_13rem] md:p-8">
       <div className="flex min-w-0 flex-col gap-4">
-        <div className="flex items-baseline justify-between gap-4">
-          <p className="text-subheading-xs text-text-sub-600 uppercase">
-            {study.sector}
-          </p>
-          <span
-            aria-hidden
-            className="text-label-xs text-text-soft-400 tabular-nums md:hidden"
-          >
-            {order}
-          </span>
-        </div>
         <Heading className="font-heading text-title-h5 text-text-strong-950">
           <Link
             href={localizedPath(locale, `/work/${study.slug}`)}
@@ -47,6 +36,15 @@ function CaseCard({
             {study.title}
           </Link>
         </Heading>
+        <p className="flex items-baseline justify-between gap-4 text-label-sm text-text-sub-600">
+          {study.sector}
+          <span
+            aria-hidden
+            className="text-label-xs text-text-soft-400 tabular-nums md:hidden"
+          >
+            {order}
+          </span>
+        </p>
         <p className="max-w-[40rem] text-paragraph-md text-text-sub-600">
           {study.outcome}
         </p>

@@ -5,6 +5,7 @@ import Link from "next/link"
 import type { SiteContent } from "@/content/site/types"
 import { LanguageLink } from "@/components/site/language-link"
 import { StatusBadge } from "@/components/site/status-badge"
+import { sitePhotos, unsplashReferral } from "@/content/site/photos"
 import { primaryNavigation } from "@/components/site/site-nav"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
 import { profile, publicProfiles } from "@/lib/profile"
@@ -78,6 +79,30 @@ function SiteFooter({ locale, content }: SiteFooterProps) {
       <div className="site-container flex flex-wrap items-center justify-between gap-4 border-t border-stroke-soft-200 py-6 text-paragraph-sm text-text-sub-600">
         <p>
           © {new Date().getFullYear()} {profile.name}
+        </p>
+        <p className="order-last w-full text-paragraph-sm text-text-sub-600 sm:order-none sm:w-auto">
+          {content.footer.photography}:{" "}
+          {Object.values(sitePhotos).map((photo, index, photos) => (
+            <span key={photo.photographer}>
+              <a
+                href={`${photo.profile}?${unsplashReferral}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-stroke-sub-300 underline-offset-2 hover:text-text-strong-950"
+              >
+                {photo.photographer}
+              </a>
+              {index < photos.length - 1 ? ", " : " · "}
+            </span>
+          ))}
+          <a
+            href={`https://unsplash.com/?${unsplashReferral}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-stroke-sub-300 underline-offset-2 hover:text-text-strong-950"
+          >
+            Unsplash
+          </a>
         </p>
         <a
           href="#main"

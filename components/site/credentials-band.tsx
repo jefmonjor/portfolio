@@ -19,30 +19,13 @@ function CredentialsBand({ credentials }: CredentialsBandProps) {
             {credentials.companies.map((company) => (
               <li
                 key={company}
-                className="font-heading text-title-h5 text-text-sub-600"
+                className="font-heading text-title-h3 text-text-strong-950"
               >
                 {company}
               </li>
             ))}
           </ul>
         </div>
-        <dl className="grid grid-cols-2 gap-6">
-          {credentials.stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col gap-1">
-              <dt className="order-2 text-paragraph-sm text-text-sub-600">
-                {stat.label}
-              </dt>
-              <dd className="order-1 font-heading text-title-h2 text-text-strong-950">
-                <span className="sr-only">{stat.value}</span>
-                <span
-                  aria-hidden
-                  className="stat-count"
-                  style={{ "--stat-target": stat.value }}
-                />
-              </dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   )

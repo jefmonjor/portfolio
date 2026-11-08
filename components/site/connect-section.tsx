@@ -1,20 +1,26 @@
 import { ConnectMap } from "@/components/site/connect-map"
-import type { SiteContent } from "@/content/site/types"
+import { DisplayTitle } from "@/components/site/display-title"
+import type { Headline, SiteContent } from "@/content/site/types"
 import { twoDigits } from "@/lib/numbering"
 
-function ConnectSection({ connect }: { connect: SiteContent["connect"] }) {
+type ConnectSectionProps = {
+  title: Headline
+  connect: SiteContent["connect"]
+}
+
+function ConnectSection({ title, connect }: ConnectSectionProps) {
   return (
     <section
       id="connect"
       aria-labelledby="connect-title"
-      className="connect-scope site-container border-t border-stroke-soft-200 py-16 md:py-24"
+      className="connect-scope site-container py-20 md:py-28"
     >
       <div className="max-w-[44rem]">
         <h2
           id="connect-title"
-          className="font-heading text-title-h2 text-text-strong-950"
+          className="max-w-[18ch] font-heading text-title-h2 text-text-strong-950"
         >
-          {connect.title}
+          <DisplayTitle title={title} />
         </h2>
         <p className="site-prose mt-5 text-text-sub-600">{connect.intro}</p>
       </div>

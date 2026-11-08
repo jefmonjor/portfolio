@@ -1,9 +1,11 @@
 import { ArrowDown02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import Image from "next/image"
 
 import { ContactButton } from "@/components/site/contact-button"
-import { ArchitectureStack } from "@/components/site/architecture-stack"
+import { HeroAnnotations } from "@/components/site/hero-annotations"
 import { StatusBadge } from "@/components/site/status-badge"
+import { sitePhotos, unsplashReferral } from "@/content/site/photos"
 import type { Headline, SiteContent } from "@/content/site/types"
 import type { SiteLocale } from "@/i18n/routing"
 import { profile } from "@/lib/profile"
@@ -46,99 +48,131 @@ function runBeforeFirstPaint(script: string) {
   return <script dangerouslySetInnerHTML={{ __html: script }} />
 }
 
+type HeadlineWord = {
+  text: string
+  emphasis: boolean
+  joinsPrevious: boolean
+}
+
+function splitHeadline(headline: Headline): HeadlineWord[] {
+  return headline.flatMap((part): HeadlineWord[] => {
+    if (typeof part !== "string") {
+      return [{ text: part.emphasis, emphasis: true, joinsPrevious: false }]
+    }
+    const joinsPrevious = !/^\s/.test(part)
+    return part
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((text, index) => ({
+        text,
+        emphasis: false,
+        joinsPrevious: index === 0 && joinsPrevious,
+      }))
+  })
+}
+
 function HeadlineWords({ headline }: { headline: Headline }) {
-  const words = headline.flatMap((part) =>
-    typeof part === "string"
-      ? part
-          .split(" ")
-          .filter(Boolean)
-          .map((text) => ({ text, emphasis: false }))
-      : [{ text: part.emphasis, emphasis: true }]
-  )
+  const words = splitHeadline(headline)
 
   return words.map((word, index) => (
     <span key={index}>
+      {index > 0 && !word.joinsPrevious ? " " : null}
       <span data-word className="hero-word">
         <span className={word.emphasis ? "hero-emphasis" : undefined}>
           {word.text}
         </span>
       </span>
-      {index < words.length - 1 ? " " : null}
     </span>
   ))
 }
 
 function Hero({ locale, content }: HeroProps) {
   const { hero } = content
+  const photo = sitePhotos.hero
 
   return (
-    <section
-      aria-labelledby="hero-title"
-      className="site-container grid gap-10 pt-10 pb-14 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] md:items-center md:gap-10 md:pt-16 md:pb-20 lg:gap-16"
-    >
-      <div className="flex flex-col">
-        {runBeforeFirstPaint(
-          `(${playIntroOncePerSession.toString()})(document.documentElement)`
-        )}
-        <p className="hero-reveal text-subheading-xs text-text-sub-600 uppercase [--step:0] sm:tracking-[0.18em]">
-          {hero.eyebrow}
-        </p>
-
-        <h1
-          id="hero-title"
-          className="mt-5 font-heading text-title-h1 text-text-strong-950 md:text-title-h1-split"
-        >
-          <span className="sr-only">
-            {profile.shortName}, {hero.role}.{" "}
-          </span>
-          <HeadlineWords headline={hero.headline} />
-        </h1>
-        {runBeforeFirstPaint(
-          `(${numberHeadlineLines.toString()})(document.getElementById("hero-title"))`
-        )}
-
-        <p className="hero-reveal mt-6 text-paragraph-lg text-text-sub-600 [--step:6]">
-          {hero.subtitle}
-        </p>
-
-        <p className="hero-reveal mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-paragraph-sm text-text-sub-600 [--step:7]">
-          <StatusBadge>{hero.availability.status}</StatusBadge>
-          {hero.availability.detail}
-        </p>
-
-        <div className="hero-reveal mt-8 flex flex-col gap-2 [--step:8] sm:flex-row sm:items-center sm:gap-6">
-          <ContactButton
-            locale={locale}
-            label={content.cta}
-            className="min-h-14 px-6"
+    <section aria-labelledby="hero-title" className="hero">
+      {runBeforeFirstPaint(
+        `(${playIntroOncePerSession.toString()})(document.documentElement)`
+      )}
+      <div className="hero-frame surface-dark">
+        <div aria-hidden className="hero-media">
+          <Image
+            src={photo.image}
+            alt=""
+            priority
+            placeholder="blur"
+            sizes="100vw"
+            className="hero-photo"
           />
-          <a
-            href="#work"
-            className="site-link inline-flex min-h-11 items-center justify-center gap-1.5 self-center text-label-md sm:self-auto"
+          <HeroAnnotations labels={hero.annotations} />
+        </div>
+        <div aria-hidden className="hero-shade" />
+
+        <div className="hero-copy">
+          <div className="hero-reveal [--step:0]">
+            <StatusBadge>{hero.availability.status}</StatusBadge>
+          </div>
+          <h1
+            id="hero-title"
+            className="hero-title mt-6 font-heading text-text-strong-950"
           >
-            {hero.seeWork}
-            <HugeiconsIcon
-              icon={ArrowDown02Icon}
-              aria-hidden
-              className="size-4"
-              strokeWidth={1.75}
+            <span className="sr-only">
+              {profile.shortName}, {hero.role}.{" "}
+            </span>
+            <HeadlineWords headline={hero.headline} />
+          </h1>
+          {runBeforeFirstPaint(
+            `(${numberHeadlineLines.toString()})(document.getElementById("hero-title"))`
+          )}
+          <p className="hero-reveal mt-6 max-w-[38rem] text-paragraph-lg text-text-strong-950 [--step:6]">
+            {hero.subtitle}
+          </p>
+          <div className="hero-reveal mt-8 flex flex-col gap-2 [--step:7] sm:flex-row sm:items-center sm:gap-6">
+            <ContactButton
+              locale={locale}
+              label={content.cta}
+              className="min-h-14 px-6"
             />
-          </a>
+            <a
+              href="#work"
+              className="site-link inline-flex min-h-11 items-center justify-center gap-1.5 self-center text-label-md sm:self-auto"
+            >
+              {hero.seeWork}
+              <HugeiconsIcon
+                icon={ArrowDown02Icon}
+                aria-hidden
+                className="size-4"
+                strokeWidth={1.75}
+              />
+            </a>
+          </div>
         </div>
 
-        <div className="hero-reveal mt-8 overflow-hidden [--step:9]">
+        <p className="hero-credit">
+          {content.footer.photography}:{" "}
+          <a
+            href={`${photo.profile}?${unsplashReferral}`}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {photo.photographer}
+          </a>
+        </p>
+      </div>
+
+      <div className="site-container flex flex-col gap-3 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="overflow-hidden">
           <ul className="proof-list text-paragraph-sm text-text-sub-600">
             {hero.proof.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
+        <p className="shrink-0 text-paragraph-sm text-text-sub-600">
+          {hero.availability.detail}
+        </p>
       </div>
-
-      <ArchitectureStack
-        layers={hero.layers}
-        className="hero-reveal mx-auto w-full max-w-[30rem] [--step:4]"
-      />
     </section>
   )
 }

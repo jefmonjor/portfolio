@@ -1,6 +1,6 @@
 import { ArrowLeft02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { Inter } from "next/font/google"
+import { Instrument_Serif, Inter } from "next/font/google"
 import Link from "next/link"
 import { getLocale, getTranslations } from "next-intl/server"
 
@@ -17,13 +17,22 @@ const inter = Inter({
   preload: false,
 })
 
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+  preload: false,
+})
+
 export default async function NotFound() {
   const t = await getTranslations("notFound")
   const locale = nearestSiteLocale(await getLocale())
 
   return (
     <SiteShell
-      fontVariable={inter.variable}
+      fontVariable={`${inter.variable} ${instrumentSerif.variable}`}
       locale={locale}
       content={getSiteContent(locale)}
     >

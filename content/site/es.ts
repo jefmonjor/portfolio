@@ -51,16 +51,9 @@ export const es: SiteContent = {
   cta: "Hablemos de tu proyecto",
   hero: {
     role: "Software Architect & Senior Backend Engineer",
-    eyebrow: "Software Architect · Sistemas · IA aplicada",
-    headline: [
-      "Construyo el software y las ",
-      { emphasis: "integraciones" },
-      " con las que funciona tu empresa, y la ",
-      { emphasis: "IA" },
-      " que se gana su sitio.",
-    ],
+    headline: ["Software construido como ", { emphasis: "arquitectura" }, "."],
     subtitle:
-      "Software a medida, sistemas conectados y automatización, con siete años de ingeniería en banca, legal, energía y telecomunicaciones.",
+      "Diseño, conecto y llevo a producción los sistemas con los que funciona una empresa: software a medida, integraciones e IA aplicada, con siete años de ingeniería en banca, legal, energía y telecomunicaciones.",
     availability: {
       status: "Disponible a tiempo parcial desde enero de 2027",
       detail: "Remoto\u00a0· Hora de Andorra (CET)",
@@ -71,28 +64,29 @@ export const es: SiteContent = {
       "Trabajas directamente conmigo, del diagnóstico a producción",
     ],
     seeWork: "Ver trabajos seleccionados",
-    layers: [
-      "Tus datos",
-      "Integraciones",
-      "Eventos",
-      "Servicios · IA",
-      "API · Apps",
-    ],
+    annotations: ["API · Apps", "Servicios · IA", "Eventos", "Integraciones", "Tus datos"],
   },
 
   credentials: {
     label: "Experiencia en",
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
-    stats: [
-      { value: 7, label: "años construyendo software en producción" },
-      {
-        value: 4,
-        label: "sectores: banca, legal, energía y telecomunicaciones",
-      },
+  },
+  display: {
+    connect: ["Tus sistemas, por fin ", { emphasis: "conectados" }, "."],
+    work: ["Construido, desplegado y ", { emphasis: "funcionando" }, "."],
+    services: ["Tres formas de ", { emphasis: "empezar" }, "."],
+    about: ["El ", { emphasis: "arquitecto" }, " detrás."],
+    experience: ["Siete años en ", { emphasis: "producción" }, "."],
+    contact: ["Construyamos algo que ", { emphasis: "dure" }, "."],
+    statement: [
+      "Un sistema que tu equipo pueda operar y cambiar ",
+      { emphasis: "sin mí" },
+      ".",
     ],
+    statementDetail:
+      "Arquitectura documentada, tests que explican el comportamiento y un traspaso completo del código, los documentos y el conocimiento.",
   },
   connect: {
-    title: "Cómo conecto tus sistemas",
     intro:
       "La mayoría de las empresas no necesitan más herramientas. Necesitan que las que ya tienen trabajen juntas.",
     steps: [
@@ -788,6 +782,7 @@ export const es: SiteContent = {
     fullCv: "CV completo",
     privacy: "Privacidad",
     backToTop: "Volver arriba",
+    photography: "Fotografía",
   },
   privacy: {
     title: "Privacidad",

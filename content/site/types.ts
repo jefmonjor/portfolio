@@ -155,16 +155,24 @@ export type SiteContent = {
   cta: string
   hero: {
     role: string
-    eyebrow: string
     headline: Headline
     subtitle: string
     availability: { status: string; detail: string }
     proof: ReadonlyArray<string>
     seeWork: string
-    layers: readonly [string, string, string, string, string]
+    annotations: readonly [string, string, string, string, string]
+  }
+  display: {
+    connect: Headline
+    work: Headline
+    services: Headline
+    about: Headline
+    experience: Headline
+    contact: Headline
+    statement: Headline
+    statementDetail: string
   }
   connect: {
-    title: string
     intro: string
     steps: readonly [ConnectStep, ConnectStep, ConnectStep, ConnectStep]
     nodes: {
@@ -178,7 +186,6 @@ export type SiteContent = {
   credentials: {
     label: string
     companies: ReadonlyArray<string>
-    stats: ReadonlyArray<{ value: number; label: string }>
   }
   about: {
     title: string
@@ -258,6 +265,7 @@ export type SiteContent = {
     fullCv: string
     privacy: string
     backToTop: string
+    photography: string
   }
   privacy: {
     title: string

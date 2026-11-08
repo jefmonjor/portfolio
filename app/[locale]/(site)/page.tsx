@@ -1,14 +1,14 @@
+import { AboutSection } from "@/components/site/about-section"
 import { ArrowLink } from "@/components/site/arrow-link"
 import { CaseDeck } from "@/components/site/case-deck"
 import { ConnectSection } from "@/components/site/connect-section"
 import { CredentialsBand } from "@/components/site/credentials-band"
-import { DeckCounter } from "@/components/site/deck-counter"
 import { ExperienceTimeline } from "@/components/site/experience-timeline"
 import { FinalCta } from "@/components/site/final-cta"
 import { Hero } from "@/components/site/hero"
-import { RichText } from "@/components/site/rich-text"
 import { ServicesSummary } from "@/components/site/services-summary"
 import { SiteSection } from "@/components/site/site-section"
+import { StatementBand } from "@/components/site/statement-band"
 import { localizedPath } from "@/i18n/routing"
 import {
   resolveSitePage,
@@ -30,14 +30,12 @@ export default async function HomePage({ params }: SitePageProps) {
 
       <CredentialsBand credentials={content.credentials} />
 
-      <ConnectSection connect={content.connect} />
+      <ConnectSection
+        title={content.display.connect}
+        connect={content.connect}
+      />
 
-      <SiteSection
-        id="work"
-        title={content.selectedWork.title}
-        aside={<DeckCounter total={content.work.cases.length} />}
-        className="case-deck-scope"
-      >
+      <SiteSection id="work" title={content.display.work}>
         <CaseDeck
           locale={locale}
           cases={content.work.cases}
@@ -50,7 +48,9 @@ export default async function HomePage({ params }: SitePageProps) {
         </ArrowLink>
       </SiteSection>
 
-      <SiteSection id="services" title={content.services.homeTitle}>
+      <StatementBand display={content.display} />
+
+      <SiteSection id="services" title={content.display.services}>
         <ServicesSummary
           locale={locale}
           services={content.services}
@@ -58,20 +58,9 @@ export default async function HomePage({ params }: SitePageProps) {
         />
       </SiteSection>
 
-      <SiteSection id="about" title={content.about.title}>
-        <p className="scroll-fill-block max-w-[24ch] font-heading text-title-h3 text-text-strong-950">
-          <span className="scroll-fill">{content.about.lead}</span>
-        </p>
-        <div className="site-prose mt-8 flex flex-col gap-5 text-text-strong-950">
-          {content.about.paragraphs.map((paragraph, index) => (
-            <p key={index}>
-              <RichText locale={locale} content={paragraph} />
-            </p>
-          ))}
-        </div>
-      </SiteSection>
+      <AboutSection locale={locale} content={content} />
 
-      <SiteSection id="experience" title={content.experience.title}>
+      <SiteSection id="experience" title={content.display.experience}>
         <ExperienceTimeline groups={content.experience.groups} />
         <ArrowLink href={localizedPath(locale, "/experience")} className="mt-8">
           {content.experience.fullHistory}
@@ -79,6 +68,7 @@ export default async function HomePage({ params }: SitePageProps) {
       </SiteSection>
 
       <FinalCta
+        title={content.display.contact}
         contact={content.contact}
         availability={content.hero.availability.status}
         briefHref={`${localizedPath(locale, "/contact")}#brief`}

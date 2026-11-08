@@ -49,16 +49,9 @@ export const en: SiteContent = {
   cta: "Let's discuss your project",
   hero: {
     role: "Software Architect & Senior Backend Engineer",
-    eyebrow: "Software Architect · Systems · Applied AI",
-    headline: [
-      "I build the software and ",
-      { emphasis: "integrations" },
-      " your business runs on\u00a0— and the ",
-      { emphasis: "AI" },
-      " that earns its place.",
-    ],
+    headline: ["Software built like ", { emphasis: "architecture" }, "."],
     subtitle:
-      "Custom software, connected systems and automation, built on seven years of engineering across banking, legal, energy and telecom.",
+      "I design, connect and ship the systems a business runs on: custom software, integrations and applied AI, with seven years of engineering across banking, legal, energy and telecom.",
     availability: {
       status: "Available part-time from January 2027",
       detail: "Remote\u00a0· Andorra time (CET)",
@@ -69,25 +62,29 @@ export const en: SiteContent = {
       "You work directly with me, from diagnosis to production",
     ],
     seeWork: "See selected work",
-    layers: [
-      "Your data",
-      "Integrations",
-      "Events",
-      "Services · AI",
-      "API · Apps",
-    ],
+    annotations: ["API · Apps", "Services · AI", "Events", "Integrations", "Your data"],
   },
 
   credentials: {
     label: "Experience at",
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
-    stats: [
-      { value: 7, label: "years building production software" },
-      { value: 4, label: "sectors: banking, legal, energy and telecom" },
+  },
+  display: {
+    connect: ["Your systems, finally ", { emphasis: "connected" }, "."],
+    work: ["Built, shipped and ", { emphasis: "running" }, "."],
+    services: ["Three ways to ", { emphasis: "start" }, "."],
+    about: ["The ", { emphasis: "architect" }, " behind it."],
+    experience: ["Seven years in ", { emphasis: "production" }, "."],
+    contact: ["Let's build something that ", { emphasis: "lasts" }, "."],
+    statement: [
+      "A system your team can run and change ",
+      { emphasis: "without me" },
+      ".",
     ],
+    statementDetail:
+      "A documented architecture, tests that explain the behaviour and a complete handover of the code, the documents and the knowledge.",
   },
   connect: {
-    title: "How I connect your systems",
     intro:
       "Most businesses do not need more tools. They need the ones they already have to work together.",
     steps: [
@@ -782,6 +779,7 @@ export const en: SiteContent = {
     fullCv: "Full CV",
     privacy: "Privacy",
     backToTop: "Back to top",
+    photography: "Photography",
   },
   privacy: {
     title: "Privacy",
