@@ -8,8 +8,8 @@ file, then load only the `.ai/` files that match the current task.
 
 jefmonjor.dev is the commercial site of an independent Software Architect &
 Senior Backend Engineer who builds custom software, connects systems,
-automates processes and applies AI for businesses, with banking-grade
-experience as proof. A business owner or a CTO must understand in ten seconds
+automates processes and applies AI for businesses, with seven years of
+engineering across banking (since 2024), legal, energy and telecom as proof. A business owner or a CTO must understand in ten seconds
 what he does, why to trust him and how to hire him.
 
 - `/` (EN) and `/es` (ES): home, services, case studies, experience, contact.

@@ -6,7 +6,7 @@ export const es: SiteContent = {
       title:
         "Jefferson Montesdeoca — Software a medida, integraciones e IA aplicada",
       description:
-        "Software a medida, sistemas conectados, automatización e IA aplicada para empresas, con siete años de ingeniería de nivel bancario. En remoto desde Andorra, CET.",
+        "Software a medida, sistemas conectados, automatización e IA aplicada para empresas, con siete años de ingeniería en banca, legal, energía y telecomunicaciones. En remoto desde Andorra, CET.",
     },
     services: {
       title:
@@ -60,13 +60,13 @@ export const es: SiteContent = {
       " que se gana su sitio.",
     ],
     subtitle:
-      "Software a medida, sistemas conectados y automatización, con siete años de ingeniería de nivel bancario.",
+      "Software a medida, sistemas conectados y automatización, con siete años de ingeniería en banca, legal, energía y telecomunicaciones.",
     availability: {
       status: "Disponible a tiempo parcial desde enero de 2027",
       detail: "Remoto\u00a0· Hora de Andorra (CET)",
     },
     proof: [
-      "7 años en banca y sistemas críticos",
+      "7 años construyendo software: banca, legal, energía, telecomunicaciones",
       "Productos propios en producción: facturación, apps e IA",
       "Trabajas directamente conmigo, del diagnóstico a producción",
     ],
@@ -84,7 +84,7 @@ export const es: SiteContent = {
     label: "Experiencia en",
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
     stats: [
-      { value: 7, label: "años en banca y sistemas críticos" },
+      { value: 7, label: "años construyendo software en producción" },
       {
         value: 4,
         label: "sectores: banca, legal, energía y telecomunicaciones",

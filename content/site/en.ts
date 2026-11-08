@@ -6,7 +6,7 @@ export const en: SiteContent = {
       title:
         "Jefferson Montesdeoca — Custom software, integrations and applied AI",
       description:
-        "Custom software, connected systems, automation and applied AI for businesses, built with seven years of banking-grade engineering. Remote from Andorra, CET.",
+        "Custom software, connected systems, automation and applied AI for businesses, built on seven years of engineering across banking, legal, energy and telecom. Remote from Andorra, CET.",
     },
     services: {
       title: "Services — Diagnosis, build and integrate, engineering partner",
@@ -58,13 +58,13 @@ export const en: SiteContent = {
       " that earns its place.",
     ],
     subtitle:
-      "Custom software, connected systems and automation, built with seven years of banking-grade engineering.",
+      "Custom software, connected systems and automation, built on seven years of engineering across banking, legal, energy and telecom.",
     availability: {
       status: "Available part-time from January 2027",
       detail: "Remote\u00a0· Andorra time (CET)",
     },
     proof: [
-      "7 years in banking and critical systems",
+      "7 years building software: banking, legal, energy, telecom",
       "Own products live: invoicing, apps, applied AI",
       "You work directly with me, from diagnosis to production",
     ],
@@ -82,7 +82,7 @@ export const en: SiteContent = {
     label: "Experience at",
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
     stats: [
-      { value: 7, label: "years in banking and critical systems" },
+      { value: 7, label: "years building production software" },
       { value: 4, label: "sectors: banking, legal, energy and telecom" },
     ],
   },
