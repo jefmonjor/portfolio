@@ -8,7 +8,11 @@ web
 
 ## Users
 
-Business owners, operations leads and CTOs of small and mid-size companies (roughly 10–200 people) who have a problem that software can solve: manual processes, spreadsheets that run the business, tools that do not talk to each other, an old application that needs modernising, or an idea that needs to reach production. They arrive from LinkedIn, a referral or a search, on a laptop at work or a phone, and decide in seconds whether this person can be trusted with their system.
+Primary: CTOs and technical leads of fintechs and startups, and companies that work with banking or payments, who need a backend, an integration with banks or payment providers, a Java and Spring Boot platform brought up to date, or AI added behind tests and review. They hire on what he has already done in a private bank's architecture and solutions team.
+
+Second audience: companies (roughly 10–200 people) that integrate banking, payments or AI into their processes and need their tools connected or repetitive work automated. This discourse sits one step below the hero (the "When your systems have to work together" block), not in the headline.
+
+Both arrive from LinkedIn, a referral or a search, on a laptop at work or a phone, and decide in seconds whether this person can be trusted with their system.
 
 Secondary: recruiters and CTOs reading the full CV at `/cv`.
 
@@ -18,7 +22,7 @@ jefmonjor.dev is the commercial site of Jefferson Montesdeoca, an independent se
 
 ## Positioning
 
-A senior software engineer who designs, connects and ships the systems a business runs on — custom software, system integration, process automation and applied AI — using AI across the whole development cycle while he reviews and signs off every change, and who builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone). The client works directly with him from diagnosis to production; it is not an agency.
+A senior software engineer who designs and builds backends, integrations and applied AI for fintechs, startups and companies that work with banking or payments — and, one step below, connects tools and automates processes for other businesses — using AI across the whole development cycle while he reviews and signs off every change, and who builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone). The client works directly with him from diagnosis to production; it is not an agency.
 
 ## Operating Context
 

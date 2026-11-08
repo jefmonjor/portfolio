@@ -73,7 +73,11 @@ export function buildTerminalData(
       { id: "work", label: nav.work },
       { id: "services", label: nav.services },
       { id: "about", label: headlineText(content.display.about) },
-      { id: "experience", label: nav.experience },
+      {
+        id: "experience",
+        label: nav.experience,
+        href: localizedPath(locale, "/experience"),
+      },
       { id: "contact", label: nav.contact },
     ],
     homeHref: localizedPath(locale, "/"),

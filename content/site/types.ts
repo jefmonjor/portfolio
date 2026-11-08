@@ -1,10 +1,10 @@
 import type { TerminalStrings } from "@/lib/site-terminal"
 
 export const caseStudySlugs = [
+  "private-bank-modernization",
   "transolido-verifactu-invoicing",
   "othertwist-offline-writing",
   "ilnami-private-by-design",
-  "private-bank-modernization",
 ] as const
 
 export type CaseStudySlug = (typeof caseStudySlugs)[number]
@@ -237,7 +237,6 @@ export type SiteContent = {
     work: Headline
     services: Headline
     about: Headline
-    experience: Headline
     contact: Headline
   }
   approach: {
@@ -303,7 +302,6 @@ export type SiteContent = {
     title: string
     intro: string
     groups: readonly [ExperienceGroup, ExperienceGroup, ExperienceGroup]
-    fullHistory: string
     present: string
     cvLead: string
     cvLink: string

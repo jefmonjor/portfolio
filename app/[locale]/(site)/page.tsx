@@ -4,7 +4,6 @@ import { ArrowLink } from "@/components/site/arrow-link"
 import { CaseDeck } from "@/components/site/case-deck"
 import { ConnectSection } from "@/components/site/connect-section"
 import { CredentialsBand } from "@/components/site/credentials-band"
-import { ExperienceTimeline } from "@/components/site/experience-timeline"
 import { FinalCta } from "@/components/site/final-cta"
 import { Hero } from "@/components/site/hero"
 import { ServicesSummary } from "@/components/site/services-summary"
@@ -58,13 +57,6 @@ export default async function HomePage({ params }: SitePageProps) {
       </SiteSection>
 
       <AboutSection locale={locale} content={content} />
-
-      <SiteSection id="experience" title={content.display.experience}>
-        <ExperienceTimeline groups={content.experience.groups} />
-        <ArrowLink href={localizedPath(locale, "/experience")} className="mt-8">
-          {content.experience.fullHistory}
-        </ArrowLink>
-      </SiteSection>
 
       <FinalCta
         title={content.display.contact}

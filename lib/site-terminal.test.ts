@@ -29,7 +29,9 @@ describe("site terminal", () => {
   })
 
   it("lists the live products and opens one in a new tab", () => {
-    const products = run("projects").lines.map((line) => line.text).join("\n")
+    const products = run("projects")
+      .lines.map((line) => line.text)
+      .join("\n")
     for (const name of ["Transolido", "Ilnami", "Corte1D", "PRONOQ"]) {
       expect(products).toContain(name)
     }
@@ -47,6 +49,18 @@ describe("site terminal", () => {
     })
     expect(run("cv").effect).toEqual({ type: "navigate", href: "/es/cv" })
     expect(run("lang").effect).toEqual({ type: "navigate", href: "/" })
+  })
+
+  it("scrolls to home sections and opens the experience page", () => {
+    expect(run("goto services").effect).toEqual({
+      type: "scroll",
+      id: "services",
+      fallback: "/es#services",
+    })
+    expect(run("goto experience").effect).toEqual({
+      type: "navigate",
+      href: "/es/experience",
+    })
   })
 
   it("sends questions to the assistant and asks for one when missing", () => {
