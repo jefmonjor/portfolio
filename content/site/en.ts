@@ -26,7 +26,7 @@ export const en: SiteContent = {
     contact: {
       title: "Contact — Let's discuss your project",
       description:
-        "Available for part-time work from January 2027. Remote, Andorra time (CET). Send a few lines about your project and get a reply within one business day.",
+        "Part-time availability, remote, CET. Send a few lines about your project and get a reply within one business day.",
     },
     privacy: {
       title: "Privacy — what this site does with your data",
@@ -249,7 +249,7 @@ export const en: SiteContent = {
         deliverable:
           "Software in production, with the code, the documentation and the handover.",
         format:
-          "A daily rate, or a fixed price for a fixed scope. From January 2027: 10 to 15 hours per week; full time when my availability allows it.",
+          "A daily rate, or a fixed price for a fixed scope, at 10 to 15 hours per week.",
       },
       {
         id: "fractional",
@@ -814,7 +814,7 @@ export const en: SiteContent = {
       {
         label: "Availability",
         value:
-          "Part-time from January 2027. You can write now to plan the start.",
+          "Part-time, 10 to 15 hours per week. Write to me and we will plan the start.",
       },
       { label: "Location", value: "Andorra · remote" },
       {
@@ -895,7 +895,7 @@ export const en: SiteContent = {
     elsewhere: "Also on",
   },
   footer: {
-    location: "Andorra · Remote · Andorra time (CET)",
+    location: "Andorra · Remote · CET",
     privacy: "Privacy",
     backToTop: "Back to top",
   },

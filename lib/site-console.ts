@@ -33,11 +33,7 @@ export function buildTerminalData(
     `${fact.label}: ${fact.value}`
 
   return {
-    whoami: [
-      `${profile.name} — ${hero.role}`,
-      ...about.facts.map(factLine),
-      hero.availability.status,
-    ],
+    whoami: [`${profile.name} — ${hero.role}`, ...about.facts.map(factLine)],
     services: services.items.map(
       (service) => `${service.name} — ${service.summary}`
     ),

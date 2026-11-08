@@ -28,7 +28,7 @@ export const es: SiteContent = {
     contact: {
       title: "Contacto — Hablemos de tu proyecto",
       description:
-        "Disponible para colaboraciones a tiempo parcial desde enero de 2027. Remoto, CET. Escribe unas líneas sobre tu proyecto y te respondo en un día laborable.",
+        "Disponibilidad a tiempo parcial, en remoto y en horario CET. Escribe unas líneas sobre tu proyecto y te respondo en un día laborable.",
     },
     privacy: {
       title: "Privacidad — qué hace esta web con tus datos",
@@ -250,7 +250,7 @@ export const es: SiteContent = {
         deliverable:
           "Software en producción, con el código, la documentación y el traspaso.",
         format:
-          "Por día o a precio cerrado para un alcance cerrado. Desde enero de 2027: de 10 a 15 horas por semana; jornada completa cuando mi disponibilidad lo permita.",
+          "Por día o a precio cerrado para un alcance cerrado, con una dedicación de 10 a 15 horas por semana.",
       },
       {
         id: "fractional",
@@ -818,7 +818,7 @@ export const es: SiteContent = {
       {
         label: "Disponibilidad",
         value:
-          "A tiempo parcial a partir de enero de 2027. Puedes escribirme ya para planificar el inicio.",
+          "A tiempo parcial, de 10 a 15 horas por semana. Escríbeme y planificamos el inicio.",
       },
       { label: "Ubicación", value: "Andorra · remoto" },
       {
@@ -896,7 +896,7 @@ export const es: SiteContent = {
     elsewhere: "También en",
   },
   footer: {
-    location: "Andorra · Remoto · Hora de Andorra (CET)",
+    location: "Andorra · Remoto · CET",
     privacy: "Privacidad",
     backToTop: "Volver arriba",
   },

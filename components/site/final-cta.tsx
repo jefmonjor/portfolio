@@ -18,7 +18,7 @@ function FinalCta({ title, contact, briefHref }: FinalCtaProps) {
       id="contact"
       data-reveal
       aria-labelledby="contact-title"
-      className="px-2 py-12 md:px-4 md:py-16"
+      className="px-2 pt-12 pb-2 md:px-4 md:pt-16 md:pb-4"
     >
       <div className="surface-brand brand-panel">
         <div className="site-container relative grid gap-10 py-12 md:py-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
