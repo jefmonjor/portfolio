@@ -74,16 +74,19 @@ export const es: SiteContent = {
       items: [
         {
           name: "Transolido",
+          slug: "transolido-verifactu-invoicing",
           what: "Facturación",
           href: "https://www.transolido.com",
         },
         {
           name: "Other Twist",
+          slug: "othertwist-offline-writing",
           what: "App de escritura",
           href: "https://othertwist.com",
         },
         {
           name: "Ilnami",
+          slug: "ilnami-private-by-design",
           what: "Diario gastronómico",
           href: "https://ilnami.com",
         },
@@ -141,20 +144,29 @@ export const es: SiteContent = {
       {
         title: "Herramientas que no se hablan",
         body: "Hojas de cálculo, un ERP, el banco, una tienda online: el mismo dato tecleado en tres sitios y nadie seguro de cuál es el bueno.",
+        deliverable:
+          "Un mapa de tus herramientas y de cada sitio donde el mismo dato se teclea dos veces.",
       },
       {
         title: "Un backend en el centro",
         body: "Una API y un flujo de eventos conectan cada sistema. El dato se introduce una vez y llega donde hace falta.",
+        deliverable:
+          "Una API que conecta tus sistemas, con el dato introducido una sola vez.",
       },
       {
         title: "Automatización e IA donde compensan",
         body: "Los pasos repetitivos se hacen solos. La IA lee documentos y propone; una persona confirma antes de guardar nada.",
+        deliverable:
+          "Automatizaciones funcionando, con propuestas de la IA que confirma una persona.",
       },
       {
         title: "En producción, y tuyo",
         body: "Desplegado y monitorizado, con el código, la documentación y los accesos en tus manos.",
+        deliverable:
+          "El código, la documentación, los accesos y la monitorización, a tu nombre.",
       },
     ],
+    deliverableLabel: "Te llevas",
     nodes: {
       sources: ["Hojas de cálculo", "ERP · CRM", "Banco · pagos", "Documentos"],
       core: "Tu backend",
@@ -260,9 +272,21 @@ export const es: SiteContent = {
     details: "Ver los servicios en detalle",
     startTitle: "Cómo empezamos a trabajar juntos",
     startSteps: [
-      "Me escribes y reservamos una videollamada de 30 minutos sobre tu contexto y tu problema.",
-      "Una propuesta escrita de una página: alcance, formato y fechas.",
-      "Empezamos.",
+      {
+        step: "Me escribes y reservamos una videollamada de 30 minutos sobre tu contexto y tu problema.",
+        deliverable:
+          "Una respuesta clara sobre si soy la persona adecuada y cuál sería el primer paso.",
+      },
+      {
+        step: "Una propuesta escrita de una página.",
+        deliverable:
+          "Alcance, formato, fechas y tarifa por escrito, antes de comprometerte a nada.",
+      },
+      {
+        step: "Empezamos.",
+        deliverable:
+          "Software en producción, con el código, la documentación y el traspaso.",
+      },
     ],
     rates:
       "Las tarifas dependen del alcance y del formato. Las recibes en la propuesta escrita.",

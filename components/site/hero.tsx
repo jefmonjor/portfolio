@@ -1,9 +1,10 @@
 import { ArrowDown02Icon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import Image from "next/image"
 
 import { ContactButton } from "@/components/site/contact-button"
-import { StatusBadge } from "@/components/site/status-badge"
 import { ToolOrbit } from "@/components/site/tool-orbit"
+import { caseScreenshots } from "@/content/site/images"
 import type { Headline, SiteContent } from "@/content/site/types"
 import type { SiteLocale } from "@/i18n/routing"
 import { profile } from "@/lib/profile"
@@ -80,12 +81,9 @@ function Hero({ locale, content }: HeroProps) {
         `(${playIntroOncePerSession.toString()})(document.documentElement)`
       )}
       <div className="profile-copy">
-        <div className="hero-reveal [--step:0]">
-          <StatusBadge>{hero.availability.status}</StatusBadge>
-        </div>
         <h1
           id="hero-title"
-          className="hero-title mt-7 font-heading text-text-strong-950"
+          className="hero-title font-heading text-text-strong-950"
         >
           <span className="sr-only">
             {profile.shortName}, {hero.role}.{" "}
@@ -115,7 +113,7 @@ function Hero({ locale, content }: HeroProps) {
           </a>
         </div>
         <p className="hero-reveal mt-5 text-paragraph-sm text-text-sub-600 [--step:8]">
-          {hero.direct}
+          {hero.availability.status}. {hero.direct}
         </p>
       </div>
       {/* After the whole copy: Chrome may paint when the parser yields after
@@ -131,28 +129,42 @@ function Hero({ locale, content }: HeroProps) {
             {hero.live.title}
           </p>
           <ul className="mt-2 flex flex-col">
-            {hero.live.items.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/live flex min-h-11 items-center gap-3 text-paragraph-sm"
-                >
-                  <span aria-hidden className="status-dot status-dot-still" />
-                  <span className="text-text-strong-950">{item.name}</span>
-                  <span className="truncate text-text-sub-600">
-                    {item.what}
-                  </span>
-                  <HugeiconsIcon
-                    icon={ArrowUpRight01Icon}
-                    aria-hidden
-                    className="ml-auto size-4 text-icon-soft-400 transition-transform group-hover/live:translate-x-0.5 group-hover/live:-translate-y-0.5"
-                    strokeWidth={1.75}
-                  />
-                </a>
-              </li>
-            ))}
+            {hero.live.items.map((item) => {
+              const shot = caseScreenshots[item.slug]
+              return (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/live flex min-h-14 items-center gap-3 py-2 text-paragraph-sm"
+                  >
+                    {shot ? (
+                      <Image
+                        src={shot.image}
+                        alt=""
+                        sizes="4.5rem"
+                        className="profile-live-thumb"
+                      />
+                    ) : null}
+                    <span className="flex min-w-0 flex-col">
+                      <span className="text-label-sm text-text-strong-950">
+                        {item.name}
+                      </span>
+                      <span className="truncate text-text-sub-600">
+                        {item.what}
+                      </span>
+                    </span>
+                    <HugeiconsIcon
+                      icon={ArrowUpRight01Icon}
+                      aria-hidden
+                      className="ml-auto size-4 shrink-0 text-icon-soft-400 transition-transform group-hover/live:translate-x-0.5 group-hover/live:-translate-y-0.5"
+                      strokeWidth={1.75}
+                    />
+                  </a>
+                </li>
+              )
+            })}
           </ul>
         </div>
       </div>

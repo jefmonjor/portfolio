@@ -71,16 +71,19 @@ export const en: SiteContent = {
       items: [
         {
           name: "Transolido",
+          slug: "transolido-verifactu-invoicing",
           what: "Invoicing",
           href: "https://www.transolido.com",
         },
         {
           name: "Other Twist",
+          slug: "othertwist-offline-writing",
           what: "Writing app",
           href: "https://othertwist.com",
         },
         {
           name: "Ilnami",
+          slug: "ilnami-private-by-design",
           what: "Food diary",
           href: "https://ilnami.com",
         },
@@ -138,20 +141,29 @@ export const en: SiteContent = {
       {
         title: "Tools that don't talk",
         body: "Spreadsheets, an ERP, the bank, a web shop: the same data typed in three places, and nobody sure which one is right.",
+        deliverable:
+          "A map of your tools and of every place where the same data is typed twice.",
       },
       {
         title: "One backend in the middle",
         body: "An API and an event stream connect every system. Data is entered once and flows to where it is needed.",
+        deliverable:
+          "An API that connects your systems, with the data entered once.",
       },
       {
         title: "Automation and AI where they pay off",
         body: "Repetitive steps run on their own. AI reads documents and suggests; a person confirms before anything is saved.",
+        deliverable:
+          "Automations in use, with AI suggestions that a person confirms.",
       },
       {
         title: "In production, and yours",
         body: "Deployed and monitored, with the code, the documentation and the access in your hands.",
+        deliverable:
+          "The code, the documentation, the access and the monitoring, in your name.",
       },
     ],
+    deliverableLabel: "You get",
     nodes: {
       sources: ["Spreadsheets", "ERP · CRM", "Bank · payments", "Documents"],
       core: "Your backend",
@@ -257,9 +269,21 @@ export const en: SiteContent = {
     details: "See the services in detail",
     startTitle: "How we start working together",
     startSteps: [
-      "You write to me and we book a 30-minute video call about your context and your problem.",
-      "A one-page written proposal: scope, format and dates.",
-      "We start.",
+      {
+        step: "You write to me and we book a 30-minute video call about your context and your problem.",
+        deliverable:
+          "A straight answer on whether I am the right person, and what the first step would be.",
+      },
+      {
+        step: "A one-page written proposal.",
+        deliverable:
+          "Scope, format, dates and the rate in writing, before you commit to anything.",
+      },
+      {
+        step: "We start.",
+        deliverable:
+          "Software in production, with the code, the documentation and the handover.",
+      },
     ],
     rates:
       "Rates depend on the scope and the format. You receive them in the written proposal.",

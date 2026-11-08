@@ -51,7 +51,10 @@ function ServicesSummary({ locale, services, cta }: ServicesSummaryProps) {
         <h3 className="font-heading text-title-h4 text-text-strong-950">
           {services.startTitle}
         </h3>
-        <ProcessSteps steps={services.startSteps} />
+        <ProcessSteps
+          steps={services.startSteps}
+          deliverableLabel={services.deliverableLabel}
+        />
       </div>
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
         <ContactButton locale={locale} label={cta} className="min-h-14 px-6" />

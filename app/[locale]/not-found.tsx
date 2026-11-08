@@ -1,6 +1,6 @@
 import { ArrowLeft02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { Inter, Schibsted_Grotesk } from "next/font/google"
+import { Bricolage_Grotesque, Inter } from "next/font/google"
 import Link from "next/link"
 import { getLocale, getTranslations } from "next-intl/server"
 
@@ -17,8 +17,9 @@ const inter = Inter({
   preload: false,
 })
 
-const display = Schibsted_Grotesk({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
+  axes: ["opsz"],
   variable: "--font-display",
   display: "swap",
   preload: false,

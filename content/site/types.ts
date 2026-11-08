@@ -87,6 +87,11 @@ export type ConnectStep = {
   body: string
 }
 
+/** A stage of the work and what the client holds at the end of it. */
+export type ConnectStage = ConnectStep & { deliverable: string }
+
+export type StartStep = { step: string; deliverable: string }
+
 export type ProjectBrief = {
   title: string
   intro: string
@@ -133,6 +138,7 @@ export type Service = {
 
 export type LiveProduct = {
   name: string
+  slug: CaseStudySlug
   what: string
   href: string
 }
@@ -213,7 +219,8 @@ export type SiteContent = {
   }
   connect: {
     intro: string
-    steps: readonly [ConnectStep, ConnectStep, ConnectStep, ConnectStep]
+    steps: readonly [ConnectStage, ConnectStage, ConnectStage, ConnectStage]
+    deliverableLabel: string
     nodes: {
       sources: readonly [string, string, string, string]
       core: string
@@ -250,7 +257,7 @@ export type SiteContent = {
     formatLabel: string
     details: string
     startTitle: string
-    startSteps: readonly [string, string, string]
+    startSteps: readonly [StartStep, StartStep, StartStep]
     rates: string
     closing: string
   }
