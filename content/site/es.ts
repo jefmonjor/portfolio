@@ -888,6 +888,70 @@ export const es: SiteContent = {
     privacy: "Privacidad",
     backToTop: "Volver arriba",
   },
+  console: {
+    assistant: {
+      open: "Pregunta a la IA",
+      title: "Pregunta sobre mi trabajo",
+      intro:
+        "Un asistente que responde solo con lo que hay en esta web: servicios, casos, cómo trabajo y disponibilidad. Para lo demás, escríbeme.",
+      placeholder: "Escribe una pregunta…",
+      send: "Enviar",
+      close: "Cerrar el asistente",
+      suggestions: [
+        "¿Qué podrías construir para mi empresa?",
+        "¿Cuándo podemos empezar?",
+        "¿Cómo usas la IA sin romper nada?",
+      ],
+      thinking: "Pensando…",
+      errors: {
+        rate_limited:
+          "Has llegado al límite de preguntas por ahora. Vuelve a intentarlo más tarde o escríbeme.",
+        unconfigured:
+          "El asistente no está disponible ahora mismo. Escríbeme directamente.",
+        upstream:
+          "El asistente no ha podido responder esta vez. Escríbeme directamente.",
+        bad_request: "No he podido enviar esa pregunta. Prueba a reformularla.",
+        network: "Sin conexión. Revísala y vuelve a intentarlo, o escríbeme.",
+      },
+      email: "Escríbeme un email",
+      brief: "Rellena el brief de proyecto",
+      disclaimer:
+        "Las respuestas las genera una IA a partir de esta web y pueden equivocarse. Esta web no guarda nada de lo que escribes.",
+    },
+    terminal: {
+      open: "Abrir la terminal",
+      title: "Terminal",
+      close: "Cerrar la terminal",
+      hint: "Escribe help y pulsa Intro. ` o Ctrl+K la abren, Esc la cierra.",
+      prompt: "visitante@jefmonjor.dev:~$",
+      unknown: "Comando no encontrado: {command}. Escribe help.",
+      askUsage: "Uso: ask <tu pregunta>",
+      thinking: "Preguntando al asistente…",
+      opening: "Abriendo…",
+      commands: {
+        help: "lista los comandos",
+        whoami: "quién soy y desde dónde trabajo",
+        services: "las tres formas de trabajar juntos",
+        work: "los casos",
+        how: "cómo trabajo con IA",
+        availability: "cuándo puedo empezar",
+        contact: "cómo contactarme",
+        mail: "escríbeme un email",
+        brief: "abre el brief de proyecto",
+        cv: "abre mi CV completo",
+        ask: "pregunta al asistente de IA, p. ej. ask ¿cómo empezamos?",
+        lang: "cambia a inglés",
+        clear: "limpia la pantalla",
+        exit: "cierra la terminal",
+      },
+      labels: {
+        email: "Email",
+        brief: "Brief de proyecto",
+        reply: "Respuesta",
+        cv: "CV completo",
+      },
+    },
+  },
   privacy: {
     title: "Privacidad",
     updated: "Última actualización: 7 de noviembre de 2026",
@@ -919,10 +983,10 @@ export const es: SiteContent = {
         ],
       },
       {
-        title: "El asistente de IA y el CV adaptado de /cv",
+        title: "Los asistentes de IA y el CV adaptado de /cv",
         paragraphs: [
           [
-            "Lo que escribes en el asistente, o pegas para obtener un CV adaptado a una oferta, se envía a OpenAI para generar la respuesta. Esta web pide a OpenAI que no almacene las respuestas y no guarda tu texto en su propio servidor. La conversación se queda en el almacenamiento de sesión de tu navegador y desaparece al cerrar la pestaña. Por favor, no pegues datos personales ni información confidencial. OpenAI trata el texto según sus propias condiciones de API y su política de privacidad.",
+            "Lo que escribes en el asistente de esta web o de /cv, o pegas para obtener un CV adaptado a una oferta, se envía a OpenAI para generar la respuesta. Esta web pide a OpenAI que no almacene las respuestas y no guarda tu texto en su propio servidor. La conversación se queda en el almacenamiento de sesión de tu navegador y desaparece al cerrar la pestaña. Por favor, no pegues datos personales ni información confidencial. OpenAI trata el texto según sus propias condiciones de API y su política de privacidad.",
           ],
         ],
       },

@@ -124,6 +124,63 @@ export type ProjectBrief = {
   subject: string
 }
 
+export const terminalCommands = [
+  "help",
+  "whoami",
+  "services",
+  "work",
+  "how",
+  "availability",
+  "contact",
+  "mail",
+  "brief",
+  "cv",
+  "ask",
+  "lang",
+  "clear",
+  "exit",
+] as const
+
+export type TerminalCommand = (typeof terminalCommands)[number]
+
+export type AssistantFailure =
+  "rate_limited" | "unconfigured" | "upstream" | "bad_request" | "network"
+
+export type SiteConsoleCopy = {
+  assistant: {
+    open: string
+    title: string
+    intro: string
+    placeholder: string
+    send: string
+    close: string
+    suggestions: readonly [string, string, string]
+    thinking: string
+    errors: Record<AssistantFailure, string>
+    email: string
+    brief: string
+    disclaimer: string
+  }
+  terminal: {
+    open: string
+    title: string
+    close: string
+    hint: string
+    prompt: string
+    unknown: string
+    askUsage: string
+    thinking: string
+    opening: string
+    commands: Record<TerminalCommand, string>
+    labels: {
+      email: string
+      brief: string
+      reply: string
+      cv: string
+    }
+  }
+}
+
 export type ServiceId = "advisory" | "delivery" | "fractional"
 
 export type Service = {
@@ -319,6 +376,7 @@ export type SiteContent = {
     privacy: string
     backToTop: string
   }
+  console: SiteConsoleCopy
   privacy: {
     title: string
     updated: string

@@ -7,6 +7,7 @@ import { LanguageLink } from "@/components/site/language-link"
 import { MobileMenu } from "@/components/site/mobile-menu"
 import { NavLink } from "@/components/site/nav-link"
 import { primaryNavigation } from "@/components/site/site-nav"
+import { TerminalButton } from "@/components/site/terminal-button"
 import { ThemeSwitch } from "@/components/site/theme-switch"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
 import { profile } from "@/lib/profile"
@@ -41,6 +42,7 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
 
         <div className="hidden items-center gap-1 md:flex">
           <LanguageLink current={locale} />
+          <TerminalButton label={content.console.terminal.open} />
           <ThemeSwitch label={content.nav.toggleTheme} />
           <Link
             href={contactHref}

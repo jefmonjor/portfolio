@@ -1,8 +1,10 @@
 import { ScrollReveal } from "@/components/site/scroll-reveal"
+import { SiteConsole } from "@/components/site/site-console"
 import { SiteFooter } from "@/components/site/site-footer"
 import { SiteHeader } from "@/components/site/site-header"
 import type { SiteContent } from "@/content/site/types"
 import type { SiteLocale } from "@/i18n/routing"
+import { buildTerminalData } from "@/lib/site-console"
 
 type SiteShellProps = {
   fontVariable: string
@@ -27,6 +29,12 @@ function SiteShell({
       </main>
       <SiteFooter locale={locale} content={content} />
       <ScrollReveal />
+      <SiteConsole
+        locale={locale}
+        copy={content.console}
+        emailSubject={content.contact.email.subject}
+        terminal={buildTerminalData(locale, content)}
+      />
     </div>
   )
 }
