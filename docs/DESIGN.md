@@ -50,7 +50,7 @@ El botón principal (cabecera, hero, servicios), la etapa «Revisión · Decido 
 
 ### Orden de la home
 
-Hero personal (titular, presentación en primera persona, CTA, órbita de herramientas y «En producción» con los tres productos) → «He trabajado en» → Tus sistemas, por fin conectados (mapa) → Cómo trabajo (flujo Especificación → Código → Tests → **Revisión** → Producción y cuatro principios) → Cuatro sistemas en producción (tarjetas con captura) → Cómo podemos trabajar juntos (tres servicios con «Ideal para / Te llevas / Formato» y los tres pasos para empezar) → Hola, soy Jefferson (nota en primera persona y datos) → Dónde he trabajado → cierre verde con el brief.
+Hero personal (titular, presentación en primera persona, CTA, órbita de herramientas y «En producción» con los tres productos) → «He trabajado en» → Tus sistemas, por fin conectados (mapa) → Cómo trabajo (flujo Especificación → Código → Tests → **Revisión** → Producción y los cinco principios de «IA útil, acotada por ingeniería», los mismos que en `/cv`, con SpecForge en cabeza) → Cuatro sistemas en producción (tarjetas con captura) → Cómo podemos trabajar juntos (tres servicios con «Ideal para / Te llevas / Formato» y los tres pasos para empezar) → Hola, soy Jefferson (nota en primera persona y datos) → Dónde he trabajado → cierre verde con el brief.
 
 ### Superficies y estado
 

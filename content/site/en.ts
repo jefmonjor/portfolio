@@ -114,22 +114,27 @@ export const en: SiteContent = {
       { step: "Review", by: "I decide", human: true },
       { step: "Production", by: "Monitored" },
     ],
-    pillars: [
+    principlesTitle: "Useful AI, bounded by engineering",
+    principles: [
       {
-        title: "AI across the whole cycle",
-        body: "Specs, code, tests, migrations and documentation: AI speeds up every step, and every change goes through my review before it ships.",
+        title: "AI behind automated gates",
+        body: "With SpecForge, the tool I built for this, the AI works like a supervised junior: it asks instead of inventing, its tests must fail before any implementation and cannot be touched afterwards, and code only moves forward once it passes the tests, the quality gates and my review.",
       },
       {
-        title: "End to end, one person",
-        body: "From the database and the backend to the web or mobile app and the deployment. You do not coordinate five suppliers.",
+        title: "Validated contracts",
+        body: "Whatever the AI reads or returns crosses typed boundaries and runtime validation, with strict JSON contracts when it extracts structured data from documents.",
       },
       {
-        title: "Tests before changes",
-        body: "Old systems are modernised step by step, with automated tests around what already works, so a new delivery does not break the last one.",
+        title: "Deterministic where it matters",
+        body: "Calculations and decisions stay in deterministic code: Corte1D optimises cuts with a deterministic engine, and PRONOQ uses AI to explain results, not to decide them.",
       },
       {
-        title: "AI in your processes, under control",
-        body: "Assistants, document reading and automations wired into your tools. Your data stays yours, and a person confirms before anything is saved.",
+        title: "Limits and a manual path",
+        body: "Usage limits and a daily cap keep costs bounded, and important flows keep a manual way through when the AI is unavailable or unsure.",
+      },
+      {
+        title: "Closed source of truth",
+        body: "An assistant answers only from the data you give it and says when something is missing instead of filling the gap. The assistant on my CV works this way.",
       },
     ],
   },

@@ -117,22 +117,27 @@ export const es: SiteContent = {
       { step: "Revisión", by: "Decido yo", human: true },
       { step: "Producción", by: "Monitorizado" },
     ],
-    pillars: [
+    principlesTitle: "IA útil, acotada por ingeniería",
+    principles: [
       {
-        title: "IA en todo el ciclo",
-        body: "Especificación, código, tests, migraciones y documentación: la IA acelera cada paso, y cada cambio pasa por mi revisión antes de salir.",
+        title: "La IA, bajo controles automáticos",
+        body: "Con SpecForge, la herramienta que construí para esto, la IA trabaja como un junior supervisado: pregunta en lugar de inventar, sus tests deben fallar antes de implementar y no se pueden tocar después, y el código solo avanza cuando supera los tests, los controles de calidad y mi revisión.",
       },
       {
-        title: "De principio a fin, una sola persona",
-        body: "De la base de datos y el backend a la app web o móvil y el despliegue. No coordinas a cinco proveedores.",
+        title: "Contratos validados",
+        body: "Lo que la IA lee o devuelve cruza fronteras tipadas y validación en tiempo de ejecución, con contratos JSON estrictos cuando extrae datos de documentos.",
       },
       {
-        title: "Tests antes de tocar nada",
-        body: "Los sistemas antiguos se modernizan paso a paso, con tests automáticos alrededor de lo que ya funciona, para que una entrega no rompa la anterior.",
+        title: "Determinista cuando importa",
+        body: "Los cálculos y las decisiones se quedan en código determinista: Corte1D optimiza los cortes con un motor determinista y PRONOQ usa la IA para explicar resultados, no para decidirlos.",
       },
       {
-        title: "IA en tus procesos, bajo control",
-        body: "Asistentes, lectura de documentos y automatizaciones conectados a tus herramientas. Tus datos siguen siendo tuyos y una persona confirma antes de guardar nada.",
+        title: "Límites y vía manual",
+        body: "Límites de uso y un techo diario acotan el coste, y los flujos importantes conservan una vía manual si la IA falla o no es fiable.",
+      },
+      {
+        title: "Fuente de verdad cerrada",
+        body: "Un asistente responde solo con los datos que le das y dice cuándo falta algo, en lugar de rellenar el hueco. Así funciona el asistente de mi CV.",
       },
     ],
   },
