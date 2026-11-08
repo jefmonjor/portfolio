@@ -122,9 +122,6 @@ function Hero({ locale, content }: HeroProps) {
             </span>
             <HeadlineWords headline={hero.headline} />
           </h1>
-          {runBeforeFirstPaint(
-            `(${numberHeadlineLines.toString()})(document.getElementById("hero-title"))`
-          )}
           <p className="hero-reveal mt-6 max-w-[38rem] text-paragraph-lg text-text-strong-950 [--step:6]">
             {hero.subtitle}
           </p>
@@ -148,6 +145,12 @@ function Hero({ locale, content }: HeroProps) {
             </a>
           </div>
         </div>
+
+        {/* After the whole copy: Chrome may paint when the parser yields after
+            a script, and a paint mid-copy would shift the copy as it grows. */}
+        {runBeforeFirstPaint(
+          `(${numberHeadlineLines.toString()})(document.getElementById("hero-title"))`
+        )}
 
         <p className="hero-credit">
           {content.footer.photography}:{" "}
