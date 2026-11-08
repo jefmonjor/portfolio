@@ -114,7 +114,7 @@ function Hero({ locale, content }: HeroProps) {
           </a>
         </div>
         <p className="hero-reveal mt-5 text-paragraph-sm text-text-sub-600 [--step:8]">
-          {hero.availability.status}. {hero.direct}
+          {hero.direct}
         </p>
         <TerminalHint label={hero.terminalHint} />
       </div>

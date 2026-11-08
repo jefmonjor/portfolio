@@ -743,16 +743,6 @@
   color: var(--primary-base);
 }
 
-.status-dot {
-  position: relative;
-  display: inline-block;
-  flex-shrink: 0;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 9999px;
-  background: var(--state-success-base);
-}
-
 .site-menu-panel {
   transform-origin: top;
 }
@@ -834,20 +824,6 @@ html:has(#site-menu:popover-open) {
   gap: 0.25rem;
   padding-inline-start: 0.875rem;
   border-inline-start: 2px solid var(--primary-base);
-}
-
-.footer-wordmark {
-  padding-top: 2rem;
-  font-size: min(7.4vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  white-space: nowrap;
-  mask-image: linear-gradient(to bottom, #000 55%, transparent);
-  transition: color 300ms var(--ease-out-expo);
-}
-
-.footer-wordmark:hover {
-  color: var(--primary-base);
 }
 
 .case-flow {
