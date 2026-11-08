@@ -55,9 +55,9 @@
   --breakpoint-wide: 75rem;
 
   /* Headings and interface text use the display face (set on the site
-     shell); Inter is kept for running text only. */
+     shell); the text face is for running text only. */
   --font-ui:
-    var(--font-inter), ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    var(--font-text), ui-sans-serif, system-ui, "Segoe UI", sans-serif;
 
   --color-static-white: var(--static-white);
   --color-static-black: var(--static-black);

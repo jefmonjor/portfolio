@@ -1,6 +1,6 @@
 import { ArrowLeft02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { Bricolage_Grotesque, Inter } from "next/font/google"
+import { Bricolage_Grotesque, Source_Sans_3 } from "next/font/google"
 import Link from "next/link"
 import { getLocale, getTranslations } from "next-intl/server"
 
@@ -10,9 +10,9 @@ import { localizedPath, nearestSiteLocale } from "@/i18n/routing"
 
 // This boundary is part of every route under [locale], /cv included, so a
 // preloaded font here would be preloaded on /cv as well.
-const inter = Inter({
+const text = Source_Sans_3({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-text",
   display: "swap",
   preload: false,
 })
@@ -31,7 +31,7 @@ export default async function NotFound() {
 
   return (
     <SiteShell
-      fontVariable={`${inter.variable} ${display.variable}`}
+      fontVariable={`${text.variable} ${display.variable}`}
       locale={locale}
       content={getSiteContent(locale)}
     >

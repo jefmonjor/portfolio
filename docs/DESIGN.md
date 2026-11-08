@@ -2,7 +2,7 @@
 
 Dos productos y dos implementaciones:
 
-- **Web comercial** (`/`, `/es`, la 404): tokens **Underlay** con el tema **Pino** (verde) sobre grises neutros; **Bricolage Grotesque** (titulares e interfaz) + Inter (solo texto corrido).
+- **Web comercial** (`/`, `/es`, la 404): tokens **Underlay** con el tema **Pino** (verde) sobre grises neutros; **Bricolage Grotesque** (titulares e interfaz) + **Source Sans 3** (solo texto corrido).
 - **`/cv`** (portfolio y CV): tokens shadcn en ámbar; Fraunces + Geist.
 
 El layout raíz no carga fuentes. La web las carga en `app/[locale]/(site)/layout.tsx` (precargadas) y la 404 en su propio archivo sin precarga, porque esa frontera envuelve también `/cv`. `/cv` declara Fraunces, Geist y Geist Mono como variables de `:root` (`components/portfolio/cv-fonts.tsx`).
@@ -32,7 +32,7 @@ El botón principal (cabecera, hero, servicios), la etapa «Revisión · Decido 
 
 ### Tipografía
 
-- **Bricolage Grotesque** (variable con eje `opsz`, `swap`) es la fuente por defecto de la web (`font-heading` en el `SiteShell`): titulares a 600–700, navegación, botones, etiquetas, chips y datos. **Inter** (`font-ui`) solo para texto corrido: `.site-prose`, `text-paragraph-*` y los campos del brief. Sin cursivas.
+- **Bricolage Grotesque** (variable con eje `opsz`, `swap`) es la fuente por defecto de la web (`font-heading` en el `SiteShell`): titulares a 600–700, navegación, botones, etiquetas, chips y datos. **Source Sans 3** (`font-ui`, variable `--font-text`) solo para texto corrido: `.site-prose`, `text-paragraph-*` y los campos del brief. Nada de Inter, Geist ni system-ui como fuente visible de la web. Sin cursivas.
 - Escala: `title-h1` `clamp(2.25rem, 1.2rem + 3.6vw, 3.9rem)` / 1,02 / −0,035 em; `title-h2` `clamp(2rem, 1.35rem + 2.5vw, 3.25rem)`; `title-h3` hasta 2,15rem; `title-h4` hasta 1,65rem; `title-h5` 1,25rem; `title-h6` 1,0625rem.
 - El titular del hero son tres frases, una por línea (cada parte del `Headline` empieza línea).
 

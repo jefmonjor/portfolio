@@ -13,7 +13,7 @@ Mode: Persuade. Audience: owners, ops leads and CTOs of 10–200 person business
 
 THESIS: A person, not a studio. The page reads like the senior consultants the owner pinned (happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me): first person, what he solves and for whom, named services a CTO can buy, real proof, one call to action. It refuses the AI-landing clusters (cream ground, italic serif accent, terracotta; dark hero with glowing annotations), stock photography and a studio look that hides the trade.
 
-OWN-WORLD: White ground with neutral cool greys and ink; one committed pine green (#0F6B4F light, #5FD1A0 dark) for the primary button, the "I decide" review gate and the closing field; Bricolage Grotesque for headings and interface text, Inter only for running text; 24px portrait and panel corners; real screenshots in a minimal browser frame showing the live domain.
+OWN-WORLD: White ground with neutral cool greys and ink; one committed pine green (#0F6B4F light, #5FD1A0 dark) for the primary button, the "I decide" review gate and the closing field; Bricolage Grotesque for headings and interface text, Source Sans 3 only for running text; 24px portrait and panel corners; real screenshots in a minimal browser frame showing the live domain.
 
 STORY: The visitor reads three outcomes, meets Jefferson by name, sees every tool he builds with orbiting "your system" and three products live in production, follows how scattered tools become one system, learns how he works with AI under senior review, checks the work, picks a service by "best for / you get / format", reads a short first-person note and closes on a green panel with the brief.
 

@@ -1,4 +1,4 @@
-import { Bricolage_Grotesque, Inter } from "next/font/google"
+import { Bricolage_Grotesque, Source_Sans_3 } from "next/font/google"
 
 import { SiteShell } from "@/components/site/site-shell"
 import { StructuredDataScript } from "@/components/site/structured-data-script"
@@ -6,9 +6,9 @@ import { getCurrentJobTitle } from "@/content/site"
 import { buildSiteStructuredData } from "@/lib/seo/structured-data"
 import { resolveSitePage, type SitePageProps } from "@/lib/site-params"
 
-const inter = Inter({
+const text = Source_Sans_3({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-text",
   display: "swap",
 })
 
@@ -27,7 +27,7 @@ export default async function SiteLayout({
 
   return (
     <SiteShell
-      fontVariable={`${inter.variable} ${display.variable}`}
+      fontVariable={`${text.variable} ${display.variable}`}
       locale={locale}
       content={content}
     >
