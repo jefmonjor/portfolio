@@ -72,7 +72,8 @@ export type TerminalData = {
   availability: ReadonlyArray<string>
   contact: ReadonlyArray<string>
   products: ReadonlyArray<TerminalProduct>
-  sections: ReadonlyArray<{ id: string; label: string }>
+  /** Home sections; one with `href` lives on its own page instead. */
+  sections: ReadonlyArray<{ id: string; label: string; href?: string }>
   homeHref: string
   briefHref: string
   cvHref: string
@@ -278,6 +279,8 @@ export function runTerminalCommand(
             },
           ],
         }
+      if (section.href)
+        return { lines: [], effect: { type: "navigate", href: section.href } }
       return {
         lines: [],
         effect: {

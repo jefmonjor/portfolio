@@ -4,9 +4,9 @@ export const en: SiteContent = {
   meta: {
     home: {
       title:
-        "Jefferson Montesdeoca — Custom software, integrations and applied AI",
+        "Jefferson Montesdeoca — Backend, integrations and applied AI for fintech",
       description:
-        "Custom software, connected systems, automation and applied AI for businesses, built on seven years of engineering across banking, legal, energy and telecom. Remote from Andorra, CET.",
+        "Backend, integrations and applied AI for fintechs, startups and companies that work with banking or payments. Seven years in banking, legal, energy and telecom. Remote from Andorra, CET.",
     },
     services: {
       title: "Services — Diagnosis, build and integrate, engineering partner",
@@ -16,7 +16,7 @@ export const en: SiteContent = {
     work: {
       title: "Case studies — Invoicing, apps, applied AI and banking",
       description:
-        "Four case studies: VERI*FACTU-compliant invoicing, an offline-first platform for writers, a private-by-design app, and the modernisation of a private bank's Java platform.",
+        "Four case studies: the evolution of a private bank's Java platform, VERI*FACTU-compliant invoicing, an offline-first platform for writers and a private-by-design app.",
     },
     experience: {
       title: "Experience — Seven years in banking, legal, energy and telecom",
@@ -50,13 +50,9 @@ export const en: SiteContent = {
   cta: "Let's discuss your project",
   hero: {
     role: "Senior Software Engineer · Software Architect",
-    headline: [
-      "Connect your systems.",
-      "Automate the busywork.",
-      "Put AI to work.",
-    ],
+    headline: ["Backend software", "for banking, payments", "and applied AI."],
     subtitle:
-      "I'm Jefferson, a senior software engineer. I build custom software, integrations and AI automations for small and mid-size businesses, with seven years of experience in banking, legal, energy and telecom.",
+      "I'm Jefferson, a senior software engineer in the architecture and solutions team of a private bank. I design and build backends, integrations and applied AI for fintechs, startups and companies that work with banking or payments.",
     availability: {
       status: "Available for new projects from January 2027",
     },
@@ -99,29 +95,28 @@ export const en: SiteContent = {
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
   },
   display: {
-    connect: ["Your systems, finally connected"],
+    connect: ["When your systems have to work together"],
     approach: ["How I work"],
     work: ["Projects in production"],
     services: ["How we can work together"],
     about: ["Hi, I'm Jefferson"],
-    experience: ["Where I have worked"],
     contact: ["Tell me what you need to solve"],
   },
   approach: {
     intro:
-      "I use AI throughout the process, but every change goes through my review before it reaches production.",
+      "AI speeds up the work. Automated tests and my review decide what reaches production, and I answer for the result.",
     pipeline: [
-      { step: "Spec", by: "AI drafts, I define" },
-      { step: "Code", by: "AI writes" },
-      { step: "Tests", by: "AI writes" },
-      { step: "Review", by: "I decide", human: true },
+      { step: "Spec", by: "I define it" },
+      { step: "Code", by: "AI speeds it up" },
+      { step: "Tests", by: "Automated gate" },
+      { step: "Review", by: "I answer for it", human: true },
       { step: "Production", by: "Monitored" },
     ],
     principlesTitle: "Useful AI, bounded by engineering",
     principles: [
       {
         title: "AI behind automated gates",
-        body: "With SpecForge, a tool of my own, the AI asks instead of inventing, tests are written before the code, and nothing moves forward without passing the tests and my review.",
+        body: "The AI asks instead of inventing, tests are written before the code, and nothing moves forward without passing the tests and my review.",
       },
       {
         title: "Validated contracts",
@@ -129,7 +124,7 @@ export const en: SiteContent = {
       },
       {
         title: "Deterministic where it matters",
-        body: "Calculations and decisions stay in deterministic code; the AI explains, it does not decide. Corte1D and PRONOQ work this way.",
+        body: "Calculations and decisions stay in deterministic code; the AI explains, it does not decide.",
       },
       {
         title: "Limits and a manual path",
@@ -144,7 +139,7 @@ export const en: SiteContent = {
 
   connect: {
     intro:
-      "Many businesses do not need more tools, just for the ones they have to work together.",
+      "For companies that bring banking, payments or AI into their processes: the tools they already have, working together, with each piece of data entered once.",
     steps: [
       {
         title: "Tools that don't talk",
@@ -219,7 +214,7 @@ export const en: SiteContent = {
         summary:
           "A written look at a process, a system or an idea: what to automate, what to build and what not to.",
         audience:
-          "Businesses that want a clear plan before spending on software.",
+          "CTOs and companies that want a second opinion or a clear plan before investing.",
         includes: [
           "A map of the current process and the tools involved",
           "Where automation or AI pays off, and where it does not",
@@ -238,7 +233,7 @@ export const en: SiteContent = {
         summary:
           "Custom software, APIs and integrations, automation and applied AI, taken all the way to production.",
         audience:
-          "Businesses that need software built, systems connected or an old application modernised.",
+          "Teams that need a backend, an integration with banks or payment providers, or a Java application brought up to date.",
         includes: [
           "Custom business software and internal tools",
           "APIs and integrations: ERPs, banks, payment providers and third-party services",
@@ -255,7 +250,7 @@ export const en: SiteContent = {
         id: "fractional",
         name: "Fractional tech lead",
         summary:
-          "Senior engineering every week, for businesses that do not have a technical lead.",
+          "Senior engineering every week, for teams without a technical lead or with a CTO who needs support.",
         audience:
           "Companies and startups that need technical direction and steady evolution.",
         includes: [
@@ -271,11 +266,11 @@ export const en: SiteContent = {
     ],
     examplesTitle: "Some examples",
     examples: [
-      "Receive and classify invoices automatically",
-      "Connect your ERP with your online shop",
+      "Integrate a bank or a payment provider through its API",
+      "Upgrade a Java and Spring Boot platform without stopping releases",
+      "Centralise authentication with Keycloak and MFA",
       "Extract data from documents into your system",
-      "Replace spreadsheets with an internal tool",
-      "Modernise an old Java application",
+      "Receive and classify invoices automatically",
       "An internal assistant that answers from your company's documentation",
     ],
     audienceLabel: "Best for",
@@ -353,7 +348,6 @@ export const en: SiteContent = {
         entries: ["zemsania-2021", "keapps-2020", "ayesa-2019"],
       },
     ],
-    fullHistory: "Full experience",
     present: "present",
     cvLead: "Need the complete CV, skills and education?",
     cvLink: "Open the full CV and PDF",
@@ -380,6 +374,121 @@ export const en: SiteContent = {
       next: "Next case study",
     },
     cases: [
+      {
+        slug: "private-bank-modernization",
+        sector: "Professional experience · Private banking",
+        title: "Evolving a private bank's Java platform",
+        outcome:
+          "Java services on top of a COBOL and AS400 core, in a bank that operates in several jurisdictions: incremental upgrades, a new online banking architecture and one identity provider with MFA.",
+        tags: ["Java 21", "Spring Boot 3", "Keycloak"],
+        meta: {
+          title: "Case study: evolving a private bank's Java platform",
+          description:
+            "Clean architecture, legacy integration behind adapters, Spring Boot 3 upgrades and central identity for a private bank in Andorra, without a delivery freeze.",
+        },
+        summary: {
+          sector:
+            "A private bank in Andorra that operates in several jurisdictions",
+          role: "Architecture and solutions team, since 2024",
+          result:
+            "A platform that moves forward in small steps and a new homebanking architecture, while releases continue.",
+        },
+        context: [
+          "The bank serves its customers through Java applications that sit on top of a much older core: COBOL programs on AS400, with DB2 as the system of record. Over the years the Java side had fallen behind the current versions of its framework and application servers.",
+          "The bank needed a new homebanking, stronger customer authentication and a platform it could keep up to date. Stopping feature work for a long migration was not an option.",
+        ],
+        responsibility: {
+          owned: [
+            "Backend architecture for new services and the new homebanking",
+            "Development standards for internal teams and vendors",
+            "The technical plan for the framework and application server upgrades",
+            "The identity rollout with Keycloak",
+            "Code quality tooling across all repositories",
+            "Technical vendor management and advice on whether to build or buy",
+            "Evaluation of AI tools for the team",
+          ],
+          notOwned: [
+            "The COBOL and AS400 core and its roadmap, which stay with their owners",
+            "Business priorities and the product roadmap",
+          ],
+        },
+        decisions: [
+          {
+            choice: "Clean, hexagonal architecture for every new service",
+            reason:
+              "Business rules live apart from the framework and from the legacy adapters. The next framework upgrade changes the edges, not the domain.",
+            rejected:
+              "Classic layers built around the framework, which tie business rules to one framework version.",
+          },
+          {
+            choice:
+              "Integrate the legacy core behind adapters instead of rewriting it",
+            reason:
+              "The core holds the bank's records and it works. A rewrite is a multi-year risk that does not help the customer-facing roadmap.",
+            rejected: "A big-bang replacement of the core.",
+          },
+          {
+            choice: "Upgrade the platform in small increments",
+            reason:
+              "Each step — the Spring Boot 3 migration with the Jakarta namespace, the application server upgrades — stays small enough to test and roll back while feature work continues.",
+            rejected:
+              "A freeze-and-migrate project that stops delivery for months.",
+          },
+          {
+            choice:
+              "One identity provider: Keycloak with MFA and rules per jurisdiction",
+            reason:
+              "Authentication policy lives in one place, and the rules of each jurisdiction are configuration, not code repeated in every application.",
+            rejected: "Authentication logic copied inside each application.",
+          },
+          {
+            choice:
+              "Measure technical debt before refactoring, with SonarQube on every repository, COBOL included",
+            reason:
+              "Internal teams and vendors prioritise against the same objective data.",
+            rejected: "Refactoring based on opinions.",
+          },
+        ],
+        implementation: [
+          "The work is shared between internal teams and external vendors. From the architecture team, I define standards for vendors, review designs and propose what to build and what to buy.",
+          "New services use Java 21 and Spring Boot 3 and run on OpenShift. Access to the legacy core goes through adapters, so the services do not depend on COBOL or DB2 details.",
+          "SonarQube quality gates run on every repository, including the COBOL code.",
+          "I also took part in the department's first AI adoption: Gemini Code Assist for the team.",
+        ],
+        result: [
+          "Framework and runtime upgrades that move forward in small steps, while releases continue.",
+          "A new homebanking designed as independent components on a clean architecture.",
+          "One identity provider with MFA and rules per jurisdiction.",
+          "Technical debt visible across the whole platform, legacy code included.",
+          "The department's first AI tool in daily use by the whole team.",
+          "Internal details and figures stay confidential.",
+        ],
+        stack: [
+          "Java 21",
+          "Spring Boot 3",
+          "Clean / hexagonal architecture",
+          "OpenShift (OCP4)",
+          "Keycloak",
+          "DB2",
+          "COBOL / AS400",
+          "SonarQube",
+          "Gemini Code Assist",
+        ],
+        diagram: [
+          { label: "Homebanking", detail: "Customer channel" },
+          { label: "Keycloak", detail: "MFA · rules per jurisdiction" },
+          {
+            label: "Java 21 services",
+            detail: "Spring Boot 3 · hexagonal domain",
+          },
+          {
+            label: "Legacy adapters",
+            detail: "Keep the core out of the domain",
+          },
+          { label: "Core banking", detail: "COBOL · AS400 · DB2" },
+        ],
+        links: [],
+      },
       {
         slug: "transolido-verifactu-invoicing",
         screenshotAlt:
@@ -697,121 +806,6 @@ export const en: SiteContent = {
         ],
         links: [{ label: "ilnami.com", href: "https://ilnami.com" }],
       },
-      {
-        slug: "private-bank-modernization",
-        sector: "Professional experience · Private banking",
-        title: "Evolving a private bank's Java platform",
-        outcome:
-          "From the architecture team: platform upgrades, new online banking and centralised identity, without slowing delivery.",
-        tags: ["Java 21", "Spring Boot 3", "Keycloak"],
-        meta: {
-          title: "Case study: evolving a private bank's Java platform",
-          description:
-            "Clean architecture, legacy integration behind adapters, Spring Boot 3 upgrades and central identity for a private bank in Andorra, without a delivery freeze.",
-        },
-        summary: {
-          sector:
-            "A private bank in Andorra that operates in several jurisdictions",
-          role: "Architecture and solutions team, since 2024",
-          result:
-            "A platform that moves forward in small steps and a new homebanking architecture, while releases continue.",
-        },
-        context: [
-          "The bank serves its customers through Java applications that sit on top of a much older core: COBOL programs on AS400, with DB2 as the system of record. Over the years the Java side had fallen behind the current versions of its framework and application servers.",
-          "The bank needed a new homebanking, stronger customer authentication and a platform it could keep up to date. Stopping feature work for a long migration was not an option.",
-        ],
-        responsibility: {
-          owned: [
-            "Backend architecture for new services and the new homebanking",
-            "Development standards for internal teams and vendors",
-            "The technical plan for the framework and application server upgrades",
-            "The identity rollout with Keycloak",
-            "Code quality tooling across all repositories",
-            "Technical vendor management and advice on whether to build or buy",
-            "Evaluation of AI tools for the team",
-          ],
-          notOwned: [
-            "The COBOL and AS400 core and its roadmap, which stay with their owners",
-            "Business priorities and the product roadmap",
-          ],
-        },
-        decisions: [
-          {
-            choice: "Clean, hexagonal architecture for every new service",
-            reason:
-              "Business rules live apart from the framework and from the legacy adapters. The next framework upgrade changes the edges, not the domain.",
-            rejected:
-              "Classic layers built around the framework, which tie business rules to one framework version.",
-          },
-          {
-            choice:
-              "Integrate the legacy core behind adapters instead of rewriting it",
-            reason:
-              "The core holds the bank's records and it works. A rewrite is a multi-year risk that does not help the customer-facing roadmap.",
-            rejected: "A big-bang replacement of the core.",
-          },
-          {
-            choice: "Upgrade the platform in small increments",
-            reason:
-              "Each step — the Spring Boot 3 migration with the Jakarta namespace, the application server upgrades — stays small enough to test and roll back while feature work continues.",
-            rejected:
-              "A freeze-and-migrate project that stops delivery for months.",
-          },
-          {
-            choice:
-              "One identity provider: Keycloak with MFA and rules per jurisdiction",
-            reason:
-              "Authentication policy lives in one place, and the rules of each jurisdiction are configuration, not code repeated in every application.",
-            rejected: "Authentication logic copied inside each application.",
-          },
-          {
-            choice:
-              "Measure technical debt before refactoring, with SonarQube on every repository, COBOL included",
-            reason:
-              "Internal teams and vendors prioritise against the same objective data.",
-            rejected: "Refactoring based on opinions.",
-          },
-        ],
-        implementation: [
-          "The work is shared between internal teams and external vendors. From the architecture team, I define standards for vendors, review designs and propose what to build and what to buy.",
-          "New services use Java 21 and Spring Boot 3 and run on OpenShift. Access to the legacy core goes through adapters, so the services do not depend on COBOL or DB2 details.",
-          "SonarQube quality gates run on every repository, including the COBOL code.",
-          "I also took part in the department's first AI adoption: Gemini Code Assist for the team.",
-        ],
-        result: [
-          "Framework and runtime upgrades that move forward in small steps, while releases continue.",
-          "A new homebanking designed as independent components on a clean architecture.",
-          "One identity provider with MFA and rules per jurisdiction.",
-          "Technical debt visible across the whole platform, legacy code included.",
-          "The department's first AI tool in daily use by the whole team.",
-          "Internal details and figures stay confidential.",
-        ],
-        stack: [
-          "Java 21",
-          "Spring Boot 3",
-          "Clean / hexagonal architecture",
-          "OpenShift (OCP4)",
-          "Keycloak",
-          "DB2",
-          "COBOL / AS400",
-          "SonarQube",
-          "Gemini Code Assist",
-        ],
-        diagram: [
-          { label: "Homebanking", detail: "Customer channel" },
-          { label: "Keycloak", detail: "MFA · rules per jurisdiction" },
-          {
-            label: "Java 21 services",
-            detail: "Spring Boot 3 · hexagonal domain",
-          },
-          {
-            label: "Legacy adapters",
-            detail: "Keep the core out of the domain",
-          },
-          { label: "Core banking", detail: "COBOL · AS400 · DB2" },
-        ],
-        links: [],
-      },
     ],
   },
   contact: {
@@ -842,7 +836,7 @@ export const en: SiteContent = {
       copied: "Address copied",
       copyFailed: "Could not copy. Select the address instead.",
       withoutJavaScript:
-        "The email address appears when JavaScript is on. You can also write to me on LinkedIn.",
+        "Write to me at hola (at) jefmonjor.dev, or on LinkedIn.",
       subject: "Project enquiry — jefmonjor.dev",
       noMailApp:
         "This opens your email app. No email app? Copy the address and write from your webmail.",

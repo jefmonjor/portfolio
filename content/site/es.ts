@@ -4,9 +4,9 @@ export const es: SiteContent = {
   meta: {
     home: {
       title:
-        "Jefferson Montesdeoca — Software a medida, integraciones e IA aplicada",
+        "Jefferson Montesdeoca — Backend, integraciones e IA aplicada para fintech",
       description:
-        "Software a medida, sistemas conectados, automatización e IA aplicada para empresas, con siete años de ingeniería en banca, legal, energía y telecomunicaciones. En remoto desde Andorra, CET.",
+        "Backend, integraciones e IA aplicada para fintechs, startups y empresas que trabajan con banca o pagos. Siete años en banca, legal, energía y telecomunicaciones. En remoto desde Andorra, CET.",
     },
     services: {
       title:
@@ -17,7 +17,7 @@ export const es: SiteContent = {
     work: {
       title: "Casos de estudio — Facturación, apps, IA aplicada y banca",
       description:
-        "Cuatro casos: facturación conforme a VERI*FACTU, una plataforma offline-first para escritores, una app privada por diseño y la modernización de la plataforma Java de un banco privado.",
+        "Cuatro casos: la evolución de la plataforma Java de un banco privado, facturación conforme a VERI*FACTU, una plataforma offline-first para escritores y una app privada por diseño.",
     },
     experience: {
       title:
@@ -52,13 +52,9 @@ export const es: SiteContent = {
   cta: "Hablemos de tu proyecto",
   hero: {
     role: "Senior Software Engineer · Software Architect",
-    headline: [
-      "Conecta tus sistemas.",
-      "Automatiza lo repetitivo.",
-      "Pon la IA a trabajar.",
-    ],
+    headline: ["Software backend", "para banca, pagos", "e IA aplicada."],
     subtitle:
-      "Soy Jefferson, ingeniero de software senior. Desarrollo software a medida, integraciones y automatizaciones con IA para pymes, con siete años de experiencia en banca, legal, energía y telecomunicaciones.",
+      "Soy Jefferson, ingeniero de software senior en el equipo de arquitectura y soluciones de un banco privado. Diseño y desarrollo backends, integraciones e IA aplicada para fintechs, startups y empresas que trabajan con banca o pagos.",
     availability: {
       status: "Disponible para nuevos proyectos a partir de enero de 2027",
     },
@@ -100,29 +96,28 @@ export const es: SiteContent = {
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
   },
   display: {
-    connect: ["Tus sistemas, por fin conectados"],
+    connect: ["Cuando tus sistemas tienen que trabajar juntos"],
     approach: ["Cómo trabajo"],
     work: ["Proyectos en producción"],
     services: ["Cómo podemos trabajar juntos"],
     about: ["Hola, soy Jefferson"],
-    experience: ["Dónde he trabajado"],
     contact: ["Cuéntame qué necesitas resolver"],
   },
   approach: {
     intro:
-      "Uso la IA en todo el proceso, pero cada cambio pasa por mi revisión antes de llegar a producción.",
+      "La IA acelera el trabajo. Las pruebas automáticas y mi revisión deciden qué llega a producción, y yo respondo del resultado.",
     pipeline: [
-      { step: "Especificación", by: "La IA redacta, yo defino" },
-      { step: "Código", by: "Lo escribe la IA" },
-      { step: "Tests", by: "Los escribe la IA" },
-      { step: "Revisión", by: "Decido yo", human: true },
+      { step: "Especificación", by: "La defino yo" },
+      { step: "Código", by: "La IA acelera" },
+      { step: "Tests", by: "Puerta automática" },
+      { step: "Revisión", by: "Respondo yo", human: true },
       { step: "Producción", by: "Monitorizado" },
     ],
     principlesTitle: "IA útil, acotada por ingeniería",
     principles: [
       {
         title: "La IA, bajo controles automáticos",
-        body: "Con SpecForge, una herramienta propia, la IA pregunta en lugar de inventar, los tests se escriben antes que el código y nada avanza sin superar los tests y mi revisión.",
+        body: "La IA pregunta en lugar de inventar, los tests se escriben antes que el código y nada avanza sin superar los tests y mi revisión.",
       },
       {
         title: "Contratos validados",
@@ -130,7 +125,7 @@ export const es: SiteContent = {
       },
       {
         title: "Determinista cuando importa",
-        body: "Los cálculos y las decisiones se quedan en código determinista; la IA explica, no decide. Así funcionan Corte1D y PRONOQ.",
+        body: "Los cálculos y las decisiones se quedan en código determinista; la IA explica, no decide.",
       },
       {
         title: "Límites y vía manual",
@@ -145,7 +140,7 @@ export const es: SiteContent = {
 
   connect: {
     intro:
-      "Muchas empresas no necesitan más herramientas, sino que las que ya tienen trabajen juntas.",
+      "Para empresas que integran banca, pagos o IA en sus procesos: que las herramientas que ya tienen trabajen juntas y cada dato se introduzca una sola vez.",
     steps: [
       {
         title: "Herramientas que no se hablan",
@@ -220,7 +215,7 @@ export const es: SiteContent = {
         summary:
           "Un análisis por escrito de un proceso, un sistema o una idea: qué automatizar, qué construir y qué no.",
         audience:
-          "Empresas que quieren un plan claro antes de invertir en software.",
+          "CTOs y empresas que quieren una segunda opinión o un plan claro antes de invertir.",
         includes: [
           "Mapa del proceso actual y de las herramientas que intervienen",
           "Dónde compensan la automatización o la IA, y dónde no",
@@ -239,7 +234,7 @@ export const es: SiteContent = {
         summary:
           "Software a medida, APIs e integraciones, automatización e IA aplicada, hasta producción.",
         audience:
-          "Empresas que necesitan construir software, conectar sistemas o modernizar una aplicación antigua.",
+          "Equipos que necesitan un backend, una integración con bancos o pasarelas de pago, o poner al día una aplicación Java.",
         includes: [
           "Software de negocio a medida y herramientas internas",
           "APIs e integraciones: ERP, bancos, pasarelas de pago y servicios de terceros",
@@ -256,7 +251,7 @@ export const es: SiteContent = {
         id: "fractional",
         name: "Tech lead fraccional",
         summary:
-          "Ingeniería senior cada semana, para empresas sin responsable técnico.",
+          "Ingeniería senior cada semana, para equipos sin responsable técnico o con un CTO que necesita apoyo.",
         audience:
           "Empresas y startups que necesitan dirección técnica y una evolución constante.",
         includes: [
@@ -272,11 +267,11 @@ export const es: SiteContent = {
     ],
     examplesTitle: "Algunos ejemplos",
     examples: [
-      "Recibir y clasificar facturas automáticamente",
-      "Conectar el ERP con la tienda online",
+      "Integrar un banco o una pasarela de pago mediante su API",
+      "Actualizar una plataforma Java y Spring Boot sin detener las entregas",
+      "Centralizar la autenticación con Keycloak y MFA",
       "Extraer datos de documentos y registrarlos en tu sistema",
-      "Sustituir hojas de cálculo por una herramienta interna",
-      "Modernizar una aplicación Java antigua",
+      "Recibir y clasificar facturas automáticamente",
       "Un asistente interno que responde con la documentación de tu empresa",
     ],
     audienceLabel: "Ideal para",
@@ -354,7 +349,6 @@ export const es: SiteContent = {
         entries: ["zemsania-2021", "keapps-2020", "ayesa-2019"],
       },
     ],
-    fullHistory: "Experiencia completa",
     present: "actualidad",
     cvLead: "¿Necesitas el CV completo, las habilidades y la formación?",
     cvLink: "Abrir el CV completo y el PDF",
@@ -381,6 +375,118 @@ export const es: SiteContent = {
       next: "Siguiente caso",
     },
     cases: [
+      {
+        slug: "private-bank-modernization",
+        sector: "Experiencia profesional · Banca privada",
+        title: "Evolución de la plataforma Java de un banco privado",
+        outcome:
+          "Servicios Java sobre un core COBOL y AS400, en un banco que opera en varias jurisdicciones: actualizaciones por fases, una nueva arquitectura de banca online y un único proveedor de identidad con MFA.",
+        tags: ["Java 21", "Spring Boot 3", "Keycloak"],
+        meta: {
+          title: "Caso: evolución de la plataforma Java de un banco privado",
+          description:
+            "Arquitectura limpia, integración del legacy tras adaptadores, migración a Spring Boot 3 e identidad centralizada para un banco privado de Andorra, sin congelar las entregas.",
+        },
+        summary: {
+          sector:
+            "Un banco privado de Andorra que opera en varias jurisdicciones",
+          role: "Equipo de arquitectura y soluciones, desde 2024",
+          result:
+            "Una plataforma que avanza en pasos pequeños y una nueva arquitectura de banca online, sin detener las entregas.",
+        },
+        context: [
+          "El banco atiende a sus clientes con aplicaciones Java que se apoyan en un core mucho más antiguo: programas COBOL sobre AS400, con DB2 como sistema de registro. Con los años, la parte Java se había quedado atrás respecto a las versiones actuales de su framework y de sus servidores de aplicaciones.",
+          "El banco necesitaba una nueva banca online, una autenticación de clientes más fuerte y una plataforma que pudiera mantener al día. Parar el desarrollo de funcionalidades durante una migración larga no era una opción.",
+        ],
+        responsibility: {
+          owned: [
+            "La arquitectura backend de los nuevos servicios y de la nueva banca online",
+            "Los estándares de desarrollo para equipos internos y proveedores",
+            "El plan técnico de las actualizaciones de framework y de servidor de aplicaciones",
+            "El despliegue de identidad con Keycloak",
+            "Las herramientas de calidad de código en todos los repositorios",
+            "La gestión técnica de proveedores y las recomendaciones de construir o comprar",
+            "La evaluación de herramientas de IA para el equipo",
+          ],
+          notOwned: [
+            "El core COBOL y AS400 y su roadmap, que siguen en manos de sus responsables",
+            "Las prioridades de negocio y el roadmap de producto",
+          ],
+        },
+        decisions: [
+          {
+            choice: "Arquitectura limpia y hexagonal en cada servicio nuevo",
+            reason:
+              "Las reglas de negocio viven separadas del framework y de los adaptadores del legacy. La próxima actualización de framework cambia los bordes, no el dominio.",
+            rejected:
+              "Capas clásicas construidas alrededor del framework, que atan las reglas de negocio a una versión concreta.",
+          },
+          {
+            choice:
+              "Integrar el core legacy tras adaptadores en lugar de reescribirlo",
+            reason:
+              "El core guarda los registros del banco y funciona. Reescribirlo es un riesgo de varios años que no ayuda al roadmap de cara al cliente.",
+            rejected: "Sustituir el core de golpe.",
+          },
+          {
+            choice: "Actualizar la plataforma en incrementos pequeños",
+            reason:
+              "Cada paso — la migración a Spring Boot 3 con el espacio de nombres Jakarta, las actualizaciones del servidor de aplicaciones — es lo bastante pequeño para probarlo y revertirlo mientras sigue el desarrollo.",
+            rejected:
+              "Un proyecto de congelar y migrar que detiene las entregas durante meses.",
+          },
+          {
+            choice:
+              "Un único proveedor de identidad: Keycloak con MFA y reglas por jurisdicción",
+            reason:
+              "La política de autenticación vive en un solo sitio, y las reglas de cada jurisdicción son configuración, no código repetido en cada aplicación.",
+            rejected: "Lógica de autenticación copiada en cada aplicación.",
+          },
+          {
+            choice:
+              "Medir la deuda técnica antes de refactorizar, con SonarQube en todos los repositorios, COBOL incluido",
+            reason:
+              "Equipos internos y proveedores priorizan sobre los mismos datos objetivos.",
+            rejected: "Refactorizar según opiniones.",
+          },
+        ],
+        implementation: [
+          "El trabajo se reparte entre equipos internos y proveedores externos. Desde el equipo de arquitectura, defino estándares para los proveedores, reviso diseños y propongo qué construir y qué comprar.",
+          "Los servicios nuevos usan Java 21 y Spring Boot 3 y se ejecutan en OpenShift. El acceso al core legacy pasa por adaptadores, de modo que los servicios no dependen de los detalles de COBOL ni de DB2.",
+          "Los controles de calidad de SonarQube se ejecutan en todos los repositorios, también en el código COBOL.",
+          "También participé en la primera adopción de IA del departamento: Gemini Code Assist para el equipo.",
+        ],
+        result: [
+          "Actualizaciones de framework y de servidor que avanzan en pasos pequeños, sin detener las entregas.",
+          "Una nueva banca online diseñada como componentes independientes sobre una arquitectura limpia.",
+          "Un único proveedor de identidad con MFA y reglas por jurisdicción.",
+          "Deuda técnica visible en toda la plataforma, código legacy incluido.",
+          "La primera herramienta de IA del departamento, en uso diario por todo el equipo.",
+          "Los detalles internos y las cifras son confidenciales.",
+        ],
+        stack: [
+          "Java 21",
+          "Spring Boot 3",
+          "Arquitectura limpia / hexagonal",
+          "OpenShift (OCP4)",
+          "Keycloak",
+          "DB2",
+          "COBOL / AS400",
+          "SonarQube",
+          "Gemini Code Assist",
+        ],
+        diagram: [
+          { label: "Banca online", detail: "Canal del cliente" },
+          { label: "Keycloak", detail: "MFA · reglas por jurisdicción" },
+          {
+            label: "Servicios Java 21",
+            detail: "Spring Boot 3 · dominio hexagonal",
+          },
+          { label: "Adaptadores legacy", detail: "El core, fuera del dominio" },
+          { label: "Core bancario", detail: "COBOL · AS400 · DB2" },
+        ],
+        links: [],
+      },
       {
         slug: "transolido-verifactu-invoicing",
         screenshotAlt:
@@ -704,118 +810,6 @@ export const es: SiteContent = {
         ],
         links: [{ label: "ilnami.com", href: "https://ilnami.com" }],
       },
-      {
-        slug: "private-bank-modernization",
-        sector: "Experiencia profesional · Banca privada",
-        title: "Evolución de la plataforma Java de un banco privado",
-        outcome:
-          "Desde el equipo de arquitectura: actualización de la plataforma, nueva banca online e identidad centralizada, sin frenar las entregas.",
-        tags: ["Java 21", "Spring Boot 3", "Keycloak"],
-        meta: {
-          title: "Caso: evolución de la plataforma Java de un banco privado",
-          description:
-            "Arquitectura limpia, integración del legacy tras adaptadores, migración a Spring Boot 3 e identidad centralizada para un banco privado de Andorra, sin congelar las entregas.",
-        },
-        summary: {
-          sector:
-            "Un banco privado de Andorra que opera en varias jurisdicciones",
-          role: "Equipo de arquitectura y soluciones, desde 2024",
-          result:
-            "Una plataforma que avanza en pasos pequeños y una nueva arquitectura de banca online, sin detener las entregas.",
-        },
-        context: [
-          "El banco atiende a sus clientes con aplicaciones Java que se apoyan en un core mucho más antiguo: programas COBOL sobre AS400, con DB2 como sistema de registro. Con los años, la parte Java se había quedado atrás respecto a las versiones actuales de su framework y de sus servidores de aplicaciones.",
-          "El banco necesitaba una nueva banca online, una autenticación de clientes más fuerte y una plataforma que pudiera mantener al día. Parar el desarrollo de funcionalidades durante una migración larga no era una opción.",
-        ],
-        responsibility: {
-          owned: [
-            "La arquitectura backend de los nuevos servicios y de la nueva banca online",
-            "Los estándares de desarrollo para equipos internos y proveedores",
-            "El plan técnico de las actualizaciones de framework y de servidor de aplicaciones",
-            "El despliegue de identidad con Keycloak",
-            "Las herramientas de calidad de código en todos los repositorios",
-            "La gestión técnica de proveedores y las recomendaciones de construir o comprar",
-            "La evaluación de herramientas de IA para el equipo",
-          ],
-          notOwned: [
-            "El core COBOL y AS400 y su roadmap, que siguen en manos de sus responsables",
-            "Las prioridades de negocio y el roadmap de producto",
-          ],
-        },
-        decisions: [
-          {
-            choice: "Arquitectura limpia y hexagonal en cada servicio nuevo",
-            reason:
-              "Las reglas de negocio viven separadas del framework y de los adaptadores del legacy. La próxima actualización de framework cambia los bordes, no el dominio.",
-            rejected:
-              "Capas clásicas construidas alrededor del framework, que atan las reglas de negocio a una versión concreta.",
-          },
-          {
-            choice:
-              "Integrar el core legacy tras adaptadores en lugar de reescribirlo",
-            reason:
-              "El core guarda los registros del banco y funciona. Reescribirlo es un riesgo de varios años que no ayuda al roadmap de cara al cliente.",
-            rejected: "Sustituir el core de golpe.",
-          },
-          {
-            choice: "Actualizar la plataforma en incrementos pequeños",
-            reason:
-              "Cada paso — la migración a Spring Boot 3 con el espacio de nombres Jakarta, las actualizaciones del servidor de aplicaciones — es lo bastante pequeño para probarlo y revertirlo mientras sigue el desarrollo.",
-            rejected:
-              "Un proyecto de congelar y migrar que detiene las entregas durante meses.",
-          },
-          {
-            choice:
-              "Un único proveedor de identidad: Keycloak con MFA y reglas por jurisdicción",
-            reason:
-              "La política de autenticación vive en un solo sitio, y las reglas de cada jurisdicción son configuración, no código repetido en cada aplicación.",
-            rejected: "Lógica de autenticación copiada en cada aplicación.",
-          },
-          {
-            choice:
-              "Medir la deuda técnica antes de refactorizar, con SonarQube en todos los repositorios, COBOL incluido",
-            reason:
-              "Equipos internos y proveedores priorizan sobre los mismos datos objetivos.",
-            rejected: "Refactorizar según opiniones.",
-          },
-        ],
-        implementation: [
-          "El trabajo se reparte entre equipos internos y proveedores externos. Desde el equipo de arquitectura, defino estándares para los proveedores, reviso diseños y propongo qué construir y qué comprar.",
-          "Los servicios nuevos usan Java 21 y Spring Boot 3 y se ejecutan en OpenShift. El acceso al core legacy pasa por adaptadores, de modo que los servicios no dependen de los detalles de COBOL ni de DB2.",
-          "Los controles de calidad de SonarQube se ejecutan en todos los repositorios, también en el código COBOL.",
-          "También participé en la primera adopción de IA del departamento: Gemini Code Assist para el equipo.",
-        ],
-        result: [
-          "Actualizaciones de framework y de servidor que avanzan en pasos pequeños, sin detener las entregas.",
-          "Una nueva banca online diseñada como componentes independientes sobre una arquitectura limpia.",
-          "Un único proveedor de identidad con MFA y reglas por jurisdicción.",
-          "Deuda técnica visible en toda la plataforma, código legacy incluido.",
-          "La primera herramienta de IA del departamento, en uso diario por todo el equipo.",
-          "Los detalles internos y las cifras son confidenciales.",
-        ],
-        stack: [
-          "Java 21",
-          "Spring Boot 3",
-          "Arquitectura limpia / hexagonal",
-          "OpenShift (OCP4)",
-          "Keycloak",
-          "DB2",
-          "COBOL / AS400",
-          "SonarQube",
-          "Gemini Code Assist",
-        ],
-        diagram: [
-          { label: "Banca online", detail: "Canal del cliente" },
-          { label: "Keycloak", detail: "MFA · reglas por jurisdicción" },
-          {
-            label: "Servicios Java 21",
-            detail: "Spring Boot 3 · dominio hexagonal",
-          },
-          { label: "Adaptadores legacy", detail: "El core, fuera del dominio" },
-          { label: "Core bancario", detail: "COBOL · AS400 · DB2" },
-        ],
-        links: [],
-      },
     ],
   },
   contact: {
@@ -843,7 +837,7 @@ export const es: SiteContent = {
       copied: "Dirección copiada",
       copyFailed: "No se pudo copiar. Selecciona la dirección a mano.",
       withoutJavaScript:
-        "La dirección de email aparece con JavaScript activado. También puedes escribirme por LinkedIn.",
+        "Escríbeme a hola (arroba) jefmonjor.dev o por LinkedIn.",
       subject: "Consulta de proyecto — jefmonjor.dev",
       noMailApp:
         "Se abre tu aplicación de correo. ¿No tienes ninguna? Copia la dirección y escribe desde tu webmail.",
