@@ -28,7 +28,7 @@ export const es: SiteContent = {
     contact: {
       title: "Contacto — Hablemos de tu proyecto",
       description:
-        "Disponibilidad a tiempo parcial, en remoto y en horario CET. Escribe unas líneas sobre tu proyecto y te respondo en un día laborable.",
+        "En remoto y en horario CET. Escribe unas líneas sobre tu proyecto y te respondo en un día laborable.",
     },
     privacy: {
       title: "Privacidad — qué hace esta web con tus datos",
@@ -269,6 +269,15 @@ export const es: SiteContent = {
           "Decisiones técnicas, revisiones y una hoja de ruta que tu equipo pueda seguir.",
         format: "Acuerdo mensual, de 4 a 8 horas por semana.",
       },
+    ],
+    examplesTitle: "Algunos ejemplos",
+    examples: [
+      "Recibir y clasificar facturas automáticamente",
+      "Conectar el ERP con la tienda online",
+      "Extraer datos de documentos y registrarlos en tu sistema",
+      "Sustituir hojas de cálculo por una herramienta interna",
+      "Modernizar una aplicación Java antigua",
+      "Un asistente interno que responde con la documentación de tu empresa",
     ],
     audienceLabel: "Ideal para",
     includesLabel: "Incluye",
@@ -697,7 +706,7 @@ export const es: SiteContent = {
       },
       {
         slug: "private-bank-modernization",
-        sector: "Banca privada",
+        sector: "Experiencia profesional · Banca privada",
         title: "Evolución de la plataforma Java de un banco privado",
         outcome:
           "Desde el equipo de arquitectura: actualización de la plataforma, nueva banca online e identidad centralizada, sin frenar las entregas.",
@@ -813,12 +822,12 @@ export const es: SiteContent = {
     title: "Contacto",
     homeTitle: "Hablemos",
     intro:
-      "Cuéntame tu proyecto en unas líneas: el contexto, el problema y tus plazos. Te respondo en un día laborable.",
+      "Cuéntame tu proyecto en unas líneas. Te respondo en un día laborable y, si encaja, hablamos 30 minutos sin compromiso.",
     facts: [
       {
         label: "Disponibilidad",
         value:
-          "A tiempo parcial, de 10 a 15 horas por semana. Escríbeme y planificamos el inicio.",
+          "De 10 a 15 horas por semana. Escríbeme y planificamos el inicio.",
       },
       { label: "Ubicación", value: "Andorra · remoto" },
       {

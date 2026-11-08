@@ -26,7 +26,7 @@ export const en: SiteContent = {
     contact: {
       title: "Contact — Let's discuss your project",
       description:
-        "Part-time availability, remote, CET. Send a few lines about your project and get a reply within one business day.",
+        "Remote, CET. Send a few lines about your project and get a reply within one business day.",
     },
     privacy: {
       title: "Privacy — what this site does with your data",
@@ -268,6 +268,15 @@ export const en: SiteContent = {
           "Technical decisions, reviews and a roadmap your team can follow.",
         format: "Monthly agreement, 4 to 8 hours per week.",
       },
+    ],
+    examplesTitle: "Some examples",
+    examples: [
+      "Receive and classify invoices automatically",
+      "Connect your ERP with your online shop",
+      "Extract data from documents into your system",
+      "Replace spreadsheets with an internal tool",
+      "Modernise an old Java application",
+      "An internal assistant that answers from your company's documentation",
     ],
     audienceLabel: "Best for",
     includesLabel: "Includes",
@@ -690,7 +699,7 @@ export const en: SiteContent = {
       },
       {
         slug: "private-bank-modernization",
-        sector: "Private banking",
+        sector: "Professional experience · Private banking",
         title: "Evolving a private bank's Java platform",
         outcome:
           "From the architecture team: platform upgrades, new online banking and centralised identity, without slowing delivery.",
@@ -809,12 +818,12 @@ export const en: SiteContent = {
     title: "Contact",
     homeTitle: "Let's talk",
     intro:
-      "Tell me about your project in a few lines: the context, the problem and your timeline. I reply within one business day.",
+      "Tell me about your project in a few lines. I reply within one business day and, if it fits, we talk for 30 minutes with no commitment.",
     facts: [
       {
         label: "Availability",
         value:
-          "Part-time, 10 to 15 hours per week. Write to me and we will plan the start.",
+          "10 to 15 hours per week. Write to me and we will plan the start.",
       },
       { label: "Location", value: "Andorra · remote" },
       {

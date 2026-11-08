@@ -287,6 +287,8 @@ export type SiteContent = {
     homeTitle: string
     intro: string
     items: readonly [Service, Service, Service]
+    examplesTitle: string
+    examples: ReadonlyArray<string>
     audienceLabel: string
     includesLabel: string
     deliverableLabel: string

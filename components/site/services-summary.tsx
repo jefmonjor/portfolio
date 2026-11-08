@@ -47,6 +47,25 @@ function ServicesSummary({ locale, services, cta }: ServicesSummaryProps) {
           </li>
         ))}
       </ul>
+      <div className="flex flex-col gap-4">
+        <h3 className="font-heading text-title-h5 text-text-strong-950">
+          {services.examplesTitle}
+        </h3>
+        <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+          {services.examples.map((example) => (
+            <li
+              key={example}
+              className="flex gap-3 border-t border-stroke-soft-200 pt-3 text-paragraph-md text-text-strong-950"
+            >
+              <span
+                aria-hidden
+                className="mt-[0.6875rem] inline-block size-1.5 shrink-0 rounded-full bg-primary-base"
+              />
+              {example}
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className="flex flex-col gap-6">
         <h3 className="font-heading text-title-h4 text-text-strong-950">
           {services.startTitle}
