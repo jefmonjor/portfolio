@@ -60,6 +60,15 @@ describe("site content", () => {
   })
 
   it.each(languages)("publishes no rates (%s)", (_, content) => {
-    expect(JSON.stringify(content)).not.toMatch(/[€$£]\s?\d|\d\s?(€|EUR|USD)/)
+    const withoutVisitorBudgets = {
+      ...content,
+      contact: {
+        ...content.contact,
+        brief: { ...content.contact.brief, budgets: [] },
+      },
+    }
+    expect(JSON.stringify(withoutVisitorBudgets)).not.toMatch(
+      /[€$£]\s?\d|\d\s?(€|EUR|USD)/
+    )
   })
 })

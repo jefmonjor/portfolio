@@ -7,8 +7,10 @@ file, then load only the `.ai/` files that match the current task.
 ## Product Intent
 
 jefmonjor.dev is the commercial site of an independent Software Architect &
-Senior Backend Engineer. A fintech CTO or head of engineering must understand
-in ten seconds what he does, why to trust him and how to hire him.
+Senior Backend Engineer who builds custom software, connects systems,
+automates processes and applies AI for businesses, with banking-grade
+experience as proof. A business owner or a CTO must understand in ten seconds
+what he does, why to trust him and how to hire him.
 
 - `/` (EN) and `/es` (ES): home, services, case studies, experience, contact.
 - `/cv`, `/es/cv`, `/ca/cv`: the full portfolio and CV, with PDFs, the AI
@@ -48,8 +50,9 @@ in ten seconds what he does, why to trust him and how to hire him.
   boundary are validated with Zod, bodies are size-limited, and AI routes
   reject cross-site requests.
 - Commercial pages are static (SSG), work without JavaScript, and ship only
-  the client components they need: theme, language, menu, email and the
-  pointer tilt that feeds CSS variables to the 3D pieces.
+  the client components they need: theme, language, menu, email, the project
+  brief (it prepares an email; nothing is sent to the server) and the pointer
+  tilt that feeds CSS variables to the 3D pieces.
 - Code speaks for itself: names, small functions and types instead of
   comments. A comment is only for a constraint the code cannot express.
 - Animate only for interaction clarity, transition quality, and controlled

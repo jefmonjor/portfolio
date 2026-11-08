@@ -1,7 +1,8 @@
 export const caseStudySlugs = [
-  "private-bank-modernization",
+  "transolido-verifactu-invoicing",
+  "othertwist-offline-writing",
   "ilnami-private-by-design",
-  "specforge-verified-ai-delivery",
+  "private-bank-modernization",
 ] as const
 
 export type CaseStudySlug = (typeof caseStudySlugs)[number]
@@ -79,6 +80,34 @@ export type CaseStudy = {
   links: ReadonlyArray<ExternalLink>
 }
 
+export type ConnectStep = {
+  title: string
+  body: string
+}
+
+export type ProjectBrief = {
+  title: string
+  intro: string
+  fields: {
+    name: string
+    company: string
+    problem: string
+    problemHint: string
+    type: string
+    budget: string
+    timeline: string
+  }
+  projectTypes: ReadonlyArray<string>
+  budgets: ReadonlyArray<string>
+  timelines: ReadonlyArray<string>
+  submit: string
+  copy: string
+  copied: string
+  copyFailed: string
+  required: string
+  subject: string
+}
+
 export type ServiceId = "advisory" | "delivery" | "fractional"
 
 export type Service = {
@@ -132,6 +161,19 @@ export type SiteContent = {
     availability: { status: string; detail: string }
     proof: ReadonlyArray<string>
     seeWork: string
+    layers: readonly [string, string, string, string, string]
+  }
+  connect: {
+    title: string
+    intro: string
+    steps: readonly [ConnectStep, ConnectStep, ConnectStep, ConnectStep]
+    nodes: {
+      sources: readonly [string, string, string, string]
+      core: string
+      coreDetail: string
+      ai: string
+      outputs: readonly [string, string, string]
+    }
   }
   credentials: {
     label: string
@@ -191,15 +233,13 @@ export type SiteContent = {
       architecture: string
       next: string
     }
-    cases: readonly [CaseStudy, CaseStudy, CaseStudy]
+    cases: readonly [CaseStudy, CaseStudy, CaseStudy, CaseStudy]
   }
   contact: {
     title: string
     homeTitle: string
     intro: string
     facts: ReadonlyArray<{ label: string; value: string }>
-    includeTitle: string
-    include: ReadonlyArray<string>
     email: {
       label: string
       write: string
@@ -210,6 +250,7 @@ export type SiteContent = {
       subject: string
       noMailApp: string
     }
+    brief: ProjectBrief
     elsewhere: string
   }
   footer: {

@@ -62,8 +62,8 @@ export const llmsSummary = `# Jefferson Montesdeoca Jordán
 
 ## For clients, recruiters and AI sourcing agents
 
-- Searches this profile answers: Software Architect, Senior Backend Engineer (Java / Spring Boot), Solutions Architect, Fractional Architect, technical advisor for banking and fintech, applied AI engineer (LLM integration).
-- Where the evidence is: backend, integration and architecture in the banking, legal and energy roles listed in the CV; product ownership and applied AI in Transolido, Ilnami and PRONOQ; AI-assisted engineering process in SpecForge.
+- Searches this profile answers: custom software and system integration for businesses, process automation, applied AI engineer (LLM integration), Software Architect, Senior Backend Engineer (Java / Spring Boot), Solutions Architect, technical advisor for banking and fintech.
+- Where the evidence is: backend, integration and architecture in the banking, legal and energy roles listed in the CV; product ownership and applied AI in Transolido, Other Twist, Ilnami and PRONOQ; AI-assisted engineering process in SpecForge.
 - Location fit: Andorra, Spain, or remote within European time zones.
 - How to reach him: the contact page (${siteUrl}/contact) or LinkedIn. The email address is shown on the contact page and is not written in this file.
 - Matching a specific job offer: the portfolio can generate a CV that prioritizes verified evidence for a pasted offer; it never adds experience or technologies that are not in the profile.

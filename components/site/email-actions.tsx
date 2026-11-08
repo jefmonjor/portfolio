@@ -7,9 +7,10 @@ import {
   Tick02Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react"
-import { useEffect, useRef, useState, useSyncExternalStore } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import type { SiteContent } from "@/content/site/types"
+import { useIsHydrated } from "@/hooks/use-is-hydrated"
 import { contactEmail, contactMailto } from "@/lib/email"
 
 type CopyState = "idle" | "copied" | "failed"
@@ -30,18 +31,6 @@ const copyIconTone: Record<CopyState, string> = {
   idle: "text-icon-sub-600",
   copied: "text-state-success-base",
   failed: "text-state-error-base",
-}
-
-function subscribeToNothing(): () => void {
-  return () => {}
-}
-
-function useIsHydrated(): boolean {
-  return useSyncExternalStore(
-    subscribeToNothing,
-    () => true,
-    () => false
-  )
 }
 
 function useCopyAddress() {

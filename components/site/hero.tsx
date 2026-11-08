@@ -135,7 +135,10 @@ function Hero({ locale, content }: HeroProps) {
         </div>
       </div>
 
-      <ArchitectureStack className="hero-reveal mx-auto w-full max-w-[30rem] [--step:4]" />
+      <ArchitectureStack
+        layers={hero.layers}
+        className="hero-reveal mx-auto w-full max-w-[30rem] [--step:4]"
+      />
     </section>
   )
 }

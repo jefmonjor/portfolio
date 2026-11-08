@@ -59,6 +59,9 @@ Siempre **icono + texto**: disponibilidad = insignia `state/success` con punto p
 5. **Servicios — reparto boca abajo:** las tres cartas salen apiladas, giradas y **boca abajo** (dorso oscuro con cuadrícula, marca ámbar y número) y se reparten dándose la vuelta en 3D (`rotate: y 180deg → 0`, `backface-visibility`); en móvil cada carta se voltea al entrar. Debajo, «Cómo empezamos» con la línea ámbar que recorre los pasos.
 6. **Cierre:** panel oscuro (`.surface-dark` reutiliza los tokens del modo oscuro en cualquier modo) con brillo ámbar, disponibilidad, email y datos; el pie termina con tu nombre como gran marca tipográfica que se desvanece.
 
+7. **Cómo conecto tus sistemas (scrollytelling):** cuatro pasos de texto y, fijo al lado (arriba en móvil), un mapa SVG que cuenta el antes y el después con el scroll: herramientas sueltas con borde discontinuo → conexiones que se dibujan hacia «Tu backend» → la IA revisada se enciende y los datos empiezan a circular → se iluminan facturas, paneles y avisos. Cada paso tiene su `view-timeline` (`--connect-2…4`, expuestas con `timeline-scope`); los resaltes son una capa que anima `opacity` (interpolar un `fill` con `color-mix()` rompe el color en Chrome); los paquetes son SMIL y el mapa usa `content-visibility: auto` para no pintarse fuera de pantalla. Sin soporte o con movimiento reducido se ve el mapa completo y estático, sin paquetes.
+8. **Arquitectura viva en cada caso:** un paquete ámbar recorre la cadena de nodos de cada tarjeta (`translate` hasta `100cqh` dentro de una pista con `container-type: size`).
+
 Cabecera translúcida a partir de 40 px, secciones que aparecen al entrar y raíl de experiencia que se dibuja completan la lectura.
 
 Reglas: todo lo que se mueve en bucle o al cargar usa `transform`/`translate`/`opacity` (compositor); lo ligado al scroll puede animar propiedades registradas porque solo corre mientras se hace scroll. `prefers-reduced-motion` lo desactiva todo (pila estática, baraja como lista, cartas boca arriba, contador oculto, pasos en gris); sin soporte de scroll-driven animations las piezas quedan en su estado final; al imprimir todo es estático. Nada oculta contenido sin JavaScript.
@@ -66,7 +69,8 @@ Reglas: todo lo que se mueve en bucle o al cargar usa `transform`/`translate`/`o
 ### Reglas de maquetación
 
 - Mobile-first en 390 px; hero y secciones en dos columnas desde `md`/`lg`; botón de contacto en la cabecera desde `wide` (1200 px). Controles de 44 px en móvil; menú móvil a pantalla completa con la API `popover`.
-- **Un solo CTA** («Let's discuss your project» / «Hablemos de tu proyecto»), siempre hacia `/contact`.
+- **Un solo CTA** («Let's discuss your project» / «Hablemos de tu proyecto»), siempre hacia `/contact`; allí, el **brief de proyecto**: seis preguntas (nombre, empresa, problema, tipo, presupuesto orientativo, plazo) con chips accesibles. Al enviarlo abre el correo del visitante con todo escrito o copia el texto; no hay servidor ni datos guardados (`method="dialog"` evita cualquier envío sin JavaScript).
+- **Posicionamiento:** empresas en general (software a medida, integración, automatización, IA aplicada); la banca es prueba de nivel. Casos principales: Transolido, Other Twist e Ilnami, más el banco anonimizado; la baraja de la home tiene cuatro cartas.
 - Diagramas en SVG inline, máximo 6 cajas (lo comprueba `content/site/content.test.ts`).
 - Imagen OG de la web en la misma paleta que la de `/cv` (fondo `#0D0C0B`, ámbar), con Inter.
 

@@ -34,7 +34,7 @@ describe("search-engine routes", () => {
         `${siteUrl}/services`,
         `${siteUrl}/es/services`,
         `${siteUrl}/work/private-bank-modernization`,
-        `${siteUrl}/es/work/specforge-verified-ai-delivery`,
+        `${siteUrl}/es/work/transolido-verifactu-invoicing`,
         `${siteUrl}/experience`,
         `${siteUrl}/contact`,
       ])

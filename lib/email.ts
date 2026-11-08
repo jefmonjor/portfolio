@@ -20,6 +20,8 @@ export function contactEmail(): string {
   return String.fromCharCode(...ADDRESS_CHAR_CODES)
 }
 
-export function contactMailto(subject: string): string {
-  return `mailto:${contactEmail()}?subject=${encodeURIComponent(subject)}`
+export function contactMailto(subject: string, body?: string): string {
+  const query = `subject=${encodeURIComponent(subject)}`
+  const bodyQuery = body ? `&body=${encodeURIComponent(body)}` : ""
+  return `mailto:${contactEmail()}?${query}${bodyQuery}`
 }

@@ -63,14 +63,17 @@ Quedan conocidos y aceptados: el email de `/contact` abierto en frío espera a l
 
 ## Rendimiento (Lighthouse 12, móvil simulado, mediana de 3)
 
-Con la pila 3D del hero, la banda de prueba con contadores, el relleno de texto, la baraja 3D con inclinación y las cartas que se voltean:
+Con el posicionamiento para empresas, el mapa «Cómo conecto tus sistemas», cuatro casos y el brief de contacto:
 
 | Página | Rendimiento | Accesibilidad | Buenas prácticas | SEO | LCP | TBT | CLS |
 |---|---|---|---|---|---|---|---|
-| `/` | 95 | 100 | 100 | 100 | 2,7 s | 127 ms | 0 |
-| `/es` | 95 | 100 | 100 | 100 | 2,7 s | 117 ms | 0 |
-| `/services` | 95 | 100 | 100 | 100 | 2,9 s | 55 ms | 0 |
-| `/contact` | 95 | 100 | 100 | 100 | 2,8 s | 120 ms | 0 |
+| `/` | 95 | 100 | 100 | 100 | 2,7 s | 104 ms | 0 |
+| `/es` | 95 | 100 | 100 | 100 | 2,7 s | 105 ms | 0 |
+| `/contact` (mediana de 6) | 94 | 100 | 100 | 100 | 2,9 s | 118 ms | 0 |
+| `/work/transolido-verifactu-invoicing` | 94 | 100 | 100 | 100 | 2,9 s | 109 ms | 0 |
+
+- En `/contact` y en los casos, el LCP es texto en Inter que espera a la fuente (con `swap`, compitiendo con Fraunces precargada); en la pasada en que la fuente llegó antes, 97.
+- El pulso de disponibilidad animaba `box-shadow` (repintado continuo en tres insignias); ahora es un `::after` con `transform` y `opacity`.
 
 - La primera versión de la pila animaba una propiedad registrada al cargar y subió el TBT a 174 ms (rendimiento 93); la entrada pasó a `translate` y se quitó la flotación en bucle.
 | `/cv` | 89 | 100 | — | — | 3,3 s | 179 ms | — |

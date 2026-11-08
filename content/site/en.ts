@@ -4,19 +4,19 @@ export const en: SiteContent = {
   meta: {
     home: {
       title:
-        "Jefferson Montesdeoca — Software Architect & Senior Backend Engineer",
+        "Jefferson Montesdeoca — Custom software, integrations and applied AI",
       description:
-        "Backend systems for banks and fintechs, and the AI inside them. Technical advisory, engineering delivery and fractional architecture. Andorra, remote, CET.",
+        "Custom software, connected systems, automation and applied AI for businesses, built with seven years of banking-grade engineering. Remote from Andorra, CET.",
     },
     services: {
-      title: "Services — Technical Advisory, Delivery, Fractional Architecture",
+      title: "Services — Diagnosis, build and integrate, engineering partner",
       description:
-        "Three ways to work together: a written second opinion, hands-on backend delivery on Java and Spring, or an architect a few hours a week.",
+        "Three ways to work together: a written diagnosis of a process or a system, custom software and integrations taken to production, or an engineering partner every week.",
     },
     work: {
-      title: "Case studies — Banking, product and applied AI",
+      title: "Case studies — Invoicing, apps, applied AI and banking",
       description:
-        "Three case studies: modernising a private bank's Java platform, a private-by-design app built alone, and AI-written code held to engineering standards.",
+        "Four case studies: VERI*FACTU-compliant invoicing, an offline-first platform for writers, a private-by-design app, and the modernisation of a private bank's Java platform.",
     },
     experience: {
       title: "Experience — Seven years in banking, legal, energy and telecom",
@@ -31,7 +31,7 @@ export const en: SiteContent = {
     privacy: {
       title: "Privacy — what this site does with your data",
       description:
-        "No analytics, no tracking cookies, no contact forms. What happens to an email you send, to text you give the AI assistant on /cv, and to server logs.",
+        "No analytics, no tracking cookies, no form that sends data to this site. What happens to an email you send, to text you give the AI assistant on /cv, and to server logs.",
     },
   },
   nav: {
@@ -49,27 +49,35 @@ export const en: SiteContent = {
   cta: "Let's discuss your project",
   hero: {
     role: "Software Architect & Senior Backend Engineer",
-    eyebrow: "Software Architect · Backend · Applied AI",
+    eyebrow: "Software Architect · Systems · Applied AI",
     headline: [
-      "I design and build the backend systems ",
-      { emphasis: "banks and fintechs" },
-      " run on\u00a0— and the ",
+      "I build the software and ",
+      { emphasis: "integrations" },
+      " your business runs on\u00a0— and the ",
       { emphasis: "AI" },
-      " that is starting to run inside them.",
+      " that earns its place.",
     ],
     subtitle:
-      "Java and Spring backends, legacy integration and maintainable architecture.",
+      "Custom software, connected systems and automation, built with seven years of banking-grade engineering.",
     availability: {
       status: "Available part-time from January 2027",
       detail: "Remote\u00a0· Andorra time (CET)",
     },
     proof: [
       "7 years in banking and critical systems",
-      "Architect in private banking",
-      "Own products in production",
+      "Own products live: invoicing, apps, applied AI",
+      "You work directly with me, from diagnosis to production",
     ],
     seeWork: "See selected work",
+    layers: [
+      "Your data",
+      "Integrations",
+      "Events",
+      "Services · AI",
+      "API · Apps",
+    ],
   },
+
   credentials: {
     label: "Experience at",
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
@@ -78,6 +86,37 @@ export const en: SiteContent = {
       { value: 4, label: "sectors: banking, legal, energy and telecom" },
     ],
   },
+  connect: {
+    title: "How I connect your systems",
+    intro:
+      "Most businesses do not need more tools. They need the ones they already have to work together.",
+    steps: [
+      {
+        title: "Tools that don't talk",
+        body: "Spreadsheets, an ERP, the bank, a web shop: the same data typed in three places, and nobody sure which one is right.",
+      },
+      {
+        title: "One backend in the middle",
+        body: "An API and an event stream connect every system. Data is entered once and flows to where it is needed.",
+      },
+      {
+        title: "Automation and AI where they pay off",
+        body: "Repetitive steps run on their own. AI reads documents and suggests; a person confirms before anything is saved.",
+      },
+      {
+        title: "In production, and yours",
+        body: "Monitored, documented and handed over, so your team can run it and change it without me.",
+      },
+    ],
+    nodes: {
+      sources: ["Spreadsheets", "ERP · CRM", "Bank · payments", "Documents"],
+      core: "Your backend",
+      coreDetail: "API · events",
+      ai: "AI · reviewed",
+      outputs: ["Invoices", "Dashboards", "Alerts"],
+    },
+  },
+
   about: {
     title: "About",
     lead: "Seven years building software where mistakes are expensive.",
@@ -103,53 +142,53 @@ export const en: SiteContent = {
     title: "Services",
     homeTitle: "How we can work together",
     intro:
-      "Three formats for three situations. All of them start the same way and end with something your team can use without me.",
+      "Three formats for three moments: before deciding, while building and once it is running. All of them start with your problem, not with a technology.",
     items: [
       {
         id: "advisory",
-        name: "Technical Advisory",
+        name: "Diagnosis",
         summary:
-          "A senior second opinion on your architecture, your backend or your modernisation plan, delivered in writing.",
+          "A written look at a process, a system or an idea: what to automate, what to build and what not to.",
         audience:
-          "Teams that need a senior second opinion before a decision that is hard to undo.",
+          "Businesses that want a clear plan before spending on software.",
         includes: [
-          "Architecture review",
-          "Backend and code audit",
-          "Modernisation plan for legacy systems",
-          "Choosing the stack, and deciding whether to build or buy",
-          "Technical due diligence: a technical check before you invest or buy",
+          "A map of the current process and the tools involved",
+          "Where automation or AI pays off, and where it does not",
+          "Architecture or code review of an existing system",
+          "Build, buy or integrate: a reasoned recommendation",
+          "A prioritised plan with scope and next steps",
         ],
         format:
           "1 to 5 days. You receive a written report with findings, risks and a prioritised plan.",
       },
       {
         id: "delivery",
-        name: "Engineering Delivery",
+        name: "Build and integrate",
         summary:
-          "I design and build the backend with your team: Java and Spring services, integrations, migrations and the launch to production.",
+          "Custom software, APIs and integrations, automation and applied AI, taken all the way to production.",
         audience:
-          "Companies that need to build or modernise a backend and take it to production.",
+          "Businesses that need software built, systems connected or an old application modernised.",
         includes: [
-          "Java and Spring Boot backends",
-          "Integrations: core banking, banking-as-a-service (BaaS), payment providers and third-party APIs",
-          "Microservices and APIs",
-          "Migrations and framework upgrades",
-          "Preparing for production and the launch itself",
+          "Custom business software and internal tools",
+          "APIs and integrations: ERPs, banks, payment providers and third-party services",
+          "Automation of documents and repetitive work, with AI reviewed by a person",
+          "Java and Spring Boot backends, migrations and upgrades",
+          "Deployment, monitoring, documentation and handover",
         ],
         format:
           "A daily rate, or a fixed price for a fixed scope. From January 2027: 10 to 15 hours per week; full time when my availability allows it.",
       },
       {
         id: "fractional",
-        name: "Fractional Architecture",
+        name: "Engineering partner",
         summary:
-          "An architect for a few hours every week, for teams that do not have one yet.",
+          "Senior engineering every week, for businesses that do not have a technical lead.",
         audience:
-          "Startups and teams without an architect that need technical direction every week.",
+          "Companies and startups that need technical direction and steady evolution.",
         includes: [
           "Recurring architecture and code reviews",
-          "Technical roadmap",
-          "Mentoring for the team",
+          "Technical roadmap and priorities",
+          "Evolution and maintenance of what we built",
           "Bringing AI into real processes, with limits and a manual way to work when the AI fails",
         ],
         format: "Monthly agreement, 4 to 8 hours per week.",
@@ -211,7 +250,7 @@ export const en: SiteContent = {
   work: {
     title: "Case studies",
     intro:
-      "Three projects from three angles: a bank's platform, a product I built alone, and AI held to engineering standards. Each page covers the context, my decisions and the result.",
+      "Four projects, each told the same way: the problem, the decisions, the solution and what you can check. Three are products I built and run myself; one is a bank's platform, anonymised.",
     labels: {
       sector: "Sector",
       role: "My role",
@@ -230,6 +269,318 @@ export const en: SiteContent = {
       next: "Next case study",
     },
     cases: [
+      {
+        slug: "transolido-verifactu-invoicing",
+        sector: "Own product · Invoicing SaaS",
+        title:
+          "Invoicing that meets Spain's VERI*FACTU rules, on a modular Java backend",
+        outcome:
+          "Live at transolido.com: compliant invoices with full traceability, and AI that helps capture data without bypassing the rules.",
+        tags: ["Java 21 · Spring Boot", "VERI*FACTU", "Claude API"],
+        meta: {
+          title: "Case study: Transolido, VERI*FACTU-compliant invoicing",
+          description:
+            "A modular Java 21 and Spring Boot monolith with its own JWT authentication, Redis events, PostgreSQL on Neon and AI-assisted data extraction, built for Spain's invoicing rules.",
+        },
+        summary: {
+          sector: "Business software (SaaS), my own product",
+          role: "Everything: product, architecture, backend, frontend and operations",
+          result: "Live at transolido.com and compliant with VERI*FACTU.",
+        },
+        context: [
+          "Spain's VERI*FACTU rules change how invoicing software must behave: every invoice has to be traceable, and records cannot be quietly altered once they are issued. For a small business this is not a feature request; it is a legal requirement.",
+          "Transolido is invoicing software built around that requirement. Compliance had to live in the core of the system, not in a report added at the end.",
+        ],
+        responsibility: {
+          owned: [
+            "Product definition and scope",
+            "Domain model and module boundaries",
+            "Authentication and security",
+            "Compliance and traceability",
+            "AI-assisted data extraction and its limits",
+            "Deployment and operations",
+          ],
+          notOwned: [
+            "The managed platforms underneath — Neon, Upstash, Google Cloud Run and Vercel — which I chose and configured but do not operate",
+            "The regulation itself, set by the Spanish tax authority",
+          ],
+        },
+        decisions: [
+          {
+            choice: "A modular monolith instead of microservices",
+            reason:
+              "One deployable unit with clear module boundaries is simple to run for a single team, and a module can still be split out later if it needs to scale on its own.",
+            rejected: "Microservices from day one.",
+          },
+          {
+            choice: "Traceability enforced by the backend",
+            reason:
+              "Every invoice keeps the complete record the regulation asks for, and the rules are enforced by the backend, not by the screen.",
+            rejected: "Adding compliance as an export at the end.",
+          },
+          {
+            choice: "My own JWT authentication",
+            reason:
+              "Authentication stays inside the backend, with tokens the API checks on every request.",
+            rejected: "Delegating the whole identity layer to a third party.",
+          },
+          {
+            choice: "Events over Redis",
+            reason:
+              "Work that does not need to block the user travels as events on Upstash Redis, so the API answers fast and the steps stay decoupled.",
+            rejected: "Doing every step inside the request.",
+          },
+          {
+            choice: "AI that helps capture data and never issues invoices",
+            reason:
+              "The Claude API extracts data to save typing; what it returns goes through the same validation as manual entry before it becomes an invoice.",
+            rejected: "Letting the model write records directly.",
+          },
+        ],
+        implementation: [
+          "Java 21 and Spring Boot 3 on Google Cloud Run, PostgreSQL on Neon and events on Upstash Redis. The frontend is React on Vercel.",
+          "Each module owns its part of the domain and talks to the others through explicit interfaces, so the monolith stays easy to change.",
+        ],
+        result: [
+          "Live at transolido.com.",
+          "VERI*FACTU compliance with full traceability.",
+          "Own authentication and event streaming on managed infrastructure: Neon, Upstash, Cloud Run and Vercel.",
+          "AI that speeds up data entry without bypassing the rules.",
+        ],
+        stack: [
+          "Java 21",
+          "Spring Boot 3",
+          "PostgreSQL · Neon",
+          "Upstash Redis",
+          "React",
+          "Claude API",
+          "VERI*FACTU",
+          "Google Cloud Run",
+          "Vercel",
+        ],
+        diagram: [
+          { label: "React app", detail: "Vercel" },
+          {
+            label: "JWT authentication",
+            detail: "Own tokens, checked per request",
+          },
+          { label: "Spring Boot modules", detail: "Java 21 · Cloud Run" },
+          { label: "Claude API", detail: "Extracts data · backend validates" },
+          { label: "Redis events", detail: "Upstash · decoupled steps" },
+          { label: "PostgreSQL · Neon", detail: "VERI*FACTU traceability" },
+        ],
+        links: [
+          { label: "transolido.com", href: "https://www.transolido.com" },
+        ],
+      },
+      {
+        slug: "othertwist-offline-writing",
+        sector: "Own product · App and backend",
+        title:
+          "A writing platform that works offline, on a hexagonal Java backend",
+        outcome:
+          "Live at othertwist.com: writers keep working without a connection, and their changes sync when they are back online.",
+        tags: ["Flutter · offline-first", "Java 21 · hexagonal", "Docker"],
+        meta: {
+          title:
+            "Case study: Other Twist, an offline-first platform for writers",
+          description:
+            "A Flutter app with a local store and sync, on a Java 21 and Spring Boot hexagonal backend with OAuth2/JWT, Flyway and Redis, containerised and moving to a self-hosted server.",
+        },
+        summary: {
+          sector: "Platform for writers, my own product",
+          role: "Everything: product, app, backend and operations",
+          result: "Live at othertwist.com, with the app at app.othertwist.com.",
+        },
+        context: [
+          "Writers do not always write with a connection: on a train, in a café, somewhere with poor coverage. A writing tool that stops working offline loses the moment it was opened for.",
+          "Other Twist is an all-in-one platform for writers. The app had to treat offline as the normal case, and the backend had to receive the changes later.",
+        ],
+        responsibility: {
+          owned: [
+            "Product definition and scope",
+            "Flutter app: local store, state and navigation",
+            "Sync between the app and the backend",
+            "Hexagonal backend, authentication and migrations",
+            "Containers and the move to a self-hosted server",
+          ],
+          notOwned: [
+            "Supabase Auth, used as the identity provider",
+            "The hosting providers: Google Cloud Run today, a netcup server as the destination",
+          ],
+        },
+        decisions: [
+          {
+            choice: "Offline-first, with a local database in the app",
+            reason:
+              "Drift on SQLite keeps the writing on the device, so the app works the same with or without a connection and syncs when it can.",
+            rejected: "An app that needs the network for every action.",
+          },
+          {
+            choice: "Hexagonal architecture in the backend",
+            reason:
+              "The domain does not depend on the framework, the database or the identity provider; each of them is an adapter that can change without rewriting the rules.",
+            rejected:
+              "Business logic spread across controllers and repositories.",
+          },
+          {
+            choice: "OAuth2 and JWT with Supabase Auth",
+            reason:
+              "A proven identity provider handles sign-in; the Java backend verifies the tokens on every request.",
+            rejected: "Building sign-in from scratch.",
+          },
+          {
+            choice: "A versioned schema with Flyway",
+            reason:
+              "Every database change is a migration in the repository, so any environment can be rebuilt to the same state.",
+            rejected: "Changing the database by hand.",
+          },
+          {
+            choice: "Containers, to own the deployment",
+            reason:
+              "Docker images run the same anywhere, which turns the move from Cloud Run to a self-hosted server into a deployment change.",
+            rejected: "Depending on one provider's runtime.",
+          },
+        ],
+        implementation: [
+          "Flutter with Riverpod for state and GoRouter for navigation; Drift on SQLite as the local store, synchronised with the backend.",
+          "Java 21 and Spring Boot 3.5 in a hexagonal architecture, with OAuth2/JWT through Supabase Auth, Flyway migrations, Redis and PostgreSQL, packaged with Docker.",
+          "The website is othertwist.com and the app signs in at app.othertwist.com.",
+        ],
+        result: [
+          "Live at othertwist.com, with the app at app.othertwist.com.",
+          "Writing works without a connection and syncs when it returns.",
+          "A backend whose domain does not depend on its framework or its providers.",
+          "Containerised, and moving from Google Cloud Run to a self-hosted server.",
+        ],
+        stack: [
+          "Flutter",
+          "Riverpod",
+          "GoRouter",
+          "Drift · SQLite",
+          "Java 21",
+          "Spring Boot 3.5",
+          "Supabase Auth",
+          "PostgreSQL",
+          "Redis",
+          "Flyway",
+          "Docker",
+        ],
+        diagram: [
+          { label: "Flutter app", detail: "Riverpod · GoRouter" },
+          { label: "Drift · SQLite", detail: "Local store · works offline" },
+          { label: "Sync", detail: "Changes travel when online" },
+          { label: "Supabase Auth", detail: "OAuth2 · JWT" },
+          {
+            label: "Spring Boot · hexagonal",
+            detail: "Java 21 · domain at the centre",
+          },
+          { label: "PostgreSQL · Redis", detail: "Flyway · Docker" },
+        ],
+        links: [{ label: "othertwist.com", href: "https://othertwist.com" }],
+      },
+      {
+        slug: "ilnami-private-by-design",
+        sector: "Own product",
+        title:
+          "A private-by-design app, built alone from database to production",
+        outcome:
+          "Online in Spanish and English. The database itself keeps each diary private, and the AI suggests but never saves.",
+        tags: ["Next.js", "PostgreSQL row-level security", "OpenAI Vision"],
+        meta: {
+          title: "Case study: Ilnami, a private-by-design app built alone",
+          description:
+            "Row-level security in PostgreSQL, AI that assists but never decides, EU data residency and monitoring without personal data, from schema to production.",
+        },
+        summary: {
+          sector: "Consumer app, my own product",
+          role: "Everything: product, architecture, backend, frontend and operations",
+          result: "Online and open at ilnami.com, in Spanish and English.",
+        },
+        context: [
+          "Review apps answer the question “what do strangers think of this place?”. Ilnami answers a different one: what did I order here, and would I go back? It is a private food diary on your own map: the place, the date, the dishes and your verdict.",
+          "A diary like this is personal data. It shows where you go and what you like. So privacy had to be a property of the architecture, not a setting that a user can forget.",
+        ],
+        responsibility: {
+          owned: [
+            "Product definition and scope",
+            "Data model and security model",
+            "AI integration and its limits",
+            "Frontend, PWA and maps",
+            "Deployment, monitoring and consent",
+          ],
+          notOwned: [
+            "The platforms underneath — Supabase, Vercel, OpenAI and Mapbox — which I chose and configured but do not operate",
+          ],
+        },
+        decisions: [
+          {
+            choice:
+              "Authorisation inside the database, with PostgreSQL row-level security",
+            reason:
+              "Every query is filtered to the owner of the row or to the circle it was shared with. A bug in the application cannot show one person's diary to another.",
+            rejected: "Permission checks only in application code.",
+          },
+          {
+            choice:
+              "No public profiles, no public reviews; private circles by invitation",
+            reason:
+              "Sharing is always an explicit act. The product never needs to expose anyone in order to grow.",
+            rejected: "A public feed of reviews as a growth channel.",
+          },
+          {
+            choice: "AI that assists and never decides",
+            reason:
+              "OpenAI Vision reads menus, labels and receipts and suggests the place, the date and the dishes. The user reviews everything before saving, manual entry always works, and quotas per plan keep costs under control.",
+            rejected: "Saving whatever the model extracts.",
+          },
+          {
+            choice: "Stored data stays in the EU",
+            reason:
+              "Supabase in Frankfurt and Vercel in fra1: the database and the app run in the EU. Only the images a user chooses to scan are sent to OpenAI for suggestions.",
+            rejected: "Default US regions.",
+          },
+          {
+            choice: "Monitoring without personal data",
+            reason:
+              "Sentry runs without personal data, analytics only load with consent, and a strict Content Security Policy limits what the browser can load.",
+            rejected: "Default SDK settings that collect more than needed.",
+          },
+        ],
+        implementation: [
+          "Next.js 16 as a PWA on Vercel, with Supabase for authentication and PostgreSQL. PostGIS stores the places and Mapbox draws each user's private map.",
+          "Users can export all their data as JSON at any time.",
+          "The site is ready for AI agents too: llms.txt, llms-full.txt, an Agent Skills index and a blog that is also published as Markdown.",
+        ],
+        result: [
+          "Online and open at ilnami.com, in Spanish and English.",
+          "Privacy enforced by the database, not only by the interface.",
+          "AI that saves time without ever writing data on its own.",
+          "The database and the app hosted in the EU, with analytics only after consent.",
+        ],
+        stack: [
+          "Next.js 16",
+          "Supabase",
+          "PostgreSQL RLS",
+          "PostGIS",
+          "Mapbox",
+          "OpenAI Vision",
+          "PWA",
+          "Sentry",
+          "Vercel",
+        ],
+        diagram: [
+          { label: "PWA", detail: "Next.js 16 · Vercel fra1" },
+          { label: "OpenAI Vision", detail: "Suggests · the user confirms" },
+          { label: "Supabase Auth", detail: "Every request carries the user" },
+          {
+            label: "PostgreSQL + RLS",
+            detail: "Owner or circle only · Frankfurt",
+          },
+          { label: "PostGIS + Mapbox", detail: "Each user's private map" },
+        ],
+        links: [{ label: "ilnami.com", href: "https://ilnami.com" }],
+      },
       {
         slug: "private-bank-modernization",
         sector: "Private banking",
@@ -346,213 +697,6 @@ export const en: SiteContent = {
         ],
         links: [],
       },
-      {
-        slug: "ilnami-private-by-design",
-        sector: "Own product",
-        title:
-          "A private-by-design app, built alone from database to production",
-        outcome:
-          "Online in Spanish and English. The database itself keeps each diary private, and the AI suggests but never saves.",
-        tags: ["Next.js", "PostgreSQL row-level security", "OpenAI Vision"],
-        meta: {
-          title: "Case study: Ilnami, a private-by-design app built alone",
-          description:
-            "Row-level security in PostgreSQL, AI that assists but never decides, EU data residency and monitoring without personal data, from schema to production.",
-        },
-        summary: {
-          sector: "Consumer app, my own product",
-          role: "Everything: product, architecture, backend, frontend and operations",
-          result: "Online and open at ilnami.com, in Spanish and English.",
-        },
-        context: [
-          "Review apps answer the question “what do strangers think of this place?”. Ilnami answers a different one: what did I order here, and would I go back? It is a private food diary on your own map: the place, the date, the dishes and your verdict.",
-          "A diary like this is personal data. It shows where you go and what you like. So privacy had to be a property of the architecture, not a setting that a user can forget.",
-        ],
-        responsibility: {
-          owned: [
-            "Product definition and scope",
-            "Data model and security model",
-            "AI integration and its limits",
-            "Frontend, PWA and maps",
-            "Deployment, monitoring and consent",
-          ],
-          notOwned: [
-            "The platforms underneath — Supabase, Vercel, OpenAI and Mapbox — which I chose and configured but do not operate",
-          ],
-        },
-        decisions: [
-          {
-            choice:
-              "Authorisation inside the database, with PostgreSQL row-level security",
-            reason:
-              "Every query is filtered to the owner of the row or to the circle it was shared with. A bug in the application cannot show one person's diary to another.",
-            rejected: "Permission checks only in application code.",
-          },
-          {
-            choice:
-              "No public profiles, no public reviews; private circles by invitation",
-            reason:
-              "Sharing is always an explicit act. The product never needs to expose anyone in order to grow.",
-            rejected: "A public feed of reviews as a growth channel.",
-          },
-          {
-            choice: "AI that assists and never decides",
-            reason:
-              "OpenAI Vision reads menus, labels and receipts and suggests the place, the date and the dishes. The user reviews everything before saving, manual entry always works, and quotas per plan keep costs under control.",
-            rejected: "Saving whatever the model extracts.",
-          },
-          {
-            choice: "Stored data stays in the EU",
-            reason:
-              "Supabase in Frankfurt and Vercel in fra1: the database and the app run in the EU. Only the images a user chooses to scan are sent to OpenAI for suggestions.",
-            rejected: "Default US regions.",
-          },
-          {
-            choice: "Monitoring without personal data",
-            reason:
-              "Sentry runs without personal data, analytics only load with consent, and a strict Content Security Policy limits what the browser can load.",
-            rejected: "Default SDK settings that collect more than needed.",
-          },
-        ],
-        implementation: [
-          "Next.js 16 as a PWA on Vercel, with Supabase for authentication and PostgreSQL. PostGIS stores the places and Mapbox draws each user's private map.",
-          "Users can export all their data as JSON at any time.",
-          "The site is ready for AI agents too: llms.txt, llms-full.txt, an Agent Skills index and a blog that is also published as Markdown.",
-        ],
-        result: [
-          "Online and open at ilnami.com, in Spanish and English.",
-          "Privacy enforced by the database, not only by the interface.",
-          "AI that saves time without ever writing data on its own.",
-          "The database and the app hosted in the EU, with analytics only after consent.",
-        ],
-        stack: [
-          "Next.js 16",
-          "Supabase",
-          "PostgreSQL RLS",
-          "PostGIS",
-          "Mapbox",
-          "OpenAI Vision",
-          "PWA",
-          "Sentry",
-          "Vercel",
-        ],
-        diagram: [
-          { label: "PWA", detail: "Next.js 16 · Vercel fra1" },
-          { label: "OpenAI Vision", detail: "Suggests · the user confirms" },
-          { label: "Supabase Auth", detail: "Every request carries the user" },
-          {
-            label: "PostgreSQL + RLS",
-            detail: "Owner or circle only · Frankfurt",
-          },
-          { label: "PostGIS + Mapbox", detail: "Each user's private map" },
-        ],
-        links: [{ label: "ilnami.com", href: "https://ilnami.com" }],
-      },
-      {
-        slug: "specforge-verified-ai-delivery",
-        sector: "Applied AI",
-        title: "Making AI-written code earn its place in the repository",
-        outcome:
-          "An open-source CLI where agent output only moves forward after tests, quality gates and a human review.",
-        tags: ["Go", "Claude Code", "TDD"],
-        meta: {
-          title: "Case study: SpecForge, verified AI-assisted delivery",
-          description:
-            "An open-source Go CLI that drives Claude Code or Gemini CLI through sealed specs, tests that cannot be edited, automatic gates and verified legacy rewrites.",
-        },
-        summary: {
-          sector: "Developer tooling and applied AI, open source",
-          role: "Author and maintainer",
-          result:
-            "Verified, traceable AI delivery, tested end to end on a Java 6 application rewritten in Java 21.",
-        },
-        context: [
-          "Coding agents are fast, and they are often wrong with total confidence. In a regulated environment like a bank, “the AI says it is done” is not evidence.",
-          "I wanted to use Claude Code and Gemini CLI on real work and still prove every step: what was asked, what was decided, which test proves each behaviour, and who approved it.",
-        ],
-        responsibility: {
-          owned: [
-            "Design and architecture",
-            "Implementation in Go",
-            "Tests, CI and releases",
-            "Documentation",
-          ],
-          notOwned: [
-            "The AI models: SpecForge drives Claude Code or Gemini CLI, it does not replace them",
-          ],
-        },
-        decisions: [
-          {
-            choice: "Spec first: interviewed, then sealed",
-            reason:
-              "The agent interviews the developer turn by turn, and the spec is sealed before any plan or code exists.",
-            rejected: "Prompting straight to code.",
-          },
-          {
-            choice: "A contract at the end of every agent answer",
-            reason:
-              "Each answer ends with JSON: done, question or blocked. Open questions go to the developer and are recorded, so the agent asks instead of inventing.",
-            rejected: "Parsing free-form chat.",
-          },
-          {
-            choice: "Check the files on disk, not the agent's report",
-            reason:
-              "SpecForge runs the tests itself and compares the files on disk. Tests are fingerprinted after the red phase, so nobody can edit them later to make the code pass.",
-            rejected: "Accepting the agent's own report.",
-          },
-          {
-            choice: "Automatic gates before any step moves forward",
-            reason:
-              "Linters, duplication checks, mutation testing, ArchUnit and migration checks run on every scenario.",
-            rejected: "Review by eye only.",
-          },
-          {
-            choice: "Legacy rewrites without invention",
-            reason:
-              "The agent reads the old code read-only. Every file:line it cites is opened and checked, and behaviour that nobody can explain becomes a question for a person.",
-            rejected:
-              "Letting the agent describe legacy behaviour from memory.",
-          },
-        ],
-        implementation: [
-          "A Go CLI built with Cobra on a hexagonal architecture, with 77% test coverage and CI on Windows, macOS and Linux, under the Apache 2.0 licence.",
-          "Each scenario goes Red → Green → Refactor, with the developer's review and one commit per scenario.",
-          "The handover is traceable: DELIVERY.md and the pull request body link each scenario to its test and its commit.",
-          "Version 5 adds verified legacy rewrites, from Java 6 to Java 21, and ready-made Java, React, Python and Go projects.",
-        ],
-        result: [
-          "Tested end to end on a Java 6 servlet application rewritten in Java 21.",
-          "Every change is linked to a spec, a test and a commit.",
-          "The AI works like a supervised junior engineer: it can propose anything, but only evidence moves the work forward.",
-        ],
-        stack: [
-          "Go",
-          "Cobra",
-          "Hexagonal architecture",
-          "Claude Code",
-          "Gemini CLI",
-          "chromedp",
-          "TDD · BDD",
-        ],
-        diagram: [
-          { label: "Spec interview", detail: "Turn by turn, then sealed" },
-          { label: "Reviewed plan", detail: "Approved by the developer" },
-          { label: "Agent", detail: "Claude Code or Gemini CLI" },
-          { label: "Gates", detail: "Tests · mutation · ArchUnit · lint" },
-          { label: "Human review", detail: "One commit per scenario" },
-          { label: "Traceable delivery", detail: "DELIVERY.md · PR body" },
-        ],
-        links: [
-          {
-            label: "Source code on GitHub",
-            href: "https://github.com/jefmonjor/specforge",
-          },
-          {
-            label: "Releases",
-            href: "https://github.com/jefmonjor/specforge/releases",
-          },
-        ],
-      },
     ],
   },
   contact: {
@@ -576,12 +720,6 @@ export const en: SiteContent = {
         value: "Within one business day (Monday to Friday)",
       },
     ],
-    includeTitle: "Useful to include",
-    include: [
-      "What your company does and who uses the system",
-      "The problem or the decision in front of you",
-      "Your timeline and the format you have in mind",
-    ],
     email: {
       label: "Email",
       write: "Write an email",
@@ -593,6 +731,49 @@ export const en: SiteContent = {
       subject: "Project enquiry — jefmonjor.dev",
       noMailApp:
         "This opens your email app. No email app? Copy the address and write from your webmail.",
+    },
+    brief: {
+      title: "Tell me about your project",
+      intro:
+        "Six short questions. When you send it, your email app opens with everything written; nothing is stored on this site.",
+      fields: {
+        name: "Your name",
+        company: "Company (optional)",
+        problem: "What do you need to solve?",
+        problemHint:
+          "Describe it in your own words; you do not need to know the technology.",
+        type: "Type of project",
+        budget: "Approximate budget",
+        timeline: "When would you like to start?",
+      },
+      projectTypes: [
+        "Custom software",
+        "Process automation",
+        "System integration and APIs",
+        "Applied AI",
+        "Architecture and modernisation",
+        "Not sure yet, I need guidance",
+      ],
+      budgets: [
+        "Less than €2,000",
+        "€2,000–5,000",
+        "€5,000–10,000",
+        "€10,000–25,000",
+        "More than €25,000",
+        "I need an estimate",
+      ],
+      timelines: [
+        "As soon as possible",
+        "In 1–3 months",
+        "In 3–6 months",
+        "Just exploring",
+      ],
+      submit: "Prepare the email",
+      copy: "Copy the text",
+      copied: "Text copied",
+      copyFailed: "Could not copy the text",
+      required: "Write your name and the problem to continue.",
+      subject: "Project brief — jefmonjor.dev",
     },
     elsewhere: "Also on",
   },
@@ -620,7 +801,7 @@ export const en: SiteContent = {
         title: "What this site does not do",
         paragraphs: [
           [
-            "No analytics, no advertising, no tracking cookies and no contact forms. Fonts and scripts are served from this domain; the pages load nothing from third parties.",
+            "No analytics, no advertising and no tracking cookies. The project form on the contact page sends nothing to this site: it prepares an email in your own mail app. Fonts and scripts are served from this domain; the pages load nothing from third parties.",
           ],
         ],
       },

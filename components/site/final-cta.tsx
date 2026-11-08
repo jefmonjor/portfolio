@@ -1,3 +1,4 @@
+import { ArrowLink } from "@/components/site/arrow-link"
 import { EmailActions } from "@/components/site/email-actions"
 import { StatusBadge } from "@/components/site/status-badge"
 import type { SiteContent } from "@/content/site/types"
@@ -6,9 +7,10 @@ import { publicProfiles } from "@/lib/profile"
 type FinalCtaProps = {
   contact: SiteContent["contact"]
   availability: string
+  briefHref: string
 }
 
-function FinalCta({ contact, availability }: FinalCtaProps) {
+function FinalCta({ contact, availability, briefHref }: FinalCtaProps) {
   return (
     <section
       id="contact"
@@ -26,6 +28,7 @@ function FinalCta({ contact, availability }: FinalCtaProps) {
             {contact.homeTitle}
           </h2>
           <p className="site-prose text-text-sub-600">{contact.intro}</p>
+          <ArrowLink href={briefHref}>{contact.brief.title}</ArrowLink>
         </div>
         <div className="flex flex-col gap-8">
           <EmailActions email={contact.email} />
