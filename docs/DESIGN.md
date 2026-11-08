@@ -41,6 +41,15 @@ El botón principal (cabecera, hero, servicios), la etapa «Revisión · Decido 
 - Solo material real: capturas de las páginas públicas de Transolido, Other Twist e Ilnami (`public/images/work/`, 1440×900, tomadas de las webs en producción). El retrato del dueño no aparece en la web comercial ni en sus datos estructurados; solo en `/cv`. Cada archivo lleva su procedencia embebida (`impeccable embed-prompt --scan public/images`: 0 pendientes). Mapa en `content/site/images.ts`.
 - Las capturas van en un marco de navegador mínimo con el dominio real; el caso del banco, sin capturas por confidencialidad, muestra su arquitectura en miniatura en el mismo hueco.
 
+### Asistente de IA y terminal (toda la web comercial)
+
+- **Asistente:** botón flotante «Pregunta a la IA» abajo a la derecha (`components/site/site-console.tsx`). Abre un panel (hoja inferior en móvil, tarjeta de 24 rem en escritorio) con tres preguntas sugeridas, el hilo y, siempre visibles, «Escríbeme un email» (hola@jefmonjor.dev) y «Rellena el brief de proyecto».
+  - Responde `POST /api/site-assistant`, con el mismo modelo, límites y presupuesto diario que el asistente de `/cv`.
+  - Usa un dossier hecho con el contenido de la web (`lib/site-assistant/dossier.ts`): sin precios ni detalles del banco, y deriva a hola@jefmonjor.dev.
+  - Si falla, explica por qué y devuelve la pregunta al campo.
+- **Terminal:** icono `>_` en la cabecera (solo escritorio), tecla `` ` `` o Ctrl/⌘+K. Es un `<dialog>` modal oscuro con comandos: `help`, `whoami`, `services`, `work`, `how`, `availability`, `contact`, `mail`, `brief`, `cv`, `ask <pregunta>`, `lang`, `clear` y `exit`. Los textos los prepara el servidor desde el contenido (`lib/site-console.ts`).
+- Ambos se cargan con `next/dynamic` la primera vez que se abren y no se pintan sin JavaScript. El email nunca va literal en el HTML ni en el bundle.
+
 ### Patrones de plantilla que la home evita
 
 - **Sin pastilla sobre el titular:** la disponibilidad va como frase normal bajo el botón.

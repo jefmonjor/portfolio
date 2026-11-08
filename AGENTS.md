@@ -52,7 +52,9 @@ what he does, why to trust him and how to hire him.
   reject cross-site requests.
 - Commercial pages are static (SSG), work without JavaScript, and ship only
   the client components they need: theme, language, menu, email, the project
-  brief (it prepares an email; nothing is sent to the server).
+  brief (it prepares an email; nothing is sent to the server), and the AI
+  assistant and terminal, which load on first use and send visitors to
+  hola@jefmonjor.dev.
 - Code speaks for itself: names, small functions and types instead of
   comments. A comment is only for a constraint the code cannot express.
 - Animate only for interaction clarity, transition quality, and controlled
