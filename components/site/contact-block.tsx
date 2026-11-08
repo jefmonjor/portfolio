@@ -4,18 +4,18 @@ import { publicProfiles } from "@/lib/profile"
 
 function ContactBlock({ contact }: { contact: SiteContent["contact"] }) {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6">
       <h2 className="font-heading text-title-h4 text-text-strong-950">
         {contact.direct}
       </h2>
 
       <EmailActions email={contact.email} secondary />
 
-      <dl className="grid gap-3 sm:grid-cols-2">
+      <dl className="grid gap-x-6 sm:grid-cols-2">
         {contact.facts.map((fact) => (
           <div
             key={fact.label}
-            className="site-card flex flex-col gap-1 rounded-16 px-4 py-3.5"
+            className="flex flex-col gap-0.5 border-t border-stroke-soft-200 py-3"
           >
             <dt className="text-label-sm text-text-sub-600">{fact.label}</dt>
             <dd className="text-paragraph-md text-text-strong-950">

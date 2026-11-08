@@ -59,7 +59,7 @@ describe("site assistant route", () => {
     expect(body.reply).toBe("Escríbele a hola@jefmonjor.dev.")
     expect(body.signature).toMatch(/^[A-Za-z0-9_-]{43}$/)
     const call = create.mock.calls[0]?.[0] as { instructions: string }
-    expect(call.instructions).toContain("Eres el asistente de jefmonjor.dev")
+    expect(call.instructions).toContain("Eres el asistente de Jefferson Montesdeoca")
     expect(call.instructions).toContain("hola@jefmonjor.dev")
   })
 

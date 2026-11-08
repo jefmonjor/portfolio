@@ -27,7 +27,7 @@ function ApproachSection({ content }: ApproachSectionProps) {
           </li>
         ))}
       </ol>
-      <h3 className="mt-16 font-heading text-title-h4 text-text-strong-950">
+      <h3 className="mt-12 font-heading text-title-h4 text-text-strong-950">
         {approach.principlesTitle}
       </h3>
       <ul className="mt-8 grid gap-x-12 gap-y-10 md:grid-cols-2">

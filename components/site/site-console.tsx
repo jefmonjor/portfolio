@@ -9,7 +9,7 @@ import { OPEN_TERMINAL_EVENT } from "@/components/site/console-events"
 import type { SiteConsoleCopy } from "@/content/site/types"
 import { useIsHydrated } from "@/hooks/use-is-hydrated"
 import type { SiteLocale } from "@/i18n/routing"
-import type { TerminalData } from "@/lib/site-console"
+import type { TerminalData } from "@/lib/site-terminal"
 
 const SiteTerminal = dynamic(() => import("@/components/site/site-terminal"), {
   ssr: false,
@@ -77,7 +77,7 @@ function SiteConsole({
           }}
           aria-controls="site-assistant"
           aria-expanded={false}
-          className="assistant-launcher site-button"
+          className="assistant-launcher site-button max-sm:size-14 max-sm:px-0"
         >
           <HugeiconsIcon
             icon={SparklesIcon}
@@ -85,7 +85,7 @@ function SiteConsole({
             className="size-[18px]"
             strokeWidth={1.75}
           />
-          {copy.assistant.open}
+          <span className="max-sm:sr-only">{copy.assistant.open}</span>
         </button>
       )}
       {assistantUsed ? (

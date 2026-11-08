@@ -43,11 +43,15 @@ El botón principal (cabecera, hero, servicios), la etapa «Revisión · Decido 
 
 ### Asistente de IA y terminal (toda la web comercial)
 
-- **Asistente:** botón flotante «Pregunta a la IA» abajo a la derecha (`components/site/site-console.tsx`). Abre un panel (hoja inferior en móvil, tarjeta de 24 rem en escritorio) con tres preguntas sugeridas, el hilo y, siempre visibles, «Escríbeme un email» (hola@jefmonjor.dev) y «Rellena el brief de proyecto».
+- **Asistente:** botón flotante «Pregunta a la IA» abajo a la derecha (solo icono en móvil) (`components/site/site-console.tsx`). Abre un panel (hoja inferior en móvil, tarjeta de 24 rem en escritorio) con tres preguntas sugeridas, el hilo y, siempre visibles, «Escríbeme un email» (hola@jefmonjor.dev) y «Rellena el brief de proyecto».
   - Responde `POST /api/site-assistant`, con el mismo modelo, límites y presupuesto diario que el asistente de `/cv`.
-  - Usa un dossier hecho con el contenido de la web (`lib/site-assistant/dossier.ts`): sin precios ni detalles del banco, y deriva a hola@jefmonjor.dev.
+  - Usa un dossier con el contenido de la web, la experiencia, los productos propios y las tecnologías (`lib/site-assistant/dossier.ts`), sin precios ni detalles del banco. Habla de Jefferson en tercera persona: si el visitante menciona su sector, propone dos o tres ideas concretas, hace una o dos preguntas y le invita al brief o a hola@jefmonjor.dev.
   - Si falla, explica por qué y devuelve la pregunta al campo.
-- **Terminal:** icono `>_` en la cabecera (solo escritorio), tecla `` ` `` o Ctrl/⌘+K. Es un `<dialog>` modal oscuro con comandos: `help`, `whoami`, `services`, `work`, `how`, `availability`, `contact`, `mail`, `brief`, `cv`, `ask <pregunta>`, `lang`, `clear` y `exit`. Los textos los prepara el servidor desde el contenido (`lib/site-console.ts`).
+- **Terminal** (al nivel de la de `/cv`):
+  - **Cómo se abre:** «Terminal Ctrl K» en la cabecera (escritorio), «Abrir la terminal» en el menú del móvil, el aviso «¿Prefieres la terminal?» del hero, o las teclas `` ` `` y Ctrl/⌘+K.
+  - **Comandos:** el motor puro está en `lib/site-terminal.ts` (con pruebas) y ofrece `help`, `whoami`, `ls [projects]`, `projects`, `open <producto>`, `cat <tema>`, `services`, `work`, `how`, `experience`, `skills`, `availability`, `contact`, `mail`, `brief`, `cv`, `ask <pregunta>`, `theme`, `lang`, `goto <sección>`, `date`, `clear`, `exit` y el huevo de pascua `sudo`.
+  - **Uso:** Tab completa comandos, productos y secciones, ↑/↓ recorre el historial, y hay botones rápidos (help, projects, work, contact, brief) para el móvil.
+  - **Datos:** los prepara el servidor (`lib/site-console.ts`, con los productos de `lib/site-products.ts`).
 - Ambos se cargan con `next/dynamic` la primera vez que se abren y no se pintan sin JavaScript. El email nunca va literal en el HTML ni en el bundle.
 
 ### Patrones de plantilla que la home evita

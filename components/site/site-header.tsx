@@ -34,7 +34,12 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
           <ul className="flex items-center gap-1">
             {links.map((link) => (
               <li key={link.path}>
-                <NavLink href={link.href}>{link.label}</NavLink>
+                <NavLink
+                  href={link.href}
+                  prefetch={link.path === "/cv" ? false : undefined}
+                >
+                  {link.label}
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -62,7 +67,11 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
                     key={link.path}
                     className="border-b border-stroke-soft-200 last:border-b-0"
                   >
-                    <NavLink href={link.href} variant="menu">
+                    <NavLink
+                      href={link.href}
+                      variant="menu"
+                      prefetch={link.path === "/cv" ? false : undefined}
+                    >
                       {link.label}
                     </NavLink>
                   </li>
@@ -74,6 +83,10 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
               >
                 {content.cta}
               </Link>
+              <TerminalButton
+                label={content.console.terminal.open}
+                variant="menu"
+              />
               <div className="mt-2 flex items-center justify-between">
                 <LanguageLink current={locale} />
                 <ThemeSwitch label={content.nav.toggleTheme} />

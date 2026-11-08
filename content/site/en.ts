@@ -40,6 +40,7 @@ export const en: SiteContent = {
     services: "Services",
     work: "Work",
     experience: "Experience",
+    cv: "CV",
     contact: "Contact",
     menu: "Menu",
     skipToContent: "Skip to content",
@@ -55,12 +56,14 @@ export const en: SiteContent = {
       "Put AI to work.",
     ],
     subtitle:
-      "I'm Jefferson, a senior software engineer. I build custom software, integrations and AI automations for small and mid-size businesses. AI speeds up every step, from the spec to the tests; seven years in banking, legal, energy and telecom decide what reaches production.",
+      "I'm Jefferson, a senior software engineer. I build custom software, integrations and AI automations for small and mid-size businesses, with seven years of experience in banking, legal, energy and telecom.",
     availability: {
-      status: "Taking on projects from January 2027",
+      status: "Available for new projects from January 2027",
     },
-    direct: "You talk to the engineer who builds it. No agency in between.",
+    direct:
+      "You deal directly with the person who builds it, with no intermediaries.",
     seeWork: "See my work",
+    terminalHint: "Prefer a terminal? Open it (Ctrl K)",
     tools: {
       label:
         "The tools I build with: Java, Spring Boot, PostgreSQL, Redis, React, Next.js, Flutter, Docker, Kubernetes, Claude, Gemini and more.",
@@ -98,7 +101,7 @@ export const en: SiteContent = {
   display: {
     connect: ["Your systems, finally connected"],
     approach: ["How I work"],
-    work: ["Four systems running in production"],
+    work: ["Projects in production"],
     services: ["How we can work together"],
     about: ["Hi, I'm Jefferson"],
     experience: ["Where I have worked"],
@@ -106,7 +109,7 @@ export const en: SiteContent = {
   },
   approach: {
     intro:
-      "AI writes code fast. Experience keeps that code from breaking production. I use both, and I am the one who signs off every change.",
+      "I use AI throughout the process, but every change goes through my review before it reaches production.",
     pipeline: [
       { step: "Spec", by: "AI drafts, I define" },
       { step: "Code", by: "AI writes" },
@@ -118,54 +121,51 @@ export const en: SiteContent = {
     principles: [
       {
         title: "AI behind automated gates",
-        body: "With SpecForge, the tool I built for this, the AI works like a supervised junior: it asks instead of inventing, its tests must fail before any implementation and cannot be touched afterwards, and code only moves forward once it passes the tests, the quality gates and my review.",
+        body: "With SpecForge, a tool of my own, the AI asks instead of inventing, tests are written before the code, and nothing moves forward without passing the tests and my review.",
       },
       {
         title: "Validated contracts",
-        body: "Whatever the AI reads or returns crosses typed boundaries and runtime validation, with strict JSON contracts when it extracts structured data from documents.",
+        body: "Whatever the AI reads or returns is checked against strict contracts before it is used.",
       },
       {
         title: "Deterministic where it matters",
-        body: "Calculations and decisions stay in deterministic code: Corte1D optimises cuts with a deterministic engine, and PRONOQ uses AI to explain results, not to decide them.",
+        body: "Calculations and decisions stay in deterministic code; the AI explains, it does not decide. Corte1D and PRONOQ work this way.",
       },
       {
         title: "Limits and a manual path",
-        body: "Usage limits and a daily cap keep costs bounded, and important flows keep a manual way through when the AI is unavailable or unsure.",
+        body: "Usage limits to control cost, and a manual path if the AI fails.",
       },
       {
         title: "Closed source of truth",
-        body: "An assistant answers only from the data you give it and says when something is missing instead of filling the gap. The assistant on my CV works this way.",
+        body: "An assistant answers only from the data you give it and says when something is missing.",
       },
     ],
   },
 
   connect: {
     intro:
-      "Most businesses do not need more tools. They need the ones they already have to work together.",
+      "Many businesses do not need more tools, just for the ones they have to work together.",
     steps: [
       {
         title: "Tools that don't talk",
-        body: "Spreadsheets, an ERP, the bank, a web shop: the same data typed in three places, and nobody sure which one is right.",
-        deliverable:
-          "A map of your tools and of every place where the same data is typed twice.",
+        body: "Spreadsheets, ERP, bank, web shop: the same data is entered several times.",
+        deliverable: "A map of your tools and of where work is duplicated.",
       },
       {
         title: "One backend in the middle",
-        body: "An API and an event stream connect every system. Data is entered once and flows to where it is needed.",
-        deliverable:
-          "An API that connects your systems, with the data entered once.",
+        body: "An API connects your systems and each piece of data is entered once.",
+        deliverable: "An API that connects your systems.",
       },
       {
         title: "Automation and AI where they pay off",
-        body: "Repetitive steps run on their own. AI reads documents and suggests; a person confirms before anything is saved.",
-        deliverable:
-          "Automations in use, with AI suggestions that a person confirms.",
+        body: "Repetitive tasks are automated. The AI suggests and a person confirms.",
+        deliverable: "Automations in use, with human review.",
       },
       {
         title: "In production, and yours",
-        body: "Deployed and monitored, with the code, the documentation and the access in your hands.",
+        body: "Deployed, monitored and documented.",
         deliverable:
-          "The code, the documentation, the access and the monitoring, in your name.",
+          "The code, the documentation and the access, in your name.",
       },
     ],
     deliverableLabel: "You get",
@@ -180,19 +180,21 @@ export const en: SiteContent = {
 
   about: {
     title: "About",
-    lead: "Most of my career has been software where mistakes are expensive.",
+    lead: "Most of my work has been on software where a mistake is expensive.",
     paragraphs: [
       [
-        "Today I am solutions architect and technical PM at Andbank, a private bank in Andorra. Before that I modernised the platform of elAbogado, Spain's leading legal marketplace, and built Java and big-data systems for energy and telecom companies as a consultant. In parallel, I build my own products from the first database table to production. The details are on the ",
+        "I work in the architecture and solutions team at Andbank, a private bank in Andorra. Before that I worked at elAbogado as a full-stack developer and, as a consultant, on projects for Vodafone and Endesa. I also build and run my own products. The details are on the ",
         { text: "experience page", href: "/experience" },
+        " and in my ",
+        { text: "full CV", href: "/cv" },
         ".",
       ],
       [
-        "I work remotely and asynchronously, and I write decisions down: what we chose, why, and what we rejected, so whoever comes after me does not have to guess.",
+        "I work remotely and write decisions down, so anyone can pick up the work later.",
       ],
     ],
     principle:
-      "I take on a small number of projects at a time, so each one gets my full attention. If yours is not a good fit, I will tell you and point you somewhere better.",
+      "I take on few projects at a time. If yours is not a good fit, I will say so and recommend someone else.",
     signature: "Jefferson",
     facts: [
       { label: "Based in", value: "Andorra, CET" },
@@ -297,16 +299,21 @@ export const en: SiteContent = {
   },
   experience: {
     title: "Experience",
-    intro:
-      "Seven years in banking, legal, energy and telecom. For each role: what I was responsible for and what I delivered.",
+    intro: "Seven years in banking, legal, energy and telecom.",
     groups: [
       {
         id: "andbank",
         period: "2024 — present",
         organization: "Andbank",
-        role: "Solutions Architect / Technical PM",
+        role: "Architecture and solutions team",
         summary:
-          "Backend architecture, legacy integration and technical management in private banking.",
+          "Backend architecture, integration with existing systems and technical coordination with teams and vendors.",
+        highlights: [
+          "Backend design of new services in Java 21 and Spring Boot 3 on OpenShift.",
+          "Integration with the existing core (COBOL, AS400, DB2) through adapters.",
+          "Framework and server upgrades, identity with Keycloak and code quality with SonarQube.",
+          "Rolling out AI tools for the team.",
+        ],
         entries: ["andbank-2024"],
       },
       {
@@ -315,7 +322,12 @@ export const en: SiteContent = {
         organization: "elAbogado",
         role: "Senior Full Stack Engineer",
         summary:
-          "Modernised Spain's leading legal marketplace: from Struts2 to React and Spring Boot, with microservices and secure APIs.",
+          "Full-stack development on the platform: React, Spring Boot, microservices and APIs.",
+        highlights: [
+          "Full-stack development with React and Spring Boot.",
+          "Took part in the migration from Struts2 to microservices and REST APIs.",
+          "Performance and maintainability improvements to the platform.",
+        ],
         entries: ["elabogado-2022"],
       },
       {
@@ -324,7 +336,11 @@ export const en: SiteContent = {
         organization: "Zemsania · Keapps (Atos) · Ayesa",
         role: "Software Engineer, consulting",
         summary:
-          "Java microservices for Vodafone and big-data platforms for Endesa.",
+          "Java microservices for Vodafone and data platforms for Endesa.",
+        highlights: [
+          "Java microservices and OpenAPI-documented APIs for Vodafone.",
+          "Java systems and data processing with Hadoop and Spark for Endesa.",
+        ],
         entries: ["zemsania-2021", "keapps-2020", "ayesa-2019"],
       },
     ],
@@ -675,20 +691,19 @@ export const en: SiteContent = {
       {
         slug: "private-bank-modernization",
         sector: "Private banking",
-        title:
-          "Modernising a private bank's Java platform without stopping delivery",
+        title: "Evolving a private bank's Java platform",
         outcome:
-          "Platform upgrades, a new homebanking architecture and one identity provider, while the bank kept releasing.",
+          "From the architecture team: platform upgrades, new online banking and centralised identity, without slowing delivery.",
         tags: ["Java 21", "Spring Boot 3", "Keycloak"],
         meta: {
-          title: "Case study: modernising a private bank's Java platform",
+          title: "Case study: evolving a private bank's Java platform",
           description:
             "Clean architecture, legacy integration behind adapters, Spring Boot 3 upgrades and central identity for a private bank in Andorra, without a delivery freeze.",
         },
         summary: {
           sector:
             "A private bank in Andorra that operates in several jurisdictions",
-          role: "Solutions architect and technical PM, since 2024",
+          role: "Architecture and solutions team, since 2024",
           result:
             "A platform that moves forward in small steps and a new homebanking architecture, while releases continue.",
         },
@@ -700,7 +715,7 @@ export const en: SiteContent = {
           owned: [
             "Backend architecture for new services and the new homebanking",
             "Development standards for internal teams and vendors",
-            "The plan and technical lead for the framework and application server upgrades",
+            "The technical plan for the framework and application server upgrades",
             "The identity rollout with Keycloak",
             "Code quality tooling across all repositories",
             "Technical vendor management and advice on whether to build or buy",
@@ -749,10 +764,10 @@ export const en: SiteContent = {
           },
         ],
         implementation: [
-          "The work is shared between internal teams and external vendors. My role mixes architecture and technical management: I define the standards vendors build against, review designs, and decide what to build and what to buy.",
+          "The work is shared between internal teams and external vendors. From the architecture team, I define standards for vendors, review designs and propose what to build and what to buy.",
           "New services use Java 21 and Spring Boot 3 and run on OpenShift. Access to the legacy core goes through adapters, so the services do not depend on COBOL or DB2 details.",
           "SonarQube quality gates run on every repository, including the COBOL code.",
-          "I also led the department's first AI adoption: Gemini Code Assist for the whole team.",
+          "I also took part in the department's first AI adoption: Gemini Code Assist for the team.",
         ],
         result: [
           "Framework and runtime upgrades that move forward in small steps, while releases continue.",
@@ -799,7 +814,7 @@ export const en: SiteContent = {
       {
         label: "Availability",
         value:
-          "Part-time work from January 2027. You can write now to plan a start date.",
+          "Part-time from January 2027. You can write now to plan the start.",
       },
       { label: "Location", value: "Andorra · remote" },
       {
@@ -881,7 +896,6 @@ export const en: SiteContent = {
   },
   footer: {
     location: "Andorra · Remote · Andorra time (CET)",
-    fullCv: "Full CV",
     privacy: "Privacy",
     backToTop: "Back to top",
   },
@@ -919,34 +933,57 @@ export const en: SiteContent = {
       open: "Open the terminal",
       title: "Terminal",
       close: "Close the terminal",
-      hint: "Type help and press Enter. ` or Ctrl+K opens it, Esc closes it.",
       prompt: "visitor@jefmonjor.dev:~$",
-      unknown: "Command not found: {command}. Type help.",
-      askUsage: "Usage: ask <your question>",
-      thinking: "Asking the assistant…",
-      opening: "Opening…",
+      banner: [
+        "Jefferson Montesdeoca — Senior Software Engineer · Software Architect",
+        "type 'help' to start · Tab completes · Esc or ` closes",
+      ],
+      thinking: "asking the assistant…",
+      helpTitle: "AVAILABLE COMMANDS",
       commands: {
         help: "list the commands",
-        whoami: "who I am and where I work from",
+        whoami: "who I am",
+        ls: "list sections, or products with ls projects",
+        projects: "my products in production",
+        open: "open a product in a new tab",
+        cat: "read services, work, experience, skills, contact or a product",
         services: "the three ways to work together",
         work: "the case studies",
         how: "how I work with AI",
+        experience: "where I have worked",
+        skills: "the technologies I use most",
         availability: "when I can start",
         contact: "how to reach me",
         mail: "write me an email",
         brief: "open the project brief",
         cv: "open my full CV",
-        ask: "ask the AI assistant, e.g. ask how do we start?",
+        ask: "ask the AI assistant",
+        theme: "switch theme: dark or light",
         lang: "switch to Spanish",
+        goto: "scroll to a section of the home page",
+        date: "my local time in Andorra",
         clear: "clear the screen",
         exit: "close the terminal",
       },
-      labels: {
-        email: "Email",
-        brief: "Project brief",
-        reply: "Reply",
-        cv: "Full CV",
+      usage: {
+        ls: "ls [projects]",
+        open: "open <product>",
+        cat: "cat <topic>",
+        ask: "ask <question>",
+        theme: "theme [dark|light]",
+        goto: "goto <section>",
       },
+      notFound: "command not found: %s — type 'help'",
+      usageOpen: "usage: open <product> — try 'projects'",
+      unknownProduct: "no product called %s — try 'projects'",
+      privateProduct: "%s is in development — no public link yet",
+      usageGoto: "usage: goto <section> — available: %s",
+      catUsage: "usage: cat <services|work|experience|skills|contact|product>",
+      askUsage: "usage: ask <your question>",
+      opening: "opening %s…",
+      sudo: "nice try — you are already root here.",
+      emailLabel: "Email",
+      briefLabel: "Project brief",
     },
   },
   privacy: {

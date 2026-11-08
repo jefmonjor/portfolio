@@ -12,7 +12,7 @@ function ConnectSection({ title, connect }: ConnectSectionProps) {
     <section
       id="connect"
       aria-labelledby="connect-title"
-      className="connect-scope site-container py-20 md:py-28"
+      className="connect-scope site-container py-12 md:py-16"
     >
       <div className="max-w-[44rem]">
         <h2
