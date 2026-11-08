@@ -5,11 +5,18 @@ import { cn } from "@/lib/utils"
 type SiteSectionProps = {
   id: string
   title: string | Headline
+  intro?: string
   children: React.ReactNode
   className?: string
 }
 
-function SiteSection({ id, title, children, className }: SiteSectionProps) {
+function SiteSection({
+  id,
+  title,
+  intro,
+  children,
+  className,
+}: SiteSectionProps) {
   const headingId = `${id}-title`
 
   return (
@@ -25,6 +32,9 @@ function SiteSection({ id, title, children, className }: SiteSectionProps) {
       >
         <DisplayTitle title={title} />
       </h2>
+      {intro ? (
+        <p className="site-prose mt-5 text-text-sub-600">{intro}</p>
+      ) : null}
       <div className="mt-10 min-w-0 md:mt-14">{children}</div>
     </section>
   )

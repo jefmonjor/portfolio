@@ -77,6 +77,8 @@ export type CaseStudy = {
   result: ReadonlyArray<string>
   stack: ReadonlyArray<string>
   diagram: ReadonlyArray<DiagramNode>
+  /** Set when a public screenshot of the live product exists. */
+  screenshotAlt?: string
   links: ReadonlyArray<ExternalLink>
 }
 
@@ -125,7 +127,21 @@ export type Service = {
   summary: string
   audience: string
   includes: ReadonlyArray<string>
+  deliverable: string
   format: string
+}
+
+export type LiveProduct = {
+  name: string
+  what: string
+  href: string
+}
+
+export type PipelineStep = {
+  step: string
+  by: string
+  /** The step where a person, not the AI, decides. */
+  human?: boolean
 }
 
 export type ExperienceEntryId =
@@ -167,19 +183,33 @@ export type SiteContent = {
     headline: Headline
     subtitle: string
     availability: { status: string }
-    proof: ReadonlyArray<string>
+    direct: string
     seeWork: string
-    annotations: readonly [string, string, string, string, string]
+    based: string
+    live: {
+      title: string
+      items: readonly [LiveProduct, LiveProduct, LiveProduct]
+    }
   }
   display: {
     connect: Headline
+    approach: Headline
     work: Headline
     services: Headline
     about: Headline
     experience: Headline
     contact: Headline
-    statement: Headline
-    statementDetail: string
+  }
+  approach: {
+    intro: string
+    pipeline: readonly [
+      PipelineStep,
+      PipelineStep,
+      PipelineStep,
+      PipelineStep,
+      PipelineStep,
+    ]
+    pillars: readonly [ConnectStep, ConnectStep, ConnectStep, ConnectStep]
   }
   connect: {
     intro: string
@@ -200,6 +230,9 @@ export type SiteContent = {
     title: string
     lead: string
     paragraphs: readonly [RichText, RichText]
+    principle: string
+    signature: string
+    facts: ReadonlyArray<{ label: string; value: string }>
   }
   selectedWork: {
     title: string
@@ -213,6 +246,7 @@ export type SiteContent = {
     items: readonly [Service, Service, Service]
     audienceLabel: string
     includesLabel: string
+    deliverableLabel: string
     formatLabel: string
     details: string
     startTitle: string
@@ -275,7 +309,6 @@ export type SiteContent = {
     fullCv: string
     privacy: string
     backToTop: string
-    photography: string
   }
   privacy: {
     title: string

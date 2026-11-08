@@ -10,7 +10,7 @@ type ClosingCtaProps = {
 function ClosingCta({ locale, content }: ClosingCtaProps) {
   return (
     <section className="site-container mt-16">
-      <div className="surface-dark dark-panel px-6 py-12 md:px-12 md:py-16">
+      <div className="surface-brand brand-panel px-6 py-12 md:px-12 md:py-16">
         <p className="max-w-[26ch] font-heading text-title-h3 text-text-strong-950">
           {content.services.closing}
         </p>

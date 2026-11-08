@@ -1,4 +1,5 @@
 import { AboutSection } from "@/components/site/about-section"
+import { ApproachSection } from "@/components/site/approach-section"
 import { ArrowLink } from "@/components/site/arrow-link"
 import { CaseDeck } from "@/components/site/case-deck"
 import { ConnectSection } from "@/components/site/connect-section"
@@ -8,7 +9,6 @@ import { FinalCta } from "@/components/site/final-cta"
 import { Hero } from "@/components/site/hero"
 import { ServicesSummary } from "@/components/site/services-summary"
 import { SiteSection } from "@/components/site/site-section"
-import { StatementBand } from "@/components/site/statement-band"
 import { localizedPath } from "@/i18n/routing"
 import {
   resolveSitePage,
@@ -35,20 +35,19 @@ export default async function HomePage({ params }: SitePageProps) {
         connect={content.connect}
       />
 
+      <ApproachSection content={content} />
+
       <SiteSection id="work" title={content.display.work}>
         <CaseDeck
           locale={locale}
           cases={content.work.cases}
           labels={content.work.labels}
           readLabel={content.selectedWork.readCase}
-          stacked
         />
         <ArrowLink href={localizedPath(locale, "/work")} className="mt-8">
           {content.selectedWork.allCases}
         </ArrowLink>
       </SiteSection>
-
-      <StatementBand display={content.display} />
 
       <SiteSection id="services" title={content.display.services}>
         <ServicesSummary

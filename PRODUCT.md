@@ -14,11 +14,11 @@ Secondary: recruiters and CTOs reading the full CV at `/cv`.
 
 ## Product Purpose
 
-jefmonjor.dev is the commercial site of Jefferson Montesdeoca, an independent Software Architect & Senior Backend Engineer working as a freelancer. It must make the offer understood, earn trust with real evidence, and turn a visitor into a project conversation through the contact brief. Success is a qualified enquiry from a business with a real problem.
+jefmonjor.dev is the commercial site of Jefferson Montesdeoca, an independent senior software engineer and software architect working as a freelancer, AI-native from spec to production. It must make the offer understood, earn trust with real evidence, and turn a visitor into a project conversation through the contact brief. Success is a qualified enquiry from a business with a real problem.
 
 ## Positioning
 
-A software architect who designs, connects and ships the systems a business runs on — custom software, system integration, process automation and applied AI — and who builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone). The client works directly with him from diagnosis to production; it is not an agency.
+A senior software engineer who designs, connects and ships the systems a business runs on — custom software, system integration, process automation and applied AI — using AI across the whole development cycle while he reviews and signs off every change, and who builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone). The client works directly with him from diagnosis to production; it is not an agency.
 
 ## Operating Context
 
@@ -37,16 +37,18 @@ A software architect who designs, connects and ships the systems a business runs
 ## Brand Commitments
 
 - Name: Jefferson Montesdeoca (short name in the header).
-- Burnt amber accent shared with `/cv`.
-- References pinned by the owner: editorial premium studio sites (large expressive serif with italic accents, generous space, architectural photography, real product imagery), with a lightweight animation behind the hero and imagery from Unsplash.
+- Pine green accent on the site (#0F6B4F light, #5FD1A0 dark); `/cv` keeps its burnt amber. The owner rejected cream, terracotta and italic-serif looks as "AI".
+- References pinned by the owner (November 2026): personal senior-consultant sites — happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me, lea.verou.me/consulting, jxnl.co/services. First person, one sentence of what he solves and for whom, named services, proof, one call to action. No stock photography: his portrait and real screenshots of his products.
 - One primary call to action: "Let's discuss your project" / "Hablemos de tu proyecto".
 
 ## Evidence on Hand
 
 - Live products: Transolido (transolido.com, VERI*FACTU invoicing), Other Twist (othertwist.com, offline-first writing platform), Ilnami (ilnami.com, private food diary), plus PRONOQ, Corte1D and Contact QR.
 - Experience: Andbank (2024–present), elAbogado (2022–2024), Zemsania (Vodafone), Keapps, Ayesa (Endesa) — see `lib/profile.ts`.
-- Portrait: `public/me.webp`.
-- Absent and never to be fabricated: client testimonials, client logos used with permission, revenue or performance figures, real product screenshots (not yet supplied).
+- Portrait: `public/me.webp` (site copy: `public/images/site/portrait.jpg`).
+- Screenshots of the public pages of Transolido, Other Twist and Ilnami (`public/images/work/`), captured from the live sites on 2026-11-08. Transolido's public face is its sign-in page.
+- English level is B1 (CV): say "Spanish (native) and English", never "native English".
+- Absent and never to be fabricated: client testimonials, client logos used with permission, revenue or performance figures, prices, a calendar link, screenshots of logged-in product areas.
 
 ## Product Principles
 

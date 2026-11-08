@@ -7,18 +7,18 @@ related_targets: []
 
 # Home (/, /es)
 
-Mode: Persuade. Audience: owners, ops leads and CTOs of 10–200 person businesses with a problem software can solve. Action: open the project brief ("Let's discuss your project"). Proof: seven years across banking, legal, energy, telecom; live products Transolido, Other Twist, Ilnami; the anonymised bank case; his own portrait. Constraints: no invented clients, figures or screenshots; static, works without JS, reduced motion respected, self-hosted images with Unsplash credits.
+Mode: Persuade. Audience: owners, ops leads and CTOs of 10–200 person businesses with a problem software can solve. Action: open the project brief ("Let's discuss your project"). Proof: his own portrait; three live products he built and runs (Transolido, Other Twist, Ilnami) shown as real screenshots of their public pages; seven years across banking, legal, energy and telecom; the anonymised bank case. Constraints: no invented clients, testimonials, figures or prices; static, works without JS, reduced motion respected, self-hosted images.
 
 ## Direction contract
 
-THESIS: The systems a business runs on, made visible. Real software and infrastructure photographed (servers, code, system design on a whiteboard, a freelancer's desk at night) with the software layers drawn over them in amber linework, so the visitor reads "software engineer, architect, freelance" in one second. It refuses the SaaS hero (centred headline, button, row of equal cards), the stat-band template, and an architecture-studio look that hides the trade.
+THESIS: A person, not a studio. The page reads like the senior consultants the owner pinned (happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me): first person, what he solves and for whom, named services a CTO can buy, real proof, one call to action. It refuses the AI-landing clusters (cream ground, italic serif accent, terracotta; dark hero with glowing annotations), stock photography and a studio look that hides the trade.
 
-OWN-WORLD: Stone-white ground and ink type; desaturated software and infrastructure photography as the major surfaces, framed with 24px corners inside the gutters; burnt amber only where something carries load (the italic accent word, signals travelling on lines, the CTA arrow, the warm light of the closing desk); Instrument Serif display with italic accents over Inter text; hairline linework that draws and carries pulses.
+OWN-WORLD: White ground with neutral cool greys and ink; one committed pine green (#0F6B4F light, #5FD1A0 dark) for the primary button, the "I decide" review gate and the closing field; Schibsted Grotesk display at 600–650 with tight tracking over Inter text; 24px portrait and panel corners; real screenshots in a minimal browser frame showing the live domain.
 
-STORY: The visitor meets a server rack annotated as software layers and "I build the software your business runs on.", reads "freelance software architect and backend engineer" in one line, sees where the experience comes from, follows how disconnected tools become one system, opens live cases, picks a way to start, meets the architect, and closes on a desk at night with the brief.
+STORY: The visitor reads three outcomes, meets Jefferson by name and face, sees three products live in production, follows how scattered tools become one system, learns how he works with AI under senior review, checks the work, picks a service by "best for / you get / format", reads a short first-person note and closes on a green panel with the brief.
 
-FIRST VIEWPORT: A framed photograph about 86svh tall across the page; headline bottom-left at up to 6rem in white with "architecture" in amber italic; the subline beneath; a light primary button and a text link to the work; the availability badge above the headline; amber linework tracing the server bays with pulses; the photo credit in small type bottom-right.
+FIRST VIEWPORT: Two columns from 64rem. Left: availability badge, the headline as three sentences on three lines (up to 3.9rem), a first-person subline, the green primary button with "See my work" beside it, and "You talk to the engineer who builds it". Right: the black-and-white portrait (4:5, 22rem) with his name and "Andorra · CET · Spanish and English" beneath, and a white "Live in production" card overlapping its lower-left edge with links to the three products. On phones the portrait follows the copy.
 
-FORM: pinned by the owner (editorial architecture-studio references), position 1 of 1. seed: none (unavailable)
+FORM: canon, pinned by the owner (personal senior-consultant sites), position 1 of 1. seed: none (unavailable)
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

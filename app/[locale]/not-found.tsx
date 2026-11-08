@@ -1,6 +1,6 @@
 import { ArrowLeft02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { Instrument_Serif, Inter } from "next/font/google"
+import { Inter, Schibsted_Grotesk } from "next/font/google"
 import Link from "next/link"
 import { getLocale, getTranslations } from "next-intl/server"
 
@@ -17,10 +17,8 @@ const inter = Inter({
   preload: false,
 })
 
-const instrumentSerif = Instrument_Serif({
+const display = Schibsted_Grotesk({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
   preload: false,
@@ -32,7 +30,7 @@ export default async function NotFound() {
 
   return (
     <SiteShell
-      fontVariable={`${inter.variable} ${instrumentSerif.variable}`}
+      fontVariable={`${inter.variable} ${display.variable}`}
       locale={locale}
       content={getSiteContent(locale)}
     >

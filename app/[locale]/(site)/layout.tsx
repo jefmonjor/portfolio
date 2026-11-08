@@ -1,4 +1,4 @@
-import { Instrument_Serif, Inter } from "next/font/google"
+import { Inter, Schibsted_Grotesk } from "next/font/google"
 
 import { SiteShell } from "@/components/site/site-shell"
 import { StructuredDataScript } from "@/components/site/structured-data-script"
@@ -12,10 +12,8 @@ const inter = Inter({
   display: "swap",
 })
 
-const instrumentSerif = Instrument_Serif({
+const display = Schibsted_Grotesk({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
 })
@@ -28,7 +26,7 @@ export default async function SiteLayout({
 
   return (
     <SiteShell
-      fontVariable={`${inter.variable} ${instrumentSerif.variable}`}
+      fontVariable={`${inter.variable} ${display.variable}`}
       locale={locale}
       content={content}
     >

@@ -1,10 +1,8 @@
-import Image from "next/image"
 import Link from "next/link"
 
 import { ArrowLabel } from "@/components/site/arrow-label"
 import { DisplayTitle } from "@/components/site/display-title"
 import { EmailActions } from "@/components/site/email-actions"
-import { sitePhotos } from "@/content/site/photos"
 import type { Headline, SiteContent } from "@/content/site/types"
 import { publicProfiles } from "@/lib/profile"
 
@@ -22,15 +20,7 @@ function FinalCta({ title, contact, briefHref }: FinalCtaProps) {
       aria-labelledby="contact-title"
       className="px-3 py-20 md:px-6 md:py-28"
     >
-      <div className="surface-dark dark-panel closing-panel">
-        <Image
-          src={sitePhotos.closing.image}
-          alt=""
-          placeholder="blur"
-          sizes="100vw"
-          className="closing-photo"
-        />
-        <div aria-hidden className="closing-shade" />
+      <div className="surface-brand brand-panel">
         <div className="site-container relative grid gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
           <div className="flex flex-col items-start gap-6">
             <h2

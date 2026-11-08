@@ -50,51 +50,86 @@ export const es: SiteContent = {
   },
   cta: "Hablemos de tu proyecto",
   hero: {
-    role: "Software Architect & Senior Backend Engineer",
+    role: "Senior Software Engineer · Software Architect",
     headline: [
-      "Construyo el software con el que ",
-      { emphasis: "funciona" },
-      " tu empresa.",
+      "Conecta tus sistemas.",
+      "Automatiza lo repetitivo.",
+      "Pon la IA a trabajar.",
     ],
     subtitle:
-      "Arquitecto de software y backend freelance. Software a medida, integraciones e IA aplicada para pymes.",
+      "Soy Jefferson, ingeniero de software senior. Construyo software a medida, integraciones y automatizaciones con IA para pymes. La IA acelera cada paso, de la especificación a los tests; siete años en banca, legal, energía y telecomunicaciones deciden qué llega a producción.",
     availability: {
-      status: "Disponible a tiempo parcial desde enero de 2027",
+      status: "Acepto proyectos desde enero de 2027",
     },
-    proof: [
-      "Siete años en banca, legal, energía y telecomunicaciones",
-      "Productos propios en producción: facturación, apps e IA",
-      "Trabajas directamente conmigo, del diagnóstico a producción",
-    ],
-    seeWork: "Ver trabajos seleccionados",
-    annotations: [
-      "API · Apps",
-      "Servicios · IA",
-      "Eventos",
-      "Integraciones",
-      "Tus datos",
-    ],
+    direct:
+      "Hablas con el ingeniero que lo construye. Sin agencias de por medio.",
+    seeWork: "Ver mi trabajo",
+    based: "Andorra · CET · español e inglés",
+    live: {
+      title: "En producción",
+      items: [
+        {
+          name: "Transolido",
+          what: "Facturación",
+          href: "https://www.transolido.com",
+        },
+        {
+          name: "Other Twist",
+          what: "App de escritura",
+          href: "https://othertwist.com",
+        },
+        {
+          name: "Ilnami",
+          what: "Diario gastronómico",
+          href: "https://ilnami.com",
+        },
+      ],
+    },
   },
 
   credentials: {
-    label: "Experiencia en",
+    label: "He trabajado en",
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
   },
   display: {
     connect: ["Tus sistemas, por fin conectados"],
+    approach: ["Cómo trabajo"],
     work: ["Cuatro sistemas funcionando en producción"],
-    services: ["Tres formas de empezar"],
-    about: ["Con quién vas a trabajar"],
+    services: ["Cómo podemos trabajar juntos"],
+    about: ["Hola, soy Jefferson"],
     experience: ["Dónde he trabajado"],
-    contact: ["Construyamos algo que ", { emphasis: "dure" }, "."],
-    statement: [
-      "Un sistema que tu equipo pueda operar y cambiar ",
-      { emphasis: "sin mí" },
-      ".",
-    ],
-    statementDetail:
-      "Arquitectura documentada, tests que explican el comportamiento y un traspaso completo del código, los documentos y el conocimiento.",
+    contact: ["Cuéntame qué necesitas resolver"],
   },
+  approach: {
+    intro:
+      "La IA escribe código rápido. La experiencia evita que ese código rompa producción. Uso las dos, y soy yo quien aprueba cada cambio.",
+    pipeline: [
+      { step: "Especificación", by: "La IA redacta, yo defino" },
+      { step: "Código", by: "Lo escribe la IA" },
+      { step: "Tests", by: "Los escribe la IA" },
+      { step: "Revisión", by: "Decido yo", human: true },
+      { step: "Producción", by: "Monitorizado" },
+    ],
+    pillars: [
+      {
+        title: "IA en todo el ciclo",
+        body: "Especificación, código, tests, migraciones y documentación: la IA acelera cada paso, y cada cambio pasa por mi revisión antes de salir.",
+      },
+      {
+        title: "De principio a fin, una sola persona",
+        body: "De la base de datos y el backend a la app web o móvil y el despliegue. No coordinas a cinco proveedores.",
+      },
+      {
+        title: "Tests antes de tocar nada",
+        body: "Los sistemas antiguos se modernizan paso a paso, con tests automáticos alrededor de lo que ya funciona, para que una entrega no rompa la anterior.",
+      },
+      {
+        title: "IA en tus procesos, bajo control",
+        body: "Asistentes, lectura de documentos y automatizaciones conectados a tus herramientas. Tus datos siguen siendo tuyos y una persona confirma antes de guardar nada.",
+      },
+    ],
+  },
+
   connect: {
     intro:
       "La mayoría de las empresas no necesitan más herramientas. Necesitan que las que ya tienen trabajen juntas.",
@@ -138,6 +173,14 @@ export const es: SiteContent = {
         "Trabajo en remoto y en asíncrono, y dejo las decisiones por escrito: qué elegimos, por qué y qué descartamos, para que quien venga después no tenga que adivinar.",
       ],
     ],
+    principle:
+      "Acepto pocos proyectos a la vez, para que cada uno tenga toda mi atención. Si el tuyo no encaja, te lo diré y te indicaré a alguien mejor.",
+    signature: "Jefferson",
+    facts: [
+      { label: "Desde", value: "Andorra, hora CET" },
+      { label: "Idiomas", value: "Español (nativo) e inglés" },
+      { label: "Trabajo", value: "En remoto, del diagnóstico a producción" },
+    ],
   },
   selectedWork: {
     title: "Trabajo seleccionado",
@@ -152,7 +195,7 @@ export const es: SiteContent = {
     items: [
       {
         id: "advisory",
-        name: "Diagnóstico",
+        name: "Revisión y hoja de ruta",
         summary:
           "Un análisis por escrito de un proceso, un sistema o una idea: qué automatizar, qué construir y qué no.",
         audience:
@@ -164,6 +207,8 @@ export const es: SiteContent = {
           "Construir, comprar o integrar: una recomendación razonada",
           "Un plan priorizado con alcance y próximos pasos",
         ],
+        deliverable:
+          "Un informe escrito: qué funciona, los riesgos y un plan priorizado.",
         format:
           "De 1 a 5 días. Recibes un informe escrito con hallazgos, riesgos y un plan priorizado.",
       },
@@ -181,12 +226,14 @@ export const es: SiteContent = {
           "Backends Java y Spring Boot, migraciones y actualizaciones",
           "Despliegue, monitorización, documentación y traspaso",
         ],
+        deliverable:
+          "Software en producción, con el código, la documentación y el traspaso.",
         format:
           "Por día o a precio cerrado para un alcance cerrado. Desde enero de 2027: de 10 a 15 horas por semana; jornada completa cuando mi disponibilidad lo permita.",
       },
       {
         id: "fractional",
-        name: "Socio de ingeniería",
+        name: "Tech lead fraccional",
         summary:
           "Ingeniería senior cada semana, para empresas sin responsable técnico.",
         audience:
@@ -197,11 +244,14 @@ export const es: SiteContent = {
           "Evolución y mantenimiento de lo que construimos",
           "IA en procesos reales, con límites y una forma manual de trabajar cuando la IA falla",
         ],
+        deliverable:
+          "Decisiones técnicas, revisiones y una hoja de ruta que tu equipo pueda seguir.",
         format: "Acuerdo mensual, de 4 a 8 horas por semana.",
       },
     ],
-    audienceLabel: "Para",
+    audienceLabel: "Ideal para",
     includesLabel: "Incluye",
+    deliverableLabel: "Te llevas",
     formatLabel: "Formato",
     details: "Ver los servicios en detalle",
     startTitle: "Cómo empezamos a trabajar juntos",
@@ -277,6 +327,8 @@ export const es: SiteContent = {
     cases: [
       {
         slug: "transolido-verifactu-invoicing",
+        screenshotAlt:
+          "Página de acceso de Transolido en transolido.com, con el enlace a su declaración VERI*FACTU",
         sector: "Producto propio · SaaS de facturación",
         title: "Facturación que mantiene a las pymes al día con VERI*FACTU",
         outcome:
@@ -381,6 +433,8 @@ export const es: SiteContent = {
       },
       {
         slug: "othertwist-offline-writing",
+        screenshotAlt:
+          "Página de inicio de Other Twist en othertwist.com, con la biblioteca de proyectos de la app en un móvil",
         sector: "Producto propio · App y backend",
         title: "Una plataforma de escritura que sigue funcionando sin conexión",
         outcome:
@@ -487,6 +541,8 @@ export const es: SiteContent = {
       },
       {
         slug: "ilnami-private-by-design",
+        screenshotAlt:
+          "Página de inicio de Ilnami en ilnami.com, con el mapa de visitas guardadas de la app en un móvil",
         sector: "Producto propio",
         title:
           "Una app privada por diseño, construida en solitario de la base de datos a producción",
@@ -798,7 +854,6 @@ export const es: SiteContent = {
     fullCv: "CV completo",
     privacy: "Privacidad",
     backToTop: "Volver arriba",
-    photography: "Fotografía",
   },
   privacy: {
     title: "Privacidad",

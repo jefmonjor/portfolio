@@ -48,51 +48,85 @@ export const en: SiteContent = {
   },
   cta: "Let's discuss your project",
   hero: {
-    role: "Software Architect & Senior Backend Engineer",
+    role: "Senior Software Engineer · Software Architect",
     headline: [
-      "I build the software your business ",
-      { emphasis: "runs on" },
-      ".",
+      "Connect your systems.",
+      "Automate the busywork.",
+      "Put AI to work.",
     ],
     subtitle:
-      "Freelance software architect and backend engineer. Custom software, integrations and applied AI for small and mid-size businesses.",
+      "I'm Jefferson, a senior software engineer. I build custom software, integrations and AI automations for small and mid-size businesses. AI speeds up every step, from the spec to the tests; seven years in banking, legal, energy and telecom decide what reaches production.",
     availability: {
-      status: "Available part-time from January 2027",
+      status: "Taking on projects from January 2027",
     },
-    proof: [
-      "Seven years across banking, legal, energy and telecom",
-      "Own products live: invoicing, apps, applied AI",
-      "You work directly with me, from diagnosis to production",
-    ],
-    seeWork: "See selected work",
-    annotations: [
-      "API · Apps",
-      "Services · AI",
-      "Events",
-      "Integrations",
-      "Your data",
-    ],
+    direct: "You talk to the engineer who builds it. No agency in between.",
+    seeWork: "See my work",
+    based: "Andorra · CET · Spanish and English",
+    live: {
+      title: "Live in production",
+      items: [
+        {
+          name: "Transolido",
+          what: "Invoicing",
+          href: "https://www.transolido.com",
+        },
+        {
+          name: "Other Twist",
+          what: "Writing app",
+          href: "https://othertwist.com",
+        },
+        {
+          name: "Ilnami",
+          what: "Food diary",
+          href: "https://ilnami.com",
+        },
+      ],
+    },
   },
 
   credentials: {
-    label: "Experience at",
+    label: "I have worked at",
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
   },
   display: {
     connect: ["Your systems, finally connected"],
+    approach: ["How I work"],
     work: ["Four systems running in production"],
-    services: ["Three ways to start"],
-    about: ["Who you will work with"],
+    services: ["How we can work together"],
+    about: ["Hi, I'm Jefferson"],
     experience: ["Where I have worked"],
-    contact: ["Let's build something that ", { emphasis: "lasts" }, "."],
-    statement: [
-      "A system your team can run and change ",
-      { emphasis: "without me" },
-      ".",
-    ],
-    statementDetail:
-      "A documented architecture, tests that explain the behaviour and a complete handover of the code, the documents and the knowledge.",
+    contact: ["Tell me what you need to solve"],
   },
+  approach: {
+    intro:
+      "AI writes code fast. Experience keeps that code from breaking production. I use both, and I am the one who signs off every change.",
+    pipeline: [
+      { step: "Spec", by: "AI drafts, I define" },
+      { step: "Code", by: "AI writes" },
+      { step: "Tests", by: "AI writes" },
+      { step: "Review", by: "I decide", human: true },
+      { step: "Production", by: "Monitored" },
+    ],
+    pillars: [
+      {
+        title: "AI across the whole cycle",
+        body: "Specs, code, tests, migrations and documentation: AI speeds up every step, and every change goes through my review before it ships.",
+      },
+      {
+        title: "End to end, one person",
+        body: "From the database and the backend to the web or mobile app and the deployment. You do not coordinate five suppliers.",
+      },
+      {
+        title: "Tests before changes",
+        body: "Old systems are modernised step by step, with automated tests around what already works, so a new delivery does not break the last one.",
+      },
+      {
+        title: "AI in your processes, under control",
+        body: "Assistants, document reading and automations wired into your tools. Your data stays yours, and a person confirms before anything is saved.",
+      },
+    ],
+  },
+
   connect: {
     intro:
       "Most businesses do not need more tools. They need the ones they already have to work together.",
@@ -136,6 +170,14 @@ export const en: SiteContent = {
         "I work remotely and asynchronously, and I write decisions down: what we chose, why, and what we rejected, so whoever comes after me does not have to guess.",
       ],
     ],
+    principle:
+      "I take on a small number of projects at a time, so each one gets my full attention. If yours is not a good fit, I will tell you and point you somewhere better.",
+    signature: "Jefferson",
+    facts: [
+      { label: "Based in", value: "Andorra, CET" },
+      { label: "Languages", value: "Spanish (native) and English" },
+      { label: "Works", value: "Remote, from diagnosis to production" },
+    ],
   },
   selectedWork: {
     title: "Selected work",
@@ -150,7 +192,7 @@ export const en: SiteContent = {
     items: [
       {
         id: "advisory",
-        name: "Diagnosis",
+        name: "Review and roadmap",
         summary:
           "A written look at a process, a system or an idea: what to automate, what to build and what not to.",
         audience:
@@ -162,6 +204,8 @@ export const en: SiteContent = {
           "Build, buy or integrate: a reasoned recommendation",
           "A prioritised plan with scope and next steps",
         ],
+        deliverable:
+          "A written report: what works, the risks, and a prioritised plan.",
         format:
           "1 to 5 days. You receive a written report with findings, risks and a prioritised plan.",
       },
@@ -179,12 +223,14 @@ export const en: SiteContent = {
           "Java and Spring Boot backends, migrations and upgrades",
           "Deployment, monitoring, documentation and handover",
         ],
+        deliverable:
+          "Software in production, with the code, the documentation and the handover.",
         format:
           "A daily rate, or a fixed price for a fixed scope. From January 2027: 10 to 15 hours per week; full time when my availability allows it.",
       },
       {
         id: "fractional",
-        name: "Engineering partner",
+        name: "Fractional tech lead",
         summary:
           "Senior engineering every week, for businesses that do not have a technical lead.",
         audience:
@@ -195,11 +241,14 @@ export const en: SiteContent = {
           "Evolution and maintenance of what we built",
           "Bringing AI into real processes, with limits and a manual way to work when the AI fails",
         ],
+        deliverable:
+          "Technical decisions, reviews and a roadmap your team can follow.",
         format: "Monthly agreement, 4 to 8 hours per week.",
       },
     ],
-    audienceLabel: "For",
+    audienceLabel: "Best for",
     includesLabel: "Includes",
+    deliverableLabel: "You get",
     formatLabel: "Format",
     details: "See the services in detail",
     startTitle: "How we start working together",
@@ -275,6 +324,8 @@ export const en: SiteContent = {
     cases: [
       {
         slug: "transolido-verifactu-invoicing",
+        screenshotAlt:
+          "Transolido's sign-in page at transolido.com, with a link to its VERI*FACTU declaration",
         sector: "Own product · Invoicing SaaS",
         title:
           "Invoicing that keeps small businesses compliant with Spain's VERI*FACTU",
@@ -379,6 +430,8 @@ export const en: SiteContent = {
       },
       {
         slug: "othertwist-offline-writing",
+        screenshotAlt:
+          "Other Twist's landing page at othertwist.com, with the app's project library on a phone",
         sector: "Own product · App and backend",
         title: "A writing platform that keeps working without a connection",
         outcome:
@@ -484,6 +537,8 @@ export const en: SiteContent = {
       },
       {
         slug: "ilnami-private-by-design",
+        screenshotAlt:
+          "Ilnami's landing page at ilnami.com, with the app's map of saved visits on a phone",
         sector: "Own product",
         title:
           "A private-by-design app, built alone from database to production",
@@ -796,7 +851,6 @@ export const en: SiteContent = {
     fullCv: "Full CV",
     privacy: "Privacy",
     backToTop: "Back to top",
-    photography: "Photography",
   },
   privacy: {
     title: "Privacy",
