@@ -41,3 +41,5 @@ next-env.d.ts
 
 # agent worktrees
 /.claude/worktrees/
+
+/.impeccable/review/
