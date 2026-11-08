@@ -17,7 +17,10 @@ function MobileMenu({ label, children }: MobileMenuProps) {
   const pathname = usePathname()
 
   function hideAfterChoosingLink(event: React.MouseEvent<HTMLDivElement>) {
-    if (event.target instanceof Element && event.target.closest("a")) {
+    if (
+      event.target instanceof Element &&
+      event.target.closest("a, [data-closes-menu]")
+    ) {
       panelRef.current?.hidePopover()
     }
   }

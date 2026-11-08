@@ -14,6 +14,7 @@ type NavLinkProps = {
   href: string
   children: React.ReactNode
   variant?: keyof typeof variantClasses
+  prefetch?: boolean
 }
 
 function isWithinSection(pathname: string, href: string): boolean {
@@ -22,12 +23,13 @@ function isWithinSection(pathname: string, href: string): boolean {
   return current === section || current.startsWith(`${section}/`)
 }
 
-function NavLink({ href, children, variant = "bar" }: NavLinkProps) {
+function NavLink({ href, children, variant = "bar", prefetch }: NavLinkProps) {
   const isCurrent = isWithinSection(usePathname(), href)
 
   return (
     <Link
       href={href}
+      prefetch={prefetch}
       aria-current={isCurrent ? "page" : undefined}
       className={`inline-flex items-center transition-colors ${variantClasses[variant]}`}
     >

@@ -24,7 +24,7 @@ function SiteSection({
       id={id}
       data-reveal
       aria-labelledby={headingId}
-      className={cn("site-container py-20 md:py-28", className)}
+      className={cn("site-container py-12 md:py-16", className)}
     >
       <h2
         id={headingId}
@@ -35,7 +35,7 @@ function SiteSection({
       {intro ? (
         <p className="site-prose mt-5 text-text-sub-600">{intro}</p>
       ) : null}
-      <div className="mt-10 min-w-0 md:mt-14">{children}</div>
+      <div className="mt-8 min-w-0 md:mt-10">{children}</div>
     </section>
   )
 }

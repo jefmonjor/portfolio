@@ -32,7 +32,7 @@ function PageIntro({
   const current = trail[trail.length - 1]
 
   return (
-    <header className="site-container pt-8 pb-12 md:pt-12 md:pb-16">
+    <header className="site-container pt-6 pb-8 md:pt-8 md:pb-10">
       <nav aria-label={content.nav.breadcrumb}>
         <ol className="flex flex-wrap items-center gap-x-2 text-label-sm text-text-sub-600">
           {ancestors.map((crumb) => (

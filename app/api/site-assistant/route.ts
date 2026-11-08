@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       instructions: buildSiteSystemPrompt(parsed.data.locale),
       input: messages,
       max_output_tokens: MAX_OUTPUT_TOKENS,
-      reasoning: { effort: "minimal" },
+      reasoning: { effort: "low" },
       text: { verbosity: "low" },
       store: false,
     })

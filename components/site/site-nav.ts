@@ -12,6 +12,7 @@ export function primaryNavigation(
     { path: "/services", label: nav.services },
     { path: "/work", label: nav.work },
     { path: "/experience", label: nav.experience },
+    { path: "/cv", label: nav.cv },
     { path: "/contact", label: nav.contact },
   ]
 }

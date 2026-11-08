@@ -3,6 +3,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import Image from "next/image"
 
 import { ContactButton } from "@/components/site/contact-button"
+import { TerminalHint } from "@/components/site/terminal-hint"
 import { ToolOrbit } from "@/components/site/tool-orbit"
 import { caseScreenshots } from "@/content/site/images"
 import type { Headline, SiteContent } from "@/content/site/types"
@@ -115,6 +116,7 @@ function Hero({ locale, content }: HeroProps) {
         <p className="hero-reveal mt-5 text-paragraph-sm text-text-sub-600 [--step:8]">
           {hero.availability.status}. {hero.direct}
         </p>
+        <TerminalHint label={hero.terminalHint} />
       </div>
       {/* After the whole copy: Chrome may paint when the parser yields after
           a script, and a paint mid-copy would shift the copy as it grows. */}

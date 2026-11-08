@@ -34,9 +34,9 @@ export default async function ContactPage({ params }: SitePageProps) {
       <section
         id="brief"
         aria-labelledby="brief-title"
-        className="site-container grid gap-12 border-t border-stroke-soft-200 pt-12 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-16"
+        className="site-container grid gap-10 border-t border-stroke-soft-200 pt-6 md:pt-10 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-16"
       >
-        <div className="site-card p-6 md:p-8">
+        <div className="brief-panel">
           <h2
             id="brief-title"
             className="font-heading text-title-h4 text-text-strong-950"
@@ -46,7 +46,7 @@ export default async function ContactPage({ params }: SitePageProps) {
           <p className="mt-3 text-paragraph-md text-text-sub-600">
             {contact.brief.intro}
           </p>
-          <div className="mt-8">
+          <div className="mt-6">
             <ProjectBrief
               brief={contact.brief}
               withoutJavaScript={contact.email.withoutJavaScript}
@@ -58,7 +58,7 @@ export default async function ContactPage({ params }: SitePageProps) {
       <SiteSection
         id="start"
         title={content.services.startTitle}
-        className="mt-16"
+        className="mt-10"
       >
         <EngagementStart services={content.services} />
       </SiteSection>

@@ -1,3 +1,5 @@
+import type { TerminalStrings } from "@/lib/site-terminal"
+
 export const caseStudySlugs = [
   "transolido-verifactu-invoicing",
   "othertwist-offline-writing",
@@ -124,25 +126,6 @@ export type ProjectBrief = {
   subject: string
 }
 
-export const terminalCommands = [
-  "help",
-  "whoami",
-  "services",
-  "work",
-  "how",
-  "availability",
-  "contact",
-  "mail",
-  "brief",
-  "cv",
-  "ask",
-  "lang",
-  "clear",
-  "exit",
-] as const
-
-export type TerminalCommand = (typeof terminalCommands)[number]
-
 export type AssistantFailure =
   "rate_limited" | "unconfigured" | "upstream" | "bad_request" | "network"
 
@@ -161,23 +144,13 @@ export type SiteConsoleCopy = {
     brief: string
     disclaimer: string
   }
-  terminal: {
+  terminal: TerminalStrings & {
     open: string
     title: string
     close: string
-    hint: string
     prompt: string
-    unknown: string
-    askUsage: string
+    banner: readonly [string, string]
     thinking: string
-    opening: string
-    commands: Record<TerminalCommand, string>
-    labels: {
-      email: string
-      brief: string
-      reply: string
-      cv: string
-    }
   }
 }
 
@@ -220,6 +193,8 @@ export type ExperienceGroup = {
   organization: string
   role: string
   summary: string
+  /** Site wording, kept plain; the full CV detail stays on /cv. */
+  highlights: ReadonlyArray<string>
   entries: ReadonlyArray<ExperienceEntryId>
 }
 
@@ -234,6 +209,7 @@ export type SiteContent = {
     services: string
     work: string
     experience: string
+    cv: string
     contact: string
     menu: string
     skipToContent: string
@@ -248,6 +224,7 @@ export type SiteContent = {
     availability: { status: string }
     direct: string
     seeWork: string
+    terminalHint: string
     tools: { label: string; center: string }
     live: {
       title: string
@@ -372,7 +349,6 @@ export type SiteContent = {
   }
   footer: {
     location: string
-    fullCv: string
     privacy: string
     backToTop: string
   }

@@ -17,12 +17,11 @@ type SiteFooterProps = {
 function SiteFooter({ locale, content }: SiteFooterProps) {
   const footerLinks = [
     ...primaryNavigation(content.nav),
-    { path: "/cv" as const, label: content.footer.fullCv },
     { path: "/privacy" as const, label: content.footer.privacy },
   ]
 
   return (
-    <footer className="mt-24 border-t border-stroke-soft-200">
+    <footer className="mt-12 border-t border-stroke-soft-200">
       <div className="site-container grid gap-10 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="flex flex-col items-start gap-2">
           <p className="text-paragraph-sm text-text-strong-950">

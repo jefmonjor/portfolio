@@ -42,6 +42,7 @@ export const es: SiteContent = {
     services: "Servicios",
     work: "Casos",
     experience: "Experiencia",
+    cv: "CV",
     contact: "Contacto",
     menu: "Menú",
     skipToContent: "Saltar al contenido",
@@ -57,13 +58,13 @@ export const es: SiteContent = {
       "Pon la IA a trabajar.",
     ],
     subtitle:
-      "Soy Jefferson, ingeniero de software senior. Construyo software a medida, integraciones y automatizaciones con IA para pymes. La IA acelera cada paso, de la especificación a los tests; siete años en banca, legal, energía y telecomunicaciones deciden qué llega a producción.",
+      "Soy Jefferson, ingeniero de software senior. Desarrollo software a medida, integraciones y automatizaciones con IA para pymes, con siete años de experiencia en banca, legal, energía y telecomunicaciones.",
     availability: {
-      status: "Acepto proyectos desde enero de 2027",
+      status: "Disponible para nuevos proyectos a partir de enero de 2027",
     },
-    direct:
-      "Hablas con el ingeniero que lo construye. Sin agencias de por medio.",
+    direct: "Tratas directamente con quien lo desarrolla, sin intermediarios.",
     seeWork: "Ver mi trabajo",
+    terminalHint: "¿Prefieres la terminal? Ábrela (Ctrl K)",
     tools: {
       label:
         "Las herramientas con las que construyo: Java, Spring Boot, PostgreSQL, Redis, React, Next.js, Flutter, Docker, Kubernetes, Claude, Gemini y más.",
@@ -101,7 +102,7 @@ export const es: SiteContent = {
   display: {
     connect: ["Tus sistemas, por fin conectados"],
     approach: ["Cómo trabajo"],
-    work: ["Cuatro sistemas funcionando en producción"],
+    work: ["Proyectos en producción"],
     services: ["Cómo podemos trabajar juntos"],
     about: ["Hola, soy Jefferson"],
     experience: ["Dónde he trabajado"],
@@ -109,7 +110,7 @@ export const es: SiteContent = {
   },
   approach: {
     intro:
-      "La IA escribe código rápido. La experiencia evita que ese código rompa producción. Uso las dos, y soy yo quien aprueba cada cambio.",
+      "Uso la IA en todo el proceso, pero cada cambio pasa por mi revisión antes de llegar a producción.",
     pipeline: [
       { step: "Especificación", by: "La IA redacta, yo defino" },
       { step: "Código", by: "Lo escribe la IA" },
@@ -121,54 +122,51 @@ export const es: SiteContent = {
     principles: [
       {
         title: "La IA, bajo controles automáticos",
-        body: "Con SpecForge, la herramienta que construí para esto, la IA trabaja como un junior supervisado: pregunta en lugar de inventar, sus tests deben fallar antes de implementar y no se pueden tocar después, y el código solo avanza cuando supera los tests, los controles de calidad y mi revisión.",
+        body: "Con SpecForge, una herramienta propia, la IA pregunta en lugar de inventar, los tests se escriben antes que el código y nada avanza sin superar los tests y mi revisión.",
       },
       {
         title: "Contratos validados",
-        body: "Lo que la IA lee o devuelve cruza fronteras tipadas y validación en tiempo de ejecución, con contratos JSON estrictos cuando extrae datos de documentos.",
+        body: "Lo que la IA lee o devuelve se valida con contratos estrictos antes de usarse.",
       },
       {
         title: "Determinista cuando importa",
-        body: "Los cálculos y las decisiones se quedan en código determinista: Corte1D optimiza los cortes con un motor determinista y PRONOQ usa la IA para explicar resultados, no para decidirlos.",
+        body: "Los cálculos y las decisiones se quedan en código determinista; la IA explica, no decide. Así funcionan Corte1D y PRONOQ.",
       },
       {
         title: "Límites y vía manual",
-        body: "Límites de uso y un techo diario acotan el coste, y los flujos importantes conservan una vía manual si la IA falla o no es fiable.",
+        body: "Límites de uso para controlar el coste y una vía manual si la IA falla.",
       },
       {
         title: "Fuente de verdad cerrada",
-        body: "Un asistente responde solo con los datos que le das y dice cuándo falta algo, en lugar de rellenar el hueco. Así funciona el asistente de mi CV.",
+        body: "Un asistente responde solo con los datos que le das y avisa cuando falta algo.",
       },
     ],
   },
 
   connect: {
     intro:
-      "La mayoría de las empresas no necesitan más herramientas. Necesitan que las que ya tienen trabajen juntas.",
+      "Muchas empresas no necesitan más herramientas, sino que las que ya tienen trabajen juntas.",
     steps: [
       {
         title: "Herramientas que no se hablan",
-        body: "Hojas de cálculo, un ERP, el banco, una tienda online: el mismo dato tecleado en tres sitios y nadie seguro de cuál es el bueno.",
+        body: "Hojas de cálculo, ERP, banco, tienda online: el mismo dato se introduce varias veces.",
         deliverable:
-          "Un mapa de tus herramientas y de cada sitio donde el mismo dato se teclea dos veces.",
+          "Un mapa de tus herramientas y de dónde se duplica el trabajo.",
       },
       {
         title: "Un backend en el centro",
-        body: "Una API y un flujo de eventos conectan cada sistema. El dato se introduce una vez y llega donde hace falta.",
-        deliverable:
-          "Una API que conecta tus sistemas, con el dato introducido una sola vez.",
+        body: "Una API conecta tus sistemas y cada dato se introduce una sola vez.",
+        deliverable: "Una API que conecta tus sistemas.",
       },
       {
         title: "Automatización e IA donde compensan",
-        body: "Los pasos repetitivos se hacen solos. La IA lee documentos y propone; una persona confirma antes de guardar nada.",
-        deliverable:
-          "Automatizaciones funcionando, con propuestas de la IA que confirma una persona.",
+        body: "Las tareas repetitivas se automatizan. La IA propone y una persona confirma.",
+        deliverable: "Automatizaciones en uso, con revisión humana.",
       },
       {
         title: "En producción, y tuyo",
-        body: "Desplegado y monitorizado, con el código, la documentación y los accesos en tus manos.",
-        deliverable:
-          "El código, la documentación, los accesos y la monitorización, a tu nombre.",
+        body: "Desplegado, monitorizado y documentado.",
+        deliverable: "El código, la documentación y los accesos, a tu nombre.",
       },
     ],
     deliverableLabel: "Te llevas",
@@ -183,19 +181,21 @@ export const es: SiteContent = {
 
   about: {
     title: "Sobre mí",
-    lead: "Casi toda mi carrera ha sido software donde los errores salen caros.",
+    lead: "He trabajado sobre todo en software donde un error sale caro.",
     paragraphs: [
       [
-        "Hoy soy arquitecto de soluciones y technical PM en Andbank, un banco privado de Andorra. Antes modernicé la plataforma de elAbogado, el marketplace legal líder en España, y construí sistemas Java y de big data para empresas de energía y telecomunicaciones como consultor. En paralelo, construyo mis propios productos desde la primera tabla de la base de datos hasta producción. Tienes el detalle en la ",
+        "Trabajo en el equipo de arquitectura y soluciones de Andbank, un banco privado de Andorra. Antes trabajé en elAbogado como desarrollador full stack y, como consultor, en proyectos para Vodafone y Endesa. También desarrollo y mantengo mis propios productos. Tienes el detalle en la ",
         { text: "página de experiencia", href: "/experience" },
+        " y en mi ",
+        { text: "CV completo", href: "/cv" },
         ".",
       ],
       [
-        "Trabajo en remoto y en asíncrono, y dejo las decisiones por escrito: qué elegimos, por qué y qué descartamos, para que quien venga después no tenga que adivinar.",
+        "Trabajo en remoto y dejo las decisiones por escrito, para que cualquiera pueda continuar el trabajo.",
       ],
     ],
     principle:
-      "Acepto pocos proyectos a la vez, para que cada uno tenga toda mi atención. Si el tuyo no encaja, te lo diré y te indicaré a alguien mejor.",
+      "Trabajo con pocos proyectos a la vez. Si el tuyo no encaja, te lo diré y te recomendaré a otra persona.",
     signature: "Jefferson",
     facts: [
       { label: "Desde", value: "Andorra, hora CET" },
@@ -300,16 +300,21 @@ export const es: SiteContent = {
   },
   experience: {
     title: "Experiencia",
-    intro:
-      "Siete años en banca, legal, energía y telecomunicaciones. En cada puesto: de qué era responsable y qué entregué.",
+    intro: "Siete años en banca, legal, energía y telecomunicaciones.",
     groups: [
       {
         id: "andbank",
         period: "2024 — actualidad",
         organization: "Andbank",
-        role: "Arquitecto de Soluciones / Technical PM",
+        role: "Equipo de arquitectura y soluciones",
         summary:
-          "Arquitectura backend, integración de sistemas legacy y dirección técnica en banca privada.",
+          "Arquitectura backend, integración con los sistemas existentes y coordinación técnica con equipos y proveedores.",
+        highlights: [
+          "Diseño backend de nuevos servicios en Java 21 y Spring Boot 3 sobre OpenShift.",
+          "Integración con el core existente (COBOL, AS400, DB2) mediante adaptadores.",
+          "Actualización de framework y servidores, identidad con Keycloak y calidad de código con SonarQube.",
+          "Puesta en marcha de herramientas de IA para el equipo.",
+        ],
         entries: ["andbank-2024"],
       },
       {
@@ -318,7 +323,12 @@ export const es: SiteContent = {
         organization: "elAbogado",
         role: "Senior Full Stack Engineer",
         summary:
-          "Modernicé el marketplace legal líder en España: de Struts2 a React y Spring Boot, con microservicios y APIs seguras.",
+          "Desarrollo full stack en la plataforma: React, Spring Boot, microservicios y APIs.",
+        highlights: [
+          "Desarrollo full stack con React y Spring Boot.",
+          "Participación en la migración desde Struts2 hacia microservicios y APIs REST.",
+          "Mejoras de rendimiento y mantenimiento de la plataforma.",
+        ],
         entries: ["elabogado-2022"],
       },
       {
@@ -327,7 +337,11 @@ export const es: SiteContent = {
         organization: "Zemsania · Keapps (Atos) · Ayesa",
         role: "Ingeniero de software, consultoría",
         summary:
-          "Microservicios Java para Vodafone y plataformas de big data para Endesa.",
+          "Microservicios Java para Vodafone y plataformas de datos para Endesa.",
+        highlights: [
+          "Microservicios Java y APIs documentadas con OpenAPI para Vodafone.",
+          "Sistemas Java y procesamiento de datos con Hadoop y Spark para Endesa.",
+        ],
         entries: ["zemsania-2021", "keapps-2020", "ayesa-2019"],
       },
     ],
@@ -684,20 +698,19 @@ export const es: SiteContent = {
       {
         slug: "private-bank-modernization",
         sector: "Banca privada",
-        title:
-          "Modernizar la plataforma Java de un banco privado sin parar las entregas",
+        title: "Evolución de la plataforma Java de un banco privado",
         outcome:
-          "Actualizaciones de plataforma, una nueva arquitectura de banca online y un único proveedor de identidad, mientras el banco seguía lanzando versiones.",
+          "Desde el equipo de arquitectura: actualización de la plataforma, nueva banca online e identidad centralizada, sin frenar las entregas.",
         tags: ["Java 21", "Spring Boot 3", "Keycloak"],
         meta: {
-          title: "Caso: modernizar la plataforma Java de un banco privado",
+          title: "Caso: evolución de la plataforma Java de un banco privado",
           description:
             "Arquitectura limpia, integración del legacy tras adaptadores, migración a Spring Boot 3 e identidad centralizada para un banco privado de Andorra, sin congelar las entregas.",
         },
         summary: {
           sector:
             "Un banco privado de Andorra que opera en varias jurisdicciones",
-          role: "Arquitecto de soluciones y technical PM, desde 2024",
+          role: "Equipo de arquitectura y soluciones, desde 2024",
           result:
             "Una plataforma que avanza en pasos pequeños y una nueva arquitectura de banca online, sin detener las entregas.",
         },
@@ -709,7 +722,7 @@ export const es: SiteContent = {
           owned: [
             "La arquitectura backend de los nuevos servicios y de la nueva banca online",
             "Los estándares de desarrollo para equipos internos y proveedores",
-            "El plan y la dirección técnica de las actualizaciones de framework y de servidor de aplicaciones",
+            "El plan técnico de las actualizaciones de framework y de servidor de aplicaciones",
             "El despliegue de identidad con Keycloak",
             "Las herramientas de calidad de código en todos los repositorios",
             "La gestión técnica de proveedores y las recomendaciones de construir o comprar",
@@ -758,10 +771,10 @@ export const es: SiteContent = {
           },
         ],
         implementation: [
-          "El trabajo se reparte entre equipos internos y proveedores externos. Mi papel mezcla arquitectura y dirección técnica: defino los estándares con los que construyen los proveedores, reviso diseños y decido qué se construye y qué se compra.",
+          "El trabajo se reparte entre equipos internos y proveedores externos. Desde el equipo de arquitectura, defino estándares para los proveedores, reviso diseños y propongo qué construir y qué comprar.",
           "Los servicios nuevos usan Java 21 y Spring Boot 3 y se ejecutan en OpenShift. El acceso al core legacy pasa por adaptadores, de modo que los servicios no dependen de los detalles de COBOL ni de DB2.",
           "Los controles de calidad de SonarQube se ejecutan en todos los repositorios, también en el código COBOL.",
-          "También lideré la primera adopción de IA del departamento: Gemini Code Assist para todo el equipo.",
+          "También participé en la primera adopción de IA del departamento: Gemini Code Assist para el equipo.",
         ],
         result: [
           "Actualizaciones de framework y de servidor que avanzan en pasos pequeños, sin detener las entregas.",
@@ -805,7 +818,7 @@ export const es: SiteContent = {
       {
         label: "Disponibilidad",
         value:
-          "Colaboraciones a tiempo parcial desde enero de 2027. Puedes escribir ya para planificar el inicio.",
+          "A tiempo parcial a partir de enero de 2027. Puedes escribirme ya para planificar el inicio.",
       },
       { label: "Ubicación", value: "Andorra · remoto" },
       {
@@ -884,7 +897,6 @@ export const es: SiteContent = {
   },
   footer: {
     location: "Andorra · Remoto · Hora de Andorra (CET)",
-    fullCv: "CV completo",
     privacy: "Privacidad",
     backToTop: "Volver arriba",
   },
@@ -922,34 +934,57 @@ export const es: SiteContent = {
       open: "Abrir la terminal",
       title: "Terminal",
       close: "Cerrar la terminal",
-      hint: "Escribe help y pulsa Intro. ` o Ctrl+K la abren, Esc la cierra.",
       prompt: "visitante@jefmonjor.dev:~$",
-      unknown: "Comando no encontrado: {command}. Escribe help.",
-      askUsage: "Uso: ask <tu pregunta>",
-      thinking: "Preguntando al asistente…",
-      opening: "Abriendo…",
+      banner: [
+        "Jefferson Montesdeoca — Ingeniero de software senior · Arquitecto de software",
+        "escribe 'help' para empezar · Tab completa · Esc o ` cierra",
+      ],
+      thinking: "preguntando al asistente…",
+      helpTitle: "COMANDOS DISPONIBLES",
       commands: {
         help: "lista los comandos",
-        whoami: "quién soy y desde dónde trabajo",
+        whoami: "quién soy",
+        ls: "lista secciones, o productos con ls projects",
+        projects: "mis productos en producción",
+        open: "abre un producto en otra pestaña",
+        cat: "lee services, work, experience, skills, contact o un producto",
         services: "las tres formas de trabajar juntos",
         work: "los casos",
         how: "cómo trabajo con IA",
+        experience: "dónde he trabajado",
+        skills: "las tecnologías que más uso",
         availability: "cuándo puedo empezar",
         contact: "cómo contactarme",
         mail: "escríbeme un email",
         brief: "abre el brief de proyecto",
         cv: "abre mi CV completo",
-        ask: "pregunta al asistente de IA, p. ej. ask ¿cómo empezamos?",
+        ask: "pregunta al asistente de IA",
+        theme: "cambia el tema: dark o light",
         lang: "cambia a inglés",
+        goto: "baja a una sección de la home",
+        date: "mi hora local en Andorra",
         clear: "limpia la pantalla",
         exit: "cierra la terminal",
       },
-      labels: {
-        email: "Email",
-        brief: "Brief de proyecto",
-        reply: "Respuesta",
-        cv: "CV completo",
+      usage: {
+        ls: "ls [projects]",
+        open: "open <producto>",
+        cat: "cat <tema>",
+        ask: "ask <pregunta>",
+        theme: "theme [dark|light]",
+        goto: "goto <sección>",
       },
+      notFound: "comando no encontrado: %s — escribe 'help'",
+      usageOpen: "uso: open <producto> — prueba 'projects'",
+      unknownProduct: "no existe el producto %s — prueba 'projects'",
+      privateProduct: "%s está en desarrollo — aún sin enlace público",
+      usageGoto: "uso: goto <sección> — disponibles: %s",
+      catUsage: "uso: cat <services|work|experience|skills|contact|producto>",
+      askUsage: "uso: ask <tu pregunta>",
+      opening: "abriendo %s…",
+      sudo: "buen intento — aquí ya eres root.",
+      emailLabel: "Email",
+      briefLabel: "Brief de proyecto",
     },
   },
   privacy: {
