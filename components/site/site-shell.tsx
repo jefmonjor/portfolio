@@ -19,7 +19,7 @@ function SiteShell({
 }: SiteShellProps) {
   return (
     <div
-      className={`underlay ${fontVariable} relative isolate flex min-h-svh flex-col bg-bg-white-0 font-ui text-text-strong-950`}
+      className={`underlay ${fontVariable} relative isolate flex min-h-svh flex-col bg-bg-white-0 font-heading text-text-strong-950`}
     >
       <SiteHeader locale={locale} content={content} />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">

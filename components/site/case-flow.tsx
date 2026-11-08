@@ -15,9 +15,6 @@ function CaseFlow({ nodes, className }: CaseFlowProps) {
         className
       )}
     >
-      <span className="case-flow-track">
-        <span className="case-flow-packet" />
-      </span>
       {nodes.map((node) => (
         <li key={node.label}>
           <span className="inline-flex min-h-7 items-center rounded-6 bg-bg-white-0 px-2 py-1 text-label-xs text-text-sub-600 ring-1 ring-stroke-soft-200 ring-inset">

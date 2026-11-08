@@ -1,4 +1,4 @@
-import { Inter, Schibsted_Grotesk } from "next/font/google"
+import { Bricolage_Grotesque, Inter } from "next/font/google"
 
 import { SiteShell } from "@/components/site/site-shell"
 import { StructuredDataScript } from "@/components/site/structured-data-script"
@@ -12,8 +12,9 @@ const inter = Inter({
   display: "swap",
 })
 
-const display = Schibsted_Grotesk({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
+  axes: ["opsz"],
   variable: "--font-display",
   display: "swap",
 })

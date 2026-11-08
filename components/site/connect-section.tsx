@@ -1,7 +1,6 @@
 import { ConnectMap } from "@/components/site/connect-map"
 import { DisplayTitle } from "@/components/site/display-title"
 import type { Headline, SiteContent } from "@/content/site/types"
-import { twoDigits } from "@/lib/numbering"
 
 type ConnectSectionProps = {
   title: Headline
@@ -26,19 +25,21 @@ function ConnectSection({ title, connect }: ConnectSectionProps) {
       </div>
       <div className="connect-stage mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-16">
         <ol className="connect-steps flex flex-col">
-          {connect.steps.map((step, index) => (
+          {connect.steps.map((step) => (
             <li key={step.title}>
-              <span
-                aria-hidden
-                className="text-label-sm text-text-sub-600 tabular-nums"
-              >
-                {twoDigits(index + 1)}
-              </span>
-              <h3 className="connect-step-title mt-2 font-heading text-title-h4">
+              <h3 className="connect-step-title font-heading text-title-h4">
                 {step.title}
               </h3>
               <p className="mt-3 max-w-[30rem] text-paragraph-lg text-text-sub-600">
                 {step.body}
+              </p>
+              <p className="stage-deliverable mt-4 max-w-[30rem]">
+                <span className="text-label-sm text-text-strong-950">
+                  {connect.deliverableLabel}
+                </span>
+                <span className="text-paragraph-md text-text-strong-950">
+                  {step.deliverable}
+                </span>
               </p>
             </li>
           ))}

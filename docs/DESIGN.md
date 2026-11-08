@@ -2,7 +2,7 @@
 
 Dos productos y dos implementaciones:
 
-- **Web comercial** (`/`, `/es`, la 404): tokens **Underlay** con el tema **Pino** (verde) sobre grises neutros; **Schibsted Grotesk** + Inter.
+- **Web comercial** (`/`, `/es`, la 404): tokens **Underlay** con el tema **Pino** (verde) sobre grises neutros; **Bricolage Grotesque** (titulares e interfaz) + Inter (solo texto corrido).
 - **`/cv`** (portfolio y CV): tokens shadcn en ámbar; Fraunces + Geist.
 
 El layout raíz no carga fuentes. La web las carga en `app/[locale]/(site)/layout.tsx` (precargadas) y la 404 en su propio archivo sin precarga, porque esa frontera envuelve también `/cv`. `/cv` declara Fraunces, Geist y Geist Mono como variables de `:root` (`components/portfolio/cv-fonts.tsx`).
@@ -28,11 +28,11 @@ La dirección de la home está en `PRODUCT.md` y en `.impeccable/surfaces/app-lo
 
 ### Dónde va el verde
 
-El botón principal (cabecera, hero, servicios), la etapa «Revisión · Decido yo» del flujo de trabajo, el campo de los paneles de cierre, los enlaces encendidos del mapa de conexión y el foco. Nunca en texto de cuerpo. Los puntos de «en producción» y de disponibilidad usan el verde de estado.
+El botón principal (cabecera, hero, servicios), la etapa «Revisión · Decido yo» del flujo de trabajo, el campo de los paneles de cierre, los enlaces encendidos del mapa de conexión y el foco. Nunca en texto de cuerpo. El punto de disponibilidad (pie de página) usa el verde de estado y está quieto: sin latido.
 
 ### Tipografía
 
-- **Schibsted Grotesk** (variable, `swap`) en titulares, a 600–650 con tracking negativo; **Inter** en el resto. Sin cursivas.
+- **Bricolage Grotesque** (variable con eje `opsz`, `swap`) es la fuente por defecto de la web (`font-heading` en el `SiteShell`): titulares a 600–700, navegación, botones, etiquetas, chips y datos. **Inter** (`font-ui`) solo para texto corrido: `.site-prose`, `text-paragraph-*` y los campos del brief. Sin cursivas.
 - Escala: `title-h1` `clamp(2.25rem, 1.2rem + 3.6vw, 3.9rem)` / 1,02 / −0,035 em; `title-h2` `clamp(2rem, 1.35rem + 2.5vw, 3.25rem)`; `title-h3` hasta 2,15rem; `title-h4` hasta 1,65rem; `title-h5` 1,25rem; `title-h6` 1,0625rem.
 - El titular del hero son tres frases, una por línea (cada parte del `Headline` empieza línea).
 
@@ -40,6 +40,13 @@ El botón principal (cabecera, hero, servicios), la etapa «Revisión · Decido 
 
 - Solo material real: capturas de las páginas públicas de Transolido, Other Twist e Ilnami (`public/images/work/`, 1440×900, tomadas de las webs en producción). El retrato del dueño no aparece en la web comercial ni en sus datos estructurados; solo en `/cv`. Cada archivo lleva su procedencia embebida (`impeccable embed-prompt --scan public/images`: 0 pendientes). Mapa en `content/site/images.ts`.
 - Las capturas van en un marco de navegador mínimo con el dominio real; el caso del banco, sin capturas por confidencialidad, muestra su arquitectura en miniatura en el mismo hueco.
+
+### Patrones de plantilla que la home evita
+
+- **Sin pastilla sobre el titular:** la disponibilidad va como frase normal bajo el botón.
+- **El producto de entrada:** la tarjeta «En producción» del hero muestra una miniatura real de cada producto.
+- **Sin puntos que laten:** el estado se marca con un punto quieto.
+- **Sin filas de pasos numerados:** cada etapa dice qué te llevas (`stage-deliverable`), tanto en «Tus sistemas, por fin conectados» como en «Cómo empezamos»; los principios de «Cómo trabajo» van sin números.
 
 ### Orden de la home
 
@@ -55,8 +62,8 @@ Hero personal (titular, presentación en primera persona, CTA, órbita de herram
 
 1. **Hero:** el titular entra por palabras con máscara, una vez por sesión; el resto aparece en secuencia corta. A la derecha, la **órbita de herramientas** (`components/site/tool-orbit.tsx`): «Tu sistema» en el centro y 24 logos reales de su stack en tres anillos (backend y datos; web, móvil y contenedores; IA, nube y CI) que giran despacio en sentidos alternos, con los logos siempre derechos (el anillo gira y cada ficha contragira) y un punto verde que recorre cada anillo. La primera visita de la sesión, las fichas salen del centro hacia su anillo; el centro late cada 3 s; al pasar el ratón la órbita se detiene y la ficha muestra su nombre. Solo `rotate`, `scale` y `opacity` en el compositor; con movimiento reducido queda quieta. Los logos salen de simple-icons mediante `scripts/generate-site-tools.mjs` → `components/site/tool-rings.generated.ts` (los colores de marca casi negros usan el color del texto para que se vean en oscuro).
 2. **Tus sistemas, conectados (desde 64 rem):** mapa fijo al lado de los pasos que se monta con el scroll (`view-timeline` por paso, `timeline-scope`). Por debajo de 64 rem, mapa completo y estático encima de los pasos.
-3. **Casos:** la captura se acerca un 2 % al pasar el ratón; el paquete recorre la arquitectura del caso del banco.
-4. **Cómo empezamos:** la línea recorre los pasos; el raíl de experiencia se dibuja con el scroll.
+3. **Casos:** la captura se acerca un 2 % al pasar el ratón.
+4. **Experiencia:** el raíl se dibuja con el scroll.
 
 `prefers-reduced-motion` lo desactiva todo; sin soporte de scroll-driven animations todo queda en su estado final; al imprimir todo es estático. Nada oculta contenido sin JavaScript. Sin inclinaciones 3D ni cartas que giran.
 
@@ -76,7 +83,7 @@ Hero personal (titular, presentación en primera persona, CTA, órbita de herram
 
 - **Color.** Texto `#141210` / `#F2EFEA`. Acento único ámbar quemado `#B8621B` (claro) / `#E9A760` (oscuro), solo en marcas y el foco; nunca en texto pequeño. Fondo oscuro `#0D0C0B`.
 - **Tipografía.** Fraunces 500 (estática, `swap`, precargada) para titulares; Geist para el resto. Etiquetas en versalitas con tracking 0,14–0,18 em en `text-muted-foreground`.
-- La web comercial no comparte tokens, color ni fuentes con `/cv`: usa Underlay, el verde pino y Schibsted Grotesk (arriba).
+- La web comercial no comparte tokens, color ni fuentes con `/cv`: usa Underlay, el verde pino y Bricolage Grotesque (arriba).
 
 Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar estos tokens y pasar las verificaciones del final. Género: **modern-minimal** (escuela Apple / Notion / Vercel / Linear), con un único acento terracota y la mono reservada a datos.
 
