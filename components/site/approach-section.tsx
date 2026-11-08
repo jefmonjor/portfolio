@@ -36,7 +36,7 @@ function ApproachSection({ content }: ApproachSectionProps) {
           >
             <span
               aria-hidden
-              className="pt-1 text-label-sm text-text-soft-400 tabular-nums"
+              className="pt-1 text-label-sm text-text-sub-600 tabular-nums"
             >
               {twoDigits(index + 1)}
             </span>

@@ -30,7 +30,7 @@ function ConnectSection({ title, connect }: ConnectSectionProps) {
             <li key={step.title}>
               <span
                 aria-hidden
-                className="text-label-sm text-text-soft-400 tabular-nums"
+                className="text-label-sm text-text-sub-600 tabular-nums"
               >
                 {twoDigits(index + 1)}
               </span>
