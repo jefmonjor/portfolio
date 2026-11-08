@@ -33,11 +33,11 @@ function ToolOrbit({ label, center }: ToolOrbitProps) {
                 } as CSSProperties
               }
             >
-              <span className="orbit-tile" title={tool.title}>
+              <span className="orbit-tile">
                 <svg viewBox="0 0 24 24" aria-hidden>
                   <path d={tool.path} />
                 </svg>
-                <span className="sr-only">{tool.title}</span>
+                <span className="orbit-name">{tool.title}</span>
               </span>
             </li>
           ))}

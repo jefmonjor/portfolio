@@ -53,7 +53,7 @@ Hero personal (titular, presentación en primera persona, CTA, órbita de herram
 
 ### Movimiento (CSS)
 
-1. **Hero:** el titular entra por palabras con máscara, una vez por sesión; el resto aparece en secuencia corta. A la derecha, la **órbita de herramientas** (`components/site/tool-orbit.tsx`): «Tu sistema» en el centro y 24 logos reales de su stack en tres anillos (backend y datos; web, móvil y contenedores; IA, nube y CI) que giran despacio en sentidos alternos, con los logos siempre derechos (el anillo gira y cada ficha contragira) y un punto verde que recorre cada anillo. Solo `rotate` en el compositor; con movimiento reducido queda quieta. Los logos salen de simple-icons mediante `scripts/generate-site-tools.mjs` → `components/site/tool-rings.generated.ts` (los colores de marca casi negros usan el color del texto para que se vean en oscuro).
+1. **Hero:** el titular entra por palabras con máscara, una vez por sesión; el resto aparece en secuencia corta. A la derecha, la **órbita de herramientas** (`components/site/tool-orbit.tsx`): «Tu sistema» en el centro y 24 logos reales de su stack en tres anillos (backend y datos; web, móvil y contenedores; IA, nube y CI) que giran despacio en sentidos alternos, con los logos siempre derechos (el anillo gira y cada ficha contragira) y un punto verde que recorre cada anillo. La primera visita de la sesión, las fichas salen del centro hacia su anillo; el centro late cada 3 s; al pasar el ratón la órbita se detiene y la ficha muestra su nombre. Solo `rotate`, `scale` y `opacity` en el compositor; con movimiento reducido queda quieta. Los logos salen de simple-icons mediante `scripts/generate-site-tools.mjs` → `components/site/tool-rings.generated.ts` (los colores de marca casi negros usan el color del texto para que se vean en oscuro).
 2. **Tus sistemas, conectados (desde 64 rem):** mapa fijo al lado de los pasos que se monta con el scroll (`view-timeline` por paso, `timeline-scope`). Por debajo de 64 rem, mapa completo y estático encima de los pasos.
 3. **Casos:** la captura se acerca un 2 % al pasar el ratón; el paquete recorre la arquitectura del caso del banco.
 4. **Cómo empezamos:** la línea recorre los pasos; el raíl de experiencia se dibuja con el scroll.
@@ -120,4 +120,4 @@ Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar es
 3. **Cero scroll horizontal** en 320 / 375 / 414 / 768 / 1280 / 1440 px, ES y EN (12 combinaciones), recorriendo la página completa.
 4. Revisión visual de capturas: hero móvil claro, contacto móvil oscuro, hero escritorio oscuro, proyectos escritorio.
 5. Móviles grandes (412–480px): títulos sin viudas.
-6. El email no aparece literal en `.next/static` (`grep -r "jefmonjor@" .next/static` vacío).
+6. Los emails no aparecen literales en `.next/static` (`grep -r "jefmonjor" .next/static` sin direcciones). La web usa hola@jefmonjor.dev (`siteContactEmail()`); `/cv` mantiene la suya.

@@ -11,7 +11,7 @@ import { useRef, useState } from "react"
 
 import type { ProjectBrief as ProjectBriefContent } from "@/content/site/types"
 import { useIsHydrated } from "@/hooks/use-is-hydrated"
-import { contactEmail, contactMailto } from "@/lib/email"
+import { siteContactEmail, siteContactMailto } from "@/lib/email"
 import { hasVisibleText } from "@/lib/visible-text"
 
 type BriefStatus = "idle" | "missing" | "opened" | "copied" | "copyFailed"
@@ -102,7 +102,7 @@ function ProjectBrief({ brief, withoutJavaScript }: ProjectBriefProps) {
     const data = readValidBrief()
     if (!data) return
     setStatus("opened")
-    window.location.href = contactMailto(
+    window.location.href = siteContactMailto(
       brief.subject,
       composeBody(brief, data)
     )
@@ -111,7 +111,7 @@ function ProjectBrief({ brief, withoutJavaScript }: ProjectBriefProps) {
   async function copyBrief() {
     const data = readValidBrief()
     if (!data) return
-    const text = `${contactEmail()}\n${brief.subject}\n\n${composeBody(brief, data)}`
+    const text = `${siteContactEmail()}\n${brief.subject}\n\n${composeBody(brief, data)}`
     try {
       await navigator.clipboard.writeText(text)
       setStatus("copied")

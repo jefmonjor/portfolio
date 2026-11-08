@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from "react"
 
 import type { SiteContent } from "@/content/site/types"
 import { useIsHydrated } from "@/hooks/use-is-hydrated"
-import { contactEmail, contactMailto } from "@/lib/email"
+import { siteContactEmail, siteContactMailto } from "@/lib/email"
 
 type CopyState = "idle" | "copied" | "failed"
 
@@ -43,7 +43,7 @@ function useCopyAddress() {
 
   async function copyAddress() {
     try {
-      await navigator.clipboard.writeText(contactEmail())
+      await navigator.clipboard.writeText(siteContactEmail())
       setCopyState("copied")
     } catch {
       setCopyState("failed")
@@ -76,7 +76,7 @@ function EmailActions({ email: labels, secondary = false }: EmailActionsProps) {
         <span
           className={`min-h-8 font-heading text-title-h5 break-all text-text-strong-950 select-all md:text-title-h4 ${isHydrated ? "" : "w-[14ch] max-w-full animate-pulse rounded-6 bg-bg-weak-50"}`}
         >
-          {isHydrated ? contactEmail() : null}
+          {isHydrated ? siteContactEmail() : null}
         </span>
       </p>
       <noscript>
@@ -86,7 +86,7 @@ function EmailActions({ email: labels, secondary = false }: EmailActionsProps) {
       </noscript>
       <div className="flex flex-col gap-3 sm:flex-row">
         <a
-          href={isHydrated ? contactMailto(labels.subject) : undefined}
+          href={isHydrated ? siteContactMailto(labels.subject) : undefined}
           aria-disabled={!isHydrated}
           className={`site-button aria-disabled:pointer-events-none aria-disabled:opacity-60 ${secondary ? "site-button-stroke" : ""}`}
         >

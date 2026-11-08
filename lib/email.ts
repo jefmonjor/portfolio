@@ -6,6 +6,12 @@ const ADDRESS_CHAR_CODES = [
   99, 111, 109,
 ]
 
+// The commercial site's own address; /cv keeps the one above.
+const SITE_ADDRESS_CHAR_CODES = [
+  104, 111, 108, 97, 64, 106, 101, 102, 109, 111, 110, 106, 111, 114, 46, 100,
+  101, 118,
+]
+
 const CV_CONTACT_SUBJECT: Record<Locale, string> = {
   en: "[Portfolio] Contact",
   es: "[Portfolio] Contacto",
@@ -20,8 +26,20 @@ export function contactEmail(): string {
   return String.fromCharCode(...ADDRESS_CHAR_CODES)
 }
 
-export function contactMailto(subject: string, body?: string): string {
+function mailto(address: string, subject: string, body?: string): string {
   const query = `subject=${encodeURIComponent(subject)}`
   const bodyQuery = body ? `&body=${encodeURIComponent(body)}` : ""
-  return `mailto:${contactEmail()}?${query}${bodyQuery}`
+  return `mailto:${address}?${query}${bodyQuery}`
+}
+
+export function contactMailto(subject: string, body?: string): string {
+  return mailto(contactEmail(), subject, body)
+}
+
+export function siteContactEmail(): string {
+  return String.fromCharCode(...SITE_ADDRESS_CHAR_CODES)
+}
+
+export function siteContactMailto(subject: string, body?: string): string {
+  return mailto(siteContactEmail(), subject, body)
 }

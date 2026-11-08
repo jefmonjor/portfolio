@@ -24,7 +24,7 @@ A senior software engineer who designs, connects and ships the systems a busines
 
 - Offer: Diagnosis (1–5 days, written report), Build and integrate (fixed scope or daily rate), Engineering partner (monthly, 4–8 h/week).
 - Availability: part-time from January 2027; remote from Andorra (CET).
-- Contact: a six-question project brief that prepares an email in the visitor's own mail app; nothing is stored by the site. Email address shown only after hydration.
+- Contact: a six-question project brief that prepares an email in the visitor's own mail app; nothing is stored by the site. Email address shown only after hydration: hola@jefmonjor.dev on the site (`siteContactEmail()` in `lib/email.ts`); `/cv` keeps its own address.
 - English at `/`, Spanish at `/es`. The CV lives at `/cv` (EN, ES, CA).
 
 ## Capabilities and Constraints
