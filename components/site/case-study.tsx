@@ -1,7 +1,8 @@
+import { ArrowRight02Icon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import Link from "next/link"
 
 import { ArchitectureDiagram } from "@/components/site/architecture-diagram"
-import { ArrowLabel } from "@/components/site/arrow-label"
 import { BulletList } from "@/components/site/bullet-list"
 import { TagList } from "@/components/site/tag-list"
 import type {
@@ -177,9 +178,21 @@ function CaseStudy({ locale, study, next, labels }: CaseStudyProps) {
         <p className="text-label-sm text-text-sub-600">{labels.next}</p>
         <Link
           href={localizedPath(locale, `/work/${next.slug}`)}
-          className="group/arrow mt-2 inline-block font-heading text-title-h5 text-text-strong-950 decoration-stroke-sub-300 underline-offset-4 hover:underline"
+          className="group/arrow mt-3 flex items-center justify-between gap-6 text-text-strong-950"
         >
-          <ArrowLabel>{next.title}</ArrowLabel>
+          <span className="max-w-[32ch] font-heading text-title-h4 decoration-stroke-sub-300 underline-offset-4 group-hover/arrow:underline">
+            {next.title}
+          </span>
+          <span
+            aria-hidden
+            className="grid size-12 shrink-0 place-items-center rounded-full ring-1 ring-stroke-soft-200 transition-colors ring-inset group-hover/arrow:bg-bg-weak-50"
+          >
+            <HugeiconsIcon
+              icon={ArrowRight02Icon}
+              className="size-5 transition-transform duration-200 group-hover/arrow:translate-x-0.5"
+              strokeWidth={1.75}
+            />
+          </span>
         </Link>
       </nav>
     </div>

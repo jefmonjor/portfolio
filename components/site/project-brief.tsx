@@ -14,7 +14,7 @@ import { useIsHydrated } from "@/hooks/use-is-hydrated"
 import { contactEmail, contactMailto } from "@/lib/email"
 import { hasVisibleText } from "@/lib/visible-text"
 
-type BriefStatus = "idle" | "missing" | "copied" | "copyFailed"
+type BriefStatus = "idle" | "missing" | "opened" | "copied" | "copyFailed"
 
 type ProjectBriefProps = {
   brief: ProjectBriefContent
@@ -28,19 +28,25 @@ function answer(form: FormData, field: string): string {
   return typeof value === "string" ? value.trim() : ""
 }
 
+const requiredFields = ["name", "problem"] as const
+
 function composeBody(brief: ProjectBriefContent, form: FormData): string {
-  const { fields } = brief
+  const labels = brief.emailLabels
   return [
-    [fields.name, answer(form, "name")],
-    [fields.company, answer(form, "company")],
-    [fields.type, answer(form, "type")],
-    [fields.budget, answer(form, "budget")],
-    [fields.timeline, answer(form, "timeline")],
+    [labels.name, answer(form, "name")],
+    [labels.company, answer(form, "company")],
+    [labels.type, answer(form, "type")],
+    [labels.budget, answer(form, "budget")],
+    [labels.timeline, answer(form, "timeline")],
   ]
     .filter(([, value]) => value)
     .map(([label, value]) => `${label}: ${value}`)
-    .concat(["", `${fields.problem}`, answer(form, "problem")])
+    .concat(["", `${labels.problem}:`, answer(form, "problem")])
     .join("\n")
+}
+
+function firstMissingField(form: FormData) {
+  return requiredFields.find((field) => !hasVisibleText(answer(form, field)))
 }
 
 function ChoiceGroup({
@@ -80,9 +86,7 @@ function ProjectBrief({ brief, withoutJavaScript }: ProjectBriefProps) {
   function readValidBrief(): FormData | null {
     if (!form.current) return null
     const data = new FormData(form.current)
-    const firstMissing = ["name", "problem"].find(
-      (field) => !hasVisibleText(answer(data, field))
-    )
+    const firstMissing = firstMissingField(data)
     if (firstMissing) {
       setStatus("missing")
       form.current
@@ -97,7 +101,7 @@ function ProjectBrief({ brief, withoutJavaScript }: ProjectBriefProps) {
     event.preventDefault()
     const data = readValidBrief()
     if (!data) return
-    setStatus("idle")
+    setStatus("opened")
     window.location.href = contactMailto(
       brief.subject,
       composeBody(brief, data)
@@ -116,14 +120,23 @@ function ProjectBrief({ brief, withoutJavaScript }: ProjectBriefProps) {
     }
   }
 
-  const message =
-    status === "missing"
-      ? brief.required
-      : status === "copied"
-        ? brief.copied
-        : status === "copyFailed"
-          ? brief.copyFailed
-          : ""
+  // Clear a stale "missing" message as soon as both answers are there, and
+  // drop the copy/open feedback once the text no longer matches what was sent.
+  function refreshStatus() {
+    if (status === "idle" || !form.current) return
+    if (status === "missing" && firstMissingField(new FormData(form.current)))
+      return
+    setStatus("idle")
+  }
+
+  const message = {
+    idle: "",
+    missing: brief.required,
+    opened: brief.opened,
+    copied: brief.copied,
+    copyFailed: brief.copyFailed,
+  }[status]
+  const isPositive = status === "copied" || status === "opened"
 
   return (
     <form
@@ -131,6 +144,7 @@ function ProjectBrief({ brief, withoutJavaScript }: ProjectBriefProps) {
       method="dialog"
       noValidate
       onSubmit={openEmail}
+      onInput={refreshStatus}
       className="flex flex-col gap-8"
     >
       <noscript>
@@ -229,11 +243,11 @@ function ProjectBrief({ brief, withoutJavaScript }: ProjectBriefProps) {
       </div>
       <p
         aria-live="polite"
-        className={`flex min-h-6 items-center gap-2 text-paragraph-sm ${status === "copied" ? "text-state-success-dark" : "text-state-error-dark"}`}
+        className={`flex min-h-6 items-start gap-2 text-paragraph-sm ${isPositive ? "text-state-success-dark" : "text-state-error-dark"}`}
       >
         {message ? (
           <HugeiconsIcon
-            icon={status === "copied" ? Tick02Icon : Alert02Icon}
+            icon={isPositive ? Tick02Icon : Alert02Icon}
             aria-hidden
             className="size-4 shrink-0"
             strokeWidth={1.75}

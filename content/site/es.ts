@@ -51,20 +51,29 @@ export const es: SiteContent = {
   cta: "Hablemos de tu proyecto",
   hero: {
     role: "Software Architect & Senior Backend Engineer",
-    headline: ["Software construido como ", { emphasis: "arquitectura" }, "."],
+    headline: [
+      "Construyo el software con el que ",
+      { emphasis: "funciona" },
+      " tu empresa.",
+    ],
     subtitle:
-      "Diseño, conecto y llevo a producción los sistemas con los que funciona una empresa: software a medida, integraciones e IA aplicada, con siete años de ingeniería en banca, legal, energía y telecomunicaciones.",
+      "Arquitecto de software y backend freelance. Software a medida, integraciones e IA aplicada para pymes.",
     availability: {
       status: "Disponible a tiempo parcial desde enero de 2027",
-      detail: "Remoto\u00a0· Hora de Andorra (CET)",
     },
     proof: [
-      "7 años construyendo software: banca, legal, energía, telecomunicaciones",
+      "Siete años en banca, legal, energía y telecomunicaciones",
       "Productos propios en producción: facturación, apps e IA",
       "Trabajas directamente conmigo, del diagnóstico a producción",
     ],
     seeWork: "Ver trabajos seleccionados",
-    annotations: ["API · Apps", "Servicios · IA", "Eventos", "Integraciones", "Tus datos"],
+    annotations: [
+      "API · Apps",
+      "Servicios · IA",
+      "Eventos",
+      "Integraciones",
+      "Tus datos",
+    ],
   },
 
   credentials: {
@@ -72,11 +81,11 @@ export const es: SiteContent = {
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
   },
   display: {
-    connect: ["Tus sistemas, por fin ", { emphasis: "conectados" }, "."],
-    work: ["Construido, desplegado y ", { emphasis: "funcionando" }, "."],
-    services: ["Tres formas de ", { emphasis: "empezar" }, "."],
-    about: ["El ", { emphasis: "arquitecto" }, " detrás."],
-    experience: ["Siete años en ", { emphasis: "producción" }, "."],
+    connect: ["Tus sistemas, por fin conectados"],
+    work: ["Cuatro sistemas funcionando en producción"],
+    services: ["Tres formas de empezar"],
+    about: ["Con quién vas a trabajar"],
+    experience: ["Dónde he trabajado"],
     contact: ["Construyamos algo que ", { emphasis: "dure" }, "."],
     statement: [
       "Un sistema que tu equipo pueda operar y cambiar ",
@@ -104,7 +113,7 @@ export const es: SiteContent = {
       },
       {
         title: "En producción, y tuyo",
-        body: "Monitorizado, documentado y entregado, para que tu equipo pueda operarlo y cambiarlo sin mí.",
+        body: "Desplegado y monitorizado, con el código, la documentación y los accesos en tus manos.",
       },
     ],
     nodes: {
@@ -118,7 +127,7 @@ export const es: SiteContent = {
 
   about: {
     title: "Sobre mí",
-    lead: "Siete años construyendo software donde los errores salen caros.",
+    lead: "Casi toda mi carrera ha sido software donde los errores salen caros.",
     paragraphs: [
       [
         "Hoy soy arquitecto de soluciones y technical PM en Andbank, un banco privado de Andorra. Antes modernicé la plataforma de elAbogado, el marketplace legal líder en España, y construí sistemas Java y de big data para empresas de energía y telecomunicaciones como consultor. En paralelo, construyo mis propios productos desde la primera tabla de la base de datos hasta producción. Tienes el detalle en la ",
@@ -126,9 +135,7 @@ export const es: SiteContent = {
         ".",
       ],
       [
-        "Trabajo en remoto y en asíncrono, y dejo las decisiones por escrito: qué elegimos, por qué y qué descartamos. Mi objetivo es un sistema que tu equipo pueda operar y cambiar sin mí: la arquitectura documentada, tests que explican el comportamiento y un traspaso completo del código, los documentos y el conocimiento. Tienes tres ejemplos en los ",
-        { text: "casos de estudio", href: "/work" },
-        ".",
+        "Trabajo en remoto y en asíncrono, y dejo las decisiones por escrito: qué elegimos, por qué y qué descartamos, para que quien venga después no tenga que adivinar.",
       ],
     ],
   },
@@ -271,8 +278,7 @@ export const es: SiteContent = {
       {
         slug: "transolido-verifactu-invoicing",
         sector: "Producto propio · SaaS de facturación",
-        title:
-          "Facturación conforme a VERI*FACTU sobre un backend Java modular",
+        title: "Facturación que mantiene a las pymes al día con VERI*FACTU",
         outcome:
           "En producción en transolido.com: facturas conformes con trazabilidad completa e IA que ayuda a capturar datos sin saltarse las reglas.",
         tags: ["Java 21 · Spring Boot", "VERI*FACTU", "Claude API"],
@@ -376,8 +382,7 @@ export const es: SiteContent = {
       {
         slug: "othertwist-offline-writing",
         sector: "Producto propio · App y backend",
-        title:
-          "Una plataforma de escritura que funciona sin conexión, sobre un backend Java hexagonal",
+        title: "Una plataforma de escritura que sigue funcionando sin conexión",
         outcome:
           "En producción en othertwist.com: quien escribe sigue trabajando sin conexión y sus cambios se sincronizan al volver a tenerla.",
         tags: ["Flutter · offline-first", "Java 21 · hexagonal", "Docker"],
@@ -773,8 +778,19 @@ export const es: SiteContent = {
       copied: "Texto copiado",
       copyFailed: "No se pudo copiar el texto",
       required: "Escribe tu nombre y el problema para continuar.",
+      opened:
+        "Tu aplicación de correo debería abrirse con el brief. Si no ha pasado nada, copia el texto y pégalo en tu webmail.",
+      emailLabels: {
+        name: "Nombre",
+        company: "Empresa",
+        type: "Proyecto",
+        budget: "Presupuesto",
+        timeline: "Inicio",
+        problem: "El problema",
+      },
       subject: "Brief de proyecto — jefmonjor.dev",
     },
+    direct: "¿Prefieres escribir directamente?",
     elsewhere: "También en",
   },
   footer: {

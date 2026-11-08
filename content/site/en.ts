@@ -49,20 +49,29 @@ export const en: SiteContent = {
   cta: "Let's discuss your project",
   hero: {
     role: "Software Architect & Senior Backend Engineer",
-    headline: ["Software built like ", { emphasis: "architecture" }, "."],
+    headline: [
+      "I build the software your business ",
+      { emphasis: "runs on" },
+      ".",
+    ],
     subtitle:
-      "I design, connect and ship the systems a business runs on: custom software, integrations and applied AI, with seven years of engineering across banking, legal, energy and telecom.",
+      "Freelance software architect and backend engineer. Custom software, integrations and applied AI for small and mid-size businesses.",
     availability: {
       status: "Available part-time from January 2027",
-      detail: "Remote\u00a0· Andorra time (CET)",
     },
     proof: [
-      "7 years building software: banking, legal, energy, telecom",
+      "Seven years across banking, legal, energy and telecom",
       "Own products live: invoicing, apps, applied AI",
       "You work directly with me, from diagnosis to production",
     ],
     seeWork: "See selected work",
-    annotations: ["API · Apps", "Services · AI", "Events", "Integrations", "Your data"],
+    annotations: [
+      "API · Apps",
+      "Services · AI",
+      "Events",
+      "Integrations",
+      "Your data",
+    ],
   },
 
   credentials: {
@@ -70,11 +79,11 @@ export const en: SiteContent = {
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
   },
   display: {
-    connect: ["Your systems, finally ", { emphasis: "connected" }, "."],
-    work: ["Built, shipped and ", { emphasis: "running" }, "."],
-    services: ["Three ways to ", { emphasis: "start" }, "."],
-    about: ["The ", { emphasis: "architect" }, " behind it."],
-    experience: ["Seven years in ", { emphasis: "production" }, "."],
+    connect: ["Your systems, finally connected"],
+    work: ["Four systems running in production"],
+    services: ["Three ways to start"],
+    about: ["Who you will work with"],
+    experience: ["Where I have worked"],
     contact: ["Let's build something that ", { emphasis: "lasts" }, "."],
     statement: [
       "A system your team can run and change ",
@@ -102,7 +111,7 @@ export const en: SiteContent = {
       },
       {
         title: "In production, and yours",
-        body: "Monitored, documented and handed over, so your team can run it and change it without me.",
+        body: "Deployed and monitored, with the code, the documentation and the access in your hands.",
       },
     ],
     nodes: {
@@ -116,7 +125,7 @@ export const en: SiteContent = {
 
   about: {
     title: "About",
-    lead: "Seven years building software where mistakes are expensive.",
+    lead: "Most of my career has been software where mistakes are expensive.",
     paragraphs: [
       [
         "Today I am solutions architect and technical PM at Andbank, a private bank in Andorra. Before that I modernised the platform of elAbogado, Spain's leading legal marketplace, and built Java and big-data systems for energy and telecom companies as a consultant. In parallel, I build my own products from the first database table to production. The details are on the ",
@@ -124,9 +133,7 @@ export const en: SiteContent = {
         ".",
       ],
       [
-        "I work remotely and asynchronously, and I write decisions down: what we chose, why, and what we rejected. My goal is a system your team can run and change without me: a documented architecture, tests that explain the behaviour, and a complete handover of the code, the documents and the knowledge. You can see three examples in the ",
-        { text: "case studies", href: "/work" },
-        ".",
+        "I work remotely and asynchronously, and I write decisions down: what we chose, why, and what we rejected, so whoever comes after me does not have to guess.",
       ],
     ],
   },
@@ -270,7 +277,7 @@ export const en: SiteContent = {
         slug: "transolido-verifactu-invoicing",
         sector: "Own product · Invoicing SaaS",
         title:
-          "Invoicing that meets Spain's VERI*FACTU rules, on a modular Java backend",
+          "Invoicing that keeps small businesses compliant with Spain's VERI*FACTU",
         outcome:
           "Live at transolido.com: compliant invoices with full traceability, and AI that helps capture data without bypassing the rules.",
         tags: ["Java 21 · Spring Boot", "VERI*FACTU", "Claude API"],
@@ -373,8 +380,7 @@ export const en: SiteContent = {
       {
         slug: "othertwist-offline-writing",
         sector: "Own product · App and backend",
-        title:
-          "A writing platform that works offline, on a hexagonal Java backend",
+        title: "A writing platform that keeps working without a connection",
         outcome:
           "Live at othertwist.com: writers keep working without a connection, and their changes sync when they are back online.",
         tags: ["Flutter · offline-first", "Java 21 · hexagonal", "Docker"],
@@ -770,8 +776,19 @@ export const en: SiteContent = {
       copied: "Text copied",
       copyFailed: "Could not copy the text",
       required: "Write your name and the problem to continue.",
+      opened:
+        "Your email app should open with the brief. If nothing happened, copy the text and paste it into your webmail.",
+      emailLabels: {
+        name: "Name",
+        company: "Company",
+        type: "Project",
+        budget: "Budget",
+        timeline: "Start",
+        problem: "The problem",
+      },
       subject: "Project brief — jefmonjor.dev",
     },
+    direct: "Prefer to write directly?",
     elsewhere: "Also on",
   },
   footer: {

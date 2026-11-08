@@ -4,10 +4,12 @@ import { publicProfiles } from "@/lib/profile"
 
 function ContactBlock({ contact }: { contact: SiteContent["contact"] }) {
   return (
-    <div className="flex flex-col gap-10">
-      <p className="site-prose text-text-sub-600">{contact.intro}</p>
+    <div className="flex flex-col gap-8">
+      <h2 className="font-heading text-title-h4 text-text-strong-950">
+        {contact.direct}
+      </h2>
 
-      <EmailActions email={contact.email} />
+      <EmailActions email={contact.email} secondary />
 
       <dl className="grid gap-3 sm:grid-cols-2">
         {contact.facts.map((fact) => (

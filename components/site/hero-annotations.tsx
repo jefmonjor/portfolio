@@ -3,11 +3,11 @@ type HeroAnnotationsProps = {
 }
 
 const anchors = [
-  { x: 1500, y: 276, labelX: 1580, labelY: 300 },
-  { x: 1872, y: 768, labelX: 1950, labelY: 640 },
-  { x: 1272, y: 672, labelX: 1340, labelY: 560 },
-  { x: 1380, y: 1010, labelX: 1460, labelY: 960 },
-  { x: 1176, y: 1500, labelX: 1260, labelY: 1420 },
+  { x: 1728, y: 276, labelX: 1790, labelY: 150 },
+  { x: 2040, y: 360, labelX: 2060, labelY: 470 },
+  { x: 1452, y: 456, labelX: 1360, labelY: 300 },
+  { x: 1236, y: 516, labelX: 1290, labelY: 640 },
+  { x: 1650, y: 1300, labelX: 1730, labelY: 1190 },
 ] as const
 
 const signalRoute = anchors
@@ -22,7 +22,7 @@ function HeroAnnotations({ labels }: HeroAnnotationsProps) {
   return (
     <svg
       aria-hidden
-      viewBox="0 0 2400 1800"
+      viewBox="0 0 2400 1590"
       preserveAspectRatio="xMidYMid slice"
       className="hero-annotations"
     >

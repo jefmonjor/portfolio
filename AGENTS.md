@@ -42,7 +42,8 @@ what he does, why to trust him and how to hire him.
   `text-text-sub-600`, `ring-stroke-soft-200`, `bg-primary-base`,
   `text-title-h4`, `shadow-elevation-card`…); `/cv` uses the shadcn tokens
   (`bg-background`, `text-foreground`, `text-muted-foreground`,
-  `border-border`). Both share the brand: burnt amber and Fraunces headlines.
+  `border-border`). Both share the burnt amber brand; the site sets headlines
+  in Instrument Serif, `/cv` in Fraunces.
 - Keep pages thin. Site UI lives in `components/site/`, CV UI in
   `components/portfolio/`, server logic in `server/`, shared helpers in
   `lib/`, and runtime contracts in `types/`.
@@ -52,7 +53,7 @@ what he does, why to trust him and how to hire him.
 - Commercial pages are static (SSG), work without JavaScript, and ship only
   the client components they need: theme, language, menu, email, the project
   brief (it prepares an email; nothing is sent to the server) and the pointer
-  tilt that feeds CSS variables to the 3D pieces.
+  tilt that feeds CSS variables to the case and service cards.
 - Code speaks for itself: names, small functions and types instead of
   comments. A comment is only for a constraint the code cannot express.
 - Animate only for interaction clarity, transition quality, and controlled

@@ -70,7 +70,6 @@ export default async function HomePage({ params }: SitePageProps) {
       <FinalCta
         title={content.display.contact}
         contact={content.contact}
-        availability={content.hero.availability.status}
         briefHref={`${localizedPath(locale, "/contact")}#brief`}
       />
     </>

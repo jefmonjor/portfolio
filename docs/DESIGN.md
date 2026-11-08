@@ -1,11 +1,13 @@
 # Sistema de diseño
 
-Dos productos con la misma marca (ámbar quemado, Fraunces en titulares) y dos implementaciones:
+Dos productos con la misma marca (ámbar quemado) y dos implementaciones:
 
-- **Web comercial** (`/`, `/es`, la 404): arquitectura de tokens **Underlay** con el tema **Ámbar**; Fraunces + Inter.
+- **Web comercial** (`/`, `/es`, la 404): arquitectura de tokens **Underlay** con el tema **Ámbar**; **Instrument Serif** + Inter.
 - **`/cv`** (portfolio y CV): tokens shadcn en ámbar; Fraunces + Geist.
 
-Fraunces se carga en el layout raíz y la comparten ambos (una sola descarga en caché). Inter solo se precarga en la web; Geist solo en `/cv` (sus variables viven en `:root` porque los diálogos se montan en `<body>`); la 404 usa Inter sin precarga.
+El layout raíz no carga fuentes. La web las carga en `app/[locale]/(site)/layout.tsx` (precargadas) y la 404 en su propio archivo sin precarga, porque esa frontera envuelve también `/cv`. `/cv` declara Fraunces, Geist y Geist Mono como variables de `:root` (`components/portfolio/cv-fonts.tsx`), porque sus diálogos se montan en `<body>`.
+
+La dirección de la home está fijada en `PRODUCT.md` y en `.impeccable/surfaces/app-locale-site-page-tsx.md`.
 
 ## Web comercial: Underlay con tema Ámbar
 
@@ -22,55 +24,63 @@ Fraunces se carga en el layout raíz y la comparten ambos (una sola descarga en 
 
 - Utilidades Tailwind generadas: `bg-bg-white-0`, `text-text-sub-600`, `ring-stroke-soft-200`, `fill-primary-alpha-10`, `bg-state-success-lighter`, `shadow-elevation-card`…
 - Contraste: `text-sub-600` 7,1:1 en claro y en oscuro; ámbar de foco 4,4:1 sobre blanco y 9,5:1 sobre `#0D0C0B`.
-- `avatar/*` no se declara: la web no tiene avatares. Un token entra cuando una capa lo necesita.
+- `.surface-dark` reutiliza los tokens del modo oscuro en cualquier modo: hero, banda de declaración y cierre.
+- Un token entra cuando una capa lo necesita.
 
 ### Dónde va el ámbar
 
-Marca cuadrada del logo (gira 90° en hover), subrayado que se dibuja bajo «banks and fintechs» / «IA», atmósfera del fondo (6 %), flecha del CTA, indicador de navegación activo, nodo activo del diagrama, selección y anillo de foco. Nunca en bloques grandes ni texto de cuerpo. El CTA es tinta (`bg-strong-950`, texto `text-white-0`; invertido en oscuro) con la flecha en `--primary-inverse`: más contraste que un botón ámbar (el blanco sobre `#B8621B` no llega a 4,5:1).
+Marca cuadrada del logo, la palabra en cursiva de tres titulares (abajo), la ruta y los puntos de las anotaciones del hero, la flecha del CTA, el indicador de navegación activo, los enlaces encendidos del mapa de conexión, la selección y el anillo de foco. Nunca en bloques grandes ni en texto de cuerpo. El CTA es tinta (`bg-strong-950`, texto `text-white-0`; claro sobre las superficies oscuras) con la flecha en `--primary-inverse`: más contraste que un botón ámbar (el blanco sobre `#B8621B` no llega a 4,5:1).
 
 ### Tipografía
 
-- **Fraunces 500** (estática, `swap`, precargada) en todos los titulares (`font-heading` + `text-title-*`); **Inter** en el resto.
-- Escala: `title-h1` `clamp(2.4rem, 8vw, 5.5rem)` / 1,05 / −0,02 em (en dos columnas, `title-h1-split` con 4,6 vw), `title-h2…h6`, `label-lg/md/sm/xs`, `paragraph-lg/md/sm`, `subheading-sm/xs` (mayúsculas, tracking +0,06/0,08 em; la etiqueta del hero sube a 0,18 em desde `sm`).
-- **Juego normal** para texto de varias líneas. **Juego Trim** (`trim` = `text-box: trim-both cap alphabetic`) para texto de una línea dentro de una caja: insignias, etiquetas, contadores.
-- `text-soft-400` solo para adornos con `aria-hidden` (contador `01 / 03`, separadores); nunca texto legible.
+- **Instrument Serif 400** (normal y cursiva, `swap`) en todos los titulares (`font-heading` + `text-title-*`); **Inter** en el resto.
+- Escala: `title-h1` `clamp(3.25rem, 1.75rem + 6.2vw, 6rem)` / 0,95; `title-h2` `clamp(2.6rem, 1.6rem + 3.9vw, 4.75rem)`; `title-h3…h5` 1,75rem; `title-h6` 1,4rem. Después `label-*`, `paragraph-*` y `subheading-*` (mayúsculas con tracking, solo para etiquetas).
+- **Cursiva ámbar solo tres veces en la home:** el titular del hero («runs on» / «funciona»), la banda de declaración («without me» / «sin mí») y el cierre («lasts» / «dure»). El resto de títulos de sección son frases normales sin cursiva ni punto final, para que no se repita la fórmula.
+- **Juego normal** para texto de varias líneas. **Juego Trim** (`trim` = `text-box: trim-both cap alphabetic`) para texto de una línea dentro de una caja: insignias, etiquetas, chips.
+- `text-soft-400` solo para adornos con `aria-hidden` (números de paso, separadores); nunca texto legible.
+
+### Fotografía
+
+- Seis fotos de Unsplash autoalojadas en `public/images/site/` (importación estática de `next/image`, `placeholder="blur"`), con la procedencia embebida en cada archivo (`impeccable embed-prompt --scan` sin pendientes). Créditos en el pie y en el hero, con `utm_source=jefmonjor_dev&utm_medium=referral`. Datos en `content/site/photos.ts`.
+- **Tema: software e infraestructura** — rack de servidores (hero), código en pantalla (declaración y cierre), diagrama en una pizarra, portátil y un desarrollador con varios monitores (servicios). Nada de edificios ni metáforas de estudio de arquitectura: la web vende ingeniería de software.
+- Sobre foto, el texto siempre va sobre una capa de sombra que garantiza 4,5:1: más densa a la izquierda en escritorio y uniforme en móvil.
 
 ### Hero
 
-Etiqueta → titular → subtítulo (`paragraph-lg`, secundario) → disponibilidad (insignia verde con punto pulsante + «Remoto · Hora de Andorra») → CTA de 56 px (ancho completo en móvil, flecha que se desplaza 4 px) con «Ver trabajos seleccionados ↓» como enlace de texto → fila de prueba en texto pequeño separada por puntos. Los puntos están en `::before` y se recortan al principio de cada línea, así nunca queda uno colgando al partir la fila. Diagrama de arquitectura decorativo a la derecha desde 768 px y debajo en móvil.
+Marco oscuro de 24 px de radio (`min-height: min(90svh, 56rem)`) con la foto del rack a sangre, algo desaturada y con un Ken Burns lento. Encima, un SVG con el mismo `viewBox` que la foto (`2400×1590`, `xMidYMid slice`) para que las cinco anotaciones (API · Apps, Services · AI, Events, Integrations, Your data) caigan siempre sobre las mismas bahías: la ruta se dibuja la primera vez de la sesión, los puntos laten y una señal SMIL recorre la ruta. Por debajo de 48 rem el SVG se oculta, porque el texto ocupa toda la foto.
+
+Orden del texto: insignia de disponibilidad → titular (entra por palabras con máscara) → subtítulo (para quién y qué) → CTA de 56 px + «Ver trabajos seleccionados ↓» → crédito de la foto. Debajo del marco, la fila de prueba en texto pequeño separada por puntos (los puntos van en `::before` y se recortan al principio de cada línea).
 
 ### Superficies
 
 - **Anillo de 1 px en lugar de borde** en todo componente con contorno: tarjetas (`.site-card` = `inset 0 0 0 1px stroke-soft-200` + `elevation-card`), etiquetas, insignias, botones secundarios. Los separadores entre bloques son reglas `border-stroke-soft-200`.
-- **Atmósfera:** gradiente radial desde la esquina superior derecha con `--primary-alpha-6` y grano SVG fijo al 3 % (5 % en oscuro).
-- **Elevaciones:** `card`, `input`, `outline`, `badge`, `dropdown`, `modal`.
-- **Radios:** `rounded-6` (etiquetas), `rounded-10` (botones, iconos), `rounded-16` (datos de contacto), `rounded-20` (tarjetas), `rounded-full` (insignias de estado).
+- **Radios:** `rounded-6` (etiquetas), `rounded-10` (botones), `rounded-16` (datos de contacto), `rounded-20` (tarjetas), 24 px (paneles con foto), `rounded-full` (insignias y botones de flecha).
 
 ### Estado
 
-Siempre **icono + texto**: disponibilidad = insignia `state/success` con punto pulsante y etiqueta; copiar email = icono de check en `success-base` o de alerta en `error-base` junto al texto.
+Siempre **icono + texto**: disponibilidad = insignia `state/success` con punto y etiqueta; copiar o preparar el email = check en `success` o alerta en `error` junto al texto.
 
-### Movimiento y 3D (CSS 3D, sin WebGL ni librerías)
+### Orden de la home
 
-1. **Hero — arquitectura en 3D:** cinco placas isométricas (`perspective` + `preserve-3d`) con grosor real, cuadrícula de plano y módulos en relieve: Core banking (ámbar), BaaS · Integrations, Events, Services · AI y API. Al cargar caen y se ensamblan una tras otra (`translate` en el compositor, una vez por sesión); siguen al ratón con una inclinación de hasta 10° (`PointerTilt`, el único JavaScript nuevo: escribe dos variables CSS); al hacer scroll se separan (`--stack-explode` registrada con `@property` y ligada a `view()`); una señal ámbar recorre la pila de la API al core cada 3,6 s. El texto del titular entra por líneas con máscara y el subrayado ámbar se dibuja.
-2. **Prueba:** banda «Experiencia en» (Andbank, elAbogado, Vodafone, Endesa en Fraunces) y contadores 0 → 7 años y 0 → 4 sectores (`@property --stat` entera animada con `view()`; el número real está en el DOM para lectores de pantalla y sin soporte se ve el valor final).
-3. **Sobre mí:** la frase principal se rellena de gris (`text-sub-600`, 7:1) a tinta en orden de lectura con el scroll (`background-clip: text` sobre un `span` en línea; con `forced-colors` y al imprimir vuelve a texto normal).
-4. **Trabajos — baraja 3D:** cada caso es `sticky` y se apila; el de debajo se encoge y se inclina hacia atrás (`scale` + `rotate: x 9deg`). Contador `01 → 03` con barra bajo el título (`timeline-scope`), arquitectura en miniatura que se monta al entrar, e **inclinación 3D con foco de luz** que sigue al ratón en cada tarjeta.
-5. **Servicios — reparto boca abajo:** las tres cartas salen apiladas, giradas y **boca abajo** (dorso oscuro con cuadrícula, marca ámbar y número) y se reparten dándose la vuelta en 3D (`rotate: y 180deg → 0`, `backface-visibility`); en móvil cada carta se voltea al entrar. Debajo, «Cómo empezamos» con la línea ámbar que recorre los pasos.
-6. **Cierre:** panel oscuro (`.surface-dark` reutiliza los tokens del modo oscuro en cualquier modo) con brillo ámbar, disponibilidad, email y datos; el pie termina con tu nombre como gran marca tipográfica que se desvanece.
+Hero → «Experiencia en» (Andbank, elAbogado, Vodafone, Endesa) → Tus sistemas, por fin conectados → Cuatro sistemas en producción (casos) → banda de declaración con foto → Tres formas de empezar → Con quién vas a trabajar (retrato) → Dónde he trabajado → cierre con foto.
 
-7. **Cómo conecto tus sistemas (scrollytelling):** cuatro pasos de texto y, fijo al lado (arriba en móvil), un mapa SVG que cuenta el antes y el después con el scroll: herramientas sueltas con borde discontinuo → conexiones que se dibujan hacia «Tu backend» → la IA revisada se enciende y los datos empiezan a circular → se iluminan facturas, paneles y avisos. Cada paso tiene su `view-timeline` (`--connect-2…4`, expuestas con `timeline-scope`); los resaltes son una capa que anima `opacity` (interpolar un `fill` con `color-mix()` rompe el color en Chrome); los paquetes son SMIL y el mapa usa `content-visibility: auto` para no pintarse fuera de pantalla. Sin soporte o con movimiento reducido se ve el mapa completo y estático, sin paquetes.
-8. **Arquitectura viva en cada caso:** un paquete ámbar recorre la cadena de nodos de cada tarjeta (`translate` hasta `100cqh` dentro de una pista con `container-type: size`).
+### Movimiento (CSS, sin WebGL ni librerías)
 
-Cabecera translúcida a partir de 40 px, secciones que aparecen al entrar y raíl de experiencia que se dibuja completan la lectura.
+1. **Hero:** Ken Burns de la foto, anotaciones que se dibujan una vez por sesión, puntos que laten y una señal que recorre la ruta.
+2. **Tus sistemas, conectados (desde 64 rem):** cuatro pasos y, fijo al lado, un mapa SVG que cuenta el antes y el después con el scroll: herramientas sueltas con borde discontinuo → conexiones que se dibujan hacia «Tu backend» → la IA revisada se enciende y los datos circulan → se iluminan facturas, paneles y avisos. Cada paso tiene su `view-timeline` (`--connect-2…4`, con `timeline-scope`); los resaltes son una capa que anima `opacity` (interpolar un `fill` con `color-mix()` rompe el color en Chrome). **Por debajo de 64 rem** el mapa va completo y estático encima de los pasos, sin fijarse: en móvil tapaba los títulos.
+3. **Casos (desde 48 rem de ancho y 40 rem de alto):** cada tarjeta es `sticky` y se apila; la de debajo se encoge. En móvil son una lista normal. Un paquete ámbar recorre la arquitectura en miniatura de cada tarjeta.
+4. **Banda de declaración:** parallax suave de la foto con `view()`.
+5. **Servicios:** desde 48 rem las tres tarjetas se reparten con una inclinación pequeña (−3°, 1°, 3°) y se dan la vuelta; en móvil solo suben y aparecen, sin giro, para que el texto nunca se vea torcido. Debajo, la línea ámbar recorre los pasos de «Cómo empezamos».
+6. **Experiencia:** el raíl se dibuja con el scroll.
 
-Reglas: todo lo que se mueve en bucle o al cargar usa `transform`/`translate`/`opacity` (compositor); lo ligado al scroll puede animar propiedades registradas porque solo corre mientras se hace scroll. `prefers-reduced-motion` lo desactiva todo (pila estática, baraja como lista, cartas boca arriba, contador oculto, pasos en gris); sin soporte de scroll-driven animations las piezas quedan en su estado final; al imprimir todo es estático. Nada oculta contenido sin JavaScript.
+Reglas: lo que se mueve en bucle o al cargar usa `transform`/`translate`/`opacity`; lo ligado al scroll puede animar propiedades registradas porque solo corre mientras se hace scroll. `prefers-reduced-motion` lo desactiva todo (foto quieta, anotaciones estáticas, mapa completo, casos en lista, tarjetas boca arriba); sin soporte de scroll-driven animations las piezas quedan en su estado final; al imprimir todo es estático. Nada oculta contenido sin JavaScript. Nada lleva `content-visibility`: dejaba el mapa en blanco en capturas e impresión.
 
 ### Reglas de maquetación
 
-- Mobile-first en 390 px; hero y secciones en dos columnas desde `md`/`lg`; botón de contacto en la cabecera desde `wide` (1200 px). Controles de 44 px en móvil; menú móvil a pantalla completa con la API `popover`.
-- **Un solo CTA** («Let's discuss your project» / «Hablemos de tu proyecto»), siempre hacia `/contact`; allí, el **brief de proyecto**: seis preguntas (nombre, empresa, problema, tipo, presupuesto orientativo, plazo) con chips accesibles. Al enviarlo abre el correo del visitante con todo escrito o copia el texto; no hay servidor ni datos guardados (`method="dialog"` evita cualquier envío sin JavaScript).
-- **Posicionamiento:** empresas en general (software a medida, integración, automatización, IA aplicada); la banca es prueba de nivel. Casos principales: Transolido, Other Twist e Ilnami, más el banco anonimizado; la baraja de la home tiene cuatro cartas.
+- Mobile-first en 390 px; botón de contacto en la cabecera desde `wide` (1200 px). Controles de 44 px en móvil; menú móvil a pantalla completa con la API `popover`.
+- **Un solo CTA** («Let's discuss your project» / «Hablemos de tu proyecto»), siempre hacia `/contact`. Allí el **brief de proyecto** es el camino principal (botón de tinta): seis preguntas (nombre, empresa, problema, tipo, presupuesto orientativo, plazo) con chips accesibles. Al enviarlo abre el correo del visitante con todo escrito y confirma en pantalla con la alternativa de copiar el texto; el error de campos vacíos se borra en cuanto están rellenos. El cuerpo del correo usa etiquetas cortas (Nombre, Empresa, Proyecto, Presupuesto, Inicio, El problema). No hay servidor ni datos guardados (`method="dialog"` evita cualquier envío sin JavaScript). El email directo es la vía secundaria (botón con contorno), en `/contact` y en el cierre.
+- Migas de pan con la página actual al final (`aria-current="page"`).
+- **Posicionamiento:** pymes y empresas en general (software a medida, integración, automatización, IA aplicada); la banca es prueba de nivel. Casos: Transolido, Other Twist e Ilnami, más el banco anonimizado. Los títulos de los casos hablan de negocio; la tecnología va en etiquetas y en la página del caso.
 - Diagramas en SVG inline, máximo 6 cajas (lo comprueba `content/site/content.test.ts`).
 - Imagen OG de la web en la misma paleta que la de `/cv` (fondo `#0D0C0B`, ámbar), con Inter.
 
@@ -82,7 +92,7 @@ Reglas: todo lo que se mueve en bucle o al cargar usa `transform`/`translate`/`o
 
 - **Color.** Texto `#141210` / `#F2EFEA`. Acento único ámbar quemado `#B8621B` (claro) / `#E9A760` (oscuro), solo en marcas y el foco; nunca en texto pequeño. Fondo oscuro `#0D0C0B`.
 - **Tipografía.** Fraunces 500 (estática, `swap`, precargada) para titulares; Geist para el resto. Etiquetas en versalitas con tracking 0,14–0,18 em en `text-muted-foreground`.
-- La web comercial comparte marca (ámbar, Fraunces) pero no tokens: usa Underlay (arriba).
+- La web comercial comparte el ámbar pero no tokens ni fuentes: usa Underlay e Instrument Serif (arriba).
 
 Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar estos tokens y pasar las verificaciones del final. Género: **modern-minimal** (escuela Apple / Notion / Vercel / Linear), con un único acento terracota y la mono reservada a datos.
 

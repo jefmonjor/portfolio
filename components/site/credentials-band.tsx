@@ -9,23 +9,21 @@ function CredentialsBand({ credentials }: CredentialsBandProps) {
     <section aria-label={credentials.label} className="site-container">
       <div
         data-reveal
-        className="grid gap-10 border-t border-stroke-soft-200 py-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] md:items-center md:gap-12"
+        className="flex flex-col gap-4 border-t border-stroke-soft-200 py-10 lg:flex-row lg:items-baseline lg:gap-12"
       >
-        <div className="flex flex-col gap-4">
-          <p className="text-subheading-xs text-text-sub-600 uppercase">
-            {credentials.label}
-          </p>
-          <ul className="flex flex-wrap items-baseline gap-x-7 gap-y-2">
-            {credentials.companies.map((company) => (
-              <li
-                key={company}
-                className="font-heading text-title-h3 text-text-strong-950"
-              >
-                {company}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <p className="shrink-0 text-subheading-xs text-text-sub-600 uppercase">
+          {credentials.label}
+        </p>
+        <ul className="flex flex-wrap items-baseline gap-x-8 gap-y-2">
+          {credentials.companies.map((company) => (
+            <li
+              key={company}
+              className="font-heading text-title-h3 text-text-strong-950"
+            >
+              {company}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

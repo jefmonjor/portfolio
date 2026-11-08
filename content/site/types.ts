@@ -105,6 +105,15 @@ export type ProjectBrief = {
   copied: string
   copyFailed: string
   required: string
+  opened: string
+  emailLabels: {
+    name: string
+    company: string
+    type: string
+    budget: string
+    timeline: string
+    problem: string
+  }
   subject: string
 }
 
@@ -157,7 +166,7 @@ export type SiteContent = {
     role: string
     headline: Headline
     subtitle: string
-    availability: { status: string; detail: string }
+    availability: { status: string }
     proof: ReadonlyArray<string>
     seeWork: string
     annotations: readonly [string, string, string, string, string]
@@ -258,6 +267,7 @@ export type SiteContent = {
       noMailApp: string
     }
     brief: ProjectBrief
+    direct: string
     elsewhere: string
   }
   footer: {

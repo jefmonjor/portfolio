@@ -17,6 +17,8 @@ type CopyState = "idle" | "copied" | "failed"
 
 type EmailActionsProps = {
   email: SiteContent["contact"]["email"]
+  /** Outline the email button when the project brief is the main path. */
+  secondary?: boolean
 }
 
 const copyFeedbackMs = 2000
@@ -56,7 +58,7 @@ function useCopyAddress() {
   return { copyState, copyAddress }
 }
 
-function EmailActions({ email: labels }: EmailActionsProps) {
+function EmailActions({ email: labels, secondary = false }: EmailActionsProps) {
   const isHydrated = useIsHydrated()
   const { copyState, copyAddress } = useCopyAddress()
 
@@ -86,12 +88,12 @@ function EmailActions({ email: labels }: EmailActionsProps) {
         <a
           href={isHydrated ? contactMailto(labels.subject) : undefined}
           aria-disabled={!isHydrated}
-          className="site-button aria-disabled:pointer-events-none aria-disabled:opacity-60"
+          className={`site-button aria-disabled:pointer-events-none aria-disabled:opacity-60 ${secondary ? "site-button-stroke" : ""}`}
         >
           <HugeiconsIcon
             icon={Mail01Icon}
             aria-hidden
-            className="size-[18px]"
+            className={`size-[18px] ${secondary ? "text-icon-sub-600" : ""}`}
             strokeWidth={1.75}
           />
           {labels.write}

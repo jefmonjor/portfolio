@@ -16,33 +16,33 @@ export type SitePhoto = {
 export const sitePhotos = {
   hero: {
     image: heroImage,
-    photographer: "Mike Hindle",
-    profile: "https://unsplash.com/@mikehindle",
+    photographer: "Domaintechnik",
+    profile: "https://unsplash.com/@fslfsl",
   },
   statement: {
     image: statementImage,
-    photographer: "Clarisse Croset",
-    profile: "https://unsplash.com/@herfrenchness",
+    photographer: "Ilya Pavlov",
+    profile: "https://unsplash.com/@ilyapavlov",
   },
   closing: {
     image: closingImage,
-    photographer: "Alain Pham",
-    profile: "https://unsplash.com/@alain_pham",
+    photographer: "Harshit Katiyar",
+    profile: "https://unsplash.com/@harshitkatiyar",
   },
   advisory: {
     image: advisoryImage,
-    photographer: "Dorsa Masghati",
-    profile: "https://unsplash.com/@dorsamasghati",
+    photographer: "Beatriz Cattel",
+    profile: "https://unsplash.com/@bicattel",
   },
   delivery: {
     image: deliveryImage,
-    photographer: "Luca Upper",
-    profile: "https://unsplash.com/@lucaupper",
+    photographer: "Glen Carrie",
+    profile: "https://unsplash.com/@glencarrie",
   },
   fractional: {
     image: fractionalImage,
-    photographer: "Ian Mustafa",
-    profile: "https://unsplash.com/@ianmustafa",
+    photographer: "Abu Saeid",
+    profile: "https://unsplash.com/@abusaeid01",
   },
 } satisfies Record<string, SitePhoto>
 

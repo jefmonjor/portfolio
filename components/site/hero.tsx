@@ -161,7 +161,7 @@ function Hero({ locale, content }: HeroProps) {
         </p>
       </div>
 
-      <div className="site-container flex flex-col gap-3 pt-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="site-container pt-6">
         <div className="overflow-hidden">
           <ul className="proof-list text-paragraph-sm text-text-sub-600">
             {hero.proof.map((item) => (
@@ -169,9 +169,6 @@ function Hero({ locale, content }: HeroProps) {
             ))}
           </ul>
         </div>
-        <p className="shrink-0 text-paragraph-sm text-text-sub-600">
-          {hero.availability.detail}
-        </p>
       </div>
     </section>
   )

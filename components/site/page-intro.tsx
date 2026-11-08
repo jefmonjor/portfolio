@@ -29,6 +29,7 @@ function PageIntro({
     ...crumbs,
   ]
   const ancestors = trail.slice(0, -1)
+  const current = trail[trail.length - 1]
 
   return (
     <header className="site-container pt-8 pb-12 md:pt-12 md:pb-16">
@@ -50,6 +51,14 @@ function PageIntro({
               />
             </li>
           ))}
+          {ancestors.length > 0 ? (
+            <li
+              aria-current="page"
+              className="max-w-[28ch] truncate text-text-strong-950"
+            >
+              {current.name}
+            </li>
+          ) : null}
         </ol>
       </nav>
       {eyebrow ? (

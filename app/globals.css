@@ -793,7 +793,6 @@ html:has(#site-menu:popover-open) {
   --deck-top: 5rem;
   --deck-step: 0.875rem;
   display: grid;
-  grid-auto-rows: 1fr;
   gap: 1rem;
 }
 
@@ -814,6 +813,12 @@ html:has(#site-menu:popover-open) {
 
 .case-deck > li:nth-child(4) {
   --deck-index: 3;
+}
+
+@media (width >= 48rem) {
+  .case-deck {
+    grid-auto-rows: 1fr;
+  }
 }
 
 @media (width >= 64rem) {
@@ -1088,17 +1093,6 @@ html:has(#site-menu:popover-open) {
   opacity: 0;
 }
 
-.connect-visual > * {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 19.5rem;
-}
-
-@media (width >= 64rem) {
-  .connect-visual > * {
-    contain-intrinsic-size: auto 30rem;
-  }
-}
-
 .connect-map .connect-node rect {
   fill: var(--bg-white-0);
   stroke: var(--stroke-sub-300);
@@ -1241,6 +1235,7 @@ html:has(#site-menu:popover-open) {
 .hero-photo {
   object-fit: cover;
   object-position: 50% 50%;
+  filter: saturate(0.75) contrast(1.05);
 }
 
 .hero-shade {
@@ -1258,7 +1253,7 @@ html:has(#site-menu:popover-open) {
 }
 
 .hero-title {
-  max-width: 11ch;
+  max-width: 14ch;
   font-size: var(--text-title-h1);
   line-height: var(--text-title-h1--line-height);
   letter-spacing: var(--text-title-h1--letter-spacing);
@@ -1336,10 +1331,10 @@ html:has(#site-menu:popover-open) {
   font-weight: 500;
 }
 
+/* On phones the copy covers the whole photo, so the overlay would only cross
+   the text. */
 @media (width < 48rem) {
-  .annotation-pill,
-  .annotation-label,
-  .annotation-leader {
+  .hero-annotations {
     display: none;
   }
 }
@@ -1368,12 +1363,18 @@ html:has(#site-menu:popover-open) {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    180deg,
-    rgb(13 12 11 / 0.62) 0%,
-    rgb(13 12 11 / 0.4) 50%,
-    rgb(13 12 11 / 0.72) 100%
-  );
+  background: rgb(13 12 11 / 0.8);
+}
+
+@media (width >= 48rem) {
+  .statement-shade {
+    background: linear-gradient(
+      90deg,
+      rgb(13 12 11 / 0.92) 0%,
+      rgb(13 12 11 / 0.78) 45%,
+      rgb(13 12 11 / 0.4) 100%
+    );
+  }
 }
 
 .statement-copy {
@@ -1431,9 +1432,9 @@ html:has(#site-menu:popover-open) {
   z-index: -1;
   background: linear-gradient(
     90deg,
-    rgb(13 12 11 / 0.94) 0%,
-    rgb(13 12 11 / 0.82) 50%,
-    rgb(13 12 11 / 0.55) 100%
+    rgb(13 12 11 / 0.95) 0%,
+    rgb(13 12 11 / 0.88) 55%,
+    rgb(13 12 11 / 0.8) 100%
   );
 }
 
@@ -1660,7 +1661,7 @@ html:has(#site-menu:popover-open) {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) and (height >= 40rem) {
+@media (prefers-reduced-motion: no-preference) and (width >= 48rem) and (height >= 40rem) {
   .case-deck {
     gap: 1.5rem;
     padding-bottom: calc(3 * var(--deck-step));
@@ -1711,16 +1712,16 @@ html:has(#site-menu:popover-open) {
     }
     .service-deal > li:nth-child(1) {
       --deal-x: calc(100% + var(--deal-gap));
-      --deal-tilt: -5deg;
+      --deal-tilt: -3deg;
     }
     .service-deal > li:nth-child(2) {
       --deal-x: 0;
-      --deal-tilt: 2deg;
+      --deal-tilt: 1deg;
       z-index: 1;
     }
     .service-deal > li:nth-child(3) {
       --deal-x: calc(-100% - var(--deal-gap));
-      --deal-tilt: 6deg;
+      --deal-tilt: 3deg;
     }
     .service-flip {
       animation: card-flip linear both;
@@ -1767,13 +1768,8 @@ html:has(#site-menu:popover-open) {
       animation-timeline: view();
       animation-range: entry 0% entry 80%;
     }
-    .service-flip {
-      animation: card-flip linear both;
-      animation-timeline: view();
-      animation-range: entry 10% entry 90%;
-    }
   }
-  @media (prefers-reduced-motion: no-preference) and (height >= 40rem) {
+  @media (prefers-reduced-motion: no-preference) and (width >= 48rem) and (height >= 40rem) {
     .case-deck > li:not(:last-child) > * {
       animation: deck-recede linear both;
       animation-timeline: --case-deck;
@@ -1800,8 +1796,14 @@ html:has(#site-menu:popover-open) {
   }
 }
 
+@media (width < 64rem) {
+  .connect-visual {
+    order: -1;
+  }
+}
+
 @supports (timeline-scope: --connect-2) and (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: no-preference) and (width >= 64rem) {
     .connect-scope {
       timeline-scope: --connect-2, --connect-3, --connect-4;
     }
@@ -1865,15 +1867,6 @@ html:has(#site-menu:popover-open) {
     .connect-map .connect-highlight,
     .connect-map .connect-packet {
       animation-name: packet-show;
-    }
-  }
-  @media (prefers-reduced-motion: no-preference) and (width < 64rem) {
-    .connect-visual {
-      order: -1;
-      top: 4rem;
-      z-index: 2;
-      padding-block: 0.75rem;
-      background: var(--bg-white-0);
     }
   }
 }

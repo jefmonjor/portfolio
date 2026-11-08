@@ -1,9 +1,9 @@
 import Image from "next/image"
+import Link from "next/link"
 
-import { ArrowLink } from "@/components/site/arrow-link"
+import { ArrowLabel } from "@/components/site/arrow-label"
 import { DisplayTitle } from "@/components/site/display-title"
 import { EmailActions } from "@/components/site/email-actions"
-import { StatusBadge } from "@/components/site/status-badge"
 import { sitePhotos } from "@/content/site/photos"
 import type { Headline, SiteContent } from "@/content/site/types"
 import { publicProfiles } from "@/lib/profile"
@@ -11,11 +11,10 @@ import { publicProfiles } from "@/lib/profile"
 type FinalCtaProps = {
   title: Headline
   contact: SiteContent["contact"]
-  availability: string
   briefHref: string
 }
 
-function FinalCta({ title, contact, availability, briefHref }: FinalCtaProps) {
+function FinalCta({ title, contact, briefHref }: FinalCtaProps) {
   return (
     <section
       id="contact"
@@ -34,7 +33,6 @@ function FinalCta({ title, contact, availability, briefHref }: FinalCtaProps) {
         <div aria-hidden className="closing-shade" />
         <div className="site-container relative grid gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
           <div className="flex flex-col items-start gap-6">
-            <StatusBadge>{availability}</StatusBadge>
             <h2
               id="contact-title"
               className="max-w-[14ch] font-heading text-title-h2 text-text-strong-950"
@@ -42,10 +40,15 @@ function FinalCta({ title, contact, availability, briefHref }: FinalCtaProps) {
               <DisplayTitle title={title} />
             </h2>
             <p className="site-prose text-text-sub-600">{contact.intro}</p>
-            <ArrowLink href={briefHref}>{contact.brief.title}</ArrowLink>
+            <Link
+              href={briefHref}
+              className="group/arrow site-button mt-2 min-h-14 w-full px-6 sm:w-auto"
+            >
+              <ArrowLabel>{contact.brief.title}</ArrowLabel>
+            </Link>
           </div>
           <div className="flex flex-col gap-8">
-            <EmailActions email={contact.email} />
+            <EmailActions email={contact.email} secondary />
             <dl className="grid gap-x-6 gap-y-4 border-t border-stroke-soft-200 pt-6 sm:grid-cols-2">
               {contact.facts.map((fact) => (
                 <div key={fact.label} className="flex flex-col gap-0.5">
