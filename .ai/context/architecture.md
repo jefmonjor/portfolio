@@ -2,39 +2,37 @@
 
 ## Runtime Shape
 
-The app is a Next.js App Router application with locale-prefixed routing
-(`/en/...`, `/es/...`).
+The app is a Next.js App Router application with `next-intl` routing in
+`as-needed` mode: English has no prefix, Spanish is `/es`, Catalan is `/ca`.
 
-- `app/[locale]/layout.tsx` wires fonts, theme support, and
-  `NextIntlClientProvider`. It also generates localized `<Metadata>` per
-  locale. The tRPC/React Query provider is not mounted globally: no page
-  component queries tRPC today, and mounting it shipped ~40 KB gzip of client
-  code to every visitor. Wrap only the subtree that needs it in
-  `TRPCProvider` when a component starts using `trpc.*` hooks.
-- `app/[locale]/page.tsx` is the initial route and should remain thin.
-- `app/api/trpc/[trpc]/route.ts` exposes the tRPC endpoint and stays outside
-  the `[locale]` segment.
+- `app/[locale]/layout.tsx` owns `<html>`, fonts and the theme provider.
+- `app/[locale]/(site)/` is the commercial site (EN/ES only): home,
+  `services`, `work`, `work/[slug]`, `experience`, `contact`. Every page is
+  statically generated, reads typed copy from `content/site/` and renders
+  server components from `components/site/`. Catalan returns 404 here.
+- `app/[locale]/cv/` is the full portfolio and CV. Its layout mounts the
+  `NextIntlClientProvider`, background, tooltip and toaster providers that
+  only the CV needs.
+- `app/og/[locale]/[...page]/route.tsx` renders one static Open Graph card
+  per page; metadata points to it explicitly.
+- `app/api/assistant`, `app/api/cv-tailor` and `app/cv.pdf` are the only
+  expensive routes: body caps, shared rate limits, cross-site rejection.
+- `app/api/health` answers the Docker healthcheck.
 - `proxy.ts` (Next 16's successor to `middleware.ts`) delegates to
-  `createMiddleware(routing)` from `next-intl` to detect and prefix locales.
-- `i18n/routing.ts`, `i18n/navigation.ts`, `i18n/request.ts` configure
-  `next-intl`. The plugin is wired in `next.config.mjs`.
-- `messages/<locale>.json` holds translatable strings.
-- `server/root.ts` registers domain routers.
-- `server/trpc.ts` owns shared tRPC initialization.
-- `lib/trpc/client.ts` exports the typed React client.
-- `lib/trpc/provider.tsx` owns QueryClient and tRPC client creation.
+  `createMiddleware(routing)` from `next-intl`.
+- `next.config.mjs` holds the 301s from the old URLs, the `/cv-xx.pdf`
+  aliases and the security headers.
 
 ## Data Flow
 
 ```text
-React route/page
-  -> feature component
-  -> trpc.<domain>.<procedure>.useQuery/useMutation
-  -> app/api/trpc/[trpc]/route.ts
-  -> server/root.ts
-  -> server/routers/<domain>.ts
-  -> server/<domain>.ts
-  -> types/<domain>.ts Zod contracts
+Commercial page (server component, SSG)
+  -> content/site/{en,es}.ts (typed copy) + messages/*.json (experience facts)
+  -> components/site/*
+
+CV interactions (client)
+  -> fetch("/api/assistant" | "/api/cv-tailor" | "/cv.pdf")
+  -> route handler -> Zod contract (types/) -> server/ and lib/assistant/
 ```
 
 ## Boundaries
@@ -48,16 +46,6 @@ React route/page
 - `types/` contains Zod schemas and inferred TypeScript contracts.
 - `.ai/` contains agent-facing specs, prompts, styles, and workflow rules.
 
-## tRPC Rules
-
-1. Define or reuse a Zod input/output contract in `types/` when data crosses a
-   trust boundary.
-2. Put server domain logic in `server/<domain>.ts`.
-3. Keep router procedures thin in `server/routers/<domain>.ts`.
-4. Register new routers in `server/root.ts`.
-5. Consume through `lib/trpc/client.ts`.
-6. Surface loading, error, empty, and success states in UI.
-
 ## State Rules
 
 - Use React state for local-only interaction state.
@@ -69,14 +57,15 @@ React route/page
 
 ## File Placement Rules
 
-- New route: `app/[locale]/<route>/page.tsx` (locale-prefixed). Non-localized
-  endpoints (e.g., API/webhooks) live under `app/<route>/` outside the
-  `[locale]` segment.
+- New commercial page: `app/[locale]/(site)/<route>/page.tsx`, its copy in
+  `content/site/types.ts` plus both languages, and its path in
+  `indexableSitePaths` so the sitemap and OG cards pick it up.
+- New CV feature: `app/[locale]/cv/` and `components/portfolio/`.
+- Non-localized endpoints live under `app/<route>/` outside `[locale]`.
 - New route-only UI: colocate under the route when it has no reuse.
 - New reusable feature UI: `components/<feature>/`.
 - New primitive: add through shadcn into `components/ui/`.
-- New server capability: `server/<domain>.ts` plus
-  `server/routers/<domain>.ts`.
+- New server capability: `server/<domain>.ts` behind a route handler.
 - New contract: `types/<domain>.ts`.
 - New shared constant/config: `lib/<name>.ts`.
 - New translatable string: add the key/value to every `messages/<locale>.json`.
@@ -85,7 +74,7 @@ React route/page
 ## Verification Matrix
 
 - Contract/schema changes: `pnpm run typecheck`.
-- tRPC/router changes: `pnpm run typecheck` and usually `pnpm run build`.
+- Route handler changes: `pnpm test` and `pnpm run build`.
 - UI changes: `pnpm run lint`, `pnpm run typecheck`, and browser checks.
 - Styling/theme changes: browser checks across desktop and mobile.
 - Animation changes: browser checks for reduced motion, layout shift, and

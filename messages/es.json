@@ -4,10 +4,11 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Product Engineer con foco en IA y backend. Construyo productos de principio a fin sobre Java/Spring, con datos validados, límites claros y vías manuales.",
+    "description": "Software Architect & Senior Backend Engineer en Andorra. Siete años construyendo sistemas backend para banca, legal y energía: Java, Spring, arquitectura e IA aplicada. CV completo, proyectos y PDF descargables.",
     "applicationName": "{shortName} · Portfolio",
-    "role": "Product Engineer · IA y Backend",
-    "currentJobTitle": "Arquitecto de Soluciones / Technical PM"
+    "role": "Software Architect & Senior Backend Engineer",
+    "currentJobTitle": "Arquitecto de Soluciones / Technical PM",
+    "cvTitle": "CV · {shortName} — {role}"
   },
   "nav": {
     "about": "Sobre mí",
@@ -17,7 +18,8 @@
     "projects": "Proyectos",
     "education": "Formación",
     "contact": "Contacto",
-    "terminal": "Terminal"
+    "terminal": "Terminal",
+    "skipToContent": "Saltar al contenido"
   },
   "themeToggle": {
     "ariaLabel": "Cambiar tema",
@@ -66,12 +68,12 @@
     }
   },
   "status": {
-    "label": "Abierto selectivamente a oportunidades relevantes",
-    "detail": "Andorra · España · Remoto en zona horaria europea"
+    "label": "Disponible para colaboraciones a tiempo parcial desde enero de 2027",
+    "detail": "Andorra · Remoto · CET"
   },
   "hero": {
-    "role": "Product Engineer con foco en IA y backend",
-    "tagline": "Construyo productos de principio a fin sobre backends Java/Spring y arquitecturas mantenibles. Uso IA cuando aporta valor, con datos validados, límites claros y alternativas manuales.",
+    "role": "Software Architect & Senior Backend Engineer",
+    "tagline": "Diseño y construyo sistemas backend para banca y empresa sobre Java y Spring, con arquitecturas que un equipo puede mantener. Aplico IA donde aporta valor: datos validados, límites claros y vías manuales.",
     "specs": {
       "location": "Ubicación",
       "timezone": "Zona horaria",
@@ -93,14 +95,14 @@
   },
   "about": {
     "title": "Quién soy, en un párrafo",
-    "manifesto": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. He liderado migraciones complejas, integrado sistemas legacy y diseñado arquitecturas hexagonales y de microservicios. Fuera del trabajo construyo varios productos propios —algunos públicos y en funcionamiento, otros privados y en desarrollo— para mantener cerca las decisiones de producto, backend, despliegue e IA aplicada.",
+    "manifesto": "Siete años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. He liderado migraciones complejas, integrado sistemas legacy y diseñado arquitecturas hexagonales y de microservicios. Fuera del trabajo construyo varios productos propios —algunos públicos y en funcionamiento, otros privados y en desarrollo— para mantener cerca las decisiones de producto, backend, despliegue e IA aplicada.",
     "currentlyWorkingWith": "Trabajando ahora con"
   },
   "cv": {
     "headline": "Producto de principio a fin sobre backends Java/Spring: arquitectura mantenible, integración con sistemas críticos e IA aplicada donde aporta valor real.",
-    "summary": "Más de seis años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. Migraciones complejas, integración con sistemas legacy y arquitecturas hexagonales y de microservicios. En paralelo, productos propios —en funcionamiento y en desarrollo— que cubren el ciclo completo: producto, backend, despliegue e IA aplicada con datos validados y alternativas manuales.",
+    "summary": "Siete años construyendo software en producción para banca, legal y energía: del marketplace legal líder en España a plataformas Big Data del sector energético, y hoy arquitectura backend y gestión técnica en Andbank. Migraciones complejas, integración con sistemas legacy y arquitecturas hexagonales y de microservicios. En paralelo, productos propios —en funcionamiento y en desarrollo— que cubren el ciclo completo: producto, backend, despliegue e IA aplicada con datos validados y alternativas manuales.",
     "portfolioName": "Portfolio personal",
-    "portfolioSummary": "Portfolio y CV trilingüe con stack tipado Next.js + tRPC + Zod: tres CV en PDF generados en servidor desde una única fuente de datos, asistente de IA acotado a un dossier cerrado con límites de consumo, terminal interactiva y SEO/GEO completo. Código abierto.",
+    "portfolioSummary": "Portfolio y CV trilingüe con stack tipado Next.js + Zod: tres CV en PDF generados en servidor desde una única fuente de datos, asistente de IA acotado a un dossier cerrado con límites de consumo, terminal interactiva y SEO/GEO completo. Código abierto.",
     "otherProjects": "Otros proyectos"
   },
   "experience": {
@@ -219,8 +221,8 @@
         "body": "Corte1D mantiene la optimización en un motor determinista y PRONOQ usa IA para explicar resultados, no para decidir pronósticos."
       },
       "gates": {
-        "title": "La IA, bajo puertas automáticas",
-        "body": "SpecForge trata a la IA como a un junior supervisado: pregunta en lugar de inventar, sus tests deben fallar antes de implementar y no se pueden tocar después, cada fuente legacy que cita se comprueba, y el código solo avanza cuando supera los tests, las puertas de calidad y tu revisión."
+        "title": "La IA, bajo controles automáticos",
+        "body": "SpecForge trata a la IA como a un junior supervisado: pregunta en lugar de inventar, sus tests deben fallar antes de implementar y no se pueden tocar después, cada fuente legacy que cita se comprueba, y el código solo avanza cuando supera los tests, los controles de calidad y tu revisión."
       }
     }
   },
@@ -318,9 +320,9 @@
       "portfolio": {
         "name": "Este portfolio",
         "role": "Proyecto personal",
-        "summary": "El sitio que estás leyendo: stack tipado de Next.js + tRPC + Zod con enrutado trilingüe, terminal interactiva, paleta de comandos y CV en PDF generado desde los mismos datos del perfil.",
+        "summary": "El sitio que estás leyendo: stack tipado de Next.js + Zod con enrutado trilingüe, terminal interactiva, paleta de comandos y CV en PDF generado desde los mismos datos del perfil.",
         "highlights": [
-          "Stack tipado Next.js + tRPC + Zod con rutas en español, inglés y catalán.",
+          "Stack tipado Next.js + Zod con rutas en español, inglés y catalán.",
           "Terminal interactiva y paleta de comandos ⌘K para navegar.",
           "CV en PDF generado en servidor desde una única fuente de datos.",
           "Animación con propósito que nunca oculta contenido ni desplaza el layout."
@@ -360,7 +362,7 @@
     "copied": "Copiado",
     "copyFailed": "No se pudo copiar",
     "copyAriaLabel": "Copiar dirección de email",
-    "body": "Proyecto, oferta o pregunta: manda un mensaje breve con el contexto y respondo en menos de dos días laborables.",
+    "body": "Proyecto, oferta o pregunta: manda un mensaje breve con el contexto y respondo en un día laborable.",
     "sendEmail": "Enviar email",
     "openLinkedIn": "Abrir LinkedIn",
     "basedIn": "Ubicado en",
@@ -369,8 +371,9 @@
   },
   "footer": {
     "lastUpdated": "Actualizado · {date}",
-    "builtLine": "Diseñado y construido desde cero · Next.js",
-    "languagesLabel": "Idiomas"
+    "builtLine": "Diseñado y construido con Next.js",
+    "languagesLabel": "Idiomas",
+    "privacy": "Privacidad"
   },
   "cvToast": {
     "title": "CV preparado",
@@ -390,14 +393,15 @@
     "offerPlaceholder": "Pega aquí el texto de la oferta…",
     "generate": "Generar CV adaptado",
     "generating": "Adaptando…",
-    "privacy": "Se envía al proveedor de IA; este portfolio no la guarda.",
+    "privacy": "Se envía a OpenAI para elegir la evidencia; esta web no la guarda. No pegues datos confidenciales.",
     "back": "Volver",
     "tailorError": "No se pudo adaptar ahora mismo. El CV técnico sigue disponible.",
     "tailorLimited": "Límite de uso alcanzado. Prueba en unos minutos o descarga el CV técnico.",
     "tailorUnavailable": "La adaptación con IA no está disponible ahora mismo. Puedes descargar el CV general o técnico.",
     "preparing": "Preparando el PDF…",
     "downloadError": "No se pudo descargar el PDF.",
-    "openDirect": "Abrir PDF"
+    "openDirect": "Abrir PDF",
+    "pdfLimited": "Demasiadas descargas seguidas. Espera un minuto e inténtalo de nuevo."
   },
   "terminal": {
     "title": "Terminal",
@@ -406,7 +410,7 @@
     "inputLabel": "Entrada de la terminal",
     "placeholder": "escribe un comando — prueba 'help'",
     "banner": [
-      "Jefferson Montesdeoca — Product Engineer · IA y Backend",
+      "Jefferson Montesdeoca — Software Architect & Senior Backend Engineer",
       "escribe 'help' para empezar · ESC o ` para cerrar",
       ""
     ],
@@ -501,7 +505,7 @@
     "rateLimited": "Has hecho muchas preguntas seguidas. Espera un momento e inténtalo de nuevo.",
     "unavailable": "El asistente no está disponible ahora mismo. Escribe a {email}.",
     "error": "No he podido responder. Escribe a {email}.",
-    "disclaimer": "IA limitada al perfil público. No estima datos ausentes; confirma por email cualquier decisión importante.",
+    "disclaimer": "IA limitada al perfil público. Tus mensajes van a OpenAI para redactar la respuesta y esta web no los guarda. Confirma las decisiones importantes por email.",
     "reset": "Nueva",
     "thinking": "Pensando…",
     "launcher": "Pregunta a la IA",
@@ -509,5 +513,9 @@
     "cvTechnical": "CV técnico (PDF)",
     "cvTailored": "CV adaptado a esta oferta (PDF)",
     "cvPreparing": "Preparando…"
+  },
+  "cvBanner": {
+    "lead": "¿Buscas la web completa?",
+    "link": "Servicios, casos y contacto"
   }
 }

@@ -13,108 +13,45 @@ import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import { downloadCv, downloadTailoredCv } from "@/lib/cv-download"
+import {
+  parseConversation,
+  readReply,
+  requestMessages,
+  type ConversationMessage,
+} from "@/lib/assistant/conversation"
 import { contactEmail } from "@/lib/email"
 import { cn } from "@/lib/utils"
-import type { AssistantAction, ChatMessage } from "@/types/assistant"
-import {
-  ASSISTANT_HISTORY_INPUT_MESSAGES,
-  ASSISTANT_MESSAGE_INPUT_CHARS,
-  ASSISTANT_REPLY_MAX_CHARS,
-} from "@/types/limits"
+import { hasVisibleText } from "@/lib/visible-text"
+import type { AssistantAction } from "@/types/assistant"
+import { ASSISTANT_MESSAGE_INPUT_CHARS } from "@/types/limits"
 
 const STORAGE_KEY = "jefmonjor:assistant"
 const URL_PATTERN = /(https?:\/\/[^\s)]+[^\s).,;:!?])/g
 
-// A reply may carry actions: CV downloads the visitor can run from the chat.
-// They stay on the client's copy of the conversation and never go back to
-// the route, whose contract is role + content only.
-type Message = ChatMessage & {
-  readonly actions?: ReadonlyArray<AssistantAction>
-}
-
-function isAction(value: unknown): value is AssistantAction {
-  if (typeof value !== "object" || value === null || !("type" in value)) {
-    return false
-  }
-  if (value.type === "cv") {
-    return (
-      "variant" in value &&
-      (value.variant === "general" || value.variant === "technical")
-    )
-  }
-  if (value.type === "cv-tailor") {
-    return (
-      "offer" in value &&
-      typeof value.offer === "string" &&
-      value.offer.trim().length > 0
-    )
-  }
-  return false
-}
-
-// The route returns `{ reply, actions? }` or an error code. A hand-written
-// guard keeps Zod out of the page bundle; the server already validated it.
-function readSuccess(body: unknown): Message | null {
-  if (typeof body !== "object" || body === null || !("reply" in body)) {
-    return null
-  }
-  const reply = body.reply
-  if (typeof reply !== "string") return null
-  const content = reply.trim()
-  if (content.length === 0 || content.length > ASSISTANT_REPLY_MAX_CHARS) {
-    return null
-  }
-  const actions =
-    "actions" in body && Array.isArray(body.actions)
-      ? body.actions.filter(isAction).slice(0, 3)
-      : []
-  return actions.length > 0
-    ? { role: "assistant", content, actions }
-    : { role: "assistant", content }
-}
-
-function isMessage(value: unknown): value is Message {
-  if (
-    typeof value !== "object" ||
-    value === null ||
-    !("role" in value) ||
-    !("content" in value) ||
-    (value.role !== "user" && value.role !== "assistant") ||
-    typeof value.content !== "string"
-  ) {
-    return false
-  }
-  return (
-    !("actions" in value) ||
-    value.actions === undefined ||
-    (Array.isArray(value.actions) && value.actions.every(isAction))
-  )
-}
+type Message = ConversationMessage
 
 function loadConversation(): Message[] {
   try {
-    const raw = window.sessionStorage.getItem(STORAGE_KEY)
-    if (!raw) return []
-    const parsed: unknown = JSON.parse(raw)
-    return Array.isArray(parsed) && parsed.every(isMessage) ? parsed : []
+    return parseConversation(window.sessionStorage.getItem(STORAGE_KEY))
   } catch {
     return []
   }
 }
 
-function saveConversation(messages: ReadonlyArray<Message>): void {
+function saveConversationIfStorageAllows(
+  messages: ReadonlyArray<Message>
+): void {
   try {
     if (messages.length === 0) window.sessionStorage.removeItem(STORAGE_KEY)
-    else window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
+    else {
+      window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(messages))
+    }
   } catch {
-    // Private mode or blocked storage: the chat still works, it just won't
-    // survive a reload.
+    return
   }
 }
 
-// Replies are plain text. Links are the only markup worth rendering, and
-// building them as elements (never as HTML) keeps model output inert.
-function Linkified({ text }: { text: string }) {
+function InertTextWithLinks({ text }: { text: string }) {
   const parts = text.split(URL_PATTERN)
   return (
     <>
@@ -150,7 +87,7 @@ function Assistant() {
   const [pendingAction, setPendingAction] = React.useState<string | null>(null)
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const inputRef = React.useRef<HTMLTextAreaElement>(null)
-  const triggerRef = React.useRef<HTMLButtonElement>(null)
+  const launcherRef = React.useRef<HTMLButtonElement>(null)
   const requestRef = React.useRef<AbortController | null>(null)
   const restoredRef = React.useRef(false)
 
@@ -180,7 +117,7 @@ function Assistant() {
 
   function commit(next: Message[]): void {
     setMessages(next)
-    saveConversation(next)
+    saveConversationIfStorageAllows(next)
   }
 
   function actionKey(action: AssistantAction): string {
@@ -192,8 +129,6 @@ function Assistant() {
     return action.variant === "technical" ? t("cvTechnical") : t("cvGeneral")
   }
 
-  // Same routes as the download button in the hero: GET /cv.pdf for the
-  // ready variants, POST /api/cv-tailor with the pasted offer for the third.
   async function runAction(action: AssistantAction): Promise<void> {
     if (pendingAction) return
     setPendingAction(actionKey(action))
@@ -224,7 +159,7 @@ function Assistant() {
 
   async function send(text: string) {
     const question = text.trim()
-    if (!question || busy) return
+    if (!hasVisibleText(question) || busy) return
     const history: Message[] = [
       ...messages,
       { role: "user", content: question },
@@ -235,47 +170,52 @@ function Assistant() {
     const controller = new AbortController()
     requestRef.current = controller
 
-    let reply: Message
-    const failure = (content: string): Message => ({
+    const notice = (content: string): Message => ({
       role: "assistant",
       content,
     })
+    let reply: Message
     try {
       const res = await fetch("/api/assistant", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // The route accepts a bounded window and trims it further. Sending the
-        // whole history used to break the chat on the ninth question, when the
-        // array outgrew the request contract and every send became a 400.
-        body: JSON.stringify({
-          messages: history
-            .slice(-ASSISTANT_HISTORY_INPUT_MESSAGES)
-            .map(({ role, content }) => ({ role, content })),
-          locale,
-        }),
+        body: JSON.stringify({ messages: requestMessages(history), locale }),
         signal: controller.signal,
       })
       if (requestRef.current !== controller) return
       if (res.status === 429) {
-        reply = failure(t("rateLimited"))
+        reply = notice(t("rateLimited"))
       } else if (res.status === 503) {
-        reply = failure(t("unavailable", { email: contactEmail() }))
+        reply = notice(t("unavailable", { email: contactEmail() }))
       } else if (!res.ok) {
-        reply = failure(t("error", { email: contactEmail() }))
+        reply = notice(t("error", { email: contactEmail() }))
       } else {
         reply =
-          readSuccess(await res.json()) ??
-          failure(t("error", { email: contactEmail() }))
+          readReply(await res.json()) ??
+          notice(t("error", { email: contactEmail() }))
       }
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return
-      reply = failure(t("error", { email: contactEmail() }))
+      reply = notice(t("error", { email: contactEmail() }))
     }
 
     if (requestRef.current !== controller) return
     commit([...history, reply])
     requestRef.current = null
     setBusy(false)
+  }
+
+  function sendOnEnterKeepShiftEnterAsNewLine(
+    event: React.KeyboardEvent<HTMLTextAreaElement>
+  ): void {
+    if (
+      event.key === "Enter" &&
+      !event.shiftKey &&
+      !event.nativeEvent.isComposing
+    ) {
+      event.preventDefault()
+      void send(input)
+    }
   }
 
   function closeAssistant(): void {
@@ -288,8 +228,7 @@ function Assistant() {
     }
     setBusy(false)
     setOpen(false)
-    // Return focus to the launcher once it is back in the DOM.
-    requestAnimationFrame(() => triggerRef.current?.focus())
+    requestAnimationFrame(() => launcherRef.current?.focus())
   }
 
   function resetConversation(): void {
@@ -372,7 +311,7 @@ function Assistant() {
                     type="button"
                     disabled={busy}
                     onClick={() => void send(s)}
-                    className="min-h-8 border border-border px-2.5 py-1.5 text-left font-mono text-[11px] tracking-wide text-muted-foreground transition-[color,border-color,transform] duration-150 ease-out hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] disabled:opacity-60"
+                    className="min-h-8 border border-border px-2.5 py-1.5 text-left font-mono text-[11px] tracking-wide text-muted-foreground transition-[color,border-color,transform] duration-150 ease-out hover:border-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] aria-disabled:opacity-60"
                   >
                     {s}
                   </button>
@@ -390,7 +329,7 @@ function Assistant() {
                 )}
               >
                 {m.role === "assistant" ? (
-                  <Linkified text={m.content} />
+                  <InertTextWithLinks text={m.content} />
                 ) : (
                   m.content
                 )}
@@ -403,10 +342,10 @@ function Assistant() {
                         <button
                           key={key}
                           type="button"
-                          disabled={pendingAction !== null}
+                          aria-disabled={pendingAction !== null}
                           aria-busy={loading}
                           onClick={() => void runAction(action)}
-                          className="min-h-7 border border-border bg-background px-2 py-1 text-left font-mono text-[11px] tracking-wide text-foreground transition-[border-color,transform] duration-150 ease-out hover:border-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] disabled:opacity-60"
+                          className="min-h-7 border border-border bg-background px-2 py-1 text-left font-mono text-[11px] tracking-wide text-foreground transition-[border-color,transform] duration-150 ease-out hover:border-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.98] aria-disabled:opacity-60"
                         >
                           {loading ? t("cvPreparing") : actionLabel(action)}
                         </button>
@@ -440,23 +379,12 @@ function Assistant() {
               void send(input)
             }}
           >
-            {/* A textarea so a pasted job offer keeps its line breaks;
-                Enter still sends and Shift+Enter starts a new line. */}
             <textarea
               ref={inputRef}
               rows={1}
               value={input}
               onChange={(event) => setInput(event.target.value)}
-              onKeyDown={(event) => {
-                if (
-                  event.key === "Enter" &&
-                  !event.shiftKey &&
-                  !event.nativeEvent.isComposing
-                ) {
-                  event.preventDefault()
-                  void send(input)
-                }
-              }}
+              onKeyDown={sendOnEnterKeepShiftEnterAsNewLine}
               aria-label={t("inputLabel")}
               placeholder={t("placeholder")}
               maxLength={ASSISTANT_MESSAGE_INPUT_CHARS}
@@ -468,7 +396,7 @@ function Assistant() {
               variant="outline"
               size="icon-sm"
               data-hit-area
-              disabled={busy || input.trim().length === 0}
+              disabled={busy || !hasVisibleText(input)}
               aria-label={t("send")}
               className="size-9 sm:size-8"
             >
@@ -485,7 +413,7 @@ function Assistant() {
         </div>
       ) : (
         <Button
-          ref={triggerRef}
+          ref={launcherRef}
           type="button"
           variant="outline"
           aria-label={t("open")}

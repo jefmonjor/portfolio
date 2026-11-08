@@ -1,22 +1,24 @@
-import type { ChatMessage } from "@/types/assistant"
+import { isSignedReply } from "@/lib/assistant/signature"
+import type { ChatMessage, ModelMessage } from "@/types/assistant"
+
+const isAuthenticReply = (message: ChatMessage): boolean =>
+  isSignedReply(message.content, message.signature)
 
 export function sanitizeMessages(
   messages: ReadonlyArray<ChatMessage>,
   maxTurns: number,
   maxChars: number,
-  // The latest user turn may carry a pasted job offer; earlier turns are only
-  // context and stay short.
-  lastMaxChars: number = maxChars
-): ChatMessage[] | null {
+  pastedOfferMaxChars: number = maxChars,
+  isAuthentic: (message: ChatMessage) => boolean = isAuthenticReply
+): ModelMessage[] | null {
   const turnLimit = Math.max(1, Math.floor(maxTurns))
   const charLimit = Math.max(1, Math.floor(maxChars))
   const wasTrimmed = messages.length > turnLimit
   let recent = messages.slice(-turnLimit)
 
-  // A valid client history always starts and ends with a user message. When
-  // an even-sized window cuts through a conversation, discard the orphaned
-  // assistant reply instead of rejecting every subsequent request.
-  if (wasTrimmed && recent[0]?.role === "assistant") {
+  const windowStartsOnOrphanedReply =
+    wasTrimmed && recent[0]?.role === "assistant"
+  if (windowStartsOnOrphanedReply) {
     recent = recent.slice(1)
   }
 
@@ -29,12 +31,21 @@ export function sanitizeMessages(
     if (recent[index]?.role !== expectedRole) return null
   }
 
-  const lastLimit = Math.max(charLimit, Math.floor(lastMaxChars))
-  return recent.map(({ role, content }, index) => ({
+  const authenticExchanges: ChatMessage[] = []
+  for (let index = 0; index < recent.length; index += 2) {
+    const question = recent[index]
+    const reply = recent[index + 1]
+    if (!question) continue
+    if (!reply) authenticExchanges.push(question)
+    else if (isAuthentic(reply)) authenticExchanges.push(question, reply)
+  }
+
+  const pastedOfferLimit = Math.max(charLimit, Math.floor(pastedOfferMaxChars))
+  return authenticExchanges.map(({ role, content }, index) => ({
     role,
     content: content.slice(
       0,
-      index === recent.length - 1 ? lastLimit : charLimit
+      index === authenticExchanges.length - 1 ? pastedOfferLimit : charLimit
     ),
   }))
 }

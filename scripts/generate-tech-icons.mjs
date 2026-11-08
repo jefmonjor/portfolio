@@ -1,8 +1,4 @@
-// Writes lib/tech-icons.generated.ts with only the simple-icons paths the
-// portfolio uses. Importing from "simple-icons" in a client component shipped
-// every icon (~190 KB gzip): the package is one module the bundler cannot
-// tree-shake. Run `pnpm icons` after mapping a label to a new "si*" id in
-// lib/tech-icons.ts; lib/tech-icons.test.ts fails while the two disagree.
+// simple-icons cannot be tree-shaken (~190 KB gzip): emit only the paths lib/tech-icons.ts maps.
 import { readFile, writeFile } from "node:fs/promises"
 import { fileURLToPath } from "node:url"
 

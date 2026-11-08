@@ -38,31 +38,34 @@ const ROPE_SEGMENT_LENGTH = 1
 const ROPE_DETAIL = 32
 const ROPE_WIDTH = 0.45
 
-// Soft "spring" that biases the card to rest facing the camera without locking
-// any axis — it can still be spun/swung freely, it just no longer settles
-// edge-on. FACE_STIFFNESS is the restoring strength, FACE_DAMPING resists spin.
-const FACE_STIFFNESS = 0.25
-const FACE_DAMPING = 0.12
+const FACE_CAMERA_STIFFNESS = 0.25
+const FACE_CAMERA_SPIN_DAMPING = 0.12
 
 const CARD_HALF_W = 1
 const CARD_HALF_H = 1.4
 const CARD_HALF_D = 0.015
 
-// Hook ring hardware that sits above the card's top edge. The pieces are
-// stacked with clean gaps so their surfaces never sit near-coplanar — that
-// (plus attaching the band above all of them) avoids z-fighting flicker as
-// the card sways.
-const HOOK_OFFSET = 0.14 // ring center above the card's top edge
+const RING_CENTER_ABOVE_CARD_TOP = 0.14
 const RING_RADIUS = 0.11
 const RING_TUBE = 0.022
-const RING_CENTER_Y = CARD_HALF_H + HOOK_OFFSET
-const FOLD_Y = RING_CENTER_Y + RING_RADIUS // fabric folded over the ring's top
-const CRIMP_Y = FOLD_Y + 0.12 // metal crimp clamps the fold, with a gap above it
-// The band attaches above the crimp so the moving ribbon never overlaps — and
-// flickers over — the hardware hanging below it.
-const CARD_HANG_OFFSET = CRIMP_Y + 0.04
-// Place the anchor so the card rests centered (card center at y = 0).
-const ANCHOR_Y = ROPE_SEGMENT_LENGTH * 3 + CARD_HANG_OFFSET
+const RING_CENTER_Y = CARD_HALF_H + RING_CENTER_ABOVE_CARD_TOP
+const FABRIC_FOLD_Y = RING_CENTER_Y + RING_RADIUS
+const NO_Z_FIGHTING_GAP_ABOVE_FOLD = 0.12
+const CRIMP_Y = FABRIC_FOLD_Y + NO_Z_FIGHTING_GAP_ABOVE_FOLD
+const NO_Z_FIGHTING_GAP_ABOVE_CRIMP = 0.04
+const BAND_ATTACH_Y = CRIMP_Y + NO_Z_FIGHTING_GAP_ABOVE_CRIMP
+const ROPE_SEGMENTS = 3
+const ANCHOR_Y = ROPE_SEGMENT_LENGTH * ROPE_SEGMENTS + BAND_ATTACH_Y
+
+const CARD_END_TAPER_SHARE = 0.06
+const TAPERED_TIP_WIDTH = 0.3
+
+function widthTaperingIntoCrimp(progressFromCard: number): number {
+  return progressFromCard < CARD_END_TAPER_SHARE
+    ? TAPERED_TIP_WIDTH +
+        (progressFromCard / CARD_END_TAPER_SHARE) * (1 - TAPERED_TIP_WIDTH)
+    : 1
+}
 
 export function BadgeBand({
   photoSrc,
@@ -126,7 +129,7 @@ export function BadgeBand({
   useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], ROPE_SEGMENT_LENGTH])
   useSphericalJoint(j3, card, [
     [0, 0, 0],
-    [0, CARD_HANG_OFFSET, 0],
+    [0, BAND_ATTACH_Y, 0],
   ])
 
   useEffect(() => {
@@ -160,20 +163,16 @@ export function BadgeBand({
         z: 0,
       })
     } else {
-      // Nudge the card back toward facing the camera. yaw is its rotation about
-      // the vertical axis (0 = facing front); a PD torque pulls it to 0 while
-      // leaving the axis fully free to spin if dragged.
       const rot = card.current.rotation()
       cardQuat.set(rot.x, rot.y, rot.z, rot.w)
       cardForward.set(0, 0, 1).applyQuaternion(cardQuat)
-      const yaw = Math.atan2(cardForward.x, cardForward.z)
+      const yawAwayFromCamera = Math.atan2(cardForward.x, cardForward.z)
       const spin = card.current.angvel().y
+      const towardCamera =
+        -FACE_CAMERA_STIFFNESS * yawAwayFromCamera -
+        FACE_CAMERA_SPIN_DAMPING * spin
       card.current.applyTorqueImpulse(
-        {
-          x: 0,
-          y: (-FACE_STIFFNESS * yaw - FACE_DAMPING * spin) * delta,
-          z: 0,
-        },
+        { x: 0, y: towardCamera * delta, z: 0 },
         true
       )
     }
@@ -214,11 +213,9 @@ export function BadgeBand({
     curve.points[3].set(fixedPos.x, fixedPos.y, fixedPos.z)
 
     if (curve.points.every((p) => Number.isFinite(p.x + p.y + p.z))) {
-      // p = 0 is the card end of the ribbon. Taper the last few percent so it
-      // feeds into the crimp as a narrow tip instead of ending in a wide flat
-      // edge that curls and flickers over the hardware as the card sways.
-      band.current.geometry.setPoints(curve.getPoints(ROPE_DETAIL), (p) =>
-        p < 0.06 ? 0.3 + (p / 0.06) * 0.7 : 1
+      band.current.geometry.setPoints(
+        curve.getPoints(ROPE_DETAIL),
+        widthTaperingIntoCrimp
       )
     }
   })
@@ -348,44 +345,10 @@ export function BadgeBand({
               toneMapped={false}
             />
           </mesh>
-          {/* Metal eyelet set into the card's top edge */}
-          <mesh position={[0, CARD_HALF_H + 0.04, 0]}>
-            <cylinderGeometry args={[0.05, 0.05, 0.18, 18]} />
-            <meshStandardMaterial
-              color="#9a9a9a"
-              metalness={0.9}
-              roughness={0.3}
-            />
-          </mesh>
-          {/* Hook ring */}
-          <mesh position={[0, RING_CENTER_Y, 0]}>
-            <torusGeometry args={[RING_RADIUS, RING_TUBE, 12, 32]} />
-            <meshStandardMaterial
-              color="#c4c4c4"
-              metalness={0.95}
-              roughness={0.25}
-            />
-          </mesh>
-          {/* Lanyard fabric folded over the top of the ring */}
-          <mesh position={[0, FOLD_Y, 0]} rotation={[0, Math.PI / 2, 0]}>
-            <torusGeometry args={[0.055, 0.022, 12, 28]} />
-            <meshPhysicalMaterial
-              color="#0a0a0a"
-              roughness={0.7}
-              metalness={0.04}
-              clearcoat={0.25}
-              clearcoatRoughness={0.4}
-            />
-          </mesh>
-          {/* Metal crimp clamping the doubled fabric just above the ring */}
-          <mesh position={[0, CRIMP_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
-            <cylinderGeometry args={[0.038, 0.038, 0.14, 16]} />
-            <meshStandardMaterial
-              color="#c4c4c4"
-              metalness={0.95}
-              roughness={0.22}
-            />
-          </mesh>
+          <CardTopEyelet />
+          <HookRing />
+          <LanyardFoldOverRing />
+          <CrimpAboveRing />
         </group>
       </RigidBody>
       <mesh ref={band} frustumCulled={false}>
@@ -397,5 +360,47 @@ export function BadgeBand({
         />
       </mesh>
     </>
+  )
+}
+
+function CardTopEyelet() {
+  return (
+    <mesh position={[0, CARD_HALF_H + 0.04, 0]}>
+      <cylinderGeometry args={[0.05, 0.05, 0.18, 18]} />
+      <meshStandardMaterial color="#9a9a9a" metalness={0.9} roughness={0.3} />
+    </mesh>
+  )
+}
+
+function HookRing() {
+  return (
+    <mesh position={[0, RING_CENTER_Y, 0]}>
+      <torusGeometry args={[RING_RADIUS, RING_TUBE, 12, 32]} />
+      <meshStandardMaterial color="#c4c4c4" metalness={0.95} roughness={0.25} />
+    </mesh>
+  )
+}
+
+function LanyardFoldOverRing() {
+  return (
+    <mesh position={[0, FABRIC_FOLD_Y, 0]} rotation={[0, Math.PI / 2, 0]}>
+      <torusGeometry args={[0.055, 0.022, 12, 28]} />
+      <meshPhysicalMaterial
+        color="#0a0a0a"
+        roughness={0.7}
+        metalness={0.04}
+        clearcoat={0.25}
+        clearcoatRoughness={0.4}
+      />
+    </mesh>
+  )
+}
+
+function CrimpAboveRing() {
+  return (
+    <mesh position={[0, CRIMP_Y, 0]} rotation={[0, 0, Math.PI / 2]}>
+      <cylinderGeometry args={[0.038, 0.038, 0.14, 16]} />
+      <meshStandardMaterial color="#c4c4c4" metalness={0.95} roughness={0.22} />
+    </mesh>
   )
 }

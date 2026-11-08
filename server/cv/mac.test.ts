@@ -9,7 +9,8 @@ const labels: CvLabels = {
   present: "Present",
   headline: "Product and backend engineering",
   summary: "Canonical professional summary.",
-  availability: "Selectively open to relevant opportunities",
+  availability: "Available for part-time work from January 2027",
+  contactSubject: "[Portfolio] Contact",
   otherProjects: "Other projects",
   credential: "Verify credential",
   sections: {
@@ -58,8 +59,6 @@ describe("MAC export", () => {
     expect(mac.knowledge.studies).toHaveLength(profile.education.length)
   })
 
-  // The MAC is the machine-readable CV recruiting platforms ingest, so a
-  // study that was attended but never completed must not read as achieved.
   it("publishes unfinished studies as not achieved", () => {
     for (const entry of profile.education) {
       const study = mac.knowledge.studies.find(
@@ -72,9 +71,7 @@ describe("MAC export", () => {
     ).toBe(true)
   })
 
-  // The schema declares `format: date` but JSON Schema does not assert
-  // formats, so a wrong shape validates clean. This is the check that fails.
-  it("writes every date as a full yyyy-mm-dd", () => {
+  it("writes every date as a full yyyy-mm-dd, which the schema never asserts", () => {
     const dates = [
       ...mac.experience.jobs.flatMap((job) =>
         job.roles.flatMap((role) => [
@@ -102,22 +99,23 @@ describe("MAC export", () => {
     )
   })
 
-  it("says the location terms a platform filters on", () => {
+  it("states the location terms a platform filters on, even those defaulting to no", () => {
     const location = mac.careerPreferences.requirements.location
 
     expect(location.openToRemote).toBe(true)
     expect(location.remoteOnly).toBe(false)
-    // Defaults to false in the schema, so leaving it out reads as "will not
-    // move" — which would filter out every on-site and hybrid role.
     expect(location.openToRelocate).toBe(true)
   })
 
-  it("offers employment, never freelance", () => {
+  it("offers the part-time engagements the commercial site sells", () => {
     expect(mac.careerPreferences.requirements.contractTypes).toEqual([
-      "permanent",
+      "freelance",
     ])
     expect(mac.careerPreferences.status).toBe("openToOffers")
-    expect(JSON.stringify(mac)).not.toMatch(/freelance/i)
+  })
+
+  it("counts the same seven years the rest of the site states", () => {
+    expect(mac.aboutMe.relevantYearsOfExperience).toBe(7)
   })
 
   it("publishes only public projects, with the short portfolio URL", () => {

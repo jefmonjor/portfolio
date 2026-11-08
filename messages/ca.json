@@ -4,10 +4,11 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Enginyer de producte amb focus en IA i backend. Construeixo productes de principi a fi sobre Java/Spring, amb dades validades, límits i vies manuals.",
+    "description": "Software Architect & Senior Backend Engineer a Andorra. Set anys construint sistemes backend per a banca, legal i energia: Java, Spring, arquitectura i IA aplicada. CV complet, projectes i PDF descarregables.",
     "applicationName": "{shortName} · Portfolio",
-    "role": "Enginyer de producte · IA i Backend",
-    "currentJobTitle": "Arquitecte de Solucions / Technical PM"
+    "role": "Software Architect & Senior Backend Engineer",
+    "currentJobTitle": "Arquitecte de Solucions / Technical PM",
+    "cvTitle": "CV · {shortName} — {role}"
   },
   "nav": {
     "about": "Sobre mi",
@@ -17,7 +18,8 @@
     "projects": "Projectes",
     "education": "Formació",
     "contact": "Contacte",
-    "terminal": "Terminal"
+    "terminal": "Terminal",
+    "skipToContent": "Salta al contingut"
   },
   "themeToggle": {
     "ariaLabel": "Canviar el tema",
@@ -66,12 +68,12 @@
     }
   },
   "status": {
-    "label": "Obert selectivament a oportunitats rellevants",
-    "detail": "Andorra · Espanya · Remot en fus horari europeu"
+    "label": "Disponible per a col·laboracions a temps parcial des de gener de 2027",
+    "detail": "Andorra · Remot · CET"
   },
   "hero": {
-    "role": "Enginyer de producte amb focus en IA i backend",
-    "tagline": "Construeixo productes de principi a fi sobre backends Java/Spring i arquitectures mantenibles. Utilitzo IA quan aporta valor, amb dades validades, límits clars i alternatives manuals.",
+    "role": "Software Architect & Senior Backend Engineer",
+    "tagline": "Dissenyo i construeixo sistemes backend per a banca i empresa sobre Java i Spring, amb arquitectures que un equip pot mantenir. Aplico IA on aporta valor: dades validades, límits clars i vies manuals.",
     "specs": {
       "location": "Ubicació",
       "timezone": "Fus horari",
@@ -93,14 +95,14 @@
   },
   "about": {
     "title": "Qui soc, en un paràgraf",
-    "manifesto": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. He liderat migracions complexes, integrat sistemes legacy i dissenyat arquitectures hexagonals i de microserveis. Fora de la feina construeixo diversos productes propis —alguns públics i en funcionament, d'altres privats i en desenvolupament— per mantenir a prop les decisions de producte, backend, desplegament i IA aplicada.",
+    "manifesto": "Set anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. He liderat migracions complexes, integrat sistemes legacy i dissenyat arquitectures hexagonals i de microserveis. Fora de la feina construeixo diversos productes propis —alguns públics i en funcionament, d'altres privats i en desenvolupament— per mantenir a prop les decisions de producte, backend, desplegament i IA aplicada.",
     "currentlyWorkingWith": "Treballant ara amb"
   },
   "cv": {
     "headline": "Producte de principi a fi sobre backends Java/Spring: arquitectura mantenible, integració amb sistemes crítics i IA aplicada on aporta valor real.",
-    "summary": "Més de sis anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. Migracions complexes, integració amb sistemes legacy i arquitectures hexagonals i de microserveis. En paral·lel, productes propis —en funcionament i en desenvolupament— que cobreixen el cicle complet: producte, backend, desplegament i IA aplicada amb dades validades i alternatives manuals.",
+    "summary": "Set anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. Migracions complexes, integració amb sistemes legacy i arquitectures hexagonals i de microserveis. En paral·lel, productes propis —en funcionament i en desenvolupament— que cobreixen el cicle complet: producte, backend, desplegament i IA aplicada amb dades validades i alternatives manuals.",
     "portfolioName": "Portfolio personal",
-    "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + tRPC + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert.",
+    "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert.",
     "otherProjects": "Altres projectes"
   },
   "experience": {
@@ -318,9 +320,9 @@
       "portfolio": {
         "name": "Aquest portfolio",
         "role": "Projecte personal",
-        "summary": "El mateix lloc que estàs llegint: stack tipat de Next.js + tRPC + Zod amb enrutament multilingüe, terminal interactiva, paleta d'ordres i CV en PDF generat des de les mateixes dades que veus en pantalla.",
+        "summary": "El mateix lloc que estàs llegint: stack tipat de Next.js + Zod amb enrutament multilingüe, terminal interactiva, paleta d'ordres i CV en PDF generat des de les mateixes dades que veus en pantalla.",
         "highlights": [
-          "Stack tipat Next.js + tRPC + Zod amb enrutament multilingüe.",
+          "Stack tipat Next.js + Zod amb enrutament multilingüe.",
           "Terminal interactiva i paleta d'ordres ⌘K per navegar.",
           "CV en PDF generat al servidor des d'una única font de dades.",
           "Animació amb propòsit que mai amaga contingut ni desplaça el layout."
@@ -360,7 +362,7 @@
     "copied": "Copiat",
     "copyFailed": "No s'ha pogut copiar",
     "copyAriaLabel": "Copiar l'adreça d'email",
-    "body": "Projecte, oferta o pregunta: envia un missatge breu amb el context i responc en menys de dos dies laborables.",
+    "body": "Projecte, oferta o pregunta: envia un missatge breu amb el context i responc en un dia laborable.",
     "sendEmail": "Enviar email",
     "openLinkedIn": "Obrir LinkedIn",
     "basedIn": "Ubicat a",
@@ -369,8 +371,9 @@
   },
   "footer": {
     "lastUpdated": "Actualitzat · {date}",
-    "builtLine": "Dissenyat i construït des de zero · Next.js",
-    "languagesLabel": "Idiomes"
+    "builtLine": "Dissenyat i construït amb Next.js",
+    "languagesLabel": "Idiomes",
+    "privacy": "Privadesa"
   },
   "cvToast": {
     "title": "CV preparat",
@@ -390,14 +393,15 @@
     "offerPlaceholder": "Enganxa aquí el text de l'oferta…",
     "generate": "Generar CV adaptat",
     "generating": "Adaptant…",
-    "privacy": "S'envia al proveïdor d'IA; aquest portfolio no la desa.",
+    "privacy": "S'envia a OpenAI per triar l'evidència; aquesta web no la desa. No hi enganxis dades confidencials.",
     "back": "Tornar",
     "tailorError": "No s'ha pogut adaptar ara mateix. El CV tècnic continua disponible.",
     "tailorLimited": "Límit d'ús assolit. Prova-ho d'aquí a uns minuts o descarrega el CV tècnic.",
     "tailorUnavailable": "L'adaptació amb IA no està disponible ara mateix. Pots descarregar el CV general o tècnic.",
     "preparing": "Preparant el PDF…",
     "downloadError": "No s'ha pogut descarregar el PDF.",
-    "openDirect": "Obrir PDF"
+    "openDirect": "Obrir PDF",
+    "pdfLimited": "Massa descàrregues seguides. Espera un minut i torna-ho a provar."
   },
   "terminal": {
     "title": "Terminal",
@@ -406,7 +410,7 @@
     "inputLabel": "Entrada de la terminal",
     "placeholder": "escriu una ordre — prova 'help'",
     "banner": [
-      "Jefferson Montesdeoca — Enginyer de producte · IA i Backend",
+      "Jefferson Montesdeoca — Software Architect & Senior Backend Engineer",
       "escriu 'help' per començar · ESC o ` per tancar",
       ""
     ],
@@ -501,7 +505,7 @@
     "rateLimited": "Has fet moltes preguntes seguides. Espera un moment i torna-ho a provar.",
     "unavailable": "L'assistent no està disponible ara mateix. Escriu a {email}.",
     "error": "No he pogut respondre. Escriu a {email}.",
-    "disclaimer": "IA limitada al perfil públic. No estima dades absents; confirma per email qualsevol decisió important.",
+    "disclaimer": "IA limitada al perfil públic. Els teus missatges van a OpenAI per redactar la resposta i aquesta web no els desa. Confirma les decisions importants per email.",
     "reset": "Nova",
     "thinking": "Pensant…",
     "launcher": "Pregunta a la IA",
@@ -509,5 +513,9 @@
     "cvTechnical": "CV tècnic (PDF)",
     "cvTailored": "CV adaptat a aquesta oferta (PDF)",
     "cvPreparing": "Preparant…"
+  },
+  "cvBanner": {
+    "lead": "Busques la web completa?",
+    "link": "Serveis, casos i contacte"
   }
 }

@@ -1,5 +1,3 @@
-// Kept apart from terminal.tsx so the top bar and the command palette can
-// open the terminal without pulling it into the first-load bundle.
 export const TERMINAL_EVENT = "jefmonjor:terminal:open"
 
 export function openTerminal(): void {

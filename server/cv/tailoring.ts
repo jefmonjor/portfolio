@@ -23,9 +23,6 @@ type TailoringEvidence = {
   }>
 }
 
-// The focus sentence is written server-side from canonical facts, so it must
-// read like the rest of the summary: what is already evidenced for this role,
-// never a claim the profile does not back.
 const COPY: Record<Locale, { focus: string }> = {
   ca: {
     focus:
@@ -84,15 +81,15 @@ export function tailoringEvidence(locale: Locale): TailoringEvidence {
   }
 }
 
-// Selected items first, in the order the model ranked them, everything else
-// after in its original order. Ordering, never filtering: the tailored CV
-// carries exactly what the technical one carries.
 export function prioritizeItems(
   items: ReadonlyArray<string>,
-  keywords: ReadonlyArray<string>
+  selectedInRankOrder: ReadonlyArray<string>
 ): ReadonlyArray<string> {
   const order = new Map(
-    keywords.map((keyword, index) => [keyword.toLocaleLowerCase("en"), index])
+    selectedInRankOrder.map((selected, rank) => [
+      selected.toLocaleLowerCase("en"),
+      rank,
+    ])
   )
   return [...items].sort((left, right) => {
     const leftOrder = order.get(left.toLocaleLowerCase("en"))
@@ -104,8 +101,6 @@ export function prioritizeItems(
   })
 }
 
-// Every bound the renderer relies on is applied here, because the model
-// contract sent to OpenAI cannot carry length constraints (see types/cv-tailor).
 function canonicalSelections(
   requested: ReadonlyArray<string>,
   allowed: ReadonlyArray<string>,
@@ -121,9 +116,6 @@ function canonicalSelections(
   ).slice(0, limit)
 }
 
-// The model only ever picks from the dossier, so what comes back here is a
-// selection, not prose: anything it invents finds no canonical match and is
-// dropped. No text from the job offer survives into the document.
 export function normalizeTailorModelOutput(
   output: CvTailorModelOutput,
   locale: Locale

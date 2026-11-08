@@ -58,9 +58,6 @@ function Hero() {
     >
       <div className="flex min-w-0 flex-col gap-8">
         <h1 className="font-heading text-[clamp(2.5rem,5.5vw+1rem,5rem)] leading-[0.95] font-medium tracking-[-0.02em] text-foreground">
-          {/* Inline flow (not flex) so text-wrap: balance can even out the
-              line breaks on any viewport — no more dangling last words. One
-              copy of the name only: the spans are the accessible text. */}
           {titleWords.map((word, index) => (
             <Fragment key={`${word}-${index}`}>
               <span className="block sm:inline-block">{word}</span>
@@ -72,8 +69,6 @@ function Hero() {
         </h1>
 
         <div className="flex flex-col gap-4">
-          {/* The positioning reads as a subtitle, at once: it is the line a
-              recruiter scans for, so it is never scrambled or tracked-out. */}
           <p className="min-w-0 font-heading text-[clamp(1.25rem,1vw+1rem,1.625rem)] leading-snug font-medium tracking-[-0.01em] text-foreground">
             {t("role")}
             <span className="mt-1 block text-[0.72em] font-normal tracking-normal text-muted-foreground">

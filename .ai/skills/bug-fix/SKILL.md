@@ -1,6 +1,6 @@
 ---
 name: bug-fix
-description: "Diagnose and fix bugs in the portfolio. Use for broken routes, tRPC errors, hydration issues, theme regressions, invalid content rendering, and UI state bugs."
+description: "Diagnose and fix bugs in the portfolio. Use for broken routes, route handler errors, hydration issues, theme regressions, invalid content rendering, and UI state bugs."
 ---
 
 # Bug Fix
@@ -12,7 +12,7 @@ description: "Diagnose and fix bugs in the portfolio. Use for broken routes, tRP
 3. Trace the relevant path:
 
 ```text
-UI -> tRPC client -> route handler -> router -> server logic -> Zod contract
+UI -> fetch -> route handler -> server logic -> Zod contract
 ```
 
 4. Identify whether the bug belongs to rendering, state, contracts, routing,

@@ -28,7 +28,7 @@ fix and should be treated as such.
 ## Avoid
 
 - Moving everything into generic shared folders preemptively.
-- Adding wrappers around tRPC without repeated need.
+- Adding wrappers around fetch or route handlers without repeated need.
 - Hiding TypeScript problems with casts.
 - Reformatting unrelated files.
 - Changing copy or layout while claiming a pure refactor.

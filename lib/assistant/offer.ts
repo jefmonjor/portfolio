@@ -1,27 +1,15 @@
 import type { Locale } from "@/i18n/routing"
 import type { OfferAnalysisModelOutput } from "@/types/assistant"
 
-// A pasted job offer is the one moment the chat is tempted to stretch the
-// profile: "8+ years of Java" against six, "fintech" against banking. Instead
-// of trusting the model to hold back, offer comparisons run as a structured
-// selection and the server keeps only what it can check:
-//   - every requirement must come from the offer itself;
-//   - every match must quote the dossier verbatim, or it is demoted to
-//     "to confirm";
-//   - the reply text is rendered here, never written by the model.
-
 export const OFFER_MATCHES_MAX = 6
 export const OFFER_UNVERIFIED_MAX = 6
 const REQUIREMENT_MAX_CHARS = 140
 const EVIDENCE_MAX_CHARS = 180
 const EVIDENCE_MIN_CHARS = 4
-// Share of a requirement's distinctive words that must appear in the offer.
-const OFFER_GROUNDING = 0.8
+const MIN_SHARE_OF_REQUIREMENT_WORDS_IN_OFFER = 0.8
+const CROSS_LANGUAGE_STEM_CHARS = 5
 
-// Words every offer and every dossier share. Counting them would let a
-// requirement the model made up ("10 years of experience in Rust") pass as
-// grounded on "years" and "experience" alone.
-const FILLER = new Set(
+const WORDS_EVERY_OFFER_SHARES = new Set(
   (
     "the and for with from that this you your our are will must have has " +
     "years year experience experienced knowledge skills skill strong good " +
@@ -54,9 +42,7 @@ function fold(value: string): string {
     .trim()
 }
 
-// Letters and digits only: tolerates the punctuation and spacing drift a
-// model introduces when it "quotes", never a change of words.
-function skeleton(value: string): string {
+function lettersAndDigitsOnly(value: string): string {
   return fold(value).replace(/[^\p{L}\p{N}]+/gu, "")
 }
 
@@ -65,13 +51,18 @@ function words(value: string): string[] {
     .split(/[^\p{L}\p{N}+#.]+/u)
     .map((word) => word.replace(/^\.+|\.+$/g, ""))
     .filter(
-      (word) => (word.length >= 3 || /\d/.test(word)) && !FILLER.has(word)
+      (word) =>
+        (word.length >= 3 || /\d/.test(word)) &&
+        !WORDS_EVERY_OFFER_SHARES.has(word)
     )
 }
 
-// Five-letter stems: "microservicios" and "microservices" share "micro".
 function stems(value: string): Set<string> {
-  return new Set(words(value).map((word) => skeleton(word).slice(0, 5)))
+  return new Set(
+    words(value).map((word) =>
+      lettersAndDigitsOnly(word).slice(0, CROSS_LANGUAGE_STEM_CHARS)
+    )
+  )
 }
 
 function clip(value: string, maxChars: number): string {
@@ -80,6 +71,21 @@ function clip(value: string, maxChars: number): string {
   const cut = clean.slice(0, maxChars - 1)
   const boundary = cut.lastIndexOf(" ")
   return `${cut.slice(0, boundary > 0 ? boundary : undefined)}…`
+}
+
+const ANY_JOB_OFFER_TAG = /<\s*\/?\s*job_offer\b[^>]*>/gi
+
+export function neutralizeOfferDelimiters(text: string): string {
+  let current = text
+  for (;;) {
+    const next = current.replace(ANY_JOB_OFFER_TAG, "")
+    if (next === current) return current
+    current = next
+  }
+}
+
+export function wrapJobOffer(offer: string): string {
+  return `<job_offer>\n${neutralizeOfferDelimiters(offer)}\n</job_offer>`
 }
 
 export function looksLikeJobOffer(text: string): boolean {
@@ -95,24 +101,26 @@ export function isGroundedInOffer(requirement: string, offer: string): boolean {
   const required = words(requirement)
   if (required.length === 0) return false
   const offerWords = new Set(words(offer))
-  const offerSkeleton = skeleton(offer)
+  const offerLettersAndDigits = lettersAndDigitsOnly(offer)
   const present = required.filter(
-    (word) => offerWords.has(word) || offerSkeleton.includes(skeleton(word))
+    (word) =>
+      offerWords.has(word) ||
+      offerLettersAndDigits.includes(lettersAndDigitsOnly(word))
   ).length
-  return present / required.length >= OFFER_GROUNDING
+  return present / required.length >= MIN_SHARE_OF_REQUIREMENT_WORDS_IN_OFFER
 }
 
 export function isQuotedFromDossier(
   evidence: string,
   dossier: string
 ): boolean {
-  const quote = skeleton(evidence)
-  return quote.length >= EVIDENCE_MIN_CHARS && skeleton(dossier).includes(quote)
+  const quote = lettersAndDigitsOnly(evidence)
+  return (
+    quote.length >= EVIDENCE_MIN_CHARS &&
+    lettersAndDigitsOnly(dossier).includes(quote)
+  )
 }
 
-// A real quote can still answer a different requirement: "Java (8 → 21)" is
-// in the dossier, but it does not back "Kotlin". The quote has to name at
-// least one of the requirement's own terms.
 export function evidenceAddresses(
   requirement: string,
   evidence: string
@@ -130,7 +138,7 @@ export function verifyOfferAnalysis(
 
   const seen = new Set<string>()
   const firstTime = (requirement: string) => {
-    const key = skeleton(requirement)
+    const key = lettersAndDigitsOnly(requirement)
     if (!key || seen.has(key)) return false
     seen.add(key)
     return true
@@ -153,8 +161,6 @@ export function verifyOfferAnalysis(
         evidence: clip(match.evidence, EVIDENCE_MAX_CHARS),
       })
     } else {
-      // A match the dossier cannot back is not dropped silently: the
-      // requirement is real, only the claim was not. It is shown as open.
       unverified.push(requirement)
     }
   }

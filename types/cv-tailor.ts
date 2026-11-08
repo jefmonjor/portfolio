@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+import { isTailorableOffer } from "@/lib/visible-text"
+
 import { assistantLocaleSchema } from "@/types/assistant"
 import {
   CV_TAILOR_OFFER_MAX_CHARS,
@@ -18,18 +20,13 @@ export const cvTailorRequestSchema = z
     offer: z
       .string()
       .trim()
-      .min(CV_TAILOR_OFFER_MIN_CHARS)
-      .max(CV_TAILOR_OFFER_MAX_CHARS),
+      .max(CV_TAILOR_OFFER_MAX_CHARS)
+      .refine(isTailorableOffer),
     locale: assistantLocaleSchema,
   })
   .strict()
 
-// Structured Outputs accepts only a subset of JSON Schema, and per-string
-// length bounds are outside it: a schema carrying minLength/maxLength is
-// rejected with 400 "'minLength' is not permitted" before the model ever
-// runs. So the model-facing contract stays plain — two arrays of strings —
-// and every bound lives server-side in normalizeTailorModelOutput, which has
-// to re-check them anyway (the model is untrusted input).
+// OpenAI Structured Outputs rejects length bounds; normalizeTailorModelOutput applies them.
 export const cvTailorModelOutputSchema = z
   .object({
     keywords: z.array(z.string()),
@@ -37,9 +34,6 @@ export const cvTailorModelOutputSchema = z
   })
   .strict()
 
-// What the renderer is allowed to receive: bounded, trimmed, non-empty, and
-// every string canonical. Nothing here originates in the job offer — the
-// offer only chooses among facts the dossier already states.
 export const cvTailoredContentSchema = z
   .object({
     summary: z.string().trim().min(1).max(CV_TAILOR_SUMMARY_MAX_CHARS),

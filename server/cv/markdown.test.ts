@@ -8,7 +8,8 @@ const labels: CvLabels = {
   present: "Present",
   headline: "Product and backend engineering",
   summary: "Canonical professional summary.",
-  availability: "Selectively open to relevant opportunities",
+  availability: "Available for part-time work from January 2027",
+  contactSubject: "[Portfolio] Contact",
   otherProjects: "Other projects",
   credential: "Verify credential",
   sections: {
@@ -55,6 +56,6 @@ describe("Markdown CV", () => {
 
   it("never prints the email: this surface is crawlable plain text", () => {
     expect(markdown).not.toMatch(/@[a-z0-9.-]+\.[a-z]{2,}/i)
-    expect(markdown).toContain("#contact")
+    expect(markdown).toContain("jefmonjor.dev/contact")
   })
 })

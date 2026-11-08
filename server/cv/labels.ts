@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server"
 
 import type { Locale } from "@/i18n/routing"
+import { cvContactSubject } from "@/lib/email"
 import { parseStringArray } from "@/lib/i18n-values"
 import { portfolioUpdatedAt, profile } from "@/lib/profile"
 import { CV_HEADINGS } from "@/server/cv/headings"
@@ -51,10 +52,9 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     headline: tCv("headline"),
     summary: tCv("summary"),
     availability: `${tStatus("label")} · ${tStatus("detail")}`,
+    contactSubject: cvContactSubject(locale),
     otherProjects: tCv("otherProjects"),
     credential: tEducation("verifyCredential"),
-    // Standard headings in every export: the website's editorial titles
-    // ("Dónde he trabajado") read worse on paper and parse worse by machine.
     sections: {
       profile: CV_HEADINGS[locale].profile,
       experience: CV_HEADINGS[locale].experience,
@@ -85,17 +85,14 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     },
     projectEntry: (id): CvProjectEntry => {
       const project = profile.projects.find((entry) => entry.id === id)
+      const siteCopyOnlyMakesSenseOnSite = id === "portfolio"
       return {
-        // "Este portfolio" and "el sitio que estás leyendo" only make sense on
-        // the site itself; a CV reader needs copy that stands on its own.
-        name:
-          id === "portfolio"
-            ? tCv("portfolioName")
-            : tProjectEntries(`${id}.name`),
-        summary:
-          id === "portfolio"
-            ? tCv("portfolioSummary")
-            : tProjectEntries(`${id}.summary`),
+        name: siteCopyOnlyMakesSenseOnSite
+          ? tCv("portfolioName")
+          : tProjectEntries(`${id}.name`),
+        summary: siteCopyOnlyMakesSenseOnSite
+          ? tCv("portfolioSummary")
+          : tProjectEntries(`${id}.summary`),
         status: project
           ? `${tProjects(`status.${project.stage}`)} · ${tProjects(`status.${project.visibility}`)}`
           : "",

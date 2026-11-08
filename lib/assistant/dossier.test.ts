@@ -4,9 +4,9 @@ import { buildSystemPrompt } from "@/lib/assistant/dossier"
 
 describe("buildSystemPrompt", () => {
   it.each([
-    ["ca", "Ets l'assistent", "DISPONIBILITAT", "Enginyer de producte"],
-    ["es", "Eres el asistente", "DISPONIBILIDAD", "Product Engineer"],
-    ["en", "You are the assistant", "AVAILABILITY", "Product Engineer"],
+    ["ca", "Ets l'assistent", "DISPONIBILITAT", "Software Architect"],
+    ["es", "Eres el asistente", "DISPONIBILIDAD", "Software Architect"],
+    ["en", "You are the assistant", "AVAILABILITY", "Software Architect"],
   ] as const)(
     "builds the %s dossier in its requested language",
     (locale, rule, section, positioning) => {
@@ -46,5 +46,11 @@ describe("buildSystemPrompt", () => {
     expect(prompt).toContain("Inglés (B1 profesional)")
     expect(prompt).toContain("expectativas salariales")
     expect(prompt).toContain("fechas de incorporación")
+  })
+
+  it("labels every dossier line in the visitor's language", () => {
+    expect(buildSystemPrompt("ca")).toContain("Serveis: ")
+    expect(buildSystemPrompt("ca")).not.toContain("Services: ")
+    expect(buildSystemPrompt("es")).toContain("Servicios: ")
   })
 })

@@ -1,7 +1,5 @@
 import type { Locale } from "@/i18n/routing"
 
-// Standard headings that automated screeners recognize — the website's
-// editorial titles ("00 — Perfil", "Dónde he trabajado") parse worse.
 export const CV_HEADINGS: Record<
   Locale,
   {

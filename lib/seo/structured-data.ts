@@ -1,52 +1,160 @@
 import { routing, type Locale } from "@/i18n/routing"
-import { portfolioUpdatedAt, profile, siteUrl } from "@/lib/profile"
+import {
+  portfolioUpdatedAt,
+  profile,
+  publicProfiles,
+  siteUrl,
+} from "@/lib/profile"
 
-type ProfileStructuredDataInput = {
-  locale: Locale
-  title: string
-  description: string
+export const personId = `${siteUrl}/#person`
+const websiteId = `${siteUrl}/#website`
+
+type PersonInput = {
+  positioning: string
   currentJobTitle: string
-  publicProjects: ReadonlyArray<{
-    id: string
-    name: string
-    description: string
-    url: string
-    keywords: ReadonlyArray<string>
-    codeRepository?: string
-  }>
+  description: string
 }
 
-export function buildProfileStructuredData({
-  locale,
-  title,
-  description,
-  currentJobTitle,
-  publicProjects,
-}: ProfileStructuredDataInput) {
-  const canonicalUrl = `${siteUrl}/${locale}`
-  const personId = `${siteUrl}/#person`
-  const websiteId = `${siteUrl}/#website`
-  const imageUrl = `${siteUrl}/me.webp`
-  const sameAs = profile.socials
-    .filter((social) => social.kind !== "email")
-    .map((social) => social.href)
-  const knowsAbout = Array.from(
-    new Set([
-      ...profile.focus,
-      ...profile.skills
-        .filter((group) => group.id !== "practice")
-        .flatMap((group) => group.items),
-    ])
-  )
-  const alumniOf = profile.education
+type PublicProject = {
+  id: string
+  name: string
+  description: string
+  url: string
+  keywords: ReadonlyArray<string>
+  codeRepository?: string
+}
+
+type CvStructuredDataInput = PersonInput & {
+  locale: Locale
+  pageUrl: string
+  title: string
+  publicProjects: ReadonlyArray<PublicProject>
+}
+
+export type Breadcrumb = {
+  name: string
+  url: string
+}
+
+function topicsKnown(): string[] {
+  const practiced = profile.skills
+    .filter((group) => group.id !== "practice")
+    .flatMap((group) => group.items)
+  return Array.from(new Set([...profile.focus, ...practiced]))
+}
+
+function completedDegrees() {
+  return profile.education
     .filter((entry) => entry.kind === "degree" && entry.completed)
     .map((entry) => ({
       "@type": "EducationalOrganization",
       name: entry.organization,
     }))
-  const currentOrganization = profile.experience.find(
+}
+
+function currentEmployer() {
+  const organization = profile.experience.find(
     (entry) => entry.endISO === "present"
   )?.organization
+  return organization
+    ? { worksFor: { "@type": "Organization", name: organization } }
+    : {}
+}
+
+// The portrait belongs to /cv only; the commercial site never shows it.
+function personNode(
+  { positioning, currentJobTitle, description }: PersonInput,
+  { withPortrait }: { withPortrait: boolean }
+) {
+  const alumniOf = completedDegrees()
+
+  return {
+    "@type": "Person",
+    "@id": personId,
+    name: profile.name,
+    alternateName: "jefmonjor",
+    url: siteUrl,
+    ...(withPortrait
+      ? {
+          image: {
+            "@type": "ImageObject",
+            url: `${siteUrl}/me.webp`,
+            width: 940,
+            height: 1175,
+          },
+        }
+      : {}),
+    description,
+    jobTitle: currentJobTitle,
+    homeLocation: {
+      "@type": "Place",
+      name: profile.location,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Andorra la Vella",
+        addressCountry: "AD",
+      },
+    },
+    ...currentEmployer(),
+    knowsAbout: topicsKnown(),
+    hasOccupation: {
+      "@type": "Occupation",
+      name: positioning,
+      occupationalCategory: "15-1252.00 Software Developers",
+      skills: profile.focus.join(", "),
+      occupationLocation: { "@type": "Place", name: profile.location },
+    },
+    knowsLanguage: [
+      { "@type": "Language", name: "Spanish", alternateName: "es" },
+      { "@type": "Language", name: "English", alternateName: "en" },
+    ],
+    ...(alumniOf.length > 0 ? { alumniOf } : {}),
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      name: "Scrum Master Professional Certified (SMPC)",
+      credentialCategory: "certification",
+    },
+    sameAs: publicProfiles.map((link) => link.href),
+  }
+}
+
+function websiteNode() {
+  return {
+    "@type": "WebSite",
+    "@id": websiteId,
+    url: siteUrl,
+    name: profile.shortName,
+    inLanguage: routing.locales,
+    author: { "@id": personId },
+  }
+}
+
+export function buildBreadcrumbList(trail: ReadonlyArray<Breadcrumb>) {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: trail.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
+  }
+}
+
+export function buildSiteStructuredData(person: PersonInput) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [websiteNode(), personNode(person, { withPortrait: false })],
+  }
+}
+
+export function buildCvStructuredData({
+  locale,
+  pageUrl,
+  title,
+  publicProjects,
+  ...person
+}: CvStructuredDataInput) {
   const projectNodes = publicProjects.map((project) => ({
     "@type": "CreativeWork",
     "@id": `${siteUrl}/#project-${project.id}`,
@@ -63,101 +171,28 @@ export function buildProfileStructuredData({
   return {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": websiteId,
-        url: siteUrl,
-        name: `${profile.shortName} — Portfolio`,
-        inLanguage: routing.locales,
-        author: { "@id": personId },
-      },
+      websiteNode(),
       {
         "@type": "ProfilePage",
-        "@id": `${canonicalUrl}#profile-page`,
-        url: canonicalUrl,
+        "@id": `${pageUrl}#profile-page`,
+        url: pageUrl,
         name: title,
-        description,
+        description: person.description,
         inLanguage: locale,
         dateModified: portfolioUpdatedAt,
         isPartOf: { "@id": websiteId },
         mainEntity: { "@id": personId },
         hasPart: projectNodes.map((project) => ({ "@id": project["@id"] })),
       },
-      {
-        "@type": "Person",
-        "@id": personId,
-        name: profile.name,
-        alternateName: "jefmonjor",
-        url: canonicalUrl,
-        mainEntityOfPage: { "@id": `${canonicalUrl}#profile-page` },
-        image: {
-          "@type": "ImageObject",
-          url: imageUrl,
-          width: 940,
-          height: 1175,
-        },
-        description,
-        jobTitle: currentJobTitle,
-        homeLocation: {
-          "@type": "Place",
-          name: profile.location,
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Andorra la Vella",
-            addressCountry: "AD",
-          },
-        },
-        ...(currentOrganization
-          ? {
-              worksFor: {
-                "@type": "Organization",
-                name: currentOrganization,
-              },
-            }
-          : {}),
-        knowsAbout,
-        // Spells out the professional role for agents that read the graph
-        // instead of the prose: what he does, under which standard category.
-        hasOccupation: {
-          "@type": "Occupation",
-          name: currentJobTitle,
-          occupationalCategory: "15-1252.00 Software Developers",
-          skills: profile.focus.join(", "),
-          occupationLocation: {
-            "@type": "Place",
-            name: profile.location,
-          },
-        },
-        knowsLanguage: [
-          {
-            "@type": "Language",
-            name: "Spanish",
-            alternateName: "es",
-          },
-          {
-            "@type": "Language",
-            name: "English",
-            alternateName: "en",
-          },
-        ],
-        // Only academic institutions belong here: the SMPC certification body
-        // is published as a credential, not as an alma mater. And only
-        // completed degrees — `alumniOf` asserts graduation, which studies
-        // attended without a qualification cannot claim, so the property is
-        // omitted rather than softened.
-        ...(alumniOf.length > 0 ? { alumniOf } : {}),
-        hasCredential: {
-          "@type": "EducationalOccupationalCredential",
-          name: "Scrum Master Professional Certified (SMPC)",
-          credentialCategory: "certification",
-        },
-        sameAs,
-      },
+      personNode(person, { withPortrait: true }),
       ...projectNodes,
     ],
   }
 }
 
 export function serializeStructuredData(value: unknown): string {
-  return JSON.stringify(value).replaceAll("<", "\\u003c")
+  return JSON.stringify(value)
+    .replaceAll("<", "\\u003c")
+    .replaceAll(" ", "\\u2028")
+    .replaceAll(" ", "\\u2029")
 }

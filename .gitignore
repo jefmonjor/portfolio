@@ -38,3 +38,8 @@ next-env.d.ts
 # local code intelligence
 /.codegraph/
 .agent-context/
+
+# agent worktrees
+/.claude/worktrees/
+
+/.impeccable/review/

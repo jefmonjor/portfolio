@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
   CopyIcon,
@@ -18,25 +18,29 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { contactEmail, contactMailto } from "@/lib/email"
+import { contactEmail, contactMailto, cvContactSubject } from "@/lib/email"
 import { profile } from "@/lib/profile"
 
 type CopyState = "idle" | "copied" | "failed"
 
 const linkedin = profile.socials.find((s) => s.kind === "linkedin")?.href ?? "#"
 
-function Contact() {
-  const [copyState, setCopyState] = React.useState<CopyState>("idle")
-  // Assembled after mount so the address never ships in the static HTML.
+function useEmailAssembledAfterMount(): string {
   const [email, setEmail] = React.useState("")
-  const resetTimerRef = React.useRef<number | null>(null)
-
   React.useEffect(() => {
     const id = window.setTimeout(() => setEmail(contactEmail()), 0)
     return () => window.clearTimeout(id)
   }, [])
+  return email
+}
 
-  const mailto = email ? contactMailto() : "#contact"
+function Contact() {
+  const [copyState, setCopyState] = React.useState<CopyState>("idle")
+  const email = useEmailAssembledAfterMount()
+  const resetTimerRef = React.useRef<number | null>(null)
+
+  const locale = useLocale()
+  const mailto = email ? contactMailto(cvContactSubject(locale)) : "#contact"
   const t = useTranslations("contact")
   const tStatus = useTranslations("status")
 

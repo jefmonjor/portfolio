@@ -1,16 +1,23 @@
-import type { Profile } from "@/types/profile"
+import type {
+  MacSchemaLanguageProficiency,
+  Profile,
+  SocialKind,
+} from "@/types/profile"
 
 export const portfolioUpdatedAt = "2026-10-21"
 
-// Canonical host for metadata, sitemap and JSON-LD. The apex domain
-// redirects here, so machine-readable references must use this one.
 export const siteUrl = "https://www.jefmonjor.dev"
 
-// Short form printed in the CV PDFs: shorter to read and to type from paper,
-// and it resolves to the canonical host.
 export const siteUrlShort = "https://jefmonjor.dev"
 
+export function absoluteUrl(path: string): string {
+  return path === "/" ? siteUrl : `${siteUrl}${path}`
+}
+
 export const profileTimeZone = "Europe/Andorra"
+
+const EMAIL_ASSEMBLED_IN_BROWSER_NOT_IN_STATIC_HTML = ""
+const CEFR_B1: MacSchemaLanguageProficiency = "Limited working proficiency"
 
 export const profile: Profile = {
   name: "Jefferson Montesdeoca Jordán",
@@ -29,11 +36,9 @@ export const profile: Profile = {
   ],
   socials: [
     {
-      // Address assembled client-side in lib/email.ts to keep it out of
-      // the static HTML (spam-scraper protection).
       kind: "email",
       href: "#contact",
-      handle: "",
+      handle: EMAIL_ASSEMBLED_IN_BROWSER_NOT_IN_STATIC_HTML,
     },
     {
       kind: "linkedin",
@@ -184,7 +189,7 @@ export const profile: Profile = {
         "Docker",
         "Kubernetes",
         "OpenShift (OCP4)",
-        "VPS propio · Docker",
+        "Self-hosted VPS · Docker",
         "Vercel",
         "Google Cloud Run",
         "Cloud Build",
@@ -201,8 +206,6 @@ export const profile: Profile = {
     },
     {
       id: "ai",
-      // What is in production first (Andbank's Gemini Code Assist rollout,
-      // the Claude API behind the products and SpecForge), tooling last.
       items: [
         "Claude · Claude API",
         "Claude Code",
@@ -264,7 +267,7 @@ export const profile: Profile = {
         "PostgreSQL",
         "PWA",
         "Docker",
-        "VPS propio",
+        "Self-hosted VPS",
         "ES · EN · CA",
       ],
     },
@@ -303,8 +306,6 @@ export const profile: Profile = {
       id: "specforge",
       stage: "live",
       visibility: "public",
-      // A CLI ships as a release, not a website: the public URL is where
-      // the binaries are downloaded.
       url: "https://github.com/jefmonjor/specforge/releases",
       repo: "https://github.com/jefmonjor/specforge",
       stack: [
@@ -339,12 +340,10 @@ export const profile: Profile = {
       stack: [
         "Next.js",
         "TypeScript",
-        "tRPC",
         "Zod",
         "Tailwind CSS",
         "shadcn/ui",
         "next-intl",
-        "Motion",
       ],
     },
   ],
@@ -364,8 +363,6 @@ export const profile: Profile = {
       organization: "Universidad de Sevilla",
       dates: "2014 — 2018",
       kind: "degree",
-      // Cursada, sin titulación: every surface says so, and none of them
-      // claims the degree — see structured-data (alumniOf) and mac.ts.
       completed: false,
       startISO: "2014",
       endISO: "2018",
@@ -373,7 +370,17 @@ export const profile: Profile = {
   ],
   languages: [
     { id: "es", code: "ES", level: "Native or bilingual proficiency" },
-    // B1 in CEFR terms. "Professional working proficiency" would overstate it.
-    { id: "en", code: "EN", level: "Limited working proficiency" },
+    { id: "en", code: "EN", level: CEFR_B1 },
   ],
 }
+
+const publicProfileNames: Record<Exclude<SocialKind, "email">, string> = {
+  linkedin: "LinkedIn",
+  github: "GitHub",
+}
+
+export const publicProfiles = profile.socials.flatMap((social) =>
+  social.kind === "email"
+    ? []
+    : [{ name: publicProfileNames[social.kind], href: social.href }]
+)

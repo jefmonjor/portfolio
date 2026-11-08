@@ -15,6 +15,8 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
+import { resolveLocale } from "@/i18n/routing"
+import { cvPdfPath, type CvPdfVariantName } from "@/lib/cv-pdf"
 import {
   Dialog,
   DialogContent,
@@ -22,17 +24,15 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import {
-  cvPdfUrl,
   downloadCv,
   downloadTailoredCv,
   type CvDownloadError,
   type CvDownloadResult,
-  type CvVariant,
 } from "@/lib/cv-download"
 import { cn } from "@/lib/utils"
+import { isTailorableOffer } from "@/lib/visible-text"
 import {
   CV_TAILOR_OFFER_MAX_CHARS,
-  CV_TAILOR_OFFER_MIN_CHARS,
 } from "@/types/limits"
 
 const CV_OPTIONS = [
@@ -46,9 +46,8 @@ type CvDownloadButtonProps = {
 }
 
 type Step = "choose" | "offer"
-type Pending = CvVariant | "tailor"
+type Pending = CvPdfVariantName | "tailor"
 
-// Loaded on success only: the celebration is not worth shipping on first paint.
 async function fireConfetti(): Promise<void> {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
   const { default: confetti } = await import("canvas-confetti")
@@ -116,9 +115,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     resetDialog()
   }
 
-  // Starts a request that the dialog owns: closing it, or starting another
-  // download, aborts the previous one so a late response never lands twice.
-  function beginRequest(kind: Pending): AbortController {
+  function beginRequestAbortingPrevious(kind: Pending): AbortController {
     requestRef.current?.abort()
     const controller = new AbortController()
     requestRef.current = controller
@@ -159,7 +156,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     directUrl?: string
   ): Promise<void> {
     if (busy) return
-    const controller = beginRequest(kind)
+    const controller = beginRequestAbortingPrevious(kind)
     try {
       const result = await task(controller.signal)
       if (requestRef.current !== controller) return
@@ -173,11 +170,11 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
     }
   }
 
-  function downloadVariant(variant: CvVariant): Promise<void> {
+  function downloadVariant(variant: CvPdfVariantName): Promise<void> {
     return run(
       variant,
       (signal) => downloadCv(variant, locale, signal),
-      cvPdfUrl(locale, variant)
+      cvPdfPath(resolveLocale(locale), variant)
     )
   }
 
@@ -216,7 +213,10 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
       </Button>
 
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent showCloseButton className="gap-0 p-0 sm:max-w-lg">
+        <DialogContent
+          showCloseButton
+          className="max-h-[calc(100svh-2rem)] gap-0 overflow-y-auto p-0 sm:max-w-lg"
+        >
           <DialogHeader className="gap-2 border-b border-border p-5">
             <div className="flex items-center gap-2 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
               <span className="inline-block size-1.5 bg-brand" />
@@ -295,9 +295,7 @@ function CvDownloadButton({ className }: CvDownloadButtonProps) {
                 </div>
                 <Button
                   size="sm"
-                  disabled={
-                    offer.trim().length < CV_TAILOR_OFFER_MIN_CHARS || busy
-                  }
+                  disabled={!isTailorableOffer(offer) || busy}
                   onClick={() => void tailorAndDownload()}
                 >
                   {busy ? tModal("generating") : tModal("generate")}

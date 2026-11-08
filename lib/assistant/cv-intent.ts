@@ -2,13 +2,8 @@ import type { Locale } from "@/i18n/routing"
 import { looksLikeJobOffer } from "@/lib/assistant/offer"
 import type { AssistantAction, ChatMessage } from "@/types/assistant"
 
-// Asking for the CV is the one request the assistant answers without the
-// model: the three variants are fixed, the files come from the CV routes,
-// and the reply only has to say which is which. The actions travel with the
-// reply so the client can call those routes from the chat itself.
-
-const CV_WORDS = /\b(cv|curr[ií]cul[uo]m|curriculum|r[ée]sum[ée]|resume)\b/iu
-// Longer messages are questions (or offers) that mention the CV in passing.
+const CV_WORDS =
+  /(?<!\p{L})(?:cv|curr[ií]cul[uo]m|résumé|résume|resumé|(?:his|her|your|the|a|my|their|full)\s+resume)(?!\p{L})/iu
 const CV_REQUEST_MAX_CHARS = 400
 
 export function asksForCv(text: string): boolean {
@@ -20,8 +15,6 @@ export function asksForCv(text: string): boolean {
   )
 }
 
-// The most recent pasted offer in the conversation, if any: "¿me pasas el CV
-// para esta oferta?" after pasting it should not require pasting it again.
 export function lastOffer(messages: ReadonlyArray<ChatMessage>): string | null {
   for (let index = messages.length - 1; index >= 0; index -= 1) {
     const message = messages[index]

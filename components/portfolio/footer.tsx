@@ -1,7 +1,9 @@
 import { useLocale, useTranslations } from "next-intl"
 
+import NextLink from "next/link"
+
 import { Link } from "@/i18n/navigation"
-import { routing } from "@/i18n/routing"
+import { localizedPath, nearestSiteLocale, routing } from "@/i18n/routing"
 import { portfolioUpdatedAt, profile } from "@/lib/profile"
 
 function Footer() {
@@ -19,9 +21,6 @@ function Footer() {
           <span className="text-border">/</span>
           <span>{tHero("role")}</span>
         </div>
-        {/* Crawlable links between locales: the header switcher is a JS
-            control, so these anchors are what lets a crawler walk from one
-            language to the next instead of trusting hreflang alone. */}
         <nav
           aria-label={t("languagesLabel")}
           className="flex flex-wrap items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase"
@@ -38,7 +37,7 @@ function Footer() {
             ) : (
               <Link
                 key={candidate}
-                href="/"
+                href="/cv"
                 locale={candidate}
                 hrefLang={candidate}
                 rel="alternate"
@@ -50,6 +49,13 @@ function Footer() {
           )}
         </nav>
         <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
+          <NextLink
+            href={localizedPath(nearestSiteLocale(locale), "/privacy")}
+            className="transition-colors hover:text-foreground"
+          >
+            {t("privacy")}
+          </NextLink>
+          <span className="text-border">/</span>
           <span>{t("builtLine")}</span>
           <span className="text-border">/</span>
           <span>{t("lastUpdated", { date: portfolioUpdatedAt })}</span>

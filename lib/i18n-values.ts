@@ -1,6 +1,3 @@
-// Guards for `t.raw()` values. Hand-written instead of Zod because the
-// terminal that reads them ships to the browser.
-
 export function parseString(value: unknown): string {
   if (typeof value !== "string") {
     throw new TypeError("Expected a translated string")

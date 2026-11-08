@@ -4,10 +4,11 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Product Engineer focused on AI and backend. I build end-to-end products on Java/Spring, with validated data, clear limits and manual fallbacks.",
+    "description": "Software Architect & Senior Backend Engineer based in Andorra. Seven years building backend systems for banking, legal and energy: Java, Spring, architecture and applied AI. Full CV, projects and downloadable PDFs.",
     "applicationName": "{shortName} · Portfolio",
-    "role": "Product Engineer · AI & Backend",
-    "currentJobTitle": "Solutions Architect / Technical PM"
+    "role": "Software Architect & Senior Backend Engineer",
+    "currentJobTitle": "Solutions Architect / Technical PM",
+    "cvTitle": "CV · {shortName} — {role}"
   },
   "nav": {
     "about": "About",
@@ -17,7 +18,8 @@
     "projects": "Projects",
     "education": "Education",
     "contact": "Contact",
-    "terminal": "Terminal"
+    "terminal": "Terminal",
+    "skipToContent": "Skip to content"
   },
   "themeToggle": {
     "ariaLabel": "Toggle theme",
@@ -66,12 +68,12 @@
     }
   },
   "status": {
-    "label": "Selectively open to relevant opportunities",
-    "detail": "Andorra · Spain · Remote across European time zones"
+    "label": "Available for part-time work from January 2027",
+    "detail": "Andorra · Remote · CET"
   },
   "hero": {
-    "role": "Product Engineer focused on AI & backend",
-    "tagline": "I build products end to end on Java/Spring backends and maintainable architectures. I use AI where it adds value, with validated data, clear limits, and manual fallbacks.",
+    "role": "Software Architect & Senior Backend Engineer",
+    "tagline": "I design and build backend systems for banking and enterprise on Java and Spring, with architectures a team can maintain. I apply AI where it adds value: validated data, clear limits and a manual way to work when the AI fails.",
     "specs": {
       "location": "Location",
       "timezone": "Timezone",
@@ -93,14 +95,14 @@
   },
   "about": {
     "title": "Who I am, in one paragraph",
-    "manifesto": "Six-plus years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build several products of my own—some public and live, others private and in development—to keep product, backend, deployment, and applied AI decisions close together.",
+    "manifesto": "Seven years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build several products of my own—some public and live, others private and in development—to keep product, backend, deployment, and applied AI decisions close together.",
     "currentlyWorkingWith": "Currently working with"
   },
   "cv": {
     "headline": "End-to-end product work on Java/Spring backends: maintainable architecture, integration with critical systems, and AI applied where it adds real value.",
-    "summary": "Six-plus years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and manual fallbacks.",
+    "summary": "Seven years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and a manual way to work when it fails.",
     "portfolioName": "Personal portfolio",
-    "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + tRPC + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source.",
+    "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source.",
     "otherProjects": "Other projects"
   },
   "experience": {
@@ -124,7 +126,7 @@
           "Integrate legacy systems (COBOL, AS400, DB2), evolve shipping-carrier integration APIs, and roll out Keycloak with MFA and per-jurisdiction rules.",
           "Extend SonarQube across every repository, including analysis of 12,000+ COBOL files.",
           "Rolled out Gemini Code Assist for the whole team as the department's first AI adoption.",
-          "Manage vendors technically, drive build-vs-buy decisions, and control technical debt on OpenShift (OCP4)."
+          "Manage vendors technically, decide whether to build or buy, and control technical debt on OpenShift (OCP4)."
         ]
       },
       "elabogado-2022": {
@@ -287,7 +289,7 @@
       "ilnami": {
         "name": "Ilnami",
         "role": "Own product · Web app (PWA)",
-        "summary": "Private food diary: save what you ordered, where, when and whether you'd go back, on your own map. AI scanning of menus, labels and receipts that is always reviewed before saving, private circles to share only what you choose, and a JSON export of your data. Live and open, in Spanish and English.",
+        "summary": "Private food diary: save what you ordered, where, when and whether you'd go back, on your own map. AI scanning of menus, labels and receipts that is always reviewed before saving, private circles to share only what you choose, and a JSON export of your data. Online and open, in Spanish and English.",
         "highlights": [
           "Private by design: no public profiles or reviews; PostgreSQL row-level security limits every row to its owner or the circle it was shared with.",
           "Assistive, never authoritative AI: OpenAI suggests the place, date and dishes, with per-plan quotas and a manual entry that always works.",
@@ -318,9 +320,9 @@
       "portfolio": {
         "name": "This portfolio",
         "role": "Personal project",
-        "summary": "The site you are reading: a type-safe Next.js + tRPC + Zod stack with trilingual routing, an interactive terminal, a command palette, and a PDF CV generated from the same profile data.",
+        "summary": "The site you are reading: a type-safe Next.js + Zod stack with trilingual routing, an interactive terminal, a command palette, and a PDF CV generated from the same profile data.",
         "highlights": [
-          "Type-safe Next.js + tRPC + Zod stack with English, Spanish and Catalan routing.",
+          "Type-safe Next.js + Zod stack with English, Spanish and Catalan routing.",
           "Interactive terminal and ⌘K command palette for navigation.",
           "Server-generated PDF CV from a single source of truth.",
           "Purposeful motion that never blocks content or shifts layout."
@@ -360,7 +362,7 @@
     "copied": "Copied",
     "copyFailed": "Copy failed",
     "copyAriaLabel": "Copy email address",
-    "body": "Project, role, or question: send a short message with the context and I will reply within two business days.",
+    "body": "Project, role, or question: send a short message with the context and I will reply within one business day.",
     "sendEmail": "Send email",
     "openLinkedIn": "Open LinkedIn",
     "basedIn": "Based in",
@@ -369,8 +371,9 @@
   },
   "footer": {
     "lastUpdated": "Last updated · {date}",
-    "builtLine": "Designed and built from scratch · Next.js",
-    "languagesLabel": "Languages"
+    "builtLine": "Designed and built with Next.js",
+    "languagesLabel": "Languages",
+    "privacy": "Privacy"
   },
   "cvToast": {
     "title": "CV ready",
@@ -390,14 +393,15 @@
     "offerPlaceholder": "Paste the job offer text here…",
     "generate": "Generate tailored CV",
     "generating": "Tailoring…",
-    "privacy": "Sent to the AI provider; this portfolio does not store it.",
+    "privacy": "Sent to OpenAI to choose the evidence; this site does not store it. Do not paste confidential details.",
     "back": "Back",
     "tailorError": "It couldn't be tailored right now. The technical CV is still available.",
     "tailorLimited": "Usage limit reached. Try again in a few minutes or download the technical CV.",
     "tailorUnavailable": "AI tailoring is unavailable right now. You can download the general or technical CV.",
     "preparing": "Preparing the PDF…",
     "downloadError": "The PDF couldn't be downloaded.",
-    "openDirect": "Open PDF"
+    "openDirect": "Open PDF",
+    "pdfLimited": "Too many downloads in a row. Wait a minute and try again."
   },
   "terminal": {
     "title": "Terminal",
@@ -406,7 +410,7 @@
     "inputLabel": "Terminal input",
     "placeholder": "type a command — try 'help'",
     "banner": [
-      "Jefferson Montesdeoca — Product Engineer · AI & Backend",
+      "Jefferson Montesdeoca — Software Architect & Senior Backend Engineer",
       "type 'help' to get started · press ESC or ` to close",
       ""
     ],
@@ -501,7 +505,7 @@
     "rateLimited": "Too many questions in a row. Wait a moment and try again.",
     "unavailable": "The assistant is unavailable right now. Write to {email}.",
     "error": "I couldn't answer. Write to {email}.",
-    "disclaimer": "AI limited to the public profile. It does not estimate missing facts; confirm important decisions by email.",
+    "disclaimer": "AI limited to the public profile. Your messages go to OpenAI to write the answer and are not stored by this site. Confirm important decisions by email.",
     "reset": "New",
     "thinking": "Thinking…",
     "launcher": "Ask the AI",
@@ -509,5 +513,9 @@
     "cvTechnical": "Technical CV (PDF)",
     "cvTailored": "CV tailored to this offer (PDF)",
     "cvPreparing": "Preparing…"
+  },
+  "cvBanner": {
+    "lead": "Looking for the full site?",
+    "link": "Services, case studies and contact"
   }
 }

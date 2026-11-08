@@ -1,18 +1,13 @@
 import { defineRouting } from "next-intl/routing"
-import { hasLocale } from "next-intl"
+
+import { defaultLocale, locales } from "@/i18n/locales"
+
+export * from "@/i18n/locales"
 
 export const routing = defineRouting({
-  locales: ["en", "es", "ca"] as const,
-  defaultLocale: "en",
-  localePrefix: "always",
+  locales,
+  defaultLocale,
+  localePrefix: "as-needed",
+  localeDetection: false,
+  alternateLinks: false,
 })
-
-export type Locale = (typeof routing.locales)[number]
-
-export function isLocale(value: string | null | undefined): value is Locale {
-  return hasLocale(routing.locales, value)
-}
-
-export function resolveLocale(value: string | null | undefined): Locale {
-  return isLocale(value) ? value : routing.defaultLocale
-}

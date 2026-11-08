@@ -43,8 +43,6 @@ function TopBar() {
           className="flex min-w-0 shrink items-center gap-2 font-mono text-[11px] tracking-widest uppercase hover:text-foreground"
         >
           <span className="inline-block size-1.5 bg-brand" />
-          {/* The full name where there is room for it; the first name when
-              the section links share the bar (Spanish labels run longest). */}
           <span className="sm:hidden lg:inline">Jefferson</span>
           <span className="hidden truncate sm:inline lg:hidden">
             {profile.shortName}

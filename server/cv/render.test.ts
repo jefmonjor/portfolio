@@ -8,7 +8,8 @@ const labels: CvLabels = {
   present: "Present",
   headline: "Product and backend engineering",
   summary: "Canonical professional summary.",
-  availability: "Selectively open to relevant opportunities",
+  availability: "Available for part-time work from January 2027",
+  contactSubject: "[Portfolio] Contact",
   otherProjects: "Other projects",
   credential: "Verify credential",
   sections: {
@@ -47,9 +48,7 @@ const labels: CvLabels = {
 }
 
 describe("cvFilename", () => {
-  // What the recruiter sees attached to the email. The tailored CV must not
-  // advertise that it was generated for the offer they published.
-  it("names the tailored CV like any other CV", () => {
+  it("names the tailored CV like any other CV, never after the offer", () => {
     expect(cvFilename("Tailored", "es")).toBe("Jefferson_Montesdeoca_CV_ES.pdf")
     expect(cvFilename("Technical", "es")).toBe(
       "Jefferson_Montesdeoca_CV_Technical_ES.pdf"

@@ -4,7 +4,6 @@ import * as React from "react"
 
 import {
   BACKGROUND_STORAGE_KEY,
-  BACKGROUND_VARIANTS,
   DEFAULT_BACKGROUND,
   isBackgroundVariant,
   type BackgroundVariant,
@@ -46,11 +45,7 @@ function BackgroundProvider({ children }: { children: React.ReactNode }) {
 
   const setVariant = React.useCallback((next: BackgroundVariant) => {
     document.documentElement.dataset.bg = next
-    try {
-      window.localStorage.setItem(BACKGROUND_STORAGE_KEY, next)
-    } catch {
-      // localStorage may be unavailable (private mode, quota); ignore.
-    }
+    rememberWhereStorageAllows(next)
     window.dispatchEvent(new Event(BACKGROUND_CHANGE_EVENT))
   }, [])
 
@@ -66,6 +61,14 @@ function BackgroundProvider({ children }: { children: React.ReactNode }) {
   )
 }
 
+function rememberWhereStorageAllows(variant: BackgroundVariant): void {
+  try {
+    window.localStorage.setItem(BACKGROUND_STORAGE_KEY, variant)
+  } catch {
+    return
+  }
+}
+
 function useBackground(): BackgroundContextValue {
   const ctx = React.useContext(BackgroundContext)
   if (!ctx) {
@@ -74,27 +77,4 @@ function useBackground(): BackgroundContextValue {
   return ctx
 }
 
-const BACKGROUND_INIT_SCRIPT = `(() => {
-  try {
-    var stored = window.localStorage.getItem(${JSON.stringify(BACKGROUND_STORAGE_KEY)});
-    var allowed = ${JSON.stringify(BACKGROUND_VARIANTS)};
-    if (stored && allowed.indexOf(stored) !== -1) {
-      document.documentElement.dataset.bg = stored;
-    } else {
-      document.documentElement.dataset.bg = ${JSON.stringify(DEFAULT_BACKGROUND)};
-    }
-  } catch (e) {
-    document.documentElement.dataset.bg = ${JSON.stringify(DEFAULT_BACKGROUND)};
-  }
-})();`
-
-function BackgroundInitScript() {
-  return (
-    <script
-      // Runs before hydration to prevent flicker between variants.
-      dangerouslySetInnerHTML={{ __html: BACKGROUND_INIT_SCRIPT }}
-    />
-  )
-}
-
-export { BackgroundProvider, BackgroundInitScript, useBackground }
+export { BackgroundProvider, useBackground }

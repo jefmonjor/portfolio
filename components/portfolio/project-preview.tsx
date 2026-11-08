@@ -5,21 +5,15 @@ import Image from "next/image"
 
 import { cn } from "@/lib/utils"
 
-const INTERVAL_MS = 3200
+const CROSSFADE_INTERVAL_MS = 3200
 
 type ProjectPreviewProps = {
   images: ReadonlyArray<string>
   alt: string
   className?: string
-  /** Larger rendering (dialog) loads higher-res candidates. */
   sizes?: string
 }
 
-/**
- * Looping screenshot preview: crossfades through the project's captures
- * while visible. Static first frame under reduced motion or with a single
- * image.
- */
 function ProjectPreview({
   images,
   alt,
@@ -41,7 +35,7 @@ function ProjectPreview({
         if (entry.isIntersecting && timer === null) {
           timer = window.setInterval(() => {
             setCurrent((value) => (value + 1) % images.length)
-          }, INTERVAL_MS)
+          }, CROSSFADE_INTERVAL_MS)
         } else if (!entry.isIntersecting && timer !== null) {
           window.clearInterval(timer)
           timer = null

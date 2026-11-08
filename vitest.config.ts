@@ -10,6 +10,6 @@ export default defineConfig({
   },
   test: {
     environment: "node",
-    exclude: ["**/node_modules/**", ".agent-context/**", ".next/**"],
+    exclude: ["**/node_modules/**", ".agent-context/**", ".claude/**", ".next/**"],
   },
 })

@@ -5,6 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 concurrency:
   group: deploy
   cancel-in-progress: true
@@ -62,16 +65,19 @@ jobs:
       - name: Deploy over SSH
         if: steps.config.outputs.ready == 'true'
         uses: appleboy/ssh-action@2ead5e36573f08b82fbfce1504f1a4b05a647c6f # v1.2.2
+        env:
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT || 22 }}
+          fingerprint: ${{ secrets.SSH_FINGERPRINT }}
+          envs: GHCR_TOKEN
           script: |
             set -e
-            # Login only needed while the ghcr.io package is private.
-            if [ -n "${{ secrets.GHCR_TOKEN }}" ]; then
-              echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u jefmonjor --password-stdin
+            if [ -n "$GHCR_TOKEN" ]; then
+              printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u jefmonjor --password-stdin
             fi
             docker pull ghcr.io/jefmonjor/portfolio:latest
             docker stop portfolio 2>/dev/null || true
@@ -79,6 +85,10 @@ jobs:
             docker run -d \
               --name portfolio \
               --restart unless-stopped \
+              --memory 512m \
+              --cpus 1 \
+              --cap-drop ALL \
+              --security-opt no-new-privileges \
               -p 127.0.0.1:3000:3000 \
               ghcr.io/jefmonjor/portfolio:latest
             docker image prune -f

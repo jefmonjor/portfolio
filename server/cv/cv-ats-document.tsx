@@ -16,9 +16,6 @@ import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
 import { prioritizeItems } from "@/server/cv/tailoring"
 import type { CvTailoredContent } from "@/types/cv-tailor"
 
-// Technical variant: single column, standard headings and no decorative
-// layers. It is ATS-readable without claiming a guaranteed ATS score.
-
 const ink = "#000000"
 const body = "#1a1a1a"
 const muted = "#4a4a4a"
@@ -152,8 +149,8 @@ type CvTechnicalDocumentProps = {
   readonly tailored?: CvTailoredContent
 }
 
-// Every personal product, ordered by weight. The private one carries no
-// URL; the rest are open in one click, which is the point of listing them.
+const PROJECT_THAT_CLOSES_EVERY_VARIANT = "portfolio"
+
 const TECHNICAL_PROJECT_IDS = [
   "transolido",
   "othertwist",
@@ -171,21 +168,17 @@ function CvTechnicalDocument({
   tailored,
 }: CvTechnicalDocumentProps) {
   const headings = CV_HEADINGS[locale]
-  // Server-rendered on demand, so the plain address never reaches the
-  // static HTML — safe to print it in the downloadable document.
   const email = contactEmail()
   const linkedin = profile.socials.find((s) => s.kind === "linkedin")
   const github = profile.socials.find((s) => s.kind === "github")
 
   const summary = tailored?.summary?.trim() || labels.summary
-  // Tailoring reorders, it never truncates: a CV written for one offer should
-  // still carry everything the technical variant carries, with the relevant
-  // work first. The portfolio closes the list in every variant — it is where a
-  // reader can verify the rest of the document.
   const projectIds = prioritizeItems(
-    TECHNICAL_PROJECT_IDS.filter((id) => id !== "portfolio"),
+    TECHNICAL_PROJECT_IDS.filter(
+      (id) => id !== PROJECT_THAT_CLOSES_EVERY_VARIANT
+    ),
     tailored?.projectIds ?? []
-  ).concat("portfolio")
+  ).concat(PROJECT_THAT_CLOSES_EVERY_VARIANT)
   const projects = projectIds
     .map((id) => {
       const entry = profile.projects.find((p) => p.id === id)
@@ -214,8 +207,7 @@ function CvTechnicalDocument({
             .join(" · ")}
           {" · "}
           {linkedin ? (
-            // One string per link: split children extract as
-            // "linkedin.com/in/ jefmonjor" and break the parsed URL.
+            // PDF text extraction splits child strings ("linkedin.com/in/ handle").
             <Link src={linkedin.href} style={styles.contactLink}>
               {`linkedin.com/in/${linkedin.handle ?? ""}`}
             </Link>

@@ -3,27 +3,27 @@ import { portfolioUpdatedAt, profile, siteUrlShort } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
 import { cvLinkHref } from "@/server/cv/links"
 
-// MAC — Manfred Awesomic CV: an open JSON schema for CVs, used as an
-// interchange format by recruiting platforms. Built from the same labels as
-// the PDF and Markdown CVs, so there is still one source of truth.
-// Schema: https://github.com/getmanfred/mac (draft 2019-09).
-//
-// The email stays out, as in every crawlable surface: MAC contacts a person
-// through public profiles, which is exactly what lib/email.ts wants.
-
+// Manfred Awesomic CV schema: https://github.com/getmanfred/mac (draft 2019-09)
 const MAC_VERSION = "0.3"
 
-const RELEVANT_YEARS = 6
-
 const PREFERRED_ROLES = [
-  "Product Engineer",
-  "Backend Engineer",
   "Software Architect",
+  "Senior Backend Engineer",
+  "Fractional Architect",
 ] as const
 
-// MAC dates are `format: date`, so month- and year-only facts anchor to the
-// first day. The profile keeps the precision it actually has.
-function macDate(value: string): string {
+function yearsOfExperience(): number {
+  const firstStart =
+    profile.experience.map((entry) => entry.startISO).sort()[0] ??
+    portfolioUpdatedAt
+  const months = (iso: string) => {
+    const [year = "0", month = "1"] = iso.split("-")
+    return Number(year) * 12 + Number(month) - 1
+  }
+  return Math.floor((months(portfolioUpdatedAt) - months(firstStart)) / 12)
+}
+
+function anchorToFirstDay(value: string): string {
   const parts = value.split("-")
   const year = parts[0] ?? "1970"
   const month = parts[1] ?? "01"
@@ -52,8 +52,6 @@ type MacCompetence = {
   readonly type: "technology" | "tool" | "practice" | "domain" | "hardware"
 }
 
-// The AI group is tooling; the rest are technologies. Practices are named as
-// such by the schema, so they keep their own type instead of posing as stack.
 function competenceType(groupId: string): MacCompetence["type"] {
   if (groupId === "practice") return "practice"
   if (groupId === "ai") return "tool"
@@ -88,7 +86,7 @@ export function buildMacCv(labels: CvLabels, locale: Locale) {
         location: macLocation(profile.location),
         contact: { publicProfiles: publicProfiles() },
       },
-      relevantYearsOfExperience: RELEVANT_YEARS,
+      relevantYearsOfExperience: yearsOfExperience(),
       relevantLinks: publicProfiles(),
     },
     careerPreferences: {
@@ -96,9 +94,7 @@ export function buildMacCv(labels: CvLabels, locale: Locale) {
       contact: { publicProfiles: publicProfiles() },
       preferences: { preferredRoles: [...PREFERRED_ROLES] },
       requirements: {
-        // Employment only. The schema also allows "freelance"; that is not
-        // what is on offer, and saying so is the point of listing it.
-        contractTypes: ["permanent"],
+        contractTypes: ["freelance"],
         location: {
           openToRemote: true,
           remoteOnly: false,
@@ -119,10 +115,10 @@ export function buildMacCv(labels: CvLabels, locale: Locale) {
           roles: [
             {
               name: data.role,
-              startDate: macDate(entry.startISO),
+              startDate: anchorToFirstDay(entry.startISO),
               ...(entry.endISO === "present"
                 ? {}
-                : { finishDate: macDate(entry.endISO) }),
+                : { finishDate: anchorToFirstDay(entry.endISO) }),
               ...(data.summary ? { notes: data.summary } : {}),
               challenges: data.highlights.map((highlight) => ({
                 description: highlight,
@@ -135,8 +131,6 @@ export function buildMacCv(labels: CvLabels, locale: Locale) {
           ],
         }
       }),
-      // Personal products ship as public artifacts: unlike MAC project roles,
-      // they carry no start date the profile could honestly state.
       publicArtifacts: profile.projects
         .filter((project) => project.visibility === "public" && project.url)
         .map((project) => {
@@ -176,12 +170,12 @@ export function buildMacCv(labels: CvLabels, locale: Locale) {
         return {
           studyType:
             entry.kind === "degree" ? "officialDegree" : "certification",
-          // A study that was attended but never completed must not be
-          // published as achieved.
           degreeAchieved: entry.completed,
           name: data.title,
-          startDate: macDate(entry.startISO),
-          ...(entry.endISO ? { finishDate: macDate(entry.endISO) } : {}),
+          startDate: anchorToFirstDay(entry.startISO),
+          ...(entry.endISO
+            ? { finishDate: anchorToFirstDay(entry.endISO) }
+            : {}),
           institution: { name: entry.organization },
         }
       }),

@@ -1,8 +1,86 @@
 # Sistema de diseño
 
+Dos productos y dos implementaciones:
+
+- **Web comercial** (`/`, `/es`, la 404): tokens **Underlay** con el tema **Pino** (verde) sobre grises neutros; **Schibsted Grotesk** + Inter.
+- **`/cv`** (portfolio y CV): tokens shadcn en ámbar; Fraunces + Geist.
+
+El layout raíz no carga fuentes. La web las carga en `app/[locale]/(site)/layout.tsx` (precargadas) y la 404 en su propio archivo sin precarga, porque esa frontera envuelve también `/cv`. `/cv` declara Fraunces, Geist y Geist Mono como variables de `:root` (`components/portfolio/cv-fonts.tsx`).
+
+La dirección de la home está en `PRODUCT.md` y en `.impeccable/surfaces/app-locale-site-page-tsx.md`: una web personal de consultor senior (referencias fijadas por el dueño: happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me), en primera persona, con una órbita animada de sus herramientas reales y capturas de sus productos. Su foto solo vive en `/cv` (decisión del dueño). Nada de fotos de stock ni de los looks típicos de webs generadas con IA (fondo crema, serif con cursiva, terracota; héroe oscuro con anotaciones brillantes).
+
+## Web comercial: Underlay con tema Pino
+
+### Cadena de color
+
+`Foundations → Theme → Tokens → Layers`, todo en `app/globals.css`. Los componentes solo leen tokens; ningún hex ni escala cruda en `components/site/`.
+
+| Capa | Qué contiene | Ejemplos |
+|---|---|---|
+| Foundations | Escalas crudas | `--gray-0…1000` neutros fríos (tinta `#111417`, fondo oscuro `#0B0D0F`), `--pine-50/100/200/300/600/800/900`, `--green/red/orange/blue-*` para estados |
+| Theme | La marca | `--primary-base` (`#0F6B4F` claro, `#5FD1A0` oscuro), `--text-on-primary` (blanco en claro, `#0B0D0F` en oscuro), `--primary-inverse`, `--primary-alpha-6/10/24` |
+| Tokens | Semántica, cambia con el modo | `bg/*`, `text/*`, `stroke/*`, `icon/*`, `state/*`, `elevation-*` |
+| Layers | Componentes y páginas | `components/site/*`, clases `.site-*` |
+
+- Contraste: `text-sub-600` 7:1 sobre blanco y 7,4:1 sobre `#0B0D0F`; blanco sobre `#0F6B4F` 6,5:1; `#5FD1A0` sobre `#0B0D0F` 10:1.
+- `.surface-brand` (cierres) pone el campo en `pine-800` (`pine-900` en oscuro), texto blanco y secundario `#B9C9C1` (5,9:1); el botón principal pasa a claro con texto verde.
+- Fondo blanco liso: sin degradados de atmósfera ni grano.
+
+### Dónde va el verde
+
+El botón principal (cabecera, hero, servicios), la etapa «Revisión · Decido yo» del flujo de trabajo, el campo de los paneles de cierre, los enlaces encendidos del mapa de conexión y el foco. Nunca en texto de cuerpo. Los puntos de «en producción» y de disponibilidad usan el verde de estado.
+
+### Tipografía
+
+- **Schibsted Grotesk** (variable, `swap`) en titulares, a 600–650 con tracking negativo; **Inter** en el resto. Sin cursivas.
+- Escala: `title-h1` `clamp(2.25rem, 1.2rem + 3.6vw, 3.9rem)` / 1,02 / −0,035 em; `title-h2` `clamp(2rem, 1.35rem + 2.5vw, 3.25rem)`; `title-h3` hasta 2,15rem; `title-h4` hasta 1,65rem; `title-h5` 1,25rem; `title-h6` 1,0625rem.
+- El titular del hero son tres frases, una por línea (cada parte del `Headline` empieza línea).
+
+### Imágenes
+
+- Solo material real: capturas de las páginas públicas de Transolido, Other Twist e Ilnami (`public/images/work/`, 1440×900, tomadas de las webs en producción). El retrato del dueño no aparece en la web comercial ni en sus datos estructurados; solo en `/cv`. Cada archivo lleva su procedencia embebida (`impeccable embed-prompt --scan public/images`: 0 pendientes). Mapa en `content/site/images.ts`.
+- Las capturas van en un marco de navegador mínimo con el dominio real; el caso del banco, sin capturas por confidencialidad, muestra su arquitectura en miniatura en el mismo hueco.
+
+### Orden de la home
+
+Hero personal (titular, presentación en primera persona, CTA, órbita de herramientas y «En producción» con los tres productos) → «He trabajado en» → Tus sistemas, por fin conectados (mapa) → Cómo trabajo (flujo Especificación → Código → Tests → **Revisión** → Producción y cuatro principios) → Cuatro sistemas en producción (tarjetas con captura) → Cómo podemos trabajar juntos (tres servicios con «Ideal para / Te llevas / Formato» y los tres pasos para empezar) → Hola, soy Jefferson (nota en primera persona y datos) → Dónde he trabajado → cierre verde con el brief.
+
+### Superficies y estado
+
+- **Anillo de 1 px en lugar de borde** en tarjetas (`.site-card`), etiquetas, insignias y botones secundarios; separadores con `border-stroke-soft-200`.
+- **Radios:** `rounded-6` etiquetas, `rounded-10` botones, `rounded-16` tarjetas pequeñas, `rounded-20` tarjetas, 24 px retrato y paneles.
+- Estado siempre con **icono + texto**.
+
+### Movimiento (CSS)
+
+1. **Hero:** el titular entra por palabras con máscara, una vez por sesión; el resto aparece en secuencia corta. A la derecha, la **órbita de herramientas** (`components/site/tool-orbit.tsx`): «Tu sistema» en el centro y 24 logos reales de su stack en tres anillos (backend y datos; web, móvil y contenedores; IA, nube y CI) que giran despacio en sentidos alternos, con los logos siempre derechos (el anillo gira y cada ficha contragira) y un punto verde que recorre cada anillo. La primera visita de la sesión, las fichas salen del centro hacia su anillo; el centro late cada 3 s; al pasar el ratón la órbita se detiene y la ficha muestra su nombre. Solo `rotate`, `scale` y `opacity` en el compositor; con movimiento reducido queda quieta. Los logos salen de simple-icons mediante `scripts/generate-site-tools.mjs` → `components/site/tool-rings.generated.ts` (los colores de marca casi negros usan el color del texto para que se vean en oscuro).
+2. **Tus sistemas, conectados (desde 64 rem):** mapa fijo al lado de los pasos que se monta con el scroll (`view-timeline` por paso, `timeline-scope`). Por debajo de 64 rem, mapa completo y estático encima de los pasos.
+3. **Casos:** la captura se acerca un 2 % al pasar el ratón; el paquete recorre la arquitectura del caso del banco.
+4. **Cómo empezamos:** la línea recorre los pasos; el raíl de experiencia se dibuja con el scroll.
+
+`prefers-reduced-motion` lo desactiva todo; sin soporte de scroll-driven animations todo queda en su estado final; al imprimir todo es estático. Nada oculta contenido sin JavaScript. Sin inclinaciones 3D ni cartas que giran.
+
+### Reglas de maquetación
+
+- Mobile-first en 390 px; hero a dos columnas desde 64 rem; botón de contacto en la cabecera desde `wide` (1200 px). Controles de 44 px en móvil.
+- **Un solo CTA** («Let's discuss your project» / «Hablemos de tu proyecto»), siempre hacia `/contact`. Allí el **brief de proyecto** es el camino principal; el email directo es secundario (botón con contorno). Sin servidor ni datos guardados.
+- Migas de pan con la página actual al final (`aria-current="page"`).
+- Diagramas en SVG inline, máximo 6 cajas (lo comprueba `content/site/content.test.ts`).
+- Imagen OG de la web en los neutros fríos con el verde claro como marca, con Inter.
+
+## `/cv`: sistema ámbar
+
+> Lo que sigue aplica solo a `/cv` y a sus imágenes OG.
+
+### Revisión de noviembre de 2026
+
+- **Color.** Texto `#141210` / `#F2EFEA`. Acento único ámbar quemado `#B8621B` (claro) / `#E9A760` (oscuro), solo en marcas y el foco; nunca en texto pequeño. Fondo oscuro `#0D0C0B`.
+- **Tipografía.** Fraunces 500 (estática, `swap`, precargada) para titulares; Geist para el resto. Etiquetas en versalitas con tracking 0,14–0,18 em en `text-muted-foreground`.
+- La web comercial no comparte tokens, color ni fuentes con `/cv`: usa Underlay, el verde pino y Schibsted Grotesk (arriba).
+
 Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar estos tokens y pasar las verificaciones del final. Género: **modern-minimal** (escuela Apple / Notion / Vercel / Linear), con un único acento terracota y la mono reservada a datos.
 
-## Tipografía
+### Tipografía
 
 | Capa | Fuente | Uso |
 |---|---|---|
@@ -15,13 +93,13 @@ Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar es
 - **Suelo de 11px** para cualquier texto funcional; la medida de lectura no pasa de ~75 caracteres.
 - **Sin kickers ni numeración de secciones** ("01 — Sobre mí"): el título carga la sección. El cuadrado de marca del título cuelga en el margen desde `sm` (`-ml-[1.125rem]`) para que el texto del título comparta borde izquierdo con el cuerpo; en móvil va en línea. Retirados en octubre de 2026 tras la auditoría de Impeccable, junto con el texto "scramble" del hero y la franja marquee infinita. La tira de métricas (6+ años · 3 sectores · 5 empresas) se retiró en noviembre de 2026: los números ya se cuentan con contexto en el párrafo de «Quién soy».
 
-## Color
+### Color
 
 - Neutros **cálidos** en oklch en `app/globals.css` (`--background`, `--foreground`, `--muted-foreground`, `--border`…): página blanca (`oklch(1 0 0)`, no crema: el detector de Impeccable marca el crema como fondo reflejo) con tinta (`oklch(0.21 0.018 55)`), superficies (`--card`, `--muted`, `--secondary`, `--accent`) y bordes cálidos en claro; carbón cálido (`oklch(0.17 0.01 60)`) en oscuro. Ningún neutro de superficie es gris puro: todos llevan un poco del matiz terracota. `--muted-foreground` claro es `0.47` (5,9:1 sobre `--muted`, 7:1 sobre fondo); oscuro `0.72` (6,1:1 sobre `--muted`). Nada de opacidades `/60`–`/80` sobre texto.
 - **Acento único: `--brand` (terracota)** — claro `oklch(0.55 0.12 55)`, oscuro `oklch(0.74 0.115 60)`. Solo como marca: el cuadrado junto a cada título de sección y a la marca de la barra, ping de estado, barra de progreso, selección de texto y caret. Nunca en bloques grandes ni texto de cuerpo.
 - Prohibido introducir un segundo acento o hex sueltos: todo color nuevo se declara como token.
 
-## Superficies
+### Superficies
 
 - **Radio: ninguno.** `--radius` es `0px` y toda la escala (`rounded-sm`…`rounded-4xl`) resuelve al mismo canto recto, como el cuadrado de la marca. Solo lleva curva lo que es redondo de verdad (puntos de estado, avatar, píldora de navegación, lanzador del chat) y usa `rounded-full`. No se declara ningún radio en componentes.
 - Marcos: borde **sólido** `border-border`, sin radio. Los bordes discontinuos están retirados — eran la huella de la plantilla original.
@@ -29,7 +107,7 @@ Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar es
 - Nav: **píldora flotante** (`rounded-full`, `bg-background/85`, blur, `shadow-sm`) separada del borde superior; progreso de scroll como línea `h-0.5 bg-brand` fija arriba.
 - Chat del asistente: panel recto con `shadow-lg`, lanzador `rounded-full`. Diálogos y terminal rectos.
 
-## Movimiento
+### Movimiento
 
 - Curva única: `cubic-bezier(0.16, 1, 0.3, 1)`, ~420–550ms. Entradas con `opacity + translateY` pequeñas. Sin rebotes ni overshoot.
 - Un momento propio: la credencial 3D. El resto son entradas sobrias de sección y feedback de interacción, todo en CSS.
@@ -42,4 +120,4 @@ Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar es
 3. **Cero scroll horizontal** en 320 / 375 / 414 / 768 / 1280 / 1440 px, ES y EN (12 combinaciones), recorriendo la página completa.
 4. Revisión visual de capturas: hero móvil claro, contacto móvil oscuro, hero escritorio oscuro, proyectos escritorio.
 5. Móviles grandes (412–480px): títulos sin viudas.
-6. El email no aparece literal en `.next/static` (`grep -r "jefmonjor@" .next/static` vacío).
+6. Los emails no aparecen literales en `.next/static` (`grep -r "jefmonjor" .next/static` sin direcciones). La web usa hola@jefmonjor.dev (`siteContactEmail()`); `/cv` mantiene la suya.

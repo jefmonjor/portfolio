@@ -18,40 +18,41 @@ import {
 import { sanitizeMessages } from "@/lib/assistant/messages"
 import {
   looksLikeJobOffer,
+  neutralizeOfferDelimiters,
   renderOfferAnalysis,
   verifyOfferAnalysis,
+  wrapJobOffer,
 } from "@/lib/assistant/offer"
 import { checkLimit, intEnv, requestIp } from "@/lib/assistant/rate-limit"
+import { signatureFor } from "@/lib/assistant/signature"
 import { contactEmail } from "@/lib/email"
+import { readGuardedJson } from "@/server/http/guarded-json"
 import {
   assistantRequestSchema,
   assistantSuccessSchema,
   offerAnalysisModelOutputSchema,
-  type ChatMessage,
+  type AssistantAction,
+  type ModelMessage,
 } from "@/types/assistant"
-import { ASSISTANT_MESSAGE_INPUT_CHARS } from "@/types/limits"
+import {
+  ASSISTANT_BODY_MAX_BYTES,
+  ASSISTANT_MESSAGE_INPUT_CHARS,
+} from "@/types/limits"
 
 export const runtime = "nodejs"
 
-// Cost controls — every knob is overridable per environment without a deploy.
 const MODEL = process.env.ASSISTANT_MODEL ?? "gpt-5-mini"
 const MAX_OUTPUT_TOKENS = intEnv("ASSISTANT_MAX_OUTPUT_TOKENS", 500)
 const MAX_TURNS = intEnv("ASSISTANT_MAX_TURNS", 8)
 const MAX_CHARS = intEnv("ASSISTANT_MAX_CHARS", 800)
-// The latest message may be a full job offer; cutting it at MAX_CHARS used to
-// compare the profile against half a posting.
-const MAX_LAST_CHARS = Math.min(
+const MAX_PASTED_OFFER_CHARS = Math.min(
   ASSISTANT_MESSAGE_INPUT_CHARS,
   intEnv("ASSISTANT_MAX_OFFER_CHARS", ASSISTANT_MESSAGE_INPUT_CHARS)
 )
-// The structured comparison spends part of its budget reasoning about which
-// quote backs which requirement.
 const OFFER_MAX_OUTPUT_TOKENS = intEnv(
   "ASSISTANT_OFFER_MAX_OUTPUT_TOKENS",
   1600
 )
-// gpt-5 models reason before answering by default, which adds several seconds
-// of latency. A closed-dossier Q&A bot doesn't need it.
 const REASONING = enumEnv(
   "ASSISTANT_REASONING",
   ["minimal", "low", "medium", "high"] as const,
@@ -63,6 +64,29 @@ const VERBOSITY = enumEnv(
   "low"
 )
 
+const CHAT_ANSWER_DEADLINE_MS = 20_000
+const MAX_PAID_RETRIES = 1
+
+function tokensSpent(
+  response: { usage?: { total_tokens?: number } | null },
+  chargedWhenUnreported: number
+): number {
+  return response.usage?.total_tokens ?? chargedWhenUnreported
+}
+
+function reply(
+  text: string,
+  actions?: ReadonlyArray<AssistantAction>
+): Response {
+  return NextResponse.json(
+    assistantSuccessSchema.parse({
+      reply: text,
+      ...signatureFor(text),
+      ...(actions ? { actions } : {}),
+    })
+  )
+}
+
 function enumEnv<T extends string>(
   name: string,
   allowed: readonly T[],
@@ -73,14 +97,10 @@ function enumEnv<T extends string>(
 }
 
 export async function POST(request: Request) {
-  let input: unknown
-  try {
-    input = await request.json()
-  } catch {
-    return NextResponse.json({ error: "bad_request" }, { status: 400 })
-  }
+  const body = await readGuardedJson(request, ASSISTANT_BODY_MAX_BYTES)
+  if (!body.ok) return body.response
 
-  const parsed = assistantRequestSchema.safeParse(input)
+  const parsed = assistantRequestSchema.safeParse(body.value)
   if (!parsed.success) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
   }
@@ -89,7 +109,7 @@ export async function POST(request: Request) {
     parsed.data.messages,
     MAX_TURNS,
     MAX_CHARS,
-    MAX_LAST_CHARS
+    MAX_PASTED_OFFER_CHARS
   )
   if (!messages) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 })
@@ -98,54 +118,35 @@ export async function POST(request: Request) {
   const locale = parsed.data.locale
   const latest = messages.at(-1)?.content ?? ""
 
-  // Handing out the CV needs no model and no key: the variants are fixed and
-  // the files come from the CV routes, so the reply is written here and the
-  // buttons call those routes from the chat.
   if (!looksLikeJobOffer(latest) && asksForCv(latest)) {
-    const offer = lastOffer(messages)
-    return NextResponse.json(
-      assistantSuccessSchema.parse({
-        reply: cvReply(locale, offer !== null),
-        actions: cvActions(offer),
-      })
-    )
+    const offer = lastOffer(parsed.data.messages)
+    return reply(cvReply(locale, offer !== null), cvActions(offer))
   }
 
   if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json({ error: "unconfigured" }, { status: 503 })
   }
 
-  if (checkLimit(requestIp(request)) !== "ok") {
+  if ((await checkLimit(requestIp(request))) !== "ok") {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 })
   }
 
-  const client = new OpenAI()
+  const client = new OpenAI({
+    timeout: CHAT_ANSWER_DEADLINE_MS,
+    maxRetries: MAX_PAID_RETRIES,
+  })
 
   try {
     if (looksLikeJobOffer(latest)) {
-      const reply = await compareOffer(client, latest, locale).catch(
-        (error: unknown) => {
-          if (error instanceof OpenAI.RateLimitError) throw error
-          // The structured pass is a safeguard, not a dependency: if it
-          // fails, the question still gets the normal, rule-bound answer.
-          console.error("[assistant] offer comparison failed", {
-            message: error instanceof Error ? error.message : String(error),
-          })
-          return null
-        }
+      const comparison = await compareOffer(client, latest, locale).catch(
+        answerAsChatInstead
       )
-      if (reply) {
-        // The comparison is the moment a tailored CV makes sense: the offer
-        // goes back with the reply so one click renders it.
-        return NextResponse.json(
-          assistantSuccessSchema.parse({
-            reply: `${reply}\n\n${offerCvHint(locale)}`,
-            actions: cvActions(latest),
-          })
+      if (comparison) {
+        return reply(
+          `${comparison}\n\n${offerCvHint(locale)}`,
+          cvActions(latest)
         )
       }
-      // Not an offer after all, or nothing survived verification: answer it
-      // as a normal question, under the same rules.
     }
 
     const response = await client.responses.create({
@@ -157,15 +158,16 @@ export async function POST(request: Request) {
       text: { verbosity: VERBOSITY },
       store: false,
     })
+    await checkLimit.recordUsage(tokensSpent(response, MAX_OUTPUT_TOKENS))
 
     if (response.status !== "completed") {
       return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
-    const reply = response.output_text?.trim()
-    if (!reply) {
+    const text = response.output_text?.trim()
+    if (!text) {
       return NextResponse.json({ error: "upstream" }, { status: 502 })
     }
-    return NextResponse.json(assistantSuccessSchema.parse({ reply }))
+    return reply(text)
   } catch (error) {
     if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json({ error: "rate_limited" }, { status: 429 })
@@ -174,17 +176,26 @@ export async function POST(request: Request) {
   }
 }
 
+function answerAsChatInstead(error: unknown): null {
+  if (error instanceof OpenAI.RateLimitError) throw error
+  console.error("[assistant] offer comparison failed", {
+    message: error instanceof Error ? error.message : String(error),
+  })
+  return null
+}
+
 async function compareOffer(
   client: OpenAI,
   offer: string,
   locale: Locale
 ): Promise<string | null> {
+  const offerAsTheModelSeesIt = neutralizeOfferDelimiters(offer)
   const response = await client.responses.parse({
     model: MODEL,
     instructions: buildOfferAnalysisPrompt(locale),
     input: [
-      { role: "user", content: `<job_offer>\n${offer}\n</job_offer>` },
-    ] satisfies ChatMessage[],
+      { role: "user", content: wrapJobOffer(offerAsTheModelSeesIt) },
+    ] satisfies ModelMessage[],
     max_output_tokens: OFFER_MAX_OUTPUT_TOKENS,
     reasoning: { effort: REASONING },
     text: {
@@ -193,11 +204,12 @@ async function compareOffer(
     },
     store: false,
   })
+  await checkLimit.recordUsage(tokensSpent(response, OFFER_MAX_OUTPUT_TOKENS))
   if (response.status !== "completed" || !response.output_parsed) return null
 
   const verified = verifyOfferAnalysis(
     response.output_parsed,
-    offer,
+    offerAsTheModelSeesIt,
     buildDossier(locale)
   )
   return verified ? renderOfferAnalysis(verified, locale, contactEmail()) : null

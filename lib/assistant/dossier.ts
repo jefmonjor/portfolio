@@ -6,15 +6,37 @@ import type { Locale } from "@/i18n/routing"
 import { contactEmail } from "@/lib/email"
 import { profile } from "@/lib/profile"
 
-// The whole anti-hallucination strategy: a small, closed dossier sent in full
-// on every turn, plus strict rules. No retrieval, nothing to guess.
+const MESSAGES: Record<Locale, typeof en> = { en, es, ca }
+
+const PRESENT: Record<Locale, string> = {
+  en: "present",
+  es: "actualidad",
+  ca: "actualitat",
+}
+
+const SERVICES_LABEL: Record<Locale, string> = {
+  en: "Services: ",
+  es: "Servicios: ",
+  ca: "Serveis: ",
+}
+
+const AVAILABILITY: Record<Locale, (label: string, detail: string) => string> =
+  {
+    en: (label, detail) =>
+      `AVAILABILITY: ${label}. ${detail}. Based in Andorra la Vella.`,
+    es: (label, detail) =>
+      `DISPONIBILIDAD: ${label}. ${detail}. Reside en Andorra la Vella.`,
+    ca: (label, detail) =>
+      `DISPONIBILITAT: ${label}. ${detail}. Resideix a Andorra la Vella.`,
+  }
+
 export function buildDossier(locale: Locale): string {
-  const m = locale === "es" ? es : locale === "ca" ? ca : en
+  const m = MESSAGES[locale]
 
   const experience = Object.entries(m.experience.entries)
     .map(([, e]) => {
       const highlights = e.highlights.map((h) => `  - ${h}`).join("\n")
-      return `• ${e.role} — ${e.location} (${e.start} → ${e.end === "present" ? (locale === "es" ? "actualidad" : locale === "ca" ? "actualitat" : "present") : e.end})\n${e.summary}\n${highlights}`
+      return `• ${e.role} — ${e.location} (${e.start} → ${e.end === "present" ? PRESENT[locale] : e.end})\n${e.summary}\n${highlights}`
     })
     .join("\n\n")
 
@@ -46,15 +68,10 @@ export function buildDossier(locale: Locale): string {
     m.deploy.platforms.vps.name + ": " + m.deploy.platforms.vps.detail,
     m.deploy.platforms.vercel.name + ": " + m.deploy.platforms.vercel.detail,
     m.deploy.platforms.gcloud.name + ": " + m.deploy.platforms.gcloud.detail,
-    (locale === "es" ? "Servicios: " : "Services: ") + m.deploy.services,
+    SERVICES_LABEL[locale] + m.deploy.services,
   ].join("\n")
 
-  const availability =
-    locale === "es"
-      ? `DISPONIBILIDAD: ${m.status.label}. ${m.status.detail}. Reside en Andorra la Vella.`
-      : locale === "ca"
-        ? `DISPONIBILITAT: ${m.status.label}. ${m.status.detail}. Resideix a Andorra la Vella.`
-        : `AVAILABILITY: ${m.status.label}. ${m.status.detail}. Based in Andorra la Vella.`
+  const availability = AVAILABILITY[locale](m.status.label, m.status.detail)
 
   const website =
     locale === "ca"

@@ -2,9 +2,6 @@ import type { MetadataRoute } from "next"
 
 import { siteUrl } from "@/lib/profile"
 
-// Named so the intent is explicit, not inherited from "*": this profile wants
-// to be read and cited by AI search engines, assistants and sourcing agents.
-// Each one gets the same rule as everyone else.
 export const aiCrawlers = [
   "GPTBot",
   "OAI-SearchBot",

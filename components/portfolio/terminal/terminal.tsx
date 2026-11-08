@@ -3,6 +3,8 @@
 import * as React from "react"
 import { Dialog as DialogPrimitive } from "radix-ui"
 import { useTheme } from "next-themes"
+
+import { useThemeToggle } from "@/hooks/use-theme-toggle"
 import { useLocale, useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Cancel01Icon } from "@hugeicons/core-free-icons"
@@ -13,6 +15,7 @@ import {
   TERMINAL_EVENT,
 } from "@/components/portfolio/terminal/events"
 import { Button } from "@/components/ui/button"
+import { DialogContentReturningFocus } from "@/components/ui/dialog"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { resolveLocale } from "@/i18n/routing"
 import {
@@ -22,11 +25,11 @@ import {
 } from "@/lib/cv-download"
 import { parseString, parseStringArray } from "@/lib/i18n-values"
 import { contactEmail } from "@/lib/email"
+import { isTailorableOffer } from "@/lib/visible-text"
 import { profile, profileTimeZone } from "@/lib/profile"
 import {
   completions,
   execute,
-  TERMINAL_OFFER_MIN_CHARS,
   type TerminalData,
   type TerminalLineKind,
   type TerminalOutLine,
@@ -55,8 +58,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
   const [value, setValue] = React.useState("")
   const [history, setHistory] = React.useState<ReadonlyArray<string>>([])
   const [historyIndex, setHistoryIndex] = React.useState<number | null>(null)
-  // `cv tailored` without an offer: the next line typed is the offer.
-  const [offerMode, setOfferMode] = React.useState(false)
+  const [nextLineIsOffer, setNextLineIsOffer] = React.useState(false)
 
   const lineId = React.useRef(0)
   const scrollRef = React.useRef<HTMLDivElement>(null)
@@ -71,6 +73,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
   const tSkills = useTranslations("skills.groups")
 
   const { setTheme } = useTheme()
+  const toggleTheme = useThemeToggle()
   const { setVariant } = useBackground()
   const router = useRouter()
   const pathname = usePathname()
@@ -124,9 +127,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
   }, [locale, tHero, tAbout, tProjects, tExp, tSkills, tCommon])
 
   const strings = React.useMemo<TerminalStrings>(() => {
-    // Read via `t.raw` so ICU MessageFormat never parses the command strings:
-    // tokens like `<project>` or `cat <a|b>` would otherwise be read as tags.
-    // These messages use our own `%s` placeholder, not ICU arguments.
+    // t.raw skips ICU parsing, which would read `<project>` as a tag; these use `%s`.
     const raw = (key: string) => parseString(t.raw(key))
     return {
       notFound: raw("notFound"),
@@ -181,8 +182,6 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
       setOpen(true)
     }
     function onKey(event: KeyboardEvent) {
-      // Form fields keep their backticks; the terminal input handles the same
-      // shortcut locally while the dialog is focused.
       if (!isTerminalShortcut(event)) return
       event.preventDefault()
       setOpen((prev) => !prev)
@@ -205,8 +204,6 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
     if (node) node.scrollTop = node.scrollHeight
   }, [lines, open])
 
-  // The CV commands call the same routes as the download button; the
-  // terminal only reports what came back.
   function runCv(task: () => Promise<CvDownloadResult>): void {
     void task()
       .then((result) => {
@@ -244,20 +241,16 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
           break
         case "cv-tailor": {
           const offer = effect.offer
-          if (offer === null) setOfferMode(true)
+          if (offer === null) setNextLineIsOffer(true)
           else runCv(() => downloadTailoredCv(offer, locale))
           break
         }
         case "theme":
-          setTheme(
-            effect.value ??
-              (document.documentElement.classList.contains("dark")
-                ? "light"
-                : "dark")
-          )
+          if (effect.value) setTheme(effect.value)
+          else toggleTheme()
           break
         case "lang":
-          router.replace(`${pathname}${window.location.hash}`, {
+          router.push(`${pathname}${window.location.hash}`, {
             locale: effect.value,
           })
           break
@@ -294,21 +287,21 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
     setValue("")
     const word = offer.toLowerCase()
     if (!offer || word === "cancel" || word === "exit") {
-      setOfferMode(false)
+      setNextLineIsOffer(false)
       return
     }
-    if (offer.length < TERMINAL_OFFER_MIN_CHARS) {
+    if (!isTailorableOffer(offer)) {
       pushLines([{ kind: "err", text: strings.cvOfferTooShort }])
       return
     }
-    setOfferMode(false)
+    setNextLineIsOffer(false)
     pushLines([{ kind: "muted", text: strings.cvPreparing }])
     runCv(() => downloadTailoredCv(offer, locale))
   }
 
   function submit() {
     const raw = value
-    if (offerMode) {
+    if (nextLineIsOffer) {
       submitOffer(raw)
       return
     }
@@ -380,7 +373,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
     <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/30 duration-100 supports-backdrop-filter:backdrop-blur-xs data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0" />
-        <DialogPrimitive.Content
+        <DialogContentReturningFocus
           onOpenAutoFocus={(event) => {
             event.preventDefault()
             inputRef.current?.focus()
@@ -439,7 +432,7 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
 
           <div className="flex items-center gap-2 border-t border-border px-3 py-2.5 font-mono text-xs">
             <span aria-hidden className="text-muted-foreground select-none">
-              {offerMode ? ">" : "$"}
+              {nextLineIsOffer ? ">" : "$"}
             </span>
             <input
               ref={inputRef}
@@ -451,13 +444,15 @@ function Terminal({ defaultOpen = false }: TerminalProps) {
               autoCapitalize="off"
               aria-label={t("inputLabel")}
               className="flex-1 bg-transparent text-foreground caret-foreground outline-none placeholder:text-muted-foreground/60"
-              placeholder={offerMode ? t("offerPlaceholder") : t("placeholder")}
+              placeholder={
+                nextLineIsOffer ? t("offerPlaceholder") : t("placeholder")
+              }
             />
             <span className="hidden font-mono text-[11px] tracking-widest text-muted-foreground uppercase sm:inline">
               {profileTimeZone.split("/").pop()}
             </span>
           </div>
-        </DialogPrimitive.Content>
+        </DialogContentReturningFocus>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
   )

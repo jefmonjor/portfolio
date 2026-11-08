@@ -2,6 +2,8 @@
 
 import * as React from "react"
 import { useTheme } from "next-themes"
+
+import { useThemeToggle } from "@/hooks/use-theme-toggle"
 import { useLocale, useTranslations } from "next-intl"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
@@ -65,17 +67,6 @@ const SECTIONS: ReadonlyArray<SectionId> = [
   "contact",
 ]
 
-function isEditableTarget(target: EventTarget | null): boolean {
-  if (!(target instanceof HTMLElement)) return false
-  const tag = target.tagName
-  return (
-    tag === "INPUT" ||
-    tag === "TEXTAREA" ||
-    tag === "SELECT" ||
-    target.isContentEditable
-  )
-}
-
 function withCurrentHash(pathname: string): string {
   if (typeof window === "undefined") return pathname
   return `${pathname}${window.location.hash}`
@@ -97,7 +88,8 @@ function CommandPalette() {
   const t = useTranslations("commandPalette")
   const tNav = useTranslations("nav")
 
-  const { resolvedTheme, setTheme } = useTheme()
+  const { resolvedTheme } = useTheme()
+  const flipTheme = useThemeToggle()
   const { variant: backgroundVariant, setVariant: setBackgroundVariant } =
     useBackground()
   const router = useRouter()
@@ -109,9 +101,6 @@ function CommandPalette() {
       if (event.key.toLowerCase() !== "k") return
       if (!(event.metaKey || event.ctrlKey)) return
       if (event.altKey) return
-      if (isEditableTarget(event.target)) {
-        // Still allow palette toggle from inputs; this overrides default.
-      }
       event.preventDefault()
       setOpen((prev) => !prev)
     }
@@ -134,17 +123,12 @@ function CommandPalette() {
   }
 
   function toggleTheme() {
-    runAndClose(() => {
-      const current =
-        resolvedTheme ??
-        (document.documentElement.classList.contains("dark") ? "dark" : "light")
-      setTheme(current === "dark" ? "light" : "dark")
-    })
+    runAndClose(flipTheme)
   }
 
   function switchLocale(next: Locale) {
     runAndClose(() => {
-      router.replace(withCurrentHash(pathname), { locale: next })
+      router.push(withCurrentHash(pathname), { locale: next })
     })
   }
 

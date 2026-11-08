@@ -25,10 +25,7 @@ describe("CV tailoring evidence", () => {
     expect(result.projectIds).toEqual(["transolido"])
   })
 
-  // The model contract can no longer bound string lengths, so anything the
-  // renderer contract would reject has to die here — where it costs a worse
-  // selection instead of a 502.
-  it("drops selections the renderer contract would reject", () => {
+  it("drops what the renderer would reject: a worse selection, not a 502", () => {
     const result = normalizeTailorModelOutput(
       { keywords: ["K".repeat(500), "Java 21"], projectIds: ["transolido"] },
       "en"
@@ -41,7 +38,6 @@ describe("CV tailoring evidence", () => {
     ).toBe(true)
   })
 
-  // A CV written for one offer must never carry less than the technical one.
   it("orders the selection first without dropping anything", () => {
     const projects = ["transolido", "othertwist", "corte1d", "contactqr"]
     const ordered = prioritizeItems(projects, ["corte1d", "contactqr"])
