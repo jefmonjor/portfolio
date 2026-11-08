@@ -54,7 +54,7 @@ export const en: SiteContent = {
     subtitle:
       "I'm Jefferson, a senior software engineer in the architecture and solutions team of a private bank. I design and build backends, integrations and applied AI for fintechs, startups and companies that work with banking or payments.",
     availability: {
-      status: "Available for new projects from January 2027",
+      status: "Available for new projects.",
     },
     direct:
       "You deal directly with the person who builds it, with no intermediaries.",

@@ -56,7 +56,7 @@ export const es: SiteContent = {
     subtitle:
       "Soy Jefferson, ingeniero de software senior en el equipo de arquitectura y soluciones de un banco privado. Diseño y desarrollo backends, integraciones e IA aplicada para fintechs, startups y empresas que trabajan con banca o pagos.",
     availability: {
-      status: "Disponible para nuevos proyectos a partir de enero de 2027",
+      status: "Disponible para nuevos proyectos.",
     },
     direct: "Tratas directamente con quien lo desarrolla, sin intermediarios.",
     seeWork: "Ver mi trabajo",
