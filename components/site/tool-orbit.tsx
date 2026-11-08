@@ -1,5 +1,3 @@
-import type { CSSProperties } from "react"
-
 import { toolRings } from "@/components/site/tool-rings.generated"
 
 type ToolOrbitProps = {
@@ -18,20 +16,16 @@ function ToolOrbit({ label, center }: ToolOrbitProps) {
         <ul
           key={ringIndex}
           className="orbit-ring"
-          style={
-            { "--ring": ringIndex, "--count": ring.length } as CSSProperties
-          }
+          style={{ "--ring": ringIndex, "--count": ring.length }}
         >
           {ring.map((tool, index) => (
             <li
               key={tool.title}
               className="orbit-tool"
-              style={
-                {
-                  "--index": index,
-                  "--brand": tool.ink ? undefined : tool.hex,
-                } as CSSProperties
-              }
+              style={{
+                "--index": index,
+                "--brand": tool.ink ? undefined : tool.hex,
+              }}
             >
               <span className="orbit-tile">
                 <svg viewBox="0 0 24 24" aria-hidden>
