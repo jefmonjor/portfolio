@@ -27,21 +27,28 @@ function ApproachSection({ content }: ApproachSectionProps) {
           </li>
         ))}
       </ol>
-      <ol className="mt-14 grid gap-x-12 gap-y-10 md:grid-cols-2">
-        {approach.pillars.map((pillar) => (
+      <h3 className="mt-16 font-heading text-title-h4 text-text-strong-950">
+        {approach.principlesTitle}
+      </h3>
+      <ul className="mt-8 grid gap-x-12 gap-y-10 md:grid-cols-2">
+        {approach.principles.map((principle, index) => (
           <li
-            key={pillar.title}
-            className="border-t border-stroke-soft-200 pt-6"
+            key={principle.title}
+            className={`border-t border-stroke-soft-200 pt-6 ${index === 0 ? "md:col-span-2" : ""}`}
           >
-            <h3 className="font-heading text-title-h5 text-text-strong-950">
-              {pillar.title}
-            </h3>
-            <p className="mt-2 text-paragraph-md text-text-sub-600">
-              {pillar.body}
+            <h4
+              className={`font-heading text-text-strong-950 ${index === 0 ? "text-title-h4" : "text-title-h5"}`}
+            >
+              {principle.title}
+            </h4>
+            <p
+              className={`mt-2 text-text-sub-600 ${index === 0 ? "max-w-[46rem] text-paragraph-lg" : "text-paragraph-md"}`}
+            >
+              {principle.body}
             </p>
           </li>
         ))}
-      </ol>
+      </ul>
     </SiteSection>
   )
 }

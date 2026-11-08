@@ -215,7 +215,9 @@ export type SiteContent = {
       PipelineStep,
       PipelineStep,
     ]
-    pillars: readonly [ConnectStep, ConnectStep, ConnectStep, ConnectStep]
+    principlesTitle: string
+    /** The first principle leads the list and spans the full width. */
+    principles: readonly [ConnectStep, ...ConnectStep[]]
   }
   connect: {
     intro: string
