@@ -185,7 +185,7 @@ export type SiteContent = {
     availability: { status: string }
     direct: string
     seeWork: string
-    based: string
+    tools: { label: string; center: string }
     live: {
       title: string
       items: readonly [LiveProduct, LiveProduct, LiveProduct]

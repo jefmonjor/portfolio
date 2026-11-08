@@ -7,7 +7,7 @@ Dos productos y dos implementaciones:
 
 El layout raíz no carga fuentes. La web las carga en `app/[locale]/(site)/layout.tsx` (precargadas) y la 404 en su propio archivo sin precarga, porque esa frontera envuelve también `/cv`. `/cv` declara Fraunces, Geist y Geist Mono como variables de `:root` (`components/portfolio/cv-fonts.tsx`).
 
-La dirección de la home está en `PRODUCT.md` y en `.impeccable/surfaces/app-locale-site-page-tsx.md`: una web personal de consultor senior (referencias fijadas por el dueño: happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me), en primera persona, con su retrato y capturas reales de sus productos. Nada de fotos de stock ni de los looks típicos de webs generadas con IA (fondo crema, serif con cursiva, terracota; héroe oscuro con anotaciones brillantes).
+La dirección de la home está en `PRODUCT.md` y en `.impeccable/surfaces/app-locale-site-page-tsx.md`: una web personal de consultor senior (referencias fijadas por el dueño: happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me), en primera persona, con una órbita animada de sus herramientas reales y capturas de sus productos. Su foto solo vive en `/cv` (decisión del dueño). Nada de fotos de stock ni de los looks típicos de webs generadas con IA (fondo crema, serif con cursiva, terracota; héroe oscuro con anotaciones brillantes).
 
 ## Web comercial: Underlay con tema Pino
 
@@ -38,12 +38,12 @@ El botón principal (cabecera, hero, servicios), la etapa «Revisión · Decido 
 
 ### Imágenes
 
-- Solo material real: el retrato del dueño (`public/images/site/portrait.jpg`, en blanco y negro) y capturas de las páginas públicas de Transolido, Other Twist e Ilnami (`public/images/work/`, 1440×900, tomadas de las webs en producción). Cada archivo lleva su procedencia embebida (`impeccable embed-prompt --scan public/images`: 0 pendientes). Mapa en `content/site/images.ts`.
+- Solo material real: capturas de las páginas públicas de Transolido, Other Twist e Ilnami (`public/images/work/`, 1440×900, tomadas de las webs en producción). El retrato del dueño no aparece en la web comercial ni en sus datos estructurados; solo en `/cv`. Cada archivo lleva su procedencia embebida (`impeccable embed-prompt --scan public/images`: 0 pendientes). Mapa en `content/site/images.ts`.
 - Las capturas van en un marco de navegador mínimo con el dominio real; el caso del banco, sin capturas por confidencialidad, muestra su arquitectura en miniatura en el mismo hueco.
 
 ### Orden de la home
 
-Hero personal (titular, presentación en primera persona, CTA, retrato y «En producción» con los tres productos) → «He trabajado en» → Tus sistemas, por fin conectados (mapa) → Cómo trabajo (flujo Especificación → Código → Tests → **Revisión** → Producción y cuatro principios) → Cuatro sistemas en producción (tarjetas con captura) → Cómo podemos trabajar juntos (tres servicios con «Ideal para / Te llevas / Formato» y los tres pasos para empezar) → Hola, soy Jefferson (nota en primera persona y datos) → Dónde he trabajado → cierre verde con el brief.
+Hero personal (titular, presentación en primera persona, CTA, órbita de herramientas y «En producción» con los tres productos) → «He trabajado en» → Tus sistemas, por fin conectados (mapa) → Cómo trabajo (flujo Especificación → Código → Tests → **Revisión** → Producción y cuatro principios) → Cuatro sistemas en producción (tarjetas con captura) → Cómo podemos trabajar juntos (tres servicios con «Ideal para / Te llevas / Formato» y los tres pasos para empezar) → Hola, soy Jefferson (nota en primera persona y datos) → Dónde he trabajado → cierre verde con el brief.
 
 ### Superficies y estado
 
@@ -53,7 +53,7 @@ Hero personal (titular, presentación en primera persona, CTA, retrato y «En pr
 
 ### Movimiento (CSS)
 
-1. **Hero:** el titular entra por palabras con máscara, una vez por sesión; el resto aparece en secuencia corta.
+1. **Hero:** el titular entra por palabras con máscara, una vez por sesión; el resto aparece en secuencia corta. A la derecha, la **órbita de herramientas** (`components/site/tool-orbit.tsx`): «Tu sistema» en el centro y 24 logos reales de su stack en tres anillos (backend y datos; web, móvil y contenedores; IA, nube y CI) que giran despacio en sentidos alternos, con los logos siempre derechos (el anillo gira y cada ficha contragira) y un punto verde que recorre cada anillo. Solo `rotate` en el compositor; con movimiento reducido queda quieta. Los logos salen de simple-icons mediante `scripts/generate-site-tools.mjs` → `components/site/tool-rings.generated.ts` (los colores de marca casi negros usan el color del texto para que se vean en oscuro).
 2. **Tus sistemas, conectados (desde 64 rem):** mapa fijo al lado de los pasos que se monta con el scroll (`view-timeline` por paso, `timeline-scope`). Por debajo de 64 rem, mapa completo y estático encima de los pasos.
 3. **Casos:** la captura se acerca un 2 % al pasar el ratón; el paquete recorre la arquitectura del caso del banco.
 4. **Cómo empezamos:** la línea recorre los pasos; el raíl de experiencia se dibuja con el scroll.

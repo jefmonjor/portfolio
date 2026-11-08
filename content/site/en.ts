@@ -61,7 +61,11 @@ export const en: SiteContent = {
     },
     direct: "You talk to the engineer who builds it. No agency in between.",
     seeWork: "See my work",
-    based: "Andorra · CET · Spanish and English",
+    tools: {
+      label:
+        "The tools I build with: Java, Spring Boot, PostgreSQL, Redis, React, Next.js, Flutter, Docker, Kubernetes, Claude, Gemini and more.",
+      center: "Your system",
+    },
     live: {
       title: "Live in production",
       items: [

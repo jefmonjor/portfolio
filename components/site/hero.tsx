@@ -1,10 +1,9 @@
 import { ArrowDown02Icon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import Image from "next/image"
 
 import { ContactButton } from "@/components/site/contact-button"
 import { StatusBadge } from "@/components/site/status-badge"
-import { portraitPhoto } from "@/content/site/images"
+import { ToolOrbit } from "@/components/site/tool-orbit"
 import type { Headline, SiteContent } from "@/content/site/types"
 import type { SiteLocale } from "@/i18n/routing"
 import { profile } from "@/lib/profile"
@@ -125,25 +124,8 @@ function Hero({ locale, content }: HeroProps) {
         `(${numberHeadlineLines.toString()})(document.getElementById("hero-title"))`
       )}
 
-      <figure className="profile-figure">
-        <div className="profile-portrait">
-          <Image
-            src={portraitPhoto}
-            alt={profile.name}
-            priority
-            placeholder="blur"
-            sizes="(min-width: 64rem) 26rem, (min-width: 40rem) 22rem, 80vw"
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <figcaption className="mt-4 flex flex-col gap-0.5">
-          <span className="text-label-md text-text-strong-950">
-            {profile.name}
-          </span>
-          <span className="text-paragraph-sm text-text-sub-600">
-            {hero.based}
-          </span>
-        </figcaption>
+      <div className="profile-visual">
+        <ToolOrbit label={hero.tools.label} center={hero.tools.center} />
         <div className="profile-live">
           <p className="text-label-sm text-text-strong-950">
             {hero.live.title}
@@ -173,7 +155,7 @@ function Hero({ locale, content }: HeroProps) {
             ))}
           </ul>
         </div>
-      </figure>
+      </div>
     </section>
   )
 }

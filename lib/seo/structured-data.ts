@@ -61,11 +61,11 @@ function currentEmployer() {
     : {}
 }
 
-function personNode({
-  positioning,
-  currentJobTitle,
-  description,
-}: PersonInput) {
+// The portrait belongs to /cv only; the commercial site never shows it.
+function personNode(
+  { positioning, currentJobTitle, description }: PersonInput,
+  { withPortrait }: { withPortrait: boolean }
+) {
   const alumniOf = completedDegrees()
 
   return {
@@ -74,12 +74,16 @@ function personNode({
     name: profile.name,
     alternateName: "jefmonjor",
     url: siteUrl,
-    image: {
-      "@type": "ImageObject",
-      url: `${siteUrl}/me.webp`,
-      width: 940,
-      height: 1175,
-    },
+    ...(withPortrait
+      ? {
+          image: {
+            "@type": "ImageObject",
+            url: `${siteUrl}/me.webp`,
+            width: 940,
+            height: 1175,
+          },
+        }
+      : {}),
     description,
     jobTitle: currentJobTitle,
     homeLocation: {
@@ -140,7 +144,7 @@ export function buildBreadcrumbList(trail: ReadonlyArray<Breadcrumb>) {
 export function buildSiteStructuredData(person: PersonInput) {
   return {
     "@context": "https://schema.org",
-    "@graph": [websiteNode(), personNode(person)],
+    "@graph": [websiteNode(), personNode(person, { withPortrait: false })],
   }
 }
 
@@ -180,7 +184,7 @@ export function buildCvStructuredData({
         mainEntity: { "@id": personId },
         hasPart: projectNodes.map((project) => ({ "@id": project["@id"] })),
       },
-      personNode(person),
+      personNode(person, { withPortrait: true }),
       ...projectNodes,
     ],
   }

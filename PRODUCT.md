@@ -38,14 +38,14 @@ A senior software engineer who designs, connects and ships the systems a busines
 
 - Name: Jefferson Montesdeoca (short name in the header).
 - Pine green accent on the site (#0F6B4F light, #5FD1A0 dark); `/cv` keeps its burnt amber. The owner rejected cream, terracotta and italic-serif looks as "AI".
-- References pinned by the owner (November 2026): personal senior-consultant sites — happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me, lea.verou.me/consulting, jxnl.co/services. First person, one sentence of what he solves and for whom, named services, proof, one call to action. No stock photography: his portrait and real screenshots of his products.
+- References pinned by the owner (November 2026): personal senior-consultant sites — happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me, lea.verou.me/consulting, jxnl.co/services. First person, one sentence of what he solves and for whom, named services, proof, one call to action. No stock photography: an animated orbit of the real tools he builds with and real screenshots of his products.
 - One primary call to action: "Let's discuss your project" / "Hablemos de tu proyecto".
 
 ## Evidence on Hand
 
 - Live products: Transolido (transolido.com, VERI*FACTU invoicing), Other Twist (othertwist.com, offline-first writing platform), Ilnami (ilnami.com, private food diary), plus PRONOQ, Corte1D and Contact QR.
 - Experience: Andbank (2024–present), elAbogado (2022–2024), Zemsania (Vodafone), Keapps, Ayesa (Endesa) — see `lib/profile.ts`.
-- Portrait: `public/me.webp` (site copy: `public/images/site/portrait.jpg`).
+- Portrait: `public/me.webp`, **only on `/cv`**. The owner does not want his photo anywhere on the commercial site (pages or its structured data), and `/cv` is not to be touched.
 - Screenshots of the public pages of Transolido, Other Twist and Ilnami (`public/images/work/`), captured from the live sites on 2026-11-08. Transolido's public face is its sign-in page.
 - English level is B1 (CV): say "Spanish (native) and English", never "native English".
 - Absent and never to be fabricated: client testimonials, client logos used with permission, revenue or performance figures, prices, a calendar link, screenshots of logged-in product areas.

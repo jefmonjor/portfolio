@@ -128,7 +128,7 @@
   --radius-20: 1.25rem;
   --radius-24: 1.5rem;
 
-  --text-title-h1: clamp(2.25rem, 1.2rem + 3.6vw, 3.9rem);
+  --text-title-h1: clamp(2.25rem, 1.2rem + 3.6vw, 3.7rem);
   --text-title-h1--line-height: 1.02;
   --text-title-h1--letter-spacing: -0.035em;
   --text-title-h1--font-weight: 650;
@@ -1058,16 +1058,123 @@ html:has(#site-menu:popover-open) {
   padding-bottom: 4rem;
 }
 
-.profile-figure {
+.profile-visual {
   position: relative;
-  width: min(100%, 20rem);
+  width: min(100%, 27rem);
+  margin-inline: auto;
 }
 
-.profile-portrait {
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border-radius: var(--radius-24);
-  background: var(--bg-weak-50);
+.orbit {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 1;
+  --tile: 11cqi;
+}
+
+.orbit-core {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 30cqi;
+  height: 30cqi;
+  margin: auto;
+  padding: 2cqi;
+  border-radius: 50%;
+  background: var(--primary-base);
+  color: var(--text-on-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(0.8rem, 4.4cqi, 1.2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-align: center;
+  box-shadow:
+    0 0 0 4cqi var(--primary-alpha-10),
+    0 0 0 9cqi var(--primary-alpha-6);
+}
+
+.orbit-ring {
+  --radius: calc(22cqi + var(--ring) * 11cqi);
+  --period: calc(80s + var(--ring) * 30s);
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.orbit-ring::before {
+  content: "";
+  position: absolute;
+  inset: calc(50cqi - var(--radius));
+  border: 1px dashed var(--stroke-sub-300);
+  border-radius: 50%;
+}
+
+.orbit-ring::after {
+  content: "";
+  position: absolute;
+  top: calc(50cqi - var(--radius));
+  left: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: -0.25rem;
+  border-radius: 50%;
+  background: var(--primary-base);
+  box-shadow: 0 0 0 0.25rem var(--primary-alpha-24);
+}
+
+.orbit-tool {
+  --angle: calc(var(--index) * 360deg / var(--count) + var(--ring) * 20deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--tile);
+  height: var(--tile);
+  margin: calc(var(--tile) / -2);
+  transform: rotate(var(--angle)) translateX(var(--radius))
+    rotate(calc(-1 * var(--angle)));
+}
+
+.orbit-tile {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 28%;
+  background: var(--bg-white-0);
+  color: var(--brand, var(--text-strong-950));
+  box-shadow:
+    inset 0 0 0 1px var(--stroke-soft-200),
+    var(--elevation-card);
+}
+
+.orbit-tile svg {
+  width: 54%;
+  height: 54%;
+  fill: currentColor;
+}
+
+@keyframes orbit-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .orbit-ring {
+    animation: orbit-spin var(--period) linear infinite;
+  }
+  .orbit-tile {
+    animation: orbit-spin var(--period) linear infinite reverse;
+  }
+  .orbit-ring:nth-of-type(2) {
+    animation-direction: reverse;
+  }
+  .orbit-ring:nth-of-type(2) .orbit-tile {
+    animation-direction: normal;
+  }
 }
 
 .profile-live {
@@ -1086,21 +1193,14 @@ html:has(#site-menu:popover-open) {
 
 @media (width >= 64rem) {
   .profile {
-    grid-template-columns: minmax(0, 1fr) 22rem;
+    grid-template-columns: minmax(0, 1fr) 26rem;
     align-items: center;
-    gap: 4rem;
+    gap: 3rem;
     padding-top: 5rem;
     padding-bottom: 6rem;
   }
-  .profile-figure {
+  .profile-visual {
     width: 100%;
-  }
-  .profile-live {
-    position: absolute;
-    left: -4.5rem;
-    bottom: 5rem;
-    width: 19.5rem;
-    margin-top: 0;
   }
 }
 
@@ -1549,6 +1649,8 @@ html:has(#site-menu:popover-open) {
 }
 
 @media print {
+  .orbit-ring,
+  .orbit-tile,
   .timeline-rail,
   .hero-reveal,
   .hero-word > span,

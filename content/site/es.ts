@@ -64,7 +64,11 @@ export const es: SiteContent = {
     direct:
       "Hablas con el ingeniero que lo construye. Sin agencias de por medio.",
     seeWork: "Ver mi trabajo",
-    based: "Andorra · CET · español e inglés",
+    tools: {
+      label:
+        "Las herramientas con las que construyo: Java, Spring Boot, PostgreSQL, Redis, React, Next.js, Flutter, Docker, Kubernetes, Claude, Gemini y más.",
+      center: "Tu sistema",
+    },
     live: {
       title: "En producción",
       items: [

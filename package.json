@@ -15,7 +15,8 @@
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
-    "icons": "node scripts/generate-tech-icons.mjs"
+    "icons": "node scripts/generate-tech-icons.mjs",
+    "icons:site": "node scripts/generate-site-tools.mjs"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "0.19.2",
