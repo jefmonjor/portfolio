@@ -1,11 +1,12 @@
 import { AboutSection } from "@/components/site/about-section"
 import { ApproachSection } from "@/components/site/approach-section"
 import { ArrowLink } from "@/components/site/arrow-link"
+import { CapabilitiesSection } from "@/components/site/capabilities-section"
 import { CaseDeck } from "@/components/site/case-deck"
-import { ConnectSection } from "@/components/site/connect-section"
 import { CredentialsBand } from "@/components/site/credentials-band"
 import { FinalCta } from "@/components/site/final-cta"
 import { Hero } from "@/components/site/hero"
+import { HiringNote } from "@/components/site/hiring-note"
 import { ServicesSummary } from "@/components/site/services-summary"
 import { SiteSection } from "@/components/site/site-section"
 import { localizedPath } from "@/i18n/routing"
@@ -29,10 +30,7 @@ export default async function HomePage({ params }: SitePageProps) {
 
       <CredentialsBand credentials={content.credentials} />
 
-      <ConnectSection
-        title={content.display.connect}
-        connect={content.connect}
-      />
+      <CapabilitiesSection locale={locale} content={content} />
 
       <ApproachSection content={content} />
 
@@ -57,6 +55,8 @@ export default async function HomePage({ params }: SitePageProps) {
       </SiteSection>
 
       <AboutSection locale={locale} content={content} />
+
+      <HiringNote locale={locale} hiring={content.hiring} />
 
       <FinalCta
         title={content.display.contact}

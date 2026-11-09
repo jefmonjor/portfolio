@@ -835,56 +835,6 @@ html:has(#site-menu:popover-open) {
   z-index: 1;
 }
 
-.connect-map .connect-node rect {
-  fill: var(--bg-white-0);
-  stroke: var(--stroke-sub-300);
-  stroke-width: 1;
-}
-
-.connect-map .connect-node .connect-highlight {
-  fill: color-mix(in srgb, var(--primary-base) 10%, var(--bg-white-0));
-  stroke: var(--primary-base);
-}
-
-.connect-label {
-  fill: var(--text-strong-950);
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.connect-detail {
-  fill: var(--text-sub-600);
-  font-size: 11px;
-}
-
-.connect-link {
-  fill: none;
-  stroke: var(--stroke-sub-300);
-  stroke-width: 1.25;
-  stroke-dasharray: 1;
-}
-
-.connect-link-ai,
-.connect-link-out {
-  stroke: var(--primary-base);
-}
-
-.connect-packet {
-  fill: var(--primary-base);
-}
-
-.connect-steps > li {
-  padding-block: 1.5rem;
-}
-
-.connect-steps > li + li {
-  border-top: 1px solid var(--stroke-soft-200);
-}
-
-.connect-step-title {
-  color: var(--text-strong-950);
-}
-
 /* On phones the brief is the page itself; a card inside the page gutter only
    narrowed the fields. */
 @media (width >= 48rem) {
@@ -953,9 +903,10 @@ html:has(#site-menu:popover-open) {
   outline-offset: 2px;
 }
 
+/* The headline is a full sentence, so it runs a step below the h1 token to
+   stay at three lines next to the orbit. */
 .hero-title {
-  max-width: 24ch;
-  font-size: var(--text-title-h1);
+  font-size: clamp(2rem, 1rem + 2.8vw, 3rem);
   line-height: var(--text-title-h1--line-height);
   letter-spacing: var(--text-title-h1--letter-spacing);
   font-weight: var(--text-title-h1--font-weight);
@@ -1411,39 +1362,6 @@ html:has(#site-menu:popover-open) {
   }
 }
 
-@keyframes link-draw {
-  from {
-    stroke-dashoffset: 1;
-  }
-}
-
-@keyframes node-dashed {
-  from {
-    stroke-dasharray: 4 3;
-  }
-}
-
-@keyframes packet-show {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes step-focus {
-  0%,
-  28% {
-    color: var(--text-sub-600);
-  }
-  38%,
-  62% {
-    color: var(--text-strong-950);
-  }
-  72%,
-  100% {
-    color: var(--text-sub-600);
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-intro="played"]) .hero-reveal {
     animation: fade-rise 450ms var(--ease-line-reveal) both;
@@ -1497,87 +1415,6 @@ html:has(#site-menu:popover-open) {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .connect-packet {
-    display: none;
-  }
-}
-
-@media (width < 64rem) {
-  .connect-visual {
-    order: -1;
-  }
-}
-
-@supports (timeline-scope: --connect-2) and (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) and (width >= 64rem) {
-    .connect-scope {
-      timeline-scope: --connect-2, --connect-3, --connect-4;
-    }
-    .connect-steps > li {
-      display: flex;
-      min-height: 42vh;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .connect-steps > li + li {
-      border-top: 0;
-    }
-    .connect-steps > li:nth-child(2) {
-      view-timeline: --connect-2;
-    }
-    .connect-steps > li:nth-child(3) {
-      view-timeline: --connect-3;
-    }
-    .connect-steps > li:nth-child(4) {
-      view-timeline: --connect-4;
-    }
-    .connect-step-title {
-      animation: step-focus linear both;
-      animation-timeline: view();
-    }
-    .connect-visual {
-      position: sticky;
-      top: 6.5rem;
-      align-self: start;
-    }
-    .connect-map .connect-link,
-    .connect-map .connect-source rect,
-    .connect-map .connect-highlight,
-    .connect-map .connect-packet {
-      animation-timing-function: linear;
-      animation-fill-mode: both;
-      animation-range: cover 15% cover 32%;
-    }
-    .connect-map .connect-link-in,
-    .connect-map .connect-source rect,
-    .connect-map .connect-core .connect-highlight {
-      animation-timeline: --connect-2;
-    }
-    .connect-map .connect-link-ai,
-    .connect-map .connect-ai .connect-highlight,
-    .connect-map .connect-packet-in,
-    .connect-map .connect-packet-ai {
-      animation-timeline: --connect-3;
-    }
-    .connect-map .connect-link-out,
-    .connect-map .connect-output .connect-highlight,
-    .connect-map .connect-packet-out {
-      animation-timeline: --connect-4;
-    }
-    .connect-map .connect-link {
-      animation-name: link-draw;
-    }
-    .connect-map .connect-source rect {
-      animation-name: node-dashed;
-    }
-    .connect-map .connect-highlight,
-    .connect-map .connect-packet {
-      animation-name: packet-show;
-    }
-  }
-}
-
 @view-transition {
   navigation: auto;
 }
@@ -1622,8 +1459,6 @@ html:has(#site-menu:popover-open) {
   .hero-word > span,
   .case-flow > li > span,
   .case-flow > li + li::before,
-  .connect-map *,
-  .connect-step-title,
   [data-reveal] {
     animation: none !important;
     opacity: 1 !important;

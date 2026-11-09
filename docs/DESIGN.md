@@ -28,7 +28,7 @@ La dirección de la home está en `PRODUCT.md` y en `.impeccable/surfaces/app-lo
 
 ### Dónde va el verde
 
-El botón principal (cabecera, hero, servicios), la etapa «Revisión · Respondo yo» del flujo de trabajo, el campo de los paneles de cierre, los enlaces encendidos del mapa de conexión y el foco. Nunca en texto de cuerpo. El punto de disponibilidad (pie de página) usa el verde de estado y está quieto: sin latido.
+El botón principal (cabecera, hero, servicios), la etapa «Revisión · Respondo yo» del flujo de trabajo, el campo de los paneles de cierre, los puntos de las tarjetas de capacidades y el foco. Nunca en texto de cuerpo. El punto de disponibilidad (pie de página) usa el verde de estado y está quieto: sin latido.
 
 ### Tipografía
 
@@ -74,7 +74,7 @@ Hero personal (titular, presentación en primera persona, CTA, órbita de herram
 ### Movimiento (CSS)
 
 1. **Hero:** el titular entra por palabras con máscara, una vez por sesión; el resto aparece en secuencia corta. A la derecha, la **órbita de herramientas** (`components/site/tool-orbit.tsx`): «Tu sistema» en el centro y 8 logos reales en dos anillos (Java, Spring Boot y PostgreSQL dentro; Redis, Docker, Kubernetes, React y Claude fuera; pocas a propósito, el stack completo está en /cv) que giran despacio en sentidos alternos, con los logos siempre derechos (el anillo gira y cada ficha contragira) y un punto verde que recorre cada anillo. La primera visita de la sesión, las fichas salen del centro hacia su anillo; el centro late cada 3 s; al pasar el ratón la órbita se detiene y la ficha muestra su nombre. Solo `rotate`, `scale` y `opacity` en el compositor; con movimiento reducido queda quieta. Los logos salen de simple-icons mediante `scripts/generate-site-tools.mjs` → `components/site/tool-rings.generated.ts` (los colores de marca casi negros usan el color del texto para que se vean en oscuro).
-2. **Cuando tus sistemas tienen que trabajar juntos (desde 64 rem):** mapa fijo al lado de los pasos que se monta con el scroll (`view-timeline` por paso, `timeline-scope`). Por debajo de 64 rem, mapa completo y estático encima de los pasos.
+2. **Lo que puedo asumir:** tres tarjetas (construir algo nuevo, modernizar lo que existe, integrar IA), cada una con tres puntos y el enlace a su caso. Sin animación de scroll: el antiguo mapa de conexión se retiró con el cambio a perfil versátil.
 3. **Casos:** la captura se acerca un 2 % al pasar el ratón.
 4. **Experiencia (página /experience):** el raíl se dibuja con el scroll. En la home ya no hay línea de tiempo: la banda «He trabajado en» y el párrafo de «Hola, soy Jefferson» la resumen.
 

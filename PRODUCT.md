@@ -8,13 +8,11 @@ web
 
 ## Users
 
-Primary: CTOs and technical leads of fintechs and startups, and companies that work with banking or payments, who need a backend, an integration with banks or payment providers, a Java and Spring Boot platform brought up to date, or AI added behind tests and review. They hire on what he has already done in a private bank's architecture and solutions team.
+Anyone deciding whether to work with a versatile senior engineer: CTOs, founders and technical leads with a product to build, a system to modernize or AI to integrate, and recruiters or hiring managers filling a senior role. The site sells a person who clearly knows how to build things, with varied work as proof, not a sector. Banking (a private bank's architecture team) is the proof of level, not the market.
 
-Second audience: companies (roughly 10–200 people) that integrate banking, payments or AI into their processes and need their tools connected or repetitive work automated. This discourse sits one step below the hero (the "When your systems have to work together" block), not in the headline.
+They arrive from LinkedIn, a referral or a search, on a laptop at work or a phone, and decide in seconds whether this profile fits.
 
-Both arrive from LinkedIn, a referral or a search, on a laptop at work or a phone, and decide in seconds whether this person can be trusted with their system.
-
-Secondary: recruiters and CTOs reading the full CV at `/cv`.
+The full CV at `/cv` serves the same audiences in depth; the home links to it from the header and from the "Also open to the right full-time role" note.
 
 ## Product Purpose
 
@@ -22,12 +20,12 @@ jefmonjor.dev is the commercial site of Jefferson Montesdeoca, an independent se
 
 ## Positioning
 
-A senior software engineer who designs and builds backends, integrations and applied AI for fintechs, startups and companies that work with banking or payments — and, one step below, connects tools and automates processes for other businesses — using AI across the whole development cycle while he reviews and signs off every change, and who builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone). The client works directly with him from diagnosis to production; it is not an agency.
+Software architect and senior engineer who builds new products, modernizes existing systems and puts AI to work inside them, with whatever stack the project needs (backend-first; Java, TypeScript, Dart, Go and Python). Open to projects and to the right full-time role. Uses AI across the whole development cycle while he reviews and answers for every change, and builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone).
 
 ## Operating Context
 
 - Offer: Diagnosis (1–5 days, written report), Build and integrate (fixed scope or daily rate), Engineering partner (monthly, 4–8 h/week).
-- Availability: part-time from January 2027; remote from Andorra (CET).
+- Availability: projects at 10–15 h/week or the right full-time role; remote from Andorra (CET). No availability date is shown on the site or given by the assistant.
 - Contact: a six-question project brief that prepares an email in the visitor's own mail app; nothing is stored by the site. Email address shown only after hydration: hola@jefmonjor.dev on the site (`siteContactEmail()` in `lib/email.ts`); `/cv` keeps its own address.
 - English at `/`, Spanish at `/es`. The CV lives at `/cv` (EN, ES, CA).
 

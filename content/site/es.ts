@@ -3,10 +3,9 @@ import type { SiteContent } from "@/content/site/types"
 export const es: SiteContent = {
   meta: {
     home: {
-      title:
-        "Jefferson Montesdeoca — Backend, integraciones e IA aplicada para fintech",
+      title: "Jefferson Montesdeoca — Software Architect y Senior Engineer",
       description:
-        "Backend, integraciones e IA aplicada para fintechs, startups y empresas que trabajan con banca o pagos. Siete años en banca, legal, energía y telecomunicaciones. En remoto desde Andorra, CET.",
+        "Construyo productos nuevos, modernizo sistemas existentes e integro IA dentro de ellos. Siete años, del equipo de arquitectura de un banco privado a productos propios en producción. En remoto, CET.",
     },
     services: {
       title:
@@ -49,22 +48,29 @@ export const es: SiteContent = {
     toggleTheme: "Cambiar entre tema claro y oscuro",
     breadcrumb: "Ruta de navegación",
   },
-  cta: "Hablemos de tu proyecto",
+  cta: "Hablemos",
   hero: {
-    role: "Senior Software Engineer · Software Architect",
-    headline: ["Software backend", "para banca, pagos", "e IA aplicada."],
+    role: "Software Architect · Senior Engineer",
+    headline: [
+      "Construyo productos nuevos,",
+      "modernizo sistemas existentes",
+      "e integro IA dentro de ellos.",
+    ],
     subtitle:
-      "Soy Jefferson, ingeniero de software senior en el equipo de arquitectura y soluciones de un banco privado. Diseño y desarrollo backends, integraciones e IA aplicada para fintechs, startups y empresas que trabajan con banca o pagos.",
+      "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado a productos propios construidos solo, de la base de datos a producción. Perfil backend, con el stack que haga falta y en remoto.",
     availability: {
-      status: "Disponible para nuevos proyectos.",
+      status: "Abierto a proyectos y al puesto adecuado a jornada completa.",
     },
-    direct: "Tratas directamente con quien lo desarrolla, sin intermediarios.",
+    stack: "Java · Spring · TypeScript · Cloud · IA aplicada",
+    engagement: "Remoto · CET · Jornada completa, parcial o por proyecto",
     seeWork: "Ver mi trabajo",
     terminalHint: "¿Prefieres la terminal? Ábrela (Ctrl K)",
     tools: {
       label:
         "Herramientas principales: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, React y Claude. La lista completa está en el CV.",
       center: "Tu sistema",
+      caption:
+        "Y lo que pida el proyecto: he trabajado con Java, TypeScript, Dart, Go y Python.",
     },
     live: {
       title: "En producción",
@@ -96,9 +102,9 @@ export const es: SiteContent = {
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
   },
   display: {
-    connect: ["Cuando tus sistemas tienen que trabajar juntos"],
+    capabilities: ["Lo que puedo asumir"],
     approach: ["Cómo trabajo"],
-    work: ["Proyectos en producción"],
+    work: ["Cuatro sectores, el mismo estándar"],
     services: ["Cómo podemos trabajar juntos"],
     about: ["Hola, soy Jefferson"],
     contact: ["Cuéntame qué necesitas resolver"],
@@ -138,45 +144,55 @@ export const es: SiteContent = {
     ],
   },
 
-  connect: {
+  capabilities: {
     intro:
-      "Para empresas que integran banca, pagos o IA en sus procesos: que las herramientas que ya tienen trabajen juntas y cada dato se introduzca una sola vez.",
-    steps: [
+      "Tres tipos de trabajo, cada uno con un caso detrás. El stack se adapta al proyecto.",
+    items: [
       {
-        title: "Herramientas que no se hablan",
-        body: "Hojas de cálculo, ERP, banco, tienda online: el mismo dato se introduce varias veces.",
-        deliverable:
-          "Un mapa de tus herramientas y de dónde se duplica el trabajo.",
+        title: "Construir algo nuevo",
+        body: "Un producto, un SaaS, una app o una API, desde cero hasta producción.",
+        points: [
+          "Arquitectura y modelo de datos desde el primer día",
+          "Backend, frontend o app móvil",
+          "Desplegado, monitorizado y documentado",
+        ],
+        caseSlug: "transolido-verifactu-invoicing",
+        caseName: "Transolido",
       },
       {
-        title: "Un backend en el centro",
-        body: "Una API conecta tus sistemas y cada dato se introduce una sola vez.",
-        deliverable: "Una API que conecta tus sistemas.",
+        title: "Modernizar lo que existe",
+        body: "Sistemas que funcionan pero se han quedado atrás, mejorados sin detener las entregas.",
+        points: [
+          "Actualizaciones de Java y Spring Boot",
+          "De un monolito a módulos claros, con la deuda técnica medida",
+          "Seguridad e identidad, con MFA",
+        ],
+        caseSlug: "private-bank-modernization",
+        caseName: "Banco privado",
       },
       {
-        title: "Automatización e IA donde compensan",
-        body: "Las tareas repetitivas se automatizan. La IA propone y una persona confirma.",
-        deliverable: "Automatizaciones en uso, con revisión humana.",
-      },
-      {
-        title: "En producción, y tuyo",
-        body: "Desplegado, monitorizado y documentado.",
-        deliverable: "El código, la documentación y los accesos, a tu nombre.",
+        title: "Integrar IA",
+        body: "IA dentro de tus procesos, con límites y revisión humana.",
+        points: [
+          "Asistentes que responden con tus propios datos",
+          "Automatización con una persona que confirma",
+          "Contratos validados y una vía manual si la IA falla",
+        ],
+        caseSlug: "ilnami-private-by-design",
+        caseName: "Ilnami",
       },
     ],
-    deliverableLabel: "Te llevas",
-    nodes: {
-      sources: ["Hojas de cálculo", "ERP · CRM", "Banco · pagos", "Documentos"],
-      core: "Tu backend",
-      coreDetail: "API · eventos",
-      ai: "IA · revisada",
-      outputs: ["Facturas", "Paneles", "Avisos"],
-    },
+    caseLabel: "Caso",
+  },
+  hiring: {
+    title: "También abierto al puesto adecuado",
+    body: "A jornada completa, si el encaje es bueno: producto, un equipo senior, IA aplicada con criterio y trabajo en remoto.",
+    cvLink: "Ver el CV completo",
   },
 
   about: {
     title: "Sobre mí",
-    lead: "He trabajado sobre todo en software donde un error sale caro.",
+    lead: "Me hago cargo del sistema entero: diseño, código, despliegue y traspaso.",
     paragraphs: [
       [
         "Trabajo en el equipo de arquitectura y soluciones de Andbank, un banco privado de Andorra. Antes trabajé en elAbogado como desarrollador full stack y, como consultor, en proyectos para Vodafone y Endesa. También desarrollo y mantengo mis propios productos. Tienes el detalle en la ",
@@ -207,7 +223,7 @@ export const es: SiteContent = {
     title: "Servicios",
     homeTitle: "Cómo podemos trabajar juntos",
     intro:
-      "Tres formatos para tres momentos: antes de decidir, mientras se construye y cuando ya funciona. Todos empiezan por tu problema, no por una tecnología.",
+      "Tres formatos para tres momentos: antes de decidir, mientras se construye y cuando ya funciona. Con el stack que tengas: lo aprendo rápido y me hago cargo de él.",
     items: [
       {
         id: "advisory",
@@ -234,10 +250,10 @@ export const es: SiteContent = {
         summary:
           "Software a medida, APIs e integraciones, automatización e IA aplicada, hasta producción.",
         audience:
-          "Equipos que necesitan un backend, una integración con bancos o pasarelas de pago, o poner al día una aplicación Java.",
+          "Equipos que necesitan construir un producto nuevo, modernizar un sistema existente o integrar IA en él.",
         includes: [
           "Software de negocio a medida y herramientas internas",
-          "APIs e integraciones: ERP, bancos, pasarelas de pago y servicios de terceros",
+          "APIs e integraciones con ERP, pasarelas de pago y servicios de terceros",
           "Automatización de documentos y tareas repetitivas, con IA revisada por una persona",
           "Backends Java y Spring Boot, migraciones y actualizaciones",
           "Despliegue, monitorización, documentación y traspaso",
@@ -264,15 +280,6 @@ export const es: SiteContent = {
           "Decisiones técnicas, revisiones y una hoja de ruta que tu equipo pueda seguir.",
         format: "Acuerdo mensual, de 4 a 8 horas por semana.",
       },
-    ],
-    examplesTitle: "Algunos ejemplos",
-    examples: [
-      "Integrar un banco o una pasarela de pago mediante su API",
-      "Actualizar una plataforma Java y Spring Boot sin detener las entregas",
-      "Centralizar la autenticación con Keycloak y MFA",
-      "Extraer datos de documentos y registrarlos en tu sistema",
-      "Recibir y clasificar facturas automáticamente",
-      "Un asistente interno que responde con la documentación de tu empresa",
     ],
     audienceLabel: "Ideal para",
     includesLabel: "Incluye",
@@ -821,7 +828,7 @@ export const es: SiteContent = {
       {
         label: "Disponibilidad",
         value:
-          "De 10 a 15 horas por semana. Escríbeme y planificamos el inicio.",
+          "Proyectos de 10 a 15 horas por semana, o jornada completa en el puesto adecuado.",
       },
       { label: "Ubicación", value: "Andorra · remoto" },
       {

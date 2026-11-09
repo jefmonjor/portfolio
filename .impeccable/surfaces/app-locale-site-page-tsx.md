@@ -7,7 +7,7 @@ related_targets: []
 
 # Home (/, /es)
 
-Mode: Persuade. Audience: first CTOs and technical leads of fintechs, startups and companies that work with banking or payments; second, 10–200 person companies that need their tools connected or work automated (block 2, not the hero). Action: open the project brief ("Let's discuss your project"). Proof: an animated orbit of the real tools he builds with; three live products he built and runs (Transolido, Other Twist, Ilnami) shown as real screenshots of their public pages; seven years across banking, legal, energy and telecom; the anonymised bank case. Constraints: no invented clients, testimonials, figures or prices; static, works without JS, reduced motion respected, self-hosted images.
+Mode: Persuade. Audience: CTOs, founders and technical leads with something to build, modernize or put AI into, and recruiters filling a senior role (versatile profile, not a sector). Action: "Let's talk" (project brief) or, for recruiters, the full CV at /cv. Proof: an animated orbit of the real tools he builds with; three live products he built and runs (Transolido, Other Twist, Ilnami) shown as real screenshots of their public pages; seven years across banking, legal, energy and telecom; the anonymised bank case. Constraints: no invented clients, testimonials, figures or prices; static, works without JS, reduced motion respected, self-hosted images.
 
 ## Direction contract
 
