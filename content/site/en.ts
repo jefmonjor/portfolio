@@ -62,7 +62,7 @@ export const en: SiteContent = {
     terminalHint: "Prefer a terminal? Open it (Ctrl K)",
     tools: {
       label:
-        "The tools I build with: Java, Spring Boot, PostgreSQL, Redis, React, Next.js, Flutter, Docker, Kubernetes, Claude, Gemini and more.",
+        "Main tools: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, React and Claude. The full list is in the CV.",
       center: "Your system",
     },
     live: {
