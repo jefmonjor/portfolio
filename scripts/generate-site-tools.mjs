@@ -6,36 +6,8 @@ import { fileURLToPath } from "node:url"
 import * as simpleIcons from "simple-icons"
 
 const rings = [
-  [
-    "siOpenjdk",
-    "siSpringboot",
-    "siPostgresql",
-    "siRedis",
-    "siHibernate",
-    "siNodedotjs",
-  ],
-  [
-    "siReact",
-    "siNextdotjs",
-    "siTypescript",
-    "siFlutter",
-    "siTailwindcss",
-    "siSupabase",
-    "siDocker",
-    "siKubernetes",
-  ],
-  [
-    "siClaude",
-    "siGooglegemini",
-    "siGithubactions",
-    "siVercel",
-    "siGooglecloud",
-    "siKeycloak",
-    "siRedhatopenshift",
-    "siJenkins",
-    "siPython",
-    "siGo",
-  ],
+  ["siOpenjdk", "siSpringboot", "siPostgresql"],
+  ["siRedis", "siDocker", "siKubernetes", "siReact", "siClaude"],
 ]
 
 const titles = { siOpenjdk: "Java", siRedhatopenshift: "OpenShift" }

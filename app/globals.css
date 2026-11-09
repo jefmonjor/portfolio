@@ -990,7 +990,7 @@ html:has(#site-menu:popover-open) {
   position: relative;
   container-type: inline-size;
   aspect-ratio: 1;
-  --tile: 11cqi;
+  --tile: 13cqi;
 }
 
 .orbit-core {
@@ -1017,7 +1017,7 @@ html:has(#site-menu:popover-open) {
 }
 
 .orbit-ring {
-  --radius: calc(22cqi + var(--ring) * 11cqi);
+  --radius: calc(26cqi + var(--ring) * 17cqi);
   --period: calc(80s + var(--ring) * 30s);
   position: absolute;
   inset: 0;
