@@ -55,11 +55,12 @@ export const en: SiteContent = {
       "and put AI to work inside them.",
     ],
     subtitle:
-      "Seven years shipping software where mistakes are expensive, from a private bank's architecture team to products I have built alone, from the database to production. Backend-first, stack-agnostic, remote.",
+      "Seven years shipping software where mistakes are expensive: from a private bank's architecture team to products of my own, from the database to production.",
+    cta: "Tell me about your project",
     availability: {
       status: "Open to projects, and to the right full-time role.",
     },
-    stack: "Java · Spring · TypeScript · Cloud · Applied AI",
+    stack: "Java · Spring · TypeScript · Applied AI",
     engagement: "Remote · CET · Full-time, part-time or project-based",
     seeWork: "See my work",
     terminalHint: "Prefer a terminal? Open it (Ctrl K)",
@@ -117,12 +118,7 @@ export const en: SiteContent = {
       { step: "Review", by: "I answer for it", human: true },
       { step: "Production", by: "Monitored" },
     ],
-    principlesTitle: "Useful AI, bounded by engineering",
     principles: [
-      {
-        title: "AI behind automated gates",
-        body: "The AI asks instead of inventing, tests are written before the code, and nothing moves forward without passing the tests and my review.",
-      },
       {
         title: "Validated contracts",
         body: "Whatever the AI reads or returns is checked against strict contracts before it is used.",

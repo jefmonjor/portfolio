@@ -86,8 +86,10 @@ function Hero({ locale, content }: HeroProps) {
           id="hero-title"
           className="hero-title font-heading text-text-strong-950"
         >
-          <span className="sr-only">
-            {profile.shortName}, {hero.role}.{" "}
+          <span className="sr-only">{profile.shortName}, </span>
+          <span className="hero-reveal mb-5 block font-ui text-subheading-xs text-text-sub-600 uppercase [--step:0]">
+            {hero.role}
+            <span className="sr-only">. </span>
           </span>
           <HeadlineLines headline={hero.headline} />
         </h1>
@@ -97,7 +99,7 @@ function Hero({ locale, content }: HeroProps) {
         <div className="hero-reveal mt-9 flex flex-col gap-3 [--step:7] sm:flex-row sm:items-center sm:gap-7">
           <ContactButton
             locale={locale}
-            label={content.cta}
+            label={hero.cta}
             className="min-h-14 px-6"
           />
           <a

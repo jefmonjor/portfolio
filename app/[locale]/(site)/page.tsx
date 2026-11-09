@@ -3,6 +3,7 @@ import { ApproachSection } from "@/components/site/approach-section"
 import { ArrowLink } from "@/components/site/arrow-link"
 import { CapabilitiesSection } from "@/components/site/capabilities-section"
 import { CaseDeck } from "@/components/site/case-deck"
+import { ContactButton } from "@/components/site/contact-button"
 import { CredentialsBand } from "@/components/site/credentials-band"
 import { FinalCta } from "@/components/site/final-cta"
 import { Hero } from "@/components/site/hero"
@@ -32,8 +33,6 @@ export default async function HomePage({ params }: SitePageProps) {
 
       <CapabilitiesSection locale={locale} content={content} />
 
-      <ApproachSection content={content} />
-
       <SiteSection id="work" title={content.display.work}>
         <CaseDeck
           locale={locale}
@@ -41,22 +40,34 @@ export default async function HomePage({ params }: SitePageProps) {
           labels={content.work.labels}
           readLabel={content.selectedWork.readCase}
         />
-        <ArrowLink href={localizedPath(locale, "/work")} className="mt-8">
-          {content.selectedWork.allCases}
-        </ArrowLink>
+        <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
+          <ContactButton
+            locale={locale}
+            label={content.hero.cta}
+            className="min-h-14 px-6"
+          />
+          <ArrowLink
+            href={localizedPath(locale, "/work")}
+            className="self-start sm:self-auto"
+          >
+            {content.selectedWork.allCases}
+          </ArrowLink>
+        </div>
       </SiteSection>
 
       <SiteSection id="services" title={content.display.services}>
         <ServicesSummary
           locale={locale}
           services={content.services}
-          cta={content.cta}
+          cta={content.hero.cta}
         />
       </SiteSection>
 
-      <AboutSection locale={locale} content={content} />
+      <ApproachSection content={content} />
 
       <HiringNote locale={locale} hiring={content.hiring} />
+
+      <AboutSection locale={locale} content={content} />
 
       <FinalCta
         title={content.display.contact}

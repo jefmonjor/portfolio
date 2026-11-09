@@ -77,7 +77,7 @@ function SiteConsole({
           }}
           aria-controls="site-assistant"
           aria-expanded={false}
-          className="assistant-launcher site-button max-sm:size-14 max-sm:px-0"
+          className="assistant-launcher site-button site-button-stroke"
         >
           <HugeiconsIcon
             icon={SparklesIcon}
@@ -85,7 +85,7 @@ function SiteConsole({
             className="size-[18px]"
             strokeWidth={1.75}
           />
-          <span className="max-sm:sr-only">{copy.assistant.open}</span>
+          <span>{copy.assistant.open}</span>
         </button>
       )}
       {assistantUsed ? (

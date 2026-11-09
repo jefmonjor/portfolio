@@ -41,7 +41,7 @@ Software architect and senior engineer who builds new products, modernizes exist
 - Name: Jefferson Montesdeoca (short name in the header).
 - Pine green accent on the site (#0F6B4F light, #5FD1A0 dark); `/cv` keeps its burnt amber. The owner rejected cream, terracotta and italic-serif looks as "AI".
 - References pinned by the owner (November 2026): personal senior-consultant sites — happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me, lea.verou.me/consulting, jxnl.co/services. First person, one sentence of what he solves and for whom, named services, proof, one call to action. No stock photography: an animated orbit of the real tools he builds with and real screenshots of his products.
-- One primary call to action: "Let's discuss your project" / "Hablemos de tu proyecto".
+- One primary call to action, always to the contact page: "Tell me about your project" / "Cuéntame tu proyecto" (the header uses the short form "Let's talk" / "Hablemos").
 
 ## Evidence on Hand
 

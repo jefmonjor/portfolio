@@ -43,8 +43,7 @@ export function buildTerminalData(
     })),
     how: [
       approach.pipeline.map((stage) => stage.step).join(" → "),
-      `${approach.principlesTitle}:`,
-      ...approach.principles.map((principle) => `  · ${principle.title}`),
+      ...approach.principles.map((principle) => `· ${principle.title}`),
     ],
     experience: experience.groups.map(
       (group) =>

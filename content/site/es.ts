@@ -57,11 +57,12 @@ export const es: SiteContent = {
       "e integro IA dentro de ellos.",
     ],
     subtitle:
-      "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado a productos propios construidos solo, de la base de datos a producción. Perfil backend, con el stack que haga falta y en remoto.",
+      "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado a productos propios, de la base de datos a producción.",
+    cta: "Cuéntame tu proyecto",
     availability: {
       status: "Abierto a proyectos y al puesto adecuado a jornada completa.",
     },
-    stack: "Java · Spring · TypeScript · Cloud · IA aplicada",
+    stack: "Java · Spring · TypeScript · IA aplicada",
     engagement: "Remoto · CET · Jornada completa, parcial o por proyecto",
     seeWork: "Ver mi trabajo",
     terminalHint: "¿Prefieres la terminal? Ábrela (Ctrl K)",
@@ -119,12 +120,7 @@ export const es: SiteContent = {
       { step: "Revisión", by: "Respondo yo", human: true },
       { step: "Producción", by: "Monitorizado" },
     ],
-    principlesTitle: "IA útil, acotada por ingeniería",
     principles: [
-      {
-        title: "La IA, bajo controles automáticos",
-        body: "La IA pregunta en lugar de inventar, los tests se escriben antes que el código y nada avanza sin superar los tests y mi revisión.",
-      },
       {
         title: "Contratos validados",
         body: "Lo que la IA lee o devuelve se valida con contratos estrictos antes de usarse.",

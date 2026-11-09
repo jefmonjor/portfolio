@@ -1531,7 +1531,28 @@ html:has(#site-menu:popover-open) {
   min-height: 3rem;
   border-radius: 9999px;
   padding-inline: 1.125rem;
-  box-shadow: var(--elevation-dropdown);
+  box-shadow:
+    inset 0 0 0 1px var(--stroke-soft-200),
+    var(--elevation-dropdown);
+}
+
+@keyframes launcher-arrive {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+/* On a phone the labelled launcher would cover the hero copy, so it arrives
+   once the visitor scrolls past the first screen's call to action. */
+@supports (animation-timeline: scroll()) {
+  @media (width < 40rem) {
+    .assistant-launcher {
+      animation: launcher-arrive linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 40svh 60svh;
+    }
+  }
 }
 
 .site-assistant {

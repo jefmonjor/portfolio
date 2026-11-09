@@ -225,6 +225,8 @@ export type SiteContent = {
     role: string
     headline: Headline
     subtitle: string
+    /** The hero's call to action: says what happens next, unlike the header's short label. */
+    cta: string
     availability: { status: string }
     /** The core stack, one line under the call to action. */
     stack: string
@@ -255,9 +257,7 @@ export type SiteContent = {
       PipelineStep,
       PipelineStep,
     ]
-    principlesTitle: string
-    /** The first principle leads the list and spans the full width. */
-    principles: readonly [TitledText, ...TitledText[]]
+    principles: readonly [TitledText, TitledText, TitledText, TitledText]
   }
   capabilities: {
     intro: string
