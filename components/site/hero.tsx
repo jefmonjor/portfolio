@@ -113,9 +113,12 @@ function Hero({ locale, content }: HeroProps) {
             />
           </a>
         </div>
-        <p className="hero-reveal mt-5 text-paragraph-sm text-text-sub-600 [--step:8]">
-          {hero.direct}
-        </p>
+        <div className="hero-reveal mt-6 flex flex-col gap-1.5 [--step:8]">
+          <p className="text-label-md text-text-strong-950">{hero.stack}</p>
+          <p className="text-paragraph-sm text-text-sub-600">
+            {hero.engagement}
+          </p>
+        </div>
         <TerminalHint label={hero.terminalHint} />
       </div>
       {/* After the whole copy: Chrome may paint when the parser yields after
@@ -126,6 +129,9 @@ function Hero({ locale, content }: HeroProps) {
 
       <div className="profile-visual">
         <ToolOrbit label={hero.tools.label} center={hero.tools.center} />
+        <p className="mt-3 text-center text-paragraph-sm text-balance text-text-sub-600">
+          {hero.tools.caption}
+        </p>
         <div className="profile-live">
           <p className="text-label-sm text-text-strong-950">
             {hero.live.title}

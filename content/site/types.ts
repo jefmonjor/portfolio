@@ -84,13 +84,17 @@ export type CaseStudy = {
   links: ReadonlyArray<ExternalLink>
 }
 
-export type ConnectStep = {
+export type TitledText = {
   title: string
   body: string
 }
 
-/** A stage of the work and what the client holds at the end of it. */
-export type ConnectStage = ConnectStep & { deliverable: string }
+/** One kind of work he takes on, proven by one case study. */
+export type Capability = TitledText & {
+  points: readonly [string, string, string]
+  caseSlug: CaseStudySlug
+  caseName: string
+}
 
 export type StartStep = { step: string; deliverable: string }
 
@@ -222,17 +226,20 @@ export type SiteContent = {
     headline: Headline
     subtitle: string
     availability: { status: string }
-    direct: string
+    /** The core stack, one line under the call to action. */
+    stack: string
+    /** Remote, time zone and the ways to work together. */
+    engagement: string
     seeWork: string
     terminalHint: string
-    tools: { label: string; center: string }
+    tools: { label: string; center: string; caption: string }
     live: {
       title: string
       items: readonly [LiveProduct, LiveProduct, LiveProduct]
     }
   }
   display: {
-    connect: Headline
+    capabilities: Headline
     approach: Headline
     work: Headline
     services: Headline
@@ -250,19 +257,17 @@ export type SiteContent = {
     ]
     principlesTitle: string
     /** The first principle leads the list and spans the full width. */
-    principles: readonly [ConnectStep, ...ConnectStep[]]
+    principles: readonly [TitledText, ...TitledText[]]
   }
-  connect: {
+  capabilities: {
     intro: string
-    steps: readonly [ConnectStage, ConnectStage, ConnectStage, ConnectStage]
-    deliverableLabel: string
-    nodes: {
-      sources: readonly [string, string, string, string]
-      core: string
-      coreDetail: string
-      ai: string
-      outputs: readonly [string, string, string]
-    }
+    items: readonly [Capability, Capability, Capability]
+    caseLabel: string
+  }
+  hiring: {
+    title: string
+    body: string
+    cvLink: string
   }
   credentials: {
     label: string
@@ -286,8 +291,6 @@ export type SiteContent = {
     homeTitle: string
     intro: string
     items: readonly [Service, Service, Service]
-    examplesTitle: string
-    examples: ReadonlyArray<string>
     audienceLabel: string
     includesLabel: string
     deliverableLabel: string

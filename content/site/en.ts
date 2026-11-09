@@ -3,10 +3,9 @@ import type { SiteContent } from "@/content/site/types"
 export const en: SiteContent = {
   meta: {
     home: {
-      title:
-        "Jefferson Montesdeoca — Backend, integrations and applied AI for fintech",
+      title: "Jefferson Montesdeoca — Software Architect & Senior Engineer",
       description:
-        "Backend, integrations and applied AI for fintechs, startups and companies that work with banking or payments. Seven years in banking, legal, energy and telecom. Remote from Andorra, CET.",
+        "I build new products, modernize existing systems and put AI to work inside them. Seven years, from a private bank's architecture team to my own products in production. Remote, CET.",
     },
     services: {
       title: "Services — Diagnosis, build and integrate, engineering partner",
@@ -47,23 +46,29 @@ export const en: SiteContent = {
     toggleTheme: "Switch between light and dark theme",
     breadcrumb: "Breadcrumb",
   },
-  cta: "Let's discuss your project",
+  cta: "Let's talk",
   hero: {
-    role: "Senior Software Engineer · Software Architect",
-    headline: ["Backend software", "for banking, payments", "and applied AI."],
+    role: "Software Architect · Senior Engineer",
+    headline: [
+      "I build new products,",
+      "modernize existing systems",
+      "and put AI to work inside them.",
+    ],
     subtitle:
-      "I'm Jefferson, a senior software engineer in the architecture and solutions team of a private bank. I design and build backends, integrations and applied AI for fintechs, startups and companies that work with banking or payments.",
+      "Seven years shipping software where mistakes are expensive, from a private bank's architecture team to products I have built alone, from the database to production. Backend-first, stack-agnostic, remote.",
     availability: {
-      status: "Available for new projects.",
+      status: "Open to projects, and to the right full-time role.",
     },
-    direct:
-      "You deal directly with the person who builds it, with no intermediaries.",
+    stack: "Java · Spring · TypeScript · Cloud · Applied AI",
+    engagement: "Remote · CET · Full-time, part-time or project-based",
     seeWork: "See my work",
     terminalHint: "Prefer a terminal? Open it (Ctrl K)",
     tools: {
       label:
         "Main tools: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, React and Claude. The full list is in the CV.",
       center: "Your system",
+      caption:
+        "And whatever the project needs: I have worked with Java, TypeScript, Dart, Go and Python.",
     },
     live: {
       title: "Live in production",
@@ -95,9 +100,9 @@ export const en: SiteContent = {
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
   },
   display: {
-    connect: ["When your systems have to work together"],
+    capabilities: ["What I can take on"],
     approach: ["How I work"],
-    work: ["Projects in production"],
+    work: ["Four sectors, same standard"],
     services: ["How we can work together"],
     about: ["Hi, I'm Jefferson"],
     contact: ["Tell me what you need to solve"],
@@ -137,45 +142,55 @@ export const en: SiteContent = {
     ],
   },
 
-  connect: {
+  capabilities: {
     intro:
-      "For companies that bring banking, payments or AI into their processes: the tools they already have, working together, with each piece of data entered once.",
-    steps: [
+      "Three kinds of work, each with a case study behind it. The stack adapts to the project.",
+    items: [
       {
-        title: "Tools that don't talk",
-        body: "Spreadsheets, ERP, bank, web shop: the same data is entered several times.",
-        deliverable: "A map of your tools and of where work is duplicated.",
+        title: "Build something new",
+        body: "A product, a SaaS, an app or an API, from scratch to production.",
+        points: [
+          "Architecture and data model from day one",
+          "Backend, frontend or mobile app",
+          "Deployed, monitored and documented",
+        ],
+        caseSlug: "transolido-verifactu-invoicing",
+        caseName: "Transolido",
       },
       {
-        title: "One backend in the middle",
-        body: "An API connects your systems and each piece of data is entered once.",
-        deliverable: "An API that connects your systems.",
+        title: "Modernize what exists",
+        body: "Systems that work but have fallen behind, improved without stopping delivery.",
+        points: [
+          "Java and Spring Boot upgrades",
+          "From a monolith to clear modules, and technical debt measured",
+          "Security and identity, with MFA",
+        ],
+        caseSlug: "private-bank-modernization",
+        caseName: "Private bank",
       },
       {
-        title: "Automation and AI where they pay off",
-        body: "Repetitive tasks are automated. The AI suggests and a person confirms.",
-        deliverable: "Automations in use, with human review.",
-      },
-      {
-        title: "In production, and yours",
-        body: "Deployed, monitored and documented.",
-        deliverable:
-          "The code, the documentation and the access, in your name.",
+        title: "Integrate AI",
+        body: "AI inside your processes, with limits and human review.",
+        points: [
+          "Assistants that answer from your own data",
+          "Automation with a person confirming",
+          "Validated contracts and a manual path if the AI fails",
+        ],
+        caseSlug: "ilnami-private-by-design",
+        caseName: "Ilnami",
       },
     ],
-    deliverableLabel: "You get",
-    nodes: {
-      sources: ["Spreadsheets", "ERP · CRM", "Bank · payments", "Documents"],
-      core: "Your backend",
-      coreDetail: "API · events",
-      ai: "AI · reviewed",
-      outputs: ["Invoices", "Dashboards", "Alerts"],
-    },
+    caseLabel: "Case study",
+  },
+  hiring: {
+    title: "Also open to the right full-time role",
+    body: "If the fit is right: product work, a senior team, AI applied seriously and remote work.",
+    cvLink: "See the full CV",
   },
 
   about: {
     title: "About",
-    lead: "Most of my work has been on software where a mistake is expensive.",
+    lead: "I own the whole system: design, code, deployment and handover.",
     paragraphs: [
       [
         "I work in the architecture and solutions team at Andbank, a private bank in Andorra. Before that I worked at elAbogado as a full-stack developer and, as a consultant, on projects for Vodafone and Endesa. I also build and run my own products. The details are on the ",
@@ -206,7 +221,7 @@ export const en: SiteContent = {
     title: "Services",
     homeTitle: "How we can work together",
     intro:
-      "Three formats for three moments: before deciding, while building and once it is running. All of them start with your problem, not with a technology.",
+      "Three formats for three moments: before deciding, while building and once it is running. Whatever your stack is, I learn it quickly and take ownership of it.",
     items: [
       {
         id: "advisory",
@@ -233,10 +248,10 @@ export const en: SiteContent = {
         summary:
           "Custom software, APIs and integrations, automation and applied AI, taken all the way to production.",
         audience:
-          "Teams that need a backend, an integration with banks or payment providers, or a Java application brought up to date.",
+          "Teams that need a new product built, an existing system modernised or AI integrated into it.",
         includes: [
           "Custom business software and internal tools",
-          "APIs and integrations: ERPs, banks, payment providers and third-party services",
+          "APIs and integrations with ERPs, payment providers and third-party services",
           "Automation of documents and repetitive work, with AI reviewed by a person",
           "Java and Spring Boot backends, migrations and upgrades",
           "Deployment, monitoring, documentation and handover",
@@ -263,15 +278,6 @@ export const en: SiteContent = {
           "Technical decisions, reviews and a roadmap your team can follow.",
         format: "Monthly agreement, 4 to 8 hours per week.",
       },
-    ],
-    examplesTitle: "Some examples",
-    examples: [
-      "Integrate a bank or a payment provider through its API",
-      "Upgrade a Java and Spring Boot platform without stopping releases",
-      "Centralise authentication with Keycloak and MFA",
-      "Extract data from documents into your system",
-      "Receive and classify invoices automatically",
-      "An internal assistant that answers from your company's documentation",
     ],
     audienceLabel: "Best for",
     includesLabel: "Includes",
@@ -817,7 +823,7 @@ export const en: SiteContent = {
       {
         label: "Availability",
         value:
-          "10 to 15 hours per week. Write to me and we will plan the start.",
+          "Projects at 10 to 15 hours per week, or full-time in the right role.",
       },
       { label: "Location", value: "Andorra · remote" },
       {

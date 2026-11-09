@@ -68,7 +68,10 @@ export function buildTerminalData(
       href: product.href,
     })),
     sections: [
-      { id: "connect", label: headlineText(content.display.connect) },
+      {
+        id: "capabilities",
+        label: headlineText(content.display.capabilities),
+      },
       { id: "approach", label: headlineText(content.display.approach) },
       { id: "work", label: nav.work },
       { id: "services", label: nav.services },
