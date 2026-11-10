@@ -83,7 +83,7 @@ Hero personal (el rol «Software Architect · Senior Engineer» en versalitas en
 ### Reglas de maquetación
 
 - Mobile-first en 390 px; hero a dos columnas desde 64 rem; botón de contacto en la cabecera desde `wide` (1200 px). Controles de 44 px en móvil.
-- **Un solo CTA**, siempre hacia `/contact`: «Tell me about your project» / «Cuéntame tu proyecto» en el hero y tras los casos y los servicios; el header usa la forma corta («Let's talk» / «Hablemos»). Allí el **brief de proyecto** es el camino principal; el email directo es secundario (botón con contorno). Sin servidor ni datos guardados.
+- **Un solo CTA**, siempre hacia `/contact`: «Tell me about your project» / «Cuéntame tu proyecto» en el hero y tras los casos y los servicios; el header usa la forma corta («Let's talk» / «Hablemos»). Allí el **brief de proyecto** es el camino principal; el email directo es secundario (botón con contorno). El brief se envía desde la web (`POST /api/contact` → Brevo, con el visitante como *reply-to*), muestra «Enviando…» y «Recibido» y no se guarda en ningún sitio; si el envío no está disponible o falla, abre la app de correo del visitante con todo escrito. Lleva un campo trampa oculto contra bots y un límite por IP.
 - Migas de pan con la página actual al final (`aria-current="page"`).
 - Diagramas en SVG inline, máximo 6 cajas (lo comprueba `content/site/content.test.ts`).
 - Imagen OG de la web en los neutros fríos con el verde claro como marca, con Inter.

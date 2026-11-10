@@ -52,7 +52,8 @@ what he does, why to trust him and how to hire him.
   reject cross-site requests.
 - Commercial pages are static (SSG), work without JavaScript, and ship only
   the client components they need: theme, language, menu, email, the project
-  brief (it prepares an email; nothing is sent to the server), and the AI
+  brief (sent through `POST /api/contact` to Brevo and stored nowhere; it opens
+  the visitor's mail app when sending is unavailable), and the AI
   assistant and terminal, which load on first use and send visitors to
   hola@jefmonjor.dev.
 - Code speaks for itself: names, small functions and types instead of

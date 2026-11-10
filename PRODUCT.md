@@ -26,7 +26,7 @@ Software architect and senior engineer who builds new products, modernizes exist
 
 - Offer: Diagnosis (1–5 days, written report), Build and integrate (fixed scope or daily rate), Engineering partner (monthly, 4–8 h/week).
 - Availability: projects at 10–15 h/week or the right full-time role; remote from Andorra (CET). No availability date is shown on the site or given by the assistant.
-- Contact: a six-question project brief that prepares an email in the visitor's own mail app; nothing is stored by the site. Email address shown only after hydration: hola@jefmonjor.dev on the site (`siteContactEmail()` in `lib/email.ts`); `/cv` keeps its own address.
+- Contact: a six-question project brief plus the visitor's email, sent from the site to hola@jefmonjor.dev through Brevo (transactional email, EU) with the visitor as reply-to; nothing is stored by the site. When Brevo is not configured or fails, the brief opens in the visitor's own mail app instead. Email address shown only after hydration: hola@jefmonjor.dev on the site (`siteContactEmail()` in `lib/email.ts`); `/cv` keeps its own address.
 - English at `/`, Spanish at `/es`. The CV lives at `/cv` (EN, ES, CA).
 
 ## Capabilities and Constraints

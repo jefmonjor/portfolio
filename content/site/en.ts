@@ -30,7 +30,7 @@ export const en: SiteContent = {
     privacy: {
       title: "Privacy — what this site does with your data",
       description:
-        "No analytics, no tracking cookies, no form that sends data to this site. What happens to an email you send, to text you give the AI assistant on /cv, and to server logs.",
+        "No analytics and no tracking cookies. What happens to the project form, to an email you send, to text you give the AI assistants, and to server logs.",
     },
   },
   nav: {
@@ -846,9 +846,10 @@ export const en: SiteContent = {
     brief: {
       title: "Tell me about your project",
       intro:
-        "Six short questions. When you send it, your email app opens with everything written; nothing is stored on this site.",
+        "Six short questions and your email. It reaches me directly and I reply within one business day; nothing is stored on this site.",
       fields: {
         name: "Your name",
+        email: "Your email",
         company: "Company (optional)",
         problem: "What do you need to solve?",
         problemHint:
@@ -879,15 +880,19 @@ export const en: SiteContent = {
         "In 3–6 months",
         "Just exploring",
       ],
-      submit: "Prepare the email",
+      submit: "Send",
       copy: "Copy the text",
       copied: "Text copied",
       copyFailed: "Could not copy the text",
-      required: "Write your name and the problem to continue.",
-      opened:
-        "Your email app should open with the brief. If nothing happened, copy the text and paste it into your webmail.",
+      required: "Write your name, your email and the problem to continue.",
+      invalidEmail: "Check your email: I need it to reply.",
+      sending: "Sending…",
+      sent: "Received. I will reply within one business day to the email you left.",
+      fallback:
+        "It could not be sent from the site, so your email app opens with everything written. If nothing happens, copy the text and paste it into your webmail.",
       emailLabels: {
         name: "Name",
+        email: "Email",
         company: "Company",
         type: "Project",
         budget: "Budget",
@@ -1009,7 +1014,15 @@ export const en: SiteContent = {
         title: "What this site does not do",
         paragraphs: [
           [
-            "No analytics, no advertising and no tracking cookies. The project form on the contact page sends nothing to this site: it prepares an email in your own mail app. Fonts and scripts are served from this domain; the pages load nothing from third parties.",
+            "No analytics, no advertising and no tracking cookies. Fonts and scripts are served from this domain; the pages load nothing from third parties.",
+          ],
+        ],
+      },
+      {
+        title: "If you send me the project form",
+        paragraphs: [
+          [
+            "What you write in the form on the contact page reaches me as an email through Brevo (Sendinblue SAS, France), the service that sends this domain's email. This site does not store it: Brevo keeps a record of the delivery under its own terms, and the message stays in my mailbox like any email. I use it only to answer you. If sending fails, the form opens your own email app with the text.",
           ],
         ],
       },
@@ -1033,7 +1046,7 @@ export const en: SiteContent = {
         title: "Hosting and server logs",
         paragraphs: [
           [
-            "The site runs on Vercel. Like any web server, it processes your IP address and the request to deliver each page and to protect the site against abuse. The AI features and the PDF downloads count requests per IP address, or per network for IPv6, in a counter store that deletes them within 24 hours.",
+            "The site runs on Vercel. Like any web server, it processes your IP address and the request to deliver each page and to protect the site against abuse. The AI features, the project form and the PDF downloads count requests per IP address, or per network for IPv6, in a counter store that deletes them within 24 hours.",
           ],
         ],
       },
@@ -1049,7 +1062,7 @@ export const en: SiteContent = {
         title: "Legal basis and international transfers",
         paragraphs: [
           [
-            "Email: to answer the request you send. AI features: because you choose to use them. Server logs and request counters: the legitimate interest in keeping the site secure and available. OpenAI, Vercel and Google are based in the United States and may process data outside Andorra and the EU under their own data-transfer safeguards.",
+            "Email and the project form: to answer the request you send. AI features: because you choose to use them. Server logs and request counters: the legitimate interest in keeping the site secure and available. OpenAI, Vercel and Google are based in the United States and may process data outside Andorra and the EU under their own data-transfer safeguards; Brevo processes data in the EU.",
           ],
         ],
       },

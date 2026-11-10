@@ -103,6 +103,7 @@ export type ProjectBrief = {
   intro: string
   fields: {
     name: string
+    email: string
     company: string
     problem: string
     problemHint: string
@@ -118,9 +119,14 @@ export type ProjectBrief = {
   copied: string
   copyFailed: string
   required: string
-  opened: string
+  invalidEmail: string
+  sending: string
+  sent: string
+  /** Shown when the site could not send it and the visitor's mail app opens instead. */
+  fallback: string
   emailLabels: {
     name: string
+    email: string
     company: string
     type: string
     budget: string

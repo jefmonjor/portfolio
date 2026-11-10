@@ -48,6 +48,7 @@ export default async function ContactPage({ params }: SitePageProps) {
           </p>
           <div className="mt-6">
             <ProjectBrief
+              locale={locale}
               brief={contact.brief}
               withoutJavaScript={contact.email.withoutJavaScript}
             />
