@@ -72,7 +72,7 @@ describe("CV structured data", () => {
 
 describe("site structured data", () => {
   it("publishes the same person on the commercial site and the CV", () => {
-    const site = buildSiteStructuredData(person)[
+    const site = buildSiteStructuredData({ ...person, services: [] })[
       "@graph"
     ] as ReadonlyArray<GraphNode>
 
@@ -85,6 +85,32 @@ describe("site structured data", () => {
     })
     expect(nodeOfType(site, "WebSite")).toMatchObject({
       url: "https://www.jefmonjor.dev",
+    })
+  })
+
+  it("lists each service the person offers", () => {
+    const site = buildSiteStructuredData({
+      ...person,
+      services: [
+        {
+          name: "Build and integrate",
+          description: "Custom software taken to production.",
+          url: "https://www.jefmonjor.dev/services#delivery",
+        },
+      ],
+    })["@graph"] as ReadonlyArray<GraphNode>
+
+    expect(nodeOfType(site, "Person")).toMatchObject({
+      makesOffer: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Build and integrate",
+            provider: { "@id": personId },
+          },
+        },
+      ],
     })
   })
 

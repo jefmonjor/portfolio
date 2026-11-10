@@ -8,10 +8,9 @@ export const es: SiteContent = {
         "Construyo productos nuevos, modernizo sistemas existentes e integro IA dentro de ellos. Siete años, del equipo de arquitectura de un banco privado a productos propios en producción. En remoto, CET.",
     },
     services: {
-      title:
-        "Servicios — Diagnóstico, construir e integrar, socio de ingeniería",
+      title: "Software a medida, integraciones e IA aplicada — Servicios",
       description:
-        "Tres formas de trabajar juntos: un diagnóstico por escrito de un proceso o un sistema, software a medida e integraciones hasta producción, o un socio de ingeniería cada semana.",
+        "Revisión y hoja de ruta en 1–5 días, software a medida e integraciones hasta producción, o tech lead fraccional cada semana. En remoto, CET.",
     },
     work: {
       title: "Casos de estudio — Facturación, apps, IA aplicada y banca",
@@ -395,7 +394,7 @@ export const es: SiteContent = {
             "Un banco privado de Andorra que opera en varias jurisdicciones",
           role: "Equipo de arquitectura y soluciones, desde 2024",
           result:
-            "Una plataforma que avanza en pasos pequeños y una nueva arquitectura de banca online, sin detener las entregas.",
+            "El banco moderniza sin congelar las entregas: actualizaciones en pasos pequeños y de menor riesgo, un único proveedor de identidad con MFA y una deuda técnica que ya se puede medir.",
         },
         context: [
           "El banco atiende a sus clientes con aplicaciones Java que se apoyan en un core mucho más antiguo: programas COBOL sobre AS400, con DB2 como sistema de registro. Con los años, la parte Java se había quedado atrás respecto a las versiones actuales de su framework y de sus servidores de aplicaciones.",
@@ -508,7 +507,8 @@ export const es: SiteContent = {
         summary: {
           sector: "Software de empresa (SaaS), producto propio",
           role: "Todo: producto, arquitectura, backend, frontend y operación",
-          result: "En producción en transolido.com y conforme a VERI*FACTU.",
+          result:
+            "Facturas conformes con VERI*FACTU sin depender de un informe añadido al final: el cumplimiento vive en el núcleo y la IA ahorra tecleo sin poder emitir una factura por su cuenta. En producción en transolido.com.",
         },
         context: [
           "VERI*FACTU cambia cómo debe comportarse el software de facturación en España: cada factura tiene que ser trazable y los registros no se pueden alterar en silencio una vez emitidos. Para una pyme no es una mejora opcional; es una obligación legal.",
@@ -615,7 +615,7 @@ export const es: SiteContent = {
           sector: "Plataforma para escritores, producto propio",
           role: "Todo: producto, app, backend y operación",
           result:
-            "En producción en othertwist.com, con la app en app.othertwist.com.",
+            "Quien escribe no pierde ni el trabajo ni el momento por quedarse sin conexión: la app sigue funcionando y sincroniza al volver. En producción en othertwist.com.",
         },
         context: [
           "No siempre se escribe con conexión: en un tren, en una cafetería, en un sitio con mala cobertura. Una herramienta de escritura que deja de funcionar sin red pierde justo el momento para el que se abrió.",
@@ -723,7 +723,8 @@ export const es: SiteContent = {
         summary: {
           sector: "App de consumo, producto propio",
           role: "Todo: producto, arquitectura, backend, frontend y operación",
-          result: "En producción y abierta en ilnami.com, en español e inglés.",
+          result:
+            "Cada diario es privado porque lo impone la base de datos, no solo la pantalla, y la IA ahorra tiempo sin guardar nada por su cuenta. En producción en ilnami.com, en español e inglés.",
         },
         context: [
           "Las apps de reseñas responden a la pregunta «¿qué opinan unos desconocidos de este sitio?». Ilnami responde a otra: ¿qué pedí aquí y volvería? Es un diario gastronómico privado sobre tu propio mapa: el sitio, la fecha, los platos y tu veredicto.",

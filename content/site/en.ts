@@ -8,9 +8,9 @@ export const en: SiteContent = {
         "I build new products, modernize existing systems and put AI to work inside them. Seven years, from a private bank's architecture team to my own products in production. Remote, CET.",
     },
     services: {
-      title: "Services — Diagnosis, build and integrate, engineering partner",
+      title: "Custom software, integrations and applied AI — Services",
       description:
-        "Three ways to work together: a written diagnosis of a process or a system, custom software and integrations taken to production, or an engineering partner every week.",
+        "A review and roadmap in 1–5 days, custom software and integrations taken to production, or a fractional tech lead every week. Remote, CET.",
     },
     work: {
       title: "Case studies — Invoicing, apps, applied AI and banking",
@@ -393,7 +393,7 @@ export const en: SiteContent = {
             "A private bank in Andorra that operates in several jurisdictions",
           role: "Architecture and solutions team, since 2024",
           result:
-            "A platform that moves forward in small steps and a new homebanking architecture, while releases continue.",
+            "The bank modernizes without freezing releases: upgrades in small, lower-risk steps, a single identity provider with MFA, and technical debt that can now be measured.",
         },
         context: [
           "The bank serves its customers through Java applications that sit on top of a much older core: COBOL programs on AS400, with DB2 as the system of record. Over the years the Java side had fallen behind the current versions of its framework and application servers.",
@@ -509,7 +509,8 @@ export const en: SiteContent = {
         summary: {
           sector: "Business software (SaaS), my own product",
           role: "Everything: product, architecture, backend, frontend and operations",
-          result: "Live at transolido.com and compliant with VERI*FACTU.",
+          result:
+            "Invoices that comply with VERI*FACTU without a report bolted on at the end: compliance lives in the core, and the AI saves typing without being able to issue an invoice on its own. Live at transolido.com.",
         },
         context: [
           "Spain's VERI*FACTU rules change how invoicing software must behave: every invoice has to be traceable, and records cannot be quietly altered once they are issued. For a small business this is not a feature request; it is a legal requirement.",
@@ -615,7 +616,8 @@ export const en: SiteContent = {
         summary: {
           sector: "Platform for writers, my own product",
           role: "Everything: product, app, backend and operations",
-          result: "Live at othertwist.com, with the app at app.othertwist.com.",
+          result:
+            "Writers lose neither their work nor the moment when the connection drops: the app keeps working and syncs when they are back online. Live at othertwist.com.",
         },
         context: [
           "Writers do not always write with a connection: on a train, in a café, somewhere with poor coverage. A writing tool that stops working offline loses the moment it was opened for.",
@@ -722,7 +724,8 @@ export const en: SiteContent = {
         summary: {
           sector: "Consumer app, my own product",
           role: "Everything: product, architecture, backend, frontend and operations",
-          result: "Online and open at ilnami.com, in Spanish and English.",
+          result:
+            "Each diary stays private because the database enforces it, not just the screen, and the AI saves time without saving anything on its own. Live at ilnami.com, in Spanish and English.",
         },
         context: [
           "Review apps answer the question “what do strangers think of this place?”. Ilnami answers a different one: what did I order here, and would I go back? It is a private food diary on your own map: the place, the date, the dishes and your verdict.",
