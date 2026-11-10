@@ -43,7 +43,7 @@ El botón principal (cabecera, hero, servicios), la etapa «Revisión · Respond
 
 ### Asistente de IA y terminal (toda la web comercial)
 
-- **Asistente:** botón flotante «Pregunta a la IA» abajo a la derecha (solo icono en móvil) (`components/site/site-console.tsx`). Abre un panel (hoja inferior en móvil, tarjeta de 24 rem en escritorio) con tres preguntas sugeridas, el hilo y, siempre visibles, «Escríbeme un email» (hola@jefmonjor.dev) y «Rellena el brief de proyecto».
+- **Asistente:** botón flotante «Pregunta a la IA» abajo a la derecha, con su texto también en móvil y con contorno (nunca en verde, para no competir con el CTA); en móvil aparece tras el primer scroll para no tapar el hero (`components/site/site-console.tsx`). Abre un panel (hoja inferior en móvil, tarjeta de 24 rem en escritorio) con tres preguntas sugeridas, el hilo y, siempre visibles, «Escríbeme un email» (hola@jefmonjor.dev) y «Rellena el brief de proyecto».
   - Responde `POST /api/site-assistant`, con el mismo modelo, límites y presupuesto diario que el asistente de `/cv`.
   - Usa un dossier con el contenido de la web, la experiencia, los productos propios y las tecnologías (`lib/site-assistant/dossier.ts`), sin precios ni detalles del banco. Habla de Jefferson en tercera persona: si el visitante menciona su sector, propone dos o tres ideas concretas, hace una o dos preguntas y le invita al brief o a hola@jefmonjor.dev.
   - Si falla, explica por qué y devuelve la pregunta al campo.
@@ -63,7 +63,9 @@ El botón principal (cabecera, hero, servicios), la etapa «Revisión · Respond
 
 ### Orden de la home
 
-Hero personal (titular, presentación en primera persona, CTA, órbita de herramientas y «En producción» con los tres productos) → «He trabajado en» → Tus sistemas, por fin conectados (mapa) → Cómo trabajo (flujo Especificación → Código → Tests → **Revisión** → Producción y los cinco principios de «IA útil, acotada por ingeniería», los mismos que en `/cv`, con SpecForge en cabeza) → Cuatro sistemas en producción (tarjetas con captura) → Cómo podemos trabajar juntos (tres servicios con «Ideal para / Te llevas / Formato» y los tres pasos para empezar) → Hola, soy Jefferson (nota en primera persona y datos) → Dónde he trabajado → cierre verde con el brief.
+Sin grillas de tarjetas iguales en la home: cada sección tiene su forma (lista, imagen grande, frase y tabla) para que el ritmo cambie al bajar. Las tarjetas de casos (`CaseDeck`) quedan para el índice de `/work`.
+
+Hero personal (el rol «Software Architect · Senior Engineer» en versalitas encima del titular, el titular, una presentación de una frase, el CTA «Cuéntame tu proyecto», las etiquetas de stack, la órbita de herramientas y «En producción» con los tres productos) → «He trabajado en» → Lo que puedo asumir (**lista**: tres filas abiertas, el tipo de trabajo en grande a la izquierda y la frase, los puntos y su caso a la derecha) → Cuatro sectores, el mismo estándar (**imagen grande**: Ilnami destacado con su captura en el marco de navegador, 7/12, y los otros tres casos como índice de filas enlazadas; CTA repetido) → Cómo podemos trabajar juntos (**una frase potente**, «Tres formatos para tres momentos…», y debajo los tres servicios como tabla comparativa con «Ideal para / Te llevas / Formato» como columnas; luego los tres pasos para empezar, con CTA) → Cómo trabajo (flujo Especificación → Código → Tests → **Revisión** → Producción y, debajo, cuatro principios de IA acotada en una sola fila) → «También abierto al puesto adecuado» (la nota para selección, con el CV) → Hola, soy Jefferson → cierre con el brief. La prueba va antes que el método.
 
 ### Superficies y estado
 
@@ -83,7 +85,7 @@ Hero personal (titular, presentación en primera persona, CTA, órbita de herram
 ### Reglas de maquetación
 
 - Mobile-first en 390 px; hero a dos columnas desde 64 rem; botón de contacto en la cabecera desde `wide` (1200 px). Controles de 44 px en móvil.
-- **Un solo CTA** («Let's discuss your project» / «Hablemos de tu proyecto»), siempre hacia `/contact`. Allí el **brief de proyecto** es el camino principal; el email directo es secundario (botón con contorno). Sin servidor ni datos guardados.
+- **Un solo CTA**, siempre hacia `/contact`: «Tell me about your project» / «Cuéntame tu proyecto» en el hero y tras los casos y los servicios; el header usa la forma corta («Let's talk» / «Hablemos»). Allí el **brief de proyecto** es el camino principal; el email directo es secundario (botón con contorno). El brief se envía desde la web (`POST /api/contact` → Brevo, con el visitante como *reply-to*), muestra «Enviando…» y «Recibido» y no se guarda en ningún sitio; si el envío no está disponible o falla, abre la app de correo del visitante con todo escrito. Lleva un campo trampa oculto contra bots y un límite por IP.
 - Migas de pan con la página actual al final (`aria-current="page"`).
 - Diagramas en SVG inline, máximo 6 cajas (lo comprueba `content/site/content.test.ts`).
 - Imagen OG de la web en los neutros fríos con el verde claro como marca, con Inter.

@@ -256,6 +256,16 @@ export const checkPdfLimit = createRateLimiter({
   onStoreError: "ok",
 })
 
+// Fails open: a lost lead costs more than an occasional extra email.
+export const checkContactLimit = createRateLimiter({
+  rateMinute: intEnv("CONTACT_RATE_MINUTE", 2),
+  rateDaily: intEnv("CONTACT_RATE_DAILY", 5),
+  globalDaily: intEnv("CONTACT_GLOBAL_DAILY", 100),
+  store: sharedStore,
+  bucket: "contact",
+  onStoreError: "ok",
+})
+
 const IPV6_NETWORK_HEXTETS = 4
 
 function expandIpv6(address: string): string[] {

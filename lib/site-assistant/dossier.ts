@@ -129,7 +129,6 @@ export function buildSiteDossier(locale: SiteLocale): string {
   const approachLines = [
     approach.intro,
     approach.pipeline.map((stage) => `${stage.step} (${stage.by})`).join(" → "),
-    `${approach.principlesTitle}:`,
     ...approach.principles.map((item) => `- ${item.title}: ${item.body}`),
   ]
 

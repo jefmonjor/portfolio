@@ -36,10 +36,14 @@ La separación es irreversible y puede eliminar metadatos asociados a la red de 
 El texto completo listo para pegar —titular, «Acerca de», cada empleo, proyectos,
 aptitudes, formación e idiomas— está en [`LINKEDIN.md`](LINKEDIN.md).
 
-Al aplicarlo: mantener el cargo y las fechas laborales existentes sin
-sustituirlos por «AI Engineer», dejar la sección **Servicios** desactivada (no
-hay oferta freelance) y añadir portfolio, GitHub, Transolido y Corte1D en
-`Destacados`.
+Al aplicarlo: mantener el cargo y las fechas laborales existentes, activar la
+sección **Servicios** (la web ofrece proyectos) sin tarifas y fijar en
+`Destacados` la web, el caso Transolido, el CV y SpecForge.
+
+## X
+
+Bio, post fijado, hilos de las primeras semanas, búsquedas guardadas y el
+mensaje directo para founders y CTOs: [`X.md`](X.md).
 
 ## Nothiring: aparecer en su radar
 

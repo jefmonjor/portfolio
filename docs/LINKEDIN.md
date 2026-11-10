@@ -1,18 +1,22 @@
 # Perfil de LinkedIn — texto listo para pegar
 
-Los textos de abajo salen de la misma fuente de verdad que la web y los CV
-(`lib/profile.ts` + `messages/*.json`): mismo cargo actual, mismo posicionamiento
-objetivo, mismas cifras. Si cambia el perfil en el repositorio, este documento se
-actualiza con él.
+Los textos salen de la misma fuente de verdad que la web y los CV
+(`lib/profile.ts`, `messages/*.json`, `content/site/*.ts`): mismo cargo, mismo
+posicionamiento y mismas cifras. Si cambia el perfil en el repositorio, este
+documento cambia con él.
 
-Tres reglas al pegar:
+Reglas al pegar:
 
-- El **cargo actual** es Arquitecto de Soluciones / Technical PM en Andbank. El
-  posicionamiento (Product Engineer · IA y Backend) va en el titular y en
-  «Acerca de», nunca sustituye al cargo contractual.
-- Nada de trabajo freelance, servicios ni tarifas: no es cierto y contradice el
-  resto del perfil. Mantener la sección **Servicios** desactivada.
-- Ninguna cifra que no esté ya publicada en el portfolio.
+- **Posicionamiento:** Software Architect & Senior Backend Engineer, el mismo
+  que en jefmonjor.dev. El cargo contractual de Andbank (Solutions Architect /
+  Technical PM) va en Experiencia, tal cual.
+- **Dos puertas abiertas:** proyectos (10–15 h/semana) y el puesto adecuado a
+  jornada completa. Sin tarifas y sin fecha de disponibilidad.
+- **Ninguna cifra que no esté ya publicada** en el CV o en la web. Los detalles
+  internos de Andbank se quedan dentro.
+- **Inglés B1.** Ni «native» ni «fluent» en ningún texto.
+- Los resultados de cada puesto dicen qué cambió, no solo qué tareas había: la
+  fórmula es *hice X, con Y, y eso permitió Z*.
 
 ---
 
@@ -22,159 +26,250 @@ Tres reglas al pegar:
 linkedin.com/in/jefmonjor
 ```
 
-Misma que en GitHub, el portfolio y los CV.
+Misma que en GitHub, la web y los CV.
 
 ---
 
 ## Titular
 
+El titular es lo que más pesa en las búsquedas de recruiters: rol estándar
+primero, stack y lo que resuelves después. Máximo 220 caracteres.
+
+**Español (perfil principal)**
+
 ```
-Product Engineer · IA y Backend | Arquitecto de Soluciones / Technical PM en Andbank | Java · Spring Boot · Next.js
+Software Architect & Senior Backend Engineer | Java 21 · Spring Boot · TypeScript | Banca, modernización de legacy e IA aplicada en producción | Proyectos y jornada completa · Remoto (CET)
 ```
 
-Alternativa más corta si el titular se ve truncado en móvil:
+**English (perfil en otro idioma)**
 
 ```
-Product Engineer · IA y Backend | Arquitecto de Soluciones en Andbank | Java · Spring · Next.js
+Software Architect & Senior Backend Engineer | Java 21 · Spring Boot · TypeScript | Banking-grade systems, legacy modernization & applied AI in production | Projects & full-time · Remote (CET)
 ```
 
 ---
 
 ## Acerca de
 
+Estructura: quién eres y en qué escala trabajas, la prueba, cómo trabajas, qué
+buscas, cómo contactar y la lista de tecnologías al final (LinkedIn la indexa).
+
+**Español**
+
 ```
-Construyo productos de principio a fin sobre backends Java/Spring y arquitecturas que se pueden mantener años después de escribirlas.
+Software Architect y Senior Backend Engineer. Siete años construyendo software donde equivocarse sale caro: banca, legal, energía y telecomunicaciones.
 
-Ahora mismo, como Arquitecto de Soluciones / Technical PM en Andbank, trabajo en arquitectura backend para banca privada: estándares de desarrollo con Java 21 y Spring Boot 3, integración con sistemas core (COBOL, AS400, DB2), identidad con Keycloak y gestión técnica de proveedores sobre OpenShift.
+En Andbank, un banco privado de Andorra que opera en varias jurisdicciones, trabajo en el equipo de arquitectura y soluciones. Diseñé la arquitectura de la nueva banca online (más de 15 componentes, Clean Architecture y hexagonal), dirijo la migración a Spring Boot 3 y Tomcat 9/10 en más de 40 VMs sin congelar las entregas, implanté Keycloak con MFA y reglas por jurisdicción e integro el core COBOL/AS400/DB2. También llevé SonarQube a todos los repositorios, incluidos más de 12.000 ficheros COBOL, y puse en marcha la primera herramienta de IA del departamento, hoy en uso diario por todo el equipo.
 
-Antes: modernización del marketplace legal líder en España (de Struts2 a React + Spring Boot), microservicios para Vodafone y plataformas Big Data del sector energético con Hadoop, Spark y Cassandra. Más de seis años de software que llega a producción, en banca, legal y energía.
+Antes modernicé el marketplace legal líder en España (de Struts2 a React + Spring Boot) en elAbogado, construí microservicios para Vodafone y plataformas Big Data para Endesa con Hadoop, Spark y Cassandra.
 
-En paralelo desarrollo productos propios —unos en funcionamiento y otros en desarrollo— que cubren el ciclo completo: producto, backend, despliegue e IA aplicada. Transolido (facturación conforme a VERI*FACTU), PRONOQ, Corte1D y mi portfolio, que es de código abierto.
+En paralelo construyo y opero productos propios, de la base de datos a producción: Transolido (facturación conforme a VERI*FACTU), Other Twist (plataforma de escritura offline-first), Ilnami (app privada por diseño), PRONOQ, Corte1D y SpecForge, un CLI open source en Go que pone a los agentes de IA en una línea de montaje con tests y revisión.
 
-Sobre la IA: la uso donde resuelve una parte concreta del problema, con datos validados, contratos tipados, límites de consumo y una alternativa manual cuando el modelo no debe decidir. Lo probabilístico y lo determinista, separados.
+Uso la IA en todo el ciclo, con los tests como puerta automática, contratos validados y mi revisión antes de producción: la IA acelera y yo respondo del resultado.
 
-Abierto selectivamente a oportunidades relevantes de Product Engineering, backend e IA aplicada, en Andorra, España o remoto dentro de zonas horarias europeas.
+Abierto a proyectos y al puesto adecuado a jornada completa: producto, un equipo senior, IA aplicada con criterio y remoto en horario europeo.
 
-Portfolio y CV: https://jefmonjor.dev
+Trabajo y casos: https://jefmonjor.dev · Contacto: hola@jefmonjor.dev
+
+Core technologies: Java 21 · Spring Boot 3 · TypeScript · React · Next.js · Flutter · Go · PostgreSQL · Redis · DB2 · Docker · Kubernetes · OpenShift · Google Cloud Run · Vercel · Keycloak · OAuth2/JWT · Claude API · OpenAI API · CI/CD
+```
+
+**English**
+
+```
+Software Architect and Senior Backend Engineer. Seven years building software where mistakes are expensive: banking, legal, energy and telecom.
+
+At Andbank, a private bank in Andorra that operates across several jurisdictions, I work in the architecture and solutions team. I designed the architecture of the new online banking platform (15+ components, Clean and Hexagonal Architecture), I lead the Spring Boot 3 and Tomcat 9/10 migration across 40+ VMs without freezing releases, rolled out Keycloak with MFA and per-jurisdiction rules, and integrate the COBOL/AS400/DB2 core. I also extended SonarQube to every repository, including 12,000+ COBOL files, and launched the department's first AI tool, now in daily use by the whole team.
+
+Before that I modernized Spain's leading legal marketplace (Struts2 to React + Spring Boot) at elAbogado, built microservices for Vodafone and Big Data platforms for Endesa with Hadoop, Spark and Cassandra.
+
+On the side I build and run products of my own, from the database to production: Transolido (VERI*FACTU-compliant invoicing), Other Twist (offline-first writing platform), Ilnami (private-by-design app), PRONOQ, Corte1D and SpecForge, an open-source Go CLI that puts AI coding agents on an assembly line with tests and review.
+
+I use AI across the whole cycle, with tests as an automated gate, validated contracts and my review before production: AI speeds things up and I answer for the result.
+
+Open to projects and to the right full-time role: product work, a senior team, AI applied with judgement, remote in European hours.
+
+Work and case studies: https://jefmonjor.dev · Contact: hola@jefmonjor.dev
+
+Core technologies: Java 21 · Spring Boot 3 · TypeScript · React · Next.js · Flutter · Go · PostgreSQL · Redis · DB2 · Docker · Kubernetes · OpenShift · Google Cloud Run · Vercel · Keycloak · OAuth2/JWT · Claude API · OpenAI API · CI/CD
 ```
 
 ---
 
 ## Experiencia
 
-### Andbank — Arquitecto de Soluciones / Technical PM
+Fechas en mes/año y orden cronológico inverso. Cada puesto: una línea de
+contexto, de tres a seis logros y el stack.
 
-`Sep 2024 – Actualidad · Andorra la Vella, Andorra · Híbrido`
+### Andbank — Solutions Architect / Technical PM
+
+`sep. 2024 – actualidad · Andorra la Vella, Andorra · Híbrido`
 
 ```
-Arquitectura backend y gestión técnica en banca privada: estándares de desarrollo, integración con sistemas core y evaluación de soluciones de IA.
+Equipo de arquitectura y soluciones de un banco privado que opera en varias jurisdicciones.
 
-• Diseño de arquitectura backend (Java 21, Spring Boot 3) bajo Clean Architecture y arquitectura hexagonal; nuevo homebanking con más de 15 componentes.
-• Migración Spring Boot 2 → 3 (namespace Jakarta) y de Tomcat 7/8 → 9/10 en más de 40 VMs.
-• Integración con sistemas legacy (COBOL, AS400, DB2), evolución de las APIs de carriers de envío e implantación de Keycloak con MFA y reglas por jurisdicción.
-• Calidad de código: SonarQube integrado en todos los repositorios, incluido el análisis de más de 12.000 ficheros COBOL.
-• Adopción de IA en el departamento: despliegue de Gemini Code Assist para todo el equipo.
-• Gestión técnica de proveedores, decisiones build vs buy y control de deuda técnica sobre OpenShift (OCP4).
+• Diseñé la arquitectura de la nueva banca online: más de 15 componentes independientes sobre Clean Architecture y hexagonal (Java 21, Spring Boot 3), para que cada uno evolucione sin bloquear a los demás.
+• Dirijo la migración de Spring Boot 2 → 3 (Jakarta) y de Tomcat 7/8 → 9/10 en más de 40 VMs, por fases y sin congelar las entregas.
+• Implanté Keycloak como proveedor único de identidad, con MFA y reglas por jurisdicción.
+• Integro el core COBOL/AS400/DB2 tras adaptadores y evoluciono las APIs con los transportistas de envío.
+• Llevé SonarQube a todos los repositorios, incluidos más de 12.000 ficheros COBOL: la deuda técnica es ahora visible en toda la plataforma, legacy incluido.
+• Puse en marcha la primera herramienta de IA del departamento (Gemini Code Assist), hoy en uso diario por todo el equipo.
+• Gestiono técnicamente a los proveedores y las decisiones de construir o comprar sobre OpenShift (OCP4).
+
+Java 21 · Spring Boot 3 · OpenShift · Keycloak · DB2 · COBOL/AS400 · SonarQube
+```
+
+```
+Architecture and solutions team of a private bank operating across several jurisdictions.
+
+• Designed the new online banking architecture: 15+ independent components on Clean and Hexagonal Architecture (Java 21, Spring Boot 3), so each one evolves without blocking the others.
+• Lead the Spring Boot 2 → 3 (Jakarta) and Tomcat 7/8 → 9/10 migration across 40+ VMs, in phases and without freezing releases.
+• Rolled out Keycloak as the single identity provider, with MFA and per-jurisdiction rules.
+• Integrate the COBOL/AS400/DB2 core behind adapters and evolve the shipping-carrier APIs.
+• Extended SonarQube to every repository, including 12,000+ COBOL files, making technical debt visible across the platform, legacy included.
+• Launched the department's first AI tool (Gemini Code Assist), now in daily use by the whole team.
+• Manage vendors technically and drive build-vs-buy decisions on OpenShift (OCP4).
 
 Java 21 · Spring Boot 3 · OpenShift · Keycloak · DB2 · COBOL/AS400 · SonarQube
 ```
 
 ### elAbogado — Senior Full Stack Engineer
 
-`Mar 2022 – Sep 2024 · Barcelona, España`
+`mar. 2022 – sep. 2024 · Barcelona, España`
 
 ```
-Desarrollo full-stack y modernización de la plataforma legal líder en España.
+El marketplace legal líder en España.
 
-• Modernización de legacy: migración de Struts2 a React + Spring Boot.
-• Diseño de microservicios y APIs REST seguras.
-• Mejora de rendimiento, mantenibilidad y evolución de la arquitectura.
-• Gestión de contenidos y landing pages con WordPress.
+• Modernicé la plataforma: migración de Struts2 a React + Spring Boot.
+• Diseñé microservicios y APIs REST seguras.
+• Mejoré el rendimiento y la mantenibilidad, y evolucioné la arquitectura.
+• Gestioné contenidos y landing pages con WordPress.
 
 Java · Spring Boot · React · MySQL · REST APIs · WordPress
 ```
 
-### Zemsania — Software Engineer
+```
+Spain's leading legal marketplace.
 
-`Jul 2021 – Abr 2022 · Madrid, España`
+• Modernized the platform: migrated Struts2 to React + Spring Boot.
+• Designed microservices and secure REST APIs.
+• Improved performance and maintainability, and evolved the architecture.
+• Managed content and landing pages with WordPress.
+
+Java · Spring Boot · React · MySQL · REST APIs · WordPress
+```
+
+### Zemsania — Software Engineer (cliente: Vodafone)
+
+`jul. 2021 – abr. 2022 · Madrid, España`
 
 ```
-Desarrollo backend de microservicios para Vodafone.
-
-• Microservicios con Java y Spring Boot para sistemas distribuidos.
-• Diseño y documentación de APIs con Swagger / OpenAPI.
-• Trabajo en equipo distribuido con Jira, Confluence y Slack.
+• Construí microservicios con Java y Spring Boot para los sistemas distribuidos de Vodafone.
+• Diseñé y documenté sus APIs con Swagger / OpenAPI.
+• Trabajé en un equipo distribuido con Jira, Confluence y Slack.
 
 Java · Spring Boot · Microservicios · OpenAPI
 ```
 
-### Keapps (Atos) — Software Engineer (Java · Big Data)
+```
+• Built Java and Spring Boot microservices for Vodafone's distributed systems.
+• Designed and documented their APIs with Swagger / OpenAPI.
+• Worked in a distributed team with Jira, Confluence and Slack.
 
-`Jul 2020 – Jul 2021 · Sevilla, España`
+Java · Spring Boot · Microservices · OpenAPI
+```
+
+### Keapps (Atos) — Software Engineer, Java & Big Data (cliente: Endesa)
+
+`jul. 2020 – jul. 2021 · Sevilla, España`
 
 ```
-Proyecto Kronos (Endesa): sistemas Java Enterprise y soluciones Big Data.
-
-• Soluciones Big Data con Hadoop, Spark y Cassandra sobre datos de consumo energético.
-• Procesos MapReduce sobre HDFS/YARN y optimización de batch críticos.
+• Construí soluciones Big Data con Hadoop, Spark y Cassandra sobre los datos de consumo energético de Endesa (proyecto Kronos).
+• Optimicé procesos MapReduce sobre HDFS/YARN y batch críticos.
 
 Java · Hadoop · Spark · Cassandra · HDFS · YARN · SQL
 ```
 
-### Ayesa — Programador Java & Big Data
+```
+• Built Big Data solutions with Hadoop, Spark and Cassandra over Endesa's energy-consumption data (Kronos project).
+• Optimized MapReduce jobs on HDFS/YARN and critical batch processes.
 
-`Ago 2019 – Abr 2020 · Sevilla, España`
+Java · Hadoop · Spark · Cassandra · HDFS · YARN · SQL
+```
+
+### Ayesa — Java & Big Data Developer (cliente: Endesa)
+
+`ago. 2019 – abr. 2020 · Sevilla, España`
 
 ```
-Proyecto Kronos (Endesa): desarrollo Java y pipelines de datos.
-
-• Desarrollo y mantenimiento de sistemas Java Enterprise (SOAP, XML) con interfaces JSP y PrimeFaces.
-• Pipelines de datos a gran escala con MapReduce y almacenamiento en S3.
+• Desarrollé y mantuve sistemas Java Enterprise (SOAP, XML) con interfaces JSP y PrimeFaces.
+• Construí pipelines de datos a gran escala con MapReduce y almacenamiento en S3.
 
 Java · Hadoop · MapReduce · S3 · JSP · PrimeFaces · SOAP/XML
 ```
+
+```
+• Developed and maintained enterprise Java systems (SOAP, XML) with JSP and PrimeFaces interfaces.
+• Built large-scale data pipelines with MapReduce and S3 storage.
+
+Java · Hadoop · MapReduce · S3 · JSP · PrimeFaces · SOAP/XML
+```
+
+### Cifras que faltan
+
+Los puestos de elAbogado, Vodafone y Endesa todavía cuentan tareas. Si tienes
+alguna de estas cifras y puedes publicarla, va al principio del logro
+correspondiente (y al CV):
+
+- elAbogado: tráfico o usuarios de la plataforma, mejora de tiempos de carga o
+  de despliegue tras la migración, número de servicios.
+- Vodafone: número de microservicios o volumen de peticiones.
+- Endesa: volumen de datos procesados (registros, TB) o reducción del tiempo de
+  los batch.
+- Productos propios: facturas emitidas en Transolido, usuarios de Other Twist
+  o Ilnami.
 
 ---
 
 ## Proyectos
 
-Sección «Proyectos» del perfil. Solo los públicos llevan enlace; los privados se
-describen sin URL y sin prometer fecha de lanzamiento.
+Todos en producción. Asociar cada uno a «Jefferson Montesdeoca (productos
+propios)».
 
-**Transolido** — `En funcionamiento` · https://transolido.com
-
-```
-Facturación conforme a VERI*FACTU: monolito modular en Java 21 / Spring Boot con autenticación JWT, eventos Redis en Upstash, PostgreSQL en Neon, frontend React y extracción de datos asistida por IA. Backend en Google Cloud Run, frontend en Vercel.
-```
-
-**PRONOQ** — `En funcionamiento` · https://pronoq.jefmonjor.dev
+**Transolido** · https://www.transolido.com
 
 ```
-Porra de fútbol entre amigos: PWA mobile-first para LaLiga y Champions con marcador en vivo, clasificación automática y análisis de resultados con IA que narra estadísticas pero nunca recomienda pronósticos. En español, inglés y catalán, sobre VPS propio con Docker.
+Facturación conforme a VERI*FACTU: el cumplimiento vive en el núcleo del sistema y la IA ahorra tecleo sin poder emitir una factura por su cuenta. Monolito modular en Java 21 / Spring Boot con autenticación JWT, eventos Redis en Upstash, PostgreSQL en Neon y frontend React.
 ```
 
-**Corte1D** — `En funcionamiento` · https://corte1d.jefmonjor.dev
+**Other Twist** · https://othertwist.com
 
 ```
-SaaS de taller: importa despieces desde Excel, CSV y SolidWorks, optimiza el corte 1D con un motor determinista y controla el stock. PWA con exportación a PDF, ficheros en Backblaze B2 y login propio con Argon2.
+Plataforma para escritores que sigue funcionando sin conexión y sincroniza al volver. App Flutter offline-first y backend Java 21 / Spring Boot en arquitectura hexagonal, en contenedores.
 ```
 
-**Portfolio y CV** — `En funcionamiento` · https://jefmonjor.dev · código: https://github.com/jefmonjor/portfolio
+**Ilnami** · https://ilnami.com
 
 ```
-Portfolio trilingüe con stack tipado Next.js + tRPC + Zod: tres CV en PDF generados en servidor desde una única fuente de datos, asistente de IA acotado a un dossier público cerrado con límites de consumo, terminal interactiva y SEO/GEO completo. Código abierto.
+Diario gastronómico privado por diseño: la propia base de datos mantiene privado cada diario y la IA sugiere pero nunca guarda. Next.js, seguridad por fila en PostgreSQL y OpenAI Vision, en español e inglés.
 ```
 
-**Contact QR** — `En funcionamiento` · https://contactqr.jefmonjor.dev
+**SpecForge** · https://github.com/jefmonjor/specforge/releases
 
 ```
-Tarjeta de contacto digital: un QR que añade la ficha (vCard) directamente a la agenda del móvil. Web ligera construida con Astro.
+CLI open source en Go que pone a Claude Code o Gemini CLI en una línea de montaje que verifica cada paso: especificación sellada, plan revisado, Red → Green → Refactor con revisión humana y un commit por escenario.
 ```
 
-**Other Twist · Ilnami** — `En desarrollo · privados`
+**PRONOQ** · https://pronoq.jefmonjor.dev
 
 ```
-Producto para escritores (app Flutter offline-first + backend Java 21 hexagonal) y memoria gastronómica privada (Next.js, Supabase con PostGIS, Stripe y OCR con IA con flujo manual de respaldo). En desarrollo, sin fecha pública.
+Porra de fútbol entre amigos: PWA mobile-first para LaLiga y Champions con marcador en vivo, clasificación automática y análisis de resultados con IA. En español, inglés y catalán.
+```
+
+**Corte1D** · https://corte1d.jefmonjor.dev
+
+```
+SaaS de taller: importa despieces desde Excel/CSV, optimiza el corte 1D con un motor determinista y controla el stock. PWA con exportación a PDF.
 ```
 
 ---
@@ -183,25 +278,26 @@ Producto para escritores (app Flutter offline-first + backend Java 21 hexagonal)
 
 Fijar cuatro, en este orden:
 
-1. Portfolio — https://jefmonjor.dev
-2. Transolido — https://transolido.com
-3. Corte1D — https://corte1d.jefmonjor.dev
-4. GitHub — https://github.com/jefmonjor
+1. jefmonjor.dev — https://jefmonjor.dev
+2. Caso Transolido — https://www.jefmonjor.dev/es/work/transolido-verifactu-invoicing
+3. CV completo — https://www.jefmonjor.dev/es/cv
+4. SpecForge en GitHub — https://github.com/jefmonjor/specforge/releases
 
 ---
 
 ## Aptitudes
 
-Las tres fijadas arriba (son las que se ven en la ficha):
+LinkedIn admite 50. Fijar arriba estas tres, que son las que se ven en la ficha
+y las que conviene que te validen:
 
 ```
-Java · Spring Boot · Arquitectura de software
+Arquitectura de software · Java · Spring Boot
 ```
 
-Resto, en este orden:
+Resto, en este orden (47):
 
 ```
-Java 21 · Spring Boot 3 · Hibernate / JPA · REST · SOAP · Arquitectura hexagonal · Clean Architecture · Microservicios · TypeScript · Next.js · React · Node.js · Python · SQL · PostgreSQL · Oracle PL/SQL · DB2 · MySQL · Cassandra · Hadoop · Spark · Docker · Kubernetes · OpenShift · Jenkins · GitHub Actions · CI/CD · Keycloak · OAuth2 · Google Cloud · Vercel · IA aplicada · Claude API · OpenAI API · MCP · Gestión de proveedores · Scrum
+Java 21 · Spring Boot 3 · Diseño de sistemas · Arquitectura hexagonal · Clean Architecture · Microservicios · Modernización de sistemas legacy · Integración de sistemas · REST APIs · OpenAPI · SOAP · Hibernate / JPA · TypeScript · JavaScript · React · Next.js · Node.js · Flutter · Dart · Go · Python · SQL · PostgreSQL · Redis · DB2 · Oracle PL/SQL · MySQL · Cassandra · Hadoop · Apache Spark · Docker · Kubernetes · OpenShift · Google Cloud Platform · Vercel · CI/CD · GitHub Actions · Jenkins · Keycloak · OAuth2 · Seguridad de aplicaciones · SonarQube · IA aplicada · Claude API · OpenAI API · Gestión de proveedores · Scrum
 ```
 
 ---
@@ -224,23 +320,30 @@ Scrum Master Professional Certified (SMPC) — SCRUMstudy · 2023
 
 ```
 Español — Nativo o bilingüe
-Inglés — Profesional (B1)
+Inglés — Competencia básica profesional (B1)
 ```
 
-No añadir catalán como idioma: la web está traducida al catalán, pero eso no es
-un nivel acreditado.
+No añadir catalán: la web está traducida al catalán, pero no es un nivel
+acreditado.
 
 ---
 
 ## Ajustes del perfil
 
-- **Buscando empleo**: activar solo el aviso a recruiters, con «Product
-  Engineer», «Backend Engineer» y «Software Architect»; ubicaciones Andorra,
-  España y remoto europeo. Coincide con el estado publicado en la web: abierto
-  selectivamente.
-- **Servicios**: desactivado. No hay oferta freelance.
-- **Sitio web del perfil**: `https://jefmonjor.dev`, con el texto «Portfolio».
-- **Foto y banner**: los mismos que en el portfolio, para que la identidad
-  visual coincida en todas las plataformas.
-- **Sección Destacados** antes que «Actividad», para que lo primero que se vea
-  al bajar sea el producto.
+- **Open to Work:** solo para recruiters (sin el marco verde público). Cargos:
+  Software Architect, Solutions Architect, Senior Backend Engineer, Senior
+  Software Engineer y Tech Lead. Ubicaciones: remoto en Europa, Andorra y
+  España. LinkedIn intenta ocultarlo a los recruiters de tu empresa, pero no lo
+  garantiza.
+- **Servicios:** activado, a juego con la web. Elige en el desplegable los más
+  cercanos a desarrollo de software a medida, arquitectura de software,
+  integración de aplicaciones y consultoría de IA. Sin tarifas.
+- **Ubicación:** Andorra la Vella, Andorra (es la capital, así que entra en los
+  filtros geográficos).
+- **Perfil en otro idioma:** crear la versión en inglés desde «Añadir perfil en
+  otro idioma» con los textos en inglés de arriba.
+- **Sitio web:** `https://jefmonjor.dev`, con el texto «Portfolio».
+- **Foto y banner:** los mismos que en `/cv` y en X, para que la identidad
+  coincida en todas partes.
+- **Destacados** antes que «Actividad», para que lo primero que se vea al bajar
+  sea el trabajo.

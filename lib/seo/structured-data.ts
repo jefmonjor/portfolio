@@ -24,6 +24,16 @@ type PublicProject = {
   codeRepository?: string
 }
 
+export type OfferedService = {
+  name: string
+  description: string
+  url: string
+}
+
+type SiteStructuredDataInput = PersonInput & {
+  services: ReadonlyArray<OfferedService>
+}
+
 type CvStructuredDataInput = PersonInput & {
   locale: Locale
   pageUrl: string
@@ -141,10 +151,38 @@ export function buildBreadcrumbList(trail: ReadonlyArray<Breadcrumb>) {
   }
 }
 
-export function buildSiteStructuredData(person: PersonInput) {
+function offerFor(service: OfferedService) {
+  return {
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: service.name,
+      description: service.description,
+      url: service.url,
+      serviceType: service.name,
+      areaServed: "Worldwide",
+      availableChannel: {
+        "@type": "ServiceChannel",
+        serviceUrl: service.url,
+      },
+      provider: { "@id": personId },
+    },
+  }
+}
+
+export function buildSiteStructuredData({
+  services,
+  ...person
+}: SiteStructuredDataInput) {
   return {
     "@context": "https://schema.org",
-    "@graph": [websiteNode(), personNode(person, { withPortrait: false })],
+    "@graph": [
+      websiteNode(),
+      {
+        ...personNode(person, { withPortrait: false }),
+        makesOffer: services.map(offerFor),
+      },
+    ],
   }
 }
 

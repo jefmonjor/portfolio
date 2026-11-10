@@ -27,23 +27,16 @@ function ApproachSection({ content }: ApproachSectionProps) {
           </li>
         ))}
       </ol>
-      <h3 className="mt-12 font-heading text-title-h4 text-text-strong-950">
-        {approach.principlesTitle}
-      </h3>
-      <ul className="mt-8 grid gap-x-12 gap-y-10 md:grid-cols-2">
-        {approach.principles.map((principle, index) => (
+      <ul className="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+        {approach.principles.map((principle) => (
           <li
             key={principle.title}
-            className={`border-t border-stroke-soft-200 pt-6 ${index === 0 ? "md:col-span-2" : ""}`}
+            className="border-t border-stroke-soft-200 pt-5"
           >
-            <h4
-              className={`font-heading text-text-strong-950 ${index === 0 ? "text-title-h4" : "text-title-h5"}`}
-            >
+            <h3 className="font-heading text-title-h5 text-text-strong-950">
               {principle.title}
-            </h4>
-            <p
-              className={`mt-2 text-text-sub-600 ${index === 0 ? "max-w-[46rem] text-paragraph-lg" : "text-paragraph-md"}`}
-            >
+            </h3>
+            <p className="mt-2 text-paragraph-sm text-text-sub-600">
               {principle.body}
             </p>
           </li>

@@ -8,9 +8,9 @@ export const en: SiteContent = {
         "I build new products, modernize existing systems and put AI to work inside them. Seven years, from a private bank's architecture team to my own products in production. Remote, CET.",
     },
     services: {
-      title: "Services — Diagnosis, build and integrate, engineering partner",
+      title: "Custom software, integrations and applied AI — Services",
       description:
-        "Three ways to work together: a written diagnosis of a process or a system, custom software and integrations taken to production, or an engineering partner every week.",
+        "A review and roadmap in 1–5 days, custom software and integrations taken to production, or a fractional tech lead every week. Remote, CET.",
     },
     work: {
       title: "Case studies — Invoicing, apps, applied AI and banking",
@@ -30,7 +30,7 @@ export const en: SiteContent = {
     privacy: {
       title: "Privacy — what this site does with your data",
       description:
-        "No analytics, no tracking cookies, no form that sends data to this site. What happens to an email you send, to text you give the AI assistant on /cv, and to server logs.",
+        "No analytics and no tracking cookies. What happens to the project form, to an email you send, to text you give the AI assistants, and to server logs.",
     },
   },
   nav: {
@@ -55,11 +55,12 @@ export const en: SiteContent = {
       "and put AI to work inside them.",
     ],
     subtitle:
-      "Seven years shipping software where mistakes are expensive, from a private bank's architecture team to products I have built alone, from the database to production. Backend-first, stack-agnostic, remote.",
+      "Seven years shipping software where mistakes are expensive: from a private bank's architecture team to products of my own, from the database to production.",
+    cta: "Tell me about your project",
     availability: {
       status: "Open to projects, and to the right full-time role.",
     },
-    stack: "Java · Spring · TypeScript · Cloud · Applied AI",
+    stack: "Java · Spring · TypeScript · Applied AI",
     engagement: "Remote · CET · Full-time, part-time or project-based",
     seeWork: "See my work",
     terminalHint: "Prefer a terminal? Open it (Ctrl K)",
@@ -117,12 +118,7 @@ export const en: SiteContent = {
       { step: "Review", by: "I answer for it", human: true },
       { step: "Production", by: "Monitored" },
     ],
-    principlesTitle: "Useful AI, bounded by engineering",
     principles: [
-      {
-        title: "AI behind automated gates",
-        body: "The AI asks instead of inventing, tests are written before the code, and nothing moves forward without passing the tests and my review.",
-      },
       {
         title: "Validated contracts",
         body: "Whatever the AI reads or returns is checked against strict contracts before it is used.",
@@ -222,6 +218,8 @@ export const en: SiteContent = {
     homeTitle: "How we can work together",
     intro:
       "Three formats for three moments: before deciding, while building and once it is running. Whatever your stack is, I learn it quickly and take ownership of it.",
+    statement:
+      "Three formats for three moments: before deciding, while building and once it is running.",
     items: [
       {
         id: "advisory",
@@ -397,7 +395,7 @@ export const en: SiteContent = {
             "A private bank in Andorra that operates in several jurisdictions",
           role: "Architecture and solutions team, since 2024",
           result:
-            "A platform that moves forward in small steps and a new homebanking architecture, while releases continue.",
+            "The bank modernizes without freezing releases: upgrades in small, lower-risk steps, a single identity provider with MFA, and technical debt that can now be measured.",
         },
         context: [
           "The bank serves its customers through Java applications that sit on top of a much older core: COBOL programs on AS400, with DB2 as the system of record. Over the years the Java side had fallen behind the current versions of its framework and application servers.",
@@ -513,7 +511,8 @@ export const en: SiteContent = {
         summary: {
           sector: "Business software (SaaS), my own product",
           role: "Everything: product, architecture, backend, frontend and operations",
-          result: "Live at transolido.com and compliant with VERI*FACTU.",
+          result:
+            "Invoices that comply with VERI*FACTU without a report bolted on at the end: compliance lives in the core, and the AI saves typing without being able to issue an invoice on its own. Live at transolido.com.",
         },
         context: [
           "Spain's VERI*FACTU rules change how invoicing software must behave: every invoice has to be traceable, and records cannot be quietly altered once they are issued. For a small business this is not a feature request; it is a legal requirement.",
@@ -619,7 +618,8 @@ export const en: SiteContent = {
         summary: {
           sector: "Platform for writers, my own product",
           role: "Everything: product, app, backend and operations",
-          result: "Live at othertwist.com, with the app at app.othertwist.com.",
+          result:
+            "Writers lose neither their work nor the moment when the connection drops: the app keeps working and syncs when they are back online. Live at othertwist.com.",
         },
         context: [
           "Writers do not always write with a connection: on a train, in a café, somewhere with poor coverage. A writing tool that stops working offline loses the moment it was opened for.",
@@ -726,7 +726,8 @@ export const en: SiteContent = {
         summary: {
           sector: "Consumer app, my own product",
           role: "Everything: product, architecture, backend, frontend and operations",
-          result: "Online and open at ilnami.com, in Spanish and English.",
+          result:
+            "Each diary stays private because the database enforces it, not just the screen, and the AI saves time without saving anything on its own. Live at ilnami.com, in Spanish and English.",
         },
         context: [
           "Review apps answer the question “what do strangers think of this place?”. Ilnami answers a different one: what did I order here, and would I go back? It is a private food diary on your own map: the place, the date, the dishes and your verdict.",
@@ -850,9 +851,10 @@ export const en: SiteContent = {
     brief: {
       title: "Tell me about your project",
       intro:
-        "Six short questions. When you send it, your email app opens with everything written; nothing is stored on this site.",
+        "Six short questions and your email. It reaches me directly and I reply within one business day; nothing is stored on this site.",
       fields: {
         name: "Your name",
+        email: "Your email",
         company: "Company (optional)",
         problem: "What do you need to solve?",
         problemHint:
@@ -883,15 +885,19 @@ export const en: SiteContent = {
         "In 3–6 months",
         "Just exploring",
       ],
-      submit: "Prepare the email",
+      submit: "Send",
       copy: "Copy the text",
       copied: "Text copied",
       copyFailed: "Could not copy the text",
-      required: "Write your name and the problem to continue.",
-      opened:
-        "Your email app should open with the brief. If nothing happened, copy the text and paste it into your webmail.",
+      required: "Write your name, your email and the problem to continue.",
+      invalidEmail: "Check your email: I need it to reply.",
+      sending: "Sending…",
+      sent: "Received. I will reply within one business day to the email you left.",
+      fallback:
+        "It could not be sent from the site, so your email app opens with everything written. If nothing happens, copy the text and paste it into your webmail.",
       emailLabels: {
         name: "Name",
+        email: "Email",
         company: "Company",
         type: "Project",
         budget: "Budget",
@@ -1013,7 +1019,15 @@ export const en: SiteContent = {
         title: "What this site does not do",
         paragraphs: [
           [
-            "No analytics, no advertising and no tracking cookies. The project form on the contact page sends nothing to this site: it prepares an email in your own mail app. Fonts and scripts are served from this domain; the pages load nothing from third parties.",
+            "No analytics, no advertising and no tracking cookies. Fonts and scripts are served from this domain; the pages load nothing from third parties.",
+          ],
+        ],
+      },
+      {
+        title: "If you send me the project form",
+        paragraphs: [
+          [
+            "What you write in the form on the contact page reaches me as an email through Brevo (Sendinblue SAS, France), the service that sends this domain's email. This site does not store it: Brevo keeps a record of the delivery under its own terms, and the message stays in my mailbox like any email. I use it only to answer you. If sending fails, the form opens your own email app with the text.",
           ],
         ],
       },
@@ -1037,7 +1051,7 @@ export const en: SiteContent = {
         title: "Hosting and server logs",
         paragraphs: [
           [
-            "The site runs on Vercel. Like any web server, it processes your IP address and the request to deliver each page and to protect the site against abuse. The AI features and the PDF downloads count requests per IP address, or per network for IPv6, in a counter store that deletes them within 24 hours.",
+            "The site runs on Vercel. Like any web server, it processes your IP address and the request to deliver each page and to protect the site against abuse. The AI features, the project form and the PDF downloads count requests per IP address, or per network for IPv6, in a counter store that deletes them within 24 hours.",
           ],
         ],
       },
@@ -1053,7 +1067,7 @@ export const en: SiteContent = {
         title: "Legal basis and international transfers",
         paragraphs: [
           [
-            "Email: to answer the request you send. AI features: because you choose to use them. Server logs and request counters: the legitimate interest in keeping the site secure and available. OpenAI, Vercel and Google are based in the United States and may process data outside Andorra and the EU under their own data-transfer safeguards.",
+            "Email and the project form: to answer the request you send. AI features: because you choose to use them. Server logs and request counters: the legitimate interest in keeping the site secure and available. OpenAI, Vercel and Google are based in the United States and may process data outside Andorra and the EU under their own data-transfer safeguards; Brevo processes data in the EU.",
           ],
         ],
       },

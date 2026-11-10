@@ -116,6 +116,12 @@ subdominios de proyectos. Zona completa:
   Cloudflare los TXT que indique (DKIM ×2 + `brevo-code`), y el SPF debe
   incluir a Brevo (`include:spf.brevo.com`). Recomendado añadir DMARC:
   `_dmarc` TXT `v=DMARC1; p=quarantine; rua=mailto:hola@jefmonjor.dev`.
+- **Brief de `/contact`** — la web lo envía con la API transaccional de
+  Brevo. En Brevo → SMTP & API → API keys, crea una clave y ponla como
+  `BREVO_API_KEY` en Vercel (Production). El remitente es `hola@jefmonjor.dev`
+  salvo que se fije `CONTACT_SENDER_EMAIL`; tiene que ser de un dominio
+  autenticado en Brevo, como el de arriba. Sin la clave, el brief abre la app
+  de correo del visitante.
 - **Responder como hola@ desde Gmail** — Gmail → Configuración → Cuentas →
   "Enviar como" con el SMTP de Brevo (`smtp-relay.brevo.com`, puerto 587,
   login del panel SMTP de Brevo).
@@ -127,6 +133,6 @@ docker build -t portfolio .
 docker run -d --name portfolio --restart unless-stopped -p 127.0.0.1:3000:3000 portfolio
 ```
 
-Las variables de entorno (`OPENAI_API_KEY` y, si se quieren, las de Upstash)
+Las variables de entorno (`OPENAI_API_KEY`, `BREVO_API_KEY` y, si se quieren, las de Upstash)
 se pasan con `-e` o `--env-file`; el workflow de despliegue no pasa ninguna
 todavía, así que una instancia lanzada por él arranca con la IA desactivada.

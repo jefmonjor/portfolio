@@ -8,10 +8,9 @@ export const es: SiteContent = {
         "Construyo productos nuevos, modernizo sistemas existentes e integro IA dentro de ellos. Siete años, del equipo de arquitectura de un banco privado a productos propios en producción. En remoto, CET.",
     },
     services: {
-      title:
-        "Servicios — Diagnóstico, construir e integrar, socio de ingeniería",
+      title: "Software a medida, integraciones e IA aplicada — Servicios",
       description:
-        "Tres formas de trabajar juntos: un diagnóstico por escrito de un proceso o un sistema, software a medida e integraciones hasta producción, o un socio de ingeniería cada semana.",
+        "Revisión y hoja de ruta en 1–5 días, software a medida e integraciones hasta producción, o tech lead fraccional cada semana. En remoto, CET.",
     },
     work: {
       title: "Casos de estudio — Facturación, apps, IA aplicada y banca",
@@ -32,7 +31,7 @@ export const es: SiteContent = {
     privacy: {
       title: "Privacidad — qué hace esta web con tus datos",
       description:
-        "Sin analítica, sin cookies de seguimiento y sin formularios que envíen datos. Qué pasa con un email que envías, con el texto que das al asistente de IA de /cv y con los registros del servidor.",
+        "Sin analítica ni cookies de seguimiento. Qué pasa con el formulario de proyecto, con un email que envías, con el texto que das a los asistentes de IA y con los registros del servidor.",
     },
   },
   nav: {
@@ -57,11 +56,12 @@ export const es: SiteContent = {
       "e integro IA dentro de ellos.",
     ],
     subtitle:
-      "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado a productos propios construidos solo, de la base de datos a producción. Perfil backend, con el stack que haga falta y en remoto.",
+      "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado a productos propios, de la base de datos a producción.",
+    cta: "Cuéntame tu proyecto",
     availability: {
       status: "Abierto a proyectos y al puesto adecuado a jornada completa.",
     },
-    stack: "Java · Spring · TypeScript · Cloud · IA aplicada",
+    stack: "Java · Spring · TypeScript · IA aplicada",
     engagement: "Remoto · CET · Jornada completa, parcial o por proyecto",
     seeWork: "Ver mi trabajo",
     terminalHint: "¿Prefieres la terminal? Ábrela (Ctrl K)",
@@ -119,12 +119,7 @@ export const es: SiteContent = {
       { step: "Revisión", by: "Respondo yo", human: true },
       { step: "Producción", by: "Monitorizado" },
     ],
-    principlesTitle: "IA útil, acotada por ingeniería",
     principles: [
-      {
-        title: "La IA, bajo controles automáticos",
-        body: "La IA pregunta en lugar de inventar, los tests se escriben antes que el código y nada avanza sin superar los tests y mi revisión.",
-      },
       {
         title: "Contratos validados",
         body: "Lo que la IA lee o devuelve se valida con contratos estrictos antes de usarse.",
@@ -224,6 +219,8 @@ export const es: SiteContent = {
     homeTitle: "Cómo podemos trabajar juntos",
     intro:
       "Tres formatos para tres momentos: antes de decidir, mientras se construye y cuando ya funciona. Con el stack que tengas: lo aprendo rápido y me hago cargo de él.",
+    statement:
+      "Tres formatos para tres momentos: antes de decidir, mientras se construye y cuando ya funciona.",
     items: [
       {
         id: "advisory",
@@ -399,7 +396,7 @@ export const es: SiteContent = {
             "Un banco privado de Andorra que opera en varias jurisdicciones",
           role: "Equipo de arquitectura y soluciones, desde 2024",
           result:
-            "Una plataforma que avanza en pasos pequeños y una nueva arquitectura de banca online, sin detener las entregas.",
+            "El banco moderniza sin congelar las entregas: actualizaciones en pasos pequeños y de menor riesgo, un único proveedor de identidad con MFA y una deuda técnica que ya se puede medir.",
         },
         context: [
           "El banco atiende a sus clientes con aplicaciones Java que se apoyan en un core mucho más antiguo: programas COBOL sobre AS400, con DB2 como sistema de registro. Con los años, la parte Java se había quedado atrás respecto a las versiones actuales de su framework y de sus servidores de aplicaciones.",
@@ -512,7 +509,8 @@ export const es: SiteContent = {
         summary: {
           sector: "Software de empresa (SaaS), producto propio",
           role: "Todo: producto, arquitectura, backend, frontend y operación",
-          result: "En producción en transolido.com y conforme a VERI*FACTU.",
+          result:
+            "Facturas conformes con VERI*FACTU sin depender de un informe añadido al final: el cumplimiento vive en el núcleo y la IA ahorra tecleo sin poder emitir una factura por su cuenta. En producción en transolido.com.",
         },
         context: [
           "VERI*FACTU cambia cómo debe comportarse el software de facturación en España: cada factura tiene que ser trazable y los registros no se pueden alterar en silencio una vez emitidos. Para una pyme no es una mejora opcional; es una obligación legal.",
@@ -619,7 +617,7 @@ export const es: SiteContent = {
           sector: "Plataforma para escritores, producto propio",
           role: "Todo: producto, app, backend y operación",
           result:
-            "En producción en othertwist.com, con la app en app.othertwist.com.",
+            "Quien escribe no pierde ni el trabajo ni el momento por quedarse sin conexión: la app sigue funcionando y sincroniza al volver. En producción en othertwist.com.",
         },
         context: [
           "No siempre se escribe con conexión: en un tren, en una cafetería, en un sitio con mala cobertura. Una herramienta de escritura que deja de funcionar sin red pierde justo el momento para el que se abrió.",
@@ -727,7 +725,8 @@ export const es: SiteContent = {
         summary: {
           sector: "App de consumo, producto propio",
           role: "Todo: producto, arquitectura, backend, frontend y operación",
-          result: "En producción y abierta en ilnami.com, en español e inglés.",
+          result:
+            "Cada diario es privado porque lo impone la base de datos, no solo la pantalla, y la IA ahorra tiempo sin guardar nada por su cuenta. En producción en ilnami.com, en español e inglés.",
         },
         context: [
           "Las apps de reseñas responden a la pregunta «¿qué opinan unos desconocidos de este sitio?». Ilnami responde a otra: ¿qué pedí aquí y volvería? Es un diario gastronómico privado sobre tu propio mapa: el sitio, la fecha, los platos y tu veredicto.",
@@ -852,9 +851,10 @@ export const es: SiteContent = {
     brief: {
       title: "Cuéntame tu proyecto",
       intro:
-        "Seis preguntas breves. Al enviarlo se abre tu aplicación de correo con todo escrito; esta web no guarda nada.",
+        "Seis preguntas breves y tu email. Me llega directamente y te respondo en un día laborable; esta web no guarda nada.",
       fields: {
         name: "Tu nombre",
+        email: "Tu email",
         company: "Empresa (opcional)",
         problem: "¿Qué necesitas resolver?",
         problemHint:
@@ -885,15 +885,19 @@ export const es: SiteContent = {
         "En 3–6 meses",
         "Solo estoy explorando",
       ],
-      submit: "Preparar el email",
+      submit: "Enviar",
       copy: "Copiar el texto",
       copied: "Texto copiado",
       copyFailed: "No se pudo copiar el texto",
-      required: "Escribe tu nombre y el problema para continuar.",
-      opened:
-        "Tu aplicación de correo debería abrirse con el brief. Si no ha pasado nada, copia el texto y pégalo en tu webmail.",
+      required: "Escribe tu nombre, tu email y el problema para continuar.",
+      invalidEmail: "Revisa tu email: lo necesito para responderte.",
+      sending: "Enviando…",
+      sent: "Recibido. Te respondo en un día laborable al email que has dejado.",
+      fallback:
+        "No se ha podido enviar desde la web, así que se abre tu aplicación de correo con todo escrito. Si no pasa nada, copia el texto y pégalo en tu webmail.",
       emailLabels: {
         name: "Nombre",
+        email: "Email",
         company: "Empresa",
         type: "Proyecto",
         budget: "Presupuesto",
@@ -1015,7 +1019,15 @@ export const es: SiteContent = {
         title: "Qué no hace esta web",
         paragraphs: [
           [
-            "Sin analítica, sin publicidad y sin cookies de seguimiento. El formulario de proyecto de la página de contacto no envía nada a esta web: prepara un email en tu propia aplicación de correo. Las fuentes y los scripts se sirven desde este dominio; las páginas no cargan nada de terceros.",
+            "Sin analítica, sin publicidad y sin cookies de seguimiento. Las fuentes y los scripts se sirven desde este dominio; las páginas no cargan nada de terceros.",
+          ],
+        ],
+      },
+      {
+        title: "Si me envías el formulario de proyecto",
+        paragraphs: [
+          [
+            "Lo que escribes en el formulario de la página de contacto me llega como un email a través de Brevo (Sendinblue SAS, Francia), el servicio con el que se envía el correo de este dominio. Esta web no lo guarda: Brevo conserva un registro del envío según sus propias condiciones y el mensaje queda en mi buzón, como cualquier email. Lo uso solo para responderte. Si el envío falla, el formulario abre tu propia aplicación de correo con el texto.",
           ],
         ],
       },
@@ -1039,7 +1051,7 @@ export const es: SiteContent = {
         title: "Alojamiento y registros del servidor",
         paragraphs: [
           [
-            "La web funciona en Vercel. Como cualquier servidor web, trata tu dirección IP y la petición para servir cada página y proteger la web frente a abusos. Las funciones de IA y las descargas de PDF cuentan peticiones por dirección IP, o por red en IPv6, en un almacén de contadores que los borra en menos de 24 horas.",
+            "La web funciona en Vercel. Como cualquier servidor web, trata tu dirección IP y la petición para servir cada página y proteger la web frente a abusos. Las funciones de IA, el formulario de proyecto y las descargas de PDF cuentan peticiones por dirección IP, o por red en IPv6, en un almacén de contadores que los borra en menos de 24 horas.",
           ],
         ],
       },
@@ -1055,7 +1067,7 @@ export const es: SiteContent = {
         title: "Base legal y transferencias internacionales",
         paragraphs: [
           [
-            "Email: para responder a la petición que me envías. Funciones de IA: porque decides usarlas. Registros del servidor y contadores de peticiones: el interés legítimo en mantener la web segura y disponible. OpenAI, Vercel y Google tienen sede en Estados Unidos y pueden tratar datos fuera de Andorra y de la UE con sus propias garantías de transferencia.",
+            "Email y formulario de proyecto: para responder a la petición que me envías. Funciones de IA: porque decides usarlas. Registros del servidor y contadores de peticiones: el interés legítimo en mantener la web segura y disponible. OpenAI, Vercel y Google tienen sede en Estados Unidos y pueden tratar datos fuera de Andorra y de la UE con sus propias garantías de transferencia; Brevo trata los datos en la UE.",
           ],
         ],
       },

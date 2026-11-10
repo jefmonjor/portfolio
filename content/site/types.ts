@@ -103,6 +103,7 @@ export type ProjectBrief = {
   intro: string
   fields: {
     name: string
+    email: string
     company: string
     problem: string
     problemHint: string
@@ -118,9 +119,14 @@ export type ProjectBrief = {
   copied: string
   copyFailed: string
   required: string
-  opened: string
+  invalidEmail: string
+  sending: string
+  sent: string
+  /** Shown when the site could not send it and the visitor's mail app opens instead. */
+  fallback: string
   emailLabels: {
     name: string
+    email: string
     company: string
     type: string
     budget: string
@@ -225,6 +231,8 @@ export type SiteContent = {
     role: string
     headline: Headline
     subtitle: string
+    /** The hero's call to action: says what happens next, unlike the header's short label. */
+    cta: string
     availability: { status: string }
     /** The core stack, one line under the call to action. */
     stack: string
@@ -255,9 +263,7 @@ export type SiteContent = {
       PipelineStep,
       PipelineStep,
     ]
-    principlesTitle: string
-    /** The first principle leads the list and spans the full width. */
-    principles: readonly [TitledText, ...TitledText[]]
+    principles: readonly [TitledText, TitledText, TitledText, TitledText]
   }
   capabilities: {
     intro: string
@@ -290,6 +296,8 @@ export type SiteContent = {
     title: string
     homeTitle: string
     intro: string
+    /** The home's one-line case for the three services. */
+    statement: string
     items: readonly [Service, Service, Service]
     audienceLabel: string
     includesLabel: string
