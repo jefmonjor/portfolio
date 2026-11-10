@@ -16,7 +16,15 @@ type CaseCardProps = {
   headingLevel?: "h2" | "h3"
 }
 
-function CaseVisual({ study }: { study: CaseStudy }) {
+const cardImageSizes = "(min-width: 64rem) 34rem, (min-width: 48rem) 45vw, 92vw"
+
+function CaseVisual({
+  study,
+  sizes = cardImageSizes,
+}: {
+  study: CaseStudy
+  sizes?: string
+}) {
   const screenshot = caseScreenshots[study.slug]
 
   if (screenshot && study.screenshotAlt) {
@@ -30,7 +38,7 @@ function CaseVisual({ study }: { study: CaseStudy }) {
           src={screenshot.image}
           alt={study.screenshotAlt}
           placeholder="blur"
-          sizes="(min-width: 64rem) 34rem, (min-width: 48rem) 45vw, 92vw"
+          sizes={sizes}
           className="case-shot-image"
         />
       </figure>
@@ -83,4 +91,4 @@ function CaseCard({
   )
 }
 
-export { CaseCard }
+export { CaseCard, CaseVisual }

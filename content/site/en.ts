@@ -218,6 +218,8 @@ export const en: SiteContent = {
     homeTitle: "How we can work together",
     intro:
       "Three formats for three moments: before deciding, while building and once it is running. Whatever your stack is, I learn it quickly and take ownership of it.",
+    statement:
+      "Three formats for three moments: before deciding, while building and once it is running.",
     items: [
       {
         id: "advisory",

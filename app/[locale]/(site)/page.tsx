@@ -2,7 +2,7 @@ import { AboutSection } from "@/components/site/about-section"
 import { ApproachSection } from "@/components/site/approach-section"
 import { ArrowLink } from "@/components/site/arrow-link"
 import { CapabilitiesSection } from "@/components/site/capabilities-section"
-import { CaseDeck } from "@/components/site/case-deck"
+import { CaseShowcase } from "@/components/site/case-showcase"
 import { ContactButton } from "@/components/site/contact-button"
 import { CredentialsBand } from "@/components/site/credentials-band"
 import { FinalCta } from "@/components/site/final-cta"
@@ -34,9 +34,10 @@ export default async function HomePage({ params }: SitePageProps) {
       <CapabilitiesSection locale={locale} content={content} />
 
       <SiteSection id="work" title={content.display.work}>
-        <CaseDeck
+        <CaseShowcase
           locale={locale}
           cases={content.work.cases}
+          featured="ilnami-private-by-design"
           labels={content.work.labels}
           readLabel={content.selectedWork.readCase}
         />

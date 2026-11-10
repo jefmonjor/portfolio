@@ -219,6 +219,8 @@ export const es: SiteContent = {
     homeTitle: "Cómo podemos trabajar juntos",
     intro:
       "Tres formatos para tres momentos: antes de decidir, mientras se construye y cuando ya funciona. Con el stack que tengas: lo aprendo rápido y me hago cargo de él.",
+    statement:
+      "Tres formatos para tres momentos: antes de decidir, mientras se construye y cuando ya funciona.",
     items: [
       {
         id: "advisory",

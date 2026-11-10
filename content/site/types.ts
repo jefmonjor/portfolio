@@ -296,6 +296,8 @@ export type SiteContent = {
     title: string
     homeTitle: string
     intro: string
+    /** The home's one-line case for the three services. */
+    statement: string
     items: readonly [Service, Service, Service]
     audienceLabel: string
     includesLabel: string

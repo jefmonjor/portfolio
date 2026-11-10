@@ -1839,3 +1839,21 @@ html:has(#site-menu:popover-open) {
     display: none !important;
   }
 }
+
+.case-feature {
+  overflow: hidden;
+  border-radius: var(--radius-20);
+  box-shadow: 0 0 0 1px var(--stroke-soft-200);
+}
+
+.case-feature .case-shot {
+  border-bottom: 0;
+}
+
+.case-feature .case-shot-image {
+  transition: scale 800ms var(--ease-out-expo);
+}
+
+.case-feature:hover .case-shot-image {
+  scale: 1.015;
+}
