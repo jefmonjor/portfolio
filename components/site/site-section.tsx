@@ -1,4 +1,4 @@
-import { DisplayTitle } from "@/components/site/display-title"
+import { DisplayTitle, titleLabel } from "@/components/site/display-title"
 import type { Headline } from "@/content/site/types"
 import { cn } from "@/lib/utils"
 
@@ -28,9 +28,10 @@ function SiteSection({
     >
       <h2
         id={headingId}
+        aria-label={titleLabel(title)}
         className="max-w-[18ch] font-heading text-title-h2 text-text-strong-950"
       >
-        <DisplayTitle title={title} />
+        <DisplayTitle title={title} letters />
       </h2>
       {intro ? (
         <p className="site-prose mt-5 text-text-sub-600">{intro}</p>
