@@ -179,40 +179,33 @@ Java · Spring Boot · Microservicios · OpenAPI
 Java · Spring Boot · Microservices · OpenAPI
 ```
 
-### Keapps (Atos) — Software Engineer, Java & Big Data (cliente: Endesa)
+### Ayesa · Keapps (Atos) — Software Engineer, Java & Big Data (cliente: Endesa)
 
-`jul. 2020 – jul. 2021 · Sevilla, España`
+`ago. 2019 – jul. 2021 · Sevilla, España`
 
-```
-• Construí soluciones Big Data con Hadoop, Spark y Cassandra sobre los datos de consumo energético de Endesa (proyecto Kronos).
-• Optimicé procesos MapReduce sobre HDFS/YARN y batch críticos.
-
-Java · Hadoop · Spark · Cassandra · HDFS · YARN · SQL
-```
+Un solo puesto de corrido: el mismo proyecto (Kronos) y el mismo cliente,
+primero con Ayesa y después con Keapps (Atos).
 
 ```
-• Built Big Data solutions with Hadoop, Spark and Cassandra over Endesa's energy-consumption data (Kronos project).
-• Optimized MapReduce jobs on HDFS/YARN and critical batch processes.
+Proyecto Kronos para Endesa, primero con Ayesa y después con Keapps (Atos).
 
-Java · Hadoop · Spark · Cassandra · HDFS · YARN · SQL
-```
-
-### Ayesa — Java & Big Data Developer (cliente: Endesa)
-
-`ago. 2019 – abr. 2020 · Sevilla, España`
-
-```
-• Desarrollé y mantuve sistemas Java Enterprise (SOAP, XML) con interfaces JSP y PrimeFaces.
+• Construí soluciones Big Data con Hadoop, Spark y Cassandra sobre los datos de consumo energético de Endesa.
 • Construí pipelines de datos a gran escala con MapReduce y almacenamiento en S3.
+• Optimicé procesos MapReduce sobre HDFS/YARN y batch críticos.
+• Desarrollé y mantuve sistemas Java Enterprise (SOAP, XML) con interfaces JSP y PrimeFaces.
 
-Java · Hadoop · MapReduce · S3 · JSP · PrimeFaces · SOAP/XML
+Java · Hadoop · Spark · Cassandra · MapReduce · HDFS · YARN · S3 · SQL · JSP · PrimeFaces · SOAP/XML
 ```
 
 ```
-• Developed and maintained enterprise Java systems (SOAP, XML) with JSP and PrimeFaces interfaces.
+Kronos project for Endesa, first with Ayesa and then with Keapps (Atos).
+
+• Built Big Data solutions with Hadoop, Spark and Cassandra over Endesa's energy-consumption data.
 • Built large-scale data pipelines with MapReduce and S3 storage.
+• Optimized MapReduce jobs on HDFS/YARN and critical batch processes.
+• Developed and maintained enterprise Java systems (SOAP, XML) with JSP and PrimeFaces interfaces.
 
-Java · Hadoop · MapReduce · S3 · JSP · PrimeFaces · SOAP/XML
+Java · Hadoop · Spark · Cassandra · MapReduce · HDFS · YARN · S3 · SQL · JSP · PrimeFaces · SOAP/XML
 ```
 
 ### Cifras que faltan

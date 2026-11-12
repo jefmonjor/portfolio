@@ -349,7 +349,7 @@ export const en: SiteContent = {
           "Java microservices and OpenAPI-documented APIs for Vodafone.",
           "Java systems and data processing with Hadoop and Spark for Endesa.",
         ],
-        entries: ["zemsania-2021", "keapps-2020", "ayesa-2019"],
+        entries: ["zemsania-2021", "endesa-2019"],
       },
     ],
     present: "present",

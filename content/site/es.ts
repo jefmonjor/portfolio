@@ -350,7 +350,7 @@ export const es: SiteContent = {
           "Microservicios Java y APIs documentadas con OpenAPI para Vodafone.",
           "Sistemas Java y procesamiento de datos con Hadoop y Spark para Endesa.",
         ],
-        entries: ["zemsania-2021", "keapps-2020", "ayesa-2019"],
+        entries: ["zemsania-2021", "endesa-2019"],
       },
     ],
     present: "actualidad",
