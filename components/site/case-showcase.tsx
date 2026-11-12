@@ -4,6 +4,7 @@ import { ArrowLabel } from "@/components/site/arrow-label"
 import { ArrowLink } from "@/components/site/arrow-link"
 import { CaseVisual } from "@/components/site/case-card"
 import { TagList } from "@/components/site/tag-list"
+import { TiltFrame } from "@/components/site/tilt-frame"
 import type {
   CaseStudy,
   CaseStudySlug,
@@ -36,12 +37,12 @@ function CaseShowcase({
   return (
     <div className="flex flex-col gap-12 md:gap-16">
       <article className="grid items-center gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-14">
-        <div className="case-feature">
+        <TiltFrame className="case-feature">
           <CaseVisual
             study={lead}
             sizes="(min-width: 80rem) 44rem, (min-width: 64rem) 55vw, 92vw"
           />
-        </div>
+        </TiltFrame>
         <div className="flex flex-col gap-4">
           <p className="text-label-sm text-text-sub-600">{lead.sector}</p>
           <h3 className="font-heading text-title-h3 text-balance text-text-strong-950">

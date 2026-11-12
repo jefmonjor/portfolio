@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 import { ArrowLabel } from "@/components/site/arrow-label"
-import { DisplayTitle } from "@/components/site/display-title"
+import { DisplayTitle, titleLabel } from "@/components/site/display-title"
 import { EmailActions } from "@/components/site/email-actions"
 import type { Headline, SiteContent } from "@/content/site/types"
 import { publicProfiles } from "@/lib/profile"
@@ -25,9 +25,10 @@ function FinalCta({ title, contact, briefHref }: FinalCtaProps) {
           <div className="flex flex-col items-start gap-6">
             <h2
               id="contact-title"
+              aria-label={titleLabel(title)}
               className="max-w-[14ch] font-heading text-title-h2 text-text-strong-950"
             >
-              <DisplayTitle title={title} />
+              <DisplayTitle title={title} letters />
             </h2>
             <p className="site-prose text-text-sub-600">{contact.intro}</p>
             <Link

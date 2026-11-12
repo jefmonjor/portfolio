@@ -53,7 +53,8 @@ what he does, why to trust him and how to hire him.
 - Commercial pages are static (SSG), work without JavaScript, and ship only
   the client components they need: theme, language, menu, email, the project
   brief (sent through `POST /api/contact` to Brevo and stored nowhere; it opens
-  the visitor's mail app when sending is unavailable), and the AI
+  the visitor's mail app when sending is unavailable), the typing terminal
+  hint and the tilt of the featured case screenshot, and the AI
   assistant and terminal, which load on first use and send visitors to
   hola@jefmonjor.dev.
 - Code speaks for itself: names, small functions and types instead of
