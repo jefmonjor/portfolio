@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { ArchitectureDiagram } from "@/components/site/architecture-diagram"
 import { ArrowLabel } from "@/components/site/arrow-label"
 import { ArrowLink } from "@/components/site/arrow-link"
 import { CaseVisual } from "@/components/site/case-card"
@@ -10,17 +11,18 @@ import type {
   CaseStudySlug,
   SiteContent,
 } from "@/content/site/types"
+import { caseScreenshots } from "@/content/site/images"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
 
 type CaseShowcaseProps = {
   locale: SiteLocale
   cases: ReadonlyArray<CaseStudy>
   featured: CaseStudySlug
-  labels: Pick<SiteContent["work"]["labels"], "role" | "stack">
+  labels: Pick<SiteContent["work"]["labels"], "role" | "stack" | "architecture">
   readLabel: string
 }
 
-/** One case shown large, like a product shot, and the rest as an index. */
+/** One case shown large, with its product shot or its architecture, and the rest as an index. */
 function CaseShowcase({
   locale,
   cases,
@@ -37,12 +39,22 @@ function CaseShowcase({
   return (
     <div className="flex flex-col gap-12 md:gap-16">
       <article className="grid items-center gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-14">
-        <TiltFrame className="case-feature">
-          <CaseVisual
-            study={lead}
-            sizes="(min-width: 80rem) 44rem, (min-width: 64rem) 55vw, 92vw"
-          />
-        </TiltFrame>
+        {caseScreenshots[lead.slug] ? (
+          <TiltFrame className="case-feature case-tilt">
+            <CaseVisual
+              study={lead}
+              sizes="(min-width: 80rem) 44rem, (min-width: 64rem) 55vw, 92vw"
+            />
+          </TiltFrame>
+        ) : (
+          <TiltFrame className="case-tilt mx-auto w-full max-w-[26rem]">
+            <ArchitectureDiagram
+              id={`featured-${lead.slug}`}
+              title={labels.architecture}
+              nodes={lead.diagram}
+            />
+          </TiltFrame>
+        )}
         <div className="flex flex-col gap-4">
           <p className="text-label-sm text-text-sub-600">{lead.sector}</p>
           <h3 className="font-heading text-title-h3 text-balance text-text-strong-950">
