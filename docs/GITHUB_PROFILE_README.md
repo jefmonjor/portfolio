@@ -1,56 +1,54 @@
 # Jefferson Montesdeoca Jordán
 
-**Software Architect & Senior Backend Engineer · Java/Spring · arquitectura · IA aplicada**
+**Software Architect · Senior Backend Engineer · Java/Spring · integraciones · IA aplicada**
 
-Diseño y construyo los sistemas backend sobre los que funcionan bancos y fintechs, y la IA que empieza a funcionar dentro de ellos. Hoy, Arquitecto de Soluciones / Technical PM en Andbank, en Andorra la Vella; siete años construyendo y modernizando software para banca, legal, energía y telecomunicaciones.
+Construyo los sistemas backend sobre los que funcionan las empresas, y los productos que funcionan encima. Trabajo en el equipo de arquitectura y soluciones de Andbank (Andorra): Java, Spring, integración con el core bancario e identidad. Siete años en banca, legal, energía y telecomunicaciones.
 
-Disponible para colaboraciones a tiempo parcial desde enero de 2027 · Remoto · CET.
+Abierto a proyectos y al puesto adecuado a jornada completa · Remoto · CET.
 
-[jefmonjor.dev](https://jefmonjor.dev/es) · [Servicios](https://jefmonjor.dev/es/services) · [Casos](https://jefmonjor.dev/es/work) · [CV](https://jefmonjor.dev/es/cv) · [LinkedIn](https://www.linkedin.com/in/jefmonjor)
+[jefmonjor.dev](https://jefmonjor.dev/es) · [Servicios](https://jefmonjor.dev/es/services) · [Casos](https://jefmonjor.dev/es/work) · [CV](https://jefmonjor.dev/es/cv) · [Contacto](https://jefmonjor.dev/es/contact) · [LinkedIn](https://www.linkedin.com/in/jefmonjor)
 
-## En qué trabajo mejor
+## Cómo puedo ayudarte
 
-- Backend con Java 21, Spring Boot 3 y arquitecturas hexagonales o modulares.
-- Integración de sistemas legacy, APIs, identidad y plataformas de datos.
-- Productos de principio a fin: problema, contratos, interfaz, despliegue y operación.
-- IA aplicada donde aporta valor, con datos validados, límites explícitos y alternativas manuales.
+- **Revisión y hoja de ruta:** de 1 a 5 días; un informe escrito con lo que funciona, los riesgos y un plan priorizado.
+- **Construir e integrar:** software a medida, APIs e integraciones con tu ERP, banco o tienda online, y automatizaciones con IA revisada por una persona, hasta producción.
+- **Tech lead fraccional:** acompañamiento técnico mensual para empresas sin responsable técnico.
 
-## Productos seleccionados
+Tratas directamente conmigo, sin intermediarios. En [jefmonjor.dev](https://jefmonjor.dev/es) tienes un asistente de IA y una terminal (`Ctrl K`) para preguntar por servicios, casos o disponibilidad, y un brief de proyecto que me llega directamente.
 
-| Producto                                      | Estado                                                               | Evidencia                                                                                             |
-| --------------------------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| [Transolido](https://transolido.com)          | En funcionamiento · público                                          | Facturación VERI\*FACTU sobre Java 21/Spring Boot, PostgreSQL, Redis y extracción asistida por IA.    |
-| [PRONOQ](https://pronoq.jefmonjor.dev)        | En funcionamiento · público                                          | PWA trilingüe; la IA explica resultados, pero no decide pronósticos.                                  |
-| [Corte1D](https://corte1d.jefmonjor.dev)      | En funcionamiento · público                                          | Optimización de corte en un motor determinista, importaciones y control de stock.                     |
-| [Ilnami](https://ilnami.com)                  | En funcionamiento · público                                          | Diario gastronómico privado (PWA): escaneo con IA revisado antes de guardar, círculos privados y RLS. |
-| [Other Twist](https://othertwist.com)         | En funcionamiento · público                                          | Plataforma para escritores: app Flutter offline-first sobre backend Java 21/Spring Boot hexagonal; acceso en app.othertwist.com. |
-| [Contact QR](https://contactqr.jefmonjor.dev) | En funcionamiento · público                                          | Utilidad ligera para generar y compartir una vCard mediante QR.                                       |
-| [Portfolio](https://jefmonjor.dev)            | En funcionamiento · [código](https://github.com/jefmonjor/portfolio) | Next.js, TypeScript, Zod, CVs generados y asistente basado en un dossier cerrado.               |
-| Tavory                                        | En desarrollo · privado                                              | Producto donde exploro extracción estructurada con IA.                                                |
+## Productos propios en producción
 
-## IA con criterio
+| Producto                                                  | Qué es                                                                                                 |
+| --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| [Transolido](https://transolido.com)                      | Facturación conforme a VERI\*FACTU sobre Java 21/Spring Boot, PostgreSQL y Redis, con extracción asistida por IA. |
+| [Other Twist](https://othertwist.com)                     | Plataforma para escritores: app Flutter offline-first sobre un backend Java 21/Spring Boot hexagonal.  |
+| [Ilnami](https://ilnami.com)                              | Diario gastronómico privado (PWA): escaneo con IA revisado antes de guardar y privacidad con RLS.      |
+| [Corte1D](https://corte1d.jefmonjor.dev)                  | Optimización de corte con un motor determinista, importación desde Excel y control de stock.           |
+| [PRONOQ](https://pronoq.jefmonjor.dev)                    | PWA de pronósticos; la IA explica resultados, pero no decide.                                          |
+| [SpecForge](https://github.com/jefmonjor/specforge/releases)| CLI en Go que pone a Claude Code o Gemini CLI a trabajar bajo especificaciones, tests y revisión.     |
+| [Contact QR](https://contactqr.jefmonjor.dev)             | Utilidad ligera para compartir una vCard mediante QR.                                                  |
+| Tavory                                                    | En desarrollo y privado: extracción estructurada de datos con IA.                                      |
+| [jefmonjor.dev](https://jefmonjor.dev)                    | Esta web y mi CV: Next.js, TypeScript y Zod, con asistente de IA y terminal. [Código](https://github.com/jefmonjor/portfolio). |
 
-En mis productos separo lo probabilístico de lo determinista:
+## IA útil, acotada por ingeniería
 
-- Los datos que cruzan fronteras se tipan y validan en runtime.
-- El asistente de mi portfolio recibe un dossier público cerrado y debe reconocer cuándo falta información.
-- Los flujos importantes conservan una alternativa manual.
-- El consumo de IA está limitado por visitante y por un techo global diario.
+- **Bajo controles automáticos:** con SpecForge, la IA pregunta en lugar de inventar, los tests se escriben antes que el código y nada avanza sin superar los tests y mi revisión.
+- **Contratos validados:** lo que la IA lee o devuelve se valida con contratos estrictos antes de usarse.
+- **Determinista cuando importa:** los cálculos y las decisiones se quedan en código determinista; la IA explica, no decide.
+- **Límites y vía manual:** límites de uso para controlar el coste y una alternativa manual si la IA falla.
 
 ## Mi CV, en el formato que prefieras
 
-Todos salen de la misma fuente de datos, así que nunca se contradicen:
+Todos salen de la misma fuente de datos:
 
-- [`/cv.pdf`](https://jefmonjor.dev/cv.pdf?variant=technical) — PDF técnico de una columna, pensado para filtros por palabras clave. `variant=general` devuelve el CV para una persona: texto plano, sin adornos, con lo importante en la primera página.
+- [`/cv`](https://jefmonjor.dev/es/cv) — el CV completo, con asistente y terminal propios.
+- [`/cv.pdf`](https://jefmonjor.dev/cv.pdf?variant=technical) — PDF técnico de una columna; `variant=general` devuelve la versión para personas.
 - [`/cv.md`](https://jefmonjor.dev/cv.md) — el mismo CV en texto plano.
 - [`/cv.json`](https://jefmonjor.dev/cv.json) — en [MAC](https://github.com/getmanfred/mac), el esquema abierto de CV.
-- [`/llms.txt`](https://jefmonjor.dev/llms.txt) — resumen del perfil para sistemas de recuperación.
-- [`/llms-full.txt`](https://jefmonjor.dev/llms-full.txt) — el mismo resumen con el CV completo, en un solo documento para motores de IA y agentes de selección.
-
-Y en el portfolio, una versión más: pega una oferta y el CV prioriza la evidencia que ya consta en el perfil, sin añadir experiencia ni tecnologías. El asistente del portfolio y su terminal (comando `cv`) entregan las tres versiones.
+- [`/llms.txt`](https://jefmonjor.dev/llms.txt) y [`/llms-full.txt`](https://jefmonjor.dev/llms-full.txt) — resumen del perfil y CV completo para sistemas de IA.
 
 ## Stack habitual
 
-`Java` · `Spring Boot` · `TypeScript` · `Next.js` · `PostgreSQL` · `Docker` · `OpenShift` · `Keycloak` · `Zod` · `OpenAI/Claude APIs`
+`Java` · `Spring Boot` · `TypeScript` · `Next.js` · `PostgreSQL` · `Redis` · `Docker` · `OpenShift` · `Keycloak` · `Zod` · `Claude/OpenAI APIs`
 
-Technical Advisory, Engineering Delivery y Fractional Architecture, a tiempo parcial desde enero de 2027. Para hablar de un proyecto: [jefmonjor.dev/es/contact](https://jefmonjor.dev/es/contact).
+¿Tienes un proyecto en mente? Cuéntamelo en [jefmonjor.dev/es/contact](https://jefmonjor.dev/es/contact).
