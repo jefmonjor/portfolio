@@ -3,9 +3,10 @@ import type { SiteContent } from "@/content/site/types"
 export const es: SiteContent = {
   meta: {
     home: {
-      title: "Jefferson Montesdeoca — Software Architect y Senior Engineer",
+      title:
+        "Jefferson Montesdeoca — Software Architect y Senior Backend Engineer",
       description:
-        "Construyo productos nuevos, modernizo sistemas existentes e integro IA dentro de ellos. Siete años, del equipo de arquitectura de un banco privado a productos propios en producción. En remoto, CET.",
+        "Construyo los sistemas backend sobre los que funcionan las empresas, y los productos que funcionan encima. Siete años, de la arquitectura de un banco privado a productos propios en producción.",
     },
     services: {
       title: "Software a medida, integraciones e IA aplicada — Servicios",
@@ -49,14 +50,13 @@ export const es: SiteContent = {
   },
   cta: "Hablemos",
   hero: {
-    role: "Software Architect · Senior Engineer",
+    role: "Software Architect · Senior Backend Engineer",
     headline: [
-      "Construyo productos nuevos,",
-      "modernizo sistemas existentes",
-      "e integro IA dentro de ellos.",
+      "Construyo los sistemas backend sobre los que funcionan las empresas,",
+      "y los productos que funcionan encima.",
     ],
     subtitle:
-      "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado a productos propios, de la base de datos a producción.",
+      "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado (Java, Spring, integración con el core bancario, identidad) a productos que he construido y opero yo, de la base de datos a producción. Backend primero, con mentalidad de producto y con IA donde aporta.",
     cta: "Cuéntame tu proyecto",
     availability: {
       status: "Abierto a proyectos y al puesto adecuado a jornada completa.",
@@ -67,7 +67,7 @@ export const es: SiteContent = {
     terminalHint: "¿Prefieres la terminal? Ábrela (Ctrl K)",
     tools: {
       label:
-        "Herramientas principales: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, React y Claude. La lista completa está en el CV.",
+        "Herramientas principales: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Keycloak y Claude. La lista completa está en el CV.",
       center: "Tu sistema",
       caption:
         "Y lo que pida el proyecto: he trabajado con Java, TypeScript, Dart, Go y Python.",
@@ -144,17 +144,6 @@ export const es: SiteContent = {
       "Tres tipos de trabajo, cada uno con un caso detrás. El stack se adapta al proyecto.",
     items: [
       {
-        title: "Construir algo nuevo",
-        body: "Un producto, un SaaS, una app o una API, desde cero hasta producción.",
-        points: [
-          "Arquitectura y modelo de datos desde el primer día",
-          "Backend, frontend o app móvil",
-          "Desplegado, monitorizado y documentado",
-        ],
-        caseSlug: "transolido-verifactu-invoicing",
-        caseName: "Transolido",
-      },
-      {
         title: "Modernizar lo que existe",
         body: "Sistemas que funcionan pero se han quedado atrás, mejorados sin detener las entregas.",
         points: [
@@ -175,6 +164,17 @@ export const es: SiteContent = {
         ],
         caseSlug: "ilnami-private-by-design",
         caseName: "Ilnami",
+      },
+      {
+        title: "Construir algo nuevo",
+        body: "Un producto, un SaaS, una app o una API, desde cero hasta producción.",
+        points: [
+          "Arquitectura y modelo de datos desde el primer día",
+          "Backend, frontend o app móvil",
+          "Desplegado, monitorizado y documentado",
+        ],
+        caseSlug: "transolido-verifactu-invoicing",
+        caseName: "Transolido",
       },
     ],
     caseLabel: "Caso",
@@ -350,7 +350,7 @@ export const es: SiteContent = {
           "Microservicios Java y APIs documentadas con OpenAPI para Vodafone.",
           "Sistemas Java y procesamiento de datos con Hadoop y Spark para Endesa.",
         ],
-        entries: ["zemsania-2021", "keapps-2020", "ayesa-2019"],
+        entries: ["zemsania-2021", "endesa-2019"],
       },
     ],
     present: "actualidad",

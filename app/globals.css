@@ -1896,12 +1896,12 @@ html:has(#site-menu:popover-open) {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .case-feature {
+  .case-tilt {
     transform: perspective(80rem) rotateX(var(--tilt-x, 0deg))
       rotateY(var(--tilt-y, 0deg));
     transition: transform 500ms var(--ease-out-expo);
   }
-  .case-feature:hover {
+  .case-tilt:hover {
     will-change: transform;
   }
 }

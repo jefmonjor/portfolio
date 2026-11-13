@@ -37,7 +37,7 @@ export default async function HomePage({ params }: SitePageProps) {
         <CaseShowcase
           locale={locale}
           cases={content.work.cases}
-          featured="ilnami-private-by-design"
+          featured="private-bank-modernization"
           labels={content.work.labels}
           readLabel={content.selectedWork.readCase}
         />

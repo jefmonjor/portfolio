@@ -191,11 +191,7 @@ export type PipelineStep = {
 }
 
 export type ExperienceEntryId =
-  | "andbank-2024"
-  | "elabogado-2022"
-  | "zemsania-2021"
-  | "keapps-2020"
-  | "ayesa-2019"
+  "andbank-2024" | "elabogado-2022" | "zemsania-2021" | "endesa-2019"
 
 export type ExperienceGroup = {
   id: string

@@ -7,7 +7,7 @@ import * as simpleIcons from "simple-icons"
 
 const rings = [
   ["siOpenjdk", "siSpringboot", "siPostgresql"],
-  ["siRedis", "siDocker", "siKubernetes", "siReact", "siClaude"],
+  ["siRedis", "siDocker", "siKubernetes", "siKeycloak", "siClaude"],
 ]
 
 const titles = { siOpenjdk: "Java", siRedhatopenshift: "OpenShift" }

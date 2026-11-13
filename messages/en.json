@@ -154,26 +154,17 @@
           "Worked in a distributed team with Jira, Confluence and Slack."
         ]
       },
-      "keapps-2020": {
+      "endesa-2019": {
         "role": "Software Engineer (Java · Big Data)",
         "location": "Seville, Spain",
-        "start": "Jul 2020",
+        "start": "Aug 2019",
         "end": "Jul 2021",
-        "summary": "Kronos project (Endesa): enterprise Java systems and Big Data solutions.",
+        "summary": "Kronos project (Endesa), first with Ayesa and then with Keapps (Atos): enterprise Java systems and Big Data platforms.",
         "highlights": [
           "Built Big Data solutions with Hadoop, Spark and Cassandra over energy-consumption data.",
-          "Optimized MapReduce jobs on HDFS/YARN and critical batch processes."
-        ]
-      },
-      "ayesa-2019": {
-        "role": "Java & Big Data Developer",
-        "location": "Seville, Spain",
-        "start": "Aug 2019",
-        "end": "Apr 2020",
-        "summary": "Kronos project (Endesa): Java development and data pipelines.",
-        "highlights": [
-          "Developed and maintained enterprise Java systems (SOAP, XML) with JSP and PrimeFaces interfaces.",
-          "Built large-scale data pipelines with MapReduce and S3 storage."
+          "Built large-scale data pipelines with MapReduce and S3 storage.",
+          "Optimized MapReduce jobs on HDFS/YARN and critical batch processes.",
+          "Developed and maintained enterprise Java systems (SOAP, XML) with JSP and PrimeFaces interfaces."
         ]
       }
     }

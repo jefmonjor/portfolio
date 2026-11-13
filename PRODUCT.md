@@ -46,7 +46,7 @@ Software architect and senior engineer who builds new products, modernizes exist
 ## Evidence on Hand
 
 - Live products: Transolido (transolido.com, VERI*FACTU invoicing), Other Twist (othertwist.com, offline-first writing platform), Ilnami (ilnami.com, private food diary), plus PRONOQ, Corte1D and Contact QR.
-- Experience: Andbank (2024–present), elAbogado (2022–2024), Zemsania (Vodafone), Keapps, Ayesa (Endesa) — see `lib/profile.ts`.
+- Experience: Andbank (2024–present), elAbogado (2022–2024), Zemsania (Vodafone), Ayesa and Keapps (Atos) for Endesa (2019–2021, one continuous engagement) — see `lib/profile.ts`.
 - Portrait: `public/me.webp`, **only on `/cv`**. The owner does not want his photo anywhere on the commercial site (pages or its structured data), and `/cv` is not to be touched.
 - Screenshots of the public pages of Transolido, Other Twist and Ilnami (`public/images/work/`), captured from the live sites on 2026-11-08. Transolido's public face is its sign-in page.
 - English level is B1 (CV): say "Spanish (native) and English", never "native English".

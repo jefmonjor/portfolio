@@ -3,9 +3,10 @@ import type { SiteContent } from "@/content/site/types"
 export const en: SiteContent = {
   meta: {
     home: {
-      title: "Jefferson Montesdeoca — Software Architect & Senior Engineer",
+      title:
+        "Jefferson Montesdeoca — Software Architect & Senior Backend Engineer",
       description:
-        "I build new products, modernize existing systems and put AI to work inside them. Seven years, from a private bank's architecture team to my own products in production. Remote, CET.",
+        "I build the backend systems companies run on, and the products that run on top of them. Seven years, from a private bank's architecture team to my own products in production.",
     },
     services: {
       title: "Custom software, integrations and applied AI — Services",
@@ -48,14 +49,13 @@ export const en: SiteContent = {
   },
   cta: "Let's talk",
   hero: {
-    role: "Software Architect · Senior Engineer",
+    role: "Software Architect · Senior Backend Engineer",
     headline: [
-      "I build new products,",
-      "modernize existing systems",
-      "and put AI to work inside them.",
+      "I build the backend systems companies run on,",
+      "and the products that run on top of them.",
     ],
     subtitle:
-      "Seven years shipping software where mistakes are expensive: from a private bank's architecture team to products of my own, from the database to production.",
+      "Seven years shipping software where mistakes are expensive: from a private bank's architecture team (Java, Spring, core-banking integrations, identity) to products I've built and run myself, from database to production. Backend-first, product-minded, with AI where it earns its place.",
     cta: "Tell me about your project",
     availability: {
       status: "Open to projects, and to the right full-time role.",
@@ -66,7 +66,7 @@ export const en: SiteContent = {
     terminalHint: "Prefer a terminal? Open it (Ctrl K)",
     tools: {
       label:
-        "Main tools: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, React and Claude. The full list is in the CV.",
+        "Main tools: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Keycloak and Claude. The full list is in the CV.",
       center: "Your system",
       caption:
         "And whatever the project needs: I have worked with Java, TypeScript, Dart, Go and Python.",
@@ -143,17 +143,6 @@ export const en: SiteContent = {
       "Three kinds of work, each with a case study behind it. The stack adapts to the project.",
     items: [
       {
-        title: "Build something new",
-        body: "A product, a SaaS, an app or an API, from scratch to production.",
-        points: [
-          "Architecture and data model from day one",
-          "Backend, frontend or mobile app",
-          "Deployed, monitored and documented",
-        ],
-        caseSlug: "transolido-verifactu-invoicing",
-        caseName: "Transolido",
-      },
-      {
         title: "Modernize what exists",
         body: "Systems that work but have fallen behind, improved without stopping delivery.",
         points: [
@@ -174,6 +163,17 @@ export const en: SiteContent = {
         ],
         caseSlug: "ilnami-private-by-design",
         caseName: "Ilnami",
+      },
+      {
+        title: "Build something new",
+        body: "A product, a SaaS, an app or an API, from scratch to production.",
+        points: [
+          "Architecture and data model from day one",
+          "Backend, frontend or mobile app",
+          "Deployed, monitored and documented",
+        ],
+        caseSlug: "transolido-verifactu-invoicing",
+        caseName: "Transolido",
       },
     ],
     caseLabel: "Case study",
@@ -349,7 +349,7 @@ export const en: SiteContent = {
           "Java microservices and OpenAPI-documented APIs for Vodafone.",
           "Java systems and data processing with Hadoop and Spark for Endesa.",
         ],
-        entries: ["zemsania-2021", "keapps-2020", "ayesa-2019"],
+        entries: ["zemsania-2021", "endesa-2019"],
       },
     ],
     present: "present",
