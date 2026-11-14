@@ -53,7 +53,6 @@ export async function loadCvLabels(locale: Locale): Promise<CvLabels> {
     summary: tCv("summary"),
     availability: `${tStatus("label")} · ${tStatus("detail")}`,
     contactSubject: cvContactSubject(locale),
-    otherProjects: tCv("otherProjects"),
     credential: tEducation("verifyCredential"),
     sections: {
       profile: CV_HEADINGS[locale].profile,

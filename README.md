@@ -1,6 +1,6 @@
 # jefmonjor.dev — Jefferson Montesdeoca
 
-Web comercial de Jefferson Montesdeoca, Software Architect & Senior Backend Engineer, con su CV completo en `/cv`. Construida con Next.js 16 y desplegada en Vercel.
+Web comercial de Jefferson Montesdeoca, Solutions Architect & Senior Backend Engineer, con su CV completo en `/cv`. Construida con Next.js 16 y desplegada en Vercel.
 
 - **`/` y `/es`** — inicio, servicios (Revisión y hoja de ruta, Construir e integrar, Tech lead fraccional), cuatro casos de estudio, experiencia y contacto. Páginas estáticas, navegables sin JavaScript, con JSON-LD, `hreflang`, sitemap y una imagen Open Graph por página.
 - **`/cv`, `/es/cv`, `/ca/cv`** — el portfolio y CV trilingüe de siempre, con el asistente de IA, la terminal y los PDF. Las URLs antiguas (`/en`, `/ca`) redirigen con 301.

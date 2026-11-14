@@ -1,5 +1,5 @@
 import type { Locale } from "@/i18n/routing"
-import { profile, siteUrlShort } from "@/lib/profile"
+import { cvProjects, profile, siteUrlShort } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
 import { CV_HEADINGS } from "@/server/cv/headings"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
@@ -71,7 +71,7 @@ export function buildCvMarkdown(labels: CvLabels, locale: Locale): string {
   }
 
   lines.push(`## ${headings.projects}`, "")
-  for (const entry of profile.projects) {
+  for (const entry of cvProjects()) {
     const data = labels.projectEntry(entry.id)
     const url = entry.url ? ` — ${cvLinkHref(entry.url)}` : ""
     lines.push(`### ${data.name}${url}`, "")

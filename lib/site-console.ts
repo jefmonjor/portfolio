@@ -6,17 +6,13 @@ import type { TerminalData } from "@/lib/site-terminal"
 
 const skillLabels: Record<SiteLocale, Record<string, string>> = {
   en: {
-    languages: "Languages",
     backend: "Backend",
-    frontend: "Frontend",
     data: "Data",
     cloud: "Cloud and DevOps",
     ai: "AI",
   },
   es: {
-    languages: "Lenguajes",
     backend: "Backend",
-    frontend: "Frontend",
     data: "Datos",
     cloud: "Cloud y DevOps",
     ai: "IA",

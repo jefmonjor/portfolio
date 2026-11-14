@@ -17,7 +17,7 @@ function nodeOfType(graph: ReadonlyArray<GraphNode>, type: string): GraphNode {
 }
 
 const person = {
-  positioning: "Software Architect & Senior Backend Engineer",
+  positioning: "Solutions Architect & Senior Backend Engineer",
   currentJobTitle: "Solutions Architect / Technical PM",
   description: "Backend systems for banks and fintechs.",
 }

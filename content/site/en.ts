@@ -4,7 +4,7 @@ export const en: SiteContent = {
   meta: {
     home: {
       title:
-        "Jefferson Montesdeoca — Software Architect & Senior Backend Engineer",
+        "Jefferson Montesdeoca — Solutions Architect & Senior Backend Engineer",
       description:
         "I build the backend systems companies run on, and the products that run on top of them. Seven years, from a private bank's architecture team to my own products in production.",
     },
@@ -49,7 +49,7 @@ export const en: SiteContent = {
   },
   cta: "Let's talk",
   hero: {
-    role: "Software Architect · Senior Backend Engineer",
+    role: "Solutions Architect · Senior Backend Engineer",
     headline: [
       "I build the backend systems companies run on,",
       "and the products that run on top of them.",
@@ -104,7 +104,7 @@ export const en: SiteContent = {
   display: {
     capabilities: ["What I can take on"],
     approach: ["How I work"],
-    work: ["Four sectors, same standard"],
+    work: ["Selected work"],
     services: ["How we can work together"],
     about: ["Hi, I'm Jefferson"],
     contact: ["Tell me what you need to solve"],
@@ -181,7 +181,7 @@ export const en: SiteContent = {
   },
   hiring: {
     title: "Also open to the right full-time role",
-    body: "If the fit is right: product work, a senior team, AI applied seriously and remote work.",
+    body: "If the fit is right: backend or architecture roles in banking, fintech or product companies, remote.",
     cvLink: "See the full CV",
   },
 
@@ -190,7 +190,7 @@ export const en: SiteContent = {
     lead: "I own the whole system: design, code, deployment and handover.",
     paragraphs: [
       [
-        "I work in the architecture and solutions team at Andbank, a private bank in Andorra: I designed the architecture of its new online banking platform (15+ components) and lead the Spring Boot 3 migration across 40+ VMs. Before that I worked at elAbogado as a full-stack developer and, as a consultant, on projects for Vodafone and Endesa. I also build and run my own products, six of them live today. The details are on the ",
+        "I work in the architecture and solutions team at Andbank, a private bank in Andorra: I designed the architecture of its new online banking platform (15+ components) and lead the Spring Boot 3 migration across 40+ VMs. Before that I worked at elAbogado as a full-stack developer and, as a consultant, on projects for Vodafone and Endesa. I also build and run my own products in production, such as Transolido, Other Twist and Ilnami. The details are on the ",
         { text: "experience page", href: "/experience" },
         " and in my ",
         { text: "full CV", href: "/cv" },
@@ -952,7 +952,7 @@ export const en: SiteContent = {
       close: "Close the terminal",
       prompt: "visitor@jefmonjor.dev:~$",
       banner: [
-        "Jefferson Montesdeoca — Senior Software Engineer · Software Architect",
+        "Jefferson Montesdeoca — Solutions Architect · Senior Backend Engineer",
         "type 'help' to start · Tab completes · Esc or ` closes",
       ],
       thinking: "asking the assistant…",

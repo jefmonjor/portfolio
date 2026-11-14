@@ -26,13 +26,13 @@ Reglas:
 **Bio (máx. 160 caracteres)** — en inglés, para el alcance internacional:
 
 ```
-Software Architect & Senior Backend Engineer. Java/Spring for banking and legacy. I build and run my own products in production. AI with tests and review.
+Solutions Architect & Senior Backend Engineer. Java/Spring for banking and legacy. I build and run my own products in production. AI with tests and review.
 ```
 
 Versión en español, si prefieres publicar sobre todo en español:
 
 ```
-Software Architect y Senior Backend Engineer. Java/Spring en banca y legacy. Construyo y opero productos propios en producción. IA con tests y revisión.
+Solutions Architect y Senior Backend Engineer. Java/Spring en banca y legacy. Construyo y opero productos propios en producción. IA con tests y revisión.
 ```
 
 ---
@@ -40,7 +40,7 @@ Software Architect y Senior Backend Engineer. Java/Spring en banca y legacy. Con
 ## Post fijado
 
 ```
-I'm Jefferson, a Software Architect and Senior Backend Engineer in Andorra.
+I'm Jefferson, a Solutions Architect and Senior Backend Engineer in Andorra.
 
 At a private bank I designed the architecture of a new online banking platform (15+ components) and lead a Spring Boot 3 / Tomcat migration across 40+ VMs without freezing releases.
 
@@ -104,7 +104,7 @@ Empleo remoto en inglés:
 Arquitectura y liderazgo técnico en Europa:
 
 ```
-("software architect" OR "staff engineer" OR "tech lead") (hiring OR "join us") (remote OR europe OR EMEA) -filter:replies
+("solutions architect" OR "software architect" OR "staff engineer" OR "tech lead") (hiring OR "join us") (remote OR europe OR EMEA) -filter:replies
 ```
 
 Empleo en español:
@@ -134,7 +134,7 @@ el CV pegado: una prueba concreta y una pregunta corta.
 ```
 Hi [name], saw your post about [role / problem].
 
-I'm a Software Architect and Senior Backend Engineer. At a private bank I designed a 15+ component online banking architecture and lead a Spring Boot 3 migration across 40+ VMs without freezing releases. On the side I build and run my own products, like VERI*FACTU invoicing on Java 21.
+I'm a Solutions Architect and Senior Backend Engineer. At a private bank I designed a 15+ component online banking architecture and lead a Spring Boot 3 migration across 40+ VMs without freezing releases. On the side I build and run my own products, like VERI*FACTU invoicing on Java 21.
 
 [One specific line about their product or stack.]
 
@@ -148,7 +148,7 @@ If you're still looking, would a 15-minute call this week make sense?
 ```
 Hola, [nombre]. He visto tu post sobre [puesto / problema].
 
-Soy Software Architect y Senior Backend Engineer. En un banco privado diseñé la arquitectura de una nueva banca online de más de 15 componentes y dirijo una migración a Spring Boot 3 en más de 40 VMs sin congelar las entregas. En paralelo construyo y opero productos propios, como un software de facturación VERI*FACTU en Java 21.
+Soy Solutions Architect y Senior Backend Engineer. En un banco privado diseñé la arquitectura de una nueva banca online de más de 15 componentes y dirijo una migración a Spring Boot 3 en más de 40 VMs sin congelar las entregas. En paralelo construyo y opero productos propios, como un software de facturación VERI*FACTU en Java 21.
 
 [Una línea concreta sobre su producto o su stack.]
 

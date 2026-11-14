@@ -7,7 +7,7 @@ documento cambia con él.
 
 Reglas al pegar:
 
-- **Posicionamiento:** Software Architect & Senior Backend Engineer, el mismo
+- **Posicionamiento:** Solutions Architect & Senior Backend Engineer, el mismo
   que en jefmonjor.dev. El cargo contractual de Andbank (Solutions Architect /
   Technical PM) va en Experiencia, tal cual.
 - **Freelance primero:** disponible ahora para proyectos (10–15 h/semana) y,
@@ -39,13 +39,13 @@ primero, stack y lo que resuelves después. Máximo 220 caracteres.
 **Español (perfil principal)**
 
 ```
-Software Architect & Senior Backend Engineer | Java 21 · Spring Boot · TypeScript | Banca, modernización de legacy e IA aplicada en producción | Freelance disponible ahora · Remoto (CET)
+Solutions Architect & Senior Backend Engineer | Java 21 · Spring Boot · TypeScript | Banca, modernización de legacy e IA aplicada en producción | Freelance disponible ahora · Remoto (CET)
 ```
 
 **English (perfil en otro idioma)**
 
 ```
-Software Architect & Senior Backend Engineer | Java 21 · Spring Boot · TypeScript | Banking-grade systems, legacy modernization & applied AI in production | Freelance, available now · Remote (CET)
+Solutions Architect & Senior Backend Engineer | Java 21 · Spring Boot · TypeScript | Banking-grade systems, legacy modernization & applied AI in production | Freelance, available now · Remote (CET)
 ```
 
 ---
@@ -58,17 +58,17 @@ buscas, cómo contactar y la lista de tecnologías al final (LinkedIn la indexa)
 **Español**
 
 ```
-Software Architect y Senior Backend Engineer. Siete años construyendo software donde equivocarse sale caro: banca, legal, energía y telecomunicaciones.
+Solutions Architect y Senior Backend Engineer. Siete años construyendo software donde equivocarse sale caro: banca, legal, energía y telecomunicaciones.
 
 En Andbank, un banco privado de Andorra que opera en varias jurisdicciones, trabajo en el equipo de arquitectura y soluciones. Diseñé la arquitectura de la nueva banca online (más de 15 componentes, Clean Architecture y hexagonal), dirijo la migración a Spring Boot 3 y Tomcat 9/10 en más de 40 VMs sin congelar las entregas, implanté Keycloak con MFA y reglas por jurisdicción e integro el core COBOL/AS400/DB2. También llevé SonarQube a todos los repositorios, incluidos más de 12.000 ficheros COBOL, y puse en marcha la primera herramienta de IA del departamento, hoy en uso diario por todo el equipo.
 
-Antes modernicé el marketplace legal líder en España (de Struts2 a React + Spring Boot) en elAbogado, construí microservicios para Vodafone y plataformas Big Data para Endesa con Hadoop, Spark y Cassandra.
+Antes formé parte del equipo que migró uno de los mayores marketplaces legales de España de Struts2 a React + Spring Boot, en elAbogado; construí microservicios para Vodafone y plataformas Big Data para Endesa con Hadoop, Spark y Cassandra.
 
 En paralelo construyo y opero productos propios, de la base de datos a producción: Transolido (facturación conforme a VERI*FACTU), Other Twist (plataforma de escritura offline-first), Ilnami (app privada por diseño), PRONOQ, Corte1D y SpecForge, un CLI open source en Go que pone a los agentes de IA en una línea de montaje con tests y revisión.
 
 Uso la IA en todo el ciclo, con los tests como puerta automática, contratos validados y mi revisión antes de producción: la IA acelera y yo respondo del resultado.
 
-Disponible ahora para proyectos freelance. También abierto al puesto adecuado a jornada completa: producto, un equipo senior, IA aplicada con criterio y remoto en horario europeo.
+Disponible ahora para proyectos freelance. También abierto al puesto adecuado a jornada completa: backend o arquitectura en banca, fintech o empresas de producto, en remoto y horario europeo.
 
 Trabajo y casos: https://jefmonjor.dev · Contacto: hola@jefmonjor.dev
 
@@ -78,17 +78,17 @@ Core technologies: Java 21 · Spring Boot 3 · TypeScript · React · Next.js ·
 **English**
 
 ```
-Software Architect and Senior Backend Engineer. Seven years building software where mistakes are expensive: banking, legal, energy and telecom.
+Solutions Architect and Senior Backend Engineer. Seven years building software where mistakes are expensive: banking, legal, energy and telecom.
 
 At Andbank, a private bank in Andorra that operates across several jurisdictions, I work in the architecture and solutions team. I designed the architecture of the new online banking platform (15+ components, Clean and Hexagonal Architecture), I lead the Spring Boot 3 and Tomcat 9/10 migration across 40+ VMs without freezing releases, rolled out Keycloak with MFA and per-jurisdiction rules, and integrate the COBOL/AS400/DB2 core. I also extended SonarQube to every repository, including 12,000+ COBOL files, and launched the department's first AI tool, now in daily use by the whole team.
 
-Before that I modernized Spain's leading legal marketplace (Struts2 to React + Spring Boot) at elAbogado, built microservices for Vodafone and Big Data platforms for Endesa with Hadoop, Spark and Cassandra.
+Before that I was part of the team that migrated one of Spain's largest legal marketplaces from Struts2 to React + Spring Boot, at elAbogado; I built microservices for Vodafone and Big Data platforms for Endesa with Hadoop, Spark and Cassandra.
 
 On the side I build and run products of my own, from the database to production: Transolido (VERI*FACTU-compliant invoicing), Other Twist (offline-first writing platform), Ilnami (private-by-design app), PRONOQ, Corte1D and SpecForge, an open-source Go CLI that puts AI coding agents on an assembly line with tests and review.
 
 I use AI across the whole cycle, with tests as an automated gate, validated contracts and my review before production: AI speeds things up and I answer for the result.
 
-Available now for freelance projects. Also open to the right full-time role: product work, a senior team, AI applied with judgement, remote in European hours.
+Available now for freelance projects. Also open to the right full-time role: backend or architecture in banking, fintech or product companies, remote in European hours.
 
 Work and case studies: https://jefmonjor.dev · Contact: hola@jefmonjor.dev
 
@@ -139,25 +139,23 @@ Java 21 · Spring Boot 3 · OpenShift · Keycloak · DB2 · COBOL/AS400 · Sonar
 `mar. 2022 – sep. 2024 · Barcelona, España`
 
 ```
-El marketplace legal líder en España.
+Uno de los mayores marketplaces legales de España.
 
-• Modernicé la plataforma: migración de Struts2 a React + Spring Boot.
-• Diseñé microservicios y APIs REST seguras.
-• Mejoré el rendimiento y la mantenibilidad, y evolucioné la arquitectura.
-• Gestioné contenidos y landing pages con WordPress.
+• Formé parte del equipo que migró la plataforma de Struts2 a React + Spring Boot, sustituyendo el frontal legacy.
+• Diseñé microservicios y APIs REST seguras dentro de esa migración.
+• Mejoré el rendimiento y la mantenibilidad del código de una plataforma en producción.
 
-Java · Spring Boot · React · MySQL · REST APIs · WordPress
+Java · Spring Boot · React · MySQL · REST APIs
 ```
 
 ```
-Spain's leading legal marketplace.
+One of Spain's largest legal marketplaces.
 
-• Modernized the platform: migrated Struts2 to React + Spring Boot.
-• Designed microservices and secure REST APIs.
-• Improved performance and maintainability, and evolved the architecture.
-• Managed content and landing pages with WordPress.
+• Part of the team that migrated the platform from Struts2 to React + Spring Boot, replacing the legacy front end.
+• Designed microservices and secure REST APIs as part of that migration.
+• Improved the performance and maintainability of the code on a platform in production.
 
-Java · Spring Boot · React · MySQL · REST APIs · WordPress
+Java · Spring Boot · React · MySQL · REST APIs
 ```
 
 ### Zemsania — Software Engineer (cliente: Vodafone)
@@ -288,10 +286,10 @@ y las que conviene que te validen:
 Arquitectura de software · Java · Spring Boot
 ```
 
-Resto, en este orden (47):
+Resto, en este orden (46):
 
 ```
-Java 21 · Spring Boot 3 · Diseño de sistemas · Arquitectura hexagonal · Clean Architecture · Microservicios · Modernización de sistemas legacy · Integración de sistemas · REST APIs · OpenAPI · SOAP · Hibernate / JPA · TypeScript · JavaScript · React · Next.js · Node.js · Flutter · Dart · Go · Python · SQL · PostgreSQL · Redis · DB2 · Oracle PL/SQL · MySQL · Cassandra · Hadoop · Apache Spark · Docker · Kubernetes · OpenShift · Google Cloud Platform · Vercel · CI/CD · GitHub Actions · Jenkins · Keycloak · OAuth2 · Seguridad de aplicaciones · SonarQube · IA aplicada · Claude API · OpenAI API · Gestión de proveedores · Scrum
+Java 21 · Spring Boot 3 · Diseño de sistemas · Arquitectura hexagonal · Clean Architecture · Microservicios · Modernización de sistemas legacy · Integración de sistemas · REST APIs · OpenAPI · SOAP · Hibernate / JPA · TypeScript · JavaScript · React · Next.js · Node.js · Flutter · Dart · Go · Python · SQL · PostgreSQL · Redis · DB2 · Oracle PL/SQL · MySQL · Cassandra · Hadoop · Apache Spark · Docker · Kubernetes · OpenShift · Google Cloud Platform · Vercel · CI/CD · GitHub Actions · Keycloak · OAuth2 · Seguridad de aplicaciones · SonarQube · IA aplicada · Claude API · OpenAI API · Gestión de proveedores · Scrum
 ```
 
 ---

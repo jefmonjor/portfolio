@@ -4,7 +4,7 @@ export const es: SiteContent = {
   meta: {
     home: {
       title:
-        "Jefferson Montesdeoca — Software Architect y Senior Backend Engineer",
+        "Jefferson Montesdeoca — Solutions Architect y Senior Backend Engineer",
       description:
         "Construyo los sistemas backend sobre los que funcionan las empresas, y los productos que funcionan encima. Siete años, de la arquitectura de un banco privado a productos propios en producción.",
     },
@@ -50,7 +50,7 @@ export const es: SiteContent = {
   },
   cta: "Hablemos",
   hero: {
-    role: "Software Architect · Senior Backend Engineer",
+    role: "Solutions Architect · Senior Backend Engineer",
     headline: [
       "Construyo los sistemas backend sobre los que funcionan las empresas,",
       "y los productos que funcionan encima.",
@@ -105,7 +105,7 @@ export const es: SiteContent = {
   display: {
     capabilities: ["Lo que puedo asumir"],
     approach: ["Cómo trabajo"],
-    work: ["Cuatro sectores, el mismo estándar"],
+    work: ["Trabajo seleccionado"],
     services: ["Cómo podemos trabajar juntos"],
     about: ["Hola, soy Jefferson"],
     contact: ["Cuéntame qué necesitas resolver"],
@@ -182,7 +182,7 @@ export const es: SiteContent = {
   },
   hiring: {
     title: "También abierto al puesto adecuado",
-    body: "A jornada completa, si el encaje es bueno: producto, un equipo senior, IA aplicada con criterio y trabajo en remoto.",
+    body: "A jornada completa, si el encaje es bueno: puestos de backend o arquitectura en banca, fintech o empresas de producto, en remoto.",
     cvLink: "Ver el CV completo",
   },
 
@@ -191,7 +191,7 @@ export const es: SiteContent = {
     lead: "Me hago cargo del sistema entero: diseño, código, despliegue y traspaso.",
     paragraphs: [
       [
-        "Trabajo en el equipo de arquitectura y soluciones de Andbank, un banco privado de Andorra: diseñé la arquitectura de su nueva banca online (más de 15 componentes) y dirijo la migración a Spring Boot 3 en más de 40 VMs. Antes trabajé en elAbogado como desarrollador full stack y, como consultor, en proyectos para Vodafone y Endesa. También construyo y opero mis propios productos, hoy seis en producción. Tienes el detalle en la ",
+        "Trabajo en el equipo de arquitectura y soluciones de Andbank, un banco privado de Andorra: diseñé la arquitectura de su nueva banca online (más de 15 componentes) y dirijo la migración a Spring Boot 3 en más de 40 VMs. Antes trabajé en elAbogado como desarrollador full stack y, como consultor, en proyectos para Vodafone y Endesa. También construyo y opero mis propios productos en producción, como Transolido, Other Twist e Ilnami. Tienes el detalle en la ",
         { text: "página de experiencia", href: "/experience" },
         " y en mi ",
         { text: "CV completo", href: "/cv" },
@@ -952,7 +952,7 @@ export const es: SiteContent = {
       close: "Cerrar la terminal",
       prompt: "visitante@jefmonjor.dev:~$",
       banner: [
-        "Jefferson Montesdeoca — Ingeniero de software senior · Arquitecto de software",
+        "Jefferson Montesdeoca — Solutions Architect · Senior Backend Engineer",
         "escribe 'help' para empezar · Tab completa · Esc o ` cierra",
       ],
       thinking: "preguntando al asistente…",

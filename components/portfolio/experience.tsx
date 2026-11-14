@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl"
 
 import { SectionHeading } from "@/components/portfolio/section-heading"
 import { TechBadge } from "@/components/portfolio/tech-badge"
+import { useIsHydrated } from "@/hooks/use-is-hydrated"
 import { parseStringArray } from "@/lib/i18n-values"
 import { portfolioUpdatedAt, profile } from "@/lib/profile"
 
@@ -20,8 +21,12 @@ function totalMonthsBetween(
 ): number {
   const start = parseISOMonth(startISO)
   const end = parseISOMonth(endISO === "present" ? nowISO : endISO)
-  const diff = (end.year - start.year) * 12 + (end.month - start.month) + 1
+  const diff = (end.year - start.year) * 12 + (end.month - start.month)
   return Math.max(diff, 1)
+}
+
+function currentMonthISO(): string {
+  return new Date().toISOString().slice(0, 7)
 }
 
 function Experience() {
@@ -30,9 +35,13 @@ function Experience() {
   const tDuration = useTranslations("experience.duration")
   const tCommon = useTranslations("common")
   const entries = profile.experience
+  // The server render has no "today": it uses the last update, and the
+  // browser replaces it with the real month so the current job keeps counting.
+  const isHydrated = useIsHydrated()
+  const thisMonth = isHydrated ? currentMonthISO() : portfolioUpdatedAt
 
   function durationLabel(startISO: string, endISO: string | "present"): string {
-    const total = totalMonthsBetween(startISO, endISO, portfolioUpdatedAt)
+    const total = totalMonthsBetween(startISO, endISO, thisMonth)
     const years = Math.floor(total / 12)
     const months = total % 12
     if (years > 0 && months > 0) {
