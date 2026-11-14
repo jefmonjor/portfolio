@@ -68,7 +68,7 @@
     }
   },
   "status": {
-    "label": "Disponible per a col·laboracions a temps parcial des de gener de 2027",
+    "label": "Disponible ara per a projectes freelance; obert també al lloc adequat",
     "detail": "Andorra · Remot · CET"
   },
   "hero": {
@@ -95,12 +95,12 @@
   },
   "about": {
     "title": "Qui soc, en un paràgraf",
-    "manifesto": "Set anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. He liderat migracions complexes, integrat sistemes legacy i dissenyat arquitectures hexagonals i de microserveis. Fora de la feina construeixo diversos productes propis —alguns públics i en funcionament, d'altres privats i en desenvolupament— per mantenir a prop les decisions de producte, backend, desplegament i IA aplicada.",
+    "manifesto": "Set anys construint programari en producció per a banca, legal, energia i telecomunicacions: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. He liderat migracions complexes, integrat sistemes legacy i dissenyat arquitectures hexagonals i de microserveis. A més construeixo i opero productes propis en producció, com Transolido, Other Twist i Ilnami, per mantenir a prop les decisions de producte, backend, desplegament i IA aplicada.",
     "currentlyWorkingWith": "Treballant ara amb"
   },
   "cv": {
-    "headline": "Producte de principi a fi sobre backends Java/Spring: arquitectura mantenible, integració amb sistemes crítics i IA aplicada on aporta valor real.",
-    "summary": "Set anys construint software en producció per a banca, legal i energia: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. Migracions complexes, integració amb sistemes legacy i arquitectures hexagonals i de microserveis. En paral·lel, productes propis —en funcionament i en desenvolupament— que cobreixen el cicle complet: producte, backend, desplegament i IA aplicada amb dades validades i alternatives manuals.",
+    "headline": "Backend i arquitectura sobre Java/Spring, de principi a fi: arquitectura mantenible, integració amb sistemes crítics i IA aplicada on aporta valor real.",
+    "summary": "Set anys construint programari en producció per a banca, legal, energia i telecomunicacions. Avui, a l'equip d'arquitectura d'un banc privat (Andbank): l'arquitectura de la nova banca en línia (més de 15 components), la migració a Spring Boot 3 en més de 40 VMs i la integració amb el core COBOL/AS400/DB2. Abans, la modernització del marketplace legal líder a Espanya i plataformes Big Data per a Endesa. En paral·lel construeixo i opero productes propis en producció, de la base de dades al desplegament, amb IA aplicada sobre dades validades i amb alternatives manuals.",
     "portfolioName": "Portfolio personal",
     "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert.",
     "otherProjects": "Altres projectes"
@@ -121,12 +121,12 @@
         "end": "present",
         "summary": "Arquitectura backend i gestió tècnica en banca privada: estàndards de desenvolupament, integració amb sistemes core i avaluació de solucions d'IA.",
         "highlights": [
-          "Dissenyo l'arquitectura backend (Java 21, Spring Boot 3) sota Clean Architecture i arquitectura hexagonal; nou homebanking amb 15+ components.",
-          "Lidero la migració de Spring Boot 2 → 3 (namespace Jakarta) i de Tomcat 7/8 → 9/10 en més de 40 VMs.",
-          "Integro sistemes legacy (COBOL, AS400, DB2), evoluciono les APIs de carriers d'enviament i implanto Keycloak amb MFA i regles per jurisdicció.",
-          "Estenc SonarQube a tots els repositoris, incloent-hi l'anàlisi de +12.000 fitxers COBOL.",
-          "Vaig desplegar Gemini Code Assist per a tot l'equip com a primera adopció d'IA del departament.",
-          "Gestiono tècnicament els proveïdors, decideixo build vs buy i controlo el deute tècnic sobre OpenShift (OCP4)."
+          "Vaig dissenyar l'arquitectura de la nova banca en línia: més de 15 components independents sobre Clean Architecture i hexagonal (Java 21, Spring Boot 3), perquè cadascun evolucioni sense bloquejar els altres.",
+          "Lidero la migració de Spring Boot 2 → 3 (namespace Jakarta) i de Tomcat 7/8 → 9/10 en més de 40 VMs, per fases i sense congelar els lliuraments.",
+          "Integro el core COBOL/AS400/DB2 darrere d'adaptadors i vaig implantar Keycloak com a proveïdor únic d'identitat, amb MFA i regles per jurisdicció.",
+          "Vaig portar SonarQube a tots els repositoris, inclosos més de 12.000 fitxers COBOL: el deute tècnic és ara visible a tota la plataforma, legacy inclòs.",
+          "Vaig posar en marxa la primera eina d'IA del departament (Gemini Code Assist), avui en ús diari per tot l'equip.",
+          "Gestiono tècnicament els proveïdors, evoluciono les APIs amb els carriers d'enviament i decideixo build vs buy sobre OpenShift (OCP4)."
         ]
       },
       "elabogado-2022": {

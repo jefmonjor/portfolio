@@ -28,10 +28,23 @@ describe("buildSiteSystemPrompt", () => {
     }
   })
 
-  it("keeps prices and confidential bank details out", () => {
+  it("keeps prices out and the bank case free of figures", () => {
     const prompt = buildSiteSystemPrompt("en")
     expect(prompt).toContain("rates are sent in the written proposal")
-    expect(prompt).not.toMatch(/12[.,]000|40\+ VMs/)
+
+    const caseStudies = prompt.slice(
+      prompt.indexOf("CASE STUDIES"),
+      prompt.indexOf("EXPERIENCE\n")
+    )
+    expect(caseStudies).toContain("private bank")
+    expect(caseStudies).not.toMatch(/12[.,]000|40\+ VMs|15\+ /)
+  })
+
+  it("states the Andbank figures the CV publishes only under experience", () => {
+    const prompt = buildSiteSystemPrompt("en")
+    const experience = prompt.slice(prompt.indexOf("EXPERIENCE\n"))
+    expect(experience).toMatch(/40\+ VMs/)
+    expect(experience).toMatch(/12,000\+ COBOL files/)
   })
 
   it("knows his own products and the technologies he works with", () => {

@@ -94,7 +94,7 @@ export function buildMacCv(labels: CvLabels, locale: Locale) {
       contact: { publicProfiles: publicProfiles() },
       preferences: { preferredRoles: [...PREFERRED_ROLES] },
       requirements: {
-        contractTypes: ["freelance"],
+        contractTypes: ["freelance", "permanent"],
         location: {
           openToRemote: true,
           remoteOnly: false,

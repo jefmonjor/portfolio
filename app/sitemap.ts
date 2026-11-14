@@ -7,8 +7,13 @@ import {
   siteLocales,
   type Locale,
 } from "@/i18n/routing"
-import { absoluteUrl, portfolioUpdatedAt } from "@/lib/profile"
+import { absoluteUrl } from "@/lib/profile"
 import { languageAlternates } from "@/lib/seo/alternates"
+
+// The sitemap is generated at build time, so this is the date of the deploy
+// that last changed the pages; a fixed date went stale and told crawlers
+// nothing had changed.
+const deployedAt = new Date()
 
 function localizedEntries(
   locales: ReadonlyArray<Locale>,
@@ -23,7 +28,7 @@ function localizedEntries(
 
   return locales.map((locale) => ({
     url: absoluteUrl(localizedPath(locale, path)),
-    lastModified: portfolioUpdatedAt,
+    lastModified: deployedAt,
     changeFrequency: "monthly",
     priority,
     alternates: { languages },
@@ -38,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedEntries(routing.locales, "/cv", 0.6),
     {
       url: absoluteUrl("/cv.pdf"),
-      lastModified: portfolioUpdatedAt,
+      lastModified: deployedAt,
       changeFrequency: "monthly",
       priority: 0.5,
     },

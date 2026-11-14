@@ -10,13 +10,13 @@ const linkedinUrl =
 
 export const llmsSummary = `# Jefferson Montesdeoca Jordán
 
-> Software Architect & Senior Backend Engineer based in Andorra la Vella. Designs and builds backend systems for banking and enterprise on Java and Spring, and applies AI with validated data, clear limits and manual fallbacks. Currently Solutions Architect / Technical PM at Andbank. Available for part-time engagements from January 2027, remote, CET.
+> Software Architect & Senior Backend Engineer based in Andorra la Vella. Designs and builds backend systems for banking and enterprise on Java and Spring, and applies AI with validated data, clear limits and manual fallbacks. Currently Solutions Architect / Technical PM at Andbank. Available now for freelance projects and also open to the right full-time role, remote, CET.
 
 ## Site
 
 - [Home](${siteUrl}): Positioning, selected work, services, experience and contact.
-- [Services](${siteUrl}/services): Technical Advisory, Engineering Delivery and Fractional Architecture — who each one is for, what it includes and its format.
-- [Case studies](${siteUrl}/work): Modernising a private bank's Java platform without stopping delivery; Ilnami, a private-by-design app built alone; SpecForge, AI-written code held to engineering standards.
+- [Services](${siteUrl}/services): Review and roadmap, Build and integrate, and Fractional tech lead — who each one is for, what it includes and its format.
+- [Case studies](${siteUrl}/work): Evolving a private bank's Java platform without stopping delivery; Transolido, VERI*FACTU-compliant invoicing; Other Twist, an offline-first writing platform; Ilnami, a private-by-design app built alone.
 - [Experience](${siteUrl}/experience): Responsibilities at Andbank, elAbogado and in consulting for Vodafone and Endesa.
 - [Contact](${siteUrl}/contact): Availability, time zone and how to start an engagement.
 - [Sitio en español](${siteUrl}/es): La misma web en español.
@@ -49,8 +49,8 @@ export const llmsSummary = `# Jefferson Montesdeoca Jordán
 - Positioning: Software Architect & Senior Backend Engineer. This is the professional positioning, not the current contractual title.
 - Experience: seven years of production software (since 2019) across banking, legal, energy and telecom, in five companies.
 - Based in: Andorra la Vella, Andorra. Time zone CET/CEST. Works remotely.
-- Availability: part-time engagements from January 2027.
-- Offering: Technical Advisory (1 to 5 days, written report), Engineering Delivery (Java and Spring backends, integrations, migrations; 10 to 15 hours per week) and Fractional Architecture (4 to 8 hours per week, monthly). Every engagement starts with a 30-minute call and a one-page written proposal. Rates are given in the proposal, not published.
+- Availability: available now for freelance projects (10 to 15 hours per week); also open to the right full-time role.
+- Offering: Review and roadmap (1 to 5 days, written report), Build and integrate (custom software, APIs, integrations and migrations taken to production; 10 to 15 hours per week) and Fractional tech lead (4 to 8 hours per week, monthly). Every engagement starts with a 30-minute call and a one-page written proposal. Rates are given in the proposal, not published.
 - Languages: Spanish (native) and English (B1 professional).
 
 ## Engineering evidence

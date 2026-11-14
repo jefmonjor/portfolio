@@ -178,13 +178,8 @@ const styles = StyleSheet.create({
   jobTitle: {
     flex: 1,
     fontSize: 10,
-    color: palette.ink,
-  },
-  jobRole: {
     fontWeight: 700,
-  },
-  jobOrg: {
-    fontWeight: 400,
+    color: palette.ink,
   },
   jobDates: {
     fontSize: 9,
@@ -192,8 +187,8 @@ const styles = StyleSheet.create({
     flexShrink: 0,
   },
   jobLocation: {
-    fontSize: 8.5,
-    color: palette.muted,
+    fontSize: 9,
+    color: palette.body,
     marginBottom: 2,
   },
   jobSummary: {
@@ -370,15 +365,14 @@ function CvDocument({ labels }: CvDocumentProps) {
             return (
               <View key={entry.id} style={styles.job}>
                 <View style={styles.jobHeader} minPresenceAhead={60}>
-                  <Text style={styles.jobTitle}>
-                    <Text style={styles.jobRole}>{data.role}</Text>
-                    <Text style={styles.jobOrg}> — {entry.organization}</Text>
-                  </Text>
+                  <Text style={styles.jobTitle}>{data.role}</Text>
                   <Text style={styles.jobDates}>
                     {data.start} – {data.end}
                   </Text>
                 </View>
-                <Text style={styles.jobLocation}>{data.location}</Text>
+                <Text style={styles.jobLocation}>
+                  {entry.organization} · {data.location}
+                </Text>
                 {data.summary ? (
                   <Text style={styles.jobSummary}>{data.summary}</Text>
                 ) : null}

@@ -36,6 +36,13 @@ export function headlineText(headline: Headline): string {
     .join("")
 }
 
+/** The hero headline is one sentence per line, so its lines join with a space. */
+export function headlineLines(headline: Headline): string[] {
+  return headline.map((part) =>
+    typeof part === "string" ? part : part.emphasis
+  )
+}
+
 export type PageMeta = {
   title: string
   description: string

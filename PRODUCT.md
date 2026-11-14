@@ -25,7 +25,7 @@ Software architect and senior engineer who builds new products, modernizes exist
 ## Operating Context
 
 - Offer: Diagnosis (1–5 days, written report), Build and integrate (fixed scope or daily rate), Engineering partner (monthly, 4–8 h/week).
-- Availability: projects at 10–15 h/week or the right full-time role; remote from Andorra (CET). No availability date is shown on the site or given by the assistant.
+- Availability: freelance first. Available now for projects at 10–15 h/week, and also open to the right full-time role; remote from Andorra (CET). The site, the CV, the PDFs, `cv.json`, `llms.txt` and the assistants all say "available now"; no future date is shown anywhere.
 - Contact: a six-question project brief plus the visitor's email, sent from the site to hola@jefmonjor.dev through Brevo (transactional email, EU) with the visitor as reply-to; nothing is stored by the site. When Brevo is not configured or fails, the brief opens in the visitor's own mail app instead. Email address shown only after hydration: hola@jefmonjor.dev on the site (`siteContactEmail()` in `lib/email.ts`); `/cv` keeps its own address.
 - English at `/`, Spanish at `/es`. The CV lives at `/cv` (EN, ES, CA).
 
@@ -34,7 +34,7 @@ Software architect and senior engineer who builds new products, modernizes exist
 - Static (SSG) Next.js site; every page works without JavaScript and respects reduced motion.
 - No public rates. Budget ranges in the brief are the visitor's budget, not prices.
 - No analytics or third-party requests from pages; images and fonts are self-hosted.
-- Andbank internal details and figures stay confidential; the bank case is anonymised.
+- Andbank internal details stay confidential and the bank case is anonymised, without figures. The only Andbank figures the site may show are the three the CV already publishes (15+ components in the new online banking, 40+ VMs migrated, 12,000+ COBOL files analysed), and only where Andbank is named as in the CV: the experience page and the "Hi, I'm Jefferson" block.
 
 ## Brand Commitments
 

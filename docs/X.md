@@ -50,7 +50,7 @@ On the side I build and run my own products in production:
 · Ilnami — private-by-design food diary, Next.js + Postgres RLS
 · SpecForge — open-source Go CLI that runs AI coding agents with tests and review
 
-Open to projects and the right full-time role, remote in European hours.
+Available now for freelance projects, and open to the right full-time role. Remote in European hours.
 
 Work and case studies → jefmonjor.dev
 ```
