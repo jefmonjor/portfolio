@@ -8,7 +8,7 @@ const labels: CvLabels = {
   present: "Present",
   headline: "Product and backend engineering",
   summary: "Canonical professional summary.",
-  availability: "Available for part-time work from January 2027",
+  availability: "Available now for freelance projects",
   contactSubject: "[Portfolio] Contact",
   otherProjects: "Other projects",
   credential: "Verify credential",

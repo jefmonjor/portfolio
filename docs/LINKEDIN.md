@@ -10,8 +10,9 @@ Reglas al pegar:
 - **Posicionamiento:** Software Architect & Senior Backend Engineer, el mismo
   que en jefmonjor.dev. El cargo contractual de Andbank (Solutions Architect /
   Technical PM) va en Experiencia, tal cual.
-- **Dos puertas abiertas:** proyectos (10–15 h/semana) y el puesto adecuado a
-  jornada completa. Sin tarifas y sin fecha de disponibilidad.
+- **Freelance primero:** disponible ahora para proyectos (10–15 h/semana) y,
+  en segundo lugar, abierto al puesto adecuado a jornada completa. Sin tarifas
+  y sin fechas futuras.
 - **Ninguna cifra que no esté ya publicada** en el CV o en la web. Los detalles
   internos de Andbank se quedan dentro.
 - **Inglés B1.** Ni «native» ni «fluent» en ningún texto.
@@ -38,13 +39,13 @@ primero, stack y lo que resuelves después. Máximo 220 caracteres.
 **Español (perfil principal)**
 
 ```
-Software Architect & Senior Backend Engineer | Java 21 · Spring Boot · TypeScript | Banca, modernización de legacy e IA aplicada en producción | Proyectos y jornada completa · Remoto (CET)
+Software Architect & Senior Backend Engineer | Java 21 · Spring Boot · TypeScript | Banca, modernización de legacy e IA aplicada en producción | Freelance disponible ahora · Remoto (CET)
 ```
 
 **English (perfil en otro idioma)**
 
 ```
-Software Architect & Senior Backend Engineer | Java 21 · Spring Boot · TypeScript | Banking-grade systems, legacy modernization & applied AI in production | Projects & full-time · Remote (CET)
+Software Architect & Senior Backend Engineer | Java 21 · Spring Boot · TypeScript | Banking-grade systems, legacy modernization & applied AI in production | Freelance, available now · Remote (CET)
 ```
 
 ---
@@ -67,7 +68,7 @@ En paralelo construyo y opero productos propios, de la base de datos a producci�
 
 Uso la IA en todo el ciclo, con los tests como puerta automática, contratos validados y mi revisión antes de producción: la IA acelera y yo respondo del resultado.
 
-Abierto a proyectos y al puesto adecuado a jornada completa: producto, un equipo senior, IA aplicada con criterio y remoto en horario europeo.
+Disponible ahora para proyectos freelance. También abierto al puesto adecuado a jornada completa: producto, un equipo senior, IA aplicada con criterio y remoto en horario europeo.
 
 Trabajo y casos: https://jefmonjor.dev · Contacto: hola@jefmonjor.dev
 
@@ -87,7 +88,7 @@ On the side I build and run products of my own, from the database to production:
 
 I use AI across the whole cycle, with tests as an automated gate, validated contracts and my review before production: AI speeds things up and I answer for the result.
 
-Open to projects and to the right full-time role: product work, a senior team, AI applied with judgement, remote in European hours.
+Available now for freelance projects. Also open to the right full-time role: product work, a senior team, AI applied with judgement, remote in European hours.
 
 Work and case studies: https://jefmonjor.dev · Contact: hola@jefmonjor.dev
 

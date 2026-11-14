@@ -4,7 +4,7 @@
 
 Construyo los sistemas backend sobre los que funcionan las empresas, y los productos que funcionan encima. Trabajo en el equipo de arquitectura y soluciones de Andbank (Andorra): Java, Spring, integración con el core bancario e identidad. Siete años en banca, legal, energía y telecomunicaciones.
 
-Abierto a proyectos y al puesto adecuado a jornada completa · Remoto · CET.
+Disponible ahora para proyectos freelance; también abierto al puesto adecuado a jornada completa · Remoto · CET.
 
 [jefmonjor.dev](https://jefmonjor.dev/es) · [Servicios](https://jefmonjor.dev/es/services) · [Casos](https://jefmonjor.dev/es/work) · [CV](https://jefmonjor.dev/es/cv) · [Contacto](https://jefmonjor.dev/es/contact) · [LinkedIn](https://www.linkedin.com/in/jefmonjor)
 

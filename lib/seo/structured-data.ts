@@ -112,7 +112,7 @@ function personNode(
       name: positioning,
       occupationalCategory: "15-1252.00 Software Developers",
       skills: profile.focus.join(", "),
-      occupationLocation: { "@type": "Place", name: profile.location },
+      occupationLocation: { "@type": "City", name: profile.location },
     },
     knowsLanguage: [
       { "@type": "Language", name: "Spanish", alternateName: "es" },
@@ -194,7 +194,7 @@ export function buildCvStructuredData({
   ...person
 }: CvStructuredDataInput) {
   const projectNodes = publicProjects.map((project) => ({
-    "@type": "CreativeWork",
+    "@type": project.codeRepository ? "SoftwareSourceCode" : "CreativeWork",
     "@id": `${siteUrl}/#project-${project.id}`,
     name: project.name,
     description: project.description,

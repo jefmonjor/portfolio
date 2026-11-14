@@ -68,7 +68,7 @@
     }
   },
   "status": {
-    "label": "Available for part-time work from January 2027",
+    "label": "Available now for freelance projects; also open to the right role",
     "detail": "Andorra · Remote · CET"
   },
   "hero": {
@@ -95,12 +95,12 @@
   },
   "about": {
     "title": "Who I am, in one paragraph",
-    "manifesto": "Seven years building production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. Outside work, I build several products of my own—some public and live, others private and in development—to keep product, backend, deployment, and applied AI decisions close together.",
+    "manifesto": "Seven years building production software for banking, legal, energy and telecom: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. I also build and run my own products in production, such as Transolido, Other Twist and Ilnami, to keep product, backend, deployment, and applied AI decisions close together.",
     "currentlyWorkingWith": "Currently working with"
   },
   "cv": {
-    "headline": "End-to-end product work on Java/Spring backends: maintainable architecture, integration with critical systems, and AI applied where it adds real value.",
-    "summary": "Seven years shipping production software for banking, legal, and energy: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. Complex migrations, legacy integration, and hexagonal and microservices architectures. Alongside that, a set of personal products — live and in development — covering the full cycle: product, backend, deployment, and applied AI with validated data and a manual way to work when it fails.",
+    "headline": "Backend and architecture on Java/Spring, end to end: maintainable architecture, integration with critical systems, and AI applied where it adds real value.",
+    "summary": "Seven years shipping production software for banking, legal, energy and telecom. Today, in the architecture team of a private bank (Andbank): the architecture of the new online banking platform (15+ components), the Spring Boot 3 migration across 40+ VMs, and integration with the COBOL/AS400/DB2 core. Before that, the modernization of Spain's leading legal marketplace and Big Data platforms for Endesa. Alongside, I build and run my own products in production, from the database to deployment, with AI applied on validated data and with manual fallbacks.",
     "portfolioName": "Personal portfolio",
     "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source.",
     "otherProjects": "Other projects"
@@ -121,12 +121,12 @@
         "end": "present",
         "summary": "Backend architecture and technical management in private banking: development standards, core-systems integration, and evaluation of AI solutions.",
         "highlights": [
-          "Design backend architecture (Java 21, Spring Boot 3) under Clean Architecture and hexagonal principles; new homebanking with 15+ components.",
-          "Lead the Spring Boot 2 → 3 migration (Jakarta namespace) and Tomcat 7/8 → 9/10 across 40+ VMs.",
-          "Integrate legacy systems (COBOL, AS400, DB2), evolve shipping-carrier integration APIs, and roll out Keycloak with MFA and per-jurisdiction rules.",
-          "Extend SonarQube across every repository, including analysis of 12,000+ COBOL files.",
-          "Rolled out Gemini Code Assist for the whole team as the department's first AI adoption.",
-          "Manage vendors technically, decide whether to build or buy, and control technical debt on OpenShift (OCP4)."
+          "Designed the architecture of the new online banking platform: 15+ independent components on Clean and Hexagonal Architecture (Java 21, Spring Boot 3), so each one evolves without blocking the others.",
+          "Lead the Spring Boot 2 → 3 migration (Jakarta namespace) and Tomcat 7/8 → 9/10 across 40+ VMs, in phases and without freezing releases.",
+          "Integrate the COBOL/AS400/DB2 core behind adapters and rolled out Keycloak as the single identity provider, with MFA and per-jurisdiction rules.",
+          "Extended SonarQube to every repository, including 12,000+ COBOL files, making technical debt visible across the platform, legacy included.",
+          "Launched the department's first AI tool (Gemini Code Assist), now in daily use by the whole team.",
+          "Manage vendors technically, evolve the shipping-carrier APIs, and decide build vs buy on OpenShift (OCP4)."
         ]
       },
       "elabogado-2022": {

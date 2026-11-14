@@ -58,10 +58,11 @@ export const en: SiteContent = {
       "Seven years shipping software where mistakes are expensive: from a private bank's architecture team (Java, Spring, core-banking integrations, identity) to products I've built and run myself, from database to production. Backend-first, product-minded, with AI where it earns its place.",
     cta: "Tell me about your project",
     availability: {
-      status: "Open to projects, and to the right full-time role.",
+      status:
+        "Available now for freelance projects. Also open to the right full-time role.",
     },
     stack: "Java · Spring · TypeScript · Applied AI",
-    engagement: "Remote · CET · Full-time, part-time or project-based",
+    engagement: "Available now for freelance projects · Remote · CET",
     seeWork: "See my work",
     terminalHint: "Prefer a terminal? Open it (Ctrl K)",
     tools: {
@@ -189,7 +190,7 @@ export const en: SiteContent = {
     lead: "I own the whole system: design, code, deployment and handover.",
     paragraphs: [
       [
-        "I work in the architecture and solutions team at Andbank, a private bank in Andorra. Before that I worked at elAbogado as a full-stack developer and, as a consultant, on projects for Vodafone and Endesa. I also build and run my own products. The details are on the ",
+        "I work in the architecture and solutions team at Andbank, a private bank in Andorra: I designed the architecture of its new online banking platform (15+ components) and lead the Spring Boot 3 migration across 40+ VMs. Before that I worked at elAbogado as a full-stack developer and, as a consultant, on projects for Vodafone and Endesa. I also build and run my own products, six of them live today. The details are on the ",
         { text: "experience page", href: "/experience" },
         " and in my ",
         { text: "full CV", href: "/cv" },
@@ -317,10 +318,11 @@ export const en: SiteContent = {
         summary:
           "Backend architecture, integration with existing systems and technical coordination with teams and vendors.",
         highlights: [
-          "Backend design of new services in Java 21 and Spring Boot 3 on OpenShift.",
-          "Integration with the existing core (COBOL, AS400, DB2) through adapters.",
-          "Framework and server upgrades, identity with Keycloak and code quality with SonarQube.",
-          "Rolling out AI tools for the team.",
+          "Architecture of the new online banking platform: 15+ independent components in Java 21 and Spring Boot 3, on OpenShift.",
+          "Spring Boot 2 to 3 and Tomcat 7/8 to 9/10 migration across 40+ VMs, in phases and without freezing releases.",
+          "Integration with the existing core (COBOL, AS400, DB2) through adapters, and a single identity provider with Keycloak and MFA.",
+          "SonarQube in every repository, including 12,000+ COBOL files: technical debt, in plain sight.",
+          "The department's first AI tool, now in daily use by the whole team.",
         ],
         entries: ["andbank-2024"],
       },
@@ -824,7 +826,7 @@ export const en: SiteContent = {
       {
         label: "Availability",
         value:
-          "Projects at 10 to 15 hours per week, or full-time in the right role.",
+          "Available now: projects at 10 to 15 hours per week. Also open to the right full-time role.",
       },
       { label: "Location", value: "Andorra · remote" },
       {

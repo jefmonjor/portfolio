@@ -1,3 +1,4 @@
+import { Fragment } from "react"
 import {
   Document,
   Link,
@@ -162,6 +163,15 @@ const TECHNICAL_PROJECT_IDS = [
   "portfolio",
 ] as const
 
+function Highlight({ text }: { text: string }) {
+  return (
+    <View style={styles.bullet} wrap={false}>
+      <Text style={styles.bulletMark}>•</Text>
+      <Text style={styles.bulletText}>{text}</Text>
+    </View>
+  )
+}
+
 function CvTechnicalDocument({
   labels,
   locale,
@@ -258,33 +268,41 @@ function CvTechnicalDocument({
           </View>
         ))}
 
-        <Text style={styles.sectionTitle}>{headings.experience}</Text>
-        {profile.experience.map((entry) => {
+        {profile.experience.map((entry, index) => {
           const data = labels.experienceEntry(entry.id)
+          const [firstHighlight, ...otherHighlights] = data.highlights
           return (
-            <View key={entry.id} style={styles.entry} wrap={false}>
-              <View style={styles.entryHeader}>
-                <Text style={styles.entryRole}>{data.role}</Text>
-                <Text style={styles.entryDates}>
-                  {data.start} — {data.end}
-                </Text>
-              </View>
-              <Text style={styles.entryOrg}>
-                {entry.organization} · {data.location}
-              </Text>
-              {data.summary ? (
-                <Text style={styles.paragraph}>{data.summary}</Text>
-              ) : null}
-              {data.highlights.map((hl, i) => (
-                <View key={i} style={styles.bullet}>
-                  <Text style={styles.bulletMark}>•</Text>
-                  <Text style={styles.bulletText}>{hl}</Text>
+            <Fragment key={entry.id}>
+              {/* A job never opens with its heading alone at the foot of a
+                  page: the heading, the summary and the first highlight stay
+                  together, and the rest flows onto the next page. The pieces
+                  are direct children of the page because the PDF engine only
+                  breaks reliably between those. */}
+              <View wrap={false}>
+                {index === 0 ? (
+                  <Text style={styles.sectionTitle}>{headings.experience}</Text>
+                ) : null}
+                <View style={styles.entryHeader}>
+                  <Text style={styles.entryRole}>{data.role}</Text>
+                  <Text style={styles.entryDates}>
+                    {data.start} — {data.end}
+                  </Text>
                 </View>
+                <Text style={styles.entryOrg}>
+                  {entry.organization} · {data.location}
+                </Text>
+                {data.summary ? (
+                  <Text style={styles.paragraph}>{data.summary}</Text>
+                ) : null}
+                {firstHighlight ? <Highlight text={firstHighlight} /> : null}
+              </View>
+              {otherHighlights.map((highlight, i) => (
+                <Highlight key={i} text={highlight} />
               ))}
-              {entry.stack && entry.stack.length > 0 ? (
-                <Text style={styles.stackLine}>{entry.stack.join(" · ")}</Text>
-              ) : null}
-            </View>
+              <Text style={[styles.stackLine, styles.entry]}>
+                {(entry.stack ?? []).join(" · ")}
+              </Text>
+            </Fragment>
           )
         })}
 
@@ -331,16 +349,18 @@ function CvTechnicalDocument({
           )
         })}
 
-        <Text style={styles.sectionTitle}>{headings.languages}</Text>
-        {profile.languages.map((lang) => {
-          const data = labels.languageEntry(lang.id)
-          return (
-            <Text key={lang.id} style={styles.skillLine}>
-              <Text style={styles.skillLabel}>{data.name}: </Text>
-              {data.level}
-            </Text>
-          )
-        })}
+        <View wrap={false}>
+          <Text style={styles.sectionTitle}>{headings.languages}</Text>
+          {profile.languages.map((lang) => {
+            const data = labels.languageEntry(lang.id)
+            return (
+              <Text key={lang.id} style={styles.skillLine}>
+                <Text style={styles.skillLabel}>{data.name}: </Text>
+                {data.level}
+              </Text>
+            )
+          })}
+        </View>
       </Page>
     </Document>
   )

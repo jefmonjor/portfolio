@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server"
 
 import { getSiteContent, indexableSitePaths } from "@/content/site"
 import {
-  headlineText,
+  headlineLines,
   type SiteContent,
   type SitePath,
 } from "@/content/site/types"
@@ -66,7 +66,7 @@ function sitePageText(
     case "/":
       return {
         eyebrow: content.hero.role,
-        title: headlineText(content.hero.headline),
+        title: headlineLines(content.hero.headline).join(" "),
       }
     case "/services":
       return {

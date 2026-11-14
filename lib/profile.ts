@@ -4,7 +4,7 @@ import type {
   SocialKind,
 } from "@/types/profile"
 
-export const portfolioUpdatedAt = "2026-10-21"
+export const portfolioUpdatedAt = "2026-11-14"
 
 export const siteUrl = "https://www.jefmonjor.dev"
 
