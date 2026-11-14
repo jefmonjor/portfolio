@@ -38,9 +38,9 @@ export const profile: Profile = {
     "Spring Boot 3",
     "Hexagonal Architecture",
     "Microservices",
-    "Next.js",
+    "Keycloak",
+    "PostgreSQL",
     "Claude API",
-    "AI agents",
   ],
   socials: [
     {

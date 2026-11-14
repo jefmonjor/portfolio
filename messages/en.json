@@ -205,7 +205,7 @@
       },
       "deterministic": {
         "title": "Deterministic where it matters",
-        "body": "Corte1D keeps optimization in a deterministic engine, while PRONOQ uses AI to explain results rather than decide predictions."
+        "body": "Transolido keeps the invoicing rules in deterministic code and the AI only helps capture data; in Ilnami the AI suggests but never saves on its own."
       },
       "gates": {
         "title": "AI behind automated gates",

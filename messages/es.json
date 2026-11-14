@@ -205,7 +205,7 @@
       },
       "deterministic": {
         "title": "Determinista cuando importa",
-        "body": "Corte1D mantiene la optimización en un motor determinista y PRONOQ usa IA para explicar resultados, no para decidir pronósticos."
+        "body": "Transolido deja las reglas de facturación en código determinista y la IA solo ayuda a capturar datos; en Ilnami la IA sugiere, pero nunca guarda por su cuenta."
       },
       "gates": {
         "title": "La IA, bajo controles automáticos",
