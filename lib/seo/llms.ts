@@ -10,7 +10,7 @@ const linkedinUrl =
 
 export const llmsSummary = `# Jefferson Montesdeoca Jordán
 
-> Software Architect & Senior Backend Engineer based in Andorra la Vella. Designs and builds backend systems for banking and enterprise on Java and Spring, and applies AI with validated data, clear limits and manual fallbacks. Currently Solutions Architect / Technical PM at Andbank. Available now for freelance projects and also open to the right full-time role, remote, CET.
+> Solutions Architect & Senior Backend Engineer based in Andorra la Vella. Designs and builds backend systems for banking and enterprise on Java and Spring, and applies AI with validated data, clear limits and manual fallbacks. Currently Solutions Architect / Technical PM at Andbank. Available now for freelance projects and also open to the right full-time role, remote, CET.
 
 ## Site
 
@@ -46,7 +46,7 @@ export const llmsSummary = `# Jefferson Montesdeoca Jordán
 
 - Name: Jefferson Montesdeoca Jordán (handle: jefmonjor).
 - Current role: Solutions Architect / Technical PM at Andbank, since September 2024.
-- Positioning: Software Architect & Senior Backend Engineer. This is the professional positioning, not the current contractual title.
+- Positioning: Solutions Architect & Senior Backend Engineer, in line with his title at Andbank (Solutions Architect / Technical PM).
 - Experience: seven years of production software (since 2019) across banking, legal, energy and telecom, in five companies.
 - Based in: Andorra la Vella, Andorra. Time zone CET/CEST. Works remotely.
 - Availability: available now for freelance projects (10 to 15 hours per week); also open to the right full-time role.

@@ -4,9 +4,9 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Software Architect & Senior Backend Engineer based in Andorra. Seven years building backend systems for banking, legal and energy: Java, Spring, architecture and applied AI. Full CV, projects and downloadable PDFs.",
+    "description": "Solutions Architect & Senior Backend Engineer based in Andorra. Seven years building backend systems for banking, legal, energy and telecom: Java, Spring, architecture and applied AI. Full CV, projects and downloadable PDFs.",
     "applicationName": "{shortName} · Portfolio",
-    "role": "Software Architect & Senior Backend Engineer",
+    "role": "Solutions Architect & Senior Backend Engineer",
     "currentJobTitle": "Solutions Architect / Technical PM",
     "cvTitle": "CV · {shortName} — {role}"
   },
@@ -72,7 +72,7 @@
     "detail": "Andorra · Remote · CET"
   },
   "hero": {
-    "role": "Software Architect & Senior Backend Engineer",
+    "role": "Solutions Architect & Senior Backend Engineer",
     "tagline": "I design and build backend systems for banking and enterprise on Java and Spring, with architectures a team can maintain. I apply AI where it adds value: validated data, clear limits and a manual way to work when the AI fails.",
     "specs": {
       "location": "Location",
@@ -95,12 +95,12 @@
   },
   "about": {
     "title": "Who I am, in one paragraph",
-    "manifesto": "Seven years building production software for banking, legal, energy and telecom: from Spain's leading legal marketplace to Big Data platforms in the energy sector, and today backend architecture and technical management at Andbank. I have led complex migrations, integrated legacy systems, and designed hexagonal and microservices architectures. I also build and run my own products in production, such as Transolido, Other Twist and Ilnami, to keep product, backend, deployment, and applied AI decisions close together.",
+    "manifesto": "Backend-first and product-minded. For seven years I have built the systems companies run on, across banking, legal, energy and telecom. Banking is the proof: in Andbank's architecture team I designed the new online banking platform (15+ components) and lead the Spring Boot 3 migration across 40+ VMs. Alongside, I build and run my own products in production, such as Transolido, Other Twist and Ilnami, and I put AI to work where it earns its place, on validated data and under review.",
     "currentlyWorkingWith": "Currently working with"
   },
   "cv": {
-    "headline": "Backend and architecture on Java/Spring, end to end: maintainable architecture, integration with critical systems, and AI applied where it adds real value.",
-    "summary": "Seven years shipping production software for banking, legal, energy and telecom. Today, in the architecture team of a private bank (Andbank): the architecture of the new online banking platform (15+ components), the Spring Boot 3 migration across 40+ VMs, and integration with the COBOL/AS400/DB2 core. Before that, the modernization of Spain's leading legal marketplace and Big Data platforms for Endesa. Alongside, I build and run my own products in production, from the database to deployment, with AI applied on validated data and with manual fallbacks.",
+    "headline": "Backend-first and product-minded: I build the systems companies run on and the products that run on top of them.",
+    "summary": "Seven years across banking, legal, energy and telecom. Banking is the proof: in Andbank's architecture team I designed the new online banking platform (15+ components) and lead the Spring Boot 3 migration across 40+ VMs. Alongside, I build and run my own products in production, such as Transolido, Other Twist and Ilnami, with AI applied on validated data and under review.",
     "portfolioName": "Personal portfolio",
     "portfolioSummary": "Trilingual portfolio and CV on a type-safe Next.js + Zod stack: three server-generated PDF CVs from a single source of data, an AI assistant bounded to a closed dossier with usage caps, an interactive terminal, and full SEO/GEO. Open source.",
     "otherProjects": "Other projects"
@@ -134,12 +134,11 @@
         "location": "Barcelona, Spain",
         "start": "Mar 2022",
         "end": "Sep 2024",
-        "summary": "Full-stack development and platform modernization at Spain's leading legal marketplace.",
+        "summary": "Full-stack development and platform modernization at one of Spain's largest legal marketplaces.",
         "highlights": [
-          "Modernized legacy code: migrated Struts2 to React + Spring Boot.",
-          "Designed microservices and secure REST APIs.",
-          "Improved performance and maintainability, and evolved the architecture.",
-          "Managed content and landing pages with WordPress."
+          "Part of the team that migrated the platform from Struts2 to React + Spring Boot, replacing the legacy front end.",
+          "Designed microservices and secure REST APIs as part of that migration.",
+          "Improved the performance and maintainability of the code on a platform in production."
         ]
       },
       "zemsania-2021": {
@@ -149,9 +148,8 @@
         "end": "Apr 2022",
         "summary": "Backend microservices development for Vodafone.",
         "highlights": [
-          "Built microservices with Java and Spring Boot for distributed systems.",
-          "Designed and documented APIs with Swagger / OpenAPI.",
-          "Worked in a distributed team with Jira, Confluence and Slack."
+          "Built Java and Spring Boot microservices for Vodafone's distributed systems.",
+          "Designed and documented their APIs with Swagger / OpenAPI."
         ]
       },
       "endesa-2019": {
@@ -173,9 +171,7 @@
     "title": "Tools I use most",
     "hint": "{count} tools · {groups} groups",
     "groups": {
-      "languages": "Languages",
       "backend": "Backend & Architecture",
-      "frontend": "Frontend",
       "data": "Data",
       "cloud": "Cloud & DevOps",
       "ai": "AI & Automation",
@@ -401,7 +397,7 @@
     "inputLabel": "Terminal input",
     "placeholder": "type a command — try 'help'",
     "banner": [
-      "Jefferson Montesdeoca — Software Architect & Senior Backend Engineer",
+      "Jefferson Montesdeoca — Solutions Architect & Senior Backend Engineer",
       "type 'help' to get started · press ESC or ` to close",
       ""
     ],

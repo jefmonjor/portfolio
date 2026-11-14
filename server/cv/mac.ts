@@ -1,5 +1,10 @@
 import type { Locale } from "@/i18n/routing"
-import { portfolioUpdatedAt, profile, siteUrlShort } from "@/lib/profile"
+import {
+  cvProjects,
+  portfolioUpdatedAt,
+  profile,
+  siteUrlShort,
+} from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
 import { cvLinkHref } from "@/server/cv/links"
 
@@ -7,9 +12,9 @@ import { cvLinkHref } from "@/server/cv/links"
 const MAC_VERSION = "0.3"
 
 const PREFERRED_ROLES = [
-  "Software Architect",
+  "Solutions Architect",
   "Senior Backend Engineer",
-  "Fractional Architect",
+  "Software Architect",
 ] as const
 
 function yearsOfExperience(): number {
@@ -131,7 +136,7 @@ export function buildMacCv(labels: CvLabels, locale: Locale) {
           ],
         }
       }),
-      publicArtifacts: profile.projects
+      publicArtifacts: cvProjects()
         .filter((project) => project.visibility === "public" && project.url)
         .map((project) => {
           const data = labels.projectEntry(project.id)

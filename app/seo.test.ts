@@ -80,7 +80,7 @@ describe("search-engine routes", () => {
     expect(body).toContain("# Jefferson Montesdeoca Jordán")
     expect(body).toContain(`${siteUrl}/es`)
     expect(body).toContain(`${siteUrl}/services`)
-    expect(body).toContain("Software Architect & Senior Backend Engineer")
+    expect(body).toContain("Solutions Architect & Senior Backend Engineer")
     expect(body).not.toMatch(/Not offering|Product Engineer/)
     expect(body).toContain("https://github.com/jefmonjor/portfolio")
     expect(body).toContain("https://ilnami.com")

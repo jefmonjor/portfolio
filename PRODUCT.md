@@ -16,11 +16,11 @@ The full CV at `/cv` serves the same audiences in depth; the home links to it fr
 
 ## Product Purpose
 
-jefmonjor.dev is the commercial site of Jefferson Montesdeoca, an independent senior software engineer and software architect working as a freelancer, AI-native from spec to production. It must make the offer understood, earn trust with real evidence, and turn a visitor into a project conversation through the contact brief. Success is a qualified enquiry from a business with a real problem.
+jefmonjor.dev is the commercial site of Jefferson Montesdeoca, an independent solutions architect and senior backend engineer working as a freelancer, AI-native from spec to production. It must make the offer understood, earn trust with real evidence, and turn a visitor into a project conversation through the contact brief. Success is a qualified enquiry from a business with a real problem.
 
 ## Positioning
 
-Software architect and senior engineer who builds new products, modernizes existing systems and puts AI to work inside them, with whatever stack the project needs (backend-first; Java, TypeScript, Dart, Go and Python). Open to projects and to the right full-time role. Uses AI across the whole development cycle while he reviews and answers for every change, and builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone).
+Solutions Architect & Senior Backend Engineer (the same title everywhere, in line with his role at Andbank) who builds the backend systems companies run on and the products on top of them, modernizes existing systems and puts AI to work inside them, with whatever stack the project needs (backend-first; Java, TypeScript, Dart, Go and Python). Open to projects and to the right full-time role. Uses AI across the whole development cycle while he reviews and answers for every change, and builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone).
 
 ## Operating Context
 

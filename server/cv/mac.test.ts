@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import { profile } from "@/lib/profile"
+import { cvProjectIds, profile } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
 import { buildMacCv } from "@/server/cv/mac"
 
@@ -11,7 +11,6 @@ const labels: CvLabels = {
   summary: "Canonical professional summary.",
   availability: "Available now for freelance projects",
   contactSubject: "[Portfolio] Contact",
-  otherProjects: "Other projects",
   credential: "Verify credential",
   sections: {
     profile: "Profile",
@@ -119,16 +118,18 @@ describe("MAC export", () => {
     expect(mac.aboutMe.relevantYearsOfExperience).toBe(7)
   })
 
-  it("publishes only public projects, with the short portfolio URL", () => {
+  it("publishes the four products the CV shows, each with its URL", () => {
+    const names = mac.experience.publicArtifacts.map(
+      (artifact) => artifact.details.name
+    )
     const urls = mac.experience.publicArtifacts.map(
       (artifact) => artifact.details.URL
     )
 
-    expect(urls).toContain("https://jefmonjor.dev")
+    expect(names).toHaveLength(cvProjectIds.length)
+    expect(urls).toContain("https://www.transolido.com")
     expect(urls).not.toContain(undefined)
-    expect(mac.experience.publicArtifacts).toHaveLength(
-      profile.projects.filter((p) => p.visibility === "public").length
-    )
+    expect(urls).not.toContain("https://jefmonjor.dev")
   })
 
   it("never prints the email: this surface is crawlable too", () => {

@@ -1,6 +1,6 @@
 # Jefferson Montesdeoca Jordán
 
-**Software Architect · Senior Backend Engineer · Java/Spring · integraciones · IA aplicada**
+**Solutions Architect · Senior Backend Engineer · Java/Spring · integraciones · IA aplicada**
 
 Construyo los sistemas backend sobre los que funcionan las empresas, y los productos que funcionan encima. Trabajo en el equipo de arquitectura y soluciones de Andbank (Andorra): Java, Spring, integración con el core bancario e identidad. Siete años en banca, legal, energía y telecomunicaciones.
 

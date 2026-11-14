@@ -10,7 +10,7 @@ import { ProjectPreview } from "@/components/portfolio/project-preview"
 import { SectionHeading } from "@/components/portfolio/section-heading"
 import { TechBadge } from "@/components/portfolio/tech-badge"
 import { parseStringArray } from "@/lib/i18n-values"
-import { profile } from "@/lib/profile"
+import { cvProjects, profile } from "@/lib/profile"
 import type { ProjectEntry } from "@/types/profile"
 
 function hostFromUrl(url: string): string {
@@ -24,7 +24,14 @@ function hostFromUrl(url: string): string {
 function Projects() {
   const t = useTranslations("projects")
   const tEntries = useTranslations("projects.entries")
-  const entries = profile.projects
+  const tCv = useTranslations("cv")
+  const entries = cvProjects()
+  const others = profile.projects.filter(
+    (project) =>
+      project.id !== "portfolio" &&
+      project.url &&
+      !entries.some((entry) => entry.id === project.id)
+  )
   const [active, setActive] = React.useState<ProjectEntry | null>(null)
 
   return (
@@ -140,6 +147,25 @@ function Projects() {
           )
         })}
       </ul>
+
+      {others.length > 0 ? (
+        <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm text-muted-foreground">
+          <span className="font-mono text-[11px] tracking-widest uppercase">
+            {tCv("otherProjects")}
+          </span>
+          {others.map((entry) => (
+            <a
+              key={entry.id}
+              href={entry.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"
+            >
+              {tEntries(`${entry.id}.name`)}
+            </a>
+          ))}
+        </p>
+      ) : null}
 
       <ProjectDialog
         project={active}

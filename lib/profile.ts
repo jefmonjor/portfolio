@@ -6,6 +6,14 @@ import type {
 
 export const portfolioUpdatedAt = "2026-11-14"
 
+/** The four products every CV output shows; the others stay on the web and GitHub. */
+export const cvProjectIds = [
+  "transolido",
+  "othertwist",
+  "ilnami",
+  "specforge",
+] as const
+
 export const siteUrl = "https://www.jefmonjor.dev"
 
 export const siteUrlShort = "https://jefmonjor.dev"
@@ -78,14 +86,7 @@ export const profile: Profile = {
       location: "Barcelona, Spain",
       startISO: "2022-03",
       endISO: "2024-09",
-      stack: [
-        "Java",
-        "Spring Boot",
-        "React",
-        "MySQL",
-        "REST APIs",
-        "WordPress",
-      ],
+      stack: ["Java", "Spring Boot", "React", "MySQL", "REST APIs"],
     },
     {
       id: "zemsania-2021",
@@ -94,13 +95,7 @@ export const profile: Profile = {
       location: "Madrid, Spain",
       startISO: "2021-07",
       endISO: "2022-04",
-      stack: [
-        "Java",
-        "Spring Boot",
-        "Microservices",
-        "OpenAPI",
-        "Jira · Confluence",
-      ],
+      stack: ["Java", "Spring Boot", "Microservices", "OpenAPI"],
     },
     {
       id: "endesa-2019",
@@ -125,78 +120,29 @@ export const profile: Profile = {
   ],
   skills: [
     {
-      id: "languages",
-      items: [
-        "Java (8 → 21)",
-        "TypeScript",
-        "JavaScript",
-        "Go",
-        "Python",
-        "SQL",
-      ],
-    },
-    {
       id: "backend",
       items: [
+        "Java (8 → 21)",
         "Spring Boot 3",
-        "Hibernate",
-        "JPA",
-        "REST / SOAP",
-        "Node.js",
-        "FastAPI",
+        "TypeScript",
+        "Go",
         "Hexagonal Architecture",
         "Clean Architecture",
         "Microservices",
-      ],
-    },
-    {
-      id: "frontend",
-      items: [
-        "React",
-        "Next.js",
-        "Tailwind CSS",
-        "shadcn/ui",
-        "Bootstrap",
-        "JSP · PrimeFaces",
-        "WordPress",
+        "REST / SOAP",
       ],
     },
     {
       id: "data",
-      items: [
-        "Oracle · PL/SQL",
-        "DB2",
-        "PostgreSQL",
-        "MySQL",
-        "Supabase",
-        "Neon",
-        "Redis · Upstash",
-        "Backblaze B2",
-        "Cassandra",
-        "Hadoop · HDFS · YARN",
-        "Spark · MapReduce",
-        "S3",
-      ],
+      items: ["PostgreSQL", "DB2", "Redis", "Hadoop · Spark"],
     },
     {
       id: "cloud",
       items: [
         "Docker",
-        "Kubernetes",
-        "OpenShift (OCP4)",
-        "Self-hosted VPS · Docker",
-        "Vercel",
+        "Kubernetes · OpenShift (OCP4)",
+        "Keycloak · OAuth2",
         "Google Cloud Run",
-        "Cloud Build",
-        "GitHub Actions",
-        "Brevo",
-        "Twilio",
-        "Serverless",
-        "Jenkins",
-        "CI/CD",
-        "Keycloak",
-        "OAuth2",
-        "Azure",
       ],
     },
     {
@@ -204,16 +150,8 @@ export const profile: Profile = {
       items: [
         "Claude · Claude API",
         "Claude Code",
+        "OpenAI Vision",
         "Gemini Code Assist",
-        "Gemini",
-        "Codex",
-        "ChatGPT",
-        "Vercel AI SDK",
-        "MCP workflows",
-        "AI agents",
-        "SDD · spec-kit",
-        "Antigravity IDE",
-        "Orca",
       ],
     },
     {
@@ -344,6 +282,15 @@ export const profile: Profile = {
   ],
   education: [
     {
+      id: "beng-software",
+      organization: "Universidad de Sevilla",
+      dates: "2014 — 2018",
+      kind: "degree",
+      completed: false,
+      startISO: "2014",
+      endISO: "2018",
+    },
+    {
       id: "smpc-cert",
       organization: "SCRUMstudy",
       dates: "2023",
@@ -352,15 +299,6 @@ export const profile: Profile = {
       startISO: "2023",
       credentialUrl:
         "https://campus.eigp.net/badges/0ec04cb3912c4f08874dd03716f80df1/367486863b932a9c259baf556c40f653/beb04c41b45927cf7e9f8fd4bb519e86",
-    },
-    {
-      id: "beng-software",
-      organization: "Universidad de Sevilla",
-      dates: "2014 — 2018",
-      kind: "degree",
-      completed: false,
-      startISO: "2014",
-      endISO: "2018",
     },
   ],
   languages: [
@@ -372,6 +310,12 @@ export const profile: Profile = {
 const publicProfileNames: Record<Exclude<SocialKind, "email">, string> = {
   linkedin: "LinkedIn",
   github: "GitHub",
+}
+
+export function cvProjects() {
+  return cvProjectIds.flatMap((id) =>
+    profile.projects.filter((project) => project.id === id)
+  )
 }
 
 export const publicProfiles = profile.socials.flatMap((social) =>

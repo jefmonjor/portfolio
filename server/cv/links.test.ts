@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import { profile, siteUrlShort } from "@/lib/profile"
-import { TECHNICAL_PROJECT_IDS } from "@/server/cv/cv-ats-document"
+import { cvProjectIds, profile, siteUrlShort } from "@/lib/profile"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
 
 describe("CV links", () => {
@@ -26,23 +25,17 @@ describe("CV links", () => {
   })
 })
 
-describe("technical CV project list", () => {
-  it("lists every public product, so none is dropped silently", () => {
-    const published = profile.projects
-      .filter((project) => project.visibility === "public")
-      .map((project) => project.id)
-
-    for (const id of published) expect(TECHNICAL_PROJECT_IDS).toContain(id)
-    expect(TECHNICAL_PROJECT_IDS).toContain("contactqr")
+describe("CV project list", () => {
+  it("shows four products, and the portfolio is not one of them", () => {
+    expect(cvProjectIds).toHaveLength(4)
+    expect(cvProjectIds).not.toContain("portfolio")
   })
 
-  it("gives each listed public product an openable URL", () => {
-    for (const id of TECHNICAL_PROJECT_IDS) {
+  it("gives each listed product an openable URL", () => {
+    for (const id of cvProjectIds) {
       const project = profile.projects.find((entry) => entry.id === id)
       expect(project, `unknown project id: ${id}`).toBeDefined()
-      if (project?.visibility === "public") {
-        expect(cvLinkHref(project.url as string)).toMatch(/^https:\/\//)
-      }
+      expect(cvLinkHref(project?.url as string)).toMatch(/^https:\/\//)
     }
   })
 })

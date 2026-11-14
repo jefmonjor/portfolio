@@ -10,7 +10,7 @@ import {
 
 import { contactEmail } from "@/lib/email"
 import { contactPhones } from "@/lib/phone"
-import { profile, siteUrlShort } from "@/lib/profile"
+import { cvProjectIds, profile, siteUrlShort } from "@/lib/profile"
 import type { CvLabels } from "@/server/cv/cv-document"
 import { CV_HEADINGS } from "@/server/cv/headings"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
@@ -24,8 +24,8 @@ const rule = "#d4d4d4"
 
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 36,
-    paddingBottom: 40,
+    paddingTop: 32,
+    paddingBottom: 34,
     paddingHorizontal: 44,
     fontSize: 9.5,
     color: body,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     color: ink,
     textTransform: "uppercase",
     letterSpacing: 0.6,
-    marginTop: 12,
+    marginTop: 9,
     marginBottom: 5,
     paddingBottom: 2,
     borderBottomWidth: 0.75,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
   },
   entry: {
-    marginBottom: 8,
+    marginBottom: 5,
   },
   entryHeader: {
     flexDirection: "row",
@@ -150,19 +150,6 @@ type CvTechnicalDocumentProps = {
   readonly tailored?: CvTailoredContent
 }
 
-const PROJECT_THAT_CLOSES_EVERY_VARIANT = "portfolio"
-
-const TECHNICAL_PROJECT_IDS = [
-  "transolido",
-  "othertwist",
-  "porrix",
-  "corte1d",
-  "ilnami",
-  "specforge",
-  "contactqr",
-  "portfolio",
-] as const
-
 function Highlight({ text }: { text: string }) {
   return (
     <View style={styles.bullet} wrap={false}>
@@ -183,12 +170,7 @@ function CvTechnicalDocument({
   const github = profile.socials.find((s) => s.kind === "github")
 
   const summary = tailored?.summary?.trim() || labels.summary
-  const projectIds = prioritizeItems(
-    TECHNICAL_PROJECT_IDS.filter(
-      (id) => id !== PROJECT_THAT_CLOSES_EVERY_VARIANT
-    ),
-    tailored?.projectIds ?? []
-  ).concat(PROJECT_THAT_CLOSES_EVERY_VARIANT)
+  const projectIds = prioritizeItems(cvProjectIds, tailored?.projectIds ?? [])
   const projects = projectIds
     .map((id) => {
       const entry = profile.projects.find((p) => p.id === id)
@@ -317,7 +299,6 @@ function CvTechnicalDocument({
                 </Link>
               ) : null}
             </View>
-            <Text style={styles.stackLine}>{data.status}</Text>
             <Text style={styles.paragraph}>{data.summary}</Text>
             {entry.stack && entry.stack.length > 0 ? (
               <Text style={styles.stackLine}>{entry.stack.join(" · ")}</Text>
@@ -351,19 +332,22 @@ function CvTechnicalDocument({
 
         <View wrap={false}>
           <Text style={styles.sectionTitle}>{headings.languages}</Text>
-          {profile.languages.map((lang) => {
-            const data = labels.languageEntry(lang.id)
-            return (
-              <Text key={lang.id} style={styles.skillLine}>
-                <Text style={styles.skillLabel}>{data.name}: </Text>
-                {data.level}
-              </Text>
-            )
-          })}
+          <Text style={styles.skillLine}>
+            {profile.languages.map((lang, index) => {
+              const data = labels.languageEntry(lang.id)
+              return (
+                <Text key={lang.id}>
+                  {index > 0 ? "  ·  " : ""}
+                  <Text style={styles.skillLabel}>{data.name}: </Text>
+                  {data.level}
+                </Text>
+              )
+            })}
+          </Text>
         </View>
       </Page>
     </Document>
   )
 }
 
-export { CvTechnicalDocument, TECHNICAL_PROJECT_IDS }
+export { CvTechnicalDocument }

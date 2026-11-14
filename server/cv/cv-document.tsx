@@ -12,7 +12,7 @@ import {
 
 import { contactEmail, contactMailto } from "@/lib/email"
 import { contactPhones } from "@/lib/phone"
-import { profile, siteUrlShort } from "@/lib/profile"
+import { cvProjectIds, profile, siteUrlShort } from "@/lib/profile"
 import { cvLinkHref, cvLinkLabel } from "@/server/cv/links"
 import { evidencedSkillGroups } from "@/server/cv/skills"
 
@@ -37,7 +37,6 @@ type CvLabels = {
   readonly summary: string
   readonly availability: string
   readonly contactSubject: string
-  readonly otherProjects: string
   readonly credential: string
   readonly sections: {
     readonly profile: string
@@ -82,12 +81,6 @@ export type CvLanguageEntry = {
   readonly name: string
   readonly level: string
 }
-
-const FEATURED_PROJECT_IDS: ReadonlyArray<string> = [
-  "transolido",
-  "ilnami",
-  "specforge",
-]
 
 const palette = {
   ink: "#111111",
@@ -311,18 +304,10 @@ function CvDocument({ labels }: CvDocumentProps) {
     },
   ]
 
-  const featured = FEATURED_PROJECT_IDS.flatMap((id) => {
+  const featured = cvProjectIds.flatMap((id) => {
     const entry = profile.projects.find((p) => p.id === id)
     return entry ? [{ entry, data: labels.projectEntry(id) }] : []
   })
-  const others = profile.projects
-    .filter(
-      (p) =>
-        !FEATURED_PROJECT_IDS.includes(p.id) &&
-        p.visibility === "public" &&
-        p.url
-    )
-    .map((p) => `${labels.projectEntry(p.id).name} (${cvLinkLabel(p.url!)})`)
 
   return (
     <Document
@@ -405,12 +390,6 @@ function CvDocument({ labels }: CvDocumentProps) {
               <Text style={styles.projectSummary}>{data.summary}</Text>
             </View>
           ))}
-          {others.length > 0 ? (
-            <Text style={styles.line}>
-              <Text style={styles.lineStrong}>{labels.otherProjects}: </Text>
-              {others.join(" · ")}
-            </Text>
-          ) : null}
         </View>
 
         <View style={styles.section}>

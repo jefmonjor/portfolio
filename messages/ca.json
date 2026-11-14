@@ -4,9 +4,9 @@
   },
   "metadata": {
     "titleTemplate": "{shortName} — {role}",
-    "description": "Software Architect & Senior Backend Engineer a Andorra. Set anys construint sistemes backend per a banca, legal i energia: Java, Spring, arquitectura i IA aplicada. CV complet, projectes i PDF descarregables.",
+    "description": "Solutions Architect & Senior Backend Engineer a Andorra. Set anys construint sistemes backend per a banca, legal, energia i telecomunicacions: Java, Spring, arquitectura i IA aplicada. CV complet, projectes i PDF descarregables.",
     "applicationName": "{shortName} · Portfolio",
-    "role": "Software Architect & Senior Backend Engineer",
+    "role": "Solutions Architect & Senior Backend Engineer",
     "currentJobTitle": "Arquitecte de Solucions / Technical PM",
     "cvTitle": "CV · {shortName} — {role}"
   },
@@ -72,7 +72,7 @@
     "detail": "Andorra · Remot · CET"
   },
   "hero": {
-    "role": "Software Architect & Senior Backend Engineer",
+    "role": "Solutions Architect & Senior Backend Engineer",
     "tagline": "Dissenyo i construeixo sistemes backend per a banca i empresa sobre Java i Spring, amb arquitectures que un equip pot mantenir. Aplico IA on aporta valor: dades validades, límits clars i vies manuals.",
     "specs": {
       "location": "Ubicació",
@@ -95,12 +95,12 @@
   },
   "about": {
     "title": "Qui soc, en un paràgraf",
-    "manifesto": "Set anys construint programari en producció per a banca, legal, energia i telecomunicacions: del marketplace legal líder a Espanya a plataformes Big Data del sector energètic, i avui arquitectura backend i gestió tècnica a Andbank. He liderat migracions complexes, integrat sistemes legacy i dissenyat arquitectures hexagonals i de microserveis. A més construeixo i opero productes propis en producció, com Transolido, Other Twist i Ilnami, per mantenir a prop les decisions de producte, backend, desplegament i IA aplicada.",
+    "manifesto": "Backend primer i amb mentalitat de producte. Fa set anys que construeixo els sistemes sobre els quals funcionen les empreses, en banca, legal, energia i telecomunicacions. La banca n'és la prova: a l'equip d'arquitectura d'Andbank vaig dissenyar la nova banca en línia (més de 15 components) i lidero la migració a Spring Boot 3 en més de 40 VMs. En paral·lel construeixo i opero productes propis en producció, com Transolido, Other Twist i Ilnami, i integro IA on aporta, amb dades validades i revisió.",
     "currentlyWorkingWith": "Treballant ara amb"
   },
   "cv": {
-    "headline": "Backend i arquitectura sobre Java/Spring, de principi a fi: arquitectura mantenible, integració amb sistemes crítics i IA aplicada on aporta valor real.",
-    "summary": "Set anys construint programari en producció per a banca, legal, energia i telecomunicacions. Avui, a l'equip d'arquitectura d'un banc privat (Andbank): l'arquitectura de la nova banca en línia (més de 15 components), la migració a Spring Boot 3 en més de 40 VMs i la integració amb el core COBOL/AS400/DB2. Abans, la modernització del marketplace legal líder a Espanya i plataformes Big Data per a Endesa. En paral·lel construeixo i opero productes propis en producció, de la base de dades al desplegament, amb IA aplicada sobre dades validades i amb alternatives manuals.",
+    "headline": "Backend primer i amb mentalitat de producte: construeixo els sistemes sobre els quals funcionen les empreses i els productes que hi funcionen a sobre.",
+    "summary": "Set anys en banca, legal, energia i telecomunicacions. La banca n'és la prova: a l'equip d'arquitectura d'Andbank vaig dissenyar la nova banca en línia (més de 15 components) i lidero la migració a Spring Boot 3 en més de 40 VMs. En paral·lel construeixo i opero productes propis en producció, com Transolido, Other Twist i Ilnami, amb IA aplicada sobre dades validades i amb revisió.",
     "portfolioName": "Portfolio personal",
     "portfolioSummary": "Portfolio i CV trilingüe amb stack tipat Next.js + Zod: tres CV en PDF generats al servidor des d'una única font de dades, assistent d'IA acotat a un dossier tancat amb límits de consum, terminal interactiva i SEO/GEO complet. Codi obert.",
     "otherProjects": "Altres projectes"
@@ -134,12 +134,11 @@
         "location": "Barcelona, Espanya",
         "start": "Mar 2022",
         "end": "Set 2024",
-        "summary": "Desenvolupament full-stack i modernització de la plataforma legal líder a Espanya.",
+        "summary": "Desenvolupament full stack i modernització de la plataforma en un dels marketplaces legals més grans d'Espanya.",
         "highlights": [
-          "Vaig modernitzar el legacy migrant de Struts2 a React + Spring Boot.",
-          "Vaig dissenyar microserveis i APIs REST segures.",
-          "Vaig millorar el rendiment i la mantenibilitat, i vaig evolucionar l'arquitectura.",
-          "Vaig gestionar continguts i landing pages amb WordPress."
+          "Vaig formar part de l'equip que va migrar la plataforma de Struts2 a React + Spring Boot, substituint el frontal legacy.",
+          "Vaig dissenyar microserveis i APIs REST segures dins d'aquesta migració.",
+          "Vaig millorar el rendiment i la mantenibilitat del codi d'una plataforma en producció."
         ]
       },
       "zemsania-2021": {
@@ -149,9 +148,8 @@
         "end": "Abr 2022",
         "summary": "Desenvolupament backend de microserveis per a Vodafone.",
         "highlights": [
-          "Vaig desenvolupar microserveis amb Java i Spring Boot per a sistemes distribuïts.",
-          "Vaig dissenyar i documentar APIs amb Swagger / OpenAPI.",
-          "Vaig treballar en equip distribuït amb Jira, Confluence i Slack."
+          "Vaig construir microserveis amb Java i Spring Boot per als sistemes distribuïts de Vodafone.",
+          "Vaig dissenyar i documentar les seves APIs amb Swagger / OpenAPI."
         ]
       },
       "endesa-2019": {
@@ -173,9 +171,7 @@
     "title": "Tecnologies amb què treballo",
     "hint": "{count} eines · {groups} grups",
     "groups": {
-      "languages": "Llenguatges",
       "backend": "Backend & Arquitectura",
-      "frontend": "Frontend",
       "data": "Dades",
       "cloud": "Cloud & DevOps",
       "ai": "IA & Automatització",
@@ -401,7 +397,7 @@
     "inputLabel": "Entrada de la terminal",
     "placeholder": "escriu una ordre — prova 'help'",
     "banner": [
-      "Jefferson Montesdeoca — Software Architect & Senior Backend Engineer",
+      "Jefferson Montesdeoca — Solutions Architect & Senior Backend Engineer",
       "escriu 'help' per començar · ESC o ` per tancar",
       ""
     ],

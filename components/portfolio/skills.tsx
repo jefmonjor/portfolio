@@ -11,10 +11,9 @@ function Skills() {
 
   const practiceItems = parseStringArray(t.raw("practiceItems"))
 
-  const totalCount = profile.skills.reduce(
-    (acc, group) =>
-      acc +
-      (group.id === "practice" ? practiceItems.length : group.items.length),
+  const toolGroups = profile.skills.filter((group) => group.id !== "practice")
+  const toolCount = toolGroups.reduce(
+    (acc, group) => acc + group.items.length,
     0
   )
 
@@ -25,7 +24,7 @@ function Skills() {
     >
       <SectionHeading
         title={t("title")}
-        hint={t("hint", { count: totalCount, groups: profile.skills.length })}
+        hint={t("hint", { count: toolCount, groups: toolGroups.length })}
       />
 
       <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
