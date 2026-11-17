@@ -63,8 +63,6 @@ export const en: SiteContent = {
     },
     stack: "Java · Spring · TypeScript · Applied AI",
     engagement: "Available now for freelance projects · Remote · CET",
-    seeWork: "See my work",
-    terminalHint: "Prefer a terminal? Open it (Ctrl K)",
     tools: {
       label:
         "Main tools: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Keycloak and Claude. The full list is in the CV.",
@@ -98,7 +96,7 @@ export const en: SiteContent = {
   },
 
   credentials: {
-    label: "I have worked at",
+    label: "I have worked for",
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
   },
   display: {

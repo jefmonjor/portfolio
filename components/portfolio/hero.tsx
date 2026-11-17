@@ -14,16 +14,10 @@ import { HeroBadge } from "@/components/portfolio/hero-badge"
 import { LocalClock } from "@/components/portfolio/local-clock"
 import { Button } from "@/components/ui/button"
 import { profile, profileTimeZone } from "@/lib/profile"
-import { cn } from "@/lib/utils"
 
 const titleWords = profile.name.split(" ")
 
-type HeroProps = {
-  /** With the rail, wide screens already keep contact and the CV download in view. */
-  rail?: boolean
-}
-
-function Hero({ rail = false }: HeroProps) {
+function Hero() {
   const t = useTranslations("hero")
   const tSpecs = useTranslations("hero.specs")
   const locale = useLocale()
@@ -86,12 +80,8 @@ function Hero({ rail = false }: HeroProps) {
           </p>
         </div>
 
-        <div
-          className={cn(
-            "flex animate-in flex-wrap items-center gap-2 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] fade-in-0 [animation-delay:120ms] [animation-fill-mode:both] slide-in-from-bottom-2 motion-reduce:animate-none",
-            rail && "wide:hidden"
-          )}
-        >
+        {/* From 75rem the rail keeps contact and the CV download in view. */}
+        <div className="flex animate-in flex-wrap items-center gap-2 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] fade-in-0 [animation-delay:120ms] [animation-fill-mode:both] slide-in-from-bottom-2 motion-reduce:animate-none wide:hidden">
           <Button asChild size="lg">
             <a href={emailHref}>
               <HugeiconsIcon

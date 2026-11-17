@@ -63,13 +63,14 @@ export function buildTerminalData(
       href: product.href,
     })),
     sections: [
+      { id: "work", label: nav.work },
+      { id: "approach", label: headlineText(content.display.approach) },
+      { id: "services", label: nav.services },
       {
         id: "capabilities",
         label: headlineText(content.display.capabilities),
+        href: `${localizedPath(locale, "/services")}#capabilities`,
       },
-      { id: "approach", label: headlineText(content.display.approach) },
-      { id: "work", label: nav.work },
-      { id: "services", label: nav.services },
       { id: "about", label: headlineText(content.display.about) },
       {
         id: "experience",

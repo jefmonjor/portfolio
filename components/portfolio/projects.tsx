@@ -95,7 +95,7 @@ function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(event) => event.stopPropagation()}
-                      className="pointer-events-auto inline-flex w-fit items-center gap-1 font-mono text-[11px] tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground"
+                      className="pointer-events-auto inline-flex min-h-6 w-fit items-center gap-1 font-mono text-[11px] tracking-widest text-muted-foreground uppercase transition-colors hover:text-foreground"
                     >
                       <span>{host}</span>
                       <HugeiconsIcon

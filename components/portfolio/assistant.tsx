@@ -416,7 +416,7 @@ function Assistant() {
           ref={launcherRef}
           type="button"
           variant="outline"
-          aria-label={t("open")}
+          aria-label={`${t("launcher")}: ${t("open")}`}
           aria-controls={panelId}
           aria-expanded={false}
           onClick={openAssistant}

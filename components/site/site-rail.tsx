@@ -24,7 +24,6 @@ import { profile } from "@/lib/profile"
 type SiteRailProps = {
   locale: SiteLocale
   content: SiteContent
-  homeHref: string
 }
 
 const railIcons: Record<string, IconSvgElement> = {
@@ -36,7 +35,8 @@ const railIcons: Record<string, IconSvgElement> = {
 }
 
 /** Wide screens only: name, navigation, the one action and availability, always in view. */
-function SiteRail({ locale, content, homeHref }: SiteRailProps) {
+function SiteRail({ locale, content }: SiteRailProps) {
+  const homeHref = localizedPath(locale, "/")
   const links = [
     { href: homeHref, label: content.nav.home, icon: Home01Icon },
     ...primaryNavigation(content.nav).map((item) => ({

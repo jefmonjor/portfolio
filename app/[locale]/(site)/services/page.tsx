@@ -1,3 +1,5 @@
+import { ApproachSection } from "@/components/site/approach-section"
+import { CapabilitiesSection } from "@/components/site/capabilities-section"
 import { ClosingCta } from "@/components/site/closing-cta"
 import { EngagementStart } from "@/components/site/engagement-start"
 import { PageIntro } from "@/components/site/page-intro"
@@ -33,6 +35,8 @@ export default async function ServicesPage({ params }: SitePageProps) {
         ]}
       />
 
+      <CapabilitiesSection locale={locale} content={content} />
+
       {services.items.map((service) => (
         <SiteSection key={service.id} id={service.id} title={service.name}>
           <ServiceDetails service={service} labels={services} />
@@ -42,6 +46,8 @@ export default async function ServicesPage({ params }: SitePageProps) {
       <SiteSection id="start" title={services.startTitle}>
         <EngagementStart services={services} />
       </SiteSection>
+
+      <ApproachSection content={content} />
 
       <ClosingCta locale={locale} content={content} />
     </>

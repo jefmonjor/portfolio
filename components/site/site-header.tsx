@@ -15,10 +15,10 @@ import { profile } from "@/lib/profile"
 type SiteHeaderProps = {
   locale: SiteLocale
   content: SiteContent
-  className?: string
 }
 
-function SiteHeader({ locale, content, className = "" }: SiteHeaderProps) {
+/** The top bar below 75rem; from there the rail takes over. */
+function SiteHeader({ locale, content }: SiteHeaderProps) {
   const links = primaryNavigation(content.nav).map((item) => ({
     ...item,
     href: localizedPath(locale, item.path),
@@ -26,7 +26,7 @@ function SiteHeader({ locale, content, className = "" }: SiteHeaderProps) {
   const contactHref = localizedPath(locale, "/contact")
 
   return (
-    <header className={`site-header sticky top-0 z-40 ${className}`}>
+    <header className="site-header sticky top-0 z-40 wide:hidden">
       <SkipToContent label={content.nav.skipToContent} />
       <div className="site-container relative flex h-16 items-center justify-between gap-6">
         <BrandLink href={localizedPath(locale, "/")} name={profile.shortName} />
@@ -50,12 +50,6 @@ function SiteHeader({ locale, content, className = "" }: SiteHeaderProps) {
           <LanguageLink current={locale} />
           <TerminalButton label={content.console.terminal.open} />
           <ThemeSwitch label={content.nav.toggleTheme} />
-          <Link
-            href={contactHref}
-            className="site-button ml-2 hidden min-h-9 px-3.5 text-label-sm wide:inline-flex"
-          >
-            {content.cta}
-          </Link>
         </div>
 
         <div className="flex items-center gap-1 md:hidden">

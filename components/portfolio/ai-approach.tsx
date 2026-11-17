@@ -34,7 +34,7 @@ function AiApproach() {
             ].join(" ")}
           >
             <div className="flex items-center gap-3">
-              <span className="font-mono text-[11px] tracking-widest text-brand tabular-nums">
+              <span className="font-mono text-[11px] tracking-widest text-muted-foreground tabular-nums">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="font-heading text-base font-medium tracking-tight text-foreground sm:text-lg">

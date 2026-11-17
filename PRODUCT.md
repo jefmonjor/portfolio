@@ -12,7 +12,7 @@ Anyone deciding whether to work with a versatile senior engineer: CTOs, founders
 
 They arrive from LinkedIn, a referral or a search, on a laptop at work or a phone, and decide in seconds whether this profile fits.
 
-The full CV at `/cv` serves the same audiences in depth; the home links to it from the header and from the "Also open to the right full-time role" note.
+The full CV at `/cv` serves the same audiences in depth; the home links to it from the rail (the menu on phones) and from the "Also open to the right full-time role" note.
 
 ## Product Purpose
 
@@ -41,14 +41,15 @@ Solutions Architect & Senior Backend Engineer (the same title everywhere, in lin
 - Name: Jefferson Montesdeoca (short name in the header).
 - Pine green accent on the site (#0F6B4F light, #5FD1A0 dark); `/cv` keeps its burnt amber. The owner rejected cream, terracotta and italic-serif looks as "AI".
 - References pinned by the owner (November 2026): personal senior-consultant sites — happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me, lea.verou.me/consulting, jxnl.co/services. First person, one sentence of what he solves and for whom, named services, proof, one call to action. No stock photography: an animated orbit of the real tools he builds with and real screenshots of his products.
-- One primary call to action, always to the contact page: "Tell me about your project" / "Cuéntame tu proyecto" (the header uses the short form "Let's talk" / "Hablemos").
+- Structure pinned by the owner later that month, from geronimo.design: a fixed rail with the name, the navigation and the one action; one sentence; a two-column wall of work; a short page. Not taken from it: the cream ground, its paid fonts, the client-logo row (employers and clients appear as text: "I have worked for…") or any of its copy and imagery. The owner delegated the choice between the old home and this one and it was adopted for the site and, as a rail, for `/cv`.
+- One primary call to action, always to the contact page: "Tell me about your project" / "Cuéntame tu proyecto" (the rail and the phone menu use the short form "Let's talk" / "Hablemos").
 
 ## Evidence on Hand
 
 - Live products: Transolido (transolido.com, VERI*FACTU invoicing), Other Twist (othertwist.com, offline-first writing platform), Ilnami (ilnami.com, private food diary), plus PRONOQ, Corte1D and Contact QR.
 - Experience: Andbank (2024–present), elAbogado (2022–2024), Zemsania (Vodafone), Ayesa and Keapps (Atos) for Endesa (2019–2021, one continuous engagement) — see `lib/profile.ts`.
-- Portrait: `public/me.webp`, **only on `/cv`**. The owner does not want his photo anywhere on the commercial site (pages or its structured data), and `/cv` is not to be touched.
-- Screenshots of the public pages of Transolido, Other Twist and Ilnami (`public/images/work/`), captured from the live sites on 2026-11-08. Transolido's public face is its sign-in page.
+- Portrait: `public/me.webp`, **only on `/cv`**. The owner does not want his photo anywhere on the commercial site (pages or its structured data). `/cv` keeps its own amber system; its navigation is a rail on wide screens.
+- Screenshots of the public pages of Transolido, Other Twist and Ilnami (`public/images/work/`, captured from the live sites on 2026-11-08) and of PRONOQ, Corte1D and Contact QR (2026-11-17). Transolido's public face is its sign-in page; the home's wall uses a closer capture of it.
 - English level is B1 (CV): say "Spanish (native) and English", never "native English".
 - Absent and never to be fabricated: client testimonials, client logos used with permission, revenue or performance figures, prices, a calendar link, screenshots of logged-in product areas.
 
