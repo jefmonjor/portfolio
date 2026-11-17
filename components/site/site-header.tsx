@@ -29,7 +29,11 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
     <header className="site-header sticky top-0 z-40 wide:hidden">
       <SkipToContent label={content.nav.skipToContent} />
       <div className="site-container relative flex h-16 items-center justify-between gap-6">
-        <BrandLink href={localizedPath(locale, "/")} name={profile.shortName} />
+        <BrandLink
+          href={localizedPath(locale, "/")}
+          name={profile.shortName}
+          subtitle={content.hero.roleShort}
+        />
 
         <nav aria-label={content.nav.label} className="hidden md:block">
           <ul className="flex items-center gap-1">

@@ -29,8 +29,8 @@ function WallIntro({ locale, content }: WallIntroProps) {
       <p className="hero-reveal mt-4 max-w-[41rem] text-paragraph-md text-text-sub-600 [--step:6] md:text-paragraph-lg">
         {content.wall.lead}
       </p>
-      <div className="hero-reveal mt-5 [--step:7]">
-        <ul className="flex flex-col md:flex-row md:flex-wrap md:items-center md:gap-x-3">
+      <div className="hero-reveal mt-4 [--step:7]">
+        <ul className="flex flex-wrap items-center gap-x-5 md:gap-x-3">
           {hero.pillars.map((pillar, index) => (
             <li key={pillar.proof} className="flex items-center gap-x-3">
               {index > 0 ? (
