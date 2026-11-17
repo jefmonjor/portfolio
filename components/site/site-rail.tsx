@@ -55,7 +55,7 @@ function SiteRail({ locale, content, homeHref }: SiteRailProps) {
         {content.hero.role}
       </p>
 
-      <nav aria-label={content.nav.label} className="mt-8">
+      <nav aria-label={content.nav.label} className="mt-6">
         <ul className="flex flex-col gap-1">
           {links.map((link) => (
             <li key={link.href}>
@@ -91,27 +91,18 @@ function SiteRail({ locale, content, homeHref }: SiteRailProps) {
         </p>
       </div>
 
-      <div className="mt-auto flex flex-col gap-5 pt-8">
+      <div className="mt-auto flex flex-col gap-4 pt-6">
         <div className="-ml-2 flex items-center gap-1">
           <LanguageLink current={locale} />
           <TerminalButton label={content.console.terminal.open} />
           <ThemeSwitch label={content.nav.toggleTheme} />
         </div>
-        <div className="border-t border-stroke-soft-200 pt-5">
-          <p className="text-paragraph-sm text-text-sub-600">
-            {content.credentials.label}
-          </p>
-          <ul className="mt-1.5 flex flex-wrap gap-x-4 gap-y-0.5">
-            {content.credentials.companies.map((company) => (
-              <li
-                key={company}
-                className="font-heading text-label-md text-text-strong-950"
-              >
-                {company}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <p className="border-t border-stroke-soft-200 pt-4 text-paragraph-sm text-text-sub-600">
+          {content.credentials.label}{" "}
+          <span className="font-heading text-label-sm text-text-strong-950">
+            {content.credentials.companies.join(" · ")}
+          </span>
+        </p>
       </div>
     </header>
   )

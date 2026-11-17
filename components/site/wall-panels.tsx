@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { ArrowLabel } from "@/components/site/arrow-label"
 import { ArrowLink } from "@/components/site/arrow-link"
+import { ContactButton } from "@/components/site/contact-button"
 import { titleLabel } from "@/components/site/display-title"
 import { EmailActions } from "@/components/site/email-actions"
 import { RichText } from "@/components/site/rich-text"
@@ -10,16 +11,24 @@ import { ToolOrbit } from "@/components/site/tool-orbit"
 import type { SiteContent } from "@/content/site/types"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
 import { publicProfiles } from "@/lib/profile"
+import { cn } from "@/lib/utils"
 
 type PanelProps = {
   locale: SiteLocale
   content: SiteContent
+  className?: string
 }
 
-function ToolsPanel({ hero }: { hero: SiteContent["hero"] }) {
+function ToolsPanel({
+  hero,
+  className,
+}: {
+  hero: SiteContent["hero"]
+  className?: string
+}) {
   return (
-    <div className="tile tile-pad">
-      <div className="mx-auto w-full max-w-[21rem]">
+    <div className={cn("tile tile-pad", className)}>
+      <div className="mx-auto w-full max-w-[18rem]">
         <ToolOrbit label={hero.tools.label} center={hero.tools.center} />
       </div>
       <p className="mt-5 text-center text-paragraph-sm text-balance text-text-sub-600">
@@ -29,14 +38,20 @@ function ToolsPanel({ hero }: { hero: SiteContent["hero"] }) {
   )
 }
 
-function MethodPanel({ content }: { content: SiteContent }) {
+function MethodPanel({
+  content,
+  className,
+}: {
+  content: SiteContent
+  className?: string
+}) {
   const { approach } = content
 
   return (
     <section
       id="approach"
       aria-labelledby="approach-title"
-      className="tile tile-pad"
+      className={cn("tile tile-pad", className)}
     >
       <h2 id="approach-title" className="tile-title">
         {titleLabel(content.display.approach)}
@@ -67,14 +82,14 @@ function MethodPanel({ content }: { content: SiteContent }) {
   )
 }
 
-function ServicesPanel({ locale, content }: PanelProps) {
+function ServicesPanel({ locale, content, className }: PanelProps) {
   const { services } = content
 
   return (
     <section
       id="services"
       aria-labelledby="services-title"
-      className="tile tile-pad"
+      className={cn("tile tile-pad", className)}
     >
       <h2 id="services-title" className="tile-title">
         {services.homeTitle}
@@ -100,6 +115,11 @@ function ServicesPanel({ locale, content }: PanelProps) {
           </li>
         ))}
       </ul>
+      <ContactButton
+        locale={locale}
+        label={content.hero.cta}
+        className="mt-5 min-h-12 px-5 sm:self-start wide:hidden"
+      />
       <ArrowLink
         href={localizedPath(locale, "/services")}
         className="mt-5 self-start"
@@ -110,11 +130,15 @@ function ServicesPanel({ locale, content }: PanelProps) {
   )
 }
 
-function AboutPanel({ locale, content }: PanelProps) {
+function AboutPanel({ locale, content, className }: PanelProps) {
   const { about } = content
 
   return (
-    <section id="about" aria-labelledby="about-title" className="tile tile-pad">
+    <section
+      id="about"
+      aria-labelledby="about-title"
+      className={cn("tile tile-pad", className)}
+    >
       <h2 id="about-title" className="tile-title">
         {titleLabel(content.display.about)}
       </h2>
@@ -137,12 +161,17 @@ function AboutPanel({ locale, content }: PanelProps) {
 function HiringPanel({
   locale,
   hiring,
+  className,
 }: {
   locale: SiteLocale
   hiring: SiteContent["hiring"]
+  className?: string
 }) {
   return (
-    <section aria-labelledby="hiring-title" className="tile tile-pad">
+    <section
+      aria-labelledby="hiring-title"
+      className={cn("tile tile-pad", className)}
+    >
       <h2 id="hiring-title" className="tile-title">
         {hiring.title}
       </h2>
@@ -158,18 +187,18 @@ function HiringPanel({
   )
 }
 
-function ClosingPanel({ locale, content }: PanelProps) {
+function ClosingPanel({ locale, content, className }: PanelProps) {
   const { contact } = content
 
   return (
     <section
       id="contact"
       aria-labelledby="contact-title"
-      className="surface-brand tile tile-pad"
+      className={cn("surface-brand tile tile-pad", className)}
     >
       <h2
         id="contact-title"
-        className="max-w-[16ch] font-heading text-title-h3 text-text-strong-950"
+        className="max-w-[13ch] font-heading text-title-h2 text-text-strong-950"
       >
         {titleLabel(content.display.contact)}
       </h2>

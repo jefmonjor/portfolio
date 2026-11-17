@@ -7,8 +7,14 @@ import ilnami from "@/public/images/work/ilnami.jpg"
 import othertwist from "@/public/images/work/othertwist.jpg"
 import pronoq from "@/public/images/work/pronoq.jpg"
 import transolido from "@/public/images/work/transolido.jpg"
+import transolidoSignIn from "@/public/images/work/transolido-sign-in.jpg"
 
-type Screenshot = { image: StaticImageData; host: string }
+export type Screenshot = {
+  image: StaticImageData
+  host: string
+  /** Rows from the top to show, when the capture's last rows cut a section in half. */
+  visibleHeight?: number
+}
 
 /** Public pages of the products as they are live today; the bank case has none. */
 export const caseScreenshots: Partial<Record<CaseStudySlug, Screenshot>> = {
@@ -25,4 +31,17 @@ export const productScreenshots: Readonly<Record<string, StaticImageData>> = {
   pronoq,
   corte1d,
   contactqr,
+}
+
+/** The wall frames two captures its own way: Transolido's sign-in from closer, Ilnami down to the end of its first section. */
+export const wallScreenshots: Partial<Record<CaseStudySlug, Screenshot>> = {
+  "transolido-verifactu-invoicing": {
+    image: transolidoSignIn,
+    host: "transolido.com",
+  },
+  "ilnami-private-by-design": {
+    image: ilnami,
+    host: "ilnami.com",
+    visibleHeight: 756,
+  },
 }
