@@ -20,14 +20,14 @@ jefmonjor.dev is the commercial site of Jefferson Montesdeoca, an independent so
 
 ## Positioning
 
-Solutions Architect & Senior Backend Engineer (the same title everywhere, in line with his role at Andbank) who builds the systems companies run on, the products on top of them and the AI that works inside both, with the stack the problem needs (Java, TypeScript, Dart and Go). Actively looking now, for freelance projects and for full-time roles alike. Uses AI across the whole development cycle while he reviews and answers for every change, and builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone).
+Senior Software Engineer · Backend, Product & AI on the commercial site. The CV, its PDFs, `cv.json`, `llms.txt` and LinkedIn keep "Solutions Architect & Senior Backend Engineer": the keywords recruiters search for and the title of his role at Andbank. He builds the systems companies run on, the products on top of them and the AI that works inside both, with the stack the problem needs (Java, TypeScript, Python, Dart and Go). Actively looking now, for freelance projects and for full-time roles alike. Uses AI across the whole development cycle while he reviews and answers for every change, and builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone).
 
 ### Identity and proof
 
-- **Identity is generic.** The home's headline names what he builds: the systems companies run on, the products on top of them and the AI that works inside both. The title above stays the same everywhere, because it is what recruiters search for and what his Andbank contract says.
-- **Proof is specific.** Technologies such as Java 21, Spring Boot or Keycloak never define him; they stay inside the cases, the experience page and the CV, where they show the work was real. The CV keeps the keywords recruiters search for.
+- **Identity is generic.** The site's role line names three capabilities (backend, product and AI) and the headline names what he builds: the systems companies run on, the products on top of them and the AI that works inside both. Under the headline the three pillars are links, each to the tile that proves it.
+- **Proof is specific.** Technologies such as Java 21, Spring Boot or Keycloak never define him; they stay inside the cases, the experience page and the CV, where they show the work was real. The CV is more concrete than the home: its title and skills keep the keywords recruiters search for.
 - **Each pillar points to its proof:** backend and architecture → the bank case and the Java backends of Transolido and Other Twist; product → six products live in production; applied AI → Transolido (Claude API, it never issues an invoice), Ilnami (OpenAI Vision, it never saves) and SpecForge (AI coding agents behind tests and review).
-- **No technology or language without code a visitor can see.** Python stays out until one of his Python repositories is public.
+- **No technology or language without his own code behind it.** Python's lives in two private repositories; making one public would let a visitor verify it.
 - **Nothing is frozen.** He is applying now, to freelance projects and companies alike; the positioning moves when the applications say so, never on one more opinion.
 
 ## Operating Context

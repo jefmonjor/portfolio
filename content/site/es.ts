@@ -4,7 +4,7 @@ export const es: SiteContent = {
   meta: {
     home: {
       title:
-        "Jefferson Montesdeoca — Solutions Architect y Senior Backend Engineer",
+        "Jefferson Montesdeoca — Senior Software Engineer: backend, producto e IA",
       description:
         "Construyo los sistemas sobre los que funcionan las empresas, los productos que van encima y la IA que trabaja dentro de ambos. Siete años, de la banca privada a productos propios en producción.",
     },
@@ -50,7 +50,7 @@ export const es: SiteContent = {
   },
   cta: "Hablemos",
   hero: {
-    role: "Solutions Architect · Senior Backend Engineer",
+    role: "Senior Software Engineer · Backend, Product & AI",
     headline: [
       "Construyo los sistemas sobre los que funcionan las empresas,",
       "los productos que van encima",
@@ -69,9 +69,17 @@ export const es: SiteContent = {
       label:
         "Herramientas principales: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Keycloak y Claude. La lista completa está en el CV.",
       center: "Tu sistema",
-      caption:
-        "Y lo que pida el proyecto: he trabajado con Java, TypeScript, Dart y Go.",
+      caption: "Las herramientas de cada día. La lista completa está en el CV.",
     },
+    pillars: [
+      { name: "Backend y arquitectura", proof: "private-bank-modernization" },
+      {
+        name: "Ingeniería de producto",
+        proof: "transolido-verifactu-invoicing",
+      },
+      { name: "IA aplicada", proof: "specforge" },
+    ],
+    languages: "Java, TypeScript, Python, Dart y Go: lo que pida el sistema.",
     live: {
       title: "En producción",
       items: [
@@ -181,7 +189,7 @@ export const es: SiteContent = {
   },
   hiring: {
     title: "También abierto al puesto adecuado",
-    body: "A jornada completa, si el encaje es bueno: puestos de backend, de producto o de IA aplicada, en remoto.",
+    body: "A jornada completa, si el encaje es bueno: puestos de backend, de producto o de ingeniería de IA, en remoto.",
     cvLink: "Ver el CV completo",
   },
 

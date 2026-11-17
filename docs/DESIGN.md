@@ -68,7 +68,7 @@ Desde 75 rem, `SiteRail` (18 rem, fija, con su propia barra de desplazamiento si
 
 ### Orden de la home
 
-`WallIntro` (titular y una entradilla de dos frases) y `WorkWall`: los sistemas del titular a la izquierda y sus productos a la derecha, con la IA trabajando dentro de las dos columnas. La página mide 4,1 pantallas a 1440 px.
+`WallIntro` (titular, una entradilla de dos frases y, debajo, los tres pilares —«Backend y arquitectura · Ingeniería de producto · IA aplicada»— como enlaces que saltan a la baldosa que prueba cada uno: el banco, Transolido y SpecForge, con un anillo verde al llegar; bajo ellos, una línea pequeña con los lenguajes: Java, TypeScript, Python, Dart y Go) y `WorkWall`: los sistemas del titular a la izquierda y sus productos a la derecha, con la IA trabajando dentro de las dos columnas. La página mide 4,1 pantallas a 1440 px.
 
 - **Izquierda, los sistemas:** el caso del banco con su arquitectura, la órbita de herramientas, «Cómo trabajo» (el flujo Especificación → Código → Tests → **Revisión** → Producción y los títulos de los cuatro principios de IA), «Cómo podemos trabajar juntos» (una frase y los tres servicios, con enlace a `/services`) y «Hola, soy Jefferson».
 - **Derecha, los productos:** Transolido, Other Twist e Ilnami con su captura, «También en producción» (SpecForge, PRONOQ, Corte1D y Contact QR como lista con miniaturas; SpecForge primero porque es la prueba de IA con verificación; el orden lo fija `productScreenshots`), «También abierto al puesto adecuado» (la nota para selección, con el CV) y el cierre en verde con el brief.

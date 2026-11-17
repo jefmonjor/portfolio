@@ -46,7 +46,7 @@ function CaseTile({
   const screenshot = wallScreenshots[study.slug] ?? caseScreenshots[study.slug]
 
   return (
-    <article className={cn("tile relative", className)}>
+    <article id={study.slug} className={cn("tile relative", className)}>
       {screenshot ? (
         <CaseVisual
           study={study}
@@ -102,6 +102,7 @@ function MoreProducts({
         {products.map((product) => (
           <li
             key={product.id}
+            id={product.id}
             className="border-t border-stroke-soft-200 first:border-t-0"
           >
             <a

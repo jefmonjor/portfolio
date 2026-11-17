@@ -29,7 +29,29 @@ function WallIntro({ locale, content }: WallIntroProps) {
       <p className="hero-reveal mt-4 max-w-[41rem] text-paragraph-md text-text-sub-600 [--step:6] md:text-paragraph-lg">
         {content.wall.lead}
       </p>
-      <div className="hero-reveal mt-7 flex flex-col gap-5 [--step:7] wide:hidden">
+      <div className="hero-reveal mt-5 [--step:7]">
+        <ul className="flex flex-col md:flex-row md:flex-wrap md:items-center md:gap-x-3">
+          {hero.pillars.map((pillar, index) => (
+            <li key={pillar.proof} className="flex items-center gap-x-3">
+              {index > 0 ? (
+                <span
+                  aria-hidden
+                  className="hidden text-text-soft-400 md:inline"
+                >
+                  ·
+                </span>
+              ) : null}
+              <a href={`#${pillar.proof}`} className="pillar-link">
+                {pillar.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-1 text-paragraph-sm text-text-sub-600">
+          {hero.languages}
+        </p>
+      </div>
+      <div className="hero-reveal mt-7 flex flex-col gap-5 [--step:8] wide:hidden">
         <ContactButton
           locale={locale}
           label={hero.cta}
