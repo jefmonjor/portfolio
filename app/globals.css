@@ -1487,6 +1487,57 @@ body:has(> .site-ground) {
   }
 }
 
+/* The three pillars under the headline: each one jumps to the tile that proves it. */
+.pillar-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  color: var(--text-strong-950);
+  font-family: var(--font-heading);
+  font-size: var(--text-label-lg);
+  line-height: var(--text-label-lg--line-height);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--stroke-sub-300);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition: text-decoration-color 160ms var(--ease-out-expo);
+}
+
+.pillar-link:hover {
+  text-decoration-color: var(--primary-base);
+}
+
+@media (width >= 48rem) {
+  .pillar-link {
+    min-height: 2rem;
+  }
+}
+
+/* A pillar's proof lands below the sticky top bar and shows where it is. */
+.wall [id] {
+  scroll-margin-top: 5rem;
+}
+
+@media (width >= 75rem) {
+  .wall [id] {
+    scroll-margin-top: 1.5rem;
+  }
+}
+
+.wall .tile:target,
+.wall li:target {
+  border-radius: var(--radius-16);
+  box-shadow: 0 0 0 2px var(--primary-base);
+}
+
+.wall li:target {
+  border-radius: var(--radius-10);
+  box-shadow:
+    0 0 0 2px var(--primary-base),
+    0 0 0 6px var(--panel);
+}
+
 .tile-title {
   color: var(--text-strong-950);
   font-size: var(--text-title-h5);

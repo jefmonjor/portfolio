@@ -34,11 +34,11 @@ El botón principal (barra lateral, intro en móvil, servicios y cierre), la eta
 
 - **Bricolage Grotesque** (variable con eje `opsz`, `swap`) es la fuente por defecto de la web (`font-heading` en el `SiteShell`): titulares a 600–700, navegación, botones, etiquetas, chips y datos. **Source Sans 3** (`font-ui`, variable `--font-text`) solo para texto corrido: `.site-prose`, `text-paragraph-*` y los campos del brief. Nada de Inter, Geist ni system-ui como fuente visible de la web. Sin cursivas.
 - Escala: `title-h1` `clamp(2.25rem, 1.2rem + 3.6vw, 3.9rem)` / 1,02 / −0,035 em; `title-h2` `clamp(2rem, 1.35rem + 2.5vw, 3.25rem)`; `title-h3` hasta 2,15rem; `title-h4` hasta 1,65rem; `title-h5` 1,25rem; `title-h6` 1,0625rem.
-- El titular de la home (`.wall-title`) va a `clamp(1.875rem, 1.25rem + 2.2vw, 2.875rem)`, peso 700, −0,04 em e interlínea 1,1: tres líneas en escritorio, con cada frase empezando línea; en móvil las dos frases van seguidas para que ninguna línea quede corta. Ningún título de la home es mayor que él.
+- El titular de la home (`.wall-title`) va a `clamp(1.875rem, 1.25rem + 2.2vw, 2.875rem)`, peso 700, −0,04 em e interlínea 1,1. Tiene tres partes (los sistemas, los productos que van encima y la IA que trabaja dentro de ambos), cada una empezando línea en escritorio: tres líneas en inglés y cuatro en español a 1440 px. En móvil las partes van seguidas para que ninguna línea quede corta. Ningún título de la home es mayor que él.
 
 ### Imágenes
 
-- Solo material real: capturas de las páginas públicas de Transolido, Other Twist, Ilnami, PRONOQ, Corte1D y Contact QR (`public/images/work/`, 1440×900, tomadas de las webs en producción). El retrato del dueño no aparece en la web comercial ni en sus datos estructurados; solo en `/cv`. Cada archivo lleva su procedencia embebida (`impeccable embed-prompt --scan public/images`: 0 pendientes). Mapa en `content/site/images.ts`.
+- Solo material real: capturas de las páginas públicas de Transolido, Other Twist, Ilnami, PRONOQ, Corte1D y Contact QR (`public/images/work/`, 1440×900, tomadas de las webs en producción) y de la cabecera del README público de SpecForge. El retrato del dueño no aparece en la web comercial ni en sus datos estructurados; solo en `/cv`. Cada archivo lleva su procedencia embebida (`impeccable embed-prompt --scan public/images`: 0 pendientes). Mapa en `content/site/images.ts`.
 - Las capturas van en un marco de navegador mínimo con el dominio real; el caso del banco, sin capturas por confidencialidad, muestra su arquitectura en el mismo hueco.
 - El muro encuadra dos capturas a su manera (`wallScreenshots`): Transolido desde más cerca (`transolido-sign-in.jpg`) e Ilnami hasta el final de su primera sección. `/work` usa las generales.
 
@@ -68,10 +68,10 @@ Desde 75 rem, `SiteRail` (18 rem, fija, con su propia barra de desplazamiento si
 
 ### Orden de la home
 
-`WallIntro` (titular y una entradilla de dos frases) y `WorkWall`, cuyas dos columnas son las dos mitades del titular. La página mide 4,1 pantallas a 1440 px.
+`WallIntro` (titular, una entradilla de dos frases y, debajo, los tres pilares —«Backend y arquitectura · Ingeniería de producto · IA aplicada»— como enlaces que saltan a la baldosa que prueba cada uno: el banco, Transolido y SpecForge, con un anillo verde al llegar; bajo ellos, una línea pequeña con los lenguajes: Java, TypeScript, Python, Dart y Go) y `WorkWall`: los sistemas del titular a la izquierda y sus productos a la derecha, con la IA trabajando dentro de las dos columnas. La página mide 4,1 pantallas a 1440 px.
 
 - **Izquierda, los sistemas:** el caso del banco con su arquitectura, la órbita de herramientas, «Cómo trabajo» (el flujo Especificación → Código → Tests → **Revisión** → Producción y los títulos de los cuatro principios de IA), «Cómo podemos trabajar juntos» (una frase y los tres servicios, con enlace a `/services`) y «Hola, soy Jefferson».
-- **Derecha, los productos:** Transolido, Other Twist e Ilnami con su captura, «También en producción» (PRONOQ, Corte1D y Contact QR como lista con miniaturas), «También abierto al puesto adecuado» (la nota para selección, con el CV) y el cierre en verde con el brief.
+- **Derecha, los productos:** Transolido, Other Twist e Ilnami con su captura, «También en producción» (SpecForge, PRONOQ, Corte1D y Contact QR como lista con miniaturas; SpecForge primero porque es la prueba de IA con verificación; el orden lo fija `productScreenshots`), «También abierto al puesto adecuado» (la nota para selección, con el CV) y el cierre en verde con el brief.
 - **En la primera pantalla** quedan la arquitectura del banco y un producto real.
 - **En móvil** hay una sola columna y las clases `max-md:order-*` ponen la prueba antes que el método: banco, productos, «También en producción», botón de contacto, órbita, flujo, servicios, sobre mí, selección y cierre.
 - **Lo que salió de la home vive en `/services`:** «Lo que puedo asumir» (modernizar, integrar IA y construir, cada uno con su caso) al principio, y «Cómo trabajo» completo, con el texto de los cuatro principios, antes del cierre. La tabla comparativa de servicios y la línea de terminal del hero ya no existen.

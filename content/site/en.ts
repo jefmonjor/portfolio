@@ -4,9 +4,9 @@ export const en: SiteContent = {
   meta: {
     home: {
       title:
-        "Jefferson Montesdeoca — Solutions Architect & Senior Backend Engineer",
+        "Jefferson Montesdeoca — Senior Software Engineer: Backend, Product & AI",
       description:
-        "I build the backend systems companies run on, and the products that run on top of them. Seven years, from a private bank's architecture team to my own products in production.",
+        "I build the systems companies run on, the products on top of them, and the AI that works inside both. Seven years, from a private bank's architecture team to my own products in production.",
     },
     services: {
       title: "Custom software, integrations and applied AI — Services",
@@ -49,10 +49,11 @@ export const en: SiteContent = {
   },
   cta: "Let's talk",
   hero: {
-    role: "Solutions Architect · Senior Backend Engineer",
+    role: "Senior Software Engineer · Backend, Product & AI",
     headline: [
-      "I build the backend systems companies run on,",
-      "and the products that run on top of them.",
+      "I build the systems companies run on,",
+      "the products on top of them,",
+      "and the AI that works inside both.",
     ],
     subtitle:
       "Seven years shipping software where mistakes are expensive: from a private bank's architecture team (Java, Spring, core-banking integrations, identity) to products I've built and run myself, from database to production. Backend-first, product-minded, with AI where it earns its place.",
@@ -67,9 +68,15 @@ export const en: SiteContent = {
       label:
         "Main tools: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Keycloak and Claude. The full list is in the CV.",
       center: "Your system",
-      caption:
-        "And whatever the project needs: I have worked with Java, TypeScript, Dart, Go and Python.",
+      caption: "The tools I use every day. The full list is in the CV.",
     },
+    pillars: [
+      { name: "Backend & architecture", proof: "private-bank-modernization" },
+      { name: "Product engineering", proof: "transolido-verifactu-invoicing" },
+      { name: "Applied AI", proof: "specforge" },
+    ],
+    languages:
+      "Java, TypeScript, Python, Dart and Go: whatever the system needs.",
     live: {
       title: "Live in production",
       items: [
@@ -179,7 +186,7 @@ export const en: SiteContent = {
   },
   hiring: {
     title: "Also open to the right full-time role",
-    body: "If the fit is right: backend or architecture roles in banking, fintech or product companies, remote.",
+    body: "If the fit is right: backend, product or AI engineering roles, remote.",
     cvLink: "See the full CV",
   },
 
@@ -1002,7 +1009,7 @@ export const en: SiteContent = {
     },
   },
   wall: {
-    lead: "Seven years shipping software where mistakes are expensive: from a private bank's architecture team to products I build and run myself. Backend-first, with AI where it earns its place.",
+    lead: "Seven years shipping software where mistakes are expensive: from a private bank's architecture team to products I build and run myself. I choose the stack the problem needs.",
     moreProducts: "Also live in production",
     principlesLabel: "Principles for working with AI",
   },

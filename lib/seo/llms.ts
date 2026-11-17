@@ -46,7 +46,7 @@ export const llmsSummary = `# Jefferson Montesdeoca Jordán
 
 - Name: Jefferson Montesdeoca Jordán (handle: jefmonjor).
 - Current role: Solutions Architect / Technical PM at Andbank, since September 2024.
-- Positioning: Solutions Architect & Senior Backend Engineer, in line with his title at Andbank (Solutions Architect / Technical PM).
+- Positioning: on jefmonjor.dev, Senior Software Engineer · Backend, Product & AI. The CV keeps Solutions Architect & Senior Backend Engineer, in line with his title at Andbank (Solutions Architect / Technical PM).
 - Experience: seven years of production software (since 2019) across banking, legal, energy and telecom, in five companies.
 - Based in: Andorra la Vella, Andorra. Time zone CET/CEST. Works remotely.
 - Availability: available now for freelance projects (10 to 15 hours per week); also open to the right full-time role.

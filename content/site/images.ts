@@ -6,6 +6,7 @@ import corte1d from "@/public/images/work/corte1d.jpg"
 import ilnami from "@/public/images/work/ilnami.jpg"
 import othertwist from "@/public/images/work/othertwist.jpg"
 import pronoq from "@/public/images/work/pronoq.jpg"
+import specforge from "@/public/images/work/specforge.jpg"
 import transolido from "@/public/images/work/transolido.jpg"
 import transolidoSignIn from "@/public/images/work/transolido-sign-in.jpg"
 
@@ -26,8 +27,13 @@ export const caseScreenshots: Partial<Record<CaseStudySlug, Screenshot>> = {
   "ilnami-private-by-design": { image: ilnami, host: "ilnami.com" },
 }
 
-/** Public pages of the smaller live products, keyed by their id in `siteProducts`. */
+/**
+ * Public pages of the smaller live products, keyed by their id in
+ * `siteProducts`, in the order the home lists them: SpecForge first, because
+ * it is the proof of AI work with verification.
+ */
 export const productScreenshots: Readonly<Record<string, StaticImageData>> = {
+  specforge,
   pronoq,
   corte1d,
   contactqr,

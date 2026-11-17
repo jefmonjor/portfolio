@@ -30,6 +30,9 @@ export type Emphasis = { emphasis: string }
 
 export type Headline = ReadonlyArray<string | Emphasis>
 
+/** One of the three pillars of the home; `proof` is the id of the tile that proves it. */
+export type Pillar = { name: string; proof: string }
+
 export function headlineText(headline: Headline): string {
   return headline
     .map((part) => (typeof part === "string" ? part : part.emphasis))
@@ -242,6 +245,10 @@ export type SiteContent = {
     /** Remote, time zone and the ways to work together. */
     engagement: string
     tools: { label: string; center: string; caption: string }
+    /** The three things he does, each a link to the proof on the home. */
+    pillars: readonly [Pillar, Pillar, Pillar]
+    /** The languages he has written code in, one small line. */
+    languages: string
     live: {
       title: string
       items: readonly [LiveProduct, LiveProduct, LiveProduct]
