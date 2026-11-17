@@ -143,7 +143,6 @@ Uno de los mayores marketplaces legales de España.
 
 • Formé parte del equipo que migró la plataforma de Struts2 a React + Spring Boot, sustituyendo el frontal legacy.
 • Diseñé microservicios y APIs REST seguras dentro de esa migración.
-• Mejoré el rendimiento y la mantenibilidad del código de una plataforma en producción.
 
 Java · Spring Boot · React · MySQL · REST APIs
 ```
@@ -153,7 +152,6 @@ One of Spain's largest legal marketplaces.
 
 • Part of the team that migrated the platform from Struts2 to React + Spring Boot, replacing the legacy front end.
 • Designed microservices and secure REST APIs as part of that migration.
-• Improved the performance and maintainability of the code on a platform in production.
 
 Java · Spring Boot · React · MySQL · REST APIs
 ```

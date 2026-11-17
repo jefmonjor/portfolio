@@ -24,7 +24,11 @@ function Skills() {
     >
       <SectionHeading
         title={t("title")}
-        hint={t("hint", { count: toolCount, groups: toolGroups.length })}
+        hint={t("hint", {
+          count: toolCount,
+          groups: toolGroups.length,
+          practices: practiceItems.length,
+        })}
       />
 
       <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">

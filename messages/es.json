@@ -137,8 +137,7 @@
         "summary": "Desarrollo full stack y modernización de la plataforma en uno de los mayores marketplaces legales de España.",
         "highlights": [
           "Formé parte del equipo que migró la plataforma de Struts2 a React + Spring Boot, sustituyendo el frontal legacy.",
-          "Diseñé microservicios y APIs REST seguras dentro de esa migración.",
-          "Mejoré el rendimiento y la mantenibilidad del código de una plataforma en producción."
+          "Diseñé microservicios y APIs REST seguras dentro de esa migración."
         ]
       },
       "zemsania-2021": {
@@ -169,7 +168,7 @@
   },
   "skills": {
     "title": "Tecnologías con las que trabajo",
-    "hint": "{count} herramientas · {groups} grupos",
+    "hint": "{count} herramientas · {groups} grupos · {practices} prácticas",
     "groups": {
       "backend": "Backend & Arquitectura",
       "data": "Datos",
