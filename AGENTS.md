@@ -43,7 +43,8 @@ what he does, why to trust him and how to hire him.
   `text-title-h4`, `shadow-elevation-card`…); `/cv` uses the shadcn tokens
   (`bg-background`, `text-foreground`, `text-muted-foreground`,
   `border-border`). The site uses pine green and Bricolage Grotesque headlines;
-  `/cv` keeps burnt amber and Fraunces.
+  `/cv` keeps burnt amber and Fraunces. Both put their navigation in a fixed
+  rail from 75rem and in a top bar below it.
 - Keep pages thin. Site UI lives in `components/site/`, CV UI in
   `components/portfolio/`, server logic in `server/`, shared helpers in
   `lib/`, and runtime contracts in `types/`.
@@ -53,10 +54,9 @@ what he does, why to trust him and how to hire him.
 - Commercial pages are static (SSG), work without JavaScript, and ship only
   the client components they need: theme, language, menu, email, the project
   brief (sent through `POST /api/contact` to Brevo and stored nowhere; it opens
-  the visitor's mail app when sending is unavailable), the typing terminal
-  hint and the tilt of the featured case screenshot, and the AI
-  assistant and terminal, which load on first use and send visitors to
-  hola@jefmonjor.dev.
+  the visitor's mail app when sending is unavailable), the tilt of the bank
+  architecture on the home, and the AI assistant and terminal, which load on
+  first use and send visitors to hola@jefmonjor.dev.
 - Code speaks for itself: names, small functions and types instead of
   comments. A comment is only for a constraint the code cannot express.
 - Animate only for interaction clarity, transition quality, and controlled

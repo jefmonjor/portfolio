@@ -1,5 +1,4 @@
-import { Bricolage_Grotesque, Source_Sans_3 } from "next/font/google"
-
+import { siteFontVariables } from "@/components/site/site-fonts"
 import { SiteShell } from "@/components/site/site-shell"
 import { StructuredDataScript } from "@/components/site/structured-data-script"
 import { getCurrentJobTitle } from "@/content/site"
@@ -7,19 +6,6 @@ import { localizedPath } from "@/i18n/routing"
 import { siteUrl } from "@/lib/profile"
 import { buildSiteStructuredData } from "@/lib/seo/structured-data"
 import { resolveSitePage, type SitePageProps } from "@/lib/site-params"
-
-const text = Source_Sans_3({
-  subsets: ["latin"],
-  variable: "--font-text",
-  display: "swap",
-})
-
-const display = Bricolage_Grotesque({
-  subsets: ["latin"],
-  axes: ["opsz"],
-  variable: "--font-display",
-  display: "swap",
-})
 
 export default async function SiteLayout({
   children,
@@ -29,7 +15,7 @@ export default async function SiteLayout({
 
   return (
     <SiteShell
-      fontVariable={`${text.variable} ${display.variable}`}
+      fontVariable={siteFontVariables}
       locale={locale}
       content={content}
     >

@@ -84,11 +84,11 @@ function EmailActions({ email: labels, secondary = false }: EmailActionsProps) {
           {labels.withoutJavaScript}
         </p>
       </noscript>
-      <div className="flex flex-col gap-3 sm:flex-row">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <a
           href={isHydrated ? siteContactMailto(labels.subject) : undefined}
           aria-disabled={!isHydrated}
-          className={`site-button aria-disabled:pointer-events-none aria-disabled:opacity-60 ${secondary ? "site-button-stroke" : ""}`}
+          className={`site-button whitespace-nowrap aria-disabled:pointer-events-none aria-disabled:opacity-60 ${secondary ? "site-button-stroke" : ""}`}
         >
           <HugeiconsIcon
             icon={Mail01Icon}
@@ -102,7 +102,7 @@ function EmailActions({ email: labels, secondary = false }: EmailActionsProps) {
           type="button"
           onClick={copyAddress}
           disabled={!isHydrated}
-          className="site-button site-button-stroke disabled:opacity-60"
+          className="site-button site-button-stroke whitespace-nowrap disabled:opacity-60"
         >
           <HugeiconsIcon
             icon={copyIcon[copyState]}

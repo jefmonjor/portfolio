@@ -36,7 +36,7 @@ export default async function Page({
   return (
     <div className="relative isolate min-h-svh bg-background text-foreground">
       <Background />
-      <div className="relative z-10">
+      <div className="relative z-10 wide:pl-64">
         <SkipToContent label={tNav("skipToContent")} />
         <ConsoleSignature />
         <FullSiteBanner />

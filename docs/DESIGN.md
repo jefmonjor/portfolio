@@ -7,7 +7,7 @@ Dos productos y dos implementaciones:
 
 El layout raíz no carga fuentes. La web las carga en `app/[locale]/(site)/layout.tsx` (precargadas) y la 404 en su propio archivo sin precarga, porque esa frontera envuelve también `/cv`. `/cv` declara Fraunces, Geist y Geist Mono como variables de `:root` (`components/portfolio/cv-fonts.tsx`).
 
-La dirección de la home está en `PRODUCT.md` y en `.impeccable/surfaces/app-locale-site-page-tsx.md`: una web personal de consultor senior (referencias fijadas por el dueño: happycoders.eu, vladmihalcea.com/consulting, alexedwards.net/work-with-me), en primera persona, con una órbita animada de sus herramientas reales y capturas de sus productos. Su foto solo vive en `/cv` (decisión del dueño). Nada de fotos de stock ni de los looks típicos de webs generadas con IA (fondo crema, serif con cursiva, terracota; héroe oscuro con anotaciones brillantes).
+La dirección de la web está en `PRODUCT.md` y en `.impeccable/surfaces/app-locale-site-page-tsx.md`. Es una web personal de consultor senior, en primera persona, con la estructura que el dueño fijó en noviembre de 2026 a partir de geronimo.design: una barra lateral fija, una frase, un muro de trabajo a dos columnas y una página corta. De esa referencia no se toman el fondo crema, las fuentes de pago, la fila de logos de cliente ni sus textos e imágenes. Su foto solo vive en `/cv` (decisión del dueño). Nada de fotos de stock ni de los looks típicos de webs generadas con IA (fondo crema, serif con cursiva, terracota; héroe oscuro con anotaciones brillantes).
 
 ## Web comercial: Underlay con tema Pino
 
@@ -24,31 +24,32 @@ La dirección de la home está en `PRODUCT.md` y en `.impeccable/surfaces/app-lo
 
 - Contraste: `text-sub-600` 7:1 sobre blanco y 7,4:1 sobre `#0B0D0F`; blanco sobre `#0F6B4F` 6,5:1; `#5FD1A0` sobre `#0B0D0F` 10:1.
 - `.surface-brand` (cierres) pone el campo en `pine-800` (`pine-900` en oscuro), texto blanco y secundario `#B9C9C1` (5,9:1); el botón principal pasa a claro con texto verde.
-- Fondo blanco liso: sin degradados de atmósfera ni grano.
+- Fondo gris frío (`--ground`, `gray-50`) con paneles blancos de 16 px sin anillo (`--panel`), definidos en `.site-ground`; en oscuro el panel queda un paso por encima del fondo. La home pone sus baldosas directamente sobre el fondo; el resto de páginas van en una hoja blanca de 20 px de radio, para que lo que se dibujó sobre blanco conserve su superficie (en oscuro, hoja y fondo son el mismo color). Sin degradados de atmósfera ni grano.
 
 ### Dónde va el verde
 
-El botón principal (cabecera, hero, servicios), la etapa «Revisión · Respondo yo» del flujo de trabajo, el campo de los paneles de cierre, los puntos de las tarjetas de capacidades y el foco. Nunca en texto de cuerpo. El punto de disponibilidad (pie de página) usa el verde de estado y está quieto: sin latido.
+El botón principal (barra lateral, intro en móvil, servicios y cierre), la etapa «Revisión · Respondo yo» del flujo de trabajo, el núcleo de la órbita, el campo de los paneles de cierre, los puntos de las listas de capacidades y el foco. Nunca en texto de cuerpo. El punto de disponibilidad usa el verde de estado y está quieto: sin latido.
 
 ### Tipografía
 
 - **Bricolage Grotesque** (variable con eje `opsz`, `swap`) es la fuente por defecto de la web (`font-heading` en el `SiteShell`): titulares a 600–700, navegación, botones, etiquetas, chips y datos. **Source Sans 3** (`font-ui`, variable `--font-text`) solo para texto corrido: `.site-prose`, `text-paragraph-*` y los campos del brief. Nada de Inter, Geist ni system-ui como fuente visible de la web. Sin cursivas.
 - Escala: `title-h1` `clamp(2.25rem, 1.2rem + 3.6vw, 3.9rem)` / 1,02 / −0,035 em; `title-h2` `clamp(2rem, 1.35rem + 2.5vw, 3.25rem)`; `title-h3` hasta 2,15rem; `title-h4` hasta 1,65rem; `title-h5` 1,25rem; `title-h6` 1,0625rem.
-- El titular del hero son tres frases, una por línea (cada parte del `Headline` empieza línea).
+- El titular de la home (`.wall-title`) va a `clamp(1.875rem, 1.25rem + 2.2vw, 2.875rem)`, peso 700, −0,04 em e interlínea 1,1: tres líneas en escritorio, con cada frase empezando línea; en móvil las dos frases van seguidas para que ninguna línea quede corta. Ningún título de la home es mayor que él.
 
 ### Imágenes
 
-- Solo material real: capturas de las páginas públicas de Transolido, Other Twist e Ilnami (`public/images/work/`, 1440×900, tomadas de las webs en producción). El retrato del dueño no aparece en la web comercial ni en sus datos estructurados; solo en `/cv`. Cada archivo lleva su procedencia embebida (`impeccable embed-prompt --scan public/images`: 0 pendientes). Mapa en `content/site/images.ts`.
-- Las capturas van en un marco de navegador mínimo con el dominio real; el caso del banco, sin capturas por confidencialidad, muestra su arquitectura en miniatura en el mismo hueco.
+- Solo material real: capturas de las páginas públicas de Transolido, Other Twist, Ilnami, PRONOQ, Corte1D y Contact QR (`public/images/work/`, 1440×900, tomadas de las webs en producción). El retrato del dueño no aparece en la web comercial ni en sus datos estructurados; solo en `/cv`. Cada archivo lleva su procedencia embebida (`impeccable embed-prompt --scan public/images`: 0 pendientes). Mapa en `content/site/images.ts`.
+- Las capturas van en un marco de navegador mínimo con el dominio real; el caso del banco, sin capturas por confidencialidad, muestra su arquitectura en el mismo hueco.
+- El muro encuadra dos capturas a su manera (`wallScreenshots`): Transolido desde más cerca (`transolido-sign-in.jpg`) e Ilnami hasta el final de su primera sección. `/work` usa las generales.
 
 ### Asistente de IA y terminal (toda la web comercial)
 
-- **Asistente:** botón flotante «Pregunta a la IA» abajo a la derecha, con su texto también en móvil y con contorno (nunca en verde, para no competir con el CTA); en móvil aparece tras el primer scroll para no tapar el hero (`components/site/site-console.tsx`). Abre un panel (hoja inferior en móvil, tarjeta de 24 rem en escritorio) con tres preguntas sugeridas, el hilo y, siempre visibles, «Escríbeme un email» (hola@jefmonjor.dev) y «Rellena el brief de proyecto».
+- **Asistente:** botón «Pregunta a la IA» con su texto y con contorno (nunca en verde, para no competir con el CTA). Con 75 rem de ancho y 48 rem de alto se acopla al pie de la barra lateral y su panel se abre junto a ella; en pantallas más bajas o estrechas flota abajo a la derecha, y en móvil aparece tras el primer scroll para no tapar la intro (`components/site/site-console.tsx`). Abre un panel (hoja inferior en móvil, tarjeta de 24 rem en escritorio) con tres preguntas sugeridas, el hilo y, siempre visibles, «Escríbeme un email» (hola@jefmonjor.dev) y «Rellena el brief de proyecto».
   - Responde `POST /api/site-assistant`, con el mismo modelo, límites y presupuesto diario que el asistente de `/cv`.
   - Usa un dossier con el contenido de la web, la experiencia, los productos propios y las tecnologías (`lib/site-assistant/dossier.ts`), sin precios ni detalles del banco. Habla de Jefferson en tercera persona: si el visitante menciona su sector, propone dos o tres ideas concretas, hace una o dos preguntas y le invita al brief o a hola@jefmonjor.dev.
   - Si falla, explica por qué y devuelve la pregunta al campo.
 - **Terminal** (al nivel de la de `/cv`):
-  - **Cómo se abre:** «Terminal Ctrl K» en la cabecera (escritorio), «Abrir la terminal» en el menú del móvil, el aviso «¿Prefieres la terminal?» del hero, o las teclas `` ` `` y Ctrl/⌘+K.
+  - **Cómo se abre:** «Terminal» en la barra lateral (o en la cabecera, por debajo de 75 rem), «Abrir la terminal» en el menú del móvil, o las teclas `` ` `` y Ctrl/⌘+K.
   - **Comandos:** el motor puro está en `lib/site-terminal.ts` (con pruebas) y ofrece `help`, `whoami`, `ls [projects]`, `projects`, `open <producto>`, `cat <tema>`, `services`, `work`, `how`, `experience`, `skills`, `availability`, `contact`, `mail`, `brief`, `cv`, `ask <pregunta>`, `theme`, `lang`, `goto <sección>`, `date`, `clear`, `exit` y el huevo de pascua `sudo`.
   - **Uso:** Tab completa comandos, productos y secciones, ↑/↓ recorre el historial, y hay botones rápidos (help, projects, work, contact, brief) para el móvil.
   - **Datos:** los prepara el servidor (`lib/site-console.ts`, con los productos de `lib/site-products.ts`).
@@ -56,16 +57,24 @@ El botón principal (cabecera, hero, servicios), la etapa «Revisión · Respond
 
 ### Patrones de plantilla que la home evita
 
-- **Sin pastilla sobre el titular:** la disponibilidad va como frase normal bajo el botón.
-- **El producto de entrada:** la tarjeta «En producción» del hero muestra una miniatura real de cada producto.
-- **Sin puntos que laten:** el estado se marca con un punto quieto.
-- **Sin filas de pasos numerados:** cada etapa dice qué te llevas (`stage-deliverable`), tanto en «Tus sistemas, por fin conectados» como en «Cómo empezamos»; los principios de «Cómo trabajo» van sin números.
+- **Sin pastilla ni etiqueta sobre el titular:** el rol va bajo el nombre en la barra y la disponibilidad junto al botón, como frase normal con un punto quieto. En móvil, las dos bajo el botón.
+- **Sin etiqueta sobre el título de cada baldosa:** primero el título, luego el resultado y al final el sector.
+- **Sin grillas de tarjetas iguales:** el muro mezcla un diagrama, capturas, una lista con miniaturas, la órbita, un flujo y paneles de texto, cada uno con su altura.
+- **Sin puntos que laten** y **sin filas de pasos numerados:** cada etapa dice qué te llevas (`stage-deliverable`) y los principios van sin números.
+
+### La barra lateral y la cabecera
+
+Desde 75 rem, `SiteRail` (18 rem, fija, con su propia barra de desplazamiento si la pantalla es baja) lleva el nombre y el rol, seis enlaces con icono (Inicio, Servicios, Casos, Experiencia, CV, Contacto; el actual, en un panel blanco), el botón «Hablemos», la disponibilidad, idioma, terminal y tema, la línea «He trabajado para…» en texto (no hay logos de cliente) y el asistente. Por debajo de 75 rem la sustituye la cabecera de siempre con su menú, sin botón de contacto propio: en esos anchos el botón va en la intro, en el panel de servicios, en móvil tras los productos y en el cierre.
 
 ### Orden de la home
 
-Sin grillas de tarjetas iguales en la home: cada sección tiene su forma (lista, imagen grande, frase y tabla) para que el ritmo cambie al bajar. Las tarjetas de casos (`CaseDeck`) quedan para el índice de `/work`.
+`WallIntro` (titular y una entradilla de dos frases) y `WorkWall`, cuyas dos columnas son las dos mitades del titular. La página mide 4,1 pantallas a 1440 px.
 
-Hero personal (el rol «Solutions Architect · Senior Backend Engineer» en versalitas encima del titular, el titular con el backend primero y el producto después —«Construyo los sistemas backend sobre los que funcionan las empresas, y los productos que funcionan encima»—, la presentación, el CTA «Cuéntame tu proyecto», las etiquetas de stack, la órbita de herramientas y «En producción» con los tres productos) → «He trabajado en» → Lo que puedo asumir (**lista**: modernizar, integrar IA y construir, en ese orden; el tipo de trabajo en grande a la izquierda y la frase, los puntos y su caso a la derecha) → Trabajo seleccionado (**imagen grande**: el banco destacado con su diagrama de arquitectura, 7/12, y los tres productos como índice de filas enlazadas; CTA repetido. Si el caso destacado tiene captura, va en el marco de navegador) → Cómo podemos trabajar juntos (**una frase potente**, «Tres formatos para tres momentos…», y debajo los tres servicios como tabla comparativa con «Ideal para / Te llevas / Formato» como columnas; luego los tres pasos para empezar, con CTA) → Cómo trabajo (flujo Especificación → Código → Tests → **Revisión** → Producción y, debajo, cuatro principios de IA acotada en una sola fila) → «También abierto al puesto adecuado» (la nota para selección, con el CV) → Hola, soy Jefferson → cierre con el brief. La prueba va antes que el método.
+- **Izquierda, los sistemas:** el caso del banco con su arquitectura, la órbita de herramientas, «Cómo trabajo» (el flujo Especificación → Código → Tests → **Revisión** → Producción y los títulos de los cuatro principios de IA), «Cómo podemos trabajar juntos» (una frase y los tres servicios, con enlace a `/services`) y «Hola, soy Jefferson».
+- **Derecha, los productos:** Transolido, Other Twist e Ilnami con su captura, «También en producción» (PRONOQ, Corte1D y Contact QR como lista con miniaturas), «También abierto al puesto adecuado» (la nota para selección, con el CV) y el cierre en verde con el brief.
+- **En la primera pantalla** quedan la arquitectura del banco y un producto real.
+- **En móvil** hay una sola columna y las clases `max-md:order-*` ponen la prueba antes que el método: banco, productos, «También en producción», botón de contacto, órbita, flujo, servicios, sobre mí, selección y cierre.
+- **Lo que salió de la home vive en `/services`:** «Lo que puedo asumir» (modernizar, integrar IA y construir, cada uno con su caso) al principio, y «Cómo trabajo» completo, con el texto de los cuatro principios, antes del cierre. La tabla comparativa de servicios y la línea de terminal del hero ya no existen.
 
 ### Superficies y estado
 
@@ -75,17 +84,17 @@ Hero personal (el rol «Solutions Architect · Senior Backend Engineer» en vers
 
 ### Movimiento (CSS)
 
-1. **Hero:** el titular entra por palabras con máscara, una vez por sesión; el resto aparece en secuencia corta. A la derecha, la **órbita de herramientas** (`components/site/tool-orbit.tsx`): «Tu sistema» en el centro y 8 logos reales en dos anillos (Java, Spring Boot y PostgreSQL dentro; Redis, Docker, Kubernetes, Keycloak y Claude fuera; pocas a propósito, el stack completo está en /cv) que giran despacio en sentidos alternos, con los logos siempre derechos (el anillo gira y cada ficha contragira) y un punto verde que recorre cada anillo. La primera visita de la sesión, las fichas salen del centro hacia su anillo; el centro late cada 3 s; al pasar el ratón la órbita se detiene y la ficha muestra su nombre. Solo `rotate`, `scale` y `opacity` en el compositor; con movimiento reducido queda quieta. Los logos salen de simple-icons mediante `scripts/generate-site-tools.mjs` → `components/site/tool-rings.generated.ts` (los colores de marca casi negros usan el color del texto para que se vean en oscuro). Bajo el CTA, en escritorio, la **línea de terminal** (`components/site/terminal-hint.tsx`) escribe `whoami` y `projects`, los borra y se queda en `help`, que es lo que pide el banner de la terminal; al pulsarla abre la terminal. Corre una vez por sesión y dura unos 3 s (menos de 5, WCAG 2.2.2); el cursor parpadea tres veces y se queda quieto; reserva el ancho del comando más largo para no mover el texto; con movimiento reducido aparece ya escrita.
-2. **Títulos de sección:** cada letra se enfoca (opacidad y desenfoque) cuando su sección se revela al hacer scroll; el barrido dura menos de 0,4 s sea cual sea la longitud. El `h2` lleva el título en `aria-label` y las letras van con `aria-hidden` (`DisplayTitle letters`). Las secciones que ya están a la vista al cargar no se animan; con movimiento reducido, nada.
-3. **Casos:** el visual del caso destacado (hoy el diagrama del banco) se inclina hasta 3° hacia el ratón (`components/site/tilt-frame.tsx`, solo con ratón; con movimiento reducido queda plano).
-4. **Experiencia (página /experience):** el raíl se dibuja con el scroll. En la home ya no hay línea de tiempo: la banda «He trabajado en» y el párrafo de «Hola, soy Jefferson» la resumen.
+1. **Intro de la home:** el titular entra por palabras con máscara, una vez por sesión, y la entradilla aparece detrás. La **órbita de herramientas** (`components/site/tool-orbit.tsx`) va en su baldosa: «Tu sistema» en el centro y 8 logos reales en dos anillos (Java, Spring Boot y PostgreSQL dentro; Redis, Docker, Kubernetes, Keycloak y Claude fuera; pocas a propósito, el stack completo está en /cv) que giran despacio en sentidos alternos, con los logos siempre derechos (el anillo gira y cada ficha contragira) y un punto verde que recorre cada anillo. La primera visita de la sesión, las fichas salen del centro hacia su anillo; el centro late cada 3 s; al pasar el ratón la órbita se detiene y la ficha muestra su nombre. Solo `rotate`, `scale` y `opacity` en el compositor; con movimiento reducido queda quieta. Los logos salen de simple-icons mediante `scripts/generate-site-tools.mjs` → `components/site/tool-rings.generated.ts` (los colores de marca casi negros usan el color del texto para que se vean en oscuro).
+2. **Títulos de sección (páginas interiores):** cada letra se enfoca (opacidad y desenfoque) cuando su sección se revela al hacer scroll; el barrido dura menos de 0,4 s sea cual sea la longitud. El `h2` lleva el título en `aria-label` y las letras van con `aria-hidden` (`DisplayTitle letters`). Las secciones que ya están a la vista al cargar no se animan; con movimiento reducido, nada.
+3. **Casos:** la arquitectura del banco, en su baldosa de la home, se inclina hasta 3° hacia el ratón (`components/site/tilt-frame.tsx`, solo con ratón; con movimiento reducido queda plano).
+4. **Experiencia (página /experience):** el raíl se dibuja con el scroll. En la home no hay línea de tiempo: la línea «He trabajado para» de la barra y el párrafo de «Hola, soy Jefferson» la resumen.
 
 `prefers-reduced-motion` lo desactiva todo; sin soporte de scroll-driven animations todo queda en su estado final; al imprimir todo es estático. Nada oculta contenido sin JavaScript. Sin inclinaciones 3D ni cartas que giran.
 
 ### Reglas de maquetación
 
-- Mobile-first en 390 px; hero a dos columnas desde 64 rem; botón de contacto en la cabecera desde `wide` (1200 px). Controles de 44 px en móvil.
-- **Un solo CTA**, siempre hacia `/contact`: «Tell me about your project» / «Cuéntame tu proyecto» en el hero y tras los casos y los servicios; el header usa la forma corta («Let's talk» / «Hablemos»). Allí el **brief de proyecto** es el camino principal; el email directo es secundario (botón con contorno). El brief se envía desde la web (`POST /api/contact` → Brevo, con el visitante como *reply-to*), muestra «Enviando…» y «Recibido» y no se guarda en ningún sitio; si el envío no está disponible o falla, abre la app de correo del visitante con todo escrito. Lleva un campo trampa oculto contra bots y un límite por IP.
+- Mobile-first en 390 px; muro a dos columnas desde 48 rem; barra lateral desde `wide` (75 rem, 1200 px). Controles de 44 px en móvil.
+- **Un solo CTA**, siempre hacia `/contact`: «Tell me about your project» / «Cuéntame tu proyecto» en la intro (bajo 75 rem), tras los productos en móvil, en el panel de servicios (bajo 75 rem) y en el cierre; la barra lateral y el menú del móvil usan la forma corta («Let's talk» / «Hablemos»). Allí el **brief de proyecto** es el camino principal; el email directo es secundario (botón con contorno). El brief se envía desde la web (`POST /api/contact` → Brevo, con el visitante como *reply-to*), muestra «Enviando…» y «Recibido» y no se guarda en ningún sitio; si el envío no está disponible o falla, abre la app de correo del visitante con todo escrito. Lleva un campo trampa oculto contra bots y un límite por IP.
 - Migas de pan con la página actual al final (`aria-current="page"`).
 - Diagramas en SVG inline, máximo 6 cajas (lo comprueba `content/site/content.test.ts`).
 - Imagen OG de la web en los neutros fríos con el verde claro como marca, con Inter.
@@ -126,7 +135,7 @@ Sistema bloqueado del portfolio. Cualquier cambio visual futuro debe respetar es
 - **Radio: ninguno.** `--radius` es `0px` y toda la escala (`rounded-sm`…`rounded-4xl`) resuelve al mismo canto recto, como el cuadrado de la marca. Solo lleva curva lo que es redondo de verdad (puntos de estado, avatar, píldora de navegación, lanzador del chat) y usa `rounded-full`. No se declara ningún radio en componentes.
 - Marcos: borde **sólido** `border-border`, sin radio. Los bordes discontinuos están retirados — eran la huella de la plantilla original.
 - **No todo es tarjeta.** Solo llevan marco completo los elementos repetidos (la rejilla de proyectos, las opciones del diálogo de CV) y lo que flota (diálogos, terminal, panel del chat, imagen de la credencial). Habilidades, enfoque de IA, despliegue, idiomas, la ficha del hero y los datos de contacto son listas abiertas: una regla `border-t` por bloque, texto a ras del margen, sin cajas.
-- Nav: **píldora flotante** (`rounded-full`, `bg-background/85`, blur, `shadow-sm`) separada del borde superior; progreso de scroll como línea `h-0.5 bg-brand` fija arriba.
+- Nav: hasta 75 rem, **píldora flotante** (`rounded-full`, `bg-background/85`, blur, `shadow-sm`) separada del borde superior. Desde 75 rem, la misma barra pasa a ser una **barra lateral fija** de 16 rem con los tokens de `/cv` (cantos rectos, borde a la derecha, mono en las etiquetas): marca y rol, las siete secciones, «Contáctame», «Descargar CV», la disponibilidad con su punto ámbar, LinkedIn y GitHub, y abajo terminal, búsqueda, idioma y tema; en ese ancho la fila de botones del hero se oculta porque la barra ya los lleva. El progreso de scroll sigue como línea `h-0.5 bg-brand` fija arriba.
 - Chat del asistente: panel recto con `shadow-lg`, lanzador `rounded-full`. Diálogos y terminal rectos.
 
 ### Movimiento

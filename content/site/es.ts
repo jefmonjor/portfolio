@@ -64,8 +64,6 @@ export const es: SiteContent = {
     },
     stack: "Java · Spring · TypeScript · IA aplicada",
     engagement: "Disponible ahora para proyectos freelance · Remoto · CET",
-    seeWork: "Ver mi trabajo",
-    terminalHint: "¿Prefieres la terminal? Ábrela (Ctrl K)",
     tools: {
       label:
         "Herramientas principales: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Keycloak y Claude. La lista completa está en el CV.",
@@ -99,7 +97,7 @@ export const es: SiteContent = {
   },
 
   credentials: {
-    label: "He trabajado en",
+    label: "He trabajado para",
     companies: ["Andbank", "elAbogado", "Vodafone", "Endesa"],
   },
   display: {
@@ -1002,6 +1000,11 @@ export const es: SiteContent = {
       emailLabel: "Email",
       briefLabel: "Brief de proyecto",
     },
+  },
+  wall: {
+    lead: "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado a productos que construyo y opero yo. Backend primero, con IA donde aporta.",
+    moreProducts: "También en producción",
+    principlesLabel: "Principios de trabajo con IA",
   },
   privacy: {
     title: "Privacidad",

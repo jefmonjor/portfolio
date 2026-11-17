@@ -4,7 +4,7 @@ import Link from "next/link"
 import { ArrowLabel } from "@/components/site/arrow-label"
 import { CaseFlow } from "@/components/site/case-flow"
 import { TagList } from "@/components/site/tag-list"
-import { caseScreenshots } from "@/content/site/images"
+import { caseScreenshots, type Screenshot } from "@/content/site/images"
 import type { CaseStudy, SiteContent } from "@/content/site/types"
 import { localizedPath, type SiteLocale } from "@/i18n/routing"
 
@@ -21,12 +21,12 @@ const cardImageSizes = "(min-width: 64rem) 34rem, (min-width: 48rem) 45vw, 92vw"
 function CaseVisual({
   study,
   sizes = cardImageSizes,
+  screenshot = caseScreenshots[study.slug],
 }: {
   study: CaseStudy
   sizes?: string
+  screenshot?: Screenshot
 }) {
-  const screenshot = caseScreenshots[study.slug]
-
   if (screenshot && study.screenshotAlt) {
     return (
       <figure className="case-shot">
@@ -40,6 +40,13 @@ function CaseVisual({
           placeholder="blur"
           sizes={sizes}
           className="case-shot-image"
+          style={
+            screenshot.visibleHeight
+              ? {
+                  aspectRatio: `${screenshot.image.width} / ${screenshot.visibleHeight}`,
+                }
+              : undefined
+          }
         />
       </figure>
     )

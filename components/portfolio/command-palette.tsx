@@ -84,6 +84,7 @@ function CommandPalette() {
     detectMacFromUserAgent,
     () => null
   )
+  const shortcut = `${isMac === false ? "Ctrl" : "⌘"} K`
 
   const t = useTranslations("commandPalette")
   const tNav = useTranslations("nav")
@@ -153,7 +154,6 @@ function CommandPalette() {
             variant="outline"
             size="icon-sm"
             data-hit-area
-            aria-label={t("title")}
             onClick={() => setOpen(true)}
             className="sm:h-7 sm:w-auto sm:gap-2 sm:px-2"
           >
@@ -162,11 +162,12 @@ function CommandPalette() {
               className="size-3.5"
               strokeWidth={1.75}
             />
+            <span className="sr-only">{t("title")}</span>
             <span className="hidden text-[13px] text-muted-foreground sm:inline">
               {t("hintLabel")}
             </span>
             <Kbd className="hidden font-mono text-[11px] sm:inline-flex">
-              {isMac === false ? "Ctrl" : "⌘"} K
+              {shortcut}
             </Kbd>
           </Button>
         </TooltipTrigger>

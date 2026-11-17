@@ -241,8 +241,6 @@ export type SiteContent = {
     stack: string
     /** Remote, time zone and the ways to work together. */
     engagement: string
-    seeWork: string
-    terminalHint: string
     tools: { label: string; center: string; caption: string }
     live: {
       title: string
@@ -367,6 +365,12 @@ export type SiteContent = {
     backToTop: string
   }
   console: SiteConsoleCopy
+  /** The home's wall: the strings it does not share with the rest of the site. */
+  wall: {
+    lead: string
+    moreProducts: string
+    principlesLabel: string
+  }
   privacy: {
     title: string
     updated: string
