@@ -15,9 +15,10 @@ import { profile } from "@/lib/profile"
 type SiteHeaderProps = {
   locale: SiteLocale
   content: SiteContent
+  className?: string
 }
 
-function SiteHeader({ locale, content }: SiteHeaderProps) {
+function SiteHeader({ locale, content, className = "" }: SiteHeaderProps) {
   const links = primaryNavigation(content.nav).map((item) => ({
     ...item,
     href: localizedPath(locale, item.path),
@@ -25,7 +26,7 @@ function SiteHeader({ locale, content }: SiteHeaderProps) {
   const contactHref = localizedPath(locale, "/contact")
 
   return (
-    <header className="site-header sticky top-0 z-40">
+    <header className={`site-header sticky top-0 z-40 ${className}`}>
       <SkipToContent label={content.nav.skipToContent} />
       <div className="site-container relative flex h-16 items-center justify-between gap-6">
         <BrandLink href={localizedPath(locale, "/")} name={profile.shortName} />

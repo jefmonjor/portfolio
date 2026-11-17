@@ -1003,6 +1003,11 @@ export const en: SiteContent = {
       briefLabel: "Project brief",
     },
   },
+  wall: {
+    lead: "Seven years shipping software where mistakes are expensive: from a private bank's architecture team to products I build and run myself. Backend-first, with AI where it earns its place.",
+    moreProducts: "Also live in production",
+    principlesLabel: "Principles for working with AI",
+  },
   privacy: {
     title: "Privacy",
     updated: "Last updated: 7 November 2026",

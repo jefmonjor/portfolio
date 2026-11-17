@@ -1327,6 +1327,208 @@ html:has(#site-menu:popover-open) {
   letter-spacing: -0.03em;
 }
 
+/* Rail shell and work wall: a cool grey ground under white panels, so the
+   panels need no ring. Dark mode keeps the panels one step above the ground. */
+.site-ground {
+  --ground: var(--gray-50);
+  --panel: var(--gray-0);
+  background: var(--ground);
+}
+
+.dark .site-ground {
+  --ground: var(--gray-1000);
+  --panel: var(--gray-900);
+}
+
+.dark .site-ground .tile:not(.surface-brand) {
+  --bg-weak-50: var(--gray-800);
+}
+
+body:has(> .site-ground) {
+  background: var(--gray-50);
+}
+
+.dark body:has(> .site-ground) {
+  background: var(--gray-1000);
+}
+
+.site-ground .site-header {
+  background-color: color-mix(in srgb, var(--ground) 80%, transparent);
+}
+
+.site-rail {
+  display: none;
+}
+
+.site-rail .terminal-trigger kbd {
+  display: none;
+}
+
+/* The footer lines up with the intro text, not with the wider site container. */
+.site-ground footer .site-container {
+  max-width: 66rem;
+  padding-inline: 1.5rem;
+}
+
+@media (width >= 48rem) {
+  .site-ground footer .site-container {
+    padding-inline: 3.5rem;
+  }
+}
+
+@media (width >= 75rem) {
+  .site-rail {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100svh;
+    padding: 1.25rem 1.5rem 1.5rem;
+    overflow-y: auto;
+    box-shadow: inset -1px 0 0 var(--stroke-soft-200);
+  }
+}
+
+.status-line {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.status-line::before {
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.4375rem;
+  border-radius: 9999px;
+  background: var(--state-success-base);
+  content: "";
+}
+
+.wall-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 66rem;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.wall-intro {
+  padding-inline: 0.5rem;
+}
+
+.wall-title {
+  color: var(--text-strong-950);
+  font-size: clamp(1.875rem, 1.25rem + 2.2vw, 2.875rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+/* On phones the two sentences of the headline run on, so no line is left short. */
+@media (width < 48rem) {
+  .wall-title .block {
+    display: inline;
+  }
+}
+
+.wall {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
+.wall-column {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (width >= 48rem) {
+  .wall-page {
+    padding: 3rem 2rem 4rem;
+  }
+  .wall-intro {
+    padding-inline: 1.5rem;
+  }
+  .wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    margin-top: 3.25rem;
+  }
+}
+
+@media (width >= 75rem) {
+  .wall-page {
+    padding-top: 3.75rem;
+  }
+}
+
+.tile {
+  overflow: hidden;
+  border-radius: var(--radius-16);
+  background: var(--panel);
+}
+
+.tile.surface-brand {
+  background: var(--bg-white-0);
+}
+
+.tile-pad {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.tile-title {
+  color: var(--text-strong-950);
+  font-size: var(--text-title-h5);
+  line-height: var(--text-title-h5--line-height);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.tile:has(a:hover) .case-shot-image {
+  scale: 1.02;
+}
+
+.wall-thumb {
+  flex: none;
+  width: 7.5rem;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-6);
+  box-shadow: 0 0 0 1px var(--stroke-soft-200);
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Inside a panel the pipeline stays a list at every width. */
+.pipeline-stack .pipeline-stage {
+  border-radius: var(--radius-10);
+}
+
+@media (width >= 48rem) {
+  .pipeline.pipeline-stack {
+    grid-template-columns: none;
+    gap: 0.5rem;
+  }
+  .pipeline-stack .pipeline-stage,
+  .pipeline-stack .pipeline-stage:first-child,
+  .pipeline-stack .pipeline-stage:last-child {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-left: 0;
+    padding: 0.875rem 1.125rem;
+    border-radius: var(--radius-10);
+  }
+  .pipeline-stack .pipeline-stage.is-human {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
 @keyframes line-rise {
   from {
     transform: translateY(110%);

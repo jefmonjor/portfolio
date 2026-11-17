@@ -1003,6 +1003,11 @@ export const es: SiteContent = {
       briefLabel: "Brief de proyecto",
     },
   },
+  wall: {
+    lead: "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado a productos que construyo y opero yo. Backend primero, con IA donde aporta.",
+    moreProducts: "También en producción",
+    principlesLabel: "Principios de trabajo con IA",
+  },
   privacy: {
     title: "Privacidad",
     updated: "Última actualización: 7 de noviembre de 2026",

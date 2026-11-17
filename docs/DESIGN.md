@@ -90,6 +90,19 @@ Hero personal (el rol «Solutions Architect · Senior Backend Engineer» en vers
 - Diagramas en SVG inline, máximo 6 cajas (lo comprueba `content/site/content.test.ts`).
 - Imagen OG de la web en los neutros fríos con el verde claro como marca, con Inter.
 
+## Prototipo en evaluación: barra lateral y muro de trabajo
+
+Propuesta de noviembre de 2026, pendiente de que el dueño elija. **No sustituye nada:** vive en rutas aparte, con `noindex`, fuera del sitemap y sin enlaces desde la web.
+
+- **Rutas:** `/lab` y `/es/lab` (home); `/cv/lab`, `/es/cv/lab` y `/ca/cv/lab` (CV).
+- **Qué toma de la referencia del dueño (geronimo.design):** una barra lateral fija con el nombre, la navegación y la única acción; una frase y una entradilla corta; un muro de trabajo a dos columnas; una página corta (3,9 pantallas a 1440 px frente a 8,3).
+- **Qué no toma:** el fondo crema (rechazado en `PRODUCT.md`), sus fuentes de pago, la fila de logos de cliente (aquí van las empresas en texto) ni sus textos e imágenes.
+- **Home:** `SiteShell` con `railHome` pinta `SiteRail` desde 75 rem y deja la cabecera normal por debajo. `WallIntro` lleva el titular (hasta 2,875 rem, 700, −0,04 em) y la entradilla; `WorkWall` reparte las baldosas: a la izquierda el trabajo (el banco con su arquitectura, los tres productos con captura, «También en producción» y la nota de selección) y a la derecha cómo trabaja y cómo contratarle (órbita, flujo con IA, servicios, «Hola, soy Jefferson» y el cierre en verde). En móvil se lee la columna izquierda y después la derecha: la prueba antes que el método.
+- **Material:** fondo gris frío y paneles blancos de 16 px sin anillo (`--ground` y `--panel` en `.site-ground`; en oscuro el panel queda un paso por encima del fondo). Sin pastilla ni etiqueta sobre el titular: la disponibilidad va con su punto quieto junto al botón de la barra y, en móvil, bajo el botón.
+- **Imágenes nuevas:** capturas de PRONOQ, Corte1D y Contact QR (`public/images/work/`, 1440×900, con su procedencia embebida).
+- **`/cv`:** `TopBar` con `rail` convierte la píldora superior en una barra fija de 16 rem desde 75 rem, con los tokens de `/cv` (cantos rectos, ámbar, mono): secciones, «Contáctame», «Descargar CV», disponibilidad y perfiles siempre a la vista. La fila de botones del hero se oculta en ese ancho porque la barra ya los lleva.
+- **Si se adopta:** pasar `railHome="/"` en `app/[locale]/(site)/layout.tsx`, pintar `WallIntro` y `WorkWall` en la home, pasar `rail` en `app/[locale]/cv/page.tsx`, llevar el texto de los cuatro principios de IA a `/services` (en el muro solo quedan sus títulos), borrar las rutas `lab` y reescribir «Orden de la home» y el brief de la superficie. **Si se descarta:** borrar las rutas `lab`, `site-rail`, `wall-intro`, `work-wall`, `wall-panels`, las opciones `railHome` y `rail` y el bloque «Rail shell and work wall» de `app/globals.css`.
+
 ## `/cv`: sistema ámbar
 
 > Lo que sigue aplica solo a `/cv` y a sus imágenes OG.

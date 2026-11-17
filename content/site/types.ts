@@ -367,6 +367,12 @@ export type SiteContent = {
     backToTop: string
   }
   console: SiteConsoleCopy
+  /** The rail-and-wall home: the only strings it does not borrow from the sections it replaces. */
+  wall: {
+    lead: string
+    moreProducts: string
+    principlesLabel: string
+  }
   privacy: {
     title: string
     updated: string
