@@ -1394,7 +1394,7 @@ body:has(> .site-ground) {
 
 /* With room for it, the assistant docks at the foot of the rail instead of
    floating over the wall, and its panel opens beside the rail. */
-@media (width >= 75rem) and (height >= 50rem) {
+@media (width >= 75rem) and (height >= 48rem) {
   .site-ground .site-rail {
     padding-bottom: 5.25rem;
   }

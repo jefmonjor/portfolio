@@ -5,6 +5,7 @@ import Link from "next/link"
 
 import { ArchitectureDiagram } from "@/components/site/architecture-diagram"
 import { CaseVisual } from "@/components/site/case-card"
+import { ContactButton } from "@/components/site/contact-button"
 import { TiltFrame } from "@/components/site/tilt-frame"
 import {
   AboutPanel,
@@ -140,7 +141,8 @@ function MoreProducts({
 /**
  * The two halves of the headline: the systems he builds on the left, the
  * products that run on top on the right. Phones show one column, with the
- * proof (bank, then products) before the method, as `max-md:order-*` sets.
+ * proof (bank, then products) and the contact button before the method, as
+ * `max-md:order-*` sets.
  */
 function WorkWall({ locale, content }: WorkWallProps) {
   const systems = content.work.cases.filter(
@@ -193,6 +195,11 @@ function WorkWall({ locale, content }: WorkWallProps) {
           title={content.wall.moreProducts}
           products={moreProducts}
           className="max-md:order-3"
+        />
+        <ContactButton
+          locale={locale}
+          label={content.hero.cta}
+          className="min-h-14 px-6 max-md:order-3 md:hidden"
         />
         <HiringPanel
           locale={locale}

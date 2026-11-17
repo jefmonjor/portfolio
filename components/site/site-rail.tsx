@@ -86,7 +86,7 @@ function SiteRail({ locale, content, homeHref }: SiteRailProps) {
         >
           <ArrowLabel>{content.cta}</ArrowLabel>
         </Link>
-        <p className="status-line text-paragraph-sm text-text-sub-600">
+        <p className="status-line text-paragraph-sm text-balance text-text-sub-600">
           {content.hero.engagement}
         </p>
       </div>
@@ -100,7 +100,9 @@ function SiteRail({ locale, content, homeHref }: SiteRailProps) {
         <p className="border-t border-stroke-soft-200 pt-4 text-paragraph-sm text-text-sub-600">
           {content.credentials.label}{" "}
           <span className="font-heading text-label-sm text-text-strong-950">
-            {content.credentials.companies.join(" · ")}
+            {new Intl.ListFormat(locale, { type: "conjunction" }).format(
+              content.credentials.companies
+            )}
           </span>
         </p>
       </div>

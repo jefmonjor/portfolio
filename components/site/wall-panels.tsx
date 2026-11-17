@@ -198,7 +198,7 @@ function ClosingPanel({ locale, content, className }: PanelProps) {
     >
       <h2
         id="contact-title"
-        className="max-w-[13ch] font-heading text-title-h2 text-text-strong-950"
+        className="max-w-[16ch] font-heading text-title-h3 text-text-strong-950"
       >
         {titleLabel(content.display.contact)}
       </h2>

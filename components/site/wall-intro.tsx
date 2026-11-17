@@ -39,7 +39,10 @@ function WallIntro({ locale, content }: WallIntroProps) {
           <p className="text-label-md text-text-strong-950">{hero.role}</p>
           <p className="status-line text-balance">{hero.engagement}</p>
           <p>
-            {credentials.label}: {credentials.companies.join(" · ")}
+            {credentials.label}{" "}
+            {new Intl.ListFormat(locale, { type: "conjunction" }).format(
+              credentials.companies
+            )}
           </p>
         </div>
       </div>
