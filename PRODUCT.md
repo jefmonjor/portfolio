@@ -20,7 +20,15 @@ jefmonjor.dev is the commercial site of Jefferson Montesdeoca, an independent so
 
 ## Positioning
 
-Solutions Architect & Senior Backend Engineer (the same title everywhere, in line with his role at Andbank) who builds the backend systems companies run on and the products on top of them, modernizes existing systems and puts AI to work inside them, with whatever stack the project needs (backend-first; Java, TypeScript, Dart, Go and Python). Open to projects and to the right full-time role. Uses AI across the whole development cycle while he reviews and answers for every change, and builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone).
+Solutions Architect & Senior Backend Engineer (the same title everywhere, in line with his role at Andbank) who builds the systems companies run on, the products on top of them and the AI that works inside both, with the stack the problem needs (Java, TypeScript, Dart and Go). Actively looking now, for freelance projects and for full-time roles alike. Uses AI across the whole development cycle while he reviews and answers for every change, and builds and runs his own products in production. Seven years of engineering across banking (Andbank since 2024), legal (elAbogado), energy (Endesa) and telecom (Vodafone).
+
+### Identity and proof
+
+- **Identity is generic.** The home's headline names what he builds: the systems companies run on, the products on top of them and the AI that works inside both. The title above stays the same everywhere, because it is what recruiters search for and what his Andbank contract says.
+- **Proof is specific.** Technologies such as Java 21, Spring Boot or Keycloak never define him; they stay inside the cases, the experience page and the CV, where they show the work was real. The CV keeps the keywords recruiters search for.
+- **Each pillar points to its proof:** backend and architecture → the bank case and the Java backends of Transolido and Other Twist; product → six products live in production; applied AI → Transolido (Claude API, it never issues an invoice), Ilnami (OpenAI Vision, it never saves) and SpecForge (AI coding agents behind tests and review).
+- **No technology or language without code a visitor can see.** Python stays out until one of his Python repositories is public.
+- **Nothing is frozen.** He is applying now, to freelance projects and companies alike; the positioning moves when the applications say so, never on one more opinion.
 
 ## Operating Context
 
@@ -49,7 +57,7 @@ Solutions Architect & Senior Backend Engineer (the same title everywhere, in lin
 - Live products: Transolido (transolido.com, VERI*FACTU invoicing), Other Twist (othertwist.com, offline-first writing platform), Ilnami (ilnami.com, private food diary), plus PRONOQ, Corte1D and Contact QR.
 - Experience: Andbank (2024–present), elAbogado (2022–2024), Zemsania (Vodafone), Ayesa and Keapps (Atos) for Endesa (2019–2021, one continuous engagement) — see `lib/profile.ts`.
 - Portrait: `public/me.webp`, **only on `/cv`**. The owner does not want his photo anywhere on the commercial site (pages or its structured data). `/cv` keeps its own amber system; its navigation is a rail on wide screens.
-- Screenshots of the public pages of Transolido, Other Twist and Ilnami (`public/images/work/`, captured from the live sites on 2026-11-08) and of PRONOQ, Corte1D and Contact QR (2026-11-17). Transolido's public face is its sign-in page; the home's wall uses a closer capture of it.
+- Screenshots of the public pages of Transolido, Other Twist and Ilnami (`public/images/work/`, captured from the live sites on 2026-11-08), of PRONOQ, Corte1D and Contact QR, and of the README of SpecForge's public repository (2026-11-17). Transolido's public face is its sign-in page; the home's wall uses a closer capture of it.
 - English level is B1 (CV): say "Spanish (native) and English", never "native English".
 - Absent and never to be fabricated: client testimonials, client logos used with permission, revenue or performance figures, prices, a calendar link, screenshots of logged-in product areas.
 

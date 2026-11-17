@@ -139,20 +139,20 @@ function MoreProducts({
 }
 
 /**
- * The two halves of the headline: the systems he builds on the left, the
- * products that run on top on the right. Phones show one column, with the
- * proof (bank, then products) and the contact button before the method, as
- * `max-md:order-*` sets.
+ * The headline's systems on the left and its products on the right, with the
+ * AI working inside both. Phones show one column, with the proof (bank, then
+ * products) and the contact button before the method, as `max-md:order-*` sets.
  */
 function WorkWall({ locale, content }: WorkWallProps) {
   const systems = content.work.cases.filter(
     (study) => !caseScreenshots[study.slug]
   )
-  const products = content.work.cases.filter(
+  const productCases = content.work.cases.filter(
     (study) => caseScreenshots[study.slug]
   )
-  const moreProducts = siteProducts(locale).filter(
-    (product) => productScreenshots[product.id] && product.href
+  const products = siteProducts(locale)
+  const moreProducts = Object.keys(productScreenshots).flatMap((id) =>
+    products.filter((product) => product.id === id && product.href)
   )
   const architectureLabel = content.work.labels.architecture
 
@@ -182,7 +182,7 @@ function WorkWall({ locale, content }: WorkWallProps) {
         />
       </div>
       <div className="wall-column">
-        {products.map((study) => (
+        {productCases.map((study) => (
           <CaseTile
             key={study.slug}
             locale={locale}

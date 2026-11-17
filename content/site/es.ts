@@ -6,7 +6,7 @@ export const es: SiteContent = {
       title:
         "Jefferson Montesdeoca — Solutions Architect y Senior Backend Engineer",
       description:
-        "Construyo los sistemas backend sobre los que funcionan las empresas, y los productos que funcionan encima. Siete años, de la arquitectura de un banco privado a productos propios en producción.",
+        "Construyo los sistemas sobre los que funcionan las empresas, los productos que van encima y la IA que trabaja dentro de ambos. Siete años, de la banca privada a productos propios en producción.",
     },
     services: {
       title: "Software a medida, integraciones e IA aplicada — Servicios",
@@ -52,8 +52,9 @@ export const es: SiteContent = {
   hero: {
     role: "Solutions Architect · Senior Backend Engineer",
     headline: [
-      "Construyo los sistemas backend sobre los que funcionan las empresas,",
-      "y los productos que funcionan encima.",
+      "Construyo los sistemas sobre los que funcionan las empresas,",
+      "los productos que van encima",
+      "y la IA que trabaja dentro de ambos.",
     ],
     subtitle:
       "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado (Java, Spring, integración con el core bancario, identidad) a productos que he construido y opero yo, de la base de datos a producción. Backend primero, con mentalidad de producto y con IA donde aporta.",
@@ -69,7 +70,7 @@ export const es: SiteContent = {
         "Herramientas principales: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Keycloak y Claude. La lista completa está en el CV.",
       center: "Tu sistema",
       caption:
-        "Y lo que pida el proyecto: he trabajado con Java, TypeScript, Dart, Go y Python.",
+        "Y lo que pida el proyecto: he trabajado con Java, TypeScript, Dart y Go.",
     },
     live: {
       title: "En producción",
@@ -180,7 +181,7 @@ export const es: SiteContent = {
   },
   hiring: {
     title: "También abierto al puesto adecuado",
-    body: "A jornada completa, si el encaje es bueno: puestos de backend o arquitectura en banca, fintech o empresas de producto, en remoto.",
+    body: "A jornada completa, si el encaje es bueno: puestos de backend, de producto o de IA aplicada, en remoto.",
     cvLink: "Ver el CV completo",
   },
 
@@ -1002,7 +1003,7 @@ export const es: SiteContent = {
     },
   },
   wall: {
-    lead: "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado a productos que construyo y opero yo. Backend primero, con IA donde aporta.",
+    lead: "Siete años haciendo software donde equivocarse sale caro: del equipo de arquitectura de un banco privado a productos que construyo y opero yo. Elijo el stack que pide el problema.",
     moreProducts: "También en producción",
     principlesLabel: "Principios de trabajo con IA",
   },

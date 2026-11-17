@@ -286,7 +286,7 @@
       },
       "specforge": {
         "name": "SpecForge",
-        "role": "Producto propio · CLI open source",
+        "role": "Producto propio · CLI open source para agentes de IA",
         "summary": "CLI en Go que pone a Claude Code o Gemini CLI en una línea de montaje que verifica cada paso: una especificación entrevistada y sellada, un plan revisado, Red → Green → Refactor con tu revisión y un commit por escenario. La versión 5 añade migraciones legacy verificadas (Java 6 → 21) y proyectos Java, React, Python y Go listos para empezar.",
         "highlights": [
           "La IA pregunta en lugar de inventar: cada respuesta del agente termina en un contrato JSON (hecho, pregunta o bloqueo), y las dudas llegan al desarrollador y quedan registradas.",

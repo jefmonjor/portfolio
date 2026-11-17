@@ -286,7 +286,7 @@
       },
       "specforge": {
         "name": "SpecForge",
-        "role": "Personal product · Open-source CLI",
+        "role": "Personal product · Open-source CLI for AI coding agents",
         "summary": "Go CLI that puts Claude Code or Gemini CLI on an assembly line that verifies every step: a spec interviewed and sealed, a reviewed plan, Red → Green → Refactor with your review and one commit per scenario. Version 5 adds verified legacy rewrites (Java 6 → 21) and ready-made Java, React, Python and Go projects.",
         "highlights": [
           "The AI asks instead of inventing: every agent answer ends with a JSON contract (done, question or blocked), and open questions reach the developer and are recorded.",

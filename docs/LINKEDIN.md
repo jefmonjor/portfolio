@@ -286,10 +286,10 @@ y las que conviene que te validen:
 Arquitectura de software · Java · Spring Boot
 ```
 
-Resto, en este orden (46):
+Resto, en este orden (45):
 
 ```
-Java 21 · Spring Boot 3 · Diseño de sistemas · Arquitectura hexagonal · Clean Architecture · Microservicios · Modernización de sistemas legacy · Integración de sistemas · REST APIs · OpenAPI · SOAP · Hibernate / JPA · TypeScript · JavaScript · React · Next.js · Node.js · Flutter · Dart · Go · Python · SQL · PostgreSQL · Redis · DB2 · Oracle PL/SQL · MySQL · Cassandra · Hadoop · Apache Spark · Docker · Kubernetes · OpenShift · Google Cloud Platform · Vercel · CI/CD · GitHub Actions · Keycloak · OAuth2 · Seguridad de aplicaciones · SonarQube · IA aplicada · Claude API · OpenAI API · Gestión de proveedores · Scrum
+Java 21 · Spring Boot 3 · Diseño de sistemas · Arquitectura hexagonal · Clean Architecture · Microservicios · Modernización de sistemas legacy · Integración de sistemas · REST APIs · OpenAPI · SOAP · Hibernate / JPA · TypeScript · JavaScript · React · Next.js · Node.js · Flutter · Dart · Go · SQL · PostgreSQL · Redis · DB2 · Oracle PL/SQL · MySQL · Cassandra · Hadoop · Apache Spark · Docker · Kubernetes · OpenShift · Google Cloud Platform · Vercel · CI/CD · GitHub Actions · Keycloak · OAuth2 · Seguridad de aplicaciones · SonarQube · IA aplicada · Claude API · OpenAI API · Gestión de proveedores · Scrum
 ```
 
 ---
