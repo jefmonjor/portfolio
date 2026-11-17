@@ -235,6 +235,8 @@ export type SiteContent = {
   cta: string
   hero: {
     role: string
+    /** The role's job title alone, for the phone top bar where the whole role does not fit. */
+    roleShort: string
     headline: Headline
     subtitle: string
     /** The hero's call to action: says what happens next, unlike the header's short label. */

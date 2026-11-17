@@ -51,6 +51,7 @@ export const es: SiteContent = {
   cta: "Hablemos",
   hero: {
     role: "Senior Software Engineer · Backend, Product & AI",
+    roleShort: "Senior Software Engineer",
     headline: [
       "Construyo los sistemas sobre los que funcionan las empresas,",
       "los productos que van encima",
