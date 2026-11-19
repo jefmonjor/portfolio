@@ -4,7 +4,7 @@ import type {
   SocialKind,
 } from "@/types/profile"
 
-export const portfolioUpdatedAt = "2026-11-14"
+export const portfolioUpdatedAt = "2026-11-17"
 
 /** The four products every CV output shows; the others stay on the web and GitHub. */
 export const cvProjectIds = [

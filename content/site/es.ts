@@ -345,7 +345,6 @@ export const es: SiteContent = {
         highlights: [
           "Desarrollo full stack con React y Spring Boot.",
           "Participación en la migración desde Struts2 hacia microservicios y APIs REST.",
-          "Mejoras de rendimiento y mantenimiento de la plataforma.",
         ],
         entries: ["elabogado-2022"],
       },
@@ -720,7 +719,7 @@ export const es: SiteContent = {
         slug: "ilnami-private-by-design",
         screenshotAlt:
           "Página de inicio de Ilnami en ilnami.com, con el mapa de visitas guardadas de la app en un móvil",
-        sector: "Producto propio",
+        sector: "Producto propio · Diario gastronómico",
         title:
           "Una app privada por diseño, construida en solitario de la base de datos a producción",
         outcome:
