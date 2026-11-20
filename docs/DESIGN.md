@@ -39,7 +39,7 @@ El botón principal (barra lateral, intro en móvil, servicios y cierre), la eta
 ### Imágenes
 
 - Solo material real: capturas de las páginas públicas de Transolido, Other Twist, Ilnami, PRONOQ, Corte1D y Contact QR (`public/images/work/`, 1440×900, tomadas de las webs en producción) y de la cabecera del README público de SpecForge. El retrato del dueño no aparece en la web comercial ni en sus datos estructurados; solo en `/cv`. Cada archivo lleva su procedencia embebida (`impeccable embed-prompt --scan public/images`: 0 pendientes). Mapa en `content/site/images.ts`.
-- Las capturas van en un marco de navegador mínimo con el dominio real; el caso del banco, sin capturas por confidencialidad, muestra su arquitectura en el mismo hueco.
+- Las capturas van en un marco de navegador mínimo con el dominio real. El caso del banco no tiene captura (confidencialidad) y en la home y en `/work` se cuenta solo con texto: título, resultado, sector y «Leer el caso». Su diagrama de arquitectura queda únicamente en la página del caso, para quien entra a por el detalle técnico; en las portadas el dueño lo retiró porque un visitante no sabe leerlo.
 - El muro encuadra dos capturas a su manera (`wallScreenshots`): Transolido desde más cerca (`transolido-sign-in.jpg`) e Ilnami hasta el final de su primera sección. `/work` usa las generales.
 
 ### Asistente de IA y terminal (toda la web comercial)
@@ -59,7 +59,7 @@ El botón principal (barra lateral, intro en móvil, servicios y cierre), la eta
 
 - **Sin pastilla ni etiqueta sobre el titular:** el rol va bajo el nombre en la barra y la disponibilidad junto al botón, como frase normal con un punto quieto. En móvil, las dos bajo el botón.
 - **Sin etiqueta sobre el título de cada baldosa:** primero el título, luego el resultado y al final el sector.
-- **Sin grillas de tarjetas iguales:** el muro mezcla un diagrama, capturas, una lista con miniaturas, la órbita, un flujo y paneles de texto, cada uno con su altura.
+- **Sin grillas de tarjetas iguales:** el muro mezcla un caso en texto, capturas, una lista con miniaturas, la órbita, un flujo y paneles de texto, cada uno con su altura.
 - **Sin puntos que laten** y **sin filas de pasos numerados:** cada etapa dice qué te llevas (`stage-deliverable`) y los principios van sin números.
 
 ### La barra lateral y la cabecera
@@ -70,9 +70,9 @@ Desde 75 rem, `SiteRail` (18 rem, fija, con su propia barra de desplazamiento si
 
 `WallIntro` (titular, una entradilla de dos frases y, debajo, los tres pilares —«Backend y arquitectura · Ingeniería de producto · IA aplicada»— como enlaces que saltan a la baldosa que prueba cada uno (en móvil fluyen en dos filas, separados solo por el espacio y su subrayado): el banco, Transolido y SpecForge, con un anillo verde al llegar; bajo ellos, una línea pequeña con los lenguajes: Java, TypeScript, Python, Dart y Go) y `WorkWall`: los sistemas del titular a la izquierda y sus productos a la derecha, con la IA trabajando dentro de las dos columnas. La página mide 4,1 pantallas a 1440 px.
 
-- **Izquierda, los sistemas:** el caso del banco con su arquitectura, la órbita de herramientas, «Cómo trabajo» (el flujo Especificación → Código → Tests → **Revisión** → Producción y los títulos de los cuatro principios de IA), «Cómo podemos trabajar juntos» (una frase y los tres servicios, con enlace a `/services`) y «Hola, soy Jefferson».
+- **Izquierda, los sistemas:** el caso del banco en texto (título más grande, resultado, sector y «Leer el caso»), la órbita de herramientas, «Cómo trabajo» (el flujo Especificación → Código → Tests → **Revisión** → Producción y los títulos de los cuatro principios de IA), «Cómo podemos trabajar juntos» (una frase y los tres servicios, con enlace a `/services`) y «Hola, soy Jefferson».
 - **Derecha, los productos:** Transolido, Other Twist e Ilnami con su captura, «También en producción» (SpecForge, PRONOQ, Corte1D y Contact QR como lista con miniaturas; SpecForge primero porque es la prueba de IA con verificación; el orden lo fija `productScreenshots`), «También abierto al puesto adecuado» (la nota para selección, con el CV) y el cierre en verde con el brief.
-- **En la primera pantalla** quedan la arquitectura del banco y un producto real.
+- **En la primera pantalla** quedan el caso del banco y un producto real.
 - **En móvil** hay una sola columna y las clases `max-md:order-*` ponen la prueba antes que el método: banco, productos, «También en producción», botón de contacto, órbita, flujo, servicios, sobre mí, selección y cierre.
 - **Lo que salió de la home vive en `/services`:** «Lo que puedo asumir» (modernizar, integrar IA y construir, cada uno con su caso) al principio, y «Cómo trabajo» completo, con el texto de los cuatro principios, antes del cierre. La tabla comparativa de servicios y la línea de terminal del hero ya no existen.
 
@@ -86,8 +86,7 @@ Desde 75 rem, `SiteRail` (18 rem, fija, con su propia barra de desplazamiento si
 
 1. **Intro de la home:** el titular entra por palabras con máscara, una vez por sesión, y la entradilla aparece detrás. La **órbita de herramientas** (`components/site/tool-orbit.tsx`) va en su baldosa: «Tu sistema» en el centro y 8 logos reales en dos anillos (Java, Spring Boot y PostgreSQL dentro; Redis, Docker, Kubernetes, Keycloak y Claude fuera; pocas a propósito, el stack completo está en /cv) que giran despacio en sentidos alternos, con los logos siempre derechos (el anillo gira y cada ficha contragira) y un punto verde que recorre cada anillo. La primera visita de la sesión, las fichas salen del centro hacia su anillo; el centro late cada 3 s; al pasar el ratón la órbita se detiene y la ficha muestra su nombre. Solo `rotate`, `scale` y `opacity` en el compositor; con movimiento reducido queda quieta. Los logos salen de simple-icons mediante `scripts/generate-site-tools.mjs` → `components/site/tool-rings.generated.ts` (los colores de marca casi negros usan el color del texto para que se vean en oscuro).
 2. **Títulos de sección (páginas interiores):** cada letra se enfoca (opacidad y desenfoque) cuando su sección se revela al hacer scroll; el barrido dura menos de 0,4 s sea cual sea la longitud. El `h2` lleva el título en `aria-label` y las letras van con `aria-hidden` (`DisplayTitle letters`). Las secciones que ya están a la vista al cargar no se animan; con movimiento reducido, nada.
-3. **Casos:** la arquitectura del banco, en su baldosa de la home, se inclina hasta 3° hacia el ratón (`components/site/tilt-frame.tsx`, solo con ratón; con movimiento reducido queda plano).
-4. **Experiencia (página /experience):** el raíl se dibuja con el scroll. En la home no hay línea de tiempo: la línea «He trabajado para» de la barra y el párrafo de «Hola, soy Jefferson» la resumen.
+3. **Experiencia (página /experience):** el raíl se dibuja con el scroll. En la home no hay línea de tiempo: la línea «He trabajado para» de la barra y el párrafo de «Hola, soy Jefferson» la resumen.
 
 `prefers-reduced-motion` lo desactiva todo; sin soporte de scroll-driven animations todo queda en su estado final; al imprimir todo es estático. Nada oculta contenido sin JavaScript. Sin inclinaciones 3D ni cartas que giran.
 

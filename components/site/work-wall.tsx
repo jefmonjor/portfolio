@@ -3,10 +3,9 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import Image from "next/image"
 import Link from "next/link"
 
-import { ArchitectureDiagram } from "@/components/site/architecture-diagram"
+import { ArrowLabel } from "@/components/site/arrow-label"
 import { CaseVisual } from "@/components/site/case-card"
 import { ContactButton } from "@/components/site/contact-button"
-import { TiltFrame } from "@/components/site/tilt-frame"
 import {
   AboutPanel,
   ClosingPanel,
@@ -32,15 +31,16 @@ type WorkWallProps = {
 
 const tileImageSizes = "(min-width: 75rem) 31rem, (min-width: 48rem) 46vw, 92vw"
 
+/** A product case with its capture, or, without one, the case told in words. */
 function CaseTile({
   locale,
   study,
-  architectureLabel,
+  readLabel,
   className,
 }: {
   locale: SiteLocale
   study: CaseStudy
-  architectureLabel: string
+  readLabel: string
   className?: string
 }) {
   const screenshot = wallScreenshots[study.slug] ?? caseScreenshots[study.slug]
@@ -53,20 +53,19 @@ function CaseTile({
           screenshot={screenshot}
           sizes={tileImageSizes}
         />
-      ) : (
-        <div className="border-b border-stroke-soft-200 px-6 py-7">
-          <TiltFrame className="case-tilt mx-auto w-full max-w-[20rem]">
-            <ArchitectureDiagram
-              id={`wall-${study.slug}`}
-              title={architectureLabel}
-              nodes={study.diagram}
-              bare
-            />
-          </TiltFrame>
-        </div>
-      )}
-      <div className="flex flex-col gap-2 px-6 pt-5 pb-6">
-        <h2 className="font-heading text-title-h5 text-balance text-text-strong-950">
+      ) : null}
+      <div
+        className={cn(
+          "flex flex-col gap-2 px-6 pb-6",
+          screenshot ? "pt-5" : "pt-6"
+        )}
+      >
+        <h2
+          className={cn(
+            "font-heading text-balance text-text-strong-950",
+            screenshot ? "text-title-h5" : "text-title-h4"
+          )}
+        >
           <Link
             href={localizedPath(locale, `/work/${study.slug}`)}
             className="decoration-stroke-sub-300 underline-offset-4 after:absolute after:inset-0 after:rounded-16 hover:underline focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-2 focus-visible:after:outline-primary-base"
@@ -74,8 +73,23 @@ function CaseTile({
             {study.title}
           </Link>
         </h2>
-        <p className="text-paragraph-sm text-text-sub-600">{study.outcome}</p>
+        <p
+          className={cn(
+            "text-text-sub-600",
+            screenshot ? "text-paragraph-sm" : "text-paragraph-md"
+          )}
+        >
+          {study.outcome}
+        </p>
         <p className="text-label-sm text-text-strong-950">{study.sector}</p>
+        {screenshot ? null : (
+          <p
+            aria-hidden
+            className="group/arrow mt-2 text-label-sm text-text-strong-950"
+          >
+            <ArrowLabel>{readLabel}</ArrowLabel>
+          </p>
+        )}
       </div>
     </article>
   )
@@ -155,7 +169,7 @@ function WorkWall({ locale, content }: WorkWallProps) {
   const moreProducts = Object.keys(productScreenshots).flatMap((id) =>
     products.filter((product) => product.id === id && product.href)
   )
-  const architectureLabel = content.work.labels.architecture
+  const readLabel = content.selectedWork.readCase
 
   return (
     <div id="work" className="wall">
@@ -165,7 +179,7 @@ function WorkWall({ locale, content }: WorkWallProps) {
             key={study.slug}
             locale={locale}
             study={study}
-            architectureLabel={architectureLabel}
+            readLabel={readLabel}
             className="max-md:order-1"
           />
         ))}
@@ -188,7 +202,7 @@ function WorkWall({ locale, content }: WorkWallProps) {
             key={study.slug}
             locale={locale}
             study={study}
-            architectureLabel={architectureLabel}
+            readLabel={readLabel}
             className="max-md:order-2"
           />
         ))}

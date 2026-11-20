@@ -717,11 +717,12 @@
   backdrop-filter: blur(12px) saturate(1.4);
 }
 
+/* The blur stays on: animating backdrop-filter is not reliable on iOS, and
+   without the blur the page showed through the bar. */
 @keyframes header-settle {
   from {
     background-color: transparent;
     box-shadow: inset 0 -1px 0 transparent;
-    backdrop-filter: none;
   }
 }
 
@@ -762,48 +763,6 @@ html:has(#site-menu:popover-open) {
   display: none;
 }
 
-.case-flow > li + li {
-  position: relative;
-  padding-top: 0.625rem;
-}
-
-.case-flow > li + li::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0.75rem;
-  width: 1px;
-  height: 0.625rem;
-  background: var(--stroke-sub-300);
-  transform-origin: top;
-}
-
-.case-flow > li:last-child > span {
-  background: var(--primary-alpha-10);
-  box-shadow: inset 0 0 0 1px var(--primary-base);
-  color: var(--text-strong-950);
-}
-
-.case-flow > li:nth-child(2) {
-  --flow-step: 1;
-}
-
-.case-flow > li:nth-child(3) {
-  --flow-step: 2;
-}
-
-.case-flow > li:nth-child(4) {
-  --flow-step: 3;
-}
-
-.case-flow > li:nth-child(5) {
-  --flow-step: 4;
-}
-
-.case-flow > li:nth-child(6) {
-  --flow-step: 5;
-}
-
 .process-steps {
   display: grid;
   border-bottom: 1px solid var(--stroke-soft-200);
@@ -830,15 +789,6 @@ html:has(#site-menu:popover-open) {
   gap: 0.25rem;
   padding-inline-start: 0.875rem;
   border-inline-start: 2px solid var(--primary-base);
-}
-
-.case-flow {
-  position: relative;
-}
-
-.case-flow > li > span {
-  position: relative;
-  z-index: 1;
 }
 
 /* On phones the brief is the page itself; a card inside the page gutter only
@@ -1180,13 +1130,6 @@ html:has(#site-menu:popover-open) {
   scale: 1.02;
 }
 
-.case-shot-diagram {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 16 / 10;
-  padding-top: 2.25rem;
-}
-
 .pipeline {
   display: grid;
   gap: 0.5rem;
@@ -1292,7 +1235,7 @@ body:has(> .site-ground) {
 }
 
 .site-ground .site-header {
-  background-color: color-mix(in srgb, var(--ground) 80%, transparent);
+  background-color: color-mix(in srgb, var(--ground) 94%, transparent);
 }
 
 .site-rail {
@@ -1616,12 +1559,6 @@ body:has(> .site-ground) {
   }
 }
 
-@keyframes flow-in {
-  from {
-    translate: -0.5rem 0;
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-intro="played"]) .hero-reveal {
     animation: fade-rise 450ms var(--ease-line-reveal) both;
@@ -1652,25 +1589,6 @@ body:has(> .site-ground) {
       animation: draw-down linear both;
       animation-timeline: view();
       animation-range: entry 25% cover 60%;
-    }
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .case-flow {
-      view-timeline: --case-flow;
-    }
-    .case-flow > li > span,
-    .case-flow > li + li::before {
-      animation-timing-function: linear;
-      animation-fill-mode: both;
-      animation-timeline: --case-flow;
-      animation-range: entry calc(var(--flow-step, 0) * 12%) entry
-        calc(var(--flow-step, 0) * 12% + 30%);
-    }
-    .case-flow > li > span {
-      animation-name: flow-in;
-    }
-    .case-flow > li + li::before {
-      animation-name: draw-down;
     }
   }
 }
@@ -1717,8 +1635,6 @@ body:has(> .site-ground) {
   .timeline-rail,
   .hero-reveal,
   .hero-word > span,
-  .case-flow > li > span,
-  .case-flow > li + li::before,
   [data-reveal] {
     animation: none !important;
     opacity: 1 !important;
@@ -2073,17 +1989,6 @@ body:has(> .site-ground) {
   .assistant-launcher,
   .site-assistant {
     display: none !important;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .case-tilt {
-    transform: perspective(80rem) rotateX(var(--tilt-x, 0deg))
-      rotateY(var(--tilt-y, 0deg));
-    transition: transform 500ms var(--ease-out-expo);
-  }
-  .case-tilt:hover {
-    will-change: transform;
   }
 }
 

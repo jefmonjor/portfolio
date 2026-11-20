@@ -2,7 +2,6 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { ArrowLabel } from "@/components/site/arrow-label"
-import { CaseFlow } from "@/components/site/case-flow"
 import { TagList } from "@/components/site/tag-list"
 import { caseScreenshots, type Screenshot } from "@/content/site/images"
 import type { CaseStudy, SiteContent } from "@/content/site/types"
@@ -52,11 +51,7 @@ function CaseVisual({
     )
   }
 
-  return (
-    <div aria-hidden className="case-shot case-shot-diagram">
-      <CaseFlow nodes={study.diagram} className="flex w-full max-w-[15rem]" />
-    </div>
-  )
+  return null
 }
 
 function CaseCard({
@@ -81,7 +76,9 @@ function CaseCard({
             {study.title}
           </Link>
         </Heading>
-        <p className="text-paragraph-md text-text-sub-600">{study.outcome}</p>
+        <p className="max-w-[62ch] text-paragraph-md text-text-sub-600">
+          {study.outcome}
+        </p>
         <p className="text-paragraph-sm text-text-sub-600">
           <span className="text-text-strong-950">{labels.role}: </span>
           {study.summary.role}
