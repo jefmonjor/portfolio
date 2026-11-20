@@ -19,16 +19,9 @@ type ArchitectureDiagramProps = {
   id: string
   title: string
   nodes: ReadonlyArray<DiagramNode>
-  /** Without its own card, for a surface that already frames it. */
-  bare?: boolean
 }
 
-function ArchitectureDiagram({
-  id,
-  title,
-  nodes,
-  bare = false,
-}: ArchitectureDiagramProps) {
+function ArchitectureDiagram({ id, title, nodes }: ArchitectureDiagramProps) {
   const canvasHeight = boxTop(nodes.length) - connectorLength + padding
   const arrowId = `${id}-arrow`
   const description = nodes
@@ -37,13 +30,7 @@ function ArchitectureDiagram({
   const centre = box.x + box.width / 2
 
   return (
-    <figure
-      className={
-        bare
-          ? "mx-auto w-full"
-          : "site-card mx-auto w-full max-w-[30rem] bg-bg-weak-50 p-5 sm:p-6"
-      }
-    >
+    <figure className="site-card mx-auto w-full max-w-[30rem] bg-bg-weak-50 p-5 sm:p-6">
       <svg
         role="img"
         aria-labelledby={`${id}-title ${id}-description`}
