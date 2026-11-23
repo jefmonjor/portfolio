@@ -69,6 +69,7 @@ export const en: SiteContent = {
       label:
         "Main tools: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Keycloak and Claude. The full list is in the CV.",
       center: "Your system",
+      pause: "Pause the motion",
       caption: "The tools I use every day. The full list is in the CV.",
     },
     pillars: [

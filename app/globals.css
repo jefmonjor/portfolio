@@ -1407,8 +1407,10 @@ body:has(> .site-ground) {
   }
 }
 
+/* clip, not hidden: hidden would make every tile a scroll container and the
+   pipeline's view timeline would follow the tile instead of the page. */
 .tile {
-  overflow: hidden;
+  overflow: clip;
   border-radius: var(--radius-16);
   background: var(--panel);
 }
@@ -1427,6 +1429,170 @@ body:has(> .site-ground) {
 @media (width >= 48rem) {
   .tile-pad.surface-brand {
     padding: 2.25rem 2rem 2rem;
+  }
+}
+
+/* The home's one authored motion: the method tile runs its pipeline while it
+   rises from the bottom of the screen to the middle, so the run is over by the
+   time the list is read. A rail fills, each stage is reached in turn and the
+   review stage turns green when the run gets there. The resting styles are
+   the finished run, so without support, with reduced motion or in print the
+   list reads complete. Colours switch in one step, never through a blend that
+   would drop below 4.5:1. */
+.pipeline-run {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.pipeline-run::before,
+.pipeline-run::after {
+  position: absolute;
+  top: 1.375rem;
+  bottom: 1.375rem;
+  left: 0.375rem;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--stroke-soft-200);
+  content: "";
+}
+
+.pipeline-run::after {
+  background: var(--primary-base);
+  transform-origin: top;
+}
+
+.pipeline-run > .pipeline-stage::before {
+  position: absolute;
+  top: 50%;
+  left: calc(-1.5rem + 0.375rem + 1px - 0.4375rem);
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 9999px;
+  background: var(--primary-base);
+  box-shadow: 0 0 0 3px var(--panel);
+  translate: 0 -50%;
+  content: "";
+}
+
+@keyframes pipeline-fill {
+  from {
+    scale: 1 0;
+  }
+}
+
+@keyframes pipeline-reach {
+  from {
+    background: var(--panel);
+    box-shadow:
+      inset 0 0 0 2px var(--stroke-sub-300),
+      0 0 0 3px var(--panel);
+  }
+}
+
+@keyframes pipeline-review {
+  from {
+    background: var(--bg-weak-50);
+    box-shadow: inset 0 0 0 1px var(--stroke-soft-200);
+  }
+}
+
+@keyframes pipeline-review-text {
+  from {
+    color: var(--text-strong-950);
+  }
+}
+
+@keyframes pipeline-review-by {
+  from {
+    color: var(--text-sub-600);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .pipeline-run {
+      view-timeline: --pipeline block;
+    }
+    .pipeline-run::after {
+      animation: pipeline-fill linear both;
+      animation-timeline: --pipeline;
+      animation-range: contain 0% contain 36%;
+    }
+    .pipeline-run > .pipeline-stage::before,
+    .pipeline-run > .pipeline-stage.is-human,
+    .pipeline-run > .pipeline-stage.is-human .pipeline-step,
+    .pipeline-run > .pipeline-stage.is-human .pipeline-by {
+      animation-timing-function: steps(1, end);
+      animation-fill-mode: both;
+      animation-timeline: --pipeline;
+      animation-range: contain calc(var(--stage, 0) * 9%) contain
+        calc(var(--stage, 0) * 9% + 1%);
+    }
+    .pipeline-run > .pipeline-stage::before {
+      animation-name: pipeline-reach;
+    }
+    .pipeline-run > .pipeline-stage.is-human {
+      animation-name: pipeline-review;
+    }
+    .pipeline-run > .pipeline-stage.is-human .pipeline-step {
+      animation-name: pipeline-review-text;
+    }
+    .pipeline-run > .pipeline-stage.is-human .pipeline-by {
+      animation-name: pipeline-review-by;
+    }
+  }
+}
+
+/* The orbit moves for longer than five seconds, so it can be stopped by
+   touch and keyboard too, not only by hovering it (WCAG 2.2.2). A checkbox
+   keeps the control working without JavaScript. */
+.orbit-pause {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.375rem;
+  padding-inline: 0.75rem;
+  border-radius: var(--radius-10);
+  color: var(--text-sub-600);
+  font-size: var(--text-label-sm);
+  line-height: var(--text-label-sm--line-height);
+  cursor: pointer;
+}
+
+.orbit-pause svg {
+  fill: currentColor;
+}
+
+.orbit-pause:hover,
+.orbit-pause:has(input:checked) {
+  background: var(--bg-weak-50);
+  color: var(--text-strong-950);
+}
+
+.orbit-pause:has(input:focus-visible) {
+  outline: 2px solid var(--primary-base);
+  outline-offset: 2px;
+}
+
+.tile:has(.orbit-pause input:checked) .orbit-ring,
+.tile:has(.orbit-pause input:checked) .orbit-tile,
+.tile:has(.orbit-pause input:checked) .orbit-core::before {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-pause {
+    display: none;
+  }
+}
+
+@media (width >= 48rem) {
+  .orbit-pause {
+    min-height: 2rem;
   }
 }
 

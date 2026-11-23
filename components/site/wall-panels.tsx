@@ -27,7 +27,15 @@ function ToolsPanel({
   className?: string
 }) {
   return (
-    <div className={cn("tile tile-pad", className)}>
+    <div className={cn("tile tile-pad relative", className)}>
+      <label className="orbit-pause">
+        <input type="checkbox" className="sr-only" />
+        <svg viewBox="0 0 16 16" aria-hidden className="size-3.5">
+          <rect x="4" y="3" width="2.5" height="10" rx="0.75" />
+          <rect x="9.5" y="3" width="2.5" height="10" rx="0.75" />
+        </svg>
+        {hero.tools.pause}
+      </label>
       <div className="mx-auto w-full max-w-[18rem]">
         <ToolOrbit label={hero.tools.label} center={hero.tools.center} />
       </div>
@@ -59,13 +67,14 @@ function MethodPanel({
       <p className="mt-2 text-paragraph-md text-text-sub-600">
         {approach.intro}
       </p>
-      <ol className="pipeline pipeline-stack mt-5">
-        {approach.pipeline.map((stage) => (
+      <ol className="pipeline pipeline-stack pipeline-run mt-5">
+        {approach.pipeline.map((stage, index) => (
           <li
             key={stage.step}
             className={
               stage.human ? "pipeline-stage is-human" : "pipeline-stage"
             }
+            style={{ "--stage": index }}
           >
             <span className="pipeline-step">{stage.step}</span>
             <span className="pipeline-by">{stage.by}</span>

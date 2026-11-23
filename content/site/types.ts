@@ -246,7 +246,13 @@ export type SiteContent = {
     stack: string
     /** Remote, time zone and the ways to work together. */
     engagement: string
-    tools: { label: string; center: string; caption: string }
+    tools: {
+      label: string
+      center: string
+      caption: string
+      /** The control that stops the orbit, which otherwise moves for longer than five seconds. */
+      pause: string
+    }
     /** The three things he does, each a link to the proof on the home. */
     pillars: readonly [Pillar, Pillar, Pillar]
     /** The languages he has written code in, one small line. */
