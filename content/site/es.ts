@@ -70,6 +70,7 @@ export const es: SiteContent = {
       label:
         "Herramientas principales: Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Keycloak y Claude. La lista completa está en el CV.",
       center: "Tu sistema",
+      pause: "Pausar el movimiento",
       caption: "Las herramientas de cada día. La lista completa está en el CV.",
     },
     pillars: [
